@@ -1,0 +1,1121 @@
+
+\documentclass[
+  reprint,
+  amsmath,amssymb,
+  aps,
+  prd,
+  superscriptaddress,
+  nofootinbib,
+  longbibliography
+]{revtex4-2}
+
+% -------------------- PACKAGES --------------------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{bm}
+\usepackage{mathtools} % loads amsmath
+\usepackage{amsthm}
+\usepackage{siunitx}
+\sisetup{uncertainty-mode = separate, per-mode = symbol}
+\usepackage{graphicx}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[hidelinks]{hyperref}
+\usepackage{physics}
+\usepackage{booktabs}
+\usepackage{orcidlink}
+
+% -------------------- MACROS --------------------
+\newcommand{\phig}{\varphi}
+\newcommand{\Sthree}{S^{3}}
+\newcommand{\ellP}{\ell_{\rm P}}
+\newcommand{\tP}{t_{\rm P}}
+\newcommand{\Sig}{\Sigma}
+\newcommand{\Diff}{\mathrm{Diff}}
+\newcommand{\Lie}{\mathcal L}
+% \dd provided by physics package
+\newcommand{\RR}{\mathbb R}
+\newcommand{\ZZ}{\mathbb Z}
+
+% -------------------- THEOREM STYLES --------------------
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newtheorem{proposition}{Proposition}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}
+
+\begin{document}
+
+% Manuscript title (classic PRD style; also make PDF bookmarks math-safe)
+\title{Noether Identities and Discrete \texorpdfstring{$\varphi$}{phi}-Embedding in Compact \texorpdfstring{$S^{3}$}{S3} Quantum Cosmology}
+
+\author{Andrei Preece\orcidlink{0009-0004-5978-795X}}
+\affiliation{Independent Researcher, Berlin, Germany}
+
+\author{Boris Batenin\orcidlink{0009-0000-7027-8583}}
+\affiliation{Independent Researcher, Berlin, Germany}
+
+\date{\today}
+\begin{abstract}
+We present a topology-explicit and Noether-consistent variational framework for quantum cosmology on
+a spacetime $M=\RR\times \Sig$ with compact spatial hypersurfaces $\Sig$, and we make explicit the
+topological sector in which the universal cover is spherical, $\widetilde{\Sig}\simeq \Sthree$.
+General covariance implies a Noether-II identity structure (Bianchi-type
+identities) rather than genuine global conserved charges. We then introduce a discrete $\phig$-embedding level
+$n\in\ZZ$ (or a time-dependent embedding $N(t)$) within the action and state precise conditions under which an
+on-shell conserved current $\nabla_\mu J^\mu_{(n)}=0$ exists. The discrete choice
+$N(t)=\lfloor \log_{\phig}(ct/\ell_P)\rfloor$ is shown to require explicit junction conditions at transition times
+to prevent distributional sources in the Euler--Lagrange equations. Alternatively, a smooth embedding variable
+$\nu(t)=\log_{\phig}(ct/\ell_P)$ yields a fully differentiable action, with discretization emerging at the level
+of spectra. We derive the boundary/topology corollary: for compact $\Sig$ with $\partial\Sig=\varnothing$,
+diffeomorphism-Noether charges reduce to boundary integrals and vanish globally (in particular for
+$\Sig\cong \Sthree$). Finally, we provide minimal,
+falsifiable observational discriminants in CMB anisotropies and stochastic gravitational-wave backgrounds
+sensitive to compact topology and discrete mode structure, and we outline a likelihood-based verification pipeline.
+\end{abstract}
+
+\maketitle
+
+\section{Motivation and scope}
+In generally covariant theories such as General Relativity (GR), the relevant symmetry is local:
+invariance under diffeomorphisms $\Diff(M)$. Noether's second theorem~\cite{Noether1918} therefore applies: the symmetry implies
+differential identities among the Euler--Lagrange (EL) expressions rather than independent global conservation
+laws of Noether-I type. This distinction becomes operationally critical in cosmology, where global notions such as
+``total energy of the Universe'' depend sensitively on the existence of boundaries and the global topology of
+spatial hypersurfaces $\Sig$.
+
+The aim of this manuscript is twofold:
+(i) to state the Noether-II content of GR in a topology-explicit way (boundary charges and their vanishing on
+compact boundaryless $\Sig$ with $\partial\Sig=\varnothing$, including the spherical sector $\widetilde{\Sig}\simeq\Sthree$), and
+(ii) to formulate a mathematically consistent implementation of a discrete $\phig$-embedding label $n$ (or $N(t)$)
+inside a variational principle, including the required junction conditions for piecewise-smooth embeddings.
+We then connect the framework to observational discriminants of compact topology: discrete Laplacian spectra,
+low-$\ell$ CMB structure, and infrared properties of the stochastic gravitational-wave background.
+
+\subsection{Invariant fixing of the golden ratio scale factor}
+\label{sec:phi_invariant}
+The discrete embedding label $n$ is not introduced as a tunable convention, but as an invariant bookkeeping of
+\emph{scale composition}: coarse-graining steps must add without ambiguity, and the resulting representation of
+integers must be unique under refinement. The mathematically sharp form of this requirement is the
+\emph{Zeckendorf property}: every positive integer admits a unique decomposition into a sum of \emph{non-adjacent}
+elements of a strictly increasing ``scale sequence.'' In the classical case this sequence is the Fibonacci ladder,
+and uniqueness is guaranteed by the Zeckendorf--Lekkerkerker theorem~\cite{Lekkerkerker1951, Keller1972}.
+
+Physically, this ``unique decomposition'' is the minimal invariance needed for a well-defined refinement
+semigroup: successive coarse-grainings must compose associatively and yield a path-independent index of scale.
+In quantum cosmology this provides an invariant coarse-graining coordinate (a discrete RG-like clock) rather than
+an arbitrary choice of base.
+
+To avoid confusion with the large ``golden-ratio cosmology literature (often based on post-hoc pattern matching),
+we stress that $\phig$ does not enter here as a fit parameter or an empirical coincidence. Instead, $\phig$ is a
+\emph{rigidity consequence} of imposing a minimal invariance requirement on scale composition (unique, path-independent
+refinement in a discrete semigroup) \emph{inside} the variational principle. The empirical content of the framework is
+therefore not ``$\phig$ appears in data, but rather the falsifiable prediction that compact-topology observables must
+be computed with discrete mode sums and (if present) $\phig$-indexed features, and then tested against likelihoods
+(Secs.~\ref{sec:likelihood-protocol} and~\ref{sec:sgwb}).
+
+A key rigidity statement (a weak converse) shows that this uniqueness requirement is not merely consistent with the
+Fibonacci ladder but essentially characterizes it among monotone sequences~\cite{Chang2020WeakConverse}. Hence the
+discrete scale ladder is fixed (up to initial normalization) by invariance/uniqueness alone. The associated
+\emph{scale multiplier} is then forced as the unique positive fixed point of the induced recursion:
+\begin{lemma}[Golden ratio as the invariant multiplier of the Zeckendorf ladder]
+\label{lem:phi_multiplier}
+Let $\{F_n\}$ be the Fibonacci sequence defined by $F_{n+2}=F_{n+1}+F_n$ with $F_0=F_1=1$. Then the ratio
+$r_n=F_{n+1}/F_n$ converges to the unique positive root of $r^2=r+1$, namely
+\begin{equation}
+\lim_{n\to\infty}\frac{F_{n+1}}{F_n}=\phig\equiv \frac{1+\sqrt{5}}{2}.
+\end{equation}
+\end{lemma}
+
+In the present framework, $n$ labels this invariant discrete ladder of scale composition; therefore $\phig$ enters
+as the uniquely selected multiplier of the ladder, and the smooth embedding $\nu(t)=\log_{\phig}(ct/\ell_P)$ is the
+coordinate-free continuum interpolation of that invariant index.
+
+\section{Geometric setup and variational calculus}
+\subsection{Spacetime and topology}
+\begin{definition}[Spacetime decomposition]
+Let $M=\RR\times \Sig$, where $\Sig$ is a compact orientable 3-manifold \emph{without boundary}
+($\partial\Sig=\varnothing$). The Noether-II/topology statements below depend only on this boundarylessness.
+\end{definition}
+
+\begin{proposition}[Spherical cover as an invariantly characterized sector]
+\label{prop:spherical_space_form}
+If $\Sig$ admits a (complete) Riemannian metric of constant \emph{positive} sectional curvature, then
+$\Sig$ is a spherical space form: there exists a finite group $\Gamma\subset \mathrm{Isom}(\Sthree)$ acting freely
+such that
+\begin{equation}
+\Sig\simeq \Sthree/\Gamma,
+\end{equation}
+and hence the universal cover is $\widetilde{\Sig}\simeq \Sthree$.\cite{WolfConstantCurvature,Scott3Manifolds}
+\end{proposition}
+
+In the observational part of the paper, this spherical-cover sector is singled out by its invariant spectral
+fingerprints (discrete Laplacian eigenvalues and characteristic degeneracies), which are directly testable in
+low-$\ell$ CMB statistics and in infrared features of $\Omega_{\rm GW}(f)$.
+
+\subsection{Action and EL expressions}
+Consider a generally covariant action
+\begin{equation}
+S[g,\psi]=\int_{M}\dd^4x\,\sqrt{-g}\,\mathcal L(g,\psi,\nabla\psi,\nabla\nabla\psi,\dots),
+\label{eq:action_general}
+\end{equation}
+where $\psi$ denotes matter or effective cosmological degrees of freedom. We define EL expressions as
+\begin{equation}
+E^{\mu\nu}\equiv \frac{1}{\sqrt{-g}}\frac{\delta S}{\delta g_{\mu\nu}},
+\qquad
+E_{\psi}\equiv \frac{1}{\sqrt{-g}}\frac{\delta S}{\delta \psi}.
+\label{eq:EL_defs}
+\end{equation}
+
+\section{Noether II for diffeomorphism invariance}
+\subsection{Local symmetry and identities}
+\begin{theorem}[Noether II for diffeomorphism invariance]
+\label{thm:noetherII_diff}
+Let $S[g,\psi]$ be invariant under infinitesimal diffeomorphisms generated by an arbitrary smooth vector field
+$\xi^\mu(x)$:
+\begin{equation}
+\delta_\xi g_{\mu\nu}=\nabla_\mu\xi_\nu+\nabla_\nu\xi_\mu,
+\qquad
+\delta_\xi \psi=\Lie_\xi \psi.
+\label{eq:diff_variations}
+\end{equation}
+Then the EL expressions satisfy differential identities (Noether-II identities) of the schematic form
+\begin{equation}
+\nabla_\mu E^{\mu\nu} \;+\; \mathcal K^\nu(E_\psi,\nabla E_\psi,\dots)\;\equiv\;0,
+\label{eq:noetherII_identity}
+\end{equation}
+where $\mathcal K^\nu$ is a covariant differential operator determined by the tensor character of $\psi$.
+\end{theorem}
+
+\begin{proof}
+Diffeomorphism invariance depends on arbitrary functions $\xi^\mu(x)$, hence it falls under Noether's second theorem~\cite{Noether1918}.
+Varying $S$ under \eqref{eq:diff_variations} yields the schematic identity
+\begin{align}
+0=\delta_\xi S
+&=\int_M \dd^4x\,\sqrt{-g}\Big(E^{\mu\nu}\delta_\xi g_{\mu\nu}+E_\psi\,\delta_\xi\psi\Big)
+\nonumber\\
+&\quad+\int_M \dd^4x\,\sqrt{-g}\,\nabla_\mu(\cdots).
+\end{align}
+Integrating by parts transfers derivatives from $\xi^\mu$ to $E^{\mu\nu}$ and $E_\psi$. Since $\xi^\mu(x)$ is
+arbitrary, the coefficient of $\xi^\mu$ must vanish identically, giving \eqref{eq:noetherII_identity}.
+\end{proof}
+
+\subsection{Boundary charges, compact \texorpdfstring{$\Sig$}{Sigma}, and the meaning of ``conservation''}
+In GR, diffeomorphism invariance is a local gauge symmetry. Consequently, the standard Noether-I expectation
+(``rigid symmetry $\Rightarrow$ a global conserved charge'') does not apply in a straightforward way.
+Noether's second theorem instead yields identity structure among the Euler--Lagrange expressions, and the
+corresponding ``conservation laws'' are \,improper\, in the classic sense: on-shell they reduce to total divergences
+and/or boundary terms rather than providing a unique local, gauge-invariant gravitational energy density
+\cite{Noether1918,BradingBrown2003}.
+
+A precise formulation is given by the covariant phase space approach \cite{LeeWald1990,IyerWald1994,WaldBook}.
+Treat the Lagrangian as an $n$-form $L$ and write
+\begin{equation}
+\delta L \;=\; E(\phi)\,\delta\phi \; +\; d\Theta(\phi,\delta\phi),
+\end{equation}
+where $E(\phi)=0$ are the field equations and $\Theta$ is the symplectic potential. For a vector field $\xi$
+generating an infinitesimal diffeomorphism, define the Noether current $(n\! -\! 1)$-form
+\begin{equation}
+J_{\xi} \;\equiv\; \Theta(\phi,\Lie_{\xi}\phi)\; -\; \xi\cdot L.
+\end{equation}
+Diffeomorphism invariance implies that $J_{\xi}$ is closed on-shell, $dJ_{\xi}\approx 0$, and, crucially, on-shell
+\emph{exact}:
+\begin{equation}
+J_{\xi} \;\approx\; dQ_{\xi},
+\label{eq:noether_current_exact}
+\end{equation}
+with $Q_{\xi}$ an $(n\! -\! 2)$-form (Noether charge form). This is the clean statement that covariant charges in GR
+are generically boundary charges.
+
+At the level of canonical generators, one may write schematically
+\begin{equation}
+H_{\xi} \;=\; \int_{\partial\Sig} \bigl(Q_{\xi} - \xi\cdot B\bigr),
+\label{eq:hamiltonian_boundary}
+\end{equation}
+where $B$ is a boundary counterterm fixed by the admissible boundary conditions \cite{IyerWald1994,WaldBook}.
+Equation \eqref{eq:hamiltonian_boundary} makes the compact-sector corollary immediate.
+
+\begin{corollary}[Compact boundaryless $\Sig$]
+\label{cor:S3_charge_zero}
+If $\Sig$ is compact and boundaryless, $\partial\Sig=\varnothing$, then diffeomorphism-Noether charges reduce to
+boundary integrals and vanish globally:
+\begin{equation}
+\partial\Sig=\varnothing \qquad\Longrightarrow\qquad H_{\xi}=0.
+\end{equation}
+\noindent(For the corresponding $\xi$ and standard boundary conditions.)
+In particular, for $\Sig\cong\Sthree$ (or more generally $\Sig\simeq\Sthree/\Gamma$), there is no global Noether-I
+``energy of the Universe''; the invariant content is the Noether-II identity structure in
+Theorem~\ref{thm:noetherII_diff}.
+\end{corollary}
+
+\begin{remark}[Junction consistency under discrete refinement]
+When refinement is implemented piecewise (e.g.\ via the floor embedding $N(t)$ below), Noether-consistency requires
+that matching data do not introduce spurious distributional sources. In the covariant language this means that the
+exactness property \eqref{eq:noether_current_exact} is not spoiled by junction contributions beyond admissible
+boundary counterterms. This is the conceptual origin of the explicit junction conditions derived in
+Section~IV.
+\end{remark}
+
+\section{\texorpdfstring{Discrete $\phig$-embedding: smooth vs floor and junction conditions}{Discrete phi-embedding: smooth vs floor and junction conditions}}
+\subsection{Embedding variables}
+Define the smooth embedding variable
+\begin{equation}
+\nu(t)=\log_{\phig}\!\left(\frac{c\,t}{\ell_P}\right),
+\label{eq:nu_def}
+\end{equation}
+and the discrete embedding level
+\begin{equation}
+N(t)=\lfloor \nu(t)\rfloor,\qquad N\in\ZZ.
+\label{eq:N_floor}
+\end{equation}
+
+\subsection{\texorpdfstring{Prototype $\phig$-dependent matter sector}{Prototype phi-dependent matter sector}}
+As a minimal prototype, consider a complex scalar $\psi$ with a $\phig$-dependent potential:
+\begin{align}
+\mathcal L
+&=\frac12 g^{\mu\nu}\partial_\mu\psi^*\partial_\nu\psi - V(|\psi|;N),
+\nonumber\\
+V(|\psi|;N)
+&=\frac12 m^2|\psi|^2\,\phig^{-2N}.
+\label{eq:prototype_L}
+\end{align}
+More generally, one may encode the embedding level as a conformal scaling
+\begin{equation}
+g_{\mu\nu}(x,N)=\phig^{-2N}\,\tilde g_{\mu\nu}(x),
+\label{eq:metric_scaling}
+\end{equation}
+provided the physical (nondegenerate) metric entering observables is defined so that degeneracy is avoided.
+Concretely, one may treat \(\tilde g_{\mu\nu}\) as the physical metric and interpret \eqref{eq:metric_scaling}
+as an \emph{auxiliary} scale bookkeeping that is absorbed into the definition of dimensionless couplings and
+potentials; then all observables are built from dimensionless ratios and remain well-defined in the smooth limit.
+
+\subsection{Two consistent formulations}
+\paragraph{(I) Smooth embedding.}
+\begin{equation}
+S=\int \dd^4x\,\sqrt{-g}\,\mathcal L(\phi,\nabla\phi;\nu(t)).
+\label{eq:action_smooth_nu}
+\end{equation}
+
+\paragraph{(II) Discrete floor embedding.}
+\begin{equation}
+S=\int \dd^4x\,\sqrt{-g}\,\mathcal L(\phi,\nabla\phi;N(t)).
+\label{eq:action_floorN}
+\end{equation}
+
+\subsection{Junction term from the variational principle}
+Splitting into intervals $I_k=(t_k,t_{k+1})$ and integrating by parts yields
+\begin{align}
+\delta S
+&=\sum_k \int_{I_k}\dd^4x\,\sqrt{-g}\,\Big(E_\phi\,\delta\phi\Big)
+\nonumber\\
+&\quad+\sum_k \int_{\Sig_{t_k}}\dd^3x\,\left[\Pi_\phi\,\delta\phi\right]_{t_k^-}^{t_k^+},
+\label{eq:deltaS_junction}
+\end{align}
+with
+\begin{equation}
+\Pi_\phi\equiv \frac{\partial(\sqrt{-g}\mathcal L)}{\partial(\partial_t\phi)}.
+\label{eq:Pi_def}
+\end{equation}
+
+\begin{theorem}[Junction consistency for distribution-free EL equations]
+\label{thm:junction_condition}
+In the discrete formulation \eqref{eq:action_floorN}, the EL equations are distribution-free iff
+\begin{equation}
+\int_{\Sig_{t_k}}\dd^3x\, \Big[\Pi_\phi\,\delta\phi\Big]^{t_k^+}_{t_k^-}=0
+\qquad \text{for all }k.
+\label{eq:junction_condition}
+\end{equation}
+A sufficient standard choice is continuity of canonical data:
+\begin{equation}
+\phi(t_k^-)=\phi(t_k^+),\qquad \Pi_\phi(t_k^-)=\Pi_\phi(t_k^+).
+\label{eq:canonical_continuity}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+\eqref{eq:deltaS_junction} is exact. Stationarity requires both the bulk and junction contributions to vanish for all
+admissible variations, giving \eqref{eq:junction_condition}.
+\end{proof}
+
+\subsection{Implication for conserved currents}
+If on each $I_k$ there is a current $J^\mu_{(N)}$ with $\nabla_\mu J^\mu_{(N)}=0$ on-shell, then global conservation
+holds iff
+\begin{equation}
+\sum_k \int_{\Sig_{t_k}}\dd^3x\,\sqrt{h}\, n_\mu J^\mu_{(N)}\Big|^{t_k^+}_{t_k^-}=0.
+\label{eq:current_junction_flux}
+\end{equation}
+
+
+\subsection{Explicit generalized action and scaling symmetry (comparison to the two preprints)}
+\label{sec:explicit-generalized-noether}
+
+For completeness, and to make the present manuscript self-contained, we restate the
+core structures of the two companion preprints on a ``generalized Noether theorem''~\cite{PreeceBatenin2025QCNoether,PreeceBatenin2025MFNoether}
+in the $\mathrm{FBS^3R}$ setting (quantum-cosmology and multifractal versions) in a unified notation.
+
+\paragraph{(A) Fixed embedding level $n$ (quantum-cosmology sketch).}
+The preprint model starts from a $\phig$-indexed family of length scales
+\begin{equation}
+R_n=\ellP\,\phig^{\,n},
+\end{equation}
+and an action for a complex scalar ``wave function of the Universe'' $\psi$ on a background metric $g_{\mu\nu}$,
+\begin{equation}
+S_n[\psi,g]=\int d^4x\,\sqrt{-g}\;\mathcal{L}(\psi,\partial_\mu\psi;\phig^{\,n}),
+\label{eq:Sn-fixedn}
+\end{equation}
+with Lagrangian density of the form
+\begin{align}
+\mathcal{L}
+&=\frac12\, g^{\mu\nu}\,\partial_\mu\psi^\ast\,\partial_\nu\psi - V(|\psi|,\phig^{\,n}),
+\nonumber\\
+V(|\psi|,\phig^{\,n})
+&=\frac12\,m^2|\psi|^2\,\phig^{-2n}.
+\label{eq:L-fixedn}
+\end{align}
+The generalized scaling transformation is taken as
+\begin{equation}
+x^\mu \mapsto \phig\,x^\mu,
+\label{eq:scale-fixedn}
+\end{equation}
+and the associated Noether current (in the standard variational form) is
+\begin{equation}
+J^\mu_{(n)}=
+\frac{\partial\mathcal{L}}{\partial(\partial_\mu\psi)}\,\delta\psi
+-
+\Big(
+\frac{\partial\mathcal{L}}{\partial(\partial_\mu\psi)}\,\partial_\nu\psi
+-
+\mathcal{L}\,g^\mu{}_\nu
+\Big)\delta x^\nu .
+\label{eq:noether-current-fixedn}
+\end{equation}
+On shell this satisfies the covariant conservation law
+\begin{equation}
+\nabla_\mu J^\mu_{(n)}\approx 0,
+\label{eq:current-conservation-fixedn}
+\end{equation}
+where $\approx$ denotes equality modulo the Euler--Lagrange equations.
+
+\paragraph{(B) Multifractal action with a time-dependent embedding level $N(t)$.}
+The multifractal preprint specifies a metric scaling
+\begin{equation}
+ds^2=g_{\mu\nu}(x,n)\,dx^\mu dx^\nu,
+\qquad
+g_{\mu\nu}(x,n)=\phig^{-2n}\,\tilde g_{\mu\nu}(x),
+\label{eq:metric-multifractal}
+\end{equation}
+and a variational principle
+\begin{equation}
+S=\int d^4x\,\sqrt{-g}\;\mathcal{L}(\psi,\partial_\mu\psi,n).
+\label{eq:action-multifractal}
+\end{equation}
+If $n=n(\psi)$ is treated as an additional dependent variable, the Euler--Lagrange equation takes the modified form
+\begin{equation}
+\frac{\partial\mathcal{L}}{\partial\psi}-\nabla_\mu\!\Big(\frac{\partial\mathcal{L}}{\partial(\partial_\mu\psi)}\Big)
++\frac{\partial\mathcal{L}}{\partial n}\,\frac{\partial n}{\partial\psi}=0.
+\label{eq:EL-multifractal}
+\end{equation}
+The embedding level is then promoted to a time-dependent quantity
+\begin{equation}
+\begin{split}
+N(t)
+&=\Big\lfloor\log_{\frac{1+\sqrt5}{2}}\!\Big(\frac{ct}{\ellP}\Big)\Big\rfloor
+ =\Big\lfloor\log_{\phig}\!\Big(\frac{ct}{\ellP}\Big)\Big\rfloor,
+\end{split}
+\label{eq:Nt-floor}
+\end{equation}
+and the action is written as
+\begin{equation}
+\begin{split}
+S_{\mathrm{FBS^3R}}
+&=\int d^4x\,\sqrt{-g_{N(t)}}\;
+\mathcal{L}_{N(t)}\!\Big(\psi,\partial_\mu\psi,\phig^{N(t)}\Big),
+\end{split}
+\label{eq:action-Nt}
+\end{equation}
+with
+\begin{align}
+\mathcal{L}_{n}
+&=\frac12\,g^{\mu\nu}\partial_\mu\psi^\ast\partial_\nu\psi
+-V\!\big(|\psi|,\phig^{n}\big),
+\nonumber\\
+V\!\big(|\psi|,\phig^{n}\big)
+&=\frac12\,m^2|\psi|^2\,\phig^{-4n}.
+\label{eq:L-Nt}
+\end{align}
+The preprint further proposes an illustrative two-regime ansatz for the wave function,
+\begin{equation}
+\psi(t)=
+\begin{cases}
+A\left(\dfrac{ct}{\ellP}\right)^{-3/2}\exp\!\Big(i\,\phig^{N(t)}\,\dfrac{t}{\tP}\Big),
+& t<t_{\rm rec},
+\\[0.6em]
+B\,\exp\!\big(-\tfrac32 H(t-t_{\rm rec})\big)\,\exp(iHt), & t\ge t_{\rm rec},
+\end{cases}
+\label{eq:psi-ansatz}
+\end{equation}
+
+In the ``large-$N$'' continuum approximation used for intuition in the multifractal sketch, one writes
+\begin{align}
+\exp\!\Big(i\,\phig^{N(t)}\frac{t}{\tP}\Big)&\;\sim\;\exp\!\Big(i\,\frac{ct}{\ellP}\,\ln t\Big),
+\label{eq:phase-largeN-approx}
+\\
+g_{\mu\nu}(x,N(t))=\phig^{-2N(t)}\tilde g_{\mu\nu}(x)
+&\;\sim\;\left(\frac{ct}{\ellP}\right)^{-2}\tilde g_{\mu\nu}(x),
+\label{eq:metric-largeN-approx}
+\\
+V\big(|\psi|,\phig^{N(t)}\big)=\frac12 m^2|\psi|^2\phig^{-4N(t)}
+&\;\sim\;\frac12 m^2|\psi|^2\left(\frac{ct}{\ellP}\right)^{-4},
+\label{eq:V-largeN-approx}
+\end{align}
+which should be treated as a heuristic scaling limit, while the discrete $N(t)$ formulation requires the
+junction consistency already stated in Sec.~IV.
+where $t_{\rm rec}$ is a reference transition time and $H$ is the Hubble scale.
+
+The multifractal scaling symmetry is specified as
+\begin{equation}
+\begin{split}
+x^\mu \mapsto \phig\,x^\mu,\qquad
+N(t)\mapsto N(t)+1,\qquad
+\psi\mapsto \psi/\phig^{3/2},
+\end{split}
+\label{eq:scale-multifractal}
+\end{equation}
+leading to the current
+\begin{align}
+\mathcal{J}^\mu_{n}
+&=\frac{\partial \mathcal{L}_{n}}{\partial(\partial_\mu\psi)}\,\delta\psi
+-
+\Big(
+\frac{\partial \mathcal{L}_{n}}{\partial(\partial_\mu\psi)}\,\partial_\nu\psi
+-
+\mathcal{L}_{n}\,g^\mu{}_\nu
+\Big)\delta x^\nu,
+\nonumber\\
+\nabla_\mu \mathcal{J}^\mu_{n}&=0.
+\label{eq:noether-current-multifractal}
+\end{align}
+and a corresponding conserved quantity (for a chosen time foliation)
+\begin{equation}
+E_n=\int d^3x\,\sqrt{-g_n}\;\mathcal{J}^0_{n}.
+\label{eq:En}
+\end{equation}
+
+\paragraph{What is retained, and what is strengthened here.}
+Equations \eqref{eq:Sn-fixedn}--\eqref{eq:En} are the precise elements of the two preprints that are
+\emph{needed} for the unified PRD manuscript: (i) the explicit symmetry map
+\eqref{eq:scale-fixedn} and/or \eqref{eq:scale-multifractal}, (ii) the explicit current formulas
+\eqref{eq:noether-current-fixedn} and \eqref{eq:noether-current-multifractal}, and (iii) the exact
+definition of the time-dependent embedding \eqref{eq:Nt-floor}.
+The present manuscript goes beyond the sketches by (a) clarifying the on-shell nature of the current
+identities, (b) making junction conditions for floor-discretized $N(t)$ explicit (Theorem~\ref{thm:junction_condition}),
+and (c) separating \emph{predictions} from \emph{tests} via a likelihood protocol (Sec.~\ref{sec:likelihood-protocol}).
+
+\begin{remark}[Covariance in the presence of a discrete embedding]
+The underlying gravitational sector remains diffeomorphism-invariant. In the \emph{smooth} formulation one may treat
+$\nu(t)=\log_{\phig}(ct/\ellP)$ as an (effective) scalar embedding variable. In the \emph{floor} formulation, $N(t)$ is
+piecewise-constant with a chosen foliation; adding the junction term and imposing the matching conditions ensure that the
+Euler--Lagrange system is distribution-free, so the Noether-II identity structure holds on each interval and is globally
+consistent across the transition hypersurfaces.
+\end{remark}
+
+
+\section{Topology and CMB observables}
+
+\subsection{Invariant routes to the spherical sector}
+\label{sec:invariant_routes_s3}
+Diffeomorphism invariance in GR constrains the \emph{local} variational structure via a Noether-II identity
+(Bianchi-type relations), but it does not by itself fix the \emph{global} topology of $\Sig$.
+To make the spherical sector mathematically unavoidable, one must add genuinely
+topological/geometric invariant conditions. We record two standard levels of ``inevitability.''
+
+\paragraph{Hard inevitability (strict): $\Sig\cong \Sthree$.}
+\begin{theorem}[Hard spherical inevitability]
+\label{thm:hard_s3_main}
+Let $\Sig$ be a closed 3-manifold, i.e.\ compact and without boundary, $\partial\Sig=\varnothing$.
+If $\Sig$ is simply connected,
+\begin{equation}
+\pi_1(\Sig)=0,
+\end{equation}
+then $\Sig$ is homeomorphic to the 3-sphere,
+\begin{equation}
+\Sig \cong \Sthree.
+\end{equation}
+\end{theorem}
+This is the Poincar\'e/Geometrization criterion in dimension three~\cite{Perelman2002Entropy,Perelman2003Surgery,Perelman2003Extinction,MorganTian2007RicciFlowPoincare,KleinerLott2008NotesPerelman}.
+
+\paragraph{Soft inevitability (minimal spherical): $\widetilde{\Sig}\cong \Sthree$.}
+\begin{corollary}[Soft spherical inevitability: spherical space forms]
+\label{cor:soft_s3_main}
+Let $\Sig$ be closed, $\partial\Sig=\varnothing$. If $\Sig$ admits a Riemannian metric with strictly positive
+Ricci curvature,
+\begin{equation}
+\mathrm{Ric}>0,
+\end{equation}
+then $\Sig$ is a spherical space form,
+\begin{equation}
+\Sig\cong \Sthree/\Gamma,\qquad \widetilde{\Sig}\cong \Sthree,
+\end{equation}
+where $\Gamma$ is a finite group acting freely by isometries~\cite{Hamilton1982PositiveRicci,Scott3Manifolds,WolfConstantCurvature}.
+\end{corollary}
+In our observational pipeline we therefore treat $\Sig\cong \Sthree/\Gamma$ as the relevant compact sector and compare
+candidate $\Gamma$ via likelihood/evidence (Appendix~\ref{app:hard_soft_s3}).
+
+\subsection{Current observational status of compact topology searches}
+\label{sec:topology_status}
+Direct topology searches in the CMB target the existence of repeated patterns such as ``matched circles''
+in the temperature/polarization sky maps~\cite{CornishSpergelStarkman1998}. Current analyses, including the
+Planck topology study, find no statistically significant detection and therefore provide lower bounds on
+the size (injectivity radius) of possible fundamental domains~\cite{Planck2015Topology}. Recent dedicated
+limits on spherical lens spaces $L(p,q)$ from circle searches refine these bounds within the spherical sector
+$\Sthree/\Gamma$~\cite{Saha2024LensSpaces}, and forecasts quantify the reach of future searches~\cite{FutureTopologySearches}.
+
+\subsection{Curvature radius and mode discreteness}
+In a closed FRW slicing introduce curvature radius $R_K$; at present
+\begin{equation}
+R_{K,0}=\frac{c}{H_0\sqrt{|\Omega_k|}},\qquad \Omega_k<0,
+\label{eq:RK0_Omegak}
+\end{equation}
+On $\Sthree$ scalar harmonics satisfy
+\begin{equation}
+\Delta_{\Sthree}Y_{n\ell m}=-\frac{n(n+2)}{R_K^2}\,Y_{n\ell m},
+\qquad n=0,1,2,\dots.
+\label{eq:S3_scalar_eigs}
+\end{equation}
+Define $k_n=(n+1)/R_K$.
+
+\subsection{A concrete toy numerical example: discrete \texorpdfstring{$S^{3}$}{S3} mode sum}
+\label{sec:toy_example_modes}
+To make the discrete mode structure fully explicit (independently of any Boltzmann-code implementation),
+consider the scalar Laplacian spectrum \eqref{eq:S3_scalar_eigs}. The associated ``wavenumber'' is
+$k_n=(n+1)/R_K$ and the scalar harmonic degeneracy on $\Sthree$ is $(n+1)^2$.
+Table~\ref{tab:toy_modes} lists the first modes for an illustrative curvature radius $R_K=\SI{50}{Gpc}$,
+and Fig.~\ref{fig:toy_S3_modes} visualizes the discretization (a uniform spacing $\Delta k=1/R_K$).
+This is a minimal, checkable numerical instance of the replacement $k\to k_n$ used in
+\eqref{eq:Cl_discrete_sum}.
+
+\begin{table}[t]
+\centering
+\caption{Toy $\Sthree$ scalar modes for $R_K=\SI{50}{Gpc}$. Here $k_n=(n+1)/R_K$ and the scalar degeneracy is $(n+1)^2$.}
+\label{tab:toy_modes}
+\begin{tabular}{@{}cccc@{}}
+\toprule
+$n$ & $k_n\;[\mathrm{Gpc}^{-1}]$ & $\Delta k\;[\mathrm{Gpc}^{-1}]$ & degeneracy $(n+1)^2$\\
+\midrule
+0  & 0.02 & 0.02 & 1  \\
+1  & 0.04 & 0.02 & 4  \\
+2  & 0.06 & 0.02 & 9  \\
+3  & 0.08 & 0.02 & 16 \\
+4  & 0.10 & 0.02 & 25 \\
+5  & 0.12 & 0.02 & 36 \\
+6  & 0.14 & 0.02 & 49 \\
+7  & 0.16 & 0.02 & 64 \\
+8  & 0.18 & 0.02 & 81 \\
+9  & 0.20 & 0.02 & 100\\
+10 & 0.22 & 0.02 & 121\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/toy_S3_modes.pdf}
+\caption{Illustrative discretization of scalar modes on $\Sthree$ for $R_K=\SI{50}{Gpc}$: $k_n=(n+1)/R_K$.}
+\label{fig:toy_S3_modes}
+\end{figure}
+
+
+\subsection{\texorpdfstring{Low-$\ell$ scale and $C_\ell$ template}{Low-l scale and Cl template}}
+With $\ell\sim k\chi_*$, the fundamental scale is
+\begin{equation}
+\ell_{\min}\sim \frac{\chi_*}{R_K}.
+\label{eq:lmin}
+\end{equation}
+The angular spectrum becomes
+\begin{equation}
+C_\ell = 4\pi \sum_{n} \mathcal P_{\mathcal R}(k_n)\,\abs{\Delta_\ell(k_n)}^2.
+\label{eq:Cl_discrete_sum}
+\end{equation}
+
+\subsection{\texorpdfstring{Matched circles for $\Sig\simeq \Sthree/\Gamma$}{Matched circles for Sigma ≃ S3/Gamma}}
+If $\Sig\simeq \Sthree/\Gamma$ with nontrivial $\Gamma$, matched-circle correlations~\cite{CornishSpergelStarkman1998,Planck2015Topology} may appear; non-detection yields
+constraints on the fundamental domain size.
+
+\subsection{Minimal Planck likelihood pipeline}
+\begin{enumerate}
+\item Choose $(R_K,\Omega_k)$ and $\mathcal P_{\mathcal R}(k)$.
+\item Compute closed-geometry transfer functions and evaluate \eqref{eq:Cl_discrete_sum}.
+\item Fit low-$\ell$ likelihood and constrain $R_K$ (and embedding selection parameters).
+\item Apply matched-circle constraints if $\Gamma\neq 1$.
+\end{enumerate}
+
+
+\subsection{Likelihood protocol for observational verification}
+\label{sec:likelihood-protocol}
+
+The two companion preprints contained \emph{qualitative} ``alignment'' statements with CMB and GW data.
+For PRD-grade verification we adopt an explicit likelihood protocol. The minimal requirement is that
+the model be implemented as a prediction map $\theta\mapsto \{C_\ell,\Omega_{\rm GW}(f),\dots\}$ and
+tested against public likelihoods.
+
+\paragraph{CMB.}
+Let $\mathbf{D}$ denote the binned Planck~\cite{Planck2018Cosmo,Planck2018Lik} data vector (e.g.\ TT,TE,EE) and $\mathbf{M}(\theta)$ the model
+prediction obtained from a Boltzmann code (CLASS/CAMB)~\cite{Blas2011CLASS,Lewis2000CAMB} in a closed geometry, with the replacement $k\to k_n=(n+1)/R_K$
+in the mode sums \eqref{eq:Cl_discrete_sum} and a parameterization of the primordial spectrum
+$\mathcal{P}_{\mathcal{R}}(k)$ that allows for the $\phig$-indexed features.
+The (Gaussian-approximate) log-likelihood reads
+\begin{equation}
+-2\ln\mathcal{L}_{\rm CMB}(\theta)=
+\big(\mathbf{D}-\mathbf{M}(\theta)\big)^{\!\top}\mathbf{C}^{-1}
+\big(\mathbf{D}-\mathbf{M}(\theta)\big),
+\label{eq:lnL_CMB}
+\end{equation}
+with covariance $\mathbf{C}$ provided by the likelihood package.
+Model selection uses $\Delta\chi^2=-2\Delta\ln\mathcal{L}$ against the $\Lambda$CDM baseline at matched
+nuisance treatment.
+
+
+\paragraph{Implementation notes (CLASS/CAMB + Cobaya/MontePython).}
+A minimal reproducible pipeline is: (i) implement the discrete-$k$ sums and any $\phig$-indexed feature parameters in a closed-geometry Boltzmann solver
+(CLASS/CAMB)~\cite{Blas2011CLASS,Lewis2000CAMB}; (ii) couple to an MCMC / nested-sampling front-end
+(Cobaya or MontePython)~\cite{TorradoLewis2021Cobaya,Audren2013MontePython} using the official Planck likelihoods;
+(iii) publish the full chain set and posterior plots with a standard analyzer (e.g.\ GetDist)~\cite{Lewis2019GetDist}.
+
+\paragraph{Stochastic gravitational-wave background.}
+Given a prediction $\Omega_{\rm GW}(f;\theta)$ (Sec.~\ref{sec:sgwb}), compare to LVK~\cite{LVK2021ISGWB} and PTA constraints via
+their published likelihoods. A simple summary statistic is
+\begin{equation}
+\chi^2_{\rm GW}(\theta)=\sum_i \frac{\big(\Omega_{\rm GW}(f_i;\theta)-\Omega^{\rm obs}_i\big)^2}{\sigma_i^2},
+\label{eq:chi2_GW}
+\end{equation}
+for an appropriate set of frequency bins $(f_i,\Omega^{\rm obs}_i,\sigma_i)$, while the definitive test
+uses the collaboration likelihoods.
+
+\paragraph{Non-negotiable deliverables.}
+A complete submission must therefore include: (i) a reproducible code path generating $C_\ell$ and
+$\Omega_{\rm GW}(f)$ from the manuscript equations, (ii) a parameter table with priors, and
+(iii) a $\Delta\chi^2$ (or Bayes factor) report against standard baselines.
+
+
+\section{Stochastic gravitational-wave background}
+\label{sec:sgwb}
+\subsection{Discrete tensor spectrum and frequencies}
+Tensor harmonics on $\Sthree$ form a discrete set:
+\begin{equation}
+\Delta_{\Sthree}T^{(n)}_{ij}=-\frac{\lambda^{(T)}_n}{R_K^2}\,T^{(n)}_{ij},\qquad n\ge 3,
+\label{eq:S3_tensor_eigs}
+\end{equation}
+with $k^{(T)}_n\sim \sqrt{\lambda^{(T)}_n}/R_K$ and $f_n=\frac{c}{2\pi}\frac{k^{(T)}_n}{a_0}$.
+
+\subsection{\texorpdfstring{Definition and qualitative signature of $\Omega_{\rm GW}(f)$}{Definition and qualitative signature of OmegaGW(f)}}
+\begin{equation}
+\Omega_{\rm GW}(f)\equiv \frac{1}{\rho_c}\frac{\dd\rho_{\rm GW}}{\dd\ln f},
+\qquad \rho_c=\frac{3H_0^2c^2}{8\pi G}.
+\label{eq:OmegaGW_def}
+\end{equation}
+Discreteness yields (schematically)
+\begin{equation}
+\Omega_{\rm GW}(f)\sim \sum_{n\ge 3}\mathcal P_T(k^{(T)}_n)\,\mathcal T_T^2(k^{(T)}_n)\,\delta(f-f_n),
+\label{eq:OmegaGW_discrete}
+\end{equation}
+implying an IR cutoff and possible step/comb features set by $1/(a_0R_K)$.
+
+Equation~\eqref{eq:OmegaGW_discrete} is schematic: in any realistic analysis the \(\delta\)-comb is broadened
+by finite observation time, redshift smearing, and the bandwidth of estimators used in PTA/LVK searches.
+Moreover, for curvature radii compatible with current near-flat constraints, the mode spacing in the PTA/LVK bands is
+effectively continuous: one has $\Delta f/f\sim 1/n$ with $n\sim 2\pi f\,a_0R_K/c\gg 1$.
+Current PTA detections are well-fit by a smooth power-law spectrum consistent with astrophysical SMBHB
+populations~\cite{NANOGrav15yr2023,IPTADR2_2022}; therefore topology-induced discreteness must either lie in a
+marginally allowed regime (very large \(R_K\)) or appear only as weak modulations on top of a smooth background.
+
+
+\subsection{Minimal SGWB verification protocol}
+\begin{enumerate}
+\item Fix $R_K$ and specify $\mathcal P_T(k)$.
+\item Compute $(k^{(T)}_n,f_n)$.
+\item Build broadened $\Omega_{\rm GW}(f)$ prediction.
+\item Compare to PTA and ground-based constraints~\cite{NANOGrav15yr2023,IPTADR2_2022,LVK2021ISGWB}; forecast detectability of topology-induced features.
+\end{enumerate}
+
+\section{Conclusion}
+Diffeomorphism invariance yields Noether-II identities rather than global Noether-I charges. Associated covariant
+charges are boundary charges and vanish on compact boundaryless $\Sig$ (notably $\Sthree$). Embedding-level
+modifications are variationally well-defined either as smooth $\nu(t)$ dependence or as discrete floor $N(t)$ with
+explicit junction consistency. Compact topology implies discrete mode spectra, giving falsifiable signatures in low-$\ell$
+CMB and infrared SGWB, testable through likelihood analyses.
+
+Present data already impose strong constraints on both spatial curvature and compact topology. In particular,
+Planck cosmological parameter analyses tightly constrain curvature around \(\Omega_k\approx 0\)~\cite{Planck2018Cosmo},
+while dedicated ``matched circles'' and related searches constrain the size of many compact fundamental domains to be
+comparable to or larger than the surface of last scattering~\cite{Planck2015Topology,Saha2024LensSpaces,FutureTopologySearches}.
+Accordingly, the discrete-mode signatures emphasized here are expected to appear only in the marginally allowed tail of
+parameter space (very large \(R_K\) and/or nearly-horizon fundamental domains), with upcoming CMB and PTA datasets providing
+decisive tests.
+
+\paragraph{Invariant--constraint map.}
+To make the falsifiable content explicit, we summarize the chain \emph{invariant \(\Rightarrow\) observable \(\Rightarrow\) present constraint \(\Rightarrow\) likelihood module}:
+\begin{enumerate}
+\item \textbf{Diffeomorphism invariance \(\Rightarrow\) Noether-II identities and boundary charges.}
+In generally covariant theories the on-shell diffeomorphism charge is a boundary integral~\cite{Noether1918,IyerWald1994}.
+Observable: vanishing global diffeomorphism charges on compact boundaryless slices (\(\partial\Sigma=\varnothing\)).
+Constraint/module: the analysis is implemented at the level of covariant identities and requires no asymptotic boundary data.
+
+\item \textbf{Spherical space form sector \(\widetilde\Sigma\simeq S^3\) \(\Rightarrow\) discrete Laplacian spectra.}
+For \(\Sigma\simeq S^3/\Gamma\) the scalar/tensor mode spectra are discrete~\cite{WolfConstantCurvature,Scott3Manifolds}.
+Observable: low-\(\ell\) discreteness/cutoff in \(C_\ell\).
+Constraint/module: tested against Planck likelihood and curvature constraints~\cite{Planck2018Lik,Planck2018Cosmo} and topology searches~\cite{Planck2015Topology,Saha2024LensSpaces,FutureTopologySearches}.
+
+\item \textbf{Invariant refinement bookkeeping \(\Rightarrow\) unique scale ladder \(\Rightarrow\) \(\varphi\).}
+Requiring unambiguous composition of refinement steps fixes the Zeckendorf--Lekkerkerker encoding and hence the Fibonacci ladder, with \(\varphi\) as the unique positive fixed point of the induced ratio map~\cite{Lekkerkerker1951,Keller1972}.
+Observable: step/log-periodic features tied to \(N(t)\) transitions.
+Constraint/module: junction conditions enforce absence of spurious distributional sources (Sec.~IV).
+
+\item \textbf{Compactness \(+\) tensor discreteness \(\Rightarrow\) IR structure in \(\Omega_{\rm GW}(f)\).}
+Observable: broadened IR features (rather than idealized delta-combs) in the PTA/LVK bands.
+Constraint/module: compared to PTA and ground-based bounds~\cite{NANOGrav15yr2023,IPTADR2_2022,LVK2021ISGWB}.
+\end{enumerate}
+
+\section{Verification checklist}
+\begin{enumerate}
+\item Implement closed-geometry mode functions; compute $C_\ell$ from \eqref{eq:Cl_discrete_sum}.
+\item Fit Planck low-$\ell$ likelihood; constrain $R_K$ and topology parameters.
+\item Implement tensor discreteness; compare $\Omega_{\rm GW}(f)$ to PTA and ground-based bounds.
+\item Report likelihood metrics ($\chi^2$, Bayes factors), not qualitative claims.
+\end{enumerate}
+
+
+
+\appendix
+
+\section{\texorpdfstring{From invariant assumptions to $S^{3}$: hard vs.\ soft inevitability}{From invariant assumptions to S3: hard vs soft inevitability}}
+\label{app:hard_soft_s3}
+
+\subsection{Invariant, sector, and test}
+\label{app:invariant_sector_test}
+In this paper, ``invariant'' means coordinate-free and gauge-independent. Diffeomorphism invariance in GR
+yields Noether-II identities that constrain the local form of the field equations and the boundary-term
+structure, but it does not uniquely fix global topology. A global assumption such as compactness and
+boundarylessness ($\partial\Sig=\varnothing$) specifies a topological sector of configuration space, while
+additional topological/geometric conditions can make the spherical sector mathematically unavoidable.
+
+Hard inevitability corresponds to the topological invariant $\pi_1(\Sig)=0$, forcing $\Sig\cong \Sthree$
+(Theorem~\ref{thm:hard_s3_main}). Soft inevitability corresponds to the geometric invariant $\mathrm{Ric}>0$,
+forcing spherical space forms $\Sig\cong \Sthree/\Gamma$ with $\widetilde{\Sig}\cong \Sthree$
+(Corollary~\ref{cor:soft_s3_main}). In practice, present data typically constrain the size and group label
+$\Gamma$ rather than proving trivial $\Gamma$; hence we implement explicit likelihood comparison within the
+spherical sector.
+
+\subsection{Likelihood selection within the spherical sector}
+\label{app:likelihood_spherical_sector}
+Within $\Sig\cong \Sthree/\Gamma$, topology enters observables through the Laplacian eigenmodes and the induced
+correlation structure of perturbations (and their $\phig$-refined discretization). This enables model
+comparison via Bayesian evidence and Bayes factors:
+\begin{equation}
+\mathcal{Z}_{\Gamma}=\int d\theta\, \mathcal{L}(D\mid \theta,\Gamma)\,\pi(\theta\mid \Gamma),
+\qquad
+B_{\Gamma_1\Gamma_2}=\frac{\mathcal{Z}_{\Gamma_1}}{\mathcal{Z}_{\Gamma_2}}.
+\end{equation}
+Here $\Gamma$ labels the (finite) spherical space-form group and $\theta$ collects cosmological and nuisance
+parameters. This is the operational implementation of the invariant $\to$ constraint $\to$ observable $\to$
+likelihood map used throughout the manuscript.
+
+
+\section{Invariant sieve to \texorpdfstring{$S^{3}$}{S3}: properties, theorems, and experimental handles}
+\label{app:invariant_sieve}
+The goal of this appendix is to make explicit the ``invariant sieve'' logic used in the main text.
+We start from a broad candidate class of spatial topologies $\Sig$ (closed, smooth 3-manifolds), and we
+collect coordinate-free and gauge-independent inputs (``invariants'') that translate into topological or
+geometric constraints. The admissible class is then the intersection
+\begin{equation}
+\mathfrak{T}_{\rm adm} \;=\; \bigcap_{i}\,\mathcal{C}_{i},
+\qquad
+\mathcal{C}_{i}\subset \mathfrak{T}_{0}\;\;\text{(candidate class)},
+\end{equation}
+where each $\mathcal{C}_{i}$ is induced by an invariant statement and/or a data-driven constraint.
+The sieve is strongest when (i) the mathematical implication ``invariant $\Rightarrow$ constraint'' is
+theorem-level, and (ii) the associated observable is actually testable by a concrete likelihood analysis.
+
+\vspace{0.5em}
+\noindent\textbf{What can and cannot be ``uniquely forced'' by experiment.}
+Current cosmological topology searches primarily provide bounds on the size of the fundamental domain and
+exclude specific nontrivial identifications up to some scale, rather than proving uniqueness of
+$\pi_{1}(\Sig)$ or of the group label $\Gamma$ \cite{CornishSpergelStarkman1998,Planck2015Topology}.
+Accordingly, the sieve has two layers:
+(a) a theorem-driven layer (hard/soft inevitability) that can uniquely single out $\Sthree$ under explicit
+topological/geometric invariants, and
+(b) a likelihood layer that constrains (or rules out) candidate quotients $\Sthree/\Gamma$.
+
+\begin{table*}[t]
+\centering
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{p{0.26\textwidth} p{0.38\textwidth} p{0.32\textwidth}}
+\hline\hline
+\textbf{Property of $S^{3}$ (invariant)} & \textbf{Theorem-level implication} & \textbf{Experimental / observational handle} \\
+\hline
+Closed and boundaryless ($\partial\Sig=\varnothing$) & In GR, diffeo-charges are boundary charges; for
+$\partial\Sig=\varnothing$ the corresponding global boundary integrals vanish (Sec.~\ref{sec:explicit-generalized-noether}).
+This fixes the correct meaning of ``conservation'' in the compact sector. & Not directly measurable as a
+binary fact; motivates focusing on topology-dependent correlation structure rather than global energy.
+\\
+\hline
+Simply connected ($\pi_{1}(\Sthree)=0$) & \emph{Hard inevitability:} for a closed 3-manifold, $\pi_{1}(\Sig)=0$
+implies $\Sig\cong \Sthree$ (Poincar\'e/Perelman; used as Theorem~\ref{thm:hard_s3_main}). & CMB topology
+searches (matched circles and related correlation tests) constrain nontrivial identifications and hence
+possible nontrivial $\pi_{1}(\Sig)$ at scales comparable to the LSS radius \cite{CornishSpergelStarkman1998,Planck2015Topology}.
+\\
+\hline
+Spherical space-form sector (constant $K>0$) & If $\Sig$ admits a metric of constant positive sectional
+curvature then $\Sig\cong \Sthree/\Gamma$ with $\widetilde\Sig\cong \Sthree$ (spherical space-form
+classification; used in Corollary~\ref{cor:soft_s3_main} as sector target). & CMB topology constraints
+restrict specific $\Gamma$ and the fundamental-domain size; likelihood analysis compares $\Gamma$-labels via
+mode spectra and correlation structure (Appendix~\ref{app:likelihood_spherical_sector}).
+\\
+\hline
+Positive Ricci curvature route ($\mathrm{Ric}>0$) & \emph{Soft inevitability:} $\mathrm{Ric}>0$ on a closed
+3-manifold forces a spherical space form $\Sthree/\Gamma$ (Appendix~\ref{app:hard_soft_s3}). & Not directly
+measured as a geometric invariant of spatial slices; implemented as a physically motivated sector prior.
+\\
+\hline
+Discrete Laplacian spectrum on $\Sthree$ & Compactness implies a discrete spectrum; on $\Sthree$ the
+eigenmodes are hyperspherical harmonics, enabling replacement of $\int dk$ by a mode sum (Sec.~\ref{sec:topology_status}, Eq.~\eqref{eq:Cl_discrete_sum}). & Low-$\ell$ CMB power and correlation anomalies are sensitive to IR mode content;
+topology searches and Planck likelihood constrain topological parameters and curvature scale \cite{Planck2015Topology}.
+\\
+\hline
+Spin structure / global fermions & Any oriented 3-manifold is spin (vanishing $w_2$); $\Sthree$ is spin and
+admits globally defined spinors, consistent with including fermionic quantum fields. & Laboratory quantum
+experiments show that topological information can be encoded in gauge-invariant phases and discrete
+indices (e.g. Aharonov--Bohm and quantum Hall invariants)\cite{AharonovBohm1959,Klitzing1980,TKNN1982}.
+This supports ``topology can be observable'' but does not by itself fix cosmic $\Sig$.
+\\
+\hline\hline
+\end{tabular}
+\caption{\label{tab:invariant_sieve}
+Invariant sieve: representative topological/geometric properties of $S^{3}$, theorems that map them to
+restrictions on admissible $\Sig$, and the corresponding experimental/observational handles.
+Theorem-level inputs (hard/soft) can single out the spherical sector, while data-driven searches constrain
+the quotient label $\Gamma$ and the fundamental-domain size within that sector.
+}
+\end{table*}
+
+\noindent\textbf{Sieve conclusion.}
+The combined effect of (i) Noether-consistency in the compact sector (boundary-charge structure),
+(ii) theorem-level hard/soft routes to the spherical sector, and
+(iii) explicit likelihood comparison over $\Gamma$ via topology-dependent mode spectra,
+is to reduce the admissible topology class to the spherical sector $\Sthree/\Gamma$ and to treat $\Sthree$
+as the minimal representative. A mathematically unique identification $\Sig\cong \Sthree$ is obtained once
+the hard invariant $\pi_{1}(\Sig)=0$ is established or adopted as a required constraint; observationally,
+this corresponds to progressively excluding nontrivial identifications through topology searches and
+likelihood-based model comparison.
+
+% --- Flush any pending floats (especially \texttt{table*}) before starting the bibliography.
+% RevTeX can otherwise place deferred wide floats inside the reference section.
+\clearpage
+
+
+\begin{thebibliography}{99}
+
+\bibitem{Noether1918}
+E.~Noether,
+``Invariante Variationsprobleme,''
+Nachr.\ Ges.\ Wiss.\ G{\"o}ttingen, Math.-Phys.\ Kl.\ \textbf{1918}, 235--257 (1918).
+
+\bibitem{BradingBrown2003}
+K.~Brading and H.~R.~Brown,
+``Noether's Theorems and Gauge Symmetries,''
+Stud.\ Hist.\ Philos.\ Mod.\ Phys.\ \textbf{34}, 509--538 (2003).
+
+\bibitem{LeeWald1990}
+J.~Lee and R.~M.~Wald,
+``Local symmetries and constraints,''
+J.\ Math.\ Phys.\ \textbf{31}, 725--743 (1990).
+
+\bibitem{WaldBook}
+R.~M.~Wald,
+\emph{General Relativity}
+(University of Chicago Press, Chicago, 1984).
+
+\bibitem{IyerWald1994}
+V.~Iyer and R.~M.~Wald,
+``Some properties of Noether charge and a proposal for dynamical black hole entropy,''
+Phys.\ Rev.\ D \textbf{50}, 846 (1994),
+arXiv:gr-qc/9403028.
+
+\bibitem{PreeceBatenin2025QCNoether}
+A.~Preece and B.~Batenin,
+``A Generalized Noether's Theorem in Quantum Cosmology,''
+preprint (2025).
+
+\bibitem{PreeceBatenin2025MFNoether}
+A.~Preece and B.~Batenin,
+``A Generalized Noether's Theorem for Multifractal Cosmology,''
+preprint (2025).
+
+\bibitem{CornishSpergelStarkman1998}
+N.~J.~Cornish, D.~N.~Spergel, and G.~D.~Starkman,
+``Circles in the Sky: Finding Topology with the Microwave Background Radiation,''
+Phys.\ Rev.\ D \textbf{57}, 5982 (1998),
+arXiv:astro-ph/9801212.
+
+\bibitem{Planck2015Topology}
+Planck Collaboration,
+P.~A.~R.~Ade \textit{et al.},
+``Planck 2015 results. XVIII. Background geometry and topology of the Universe,''
+Astron.\ Astrophys.\ \textbf{594}, A18 (2016),
+arXiv:1502.01593.
+
+\bibitem{Saha2024LensSpaces}
+COMPACT Collaboration,
+S.~Saha \textit{et al.},
+``Cosmic topology. Part Ic. Limits on lens spaces from circle searches,''
+preprint (2024),
+arXiv:2409.02226.
+
+\bibitem{FutureTopologySearches}
+COMPACT Collaboration,
+Y.~Akrami \textit{et al.},
+``Promise of Future Searches for Cosmic Topology,''
+Phys.\ Rev.\ Lett.\ \textbf{132}, 171501 (2024),
+arXiv:2210.11426.
+
+\bibitem{WolfConstantCurvature}
+J.~A.~Wolf,
+\emph{Spaces of Constant Curvature},
+6th ed. (AMS Chelsea Publishing, Providence, RI, 2011).
+
+\bibitem{Scott3Manifolds}
+P.~Scott,
+``The geometries of 3-manifolds,''
+Bull.\ Lond.\ Math.\ Soc.\ \textbf{15}, 401--487 (1983).
+
+
+\bibitem{Hamilton1982PositiveRicci}
+R.~S.~Hamilton,
+``Three-manifolds with positive Ricci curvature,''
+J.\ Diff.\ Geom.\ \textbf{17}, 255--306 (1982).
+
+\bibitem{Perelman2002Entropy}
+G.~Perelman,
+``The entropy formula for the Ricci flow and its geometric applications,''
+arXiv:math/0211159.
+
+\bibitem{Perelman2003Surgery}
+G.~Perelman,
+``Ricci flow with surgery on three-manifolds,''
+arXiv:math/0303109.
+
+\bibitem{Perelman2003Extinction}
+G.~Perelman,
+``Finite extinction time for the solutions to the Ricci flow on certain three-manifolds,''
+arXiv:math/0307245.
+
+\bibitem{MorganTian2007RicciFlowPoincare}
+J.~Morgan and G.~Tian,
+\emph{Ricci Flow and the Poincar\'e Conjecture}
+(Clay Mathematics Monographs, Vol.~3, American Mathematical Society, Providence, RI, 2007).
+
+\bibitem{KleinerLott2008NotesPerelman}
+B.~Kleiner and J.~Lott,
+``Notes on Perelman{'}s papers,''
+Geom.\ Topol.\ \textbf{12}, 2587--2858 (2008),
+arXiv:math/0605667.
+
+\bibitem{Planck2018Lik}
+Planck Collaboration,
+N.~Aghanim \textit{et al.},
+``Planck 2018 results. V. CMB power spectra and likelihoods,''
+Astron.\ Astrophys.\ \textbf{641}, A5 (2020),
+arXiv:1907.12875.
+
+\bibitem{Planck2018Cosmo}
+Planck Collaboration,
+N.~Aghanim \textit{et al.},
+``Planck 2018 results. VI. Cosmological parameters,''
+Astron.\ Astrophys.\ \textbf{641}, A6 (2020),
+arXiv:1807.06209.
+
+\bibitem{Blas2011CLASS}
+D.~Blas, J.~Lesgourgues, and T.~Tram,
+``The Cosmic Linear Anisotropy Solving System (CLASS). Part II: Approximation schemes,''
+JCAP \textbf{07}, 034 (2011),
+arXiv:1104.2932.
+
+\bibitem{Lewis2000CAMB}
+A.~Lewis, A.~Challinor, and A.~Lasenby,
+``Efficient computation of CMB anisotropies in closed FRW models,''
+Astrophys.\ J.\ \textbf{538}, 473 (2000),
+arXiv:astro-ph/9911177.
+
+\bibitem{TorradoLewis2021Cobaya}
+J.~Torrado and A.~Lewis,
+``Cobaya: Code for Bayesian analysis of hierarchical physical models,''
+JCAP \textbf{05}, 057 (2021),
+arXiv:2005.05290.
+
+\bibitem{Audren2013MontePython}
+B.~Audren, J.~Lesgourgues, K.~Benabed, and S.~Prunet,
+``Conservative constraints on early cosmology with Monte Python,''
+JCAP \textbf{02}, 001 (2013),
+arXiv:1210.7183.
+
+\bibitem{Lewis2019GetDist}
+A.~Lewis,
+``GetDist: a Python package for analysing Monte Carlo samples,''
+arXiv:1910.13970 [astro-ph.IM] (2019).
+
+\bibitem{LVK2021ISGWB}
+R.~Abbott \textit{et al.} (LIGO Scientific Collaboration and Virgo Collaboration),
+``Upper Limits on the Isotropic Gravitational-Wave Background from Advanced LIGO and Advanced Virgo's Third Observing Run,''
+Phys.\ Rev.\ D \textbf{104}, 022004 (2021),
+arXiv:2101.12130.
+
+\bibitem{NANOGrav15yr2023}
+G.~Agazie \textit{et al.} (NANOGrav Collaboration),
+``The NANOGrav 15-year Data Set: Evidence for a Gravitational-Wave Background,''
+Astrophys.\ J.\ Lett.\ \textbf{951}, L18 (2023),
+arXiv:2306.16213.
+
+\bibitem{IPTADR2_2022}
+J.~Antoniadis \textit{et al.} (International Pulsar Timing Array Collaboration),
+``The International Pulsar Timing Array second data release: Search for an isotropic gravitational wave background,''
+Mon.\ Not.\ R.\ Astron.\ Soc.\ \textbf{510}, 4873 (2022),
+arXiv:2201.03980.
+
+\bibitem{AharonovBohm1959}
+Y.~Aharonov and D.~Bohm,
+``Significance of electromagnetic potentials in the quantum theory,''
+Phys.\ Rev.\ \textbf{115}, 485 (1959).
+
+\bibitem{Klitzing1980}
+K.~v.~Klitzing, G.~Dorda, and M.~Pepper,
+``New method for high-accuracy determination of the fine-structure constant based on quantized Hall resistance,''
+Phys.\ Rev.\ Lett.\ \textbf{45}, 494 (1980).
+
+\bibitem{TKNN1982}
+D.~J.~Thouless, M.~Kohmoto, M.~P.~Nightingale, and M.~den~Nijs,
+``Quantized Hall Conductance in a Two-Dimensional Periodic Potential,''
+Phys.\ Rev.\ Lett.\ \textbf{49}, 405 (1982).
+
+
+\bibitem{Lekkerkerker1951}
+C.~G.~Lekkerkerker,
+``Voorstelling van natuurlijke getallen door een som van getallen van Fibonacci,''
+Simon Stevin \textbf{29} (1951--1952), 190--195.
+
+\bibitem{Keller1972}
+T.~J.~Keller,
+``Generalizations of Zeckendorf's Theorem,''
+Fibonacci Quarterly \textbf{10} (1972), no.~1, 95--102.
+
+\bibitem{Chang2020WeakConverse}
+S.~Chang,
+``The weak converse of Zeckendorf's Theorem,''
+arXiv:2007.12169 [math.NT] (2020).
+
+\end{thebibliography}
+
+
+\end{document}

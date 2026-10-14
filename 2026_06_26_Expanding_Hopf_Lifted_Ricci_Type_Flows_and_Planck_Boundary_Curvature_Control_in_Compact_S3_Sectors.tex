@@ -1,0 +1,965 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+
+\textbf{Expanding Hopf-Lifted Ricci-Type Flows and}
+
+\textbf{Planck-Boundary Curvature Control in Compact S\textsuperscript{3} Sectors}
+
+\textbf{Andrei Preece} and \textbf{Boris Batenin}
+
+\emph{Independent Researcher, Berlin, Germany}
+
+andre.preece@web.de · batenin@web.de
+
+\emph{Dated: June 2026}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 0\tabcolsep) * \real{1.0000}}@{}}
+\toprule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\begin{minipage}[t]{\linewidth}\raggedright
+ABSTRACT\\
+We develop a second-stage analytic model for curvature control in a compact S³ sector. The starting point is a conservative Ricci-type-flow framework: for ∂τg = −2 Ric(g) + h{[}g{]}, bounded tensorial spectral filtering is a well-defined forcing mechanism but does not, by itself, prevent singularities. Curvature boundedness requires a pointwise coercive contribution at the level of the curvature evolution,\\
+\strut \\
+2⟨Cʰ(Rm), Rm⟩ ≤ −γ\textbar Rm\textbar³ + A\textbar Rm\textbar² + B, γ \textgreater{} C₃.\\
+\strut \\
+The Berger diagnostics sharpen the result. For gₐ,ᶜ = a²(σ₁² + σ₂²) + c²σ₃² on S³ ≃ SU(2), unforced Ricci flow rounds the anisotropy toward c = a and then collapses the round/base/volume mode. Hopf-fibre collapse c → 0 at fixed a \textgreater{} 0 has bounded curvature and is therefore not the singular mode. Constant-Λ trace forcing gives only the quadratic contribution −4Λ\textbar Rm\textbar²; fibre-only forcing changes sign at u = (c/a)² = 12/11 and cannot control the round mode; traceless/spectral shape forcing vanishes at the round configuration. The positive homogeneous result comes from the curvature-driven trace flow ∂τg = −2 Ric + (2/3)Rg. It preserves V = a²c, drives u toward 1, and gives an explicit curvature bound when combined with a Planck lower boundary R\_eff = V\^{}\{1/3\} ≥ ℓP: \textbar Rm\textbar² ≤ C(u₀)ℓP⁻⁴.\\
+\strut \\
+The new warped-S³ diagnostic tests the only engineered cubic term that succeeded in the Berger reduction, h = 2λ₁\textbar Rm\textbar g. For a rotationally symmetric metric g = ds² + ψ(s)²gS², the conformal variation δR = −2φR − 4Δφ shows that the full scalar-curvature evolution contains not only the retained damping term −2λ₁\textbar Rm\textbar R but also the derivative term −4λ₁Δ\textbar Rm\textbar, which the homogeneous reduction sets to zero. On sharpening neck profiles this discarded term remains of the same order as the retained term. Thus the engineered cubic coercivity is a symmetry-reduction artifact, not a full-PDE mechanism. The clean curvature-control mechanism presently established is therefore a boundary/constraint mechanism: trace/shape control together with a Planck no-flux lower boundary.\strut
+\end{minipage} \\
+\end{longtable}
+
+\textbf{CONTENTS}
+
+I. Introduction 3
+
+II. Claims and Non-Claims 3
+
+A. Established in this paper 3
+
+B. Not established 4
+
+III. Logical Role of the Existing Modules 4
+
+A. Tensorial spectral filtering 4
+
+B. Planck-boundary compact S³ cosmology 5
+
+C. Hopf-bundle holonomy 5
+
+D. Research-programme comments 5
+
+IV. Ricci-Type Curvature Comparison 5
+
+V. Ricci Flow Versus Cosmological Expansion 5
+
+VI. Hopf/Berger Geometry on S³ ≃ SU(2) 6
+
+A. Convention 6
+
+B. Ricci Tensor 6
+
+C. Curvature Invariants 6
+
+VII. Unforced Berger Ricci Flow 6
+
+A. The Two Collapse Regimes 6
+
+a. Fibre collapse 6
+
+b. Round/base/volume collapse 6
+
+VIII. Candidate Forcing Mechanisms in the Berger Reduction 7
+
+A. Constant dark-energy-like trace forcing 7
+
+B. Curvature-dependent trace forcing 7
+
+C. Fibre-restoring forcing 8
+
+D. Traceless and spectral shape forcing 8
+
+E. Summary of the no-go part 8
+
+IX. Positive Result: The Expanding Normalized Berger Flow 9
+
+A. ODE System 9
+
+B. Curvature Evolution in the Normalized Berger Flow 9
+
+X. Planck Boundary as Internalized Surgery 10
+
+XI. Reduced Versus Lifted Degeneration 10
+
+XII. Connection-Curvature and Dark-Sector Interpretation 11
+
+XIII. Warped-S³ Test of the Engineered Cubic Forcing 11
+
+A. Warped curvature dictionary 11
+
+B. The derivative term hidden by homogeneity 11
+
+C. Ricci--DeTurck dynamic diagnostic 12
+
+XIV. Full PDE Obstruction 13
+
+A. Global volume normalization 13
+
+B. Pointwise curvature-driven trace forcing 13
+
+C. The correct open problem 13
+
+XV. Forbidden Overclaims 13
+
+XVI. Article-Level Conclusions 14
+
+Appendix A: Derivation Details for the Berger Formulas 14
+
+Appendix B: Forcing Contributions by Euler Homogeneity 15
+
+Appendix C: Numerical Validation Protocol 15
+
+Appendix D: Frozen-Profile and Ricci--DeTurck Diagnostics 15
+
+Appendix E: Open Problems 16
+
+References 16
+
+\section{I. Introduction}\label{i.-introduction}
+
+Ricci flow evolves a Riemannian metric by
+
+\begin{quote}
+∂τ gᵢⱼ = −2 Ricᵢⱼ(g) \emph{(1)}
+\end{quote}
+
+In three dimensions it is a central analytic tool because singularities appear in a controlled geometric way, and Perelman\textquotesingle s use of surgery gives an external continuation procedure through neck-like regions. That classical theorem is \textbf{not} being reproved here. The present question is different.
+
+Suppose the spatial sector is already fixed and compact, with M ≃ S\textsuperscript{3}. A smooth metric flow on this fixed manifold cannot change topology. The hard question is not topological classification but analytic \emph{curvature control}. If a physical model contains no external agent and no ambient space in which to cut, cap, and restart the evolution, then the analogue of surgery, if any, must be internalized. It must appear as a boundary condition, a constraint, a compensating sector, an additional geometric degree of freedom, or a change of reconstruction clock.
+
+The first-stage spectral-filter framework isolated the analytic bottleneck. For a Ricci-type flow
+
+\begin{quote}
+∂τ g = −2 Ric(g) + h{[}g{]} \emph{(2)}
+\end{quote}
+
+the curvature evolution contains a cubic reaction term:
+
+\begin{quote}
+(∂τ − Δ)\textbar Rm\textbar² ≤ C₃\textbar Rm\textbar³ + 2⟨Cʰ(Rm), Rm⟩ \emph{(3)}
+\end{quote}
+
+Thus boundedness of h, even if h is a geometrically legitimate tensorial spectral filter, does \textbf{not} imply curvature control. A concrete forcing must satisfy or imply a pointwise coercive estimate strong enough to dominate the cubic term.
+
+This paper develops the next test model. The Hopf fibration
+
+\begin{quote}
+S¹ ⟶ S³ ≃ SU(2) ⟶ S² \emph{(4)}
+\end{quote}
+
+is a natural candidate because it separates a base-like two-dimensional sector from a fibre/phase/connection sector. The minimal test model is the Berger family
+
+\begin{quote}
+gₐ,ᶜ = a²(σ₁² + σ₂²) + c²σ₃² (5)
+\end{quote}
+
+where σ₃ is adapted to the Hopf fibre. This model gives a sharp answer. It shows that fibre collapse and curvature blow-up are \emph{not} the same phenomenon. At fixed a \textgreater{} 0, the limit c → 0 collapses the S¹ fibres but leaves the curvature bounded. The genuine blow-up occurs in the round/base/volume mode a → 0. Therefore a fibre-only regularization mechanism attacks the wrong singular mode.
+
+The missing homogeneous sector is the trace or expansion sector. A physical cosmological slice is not described by g\textsubscript{ij} alone. In ADM variables the data include the second fundamental form K\textsubscript{ij}, and for an expanding FLRW slice, K\textsubscript{ij} = −Hg\textsubscript{ij}. Thus expansion appears, in a Ricci-type reconstruction equation, as a conformal forcing 2λg. This is the main correction to the fibre-only programme.
+
+The present update incorporates the Berger phase portrait, the coercive sign diagnostic, the numerical protocol, and a warped-S³ hidden-derivative diagnostic. These additions do not change the Berger theorem: they clarify why the fibre-only programme is a near-no-go, why the trace/ADM expansion sector is the correct homogeneous variable, and why the engineered cubic term h = 2λ₁\textbar Rm\textbar g does not survive the first nonhomogeneous test.
+
+\section{II. Claims and Non-Claims}\label{ii.-claims-and-non-claims}
+
+\emph{The claims are intentionally narrow.}
+
+\subsection{A. Established in this paper}\label{a.-established-in-this-paper}
+
+\begin{enumerate}
+\def\labelenumi{(\arabic{enumi})}
+\item
+  The Berger sphere formulas are derived with an explicit SU(2) normalization.
+\item
+  Unforced Ricci flow on the Berger family rounds the anisotropy but collapses the round scale in finite time.
+\item
+  \textbar Rm\textbar² = 4(16a⁴ − 24a²c² + 11c⁴) / a⁸.
+\item
+  The limit c → 0 at fixed a \textgreater{} 0 has bounded curvature, while a → 0 gives blow-up.
+\item
+  Constant-Λ trace forcing contributes only − 4Λ\textbar Rm\textbar² in the Berger reduction; it does not produce a negative cubic term.
+\item
+  A fibre-only term h = μ σ₃ ⊗ σ₃ has the wrong global sign structure and does not control the round mode.
+\item
+  The curvature-driven trace term h = (2/3) Rg preserves Berger volume, drives u = (c/a)² → 1, and yields a curvature bound under a Planck lower boundary.
+\item
+  The full PDE problem remains open because homogeneous reductions remove derivative terms in Cʰ(Rm).
+\end{enumerate}
+
+In addition, the warped-S³ tests expose the hidden derivative term −4λ₁Δ\textbar Rm\textbar{} in the engineered forcing h = 2λ₁\textbar Rm\textbar g. Frozen neck profiles show that this term is the same order as the retained cubic term, and the Ricci--DeTurck diagnostic shows dynamically that the engineered forcing delays and relocates, but does not remove, curvature concentration.
+
+The unforced phase portrait and coercive diagnostic are included as reproducibility figures: they make visible that fibre collapse is the bounded-curvature direction and that the cubic obstruction is the round trace mode.
+
+\subsection{B. Not established}\label{b.-not-established}
+
+\emph{We do not claim:}
+
+\begin{enumerate}
+\def\labelenumi{(\arabic{enumi})}
+\setcounter{enumi}{8}
+\item
+  that Hopf fibration removes Ricci-flow singularities;
+\item
+  that dark energy is fibre curvature;
+\item
+  that dark matter is solved;
+\item
+  that the Big Bang is Perelman's neck;
+\item
+  that a bounded spectral filter is a high-frequency parabolic regularizer;
+\item
+  that a Planck boundary is derived from microscopic quantum gravity;
+\item
+  that normalized Ricci flow proves physical cosmological singularity resolution;
+\item
+  that a result in the Berger minisuperspace proves the full nonhomogeneous PDE estimate.
+\end{enumerate}
+
+We also do not claim that the warped-S³ diagnostics prove a general nonexistence theorem for all possible forcings. They rule out the tested engineered cubic term as evidence for the full pointwise coercive inequality.
+
+\section{III. Logical Role of the Existing Modules}\label{iii.-logical-role-of-the-existing-modules}
+
+The research programme has four distinct modules. Confusing them weakens the mathematics.
+
+\subsection{A. Tensorial spectral filtering}\label{a.-tensorial-spectral-filtering}
+
+The first module constructs tensorial spectral filters on a fixed compact S³ sector. Given a reference metric ġ and a positive self-adjoint elliptic operator L\textsubscript{ġ} on Sym²T*M, functional calculus gives tensorial band projectors P\textsuperscript{ġ}\textsubscript{n}.
+
+For bounded weights w\textsubscript{n},
+
+\begin{quote}
+Bᵂ\_w h = −Σ w\_n Pᵀ\_n h \emph{(10)}
+\end{quote}
+
+is coordinate-invariant once ġ is fixed. This is a legitimate bounded forcing operator. It is \textbf{not} by itself a curvature-control theorem.
+
+The key theorem of that module is conditional. If h{[}g{]} contributes to the curvature evolution through Cʰ(Rm) and if
+
+\begin{quote}
+2⟨Cʰ(Rm), Rm⟩ ≤ −γ\textbar Rm\textbar³ + A\textbar Rm\textbar² + B, γ \textgreater{} C₃ \emph{(11)}
+\end{quote}
+
+at spatial maxima of \textbar Rm\textbar, then \textbar Rm\textbar{} stays bounded by scalar comparison. The open problem is to find or rule out concrete h's satisfying such an inequality.
+
+\subsection{B. Planck-boundary compact S³ cosmology}\label{b.-planck-boundary-compact-suxb3-cosmology}
+
+The second module gives an effective boundary structure: a ∈ {[}ℓ\textsubscript{P}, ∞), with a = 0 excluded. For closed FLRW data with k = +1:
+
+\begin{quote}
+Kₛₗᴿᵂ = 12{[}(Ḣ + H²)² + (H² + 1/a²)²{]} \emph{(13)}
+\end{quote}
+
+Therefore finite H(t\textsubscript{P}), finite Ḣ(t\textsubscript{P}), and a\textsubscript{eff}(t\textsubscript{P}) ≥ ℓ\textsubscript{P} imply K\textsubscript{FLRW}(t\textsubscript{P}) ≤ Cℓ\textsuperscript{P}⁻⁴. This is a kinematic effective endpoint theorem.
+
+\subsection{C. Hopf-bundle holonomy}\label{c.-hopf-bundle-holonomy}
+
+The third module concerns the standard spinor geometry S¹ → S³ ⊂ ℂ² → ℂP¹ ≃ S². Its role here is conceptual and geometric: a quotient description on the base can hide fibre/phase/connection data present on the total space. The Berry connection and its holonomy show that such data can be gauge-invariant.
+
+\subsection{D. Research-programme comments}\label{d.-research-programme-comments}
+
+The fourth module asks whether Perelman surgery has an internal analogue in a compact physical S³ sector. The present paper turns that programme into a concrete test:
+
+\begin{quote}
+external surgery ⇝ trace compensation + Hopf shape control + Planck boundary
+\end{quote}
+
+\section{IV. Ricci-Type Curvature Comparison}\label{iv.-ricci-type-curvature-comparison}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 0\tabcolsep) * \real{1.0000}}@{}}
+\toprule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{THEOREM IV.1 (Conditional curvature comparison).} Let g(τ) be a smooth solution of ∂τg = −2 Ric(g) + h{[}g{]} on a compact three-manifold M, τ ∈ {[}0, T{]}. Suppose that at every spacetime point where \textbar Rm\textbar{} attains its spatial maximum at time τ, 2⟨Cʰ(Rm), Rm⟩ ≤ −γ\textbar Rm\textbar³ + A\textbar Rm\textbar² + B, γ \textgreater{} C₃. Then K(τ) = sup\textbar Rm(g(τ))\textbar{} remains bounded on {[}0, T{]}. \\
+\end{longtable}
+
+\begin{quote}
+\emph{Proof.} Set u(τ) = K(τ)². At a spatial maximum of \textbar Rm\textbar², the Laplacian term in (3) is non-positive in the upper-Dini derivative sense. Hence D⁺u ≤ −(γ − C₃)u³⁄² + Au + B. The right-hand side is negative for sufficiently large u. Scalar comparison gives an absorbing upper level. □
+\end{quote}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 0\tabcolsep) * \real{1.0000}}@{}}
+\toprule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{COROLLARY IV.2 (Traceless damping misses the round mode).} Any forcing depending only on E = Ric − (R/3)g vanishes on round metrics. It cannot, by itself, prevent round shrinking curvature blow-up. \\
+\end{longtable}
+
+This corollary is one of the hinges of the present article. It means that anisotropy damping and spectral damping of E may improve shape, but the round trace mode requires a separate mechanism.
+
+\section{V. Ricci Flow Versus Cosmological Expansion}\label{v.-ricci-flow-versus-cosmological-expansion}
+
+Ricci flow is intrinsic. It evolves only the Riemannian metric of a spatial manifold. Physical cosmological evolution, in the ADM decomposition, uses both the spatial metric and the extrinsic curvature: (g\textsubscript{ij}, K\textsubscript{ij}).
+
+\begin{quote}
+∂\_t gᵢⱼ = −2NKᵢⱼ + ℒ\_β gᵢⱼ \emph{(21)}
+\end{quote}
+
+For a homogeneous expanding FLRW slice with N = 1 and β = 0: K\textsubscript{ij} = −Hg\textsubscript{ij}, so ∂\textsubscript{t}g\textsubscript{ij} = 2Hg\textsubscript{ij}. Thus the minimal Ricci-type reconstruction equation that includes expansion is:
+
+\begin{quote}
+∂τ g = −2 Ric + 2λg + h\_shape + h\_boundary + ··· \emph{(23)}
+\end{quote}
+
+Here λ is not automatically the physical Hubble rate. It is a reconstruction-clock coefficient representing the trace sector. A constant λ = Λ is too weak for high-curvature coercivity; a curvature-driven λ may have the correct homogeneity but creates new analytic terms in the full PDE.
+
+\begin{quote}
+\textbf{Remark V.1.} The distinction between Ricci-flow time τ and physical time t is essential. Equation (23) is a Ricci-type reconstruction model. It is not the Einstein equation written in disguise.
+\end{quote}
+
+\section{VI. Hopf/Berger Geometry on S³ ≃ SU(2)}\label{vi.-hopfberger-geometry-on-suxb3-su2}
+
+\subsection{A. Convention}\label{a.-convention}
+
+Let \{e\textsubscript{i}\} be a left-invariant frame on SU(2) satisfying {[}e\textsubscript{i}, e\textsubscript{j}{]} = 2ε\textsubscript{ijk}e\textsubscript{k}. Let \{σ\textsubscript{i}\} be the dual coframe with dσ¹ = −2σ² ∧ σ³ (and cyclic permutations). The round metric is g\textsubscript{rd} = σ²₁ + σ²₂ + σ²₃, with Ric = 2g\textsubscript{rd}.
+
+The Berger family is
+
+\begin{quote}
+gₐ,ᶜ = a²(σ²₁ + σ²₂) + c²σ²₃, a \textgreater{} 0, c \textgreater{} 0. \emph{(27)}
+\end{quote}
+
+Here a is base-like, c is fibre-like, and x = a², z = c², u = z/x = (c/a)². The spatial volume is proportional to V = a²c = x³ᵂ²u¹ᵂ², and the effective volume radius is R\textsubscript{eff} = V¹ᵂ³.
+
+\subsection{B. Ricci Tensor}\label{b.-ricci-tensor}
+
+With orthonormal frame θ¹ = aσ¹, θ² = aσ², θ³ = cσ³, the Ricci eigenvalues are:
+
+\begin{quote}
+r₁ = r₂ = 2(2 − u) / x, r₃ = 2u / x. \emph{(31)}
+\end{quote}
+
+Therefore the scalar curvature is R = (8 − 2u) / x. At a = c = 1 (round point), u = 1 and r₁ = r₂ = r₃ = 2, as required.
+
+\subsection{C. Curvature Invariants}\label{c.-curvature-invariants}
+
+In dimension three the Riemann tensor is determined by Ricci: \textbar Rm\textbar² = 4\textbar Ric\textbar² − R². This gives
+
+\begin{quote}
+Kᴮ(x, u) := \textbar Rm\textbar² = 4(16 − 24u + 11u²) / x² = 4(16a⁴ − 24a²c² + 11c⁴) / a⁸. \emph{(35)}
+\end{quote}
+
+At the round point u = 1: \textbar Rm\textbar² = 12/x².
+
+\section{VII. Unforced Berger Ricci Flow}\label{vii.-unforced-berger-ricci-flow}
+
+For ∂τg = −2 Ric(g), the coefficients x = a² and z = c² satisfy
+
+\begin{quote}
+ẋ = −8 + 4u, ż = −4u². \emph{(38)}
+\end{quote}
+
+Consequently u̇ = 8u(1 − u)/x. Thus u = 1 is the round fixed ratio and is an attractor in shape. However, the volume is not preserved: d/dτ (log V) = −R = (−8 + 2u)/x. Near the round trajectory u = 1, d/dτ (log V) = −6/x \textless{} 0. The unforced flow rounds and then collapses in finite time.
+
+\subsection{A. The Two Collapse Regimes}\label{a.-the-two-collapse-regimes}
+
+\subsubsection{a. Fibre collapse}\label{a.-fibre-collapse}
+
+If c → 0 with a \textgreater{} 0 fixed, then u → 0 and \textbar Rm\textbar² → 64/a⁴. This is bounded for fixed a. Geometrically S³ collapses along the Hopf fibres to a round S² with bounded sectional curvature. The reduced description degenerates, but the curvature of the total Berger geometry need not blow up.
+
+\subsubsection{b. Round/base/volume collapse}\label{b.-roundbasevolume-collapse}
+
+If a → 0 while u remains bounded away from infinity, then \textbar Rm\textbar² ∼ C(u)/a⁴ → ∞. This is the true homogeneous singular mode.
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 0\tabcolsep) * \real{1.0000}}@{}}
+\toprule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{PROPOSITION VII.1 (Fibre collapse is not the singular Berger mode).} In the Berger family (27), the limit c → 0 with a \textgreater{} 0 fixed has bounded \textbar Rm\textbar². The unforced Ricci-flow blow-up occurs through collapse of the scale a, equivalently through volume/trace collapse after the ratio u has been driven toward 1. \\
+\end{longtable}
+
+\includegraphics[width=5.6in,height=4.75151in]{/mnt/data/ricci_latex_work/media/image1.png}
+
+\emph{Figure 1. Unforced Berger Ricci flow on S³ ≃ SU(2). The vector field rounds trajectories toward c = a, but the subsequent singular direction is the base/round collapse a → 0. Hopf-fibre collapse c → 0 at fixed a remains bounded-curvature. The green line marks a representative Planck lower bound a ≥ ℓP; it is a boundary/constraint, not a smooth forcing.}
+
+\section{}\label{section}
+
+\section{VIII. Candidate Forcing Mechanisms in the Berger Reduction}\label{viii.-candidate-forcing-mechanisms-in-the-berger-reduction}
+
+The finite-dimensional test is not a proof of the PDE theorem, but it is a useful algebraic laboratory. Let K\textsubscript{B} = \textbar Rm(g\textsubscript{a,c})\textbar². For each forcing we compute its contribution to dK\textsubscript{B}/dτ.
+
+\subsection{A. Constant dark-energy-like trace forcing}\label{a.-constant-dark-energy-like-trace-forcing}
+
+Let h\textsubscript{Λ} = 2Λg. Since K\textsubscript{B} is homogeneous of degree −2 in (x, z), Euler's identity gives:
+
+\begin{quote}
+dKᴮ/dτ \textbar\_Λ = −4Λ Kᴮ. \emph{(46)}
+\end{quote}
+
+This is damping of order K\textsubscript{B}, i.e., order \textbar Rm\textbar². It does \textbf{not} dominate the cubic reaction scale \textbar Rm\textbar³.
+
+\subsection{B. Curvature-dependent trace forcing}\label{b.-curvature-dependent-trace-forcing}
+
+Let h\textsubscript{λ} = 2λ(g)g. If λ = λ₁\textbar Rm\textbar, then dK\textsubscript{B}/dτ = −4λ₁\textbar Rm\textbar³, which has the right homogeneity. A natural homogeneous choice is
+
+\begin{quote}
+hᴯ = (2/3) R g. \emph{(50)}
+\end{quote}
+
+This is precisely the volume-normalizing trace term for a homogeneous three-dimensional flow.
+
+\subsection{C. Fibre-restoring forcing}\label{c.-fibre-restoring-forcing}
+
+Let h\textsubscript{fib} = μ σ₃ ⊗ σ₃, so ẋ\textbar{}\textsubscript{fib} = 0, ż\textbar{}\textsubscript{fib} = μ. From (35):
+
+\begin{quote}
+dKᴮ/dτ \textbar\_fib = μ · 8(11u − 12) / x³. \emph{(53)}
+\end{quote}
+
+For positive μ, this term is negative only when u \textless{} 12/11. It becomes positive for sufficiently stretched fibres. More importantly, it has no mechanism to prevent a → 0 along the round direction. \textbf{Fibre protection is not volume protection.}
+
+\subsection{D. Traceless and spectral shape forcing}\label{d.-traceless-and-spectral-shape-forcing}
+
+A traceless-Ricci forcing built from E = Ric − (1/3)Rg vanishes when u = 1. Therefore it cannot oppose the round shrinking mode. The bounded spectral tensor filter of the first-stage paper is a legitimate tensorial operation if built from a reference-metric elliptic operator on Sym²T*M. But if it acts on E, it shares the same round-mode defect: E(g\textsubscript{round}) = 0.
+
+\subsection{E. Summary of the no-go part}\label{e.-summary-of-the-no-go-part}
+
+\begin{enumerate}
+\def\labelenumi{(\arabic{enumi})}
+\setcounter{enumi}{16}
+\item
+  Constant 2Λg contributes −4ΛKᴮ. Too weak to supply cubic coercivity.
+\item
+  Curvature-dependent trace forcing 2λ\textbar Rm\textbar g has the correct homogeneity, but is engineered unless derived from a geometric or physical principle, and hides derivative terms in the full PDE.
+\end{enumerate}
+
+In the warped-S³ diagnostics this same engineered term acquires the hidden contribution −4λ₁Δ\textbar Rm\textbar, which is not lower order near a neck; in Ricci--DeTurck dynamics it delays and relocates, but does not remove, blow-up.
+
+\begin{enumerate}
+\def\labelenumi{(\arabic{enumi})}
+\setcounter{enumi}{18}
+\item
+  Fibre-only forcing μσ²₃ protects c only. Wrong sign for u \textgreater{} 12/11 and does not protect a.
+\item
+  Traceless E-forcing vanishes at u = 1. Misses round collapse.
+\item
+  Bounded spectral E-filtering is legitimate tensor forcing, but controls shape at best, not volume.
+\item
+  A Planck boundary is a clean lower-domain mechanism. It is a condition or constraint, not a smooth forcing.
+\end{enumerate}
+
+Numerical and algebraic diagnostics make the sign structure explicit.
+
+\includegraphics[width=5.8in,height=4.04242in]{/mnt/data/ricci_latex_work/media/image2.png}
+
+\emph{Figure 2. Coercive diagnostic in the Berger reduction. The unforced reaction is the positive cubic obstruction near u = 1. Constant Λ gives only quadratic damping; Λeff ∼ \textbar Rm\textbar{} gives a cubic but is engineered and hides full-PDE derivative terms; fibre forcing changes sign at u = 12/11.}
+
+Proposition VIII.1 (Berger no-go diagnostic). In the left-invariant Berger reduction, no bounded forcing of pure constant-trace type, pure fibre type, or traceless/spectral shape type supplies a negative cubic term controlling the round-collapse direction. Constant trace forcing is quadratic; fibre forcing is sign-limited and does not protect a; traceless/spectral shape forcing vanishes at u = 1. The proof is the Euler-homogeneity computation of Appendix B and is illustrated in Figure 2.
+
+\section{IX. Positive Result: The Expanding Normalized Berger Flow}\label{ix.-positive-result-the-expanding-normalized-berger-flow}
+
+We now add the trace/expansion term that the previous no-go mechanisms lack:
+
+\begin{quote}
+∂τ g = −2 Ric + (2/3) R g. \emph{(56)}
+\end{quote}
+
+In the homogeneous Berger sector, R is spatially constant, so (56) is the volume-normalized Ricci flow.
+
+\subsection{A. ODE System}\label{a.-ode-system}
+
+Combining (38) with the forcing contribution and using R = (8 − 2u)/x, we get
+
+\begin{quote}
+ẋ = (8/3)(u − 1), ż = (16/3) u(1 − u). \emph{(57)}
+\end{quote}
+
+The ratio evolves by the same equation as before: u̇ = 8u(1 − u)/x.
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 0\tabcolsep) * \real{1.0000}}@{}}
+\toprule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{PROPOSITION IX.1 (Volume preservation).} For the normalized Berger flow (56), V = a²c = x√z is constant. \\
+\end{longtable}
+
+\begin{quote}
+\emph{Proof.} Using (57): d/dτ (log V) = ẋ/x + (1/2)ż/z = 8(u−1)/(3x) + 8u(1−u)/(3ux) = 0.
+\end{quote}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 0\tabcolsep) * \real{1.0000}}@{}}
+\toprule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{PROPOSITION IX.2 (Round ratio attraction).} For every solution of (56) with u(0) \textgreater{} 0, the ratio u(τ) remains between u(0) and 1, and u(τ) → 1 as τ → ∞. \\
+\end{longtable}
+
+\begin{quote}
+\emph{Proof.} Equation (58) gives u̇ \textgreater{} 0 for 0 \textless{} u \textless{} 1 and u̇ \textless{} 0 for u \textgreater{} 1. Thus u is monotone toward 1 and cannot cross 1. Since V is fixed, x = V\textsuperscript{2/3}u\textsuperscript{−1/3} stays finite and positive as long as u stays in a compact subinterval of (0, ∞). The only possible limit compatible with the sign of u̇ is u = 1. □
+\end{quote}
+
+\subsection{B. Curvature Evolution in the Normalized Berger Flow}\label{b.-curvature-evolution-in-the-normalized-berger-flow}
+
+Differentiating (35) using (57), one obtains
+
+\begin{quote}
+dKᴮ/dτ = −(256/3x³)(u − 1)²(11u − 4). \emph{(60)}
+\end{quote}
+
+This expression is not everywhere non-positive: for 0 \textless{} u \textless{} 4/11 it is positive. Monotonicity of K\textsubscript{B} is therefore not the correct theorem. \textbf{Boundedness is the correct theorem.} Since V is constant, x = V\textsuperscript{2/3}u\textsuperscript{−1/3}, and substituting into (35):
+
+\begin{quote}
+Kᴮ = 4(16 − 24u + 11u²)u²ᵂ³ / R⁴\_eff. \emph{(62)}
+\end{quote}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 0\tabcolsep) * \real{1.0000}}@{}}
+\toprule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{THEOREM IX.3 (Berger trace-compensation bound).} Let gₐ,ᶜ(τ) solve ∂τg = −2 Ric + (2/3)Rg in the Berger family with a₀ \textgreater{} 0, c₀ \textgreater{} 0. Set u₀ = (c₀/a₀)² and R\_eff = (a₀²c₀)\^{}\{1/3\}. Then R\_eff is constant and u(τ) stays in I(u₀) = {[}min\{u₀,1\}, max\{u₀,1\}{]}. Hence
+
+\textbar Rm(g(τ))\textbar² ≤ C\_B(u₀) R\_eff\^{}\{-4\},
+
+C\_B(u₀) = max\_\{u∈I(u₀)\} 4(16 − 24u + 11u²)u\^{}\{2/3\}.
+
+If R\_eff ≥ ℓP, then \textbar Rm(g(τ))\textbar² ≤ C\_B(u₀)ℓP\^{}\{-4\}. \\
+\end{longtable}
+
+\begin{quote}
+\textbf{Remark IX.4.} The theorem is a genuine positive result in the Hopf/Berger reduction. It says that the round collapse can be removed by adding the correct trace/expansion sector and imposing a lower effective volume scale.
+
+\textbf{Remark IX.5.} The theorem does not prove a full pointwise coercive PDE estimate. It uses spatial homogeneity, so all derivative terms in Cʰ(Rm) vanish. Nonhomogeneous trace forcing is a harder problem.
+\end{quote}
+
+\includegraphics[width=4.93948in,height=3.35885in]{/mnt/data/ricci_latex_work/media/image3.png}
+
+\emph{Figure 3. Fixed-volume Berger curvature. Under the normalized trace flow V = a²c is preserved and u moves monotonically toward 1. The theorem proves boundedness rather than monotonic decay: curvature can increase on part of the fibre-squeezed side, but remains bounded on the compact u-interval determined by the initial data.}
+
+\section{X. Planck Boundary as Internalized Surgery}\label{x.-planck-boundary-as-internalized-surgery}
+
+Perelman surgery is an external analytic-topological continuation method. It removes high-curvature neck regions, inserts caps, and restarts the flow. In a compact physical S³ sector there is no external operator and no outside ambient space. Therefore the replacement cannot literally be cut-and-paste surgery. The effective replacement is a boundary or constraint.
+
+The Planck-boundary module supplies precisely such a boundary:
+
+\begin{quote}
+R\_eff ≥ ℓₚ, or stronger variants such as a ≥ ℓₚ, c ≥ ℓₚ. \emph{(66)}
+\end{quote}
+
+For the Berger trace-compensated flow, the natural variable is R\textsubscript{eff} = (a²c)¹ᵂ³. The theorem above shows that the boundary R\textsubscript{eff} ≥ ℓ\textsubscript{P} is sufficient in the volume-normalized homogeneous sector.
+
+A hard boundary condition is cleaner than a divergent forcing term. In the minisuperspace quantum model one chooses a Hilbert space L²({[}ℓ\textsubscript{P}, ∞), a~da) and a self-adjoint endpoint condition, so no probability flux is lost into 0 \textless{} a \textless{} ℓ\textsubscript{P}. The Berger analogue should be a self-adjoint boundary condition on an anisotropic minisuperspace with variables such as (V, u) or (log V, log u).
+
+\section{XI. Reduced Versus Lifted Degeneration}\label{xi.-reduced-versus-lifted-degeneration}
+
+The statement that ``ordinary Ricci flow may not see all degrees of freedom'' must be corrected. Ricci flow sees the full metric on the manifold on which it is defined. The loss occurs only if the model first quotients, projects, or coarse-grains the system.
+
+In the Hopf case S¹ → S³ → S², a reduced S² description can lose:
+
+\begin{itemize}
+\item
+  fibre radius;
+\item
+  connection one-form;
+\item
+  holonomy data;
+\item
+  O'Neill tensor contributions;
+\item
+  boundary or asymptotic charge data associated with the lifted geometry.
+\end{itemize}
+
+The Berger family makes this distinction explicit. The limit c → 0 is a collapse of S³ to S² with bounded curvature upstairs. The \textbf{safe version} of the lifted-flow idea is: a reduced flow may be incomplete relative to a lifted total-space geometry.
+
+\section{XII. Connection-Curvature and Dark-Sector Interpretation}\label{xii.-connection-curvature-and-dark-sector-interpretation}
+
+The Hopf connection θ has curvature F = dθ. In a Riemannian submersion or Kaluza--Klein reduction, total-space curvature decomposes schematically into base curvature, fibre scale, and connection-curvature terms. This is the precise geometric place where a reduced observer might describe fibre/connection effects as an effective stress or pressure sector.
+
+For the present article, this remains a modelling direction, not a theorem. A defensible dark-sector ansatz is
+
+\begin{quote}
+h\_comp = h\_trace + h\_shape + h\_fibre + h\_boundary + h\_nonlocal. \emph{(67)}
+\end{quote}
+
+The trace term is the natural dark-energy-like component because it affects volume expansion.
+
+The disciplined claim is therefore: \emph{the dark sector may be tested as an effective internal compensation sector.} The unsupported claim would be: \emph{dark energy is Hopf fibre curvature.} We do not make the second claim.
+
+\section{XIII. Warped-S³ Test of the Engineered Cubic Forcing}\label{xiii.-warped-suxb3-test-of-the-engineered-cubic-forcing}
+
+The Berger reduction is homogeneous: \textbar Rm\textbar{} is constant on each spatial slice and Δ\textbar Rm\textbar{} = 0. It is therefore the wrong environment for deciding whether the engineered cubic forcing A′, namely h = 2λ₁\textbar Rm\textbar g, survives the full curvature equation. The first honest nonhomogeneous test is the rotationally symmetric warped sector on S³, the same symmetry class in which Ricci flow develops neckpinch behaviour.
+
+\subsection{A. Warped curvature dictionary}\label{a.-warped-curvature-dictionary}
+
+Let
+
+g = ds² + ψ(s)² g\_\{S²\}. (68)
+
+In arclength gauge the two sectional curvatures are
+
+K₀ = −ψ\_\{ss\}/ψ, K₁ = (1 − ψ\_s²)/ψ². (69)
+
+Here K₀ is the mixed radial-spherical curvature and K₁ is the curvature of the spherical orbits. Hence
+
+R = 4K₀ + 2K₁, \textbar Rm\textbar² = 4(2K₀² + K₁²). (70)
+
+For ψ(s) = sin s, one obtains K₀ = K₁ = 1, so R = 6 and \textbar Rm\textbar² = 12. This is the round S³ check.
+
+\subsection{B. The derivative term hidden by homogeneity}\label{b.-the-derivative-term-hidden-by-homogeneity}
+
+For a conformal variation δg = 2φg in dimension three,
+
+δR = −2φR − 4Δφ. (71)
+
+Putting φ = λ₁\textbar Rm\textbar{} gives the scalar-curvature contribution of h = 2λ₁\textbar Rm\textbar g:
+
+∂τR = ΔR + 2\textbar Ric\textbar² − 2λ₁\textbar Rm\textbar R − 4λ₁Δ\textbar Rm\textbar. (72)
+
+The Berger reduction retains the algebraic term −2λ₁\textbar Rm\textbar R and kills the derivative term −4λ₁Δ\textbar Rm\textbar. That is precisely the term denoted schematically by ∇²h in the full curvature comparison. It is not an optional correction; it is the term that decides whether the engineered cubic is a real PDE mechanism.
+
+At a curvature maximum on a neck one typically has Δ\textbar Rm\textbar{} \textless{} 0. Thus −4λ₁Δ\textbar Rm\textbar{} is positive there and can feed the scalar curvature exactly where the homogeneous model suggested damping. Even when the scalar curvature on an acute neck changes sign, the essential point is order, not sign: the derivative term is not lower order.
+
+\subsection{C. Ricci--DeTurck dynamic diagnostic}\label{c.-riccideturck-dynamic-diagnostic}
+
+The frozen-profile calculation already shows that the derivative term removed by homogeneity is of the same order as the algebraic term kept by the Berger reduction. A dynamical test asks the sharper question: does the engineered forcing actually prevent a neckpinch when the warped-S³ flow is evolved?
+
+We use a rotationally symmetric Ricci--DeTurck formulation with round background g\_bar = dx² + sin²x gS². The system is strictly parabolic in the variables (φ,ψ), preserves the round solution to numerical precision, and resolves unforced neckpinch behaviour. The same solver is then run with h = 2λ₁\textbar Rm\textbar g.
+
+The outcome is negative in the relevant sense. The engineered term can hold the central neck open and delay the first concentration, but the curvature peak is displaced rather than removed. In the diagnostic run the singularity is therefore not regularized; it is relocated. This is precisely what the hidden term −4λ₁Δ\textbar Rm\textbar{} suggested analytically.
+
+The frozen-profile ratios are retained in Appendix D as a scale check. The main figure below records the dynamic Ricci--DeTurck result.
+
+\includegraphics[width=6.5in,height=2.07037in]{/mnt/data/ricci_latex_work/media/image4.png}
+
+Figure 4. Ricci--DeTurck warped-S³ dynamic diagnostic. The engineered forcing h = 2λ₁\textbar Rm\textbar g holds the central neck open and delays the first concentration, but the curvature peak is displaced rather than removed. Left: maximal curvature as a function of flow time. Centre: neck radius. Right: curvature profile at stopping. The result complements the frozen-profile hidden-term calculation: A′ is not a full-PDE coercive mechanism.
+
+Proposition XIII.1 (Hidden-term and Ricci--DeTurck obstruction). The forcing h = 2λ₁\textbar Rm\textbar g gives a negative cubic contribution in the homogeneous Berger reduction. In the warped-S³ sector its scalar-curvature evolution contains the additional term −4λ₁Δ\textbar Rm\textbar, and frozen neck profiles show that this derivative term is the same order as the retained algebraic term. A Ricci--DeTurck warped-flow diagnostic further shows that the engineered forcing delays and relocates curvature concentration rather than removing it. Therefore the Berger coercivity of A′ does not constitute evidence for the full pointwise coercive inequality.
+
+\section{XIV. Full PDE Obstruction}\label{xiv.-full-pde-obstruction}
+
+The positive Berger theorem and the engineered cubic A′ both use homogeneity. The warped-S³ diagnostics show concretely what homogeneity removes. In the full curvature equation for ∂τg = −2 Ric + h, Cʰ(Rm) includes second derivatives of h and lower-order terms of type Rm * h. For h = 2λ₁\textbar Rm\textbar g, the derivative contribution −4λ₁Δ\textbar Rm\textbar{} is the same order as the algebraic cubic on a neck. The Ricci--DeTurck run adds the dynamic fact: the engineered term delays and relocates concentration, but does not remove it. This is exactly where finite-dimensional reductions can mislead.
+
+\subsection{A. Global volume normalization}\label{a.-global-volume-normalization}
+
+The standard normalized Ricci flow in dimension three is ∂τg = −2 Ric + (2/3)R̅g, where R̅ = (1/Vol(M,g))∫\textsubscript{M} R~dμ\textsubscript{g}. This preserves total volume but is \textbf{not} pointwise coercive: a local curvature spike can satisfy \textbar Rm\textbar(x) ≫ \textbar R̅\textbar. Then R̅g cannot dominate the local cubic reaction term.
+
+\subsection{B. Pointwise curvature-driven trace forcing}\label{b.-pointwise-curvature-driven-trace-forcing}
+
+The pointwise analogue ∂τg = −2 Ric + (2/3)R(x)g has the correct local homogeneity in positive-curvature homogeneous regimes. But now h = (2/3)Rg depends on second derivatives of g, and the variation of curvature produces terms involving ∇²R, Rm * R, ∇R * ∇g schematically.
+
+The homogeneous Berger reduction hides these terms because all spatial derivatives vanish.
+
+\subsection{}\label{section-1}
+
+\subsection{}\label{section-2}
+
+\subsection{C. The correct open problem}\label{c.-the-correct-open-problem}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 0\tabcolsep) * \real{1.0000}}@{}}
+\toprule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{Open Problem.} \emph{Find a geometrically justified trace/expansion forcing, possibly combined with bounded shape filtering and Planck-boundary constraints, whose full curvature-level contribution satisfies a pointwise coercive inequality of the form (11), or prove that no such local tensorial forcing exists under stated regularity and covariance assumptions.} \\
+\end{longtable}
+
+\section{XV. Forbidden Overclaims}\label{xv.-forbidden-overclaims}
+
+For clarity we record claims that should not appear in a defensible version of the programme.
+
+\begin{enumerate}
+\def\labelenumi{(\arabic{enumi})}
+\setcounter{enumi}{22}
+\item
+  \textbf{Do not write:} the Hopf fibration removes singularities. \textbf{Write instead:} Hopf/Berger geometry separates fibre collapse from volume curvature blow-up.
+\item
+  \textbf{Do not write:} dark energy is fibre curvature. \textbf{Write instead:} a dark-energy-like sector may be modelled as trace/volume compensation.
+\item
+  \textbf{Do not write:} dark matter is solved. \textbf{Write instead:} dark-matter-like clustering can be tested later as quasi-local support; it is not used in the first theorem.
+\item
+  \textbf{Do not write:} the Big Bang is Perelman's neck. \textbf{Write instead:} backward reconstruction may approach a boundary or neck-like limit of the coarse-grained description.
+\item
+  \textbf{Do not write:} bounded spectral filtering prevents singularities. \textbf{Write instead:} bounded filtering is legitimate forcing but needs curvature-level coercivity.
+\item
+  \textbf{Do not write:} the Planck boundary proves quantum gravity. \textbf{Write instead:} a self-adjoint Planck endpoint gives an effective no-flux boundary under stated assumptions.
+\item
+  \textbf{Do not write:} normalized Ricci flow proves cosmological regularity. \textbf{Write instead:} it gives a positive homogeneous model and an open PDE problem.
+\end{enumerate}
+
+\section{XVI. Article-Level Conclusions}\label{xvi.-article-level-conclusions}
+
+The first-stage spectral-filter framework identified the true analytic bottleneck: bounded forcing is not enough; one needs a negative cubic curvature contribution or a mechanism that replaces the region where the cubic blow-up would occur. The Hopf/Berger test sharpens this statement. The clean result is mixed.
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 0\tabcolsep) * \real{1.0000}}@{}}
+\toprule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\begin{minipage}[t]{\linewidth}\raggedright
+First: Fibre-only compensation is a no-go for the main singular mode. It can affect c, the Hopf fibre scale, but the unforced Ricci-flow singularity in the Berger family is the round/base/volume collapse a → 0. Fibre collapse c → 0 at fixed a has bounded curvature.\\
+\strut \\
+Second: The trace/expansion sector is essential. The curvature-driven trace flow ∂τg = −2 Ric + (2/3)Rg preserves Berger volume, drives u = (c/a)² toward 1, and gives \textbar Rm\textbar² ≤ C(u₀)R\_eff\^{}\{-4\}. With a Planck lower boundary R\_eff ≥ ℓP, this becomes \textbar Rm\textbar² ≤ C(u₀)ℓP\^{}\{-4\}.\\
+\strut \\
+Third: The engineered cubic forcing h = 2λ₁\textbar Rm\textbar g succeeds only in homogeneous reduction. In the warped-S³ test the hidden derivative term −4λ₁Δ\textbar Rm\textbar{} is the same order as the retained algebraic cubic term. Hence A′ is not a full-PDE coercive mechanism.\\
+\strut \\
+Fourth: The positive theorem is finite-dimensional and boundary-based. The clean mechanism presently established is not a smooth coercive forcing but a trace/shape-controlled invariant region with a Planck no-flux lower boundary.\strut
+\end{minipage} \\
+\end{longtable}
+
+The version-2.0 programme is therefore:
+
+\begin{quote}
+Ricci shrinkage + trace/ADM expansion + Hopf shape/fibre sector + Planck boundary.
+\end{quote}
+
+The Boris/Claude Berger diagnostics are therefore not a competing conclusion. They are the negative half of the result: they prove that fibre compensation alone is insufficient and motivate the trace/expansion term used in the positive theorem.
+
+This is stronger than the fibre-only proposal and more honest than a singularity-resolution claim. It yields one clean homogeneous theorem, several no-go statements, a nonhomogeneous hidden-term obstruction, a Ricci--DeTurck dynamic failure test for the engineered cubic, and a precise full-PDE open problem.
+
+\section{Appendix A: Derivation Details for the Berger Formulas}\label{appendix-a-derivation-details-for-the-berger-formulas}
+
+With dσᵢ = −2εᵢⱼᵏ σⱼ ∧ σᵏ and θ¹ = aσ¹, θ² = aσ², θ³ = cσ³, the structure equations become:
+
+\begin{quote}
+dθ¹ = −2/c · θ² ∧ θ³, (A1)
+
+dθ² = −2/c · θ³ ∧ θ¹, (A2)
+
+dθ³ = −2c/a² · θ¹ ∧ θ². (A3)
+\end{quote}
+
+Solving Cartan's first structural equations and then computing curvature gives sectional curvatures:
+
+\begin{quote}
+K₁₂ = (4 − 3u) / x, K₁₃ = K₂₃ = u / x. \emph{(A4--A5)}
+\end{quote}
+
+Ricci eigenvalues: r₁ = K₁₂ + K₁₃ = 2(2−u)/x, r₃ = K₁₃ + K₂₃ = 2u/x, reproducing (31). Also \textbar Rm\textbar² = 4(K²₁₂ + K²₁₃ + K²₂₃) = 4(16−24u+11u²)/x².
+
+\section{Appendix B: Forcing Contributions by Euler Homogeneity}\label{appendix-b-forcing-contributions-by-euler-homogeneity}
+
+The curvature scalar K\textsubscript{B}(x,z) = 4(16x² − 24xz + 11z²)/x⁴ is homogeneous of degree −2 in (x,z).
+
+For any isotropic trace forcing h = 2λg: ẋ = 2λx, ż = 2λz. Euler's identity gives K̇\textsubscript{B} = 2λ(x∂\textsubscript{x} + z∂\textsubscript{z})K\textsubscript{B} = −4λK\textsubscript{B}.
+
+For fibre forcing ż = μ, ẋ = 0: K̇\textsubscript{B} = μ ∂\textsubscript{z}K\textsubscript{B} = μ·8(11z − 12x)/x⁴.
+
+\section{Appendix C: Numerical Validation Protocol}\label{appendix-c-numerical-validation-protocol}
+
+The theorems above are analytic. Numerical experiments should therefore be used only as checks. A minimal validation suite should integrate:
+
+\begin{quote}
+ẋ = −8 + 4u + H\_x(x,u), ż = −4u² + H\_z(x,u) \emph{(C1--C2)}
+\end{quote}
+
+for the following cases:
+
+\begin{enumerate}
+\def\labelenumi{(\arabic{enumi})}
+\setcounter{enumi}{29}
+\item
+  unforced flow Hₓ = Hᵦ = 0;
+\item
+  constant trace forcing Hₓ = 2Λx, Hᵦ = 2Λz;
+\item
+  fibre forcing Hₓ = 0, Hᵦ = μ;
+\item
+  normalized trace forcing Hₓ = (2/3)Rx, Hᵦ = (2/3)Rz;
+\item
+  Planck-reflected flow with R\_eff ≥ ℓₚ.
+\end{enumerate}
+
+The monitored quantities should be u, V, K\textsubscript{B}, and K\textsubscript{B}ℓ⁴\textsubscript{P}. A numerical statement that contradicts volume preservation or (62) is a diagnostic error, not a new effect.
+
+The representative validation suite used for the figures gives the following qualitative outcomes.
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3334}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3334}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Run}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Forcing}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Observed outcome}
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+E1 & none & round-point blow-up; u → 1; τ* ≈ 0.137 for (a,c)=(1,0.2) \\
+E2 & h = 2Λg, Λ = 1 & still blows up; quadratic damping is insufficient \\
+E2b & h = 2Λg, Λ = 5 & runaway expansion, \textbar Rm\textbar² → 0 by escape, not coercive control \\
+E3 & fibre h₃₃ = 30(0.25 − z)+ & prevents c-collapse but u grows; blow-up remains \\
+E4/E5 & reflecting Planck barrier a ≥ 0.5 & bounded; sup \textbar Rm\textbar²ℓP⁴ ≈ 56 in the test run \\
+D1 & coercive diagnostic & round ratio gives 4/√3; fibre sign flip at u = 12/11 \\
+\end{longtable}
+
+\emph{Table C1. Numerical checks are used only as diagnostics. The analytic statements are the curvature formulas, no-go computations, and the trace-compensation bound.}
+
+\section{Appendix D: Frozen-Profile and Ricci--DeTurck Diagnostics}\label{appendix-d-frozen-profile-and-riccideturck-diagnostics}
+
+This appendix records the finite calculation behind Section XIII. For the warped metric g = ds² + ψ²gS², the round sphere ψ = sin s gives K₀ = K₁ = 1, R = 6, and \textbar Rm\textbar² = 12. This fixes the normalization.
+
+The conformal scalar-curvature variation in dimension three is δR = −2φR − 4Δφ. With φ = λ₁\textbar Rm\textbar, the full contribution of h = 2λ₁\textbar Rm\textbar g contains both −2λ₁\textbar Rm\textbar R and −4λ₁Δ\textbar Rm\textbar. The Berger model sets the second term to zero because \textbar Rm\textbar{} is spatially constant.
+
+The frozen-neck profile test compares the magnitude of the omitted derivative term with the retained algebraic term. The representative ratios 3.18, 1.49, 0.97, 0.80, 0.77 show that the omitted term remains order one relative to the kept term. This ratio calculation is a scale diagnostic, not a complete dynamic solver.
+
+The Ricci--DeTurck diagnostic uses a rotationally symmetric parabolic gauge with round background g\_bar = dx² + sin²x gS². It validates the round solution and the unforced neckpinch, then tests A′. The observed behaviour is that A′ holds the neck open and delays concentration, but the curvature peak is displaced rather than removed. Thus the dynamic test supports the analytic hidden-term obstruction.
+
+\section{Appendix E: Open Problems}\label{appendix-e-open-problems}
+
+\begin{enumerate}
+\def\labelenumi{(\arabic{enumi})}
+\setcounter{enumi}{34}
+\item
+  \textbf{OP1.} Prove short-time existence for Ricci--DeTurck flows with combined trace, spectral, boundary, and nonlocal forcing.
+\item
+  \textbf{OP2.} Determine whether a geometrically natural pointwise trace forcing can satisfy the coercive inequality without uncontrollable ∇²R terms.
+\item
+  \textbf{OP3.} Formulate an anisotropic Planck-boundary Wheeler--DeWitt problem for Berger variables (V, u), including the correct minisuperspace measure and self-adjoint boundary form.
+\item
+  \textbf{OP4.} Extend the Berger calculation to non-left-invariant perturbations on S³ and determine whether trace compensation stabilizes only the homogeneous mode or also low tensor harmonics.
+\end{enumerate}
+
+OP4′. Turn the Ricci--DeTurck warped-S³ diagnostic into a fully convergence-tested neckpinch solver, including pole regularization and comparisons with Lagrangian or arclength-gauge schemes.
+
+\begin{enumerate}
+\def\labelenumi{(\arabic{enumi})}
+\setcounter{enumi}{38}
+\item
+  \textbf{OP5.} Derive an effective stress tensor from Hopf connection curvature using Riemannian submersion or Kaluza--Klein methods and test its curvature-level sign.
+\item
+  \textbf{OP6.} Combine bounded tensorial spectral filtering of shape modes with trace compensation and prove an invariant region in a finite tensor-mode truncation.
+\item
+  \textbf{OP7.} Decide whether a dark-matter-like clustering sector helps curvature control or inevitably worsens local concentration in the Ricci-type comparison estimate.
+\end{enumerate}
+
+\section{References}\label{references}
+
+\textbf{{[}1{]}} A. L. Besse, Einstein Manifolds (Springer, Berlin, 1987).
+
+\textbf{{[}2{]}} B. Chow, P. Lu, and L. Ni, Hamilton's Ricci Flow (American Mathematical Society, Providence, RI, 2006).
+
+\textbf{{[}3{]}} D. M. DeTurck, Deforming metrics in the direction of their Ricci tensors, J. Differential Geom. 18, 157--162 (1983).
+
+\textbf{{[}4{]}} R. S. Hamilton, Three-manifolds with positive Ricci curvature, J. Differential Geom. 17, 255--306 (1982).
+
+\textbf{{[}5{]}} J. Morgan and G. Tian, Ricci Flow and the Poincaré Conjecture, Clay Mathematics Monographs Vol. 3 (AMS/CMI, Providence, RI, 2007).
+
+\textbf{{[}6{]}} G. Perelman, The entropy formula for the Ricci flow and its geometric applications, arXiv:math/0211159.
+
+\textbf{{[}7{]}} G. Perelman, Ricci flow with surgery on three-manifolds, arXiv:math/0303109.
+
+\textbf{{[}8{]}} G. Perelman, Finite extinction time for the solutions to the Ricci flow on certain three-manifolds, arXiv:math/0307245.
+
+\textbf{{[}9{]}} P. Topping, Lectures on the Ricci Flow (Cambridge University Press, Cambridge, 2006).
+
+\textbf{{[}10{]}} B. O'Neill, The fundamental equations of a submersion, Michigan Math. J. 13, 459--469 (1966).
+
+\textbf{{[}11{]}} R. M. Wald, General Relativity (University of Chicago Press, Chicago, 1984).
+
+\textbf{{[}12{]}} V. Iyer and R. M. Wald, Some properties of Noether charge and a proposal for dynamical black hole entropy, Phys. Rev. D 50, 846--864 (1994).
+
+\textbf{{[}13{]}} E. Noether, Invariante Variationsprobleme, Nachr. Ges. Wiss. Göttingen, 235--257 (1918).
+
+\textbf{{[}14{]}} A. Ashtekar, T. Pawlowski, and P. Singh, Quantum nature of the Big Bang, Phys. Rev. Lett. 96, 141301 (2006).
+
+\textbf{{[}15{]}} A. Preece and B. Batenin, Tensorial Spectral Filtering for Ricci-Type Flows on Fixed S³-Manifolds, research manuscript (2026).
+
+\textbf{{[}16{]}} B. Batenin and A. Preece, Planck-Boundary Geometry of Compact S³ Cosmology, research manuscript (2026).
+
+\textbf{{[}17{]}} A. Preece and B. Batenin, A Hopf-Bundle Holonomy Representation of Spin-Singlet Bell Correlations, research manuscript (2026).
+
+\end{document}

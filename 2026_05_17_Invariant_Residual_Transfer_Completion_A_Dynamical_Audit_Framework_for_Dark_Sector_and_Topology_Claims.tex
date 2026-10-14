@@ -1,0 +1,1016 @@
+\documentclass[
+  aps,
+  prd,
+  reprint,
+  superscriptaddress,
+  floatfix,
+  nofootinbib,
+  longbibliography
+]{revtex4-2}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsfonts,amsthm,mathtools}
+\usepackage{microtype}
+\usepackage{booktabs}
+\usepackage{bm}
+\usepackage{array}
+\usepackage{hyperref}
+
+\hypersetup{colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue,hypertexnames=false}
+\allowdisplaybreaks
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{principle}[theorem]{Principle}
+\newtheorem{criterion}[theorem]{Criterion}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{protocol}[theorem]{Protocol}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\dd}{\mathrm d}
+\newcommand{\D}{\mathcal D}
+\newcommand{\vis}{\mathrm{vis}}
+\newcommand{\eff}{\mathrm{eff}}
+\newcommand{\crit}{\mathrm{crit}}
+\newcommand{\w}{\mathrm w}
+\newcommand{\Aq}{\mathcal A_q}
+\newcommand{\Aw}{\mathcal A_{\mathrm w}}
+\newcommand{\Rcl}{\mathcal R}
+\newcommand{\Vol}{\operatorname{Vol}}
+\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\Spec}{\operatorname{Spec}}
+\newcommand{\Cov}{\operatorname{Cov}}
+\newcommand{\diag}{\operatorname{diag}}
+\newcommand{\KL}{\operatorname{KL}}
+\newcommand{\PG}{P_{\Gamma}}
+\newcommand{\Fcal}{\mathfrak F}
+\newcommand{\Ecal}{\mathcal E}
+\newcommand{\LCDM}{\Lambda\mathrm{CDM}}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Tcal}{\mathcal T}
+\newcommand{\Bcal}{\mathcal B}
+\newcommand{\Kcal}{\mathcal K}
+\newcommand{\Ical}{\mathcal I}
+\newcommand{\Mcal}{\mathcal M}
+\newcommand{\Ccal}{\mathcal C}
+\newcommand{\Acal}{\mathcal A}
+\newcommand{\Ocal}{\mathcal O}
+\newcommand{\Lcal}{\mathcal L}
+\newcommand{\Qcal}{\mathcal Q}
+\newcommand{\Dcal}{\mathcal D}
+\newcommand{\Jcal}{\mathcal J}
+\newcommand{\Wcal}{\mathcal W}
+\newcommand{\Vcal}{\mathcal V}
+\newcommand{\Gcal}{\mathcal G}
+\newcommand{\Scal}{\mathcal S}
+\newcommand{\Xcal}{\mathcal X}
+\newcommand{\Pcal}{\mathcal P}
+\newcommand{\Ucal}{\mathcal U}
+\newcommand{\Hcal}{\mathcal H}
+\newcommand{\Ncal}{\mathcal N}
+\newcommand{\eps}{\epsilon}
+\newcommand{\IRTC}{\mathrm{IRTC}}
+
+\begin{document}
+\raggedbottom
+
+\title{\texorpdfstring{Invariant Residual--Transfer Completion:\\
+A Dynamical Audit Framework for Dark-Sector and Topology Claims}{Invariant Residual--Transfer Completion: A Dynamical Audit Framework for Dark-Sector and Topology Claims}}
+
+\author{Andrei~Preece}
+\email{andre.preece@web.de}
+\affiliation{Independent Researcher, Berlin, Germany}
+
+\author{Boris~Batenin}
+\email{batenin@web.de}
+\affiliation{Independent Researcher, Berlin, Germany}
+
+\date{May 17, 2026}
+
+\begin{abstract}
+We formulate invariant residual--transfer completion (IRTC), a first-principles audit framework for separating what a cosmological model reconstructs, what it realizes by an action, what it selects by amplitudes, and what invariant observable object it defines.  The primitive object is the convention-audited Einstein residual
+\begin{equation*}
+T^{\D,\lambda}_{\mu\nu}=
+\frac{c^4}{8\pi G}(G_{\mu\nu}+\lambda g_{\mu\nu})-T^{\vis}_{\mu\nu},
+\end{equation*}
+not an assumed dark source.  For homogeneous FLRW residuals, the two scalars
+\begin{equation*}
+\Aq=-p_\D,\qquad
+\Aw=a^3(\epsilon_\D+p_\D),
+\end{equation*}
+with dimensionless normalization $a_0=1$, form a lossless dust--vacuum atlas: constant nonnegative entries are equivalent to an exact pressureless-dust plus fixed-vacuum normal form in the declared residual convention.  The main result is a completion calculus: a claim cannot be upgraded from residual reconstruction to source microphysics, amplitude prediction, compact-topology detection, or observational evidence without adding the corresponding invariant data.  The framework supplies a finite audit vector of defects and completion invariants, including convention ledger, exchange-driven atlas evolution, closure defect, exchange current, source-action realization, stability margin, branch spacing, transfer residual, quotient covariance anisotropy, observer-dependence, benchmark fairness, and blind-injection distinguishability.  Its operational precision layer is an integrated atlas-drift bound: any reconstructed drift of the dust--vacuum atlas must be supported by a measured exchange current in the same residual convention.  For compact quotients $\Sigma_\Gamma=S^3/\Gamma$, topology enters linear observables through projected eigenspaces, transfer kernels, observer-dependent sky maps, and full harmonic covariance, not through a local equation of state or a dark-sector abundance.  The result is a coordinate-independent but observer-parameterized framework for making cosmological claims audit-ready, falsifiable, and resistant to category errors.
+\end{abstract}
+
+\maketitle
+
+\section{Purpose and claim boundary}
+
+This paper is not a detection of compact topology, not a derivation of the observed dark-matter density, and not a proof that vacuum energy is selected by a four-form flux.  It is a stricter object: a completion framework for cosmological claims.  Its purpose is to define which invariant data must be present before a statement such as ``the residual is dust'', ``the vacuum is a flux branch'', or ``the topology has been detected'' becomes testable.
+
+The central separation is
+\begin{equation}
+\boxed{
+\text{residual}\neq\text{source}\neq\text{amplitude}
+\neq\text{transfer}\neq\text{likelihood}.}
+\label{eq:category_separation}
+\end{equation}
+A claim that succeeds at one layer is not automatically valid at a later layer.  For example, a homogeneous stress tensor may have the same background form as dust plus vacuum without identifying the underlying action.  A compact quotient may restrict eigenspaces without selecting a matter abundance.  A covariance deformation may be computable without being detectable in a noisy data set.
+
+Except where factors of $c$ are displayed explicitly, source-action and perturbation formulas use $c=1$. Equivalently, if $U^\mu$ denotes a dimensionful four-velocity, then $U^\mu U_\mu=-c^2$, while the normalized velocity $u^\mu=U^\mu/c$ satisfies $u^\mu u_\mu=-1$.
+
+The resulting framework is called invariant residual--transfer completion.  ``Invariant'' means that every claim is expressed through tensors, scalar diagnostics, group projectors, covariances, likelihoods, or explicitly declared conventions.  ``Residual'' means that the dark sector is first reconstructed as what is left after the visible sector and Einstein-side convention have been declared.  ``Transfer'' means that global geometry becomes observational only after perturbations are propagated through a declared transfer map.  ``Completion'' means that the missing data at each layer are tracked as part of the claim.
+
+The useful output is not a competing background model, but a standard of admissibility:
+\begin{equation}
+\boxed{
+\begin{gathered}
+R\prec H\prec S\prec A,\\
+A\prec T\prec C\prec L\prec B.
+\end{gathered}}
+\label{eq:completion_chain}
+\end{equation}
+Here $R$ is residual reconstruction, $H$ homogeneous closure, $S$ source action, $A$ amplitude selector, $T$ transfer evolution, $C$ covariance prediction, $L$ likelihood comparison, and $B$ blind-injection validation.  This is the minimal chain considered in the present paper.  More general partially specified claim states form a preorder: one state is at least as complete as another when all invariant data of the latter are supplied by the former.
+
+\section{Invariant claim states}
+
+\begin{definition}[IRTC claim state]
+An FLRW dark-sector or topology claim is represented by a claim state
+\begin{equation}
+\Xcal=(R,H,S,A,T,C,L,B),
+\label{eq:claim_state}
+\end{equation}
+where each entry is either supplied by invariant data or left open.  The entries are:
+\begin{align}
+R&=(g,T^{\vis},\lambda,T^{\D,\lambda}),\nonumber\\
+H&=(\Aq,\Aw,\mathfrak C_I),\nonumber\\
+S&=(S_{\rm src},T^{\rm src},\mathrm{EOM}),\nonumber\\
+A&=(\mathrm{scales},\mathrm{branches},\mathrm{priors}),\nonumber\\
+T&=(\mathrm{bases},\mathrm{Boltzmann},\mathrm{kernels}),\nonumber\\
+C&=(P_\Gamma,\xi^{\Gamma,O},C^{XY}_{\rm sky}),\nonumber\\
+L&=(\Lcal_\Gamma,\Lcal_{\rm bench},Z_\Gamma,Z_{\rm bench}),\nonumber\\
+B&=(\mathrm{blind\ tests},P_{\rm blind}).
+\end{align}
+The state is complete only relative to the declared claim.  A background-closure paper may stop at $H$; a detection paper cannot.
+\end{definition}
+
+\begin{principle}[No hidden upgrade]
+No entry in Eq.~\eqref{eq:claim_state} may be inferred from an earlier entry without an explicit map and its assumptions.  In particular,
+\begin{equation}
+H\not\Rightarrow S,
+\qquad
+S\not\Rightarrow A,
+\qquad
+P_\Gamma\not\Rightarrow \Omega_{\rm dark},
+\qquad
+C\not\Rightarrow L.
+\label{eq:no_upgrade}
+\end{equation}
+This is not a dynamical theorem.  It is a category-safety condition: residual form, action realization, amplitude selection, and observational evidence are different mathematical objects.
+\end{principle}
+
+\section{Residual convention and homogeneous closure}
+
+Given a metric, a visible subtraction, and an Einstein-side convention, define
+\begin{equation}
+\boxed{
+T^{\D,\lambda}_{\mu\nu}=
+\frac{c^4}{8\pi G}(G_{\mu\nu}+\lambda g_{\mu\nu})-T^{\vis}_{\mu\nu}.}
+\label{eq:residual}
+\end{equation}
+If the visible subtraction is changed by $X_{\mu\nu}$, then
+\begin{equation}
+T^{\D,\lambda}_{\mu\nu}\mapsto T^{\D,\lambda}_{\mu\nu}-X_{\mu\nu}.
+\label{eq:visible_shift}
+\end{equation}
+If $\lambda\mapsto\lambda+\delta\lambda$, then
+\begin{equation}
+T^{\D,\lambda}_{\mu\nu}\mapsto
+T^{\D,\lambda}_{\mu\nu}+\frac{c^4}{8\pi G}\delta\lambda\,g_{\mu\nu}.
+\label{eq:lambda_shift}
+\end{equation}
+Thus a residual is never convention-free.  The convention must be part of the claim state.
+
+For a homogeneous FLRW residual, write
+\begin{equation}
+T^{\D}_{\mu\nu}=
+\epsilon_\D\frac{U_\mu U_\nu}{c^2}+p_\D h_{\mu\nu},
+\qquad
+h_{\mu\nu}=g_{\mu\nu}+\frac{U_\mu U_\nu}{c^2}.
+\end{equation}
+The scale factor $a$ is dimensionless and normalized by $a_0=1$; the curvature radius $A_0$ is kept separately when needed.  Define
+\begin{equation}
+\boxed{
+\Aq=-p_\D,
+\qquad
+\Aw=a^3(\epsilon_\D+p_\D).}
+\label{eq:atlas}
+\end{equation}
+The inverse map is
+\begin{equation}
+p_\D=-\Aq,
+\qquad
+\epsilon_\D=a^{-3}\Aw+
+\Aq.
+\label{eq:atlas_inv}
+\end{equation}
+
+\begin{criterion}[Dust--vacuum atlas criterion]
+On any connected scale-factor interval, the homogeneous residual is exactly pressureless dust plus fixed vacuum,
+\begin{equation}
+T^{\D}_{\mu\nu}=\epsilon_{\w,0}a^{-3}\frac{U_\mu U_\nu}{c^2}-\epsilon_q g_{\mu\nu},
+\label{eq:dust_vacuum}
+\end{equation}
+with $\epsilon_{\w,0},\epsilon_q\ge0$, if and only if $\Aq$ and $\Aw$ are constant and nonnegative.  Then $\epsilon_q=\Aq$ and $\epsilon_{\w,0}=\Aw$.
+\end{criterion}
+
+\begin{proof}
+If Eq.~\eqref{eq:dust_vacuum} holds, then $p_\D=-\epsilon_q$ and $\epsilon_\D+p_\D=\epsilon_{\w,0}a^{-3}$, hence $\Aq=\epsilon_q$ and $\Aw=\epsilon_{\w,0}$.  Conversely, if $\Aq$ and $\Aw$ are constant and nonnegative, Eq.~\eqref{eq:atlas_inv} gives $p_\D=-\Aq$ and $\epsilon_\D=a^{-3}\Aw+\Aq$, which is Eq.~\eqref{eq:dust_vacuum} with $\epsilon_q=\Aq$ and $\epsilon_{\w,0}=\Aw$.
+\end{proof}
+
+The exact closure defect is
+\begin{equation}
+\mathfrak C_I[\D]=
+\sup_{a\in I}
+\frac{(\dd\Aq/\dd\ln a)^2+\bigl(a^{-3}\dd\Aw/\dd\ln a\bigr)^2}{\epsilon_{\crit,0}^2}.
+\label{eq:closure_defect}
+\end{equation}
+Here
+\begin{equation}
+\epsilon_{\crit,0}=\frac{3c^2H_0^2}{8\pi G}
+\label{eq:critical_energy_density}
+\end{equation}
+is the present critical energy density in the declared background convention.  Exact background closure fails only if the reconstructed posterior excludes $\mathfrak C_I=0$ in the declared convention.  Otherwise the defect quantifies the allowed deviation from dust plus fixed vacuum.
+
+\subsection{Worked \texorpdfstring{$\LCDM$}{LCDM} audit}
+
+For a flat or curved $\LCDM$ metric, take the residual convention $\lambda=0$ so that the physical cosmological constant is not absorbed into the Einstein side.  With baryons included in the visible sector, the residual contains cold dark matter and vacuum:
+\begin{equation}
+\epsilon_\D=\epsilon_{c,0}a^{-3}+\epsilon_\Lambda,
+\qquad
+p_\D=-\epsilon_\Lambda.
+\end{equation}
+Then
+\begin{equation}
+\Aq=\epsilon_\Lambda,
+\qquad
+\Aw=\epsilon_{c,0}.
+\label{eq:lcdm_audit_cdm}
+\end{equation}
+If baryons are also left outside the visible subtraction and treated in the pressureless-baryon approximation, the same metric gives
+\begin{equation}
+\Aq=\epsilon_\Lambda,
+\qquad
+\Aw=\epsilon_{c,0}+\epsilon_{b,0}.
+\label{eq:lcdm_audit_baryon}
+\end{equation}
+The metric did not change; the residual convention did.  This is why the residual tensor and visible subtraction must be declared before any dark-sector interpretation.
+
+\section{Exchange and conservation invariants}
+
+If the visible and residual sectors are separately conserved, then
+\begin{equation}
+\nabla_\mu T^{\vis\mu}{}_{\nu}=0,
+\qquad
+\nabla_\mu T^{\D\mu}{}_{\nu}=0,
+\end{equation}
+by the Bianchi identity.  More generally, define the exchange current
+\begin{equation}
+\Qcal_\nu:=\nabla_\mu T^{\vis\mu}{}_{\nu}=-\nabla_\mu T^{\D\mu}{}_{\nu}.
+\label{eq:exchange_current}
+\end{equation}
+Let $u^\mu=U^\mu/c$ be the unit FLRW four-velocity, $u^\mu u_\mu=-1$, and define the residual energy-exchange scalar
+\begin{equation}
+\Scal_\D:=u^\nu\Qcal_\nu .
+\label{eq:energy_exchange_scalar}
+\end{equation}
+With this sign convention the residual energy equation is
+\begin{equation}
+\dot\epsilon_\D+3H(\epsilon_\D+p_\D)=\Scal_\D .
+\label{eq:residual_continuity_exchange}
+\end{equation}
+Using $\epsilon_\D=a^{-3}\Aw+\Aq$ and $\epsilon_\D+p_\D=a^{-3}\Aw$, the atlas obeys the exact exchange-driven evolution law
+\begin{equation}
+\boxed{
+\frac{\dd\Aq}{\dd\ln a}+a^{-3}\frac{\dd\Aw}{\dd\ln a}
+=\frac{\Scal_\D}{H} .}
+\label{eq:atlas_evolution_exchange}
+\end{equation}
+This equation is not an additional dynamics beyond the Bianchi identity and the declared visible subtraction; it is the invariant form of energy bookkeeping in atlas coordinates.  If $\Scal_\D=0$, one combination of atlas derivatives vanishes.  Exact dust--fixed-vacuum closure still requires the stronger condition $\dd\Aq/\dd\ln a=\dd\Aw/\dd\ln a=0$.
+
+The invariant exchange audit should not rely only on $\Qcal_\nu\Qcal^\nu$, since a nonzero null current can have zero norm.  Define
+\begin{align}
+\Jcal_U&=\sup_I \frac{|\Scal_\D|}{H\epsilon_{\crit,0}},
+\label{eq:J_U}\\
+\Jcal_\perp&=\sup_I \frac{\sqrt{h^{\mu\nu}\Qcal_\mu\Qcal_\nu}}{H\epsilon_{\crit,0}},
+\label{eq:J_perp}\\
+\Jcal_{\rm inv}&=\sup_I \frac{\sqrt{|\Qcal_\nu\Qcal^\nu|}}{H\epsilon_{\crit,0}}.
+\label{eq:J_inv}
+\end{align}
+The pair $(\Jcal_U,\Jcal_\perp)$ is the robust conservation diagnostic; $\Jcal_{\rm inv}$ is useful but incomplete for null exchange.  A homogeneous FLRW residual requires vanishing projected momentum exchange, $\Jcal_\perp=0$, in the homogeneous sector.  Numerical bounds on $\Jcal_U$, $\Jcal_\perp$, or $\mathfrak C_I$ are data-analysis results, not consequences of the audit framework alone.
+
+\section{Source realization invariants}
+
+A source realization is an action-level lift of a reconstructed stress tensor.  It is not determined by the homogeneous residual alone.
+
+\subsection{Brown-current dust}
+
+A Brown-current perfect fluid is described by a densitized current $J^\mu$, entropy per particle $s$, and Clebsch potentials~\cite{Schutz1970,Brown1993}:
+\begin{equation}
+\begin{aligned}
+S_{\rm B}=\int \dd^4x\Big[&-\sqrt{-g}\,\Ecal(n,s)\nonumber\\
+&+J^\mu(\partial_\mu\varphi+\theta\partial_\mu s+
+\alpha_A\partial_\mu\beta^A)\Big],
+\end{aligned}
+\label{eq:brown_action}
+\end{equation}
+with
+\begin{equation}
+n=\frac{\sqrt{-g_{\mu\nu}J^\mu J^\nu}}{\sqrt{-g}},
+\qquad
+u^\mu=\frac{J^\mu}{\sqrt{-g}\,n},
+\qquad
+u^\mu u_\mu=-1.
+\end{equation}
+Because $J^\mu$ is a vector density, distinguish it from the ordinary particle current
+\begin{equation}
+j^\mu:=\frac{J^\mu}{\sqrt{-g}}=n u^\mu,
+\qquad
+\nabla_\mu j^\mu=0 .
+\label{eq:ordinary_current}
+\end{equation}
+The invariant particle number is
+\begin{equation}
+\boxed{
+\Ncal=\int_\Sigma j^\mu\dd\Sigma^{(g)}_\mu.}
+\label{eq:number_covariant}
+\end{equation}
+Equivalently, in Brown's density notation one may write
+\begin{equation}
+\Ncal=\int_\Sigma J^\mu\dd^3\Sigma_\mu,
+\end{equation}
+where $\dd^3\Sigma_\mu$ is the coordinate hypersurface form paired with the density $J^\mu$.  In FLRW on $\Sigma_\Gamma=S^3/\Gamma$,
+\begin{equation}
+\Ncal=n\,a^3 A_0^3 V_\Gamma,
+\qquad
+V_\Gamma=\frac{2\pi^2}{|\Gamma|}.
+\end{equation}
+The Euler--Lagrange equations of the Brown sector give the covariant motion ledger
+\begin{align}
+&\nabla_\mu(nu^\mu)=0,
+\label{eq:brown_number_eom}\\
+&u^\mu\nabla_\mu s=0,
+\label{eq:brown_entropy_eom}\\
+&(\epsilon_{\rm B}+p_{\rm B})u^\mu\nabla_\mu u_\nu
++h_\nu{}^\mu\nabla_\mu p_{\rm B}=0,
+\label{eq:brown_euler_eom}
+\end{align}
+with $h_{\mu\nu}=g_{\mu\nu}+u_\mu u_\nu$ in the $c=1$ action convention.  On the dust branch, $p_{\rm B}=0$, Eq.~\eqref{eq:brown_euler_eom} reduces to geodesic flow.  Thus pressureless behavior is a dynamical consequence of the current action plus the linear energy law, not a topological statement.
+
+Metric variation gives
+\begin{equation}
+T^{\rm B}_{\mu\nu}=(\epsilon_{\rm B}+p_{\rm B})u_\mu u_\nu+p_{\rm B}g_{\mu\nu},
+\end{equation}
+where
+\begin{equation}
+\epsilon_{\rm B}=\Ecal(n,s),
+\qquad
+p_{\rm B}=n\Ecal_n-\Ecal.
+\end{equation}
+On a fixed isentropic branch $s=s_0$, pressurelessness throughout a density interval means
+\begin{equation}
+p_{\rm B}=0
+\quad\Longleftrightarrow\quad
+\Ecal(n,s_0)=\mu(s_0)c^2 n,
+\label{eq:dust_law}
+\end{equation}
+up to a separately audited vacuum offset on that interval.  Thus pressureless dust requires a conserved current and a linear energy law on the chosen isentropic branch over the density range being modeled.
+
+A sufficient stable barotropic cone is
+\begin{equation}
+\Ecal>0,
+\qquad
+\Ecal_n>0,
+\qquad
+0\le\frac{n\Ecal_{nn}}{\Ecal_n}\le1,
+\label{eq:stability_cone}
+\end{equation}
+so that enthalpy is positive and $0\le c_s^2\le c^2$ with
+\begin{equation}
+\frac{c_s^2}{c^2}=\frac{n\Ecal_{nn}}{\Ecal_n}.
+\end{equation}
+The corresponding stability margin is
+\begin{equation}
+\sigma_{\rm st}=\inf_I\min\left\{\frac{\Ecal}{\epsilon_{\crit,0}},
+\frac{n\Ecal_n}{\epsilon_{\crit,0}},
+\frac{n\Ecal_{nn}}{\Ecal_n},
+1-\frac{n\Ecal_{nn}}{\Ecal_n}\right\}.
+\label{eq:stability_margin}
+\end{equation}
+A negative margin indicates that the claimed fluid lies outside this sufficient healthy regime.
+
+\subsection{Four-form vacuum}
+
+Let $F_4=\dd A_3$ and
+\begin{equation}
+S_4=-\frac{1}{2\cdot4!}\int\sqrt{-g}\,
+F_{\mu\nu\rho\sigma}F^{\mu\nu\rho\sigma}\,\dd^4x.
+\label{eq:four_action}
+\end{equation}
+With signature $(-+++)$ and the standard positive four-form kinetic convention,
+\begin{equation}
+F_{\mu\nu\rho\sigma}=\Fcal\varepsilon_{\mu\nu\rho\sigma},
+\qquad
+\dd\Fcal=0,
+\end{equation}
+the metric volume form gives $F_{\mu\nu\rho\sigma}F^{\mu\nu\rho\sigma}=-4!\Fcal^2$, and therefore
+\begin{equation}
+T_{\mu\nu}^{(4)}=-\frac12\Fcal^2g_{\mu\nu},
+\qquad
+\epsilon_q=\frac12\Fcal^2.
+\end{equation}
+Changing the signature or kinetic convention changes intermediate signs, not the equation-of-state statement $w=-1$ for a fixed branch.
+
+If a compact gauge normalization is supplied, one may have
+\begin{equation}
+\Fcal_k=q\left(k+\frac{\vartheta}{2\pi}\right),
+\qquad
+k\in\Z.
+\label{eq:flux_branch}
+\end{equation}
+This is branch data, not a consequence of $\Sigma_\Gamma$ alone.  A residual-energy branch mismatch is
+\begin{equation}
+\begin{aligned}
+\delta_{\rm br}=\min_{k\in\Z}\Bigg|&
+\epsilon_{\rm vac,target}^{\D,\lambda}
+-\frac{c^4}{8\pi G}(\Lambda_{\rm bare}-\lambda)\\
+&-\frac12q^2\left(k+\frac{\vartheta}{2\pi}\right)^2
+\Bigg| .
+\end{aligned}
+\label{eq:branch_spacing_defect}
+\end{equation}
+A small $\delta_{\rm br}$ is a matching statement, not a prediction, unless $q$, $\vartheta$, $\Lambda_{\rm bare}$, $\lambda$, the branch prior, and the selection dynamics are independently supplied.
+
+\section{Compact quotient transfer}
+
+Let
+\begin{equation}
+\Sigma_\Gamma=S^3/\Gamma,
+\end{equation}
+where $\Gamma\subset SO(4)$ is finite and acts freely and isometrically.  Physical modes are $\Gamma$-invariant cover modes, selected by
+\begin{equation}
+\boxed{
+\PG=\frac1{|\Gamma|}\sum_{\gamma\in\Gamma}U(\gamma).}
+\label{eq:projector}
+\end{equation}
+For scalar cover modes on unit $S^3$,
+\begin{equation}
+-\Delta_{S^3}Y_{\beta s}=(\beta^2-1)Y_{\beta s},
+\end{equation}
+and
+\begin{equation}
+m_\beta(\Gamma)=\Tr_{V_\beta}\PG
+=\frac1{|\Gamma|}\sum_{\gamma\in\Gamma}\chi_\beta(\gamma).
+\label{eq:multiplicity}
+\end{equation}
+Lowest scalar modes require the usual closed-FLRW treatment: $\beta=1$ is the homogeneous background mode and $\beta=2$ contains gauge or constraint modes depending on convention.  Analogous removals are understood in vector and tensor sectors.
+
+\begin{theorem}[Local-transfer/quotient-projection separation]
+Let $\Sigma_\Gamma=S^3/\Gamma$ with $\Gamma\subset SO(4)$ finite and freely acting.  Assume that the background fields, local matter model, and perturbation operator are $\Gamma$-equivariant lifts of closed-FLRW data on $S^3$.  Then linear perturbation evolution around a locally FLRW background is the closed-FLRW cover evolution restricted to $\PG V_\beta$.  The quotient changes allowed initial data, multiplicities, and sky-projection coefficients; it does not change local Einstein equations or local Boltzmann collision terms.
+\end{theorem}
+
+\begin{proof}
+The quotient map is a local isometry, and the assumed $\Gamma$-equivariant lift makes the local matter and perturbation operators compatible with the deck action.  Therefore the local connection, curvature, geodesic flow, collision operators, and linearized Einstein operator are inherited from the cover.  The only additional condition is equivariance, $\phi(\gamma x)=\phi(x)$, implemented by $\PG$.  Since $\PG$ is built from isometries, it commutes with the cover evolution operator.  The evolution can therefore be solved on the cover and restricted to $\PG V_\beta$, with quotient information reappearing in the observer-dependent sky projection.
+\end{proof}
+
+The closed-FLRW transfer state for each $\beta$ has the constrained form
+\begin{equation}
+\bm y_\beta'=\mathbb A_\beta(\eta;\Theta_{\rm cos})\bm y_\beta+\bm b_\beta,
+\qquad
+\mathbb C_\beta\bm y_\beta=0.
+\label{eq:transfer_state}
+\end{equation}
+A reproducible implementation must report the normalized transfer residual
+\begin{equation}
+\boxed{
+\mathcal R_T=
+\sup_{\beta,\eta}
+\frac{\|\mathbb C_\beta(\eta)\bm y_\beta(\eta)\|}
+{\|\bm y_\beta(\eta)\|+\epsilon_{\rm num}} .}
+\label{eq:transfer_residual}
+\end{equation}
+Here $\epsilon_{\rm num}$ is a declared numerical floor that prevents division by a vanishing state norm; convergence requires stability of $\mathcal R_T$ as the floor, time step, multipole cutoff, and $\beta$ cutoff are varied.  No topology or dark-sector likelihood claim based on this transfer implementation is complete without this constraint-residual report.
+
+The line-of-sight transfer is
+\begin{equation}
+\Tcal_{\ell\beta}^{X}=
+\int_0^{\eta_0}S_X(\eta,\beta)
+\mathcal R_\ell^\beta(\eta_0-\eta)\,\dd\eta,
+\qquad X\in\{T,E,B\}.
+\label{eq:transfer_kernel}
+\end{equation}
+This line-of-sight notation is schematic: the radial functions, source terms, and allowed $X$-channels depend on the scalar, vector, or tensor sector.  In particular, scalar perturbations do not generate $B$ modes at linear order.  The perturbation and non-flat transfer conventions are those of the standard gauge-invariant and closed-FLRW Boltzmann literature~\cite{Bardeen1980,KodamaSasaki1984,TramLesgourgues2013,LesgourguesTram2014}.
+
+A transfer implementation is complete only if it supplies the SVT harmonic bases, curvature-shifted constraint coefficients, and streaming recurrences.  It must also declare the photon, neutrino, baryon, dust, and four-form source rules, the multipole truncation prescription, and validation against a simply connected closed-FLRW benchmark.
+
+\section{Covariance invariants}
+
+Assume independent Gaussian quotient-mode amplitudes,
+\begin{equation}
+\langle\Rcl_{\beta s}\overline{\Rcl_{\beta's'}}\rangle
+=P_{\Rcl}(\beta)\delta_{\beta\beta'}\delta_{ss'}.
+\end{equation}
+More general primordial covariances can be inserted at this line.  The sky coefficients are
+\begin{equation}
+a_{\ell m}^X=\sum_{\beta,s}\Rcl_{\beta s}\Tcal_{\ell\beta}^{X}\xi_{\beta s;\ell m}^{\Gamma,O},
+\end{equation}
+where $O=(x_O,R_O)$ is observer position and orientation.  Hence
+\begin{equation}
+\begin{aligned}
+C_{{\rm sky},\ell m,\ell'm'}^{XY}
+=&\sum_{\beta,s}P_{\Rcl}(\beta)
+\Tcal_{\ell\beta}^{X}\Tcal_{\ell'\beta}^{Y}
+\xi_{\beta s;\ell m}^{\Gamma,O}\nonumber\\
+&\times\overline{\xi_{\beta s;\ell'm'}^{\Gamma,O}}.
+\end{aligned}
+\label{eq:sky_covariance}
+\end{equation}
+For the statistically isotropic simply connected benchmark this reduces to diagonal $C_\ell$ covariance.  For a nontrivial quotient, the formula defines a covariance deformation.  It need not be detectable for every observer, spectrum, scale, mask, or noise model.
+
+The Haar projection onto the statistically isotropic covariance subspace is
+\begin{equation}
+\Pi_{\rm iso}[C]=\int_{SO(3)}\mathcal D(R)C\mathcal D(R)^\dagger\dd R,
+\qquad
+\int_{SO(3)}\dd R=1.
+\label{eq:Haar}
+\end{equation}
+Set $C_{\rm iso}=\Pi_{\rm iso}[C]$.  The anisotropy invariant is
+\begin{equation}
+\Ical_{\rm aniso}=\left\|
+C_{\rm iso}^{-1/2}\bigl(C-\Pi_{\rm iso}[C]\bigr)
+C_{\rm iso}^{-1/2}\right\|_F^2.
+\label{eq:anisotropy_invariant}
+\end{equation}
+The inverse square root is taken on the positive-support subspace, or with $C_{\rm iso}\mapsto C_{\rm iso}+\varepsilon I$ and a reported $\varepsilon\to0^+$ stability test.
+
+Observer dependence is itself an invariant of a quotient family.  For a diagnostic $X(C)$, define
+\begin{equation}
+\Ocal_\Gamma[X]=\operatorname{Var}_{O\sim\pi(O|\Gamma)}X(C^{\Gamma,O}),
+\label{eq:observer_dependence}
+\end{equation}
+where
+\begin{equation}
+\dd\pi(O|\Gamma)=
+\frac{\dd\Vol_{\Sigma_\Gamma}(x_O)}{\Vol(\Sigma_\Gamma)}
+\frac{\dd R_O}{8\pi^2},
+\end{equation}
+modulo residual isometries.  Nonzero $\Ocal_\Gamma$ means that observer marginalization is not optional.
+
+\section{Likelihood, evidence, and blind validation}
+
+The processed covariance is
+\begin{equation}
+C_\Theta=BMC_{\rm sky}^{\Gamma,O,\Theta}M^\dagger B^\dagger+N+F_{\rm fg}.
+\label{eq:processed_covariance}
+\end{equation}
+The fixed-parameter likelihood ratio is
+\begin{equation}
+\Delta\ln\Lcal=
+\ln\Lcal(d|\Gamma,O,\Theta)-\ln\Lcal(d|\mathrm{bench},\Theta_b).
+\label{eq:likelihood_ratio}
+\end{equation}
+The evidence ratio is the marginal comparison,
+\begin{align}
+\Delta\ln Z&=\ln Z_\Gamma-\ln Z_{\rm bench},\nonumber\\
+Z_\Gamma&=\int\dd\Theta\,\dd O\,
+\Lcal(d|\Gamma,O,\Theta)\pi(\Theta)\pi(O|\Gamma).
+\label{eq:evidence_ratio}
+\end{align}
+The likelihood ratio $\Delta\ln\Lcal$ is the fixed-parameter comparison, whereas the evidence ratio $\Delta\ln Z$ is the prior- and nuisance-marginalized comparison.  The benchmark must match the local expansion history, curvature convention, visible subtraction, amplitudes, mask, beam, noise, and foreground conventions.  Otherwise a topology test becomes an unfair comparison.
+
+Blind injections are part of the completion standard, not an afterthought.  Generate
+\begin{equation}
+d_A\sim\mathcal N(0,C_{\rm bench}),
+\qquad
+d_B\sim\mathcal N(0,C_\Gamma),
+\end{equation}
+with matched diagonal spectra.  A topology pipeline must recover the hidden label through covariance structure rather than through power deficit.  A useful distinguishability invariant is
+\begin{equation}
+\begin{aligned}
+D_{\KL}(C_\Gamma\|C_0)=\frac12\Big[&
+\Tr(C_0^{-1}C_\Gamma)-N_{\rm dof}\\
+&-\ln\det(C_0^{-1}C_\Gamma)\Big].
+\end{aligned}
+\label{eq:DKL}
+\end{equation}
+
+\section{The completion criterion}
+
+\begin{criterion}[Residual--transfer completion]
+Let an FLRW claim state $\Xcal$ declare a metric, visible subtraction, Einstein-side convention, source-action data, amplitude data, compact quotient, transfer implementation, covariance model, benchmark likelihood, and blind-injection protocol whenever those layers are claimed.  Then:
+\begin{enumerate}
+\item the homogeneous dust--vacuum content is completely determined at the residual level by $(\Aq,\Aw)$;
+\item source realization is not determined by $(\Aq,\Aw)$ and requires action-level data;
+\item amplitudes are not determined by source form and require selectors such as masses, flux units, branch priors, or initial conditions;
+\item compact topology is not a local equation of state and enters observables through $\PG$, transfer kernels, observer maps, and covariance;
+\item observational preference is not a covariance formula and requires a matched likelihood/evidence comparison plus blind validation.
+\end{enumerate}
+Therefore every valid dark-sector or topology claim factors through the completion chain in Eq.~\eqref{eq:completion_chain}.  Missing entries are not harmless notation; they are open assumptions.
+\end{criterion}
+
+\begin{proof}
+Item 1 is the atlas criterion.  Item 2 follows because infinitely many actions can share the same homogeneous stress tensor, while Brown-current dust requires the additional current action and constitutive law.  Item 3 follows because a stress-tensor form does not fix dimensionful constants, flux spacings, or branch weights.  Item 4 follows from local isometry of the quotient and the projector construction: topology restricts eigenspaces and observer maps rather than changing local fluid equations.  Item 5 follows because a covariance matrix is not a data comparison until processed through the same mask, beam, noise, foreground, parameter priors, and benchmark assumptions as the competing model.  These implications establish the factorization of admissible claims and identify absent entries as open assumptions.
+\end{proof}
+
+\section{IRTC audit vector}
+
+A compact way to report a claim is the audit vector
+\begin{equation}
+\boxed{
+\begin{gathered}
+\Ucal(\Xcal)=
+(\Delta_{\rm conv},\mathfrak C_I,\Jcal_U,\Jcal_\perp,
+\sigma_{\rm st},\delta_{\rm br},\mathcal R_T,\\
+\Ical_{\rm aniso},\Ocal_\Gamma,D_{\KL},
+\Delta\ln Z,P_{\rm blind}).
+\end{gathered}}
+\label{eq:audit_vector}
+\end{equation}
+Here $\Delta_{\rm conv}$ is a ledger entry rather than a scalar norm: it records the declared visible subtraction $T^{\vis}$, the Einstein-side choice $\lambda$, and any changes of these conventions between compared models; $\mathfrak C_I$ is the homogeneous closure defect; $(\Jcal_U,\Jcal_\perp)$ audits the exchange law in Eq.~\eqref{eq:atlas_evolution_exchange}; $\sigma_{\rm st}$ is the source stability margin; $\delta_{\rm br}$ is branch mismatch; $\mathcal R_T$ is the transfer residual of Eq.~\eqref{eq:transfer_residual}; $\Ical_{\rm aniso}$ is Haar anisotropy; $\Ocal_\Gamma$ is observer dependence; $D_{\KL}$ is covariance distinguishability; $\Delta\ln Z$ is evidence preference; and $P_{\rm blind}$ summarizes blind recovery performance.  The symbol $\bot$ denotes an open or unclaimed layer, not a vanishing defect.  Thus
+\begin{equation}
+\boxed{\text{zero defect}\ne\text{unclaimed layer}.}
+\label{eq:zero_not_open}
+\end{equation}
+The audit vector is not a goodness score.  It is a location map: it tells the reader which layer is complete, which layer is open, which layer is only assumed, and which layer has been tested against a benchmark.  Thresholds such as $10^{-6}$ constraint residuals, posterior limits on $\mathfrak C_I$, or forecast values of $D_{\KL}$ are not universal predictions of IRTC; they become meaningful only after a specified data set, likelihood, numerical implementation, and benchmark ensemble are declared.
+
+This vector is not a replacement for physics.  It is a compact map of what has been proved, what has been fitted, what has been transferred, and what remains open.
+
+
+\section{Quantitative forecast protocol}
+\label{sec:forecast_protocol}
+
+The dynamical audit equations turn IRTC from a checklist into a forecast protocol, but only after a data vector, likelihood, numerical implementation, and benchmark ensemble have been declared.  The numerical values below are therefore reporting targets and forecast variables, not universal empirical claims of the framework.
+
+For a declared interval $I=[a_{\min},1]$, the exchange-driven atlas equation implies the exact identity
+\begin{equation}
+\frac{\dd\Aq}{\dd\ln a}+a^{-3}\frac{\dd\Aw}{\dd\ln a}=\frac{\Scal_\D}{H}.
+\label{eq:forecast_atlas_identity}
+\end{equation}
+Consequently, a data analysis that bounds $\Jcal_U$ bounds the allowed non-conservation contribution to the atlas drift.  Conversely, a reconstructed atlas drift determines the energy-exchange projection required to support it.  This is the operational form of the residual audit: the same reconstructed expansion history cannot be advertised as exact dust plus fixed vacuum and as an interacting residual unless the source term $\Scal_\D$ is declared.
+
+Integrating Eq.~\eqref{eq:forecast_atlas_identity} over the interval $I=[\ln a_{\min},0]$ gives the exact exchange-supported atlas-drift identity
+\begin{equation}
+\boxed{
+\Delta\Aq+
+\int_{\ln a_{\min}}^{0}a^{-3}\frac{\dd\Aw}{\dd\ln a}\,\dd\ln a
+=
+\int_{\ln a_{\min}}^{0}\frac{\Scal_\D}{H}\,\dd\ln a .
+}
+\label{eq:integrated_atlas_eom}
+\end{equation}
+Here $\Delta\Aq:=\Aq(1)-\Aq(a_{\min})$.  Therefore,
+\begin{equation}
+\begin{aligned}
+&\left|
+\Delta\Aq+
+\int_{\ln a_{\min}}^{0}a^{-3}\frac{\dd\Aw}{\dd\ln a}\,\dd\ln a
+\right| \\
+&\hspace{1.0cm}\le
+\left(\sup_I\Jcal_U\right)\epsilon_{\crit,0}|\Delta\ln a| .
+\end{aligned}
+\label{eq:atlas_drift_bound}
+\end{equation}
+This is the precision form of the residual-exchange audit.  Any reconstructed atlas drift must be matched by an exchange-current ledger at the same declared significance.  It is an exact identity and bound following from the definitions; numerical thresholds require a specified reconstruction, likelihood, posterior, and tolerance policy.
+
+\begin{criterion}[Integrated IRTC precision criterion]
+Fix a residual convention, a visible subtraction, a dimensionless scale factor with $a_0=1$, and an audit interval $I=[\ln a_{\min},0]$.  A claim that upgrades a reconstructed homogeneous residual to an exact dust--vacuum closure must either satisfy
+\begin{equation}
+\mathfrak C_I=0,
+\qquad
+\Jcal_U=0,
+\qquad
+\Jcal_\perp=0,
+\label{eq:precision_null}
+\end{equation}
+or report a nonzero exchange-supported drift obeying Eq.~\eqref{eq:atlas_drift_bound}.  If the exchange layer is not supplied, the correct audit entry is open rather than zero.  Thus the precision statement is not that the residual must be dust; it is that any claimed atlas drift, closure, or exchange must be completed in the same invariant ledger.
+\label{crit:integrated_precision}
+\end{criterion}
+
+For a homogeneous FLRW claim state with no transfer layer, the minimal null audit is
+\begin{equation}
+\boxed{
+\mathfrak C_I=0,
+\qquad
+\Jcal_U=0,
+\qquad
+\Jcal_\perp=0
+}
+\label{eq:null_audit_core}
+\end{equation}
+up to posterior tolerances.  For a claim that also supplies a perturbative transfer layer, one adds
+\begin{equation}
+\boxed{\mathcal R_T=0}
+\label{eq:transfer_null_audit}
+\end{equation}
+up to declared numerical tolerance and convergence tests.  A nonzero result is not automatically a discovery; it is first a localization of the failed completion layer.
+
+
+The required forecast reports are the residual-exchange norm $\Jcal_U$, the transverse exchange norm $\Jcal_\perp$, the homogeneous closure defect $\mathfrak C_I$, the source-stability margin $\sigma_{\rm st}$, the transfer residual $\mathcal R_T$, the topology-anisotropy pair $(\Ical_{\rm aniso},\Ocal_\Gamma)$, and the distinguishability/evidence triple $(D_{\KL},\Delta\ln Z,P_{\rm blind})$.  Respectively, these quantities bound the energy exchange needed to support atlas drift, test FLRW-compatible momentum exchange, measure dust-plus-fixed-vacuum failure, report whether the Brown-current branch lies inside the healthy barotropic cone, validate numerical transfer constraints, separate theory-sky anisotropy from mask/noise artifacts, and convert covariance deformation into benchmarked evidence and blind-recovery performance.
+
+A standard $\LCDM$ audit with baryons included in the visible sector, residual convention $\lambda=0$, no residual exchange, no four-form branch claim, no compact-topology claim, and no transfer implementation claim has the formal layer-relative pattern
+\begin{equation}
+\Ucal_{\LCDM}^{\rm null}=(0,0,0,0,\sigma_{\rm st},\bot,\bot,0,0,0,\Delta\ln Z_{\rm bench},P_{\rm blind}),
+\label{eq:lcdm_null_vector}
+\end{equation}
+where $\bot$ marks an unclaimed layer, $\sigma_{\rm st}$ depends on which source sector is being audited, and $\Delta\ln Z_{\rm bench}$ is defined relative to the chosen benchmark.  If a four-form branch, a numerical transfer implementation, or a compact-topology likelihood is actually claimed, the corresponding $\bot$ entry must be replaced by its audited defect or benchmark statistic.  The expression is intentionally not written as a universal numerical vector: a realistic audit reports posterior intervals, numerical tolerances, and benchmark definitions.
+
+For a compact topology claim with nontrivial $\Gamma$, the forecast chain is
+\begin{equation}
+\begin{aligned}
+\Gamma&\to \PG
+\to \{m_\beta(\Gamma),\xi_{\beta s;\ell m}^{\Gamma,O}\}\\
+&\to C_{\ell m,\ell'm'}^{XY,\Gamma,O}
+\to (\Ical_{\rm aniso},D_{\KL},\Delta\ln Z,P_{\rm blind}).
+\end{aligned}
+\label{eq:topology_forecast_chain}
+\end{equation}
+The framework specifies the invariant object to be computed and compared, not a topology detection before the quotient, observer prior, primordial covariance, transfer code, noise model, and benchmark likelihood have been supplied.  This protects the central scientific distinction: topology can generate a computable covariance deformation, but detectability is a separate evidence question.
+
+\begin{table*}[t]
+\caption{Layer-relative precision targets supplied by the IRTC forecast protocol.  A zero means a supplied layer predicts a vanishing defect in the declared null model.  The symbol $\bot$ means the layer is not claimed; it is not a hidden zero.}
+\label{tab:precision_targets}
+\begin{minipage}{0.96\textwidth}
+\small
+\begin{description}
+\item[Homogeneous closure.] Required object: $(\Aq,\Aw,\mathfrak C_I,\Jcal_U,\Jcal_\perp)$.  Null target: $\mathfrak C_I=0$ and $\Jcal_U=\Jcal_\perp=0$ within declared posterior tolerance.  Failure: atlas drift unsupported by an exchange current, or anisotropic exchange in an FLRW claim.
+\item[Brown dust.] Required object: $(S_{\rm B},j^\mu,\Ecal,\sigma_{\rm st})$.  Target: $\Ecal(n,s_0)=\mu(s_0)c^2n$ on the claimed density interval; exact dust lies on the $c_s^2=0$ boundary.  Failure: a background dust form is asserted without a conserved current and constitutive law.
+\item[Four-form branch.] Required object: $(S_4,\Fcal_k,\Bcal,\delta_{\rm br})$.  Target: fixed branch, or $\bot$ if no flux model is claimed.  Failure: vacuum amplitude is treated as predicted without branch data.
+\item[Closed transfer.] Required object: $(\mathbb A_\beta,\mathbb C_\beta,\mathcal R_T)$.  Target: $\mathcal R_T$ below the declared numerical tolerance and convergence floor.  Failure: likelihood uses transfer functions without a constraint-residual report.
+\item[Compact topology.] Required object: $(P_\Gamma,\xi^{\Gamma,O},C_{\ell m,\ell'm'}^{XY},\Ical_{\rm aniso})$.  Target: covariance deformation against a matched benchmark; detectability is not assumed.  Failure: topology is inferred from a background parameter or a diagonal spectrum alone.
+\item[Likelihood and blind validation.] Required object: $(\Delta\ln\Lcal,\Delta\ln Z,D_{\KL},P_{\rm blind})$.  Target: favorable evidence and controlled false-positive rate relative to matched injections.  Failure: covariance deformation is reported without fair benchmark or blind recovery.
+\end{description}
+\end{minipage}
+\end{table*}
+
+\section{Public-data validation layer}
+
+The preceding diagnostics become operational only when attached to declared public data products.  The first validation step is therefore not to claim a detection, but to state which layer the data can actually test.  A reproducible public-data audit has the form
+\begin{equation}
+\boxed{
+\begin{aligned}
+\mathcal D_{\rm pub}
+&\longrightarrow (R,H,S,A,T,C,L,B)_{\rm tested}\\
+&\longrightarrow \Ucal_{\rm reported}.
+\end{aligned}}
+\label{eq:public_data_audit}
+\end{equation}
+The arrow is layer-selective: background parameters can test the residual atlas, but they cannot by themselves test a source action, a flux branch, or a topology covariance.
+
+\subsection{Planck-base \texorpdfstring{\(\LCDM\)}{LambdaCDM} smoke test}
+
+As a concrete background-level check, use the public Planck 2018 base-\(\LCDM\) parameter convention~\cite{Planck2018Params} with
+\begin{equation}
+h=0.6736,\qquad
+\Omega_bh^2=0.02237,\qquad
+\Omega_ch^2=0.1200 ,
+\end{equation}
+and \(a_0=1\).  These values give
+\begin{align}
+\epsilon_{\crit,0}
+&=7.6467544929894\times10^{-10}\ {\rm J\,m^{-3}},\\
+\Omega_{b,0}&=4.9317423881654\times10^{-2},\\
+\Omega_{c,0}&=2.6455489788992\times10^{-1}.
+\end{align}
+For the residual convention \(\lambda=0\), with baryons kept in \(T^{\vis}_{\mu\nu}\) and CDM plus \(\Lambda\) audited as the residual, the public-data null atlas is
+\begin{align}
+\Aq&=\epsilon_\Lambda=\Omega_{\Lambda,0}\epsilon_{\crit,0},\\
+\Aw&=\epsilon_{c,0}=\Omega_{c,0}\epsilon_{\crit,0}.
+\end{align}
+Using the flat benchmark value \(\Omega_{\Lambda,0}=1-\Omega_{m,0}\simeq0.6847\), this gives
+\begin{align}
+\Aq&\simeq5.2355337919518\times10^{-10}\ {\rm J\,m^{-3}},\\
+\Aw&\simeq2.0230429120240\times10^{-10}\ {\rm J\,m^{-3}}.
+\end{align}
+If baryons are instead left outside the visible subtraction and treated on a pressureless branch over the interval considered, then
+\begin{align}
+\Aw&=(\Omega_{c,0}+\Omega_{b,0})\epsilon_{\crit,0}\nonumber\\
+&\simeq2.4001954149457\times10^{-10}\ {\rm J\,m^{-3}}.
+\end{align}
+This is not a new fit.  It is a convention check showing that the same metric data lead to different residual atlas entries when the visible subtraction changes.
+
+\subsection{DESI-style expansion audit}
+
+BAO and supernova data, including DESI-style expansion data~\cite{DESI2025DR2}, test the expansion history, hence the reconstructed \((\epsilon_\D,p_\D)\) and the atlas \((\Aq,\Aw)\) after a visible subtraction is declared.  They do not directly test Brown-current microphysics or compact topology.  A DESI-style audit should therefore report the posterior on
+\begin{equation}
+\left(
+\mathfrak C_I,\Jcal_U,\Jcal_\perp
+\right)
+\end{equation}
+rather than convert an expansion-history deviation into a source or topology claim.  If a dynamical-dark-energy parametrization is used only as a fit function, its IRTC role is to produce a posterior distribution for the atlas derivatives; it is not an action-level source realization unless an action and stability cone are supplied.
+
+\subsection{Topology-data audit}
+
+Matched-circle and lens-space searches test selected quotient families and curvature ranges; they do not exhaust all quotient covariance possibilities.  The topology data product required by IRTC is
+\begin{equation}
+\begin{aligned}
+(\Gamma,O,\Theta_{\rm cos})
+&\longmapsto C_{\ell m,\ell'm'}^{XY}\\
+&\longmapsto
+(\Delta\ln Z,D_{\KL},\Ical_{\rm aniso},P_{\rm blind}) .
+\end{aligned}
+\end{equation}
+A circle-search non-detection is therefore a valid constraint on the tested family and angular-radius range, while a covariance-level topology claim additionally requires the full processed covariance benchmark.  In particular,
+\begin{equation}
+\boxed{
+\text{circle status}\neq\text{full covariance likelihood}.
+}
+\end{equation}
+
+\begin{table*}[t]
+\caption{Layer-selective interpretation of currently public cosmological data products.  A checkmark means the layer can be tested directly by that data class once the stated conventions are declared; a dash means the layer remains open rather than zero.}
+\label{tab:public_data_layers}
+\begin{ruledtabular}
+\begin{tabular}{lcccccccc}
+Data product & \(R\) & \(H\) & \(S\) & \(A\) & \(T\) & \(C\) & \(L\) & \(B\)\\
+\hline
+Planck base-\(\LCDM\) parameters & \(\checkmark\) & \(\checkmark\) & -- & -- & -- & -- & -- & --\\
+DESI/BAO expansion history & \(\checkmark\) & \(\checkmark\) & -- & -- & -- & -- & \(\checkmark\) & --\\
+Brown-current action model & -- & -- & \(\checkmark\) & -- & -- & -- & -- & --\\
+Four-form branch model & -- & -- & \(\checkmark\) & \(\checkmark\) & -- & -- & -- & --\\
+Closed-FLRW Boltzmann code & -- & -- & -- & -- & \(\checkmark\) & -- & -- & --\\
+Compact quotient covariance map & -- & -- & -- & -- & \(\checkmark\) & \(\checkmark\) & \(\checkmark\) & --\\
+Blind topology injections & -- & -- & -- & -- & \(\checkmark\) & \(\checkmark\) & \(\checkmark\) & \(\checkmark\)\\
+\hline\hline
+\end{tabular}
+\end{ruledtabular}
+\end{table*}
+
+The main operational consequence is
+\begin{equation}
+\boxed{
+\text{public data validate only touched layers.}
+}
+\end{equation}
+Thus Planck or DESI background data can support or disfavor only an \(H\)-level residual closure claim.  They do not close the source, branch, transfer, covariance, likelihood, or blind-validation ledgers.
+
+As a fixed-convention Planck-base $\LCDM$ smoke test with $\lambda=0$ and baryons placed in the visible subtraction, the null IRTC output is
+\begin{equation}
+\boxed{
+\mathfrak C_I=0,
+\qquad
+\Jcal_U=0,
+\qquad
+\Jcal_\perp=0
+}
+\label{eq:planck_irct_null_smoke}
+\end{equation}
+up to declared reconstruction and numerical tolerances.  A threshold such as $\mathfrak C_I<5\times10^{-9}$ may be used as a code-level or posterior-reporting target for this null test, but it is not by itself a measured Planck constraint unless a full posterior reconstruction of $(\Aq,\Aw,\Scal_\D)$ is supplied.
+
+\section{Relation to existing theories}
+
+In $\LCDM$, the IRTC atlas reproduces the standard dust-plus-vacuum background once the visible subtraction is fixed.  It does not reinterpret $\LCDM$ as a topology theory.  In effective-fluid or effective-field-theory dark energy, IRTC asks whether the reconstructed residual has a stable source realization and whether deviations from $\mathfrak C_I=0$ are supported by data.  In four-form or flux models, IRTC separates $w=-1$ from amplitude selection, in line with the fact that flux quantization requires additional gauge and branch structure~\cite{BrownTeitelboim1987,BoussoPolchinski2000}.  In compact topology, IRTC agrees with the modern covariance-level posture: topology is tested through eigenspaces, observer dependence, matched-circle limits, and harmonic covariance rather than through the background abundance ledger~\cite{Levin2002,Luminet2003,Aurich2005,Planck2015Topology,Saha2025Lens,Eskilt2024,Samandar2025}. Although some recent COMPACT covariance analyses are carried out for Euclidean manifolds, they support the same methodological point used here: topology is tested through eigenmodes, observer maps, and covariance structure rather than through background abundance parameters.
+
+Current precision cosmology makes this separation useful.  Planck 2018 found good consistency with the spatially flat six-parameter base-$\LCDM$ model and tight constraints when combined with BAO~\cite{Planck2018Params}.  DESI DR2 illustrates why expansion-history audits should remain convention-explicit: BAO measurements are well described by flat $\LCDM$ while some combinations favor dynamical-dark-energy parameterizations~\cite{DESI2025DR2}.  No DESI-specific claim is made here.
+
+\section{Falsifiability}
+
+IRTC is falsifiable layer by layer:
+\begin{enumerate}
+\item Exact homogeneous dust-plus-vacuum closure fails if the reconstructed posterior excludes $\mathfrak C_I=0$ in the declared convention.
+\item Brown-current dust fails if no conserved-current action with a linear fixed-entropy energy law is admissible for the claimed matter sector.
+\item A stable fluid claim fails if the relevant branch lies outside the stated stability cone, unless a different stability analysis is supplied.
+\item Fixed four-form vacuum fails as a single-background model if membrane transitions are active on the observational interval.
+\item Compact transfer fails if the proposed quotient modes cannot be propagated through a validated closed-FLRW transfer code.
+\item Topology preference fails if $\Delta\ln Z$ is not favorable against the matched benchmark after nuisance and observer marginalization.
+\item Blind topology detection fails if same-$C_\ell$ injections cannot be recovered by covariance structure.
+\end{enumerate}
+Failure of one layer does not falsify all cosmology.  It falsifies the specific upgraded claim at that layer.
+
+\section{Conclusion}
+
+The paradigm shift proposed here is modest in wording but strong in use: make the invariant completion state the object of research.  Instead of asking whether a model sounds unified, IRTC asks which tensor, action, branch, transfer, covariance, likelihood, and blind-validation data have actually been supplied.
+
+The central law is
+\begin{equation}
+\boxed{
+\begin{gathered}
+\text{no residual claim may be upgraded}\\
+\text{without its missing invariant data}.
+\end{gathered}}
+\end{equation}
+The central diagnostic is the dust--vacuum atlas $(\Aq,\Aw)$.  The central topology object is not a slogan about compactness but the full quotient covariance $C_{\ell m,\ell'm'}^{XY}$.  The central scientific product is the audit vector $\Ucal(\Xcal)$, which exposes exactly where a theory is closed, where it is merely fitted, and where it remains incomplete.
+
+This is intended as a reusable standard for human and machine-aided science: a way to prevent category errors, compare theories fairly, and turn ambitious cosmological narratives into falsifiable invariant claim states.  The integrated precision criterion, Table~\ref{tab:precision_targets}, and the public-data smoke test make the standard operational: each claimed layer either supplies its invariant object and tolerance, or remains explicitly open.
+
+\begin{sloppypar}
+\begin{thebibliography}{99}
+\raggedright
+
+\bibitem{Schutz1970}
+B.~F.~Schutz,
+``Perfect Fluids in General Relativity: Velocity Potentials and a Variational Principle,''
+Phys. Rev. D \textbf{2}, 2762 (1970).
+
+\bibitem{Brown1993}
+J.~D.~Brown,
+``Action functionals for relativistic perfect fluids,''
+Class. Quant. Grav. \textbf{10}, 1579 (1993),
+arXiv:gr-qc/9304026.
+
+\bibitem{BrownTeitelboim1987}
+J.~D.~Brown and C.~Teitelboim,
+``Dynamical neutralization of the cosmological constant,''
+Phys. Lett. B \textbf{195}, 177 (1987).
+
+\bibitem{BoussoPolchinski2000}
+R.~Bousso and J.~Polchinski,
+``Quantization of four-form fluxes and dynamical neutralization of the cosmological constant,''
+JHEP \textbf{06}, 006 (2000),
+arXiv:hep-th/0004134.
+
+\bibitem{Bardeen1980}
+J.~M.~Bardeen,
+``Gauge-invariant cosmological perturbations,''
+Phys. Rev. D \textbf{22}, 1882 (1980).
+
+\bibitem{KodamaSasaki1984}
+H.~Kodama and M.~Sasaki,
+``Cosmological Perturbation Theory,''
+Prog. Theor. Phys. Suppl. \textbf{78}, 1 (1984).
+
+\bibitem{TramLesgourgues2013}
+T.~Tram and J.~Lesgourgues,
+``Optimal polarisation equations in FLRW universes,''
+JCAP \textbf{10}, 002 (2013),
+arXiv:1305.3261.
+
+\bibitem{LesgourguesTram2014}
+J.~Lesgourgues and T.~Tram,
+``Fast and accurate CMB computations in non-flat FLRW universes,''
+JCAP \textbf{09}, 032 (2014),
+arXiv:1312.2697.
+
+\bibitem{Levin2002}
+J.~Levin,
+``Topology and the cosmic microwave background,''
+Phys. Rept. \textbf{365}, 251 (2002),
+arXiv:gr-qc/0108043.
+
+\bibitem{Luminet2003}
+J.-P.~Luminet, J.~Weeks, A.~Riazuelo, R.~Lehoucq, and J.-P.~Uzan,
+``Dodecahedral space topology as an explanation for weak wide-angle temperature correlations in the cosmic microwave background,''
+Nature \textbf{425}, 593 (2003),
+arXiv:astro-ph/0310253.
+
+\bibitem{Aurich2005}
+R.~Aurich, S.~Lustig, F.~Steiner, and H.~Then,
+``CMB anisotropy of spherical spaces,''
+Class. Quant. Grav. \textbf{22}, 3443 (2005),
+arXiv:astro-ph/0504656.
+
+\bibitem{Planck2015Topology}
+P.~A.~R.~Ade \textit{et al.} [Planck Collaboration],
+``Planck 2015 results. XVIII. Background geometry and topology,''
+Astron. Astrophys. \textbf{594}, A18 (2016),
+arXiv:1502.01593.
+
+\bibitem{Planck2018Params}
+N.~Aghanim \textit{et al.} [Planck Collaboration],
+``Planck 2018 results. VI. Cosmological parameters,''
+Astron. Astrophys. \textbf{641}, A6 (2020),
+arXiv:1807.06209.
+
+\bibitem{Saha2025Lens}
+S.~Saha \textit{et al.} [COMPACT Collaboration],
+``Cosmic topology. Part Ic. Limits on lens spaces from circle searches,''
+JCAP \textbf{01}, 004 (2025),
+arXiv:2409.02226.
+
+\bibitem{Eskilt2024}
+J.~R.~Eskilt \textit{et al.} [COMPACT Collaboration],
+``Cosmic topology. Part IIa. Eigenmodes, correlation matrices, and detectability of orientable Euclidean manifolds,''
+JCAP \textbf{03}, 036 (2024),
+arXiv:2306.17112.
+
+\bibitem{Samandar2025}
+A.~Samandar \textit{et al.} [COMPACT Collaboration],
+``Cosmic topology. Part IIIb. Eigenmodes and correlation matrices of spin-2 perturbations in orientable Euclidean manifolds,''
+JCAP \textbf{08}, 015 (2025),
+arXiv:2503.08671.
+
+\bibitem{DESI2025DR2}
+M.~Abdul~Karim \textit{et al.} [DESI Collaboration],
+``DESI DR2 Results II: Measurements of baryon acoustic oscillations and cosmological constraints,''
+Phys. Rev. D \textbf{112}, 083515 (2025),
+arXiv:2503.14738.
+
+\end{thebibliography}
+\end{sloppypar}
+
+\end{document}

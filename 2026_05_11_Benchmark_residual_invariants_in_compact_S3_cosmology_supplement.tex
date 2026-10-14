@@ -1,0 +1,921 @@
+
+\PassOptionsToPackage{hidelinks}{hyperref}
+\documentclass[
+  aps,
+  prd,
+  reprint,
+  superscriptaddress,
+  nofootinbib,
+  floatfix,
+  longbibliography
+]{revtex4-2}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm,mathtools,bm}
+\usepackage{booktabs,array,tabularx}
+\usepackage{microtype}
+\IfFileExists{orcidlink.sty}{\usepackage{orcidlink}}{\newcommand{\orcidlink}[1]{}}
+
+\newtheorem{definition}{Definition}
+\newtheorem{proposition}{Proposition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+\newtheorem{criterion}{Criterion}
+\newtheorem{remark}{Remark}
+
+\newcommand{\Sthree}{S^3}
+\newcommand{\D}{\mathcal D}
+\newcommand{\vis}{\mathrm{vis}}
+\newcommand{\crit}{\mathrm{crit}}
+\newcommand{\eff}{\mathrm{eff}}
+\newcommand{\TT}{\mathrm{TT}}
+\newcommand{\BY}{\mathrm{BY}}
+\newcommand{\MS}{\mathrm{MS}}
+\newcommand{\bigO}{\mathcal O}
+\newcommand{\dd}{\mathrm d}
+\newcommand{\Inv}{\mathcal I}
+\newcommand{\N}{\mathbb N}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Z}{\mathbb Z}
+
+\begin{document}
+
+\title{Supplemental material: Analytic invariant benchmarks for compact \texorpdfstring{\(S^3\)}{S3} residual cosmology}
+
+\author{Andrei~Preece\,\orcidlink{0009-0004-5978-795X}}
+\email{andre.preece@web.de}
+\affiliation{Independent Researcher, Berlin, Germany}
+
+\author{Boris~Batenin\,\orcidlink{0009-0000-7027-8583}}
+\email{batenin@web.de}
+\affiliation{Independent Researcher, Berlin, Germany}
+
+\date{\today}
+
+\begin{abstract}
+This supplement gives analytic benchmark identities for the compact \(S^3\)
+residual-invariant framework developed in the companion benchmark paper.  The word
+``benchmark'' is essential: the results
+below are exact reference cases and consistency checks, not a claim that all
+solutions of the Einstein-matter system on \(I\times S^3\) are known.  We derive:
+(i) the lapse-independent autonomous background system and its elementary fixed
+points; (ii) the scalar heat trace, its correct ultraviolet and infrared
+asymptotics, and \(\zeta_\Delta(0)\); (iii) admissibility conditions for isotropic
+scalar covariance kernels; (iv) curvature-mimicking and constant-\(w\) residual
+backgrounds; (v) acceleration, bounce, and distance criteria; and (vi) cautious
+topological and group-theoretic constraints.  Several tempting but incorrect
+statements are explicitly excluded: Brown--York and Misner--Sharp energies do not
+coincide to all orders for a homogeneous density, the Bousso bound is not a
+volume-scaling formula, the odd-dimensional Dirac index does not exclude all
+gauge-coupled zero modes, and the four-dimensional Gauss--Bonnet identity does not
+reduce to a constraint on \(\int R^2\) alone in a general FLRW history.
+\end{abstract}
+
+\maketitle
+
+%=======================================================================
+\section{Purpose and conventions}
+\label{sec:purpose}
+%=======================================================================
+
+The companion benchmark paper starts from
+\begin{equation}
+  (M,g_{\mu\nu},\Sigma,U^\mu,T^\vis_{\mu\nu}),\qquad
+  M\simeq I\times S^3,
+\end{equation}
+and defines the residual stress tensor
+\begin{equation}
+  T^\D_{\mu\nu}:=\frac{c^4}{8\pi G}G_{\mu\nu}-T^\vis_{\mu\nu}.
+  \label{eq:residual}
+\end{equation}
+The present supplement records analytic identities that can serve as validation
+tests for numerical or Bayesian implementations of that framework.
+The external inputs are standard: FLRW dynamical systems~\cite{WainwrightEllis1997}, spectral theory on compact Riemannian manifolds~\cite{Berger1971,Rosenberg1997}, positive-definite kernels on spheres~\cite{Schoenberg1942}, quasi-local energies~\cite{BrownYork1993,MisnerSharp1964}, the covariant entropy bound~\cite{Bousso2002}, the Einstein constraint equations~\cite{Wald1984}, the Lichnerowicz bound~\cite{Lichnerowicz1958}, and Ray--Singer torsion~\cite{RaySinger1971}.
+
+We use the closed FLRW metric
+\begin{equation}
+  ds^2=-N^2(t)c^2dt^2+a^2(t)R_0^2d\Omega_3^2,
+\end{equation}
+and distinguish coordinate-time and proper-time derivatives:
+\begin{equation}
+  f':=\frac{1}{N}\frac{df}{dt},\qquad H=\frac{a'}{a}.
+  \label{eq:proper}
+\end{equation}
+The present-day curvature parameter is
+\begin{equation}
+  \Omega_K=-\frac{c^2}{H_0^2A_0^2}<0,\qquad A_0=a_0R_0,\qquad a_0=1 .
+  \label{eq:OmegaK}
+\end{equation}
+Thus a curvature term in the Friedmann equation appears as \(\Omega_K a^{-2}\),
+with \(\Omega_K<0\) for \(S^3\).
+
+\begin{remark}
+A closed topology is a global statement.  The late-time normalised curvature
+density may be arbitrarily small while the spatial slice remains \(S^3\).
+\end{remark}
+
+%=======================================================================
+\section{Autonomous background system}
+\label{sec:phase}
+%=======================================================================
+
+Let the components scale as \(a^{-\alpha_i}\), with
+\[
+  \alpha_m=3,\qquad \alpha_r=4,\qquad
+  \alpha_\D=3(1+w_\D),\qquad \alpha_K=2 .
+\]
+Define the normalised variables
+\begin{equation}
+  x_i:=\frac{\Omega_i a^{-\alpha_i}}{E^2(a)},\qquad
+  E(a)=\frac{H(a)}{H_0}.
+\end{equation}
+For the curvature component, \(x_K<0\).  The Friedmann constraint is
+\begin{equation}
+  x_m+x_r+x_\D+x_K=1.
+  \label{eq:xconstraint}
+\end{equation}
+The lapse-independent autonomous system is
+\begin{equation}
+  \frac{dx_i}{d\ln a}=x_i(Q-\alpha_i),
+  \qquad
+  Q:=\sum_j\alpha_j x_j .
+  \label{eq:auto}
+\end{equation}
+The deceleration parameter is
+\begin{equation}
+  q=-1+\frac{Q}{2}
+   =\frac12 x_m+x_r+\frac12(1+3w_\D)x_\D .
+  \label{eq:q}
+\end{equation}
+The curvature variable drops out of \(q\).  This is not an approximation; curvature
+contributes to \(H^2\) but not directly to \(a''/a\).
+
+\begin{theorem}[Elementary fixed points and degeneracies]
+\label{thm:fixed}
+Assume constant \(w_\D\).  The isolated vertex fixed points of
+Eq.~\eqref{eq:auto} are the single-component vertices whose scaling exponent
+equals \(Q\):
+\begin{align}
+  R &: (x_r,x_m,x_\D,x_K)=(1,0,0,0),\quad q=1,\\
+  M &: (0,1,0,0),\quad q=\frac12,\\
+  D &: (0,0,1,0),\quad q=\frac12(1+3w_\D),\\
+  K &: (0,0,0,1),\quad q=0 .
+\end{align}
+The \(K\) vertex is a formal fixed point of the projective system, but it is not a
+physical point of a positively expanding \(S^3\) model because \(x_K<0\) for
+\(S^3\).
+
+If two components have equal scaling exponent, the corresponding edge is fixed.
+In particular:
+\begin{enumerate}
+\item \(w_\D=0\): matter and residual dust form a fixed line.
+\item \(w_\D=1/3\): radiation and residual radiation form a fixed line.
+\item \(w_\D=-1/3\): residual stress and curvature form a fixed line with
+      \(x_\D+x_K=1\).  For \(S^3\) this physical line has
+      \(x_K<0\) and hence \(x_\D>1\), not \(0\le x_\D\le 1\).
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+At a fixed point each component satisfies either \(x_i=0\) or \(Q=\alpha_i\).
+If only one component is nonzero, the constraint gives the vertex.  If two or
+more nonzero components have distinct \(\alpha_i\), the equations require
+simultaneously \(Q=\alpha_i=\alpha_j\), impossible.  Thus nontrivial fixed
+edges occur exactly when the scaling exponents coincide.
+\end{proof}
+
+\begin{proposition}[Linearised eigenvalues at the physical vertices]
+\label{prop:eigs}
+For a vertex with exponent \(\alpha_*\), perturbing by a component \(j\) gives
+linear eigenvalue
+\begin{equation}
+  \lambda_j=\alpha_*-\alpha_j
+  \label{eq:eig_general}
+\end{equation}
+with respect to \(d/d\ln a\).  Thus at radiation:
+\[
+  \lambda_m=1,\qquad \lambda_\D=1-3w_\D,\qquad \lambda_K=2.
+\]
+At matter:
+\[
+  \lambda_r=-1,\qquad \lambda_\D=-3w_\D,\qquad \lambda_K=1.
+\]
+At a cosmological-constant vertex \(w_\D=-1\):
+\[
+  \lambda_m=-3,\qquad \lambda_r=-4,\qquad \lambda_K=-2.
+\]
+Therefore the \(\Lambda\) vertex is the future attractor inside the expanding
+physical sector whenever \(\Omega_\Lambda>0\) and no phantom or recollapse branch
+intervenes.
+\end{proposition}
+
+\begin{proposition}[Einstein static benchmark]
+\label{prop:ES}
+For dust plus a cosmological constant in a closed FLRW model,
+\[
+  E^2=\Omega_m a^{-3}+\Omega_\Lambda-|\Omega_K|a^{-2}.
+\]
+The Einstein static solution satisfies \(H=0\) and \(a''=0\), hence
+\begin{equation}
+  a_{\rm ES}=\sqrt{\frac{|\Omega_K|}{3\Omega_\Lambda}},
+  \qquad
+  \Omega_m=2\Omega_\Lambda a_{\rm ES}^3 .
+  \label{eq:ES}
+\end{equation}
+The physical radius is
+\begin{equation}
+  A_{\rm ES}=A_0a_{\rm ES}=\frac{c}{H_0\sqrt{3\Omega_\Lambda}}.
+  \label{eq:AES}
+\end{equation}
+With the convention \(\Omega_\Lambda=\Lambda c^2/(3H_0^2)\), this becomes
+\begin{equation}
+  A_{\rm ES}=\frac{1}{\sqrt{\Lambda}}.
+\end{equation}
+The linearised equation is
+\begin{equation}
+  \delta a''=3H_0^2\Omega_\Lambda\,\delta a,
+\end{equation}
+so the static solution is unstable.
+\end{proposition}
+
+%=======================================================================
+\section{Scalar spectral benchmarks}
+\label{sec:spectral}
+%=======================================================================
+
+The scalar Laplacian on \(S_A^3\) has
+\begin{equation}
+  \lambda_n=\frac{n(n+2)}{A^2},\qquad d_n=(n+1)^2,\qquad n=0,1,\ldots .
+  \label{eq:scalar_spec}
+\end{equation}
+
+\begin{proposition}[Exact scalar heat trace]
+\label{prop:heat}
+The scalar heat trace is
+\begin{align}
+  K(s)&=\mathrm{Tr}\,e^{-s(-\Delta)}
+  =\sum_{n=0}^{\infty}(n+1)^2e^{-sn(n+2)/A^2}
+  \nonumber\\
+  &=e^{s/A^2}\sum_{m=1}^{\infty}m^2e^{-sm^2/A^2}.
+  \label{eq:heat}
+\end{align}
+Poisson summation gives the exact dual representation
+\begin{align}
+  K(s)&=e^{s/A^2}\frac{A^3\sqrt{\pi}}{4s^{3/2}}
+  \Bigg[
+  1+2\sum_{k=1}^{\infty}
+  \left(1-\frac{2\pi^2A^2k^2}{s}\right)
+  \nonumber\\
+  &\hspace{2.2cm}\times e^{-\pi^2A^2k^2/s}
+  \Bigg].
+  \label{eq:heat_poisson}
+\end{align}
+\end{proposition}
+
+\begin{corollary}[Correct ultraviolet and infrared limits]
+\label{cor:UVIR}
+As \(s\to0^+\),
+\begin{align}
+  K(s)&\sim
+  \frac{V}{(4\pi s)^{3/2}}
+  \left[1+\frac{\mathcal R^{(3)}}{6}s+\bigO(s^2/A^4)\right],
+  \nonumber\\
+  V&=2\pi^2A^3,\qquad \mathcal R^{(3)}=\frac{6}{A^2}.
+  \label{eq:weyl}
+\end{align}
+As \(s\to\infty\),
+\begin{equation}
+  K(s)=1+4e^{-3s/A^2}+9e^{-8s/A^2}+\bigO(e^{-15s/A^2}).
+  \label{eq:IR}
+\end{equation}
+The limiting constant \(1\) is the multiplicity-one scalar zero mode.  Equation~\eqref{eq:heat_poisson} is exact, but it is not an infrared asymptotic
+series when truncated at fixed \(k\); large cancellations recover
+Eq.~\eqref{eq:IR}.  Thus it is better described as a Poisson dual
+representation, not as a literal T-duality.
+\end{corollary}
+
+\begin{theorem}[Scalar zeta value at zero]
+\label{thm:zeta0}
+For the nonzero scalar spectrum,
+\begin{equation}
+  \zeta_\Delta(z)=
+  \sum_{n=1}^{\infty}(n+1)^2\left[\frac{n(n+2)}{A^2}\right]^{-z}
+  =A^{2z}\sum_{m=2}^{\infty}\frac{m^2}{(m^2-1)^z},
+  \label{eq:zeta}
+\end{equation}
+analytic continuation gives
+\begin{equation}
+  \zeta_\Delta(0)=-1 .
+  \label{eq:zeta0}
+\end{equation}
+This is a scale-independent zeta invariant of the scalar Laplacian with its zero
+mode removed.
+\end{theorem}
+
+\begin{proof}
+For \(m\ge2\),
+\[
+  \frac{m^2}{(m^2-1)^z}=m^{2-2z}(1-m^{-2})^{-z}.
+\]
+Expanding in powers of \(m^{-2}\) and analytically continuing,
+\[
+  \sum_{m=2}^\infty \frac{m^2}{(m^2-1)^z}
+  =
+  \sum_{k=0}^\infty
+  \binom{-z}{k}(-1)^k
+  \left[\zeta_R(2z+2k-2)-1\right].
+\]
+At \(z=0\), only \(k=0\) survives and
+\(\zeta_R(-2)-1=-1\).  Since \(A^0=1\), Eq.~\eqref{eq:zeta0} follows.
+\end{proof}
+
+\begin{corollary}[Determinant scaling]
+\label{cor:det}
+If \(\det'(-\Delta):=\exp[-\zeta_\Delta'(0)]\), then
+\begin{equation}
+  \log\det'(-\Delta_A)=2\log A+C_{S^3},
+  \label{eq:det}
+\end{equation}
+where \(C_{S^3}\) is the unit-radius scalar constant.  Only the \(2\log A\)
+scaling is used as a benchmark; the constant depends on the chosen operator and
+normalisation.
+\end{corollary}
+
+\begin{proposition}[Scalar representation and Lichnerowicz equality]
+\label{prop:SO4}
+The isometry group of \(S_A^3\) is
+\(\mathrm{SO}(4)\simeq(\mathrm{SU}(2)\times\mathrm{SU}(2))/\mathbb Z_2\).
+Scalar harmonics of degree \(n\) transform in the \((n/2,n/2)\) representation,
+whose dimension is \((n+1)^2\).  The first nonzero scalar eigenvalue is
+\begin{equation}
+  \lambda_1=\frac{3}{A^2}.
+\end{equation}
+Since \(\mathrm{Ric}=2A^{-2}g\), the Lichnerowicz bound in dimension three gives
+\(\lambda_1\ge3/A^2\), and \(S^3\) saturates the bound.
+\end{proposition}
+
+\begin{remark}
+Precise vector and transverse-traceless tensor spectra require fixing the
+operator: rough Laplacian, Hodge Laplacian, Lichnerowicz operator, or a gauge-fixed
+cosmological perturbation operator.  They should not be inferred by shifting the
+scalar spectrum.  In the benchmark pipeline, these sectors must be recorded in an
+operator ledger before numerical predictions are compared.
+\end{remark}
+
+%=======================================================================
+\section{Admissible scalar covariance kernels}
+\label{sec:cov}
+%=======================================================================
+
+Let
+\begin{equation}
+  C(x,y)=\sum_{n=0}^{\infty}A_n\,\Xi_{n,A}(x,y)
+\end{equation}
+be an isotropic scalar kernel, where the addition kernel satisfies
+\begin{equation}
+  \Xi_{n,A}(x,x)=\frac{(n+1)^2}{2\pi^2A^3}.
+\end{equation}
+
+\begin{theorem}[Admissibility of isotropic scalar covariance]
+\label{thm:cov}
+The kernel \(C\) is a positive semidefinite covariance kernel for a scalar
+Gaussian field if
+\begin{equation}
+  A_n\ge0
+  \label{eq:Anpos}
+\end{equation}
+and the point variance is finite:
+\begin{equation}
+  \sum_{n=0}^{\infty}A_n\,\Xi_{n,A}(x,x)
+  =
+  \frac{1}{2\pi^2A^3}
+  \sum_{n=0}^{\infty}A_n(n+1)^2
+  <\infty .
+  \label{eq:variance}
+\end{equation}
+Conversely, every square-integrable isotropic scalar covariance has a spectral
+expansion of this form with nonnegative coefficients.  This is the \(S^3\)
+harmonic form of Schoenberg positivity.
+\end{theorem}
+
+\begin{corollary}[Benchmark spectra]
+\label{cor:spectra}
+The power law \(A_n=A_0(n+1)^{-\alpha}\) has finite point variance exactly when
+\(\alpha>3\).  The exponential family
+\begin{equation}
+  A_n=A_0e^{-\beta n},\qquad \beta>0,
+\end{equation}
+is admissible, with
+\begin{equation}
+  \sigma^2=
+  \frac{A_0}{2\pi^2A^3}
+  \frac{e^\beta(e^\beta+1)}{(e^\beta-1)^3}.
+\end{equation}
+The scale-invariant analogue \(A_n\propto(n+1)^{-2}\) has divergent point variance
+without an ultraviolet cutoff or additional smoothing.
+\end{corollary}
+
+%=======================================================================
+\section{Residual background benchmarks}
+\label{sec:bg}
+%=======================================================================
+
+\subsection{Curvature-mimicking residual stress}
+
+\begin{theorem}[Exact \(w_\D=-1/3\) class]
+\label{thm:wm13}
+For \(w_\D=-1/3\),
+\[
+  \Omega_\D(a)=\Omega_{\D0}a^{-2}.
+\]
+In a model containing only this residual component and the \(S^3\) curvature term,
+\begin{equation}
+  E^2(a)=\frac{\Omega_{\D0}-|\Omega_K|}{a^2}.
+  \label{eq:wm13}
+\end{equation}
+There are three cases:
+\begin{enumerate}
+\item If \(\Omega_{\D0}>|\Omega_K|\), then
+\begin{equation}
+  a(\tau)=a_i+H_0\sqrt{\Omega_{\D0}-|\Omega_K|}\,(\tau-\tau_i),
+  \label{eq:coast}
+\end{equation}
+so \(q=0\).
+\item If \(\Omega_{\D0}=|\Omega_K|\), then \(H=0\); the background is static
+within this two-term model.
+\item If \(\Omega_{\D0}<|\Omega_K|\), then no real expanding solution exists in
+this two-term model.
+\end{enumerate}
+At background level the \(w_\D=-1/3\) residual is exactly degenerate with a shift
+of the curvature coefficient.  Perturbations are needed to break the degeneracy.
+\end{theorem}
+
+\subsection{Constant-\texorpdfstring{\(w\)}{w} turning points}
+
+\begin{proposition}[Turning point for a single residual plus curvature]
+\label{prop:turning}
+For constant \(w_\D\) and no matter or radiation,
+\begin{equation}
+  E^2(a)=\Omega_{\D0}a^{-3(1+w_\D)}-|\Omega_K|a^{-2}.
+\end{equation}
+If \(w_\D\ne -1/3\), the turning scale is
+\begin{equation}
+  a_t=
+  \left(\frac{\Omega_{\D0}}{|\Omega_K|}\right)^{1/(1+3w_\D)} .
+  \label{eq:at}
+\end{equation}
+For \(w_\D>-1/3\), \(a_t\) is a maximum expansion scale.  For
+\(w_\D<-1/3\), \(a_t\) is a minimum scale on the allowed expanding branch.
+The special value \(w_\D=-1/3\) is the curvature-mimicking case of
+Theorem~\ref{thm:wm13}.
+\end{proposition}
+
+\begin{corollary}[Examples]
+For \(w_\D=-1\),
+\[
+  a_t=\sqrt{\frac{|\Omega_K|}{\Omega_\Lambda}},
+\]
+the minimum radius of the pure closed de Sitter branch.  For \(w_\D=0\),
+\[
+  a_t=\frac{\Omega_{\D0}}{|\Omega_K|},
+\]
+the maximum radius of the closed dust model.  For \(w_\D=1/3\),
+\[
+  a_t=\sqrt{\frac{\Omega_{\D0}}{|\Omega_K|}} .
+\]
+\end{corollary}
+
+\subsection{Acceleration and bounce criteria}
+
+\begin{proposition}[Acceleration boundary]
+\label{prop:acc}
+The acceleration boundary is
+\begin{equation}
+  q=0
+  \quad\Longleftrightarrow\quad
+  \frac12x_m+x_r+\frac12(1+3w_\D)x_\D=0 .
+  \label{eq:acc}
+\end{equation}
+For dust plus \(\Lambda\) and negligible radiation,
+\begin{equation}
+  a_{\rm acc}=\left(\frac{\Omega_m}{2\Omega_\Lambda}\right)^{1/3},
+  \label{eq:aacc}
+\end{equation}
+independent of \(\Omega_K\).  The curvature parameter changes the distance-redshift
+relation and the Friedmann constraint, but not the local sign of \(a''\) once the
+component densities are specified.
+\end{proposition}
+
+\begin{proposition}[Regular FLRW bounce condition]
+\label{prop:bounce}
+A regular bounce at \(a=a_b>0\) requires
+\begin{equation}
+  H(a_b)=0,\qquad a''(a_b)>0 .
+\end{equation}
+Using the acceleration equation,
+\begin{equation}
+  \frac{a''}{a}=-\frac{4\pi G}{3c^2}
+  \left(\epsilon_{\rm tot}+3p_{\rm tot}\right),
+\end{equation}
+the second condition requires
+\begin{equation}
+  \epsilon_{\rm tot}+3p_{\rm tot}<0
+\end{equation}
+at the bounce.  Thus violation of the perfect-fluid strong-energy combination is
+necessary for a regular accelerating bounce in classical FLRW GR.  It is not,
+by itself, sufficient: the Friedmann constraint must also vanish at \(a_b\).
+\end{proposition}
+
+\begin{remark}
+The Hawking-Penrose singularity theorems have several hypotheses.  Violating
+\(\epsilon+3p\ge0\) removes a key FLRW focusing condition, but it is not a complete
+classification of singularity formation in general spacetimes.
+\end{remark}
+
+\subsection{BAO distance bound}
+
+\begin{proposition}[Transverse-distance upper bound]
+\label{prop:bao}
+For a closed \(S^3\) FLRW geometry,
+\begin{equation}
+  D_M(z)=A_0\sin\!\left(\frac{\chi(z)}{A_0}\right),
+  \qquad
+  \chi(z)=\int_0^z\frac{c\,dz'}{H(z')}.
+\end{equation}
+Therefore
+\begin{equation}
+  D_M(z)\le A_0=\frac{c}{H_0\sqrt{|\Omega_K|}},
+  \qquad
+  \frac{D_M(z)}{r_d}\le
+  \frac{c}{H_0r_d\sqrt{|\Omega_K|}} .
+  \label{eq:bao_bound}
+\end{equation}
+The bound is geometric and model-independent once \(H_0,r_d,\Omega_K\) are fixed.
+Whether it is observationally constraining depends on the redshift range and the
+posterior for \(\Omega_K\).
+\end{proposition}
+
+%=======================================================================
+\section{Interaction-current benchmark}
+\label{sec:interaction}
+%=======================================================================
+
+\begin{proposition}[Scaling solution for a simple interaction current]
+\label{prop:int}
+Suppose
+\begin{align}
+  \epsilon'_\vis+3H(1+w_\vis)\epsilon_\vis &= Q_{\rm int},\\
+  \epsilon'_\D+3H(1+w_\D)\epsilon_\D &= -Q_{\rm int},
+\end{align}
+with
+\begin{equation}
+  Q_{\rm int}=3H\Gamma(\epsilon_\D-\epsilon_\vis).
+\end{equation}
+For \(r:=\epsilon_\vis/\epsilon_\D\),
+\begin{equation}
+  \frac{1}{3H}\frac{r'}{r}
+  =
+  w_\D-w_\vis+\Gamma\left(\frac{1}{r}-r\right).
+\end{equation}
+A positive scaling fixed ratio satisfies
+\begin{equation}
+  \Gamma r_*^2+(w_\vis-w_\D)r_*-\Gamma=0,
+\end{equation}
+hence
+\begin{equation}
+  r_*=
+  \frac{-(w_\vis-w_\D)+
+  \sqrt{(w_\vis-w_\D)^2+4\Gamma^2}}{2\Gamma}
+\end{equation}
+for \(\Gamma>0\).  The earlier expression \(r_*=\Gamma^{-1}-1\) is not a
+general solution; it can only arise after extra assumptions not present here.
+\end{proposition}
+
+%=======================================================================
+\section{Quasi-local benchmarks}
+\label{sec:quasi}
+%=======================================================================
+
+On a time-symmetric round \(S^3_A\) slice, let \(R_A=A\sin\chi\) be the areal
+radius of a geodesic two-sphere.
+
+\begin{proposition}[Brown--York energy on a round \(S^3\) slice]
+\label{prop:BY}
+With flat-space reference subtraction, the Brown--York energy is
+\begin{equation}
+  E_\BY(R_A)=
+  \frac{c^4R_A}{G}
+  \left[1-\sqrt{1-\frac{R_A^2}{A^2}}\right],
+  \qquad 0\le R_A\le A .
+  \label{eq:BY}
+\end{equation}
+The small-sphere expansion is
+\begin{equation}
+  E_\BY(R_A)=
+  \frac{c^4}{2GA^2}R_A^3+
+  \frac{c^4}{8GA^4}R_A^5+\bigO(R_A^7/A^6),
+  \label{eq:BYsmall}
+\end{equation}
+and the equatorial value is
+\begin{equation}
+  E_\BY(A)=\frac{c^4A}{G}.
+  \label{eq:BYmax}
+\end{equation}
+The associated mass is \(M_\BY=E_\BY/c^2\); one must not replace it by
+\(c^4A/G^2\).
+\end{proposition}
+
+\begin{proposition}[Brown--York--Misner--Sharp comparison]
+\label{prop:BYMS}
+For homogeneous total energy density,
+\begin{equation}
+  E_\MS(R_A)=\frac{4\pi}{3}R_A^3\epsilon_{\rm tot}.
+\end{equation}
+Equality at a chosen radius \(R_A\) requires
+\begin{equation}
+  \epsilon_{\rm tot}(R_A)=
+  \frac{3c^4}{4\pi G R_A^2}
+  \left[1-\sqrt{1-\frac{R_A^2}{A^2}}\right].
+  \label{eq:eps_BYMS}
+\end{equation}
+For a homogeneous density this cannot hold for all \(R_A\), because the right-hand
+side depends on \(R_A\).  The leading small-sphere equality is obtained when
+\begin{equation}
+  \epsilon_{\rm tot}=\frac{3c^4}{8\pi GA^2}
+  =\frac{c^4\mathcal R^{(3)}}{16\pi G},
+\end{equation}
+but the equality then fails at order \(R_A^5/A^4\).  Thus Brown--York and
+Misner--Sharp energies are distinct benchmarks, not interchangeable definitions.
+\end{proposition}
+
+\begin{proposition}[Entropy bound: safe form]
+\label{prop:entropy}
+For a two-sphere of areal radius \(R_A\), the covariant entropy bound is bounded
+by one quarter of its area in Planck units:
+\begin{equation}
+  S\le \frac{k_Bc^3}{4G\hbar}\,4\pi R_A^2
+  =\frac{\pi k_Bc^3}{G\hbar}R_A^2 .
+  \label{eq:entropy}
+\end{equation}
+The existence and orientation of a light-sheet are dynamical questions.  No
+general \(S^3\) FLRW formula with an extra
+\([1-\sqrt{1-R_A^2/A^2}]/(1+z)\) factor follows from the covariant entropy bound.
+\end{proposition}
+
+%=======================================================================
+\section{Topological and index-theoretic benchmarks}
+\label{sec:top}
+%=======================================================================
+
+\begin{proposition}[Untwisted Dirac benchmark]
+\label{prop:dirac}
+For the untwisted Dirac operator, using the Lichnerowicz formula~\cite{Lichnerowicz1958}, on a round \(S_A^3\),
+\begin{equation}
+  D^2=\nabla^*\nabla+\frac{\mathcal R^{(3)}}{4}
+  =\nabla^*\nabla+\frac{3}{2A^2}.
+\end{equation}
+Hence the untwisted operator has no zero modes.  In odd dimension there is no
+ordinary chiral Atiyah--Singer index of the even-dimensional type.  With a
+nontrivial gauge connection, the twisted Lichnerowicz formula contains curvature
+terms from the gauge field, and zero modes are not excluded by topology alone.
+\end{proposition}
+
+\begin{proposition}[Four-dimensional Gauss--Bonnet: correct use]
+\label{prop:GB}
+For a compact Riemannian four-manifold with boundary terms included,
+\begin{equation}
+  \chi(M)=\frac{1}{8\pi^2}\int_M
+  \left(
+  |W|^2-\frac12|\mathrm{Ric}_0|^2+\frac{R^2}{24}
+  \right)dV
+  +B_{\partial M}.
+  \label{eq:GB}
+\end{equation}
+An FLRW spacetime is conformally flat, so \(W=0\), but the traceless Ricci term
+generally does not vanish.  Therefore Gauss--Bonnet does not reduce, in a general
+FLRW history, to a topological constraint on \(\int R^2dV\) alone.  For
+\(I\times S^3\) with \(I\) a finite interval, \(\chi(I\times S^3)=0\); since the
+manifold has boundary, the boundary term is essential.
+\end{proposition}
+
+\begin{proposition}[Closed geodesic periods]
+\label{prop:geo}
+On the round simply connected \(S_A^3\), every geodesic is closed with primitive
+length
+\begin{equation}
+  L_1=2\pi A,\qquad L_k=2\pi kA .
+\end{equation}
+The exponential factors \(e^{-\pi^2A^2k^2/s}=e^{-L_k^2/(4s)}\) appearing in the
+Poisson form of the heat trace encode these periods.  This is a useful spectral
+geometric dictionary.  It should not be called a Selberg trace formula in the
+hyperbolic sense, since the closed geodesics on \(S^3\) occur in continuous
+families rather than as isolated hyperbolic orbits.
+\end{proposition}
+
+\begin{proposition}[Ray--Singer torsion benchmark]
+\label{prop:torsion}
+For the round \(S^3\) with the trivial real representation, the Ray--Singer
+analytic torsion is \(T(S^3)=1\).  This is a topological benchmark for the
+de Rham complex.  It does not impose a direct constraint on the residual stress
+tensor unless an additional quantum effective-action construction is specified.
+\end{proposition}
+
+%=======================================================================
+\section{Extended invariant ledger}
+\label{sec:ledger}
+%=======================================================================
+
+The entries below extend the companion ledger.  Each entry is marked as exact,
+conditional, or cautionary.
+
+\begin{enumerate}
+\setcounter{enumi}{84}
+
+\item \(\Inv_{85}\): \(Q=\sum_i\alpha_i x_i\), exact autonomous source scalar.
+
+\item \(\Inv_{86}\): \(q=-1+Q/2\), lapse-independent deceleration scalar.
+
+\item \(\Inv_{87}\): vertex eigenvalues \(\lambda_j=\alpha_*-\alpha_j\), exact
+linearised benchmark.
+
+\item \(\Inv_{88}\): physical curvature condition \(x_K<0\) for \(S^3\), which
+excludes the formal \(K\)-vertex from the expanding physical simplex.
+
+\item \(\Inv_{89}\): \(a_{\rm ES}=\sqrt{|\Omega_K|/(3\Omega_\Lambda)}\), exact
+Einstein-static scale factor for dust plus \(\Lambda\).
+
+\item \(\Inv_{90}\): \(A_{\rm ES}=1/\sqrt{\Lambda}\) when
+\(\Omega_\Lambda=\Lambda c^2/(3H_0^2)\), exact physical radius.
+
+\item \(\Inv_{91}\): \(K(s)=e^{s/A^2}\sum_{m=1}^\infty m^2e^{-sm^2/A^2}\), exact
+scalar heat trace.
+
+\item \(\Inv_{92}\): Poisson representation Eq.~\eqref{eq:heat_poisson}, exact
+dual heat-trace form.
+
+\item \(\Inv_{93}\): ultraviolet Weyl coefficient
+\(V(4\pi s)^{-3/2}\), exact leading local spectral density.
+
+\item \(\Inv_{94}\): curvature heat coefficient
+\(\mathcal R^{(3)}s/6=s/A^2\), exact first local correction.
+
+\item \(\Inv_{95}\): infrared scalar heat limit \(K(s)\to1\), exact dominance
+of the single constant scalar zero mode.
+
+\item \(\Inv_{96}\): \(\zeta_\Delta(0)=-1\), exact scale-independent zeta value
+for the nonzero scalar spectrum.
+
+\item \(\Inv_{97}\): \(\log\det'(-\Delta_A)=2\log A+C_{S^3}\), exact determinant
+scaling.
+
+\item \(\Inv_{98}\): scalar Lichnerowicz equality \(\lambda_1=3/A^2\), exact.
+
+\item \(\Inv_{99}\): covariance positivity \(A_n\ge0\), exact admissibility
+condition.
+
+\item \(\Inv_{100}\): finite point variance
+\(\sum_nA_n(n+1)^2/(2\pi^2A^3)<\infty\), exact scalar covariance criterion.
+
+\item \(\Inv_{101}\): exponential covariance benchmark
+\(A_n=A_0e^{-\beta n}\), exact admissible family for \(\beta>0\).
+
+\item \(\Inv_{102}\): \(w_\D=-1/3\) curvature-mimicking degeneracy, exact at
+background level.
+
+\item \(\Inv_{103}\): physical \(w_\D=-1/3\) fixed line has \(x_\D>1\) and
+\(x_K<0\) in \(S^3\), exact sign correction.
+
+\item \(\Inv_{104}\): \(a_t=(\Omega_{\D0}/|\Omega_K|)^{1/(1+3w_\D)}\) for
+\(w_\D\ne-1/3\), exact single-component turning scale.
+
+\item \(\Inv_{105}\): \(a_{\rm acc}=(\Omega_m/2\Omega_\Lambda)^{1/3}\), exact
+dust-plus-\(\Lambda\) acceleration threshold.
+
+\item \(\Inv_{106}\): regular FLRW bounce condition
+\(H=0\) and \(\epsilon+3p<0\), necessary within classical FLRW GR.
+
+\item \(\Inv_{107}\): \(D_M\le A_0=c/(H_0\sqrt{|\Omega_K|})\), exact closed-geometry
+distance bound.
+
+\item \(\Inv_{108}\): interaction scaling ratio
+\[
+r_*=\frac{-(w_\vis-w_\D)+\sqrt{(w_\vis-w_\D)^2+4\Gamma^2}}{2\Gamma},
+\]
+conditional on the specified interaction current.
+
+\item \(\Inv_{109}\): Brown--York energy Eq.~\eqref{eq:BY}, exact for the chosen
+round slice and reference subtraction.
+
+\item \(\Inv_{110}\): \(E_\BY(A)=c^4A/G\), exact equatorial Brown--York benchmark.
+
+\item \(\Inv_{111}\): Brown--York and Misner--Sharp leading small-sphere agreement
+at \(\epsilon=3c^4/(8\pi GA^2)\), exact only through order \(R_A^3\).
+
+\item \(\Inv_{112}\): radius-dependent equality density Eq.~\eqref{eq:eps_BYMS},
+exact caution against all-order BY--MS identification.
+
+\item \(\Inv_{113}\): entropy area bound Eq.~\eqref{eq:entropy}, exact safe form.
+
+\item \(\Inv_{114}\): untwisted Dirac spectral gap on round \(S^3\), exact; twisted
+gauge-coupled zero-mode absence is not topological.
+
+\item \(\Inv_{115}\): Gauss--Bonnet identity Eq.~\eqref{eq:GB}, exact with the
+traceless-Ricci and boundary terms retained.
+
+\item \(\Inv_{116}\): closed-geodesic periods \(L_k=2\pi kA\), exact for round
+\(S^3\).
+
+\item \(\Inv_{117}\): Ray--Singer torsion \(T(S^3)=1\) for the trivial real
+representation, exact topological benchmark.
+
+\end{enumerate}
+
+%=======================================================================
+\section{Summary}
+\label{sec:summary}
+%=======================================================================
+
+The useful analytic content is not the assertion of a complete solution space.
+The useful content is a set of exact benchmark identities against which a compact
+\(S^3\) residual-cosmology pipeline can be tested.  The strict core is:
+
+\begin{equation}
+\begin{gathered}
+\text{proper-time autonomous flow};\\
+\text{scalar heat, zeta, and determinant benchmarks};\\
+\text{admissible covariance kernels};\\
+\text{curvature-mimicking residual backgrounds};\\
+\text{acceleration, bounce, and distance criteria};\\
+\text{quasi-local energy distinctions}.
+\end{gathered}
+\end{equation}
+
+Four corrections are especially important for PRD-level rigor.  First, the
+physical \(S^3\) curvature variable is negative, so the curvature-mimicking fixed
+line has \(x_\D>1\), not \(0\le x_\D\le1\).  Second, the constant-\(w\) turning
+scale contains \(1+3w\), not \(1-3w\).  Third, Brown--York and Misner--Sharp
+energies agree only at leading small-sphere order under the curvature-density
+condition; they are not identical to all orders.  Fourth, index and
+Gauss--Bonnet arguments must retain their hypotheses: odd-dimensional Dirac
+index arguments do not rule out all twisted zero modes, and four-dimensional
+Gauss--Bonnet does not constrain \(\int R^2\) alone for a general FLRW history.
+
+\begin{acknowledgments}
+This supplement is designed as a validation document for the benchmark framework.
+No numerical or observational claim is made without a corresponding transfer map
+and likelihood in the companion pipeline.
+\end{acknowledgments}
+
+\begin{thebibliography}{99}
+
+\bibitem{WainwrightEllis1997}
+J.~Wainwright and G.~F.~R. Ellis, eds.,
+\textit{Dynamical Systems in Cosmology}
+(Cambridge University Press, Cambridge, 1997).
+
+\bibitem{Berger1971}
+M.~Berger, P.~Gauduchon, and E.~Mazet,
+\textit{Le spectre d'une vari\'et\'e riemannienne}
+(Springer, Berlin, 1971).
+
+\bibitem{Schoenberg1942}
+I.~J. Schoenberg, Positive definite functions on spheres,
+Duke Math. J. \textbf{9}, 96 (1942).
+
+\bibitem{Rosenberg1997}
+S.~Rosenberg, \textit{The Laplacian on a Riemannian Manifold}
+(Cambridge University Press, Cambridge, 1997).
+
+\bibitem{BrownYork1993}
+J.~D. Brown and J.~W. York, Jr.,
+Quasilocal energy and conserved charges derived from the gravitational action,
+Phys. Rev. D \textbf{47}, 1407 (1993).
+
+\bibitem{MisnerSharp1964}
+C.~W. Misner and D.~H. Sharp,
+Relativistic equations for adiabatic, spherically symmetric gravitational collapse,
+Phys. Rev. \textbf{136}, B571 (1964).
+
+\bibitem{Bousso2002}
+R.~Bousso, The holographic principle,
+Rev. Mod. Phys. \textbf{74}, 825 (2002).
+
+\bibitem{Wald1984}
+R.~M. Wald, \textit{General Relativity}
+(University of Chicago Press, Chicago, 1984).
+
+\bibitem{Lichnerowicz1958}
+A.~Lichnerowicz,
+\textit{G\'eom\'etrie des groupes de transformations}
+(Dunod, Paris, 1958).
+
+\bibitem{RaySinger1971}
+D.~B. Ray and I.~M. Singer,
+\(R\)-torsion and the Laplacian on Riemannian manifolds,
+Adv. Math. \textbf{7}, 145 (1971).
+
+\end{thebibliography}
+
+\end{document}

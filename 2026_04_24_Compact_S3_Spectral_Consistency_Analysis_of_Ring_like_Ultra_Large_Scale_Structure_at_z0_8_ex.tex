@@ -1,0 +1,1472 @@
+\documentclass[
+  aps,
+  prd,
+  reprint,
+  superscriptaddress,
+  nofootinbib,
+  longbibliography,
+  floatfix,
+  amsmath,
+  amssymb
+]{revtex4-2}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{graphicx}
+\usepackage{bm}
+\usepackage[hidelinks]{hyperref}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{xcolor}
+
+%% ---- Theorem Environments ----
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+%% ---- Shortcuts ----
+\newcommand{\vp}{\varphi}
+\newcommand{\LCDM}{\ensuremath{\Lambda}CDM}
+\newcommand{\Lam}{\ensuremath{\Lambda}}
+\newcommand{\Sthree}{S^3}
+\newcommand{\Reff}{R_{\mathrm{eff}}}
+\newcommand{\Rcosm}{R_{\mathrm{cosm}}}
+\newcommand{\Fn}{F_n}
+\newcommand{\half}{\tfrac{1}{2}}
+
+%% ================================================================
+\begin{document}
+
+\title{Compact \texorpdfstring{$S^3$}{S3} Spectral Consistency Analysis of Ring-like Ultra-Large-Scale Structure at \texorpdfstring{$z\approx 0.8$}{z approx 0.8}}
+
+\author{Andrei Preece}
+\email{andre.preece@web.de}
+\affiliation{Independent Researcher, Berlin, Germany}
+
+\author{Boris Batenin}
+\email{batenin@web.de}
+\affiliation{Independent Researcher, Berlin, Germany}
+
+\date{April 2026}
+\keywords{ultra-large-scale structure, compact topology, $S^3$ spatial sections, Laplacian spectrum, projected-shell law, cosmological principle, Giant Arc, Big Ring, Giant Ring, non-decaying correlations, projection effect}
+
+\begin{abstract}
+Recent analyses of Mg\,\textsc{ii}-selected structures at $z\approx 0.8$
+report three apparently related ring-like ultra-large-scale features in
+a common field: the Giant Arc, the Big Ring, and the Giant Ring. This
+paper asks whether a compact, simply connected spatial topology
+$\Sthree(\Reff)$ can provide a consistent mode-based description of
+such morphology in a linearized setting. We first establish the compact
+mode-theory results needed for this interpretation: a no-exponential-tail
+lemma for globally supported Laplacian eigenmodes on compact connected
+manifolds, a bounded oscillatory two-point function on $\Sthree$, and a
+projection result showing how constant-phase shells appear as rings or
+arcs on narrow redshift slices. We then introduce an exact
+projected-chord size law,
+$ d_\ell = 2R_{\rm eff}\sin[\pi/(\ell+1)] $, and show that the earlier
+Fibonacci scaling arises as its large-$\ell$ asymptotic limit. Under the
+empirical mode assignments $\ell=(1,2,6,8)$ for the Giant Arc, Giant
+Ring, Big Ring, and the reported 2D-PSA clustering scale, a single
+parameter $R_{\rm eff}=474.511\,\mathrm{Mpc}$ reproduces the four
+observed scales at the percent level. A final consistency section states explicitly how the framework treats
+spatial topology, the invariant light cone, entropy and the arrow of time,
+Bell nonlocality, and Noether conservation on a boundaryless compact slice.
+The paper does not claim evidence for compact topology or a derived
+selection rule for these mode labels. It is offered as a compact-topology
+consistency analysis and as a basis for targeted future tests.
+\end{abstract}
+
+\maketitle
+
+%% =================================================================
+\section{Introduction}
+\label{sec:intro}
+%% =================================================================
+
+\subsection{The Observational Context}
+
+The \LCDM\ framework assumes large-scale statistical homogeneity above
+the Yadav scale $\lambda_{\mathrm{hom}}\approx 370\,\mathrm{Mpc}$~\cite{Yadav2010}:
+the two-point correlation function of density fluctuations is expected
+to decay with separation and approach zero for $r\gtrsim\lambda_{\mathrm{hom}}$.
+
+Lopez, Clowes, and Williger~\cite{Lopez2022,Lopez2024,Lopez2026} have
+identified three uLSSs at $z\approx 0.8$, traced by Mg\,\textsc{ii}
+absorbers in SDSS quasar spectra:
+\begin{itemize}[noitemsep]
+\item \emph{Giant Arc} (GA)~\cite{Lopez2022}: arc-shaped,
+  $\sim 1\,\mathrm{Gpc}$ extent, $(4.5\pm0.6)\sigma$;
+\item \emph{Big Ring} (BR)~\cite{Lopez2024}: ring-like,
+  $\sim 400\,\mathrm{Mpc}$ diameter, $(4.10\pm0.45)\sigma$;
+\item \emph{Giant Ring} (GR)~\cite{Lopez2026}: ring-like,
+  $\lesssim 1\,\mathrm{Gpc}$ diameter, two distinct versions at
+  $4.73\sigma$ and $4.47\sigma$ (optimum ellipse matching), with
+  the field showing $3.53\sigma$ clustering at $\sim 320\,\mathrm{Mpc}$
+  in a 2D power spectrum analysis.
+\end{itemize}
+All three structures occupy the same redshift slice
+$z=0.722$--$0.862$ in the same field of view, appearing as a nested
+system: the GR surrounds the BR.
+
+Lopez \& Clowes~\cite{Lopez2026} also note that the rings may be 2D
+\emph{projections of underlying 3D spheroidal structures}, and that
+FLAMINGO-10K fields, under the same 2D power spectrum analysis, are
+consistent with random expectations at all relevant scales.
+
+\medskip
+The complementary roles of the observational and theoretical
+contributions are:
+\begin{itemize}[noitemsep]
+\item Lopez \& Clowes establish: (i) the existence of ring-like uLSSs
+  at $>4\sigma$; (ii) a non-random 2D power spectrum signal in the
+  observed field; (iii) consistency of FLAMINGO-10K simulation fields
+  with randomness under the same analysis.
+\item This paper argues: (i) that such structures can be analysed in a
+  compact-topology framework without treating them as immediate
+  anomalies; (ii) that the specific discrete mode content of $\Sthree$
+  can generate non-decaying correlations in the stated approximation;
+  and (iii) that simulations using periodic-box ($T^3$) boundary
+  conditions do not directly test the same mode basis.
+\end{itemize}
+
+\subsection{What This Paper Does Not Claim}
+
+We state explicitly at the outset:
+
+\begin{description}[noitemsep,labelwidth=0.2em,leftmargin=2em]
+\item[\textbf{(N1)}] We do \emph{not} claim that Lopez \& Clowes
+  observations \emph{prove} compact $\Sthree$ topology.
+\item[\textbf{(N2)}] We do \emph{not} claim that the Fibonacci
+  hierarchy is the unique possible spectral coarse-graining across
+  all cosmological models.
+\item[\textbf{(N3)}] We do \emph{not} claim that \LCDM\ is falsified
+  in full; only that its particular topological assumption generates
+  a tension with the Lopez--Clowes field.
+\item[\textbf{(N4)}] We do \emph{not} claim that every ring-like
+  structure in the sky must be topological in origin.
+\end{description}
+
+\subsection{Scope of the Paper}
+
+\begin{description}[noitemsep,labelwidth=0.2em,leftmargin=2em]
+\item[\textbf{(S1)}] The compact-manifold mode analysis developed
+  here implies that pure exponential tail behaviour is not the correct
+  generic intuition for globally supported correlations.
+\item[\textbf{(S2)}] On $\Sthree$, constant-phase shell structure can
+  project to ring-like or arc-like morphology on a narrow redshift
+  slice.
+\item[\textbf{(S3)}] With an explicit projected-chord law and an empirical mode assignment, the
+  observed field can be discussed within a compact-topology consistency
+  framework, but only at a phenomenological level.
+\end{description}
+
+\medskip
+\noindent
+\textbf{Scope statement.} The purpose of this paper is limited: it does
+not infer a unique cosmic topology, but tests whether a compact,
+simply-connected mode basis provides a mathematically controlled way to
+organise the reported $z\approx 0.8$ morphology.
+
+\textbf{Logical flow of the argument.}
+\begin{itemize}[leftmargin=*,noitemsep]
+  \item $\Sthree$ geometry $\Rightarrow$ discrete Laplacian spectrum
+    (Lemma~\ref{lem:discrete}).
+  \item Discrete global modes $\Rightarrow$ non-decaying global
+    correlations (Lemma~\ref{lem:notail};
+    Theorem~\ref{thm:nodecay}).
+  \item Exact projected-chord law (Proposition~\ref{prop:chordlaw}).
+  \item Projected shells on $\Sthree$ $\Rightarrow$ rings on the sky
+    (Theorem~\ref{thm:projring}).
+  \item empirical one-parameter fit of the observed scales (Sec.~\ref{sec:identification}).
+\end{itemize}
+
+\subsection{Organisation}
+
+Section~\ref{sec:spectral} establishes the spectral-geometric
+foundations: minimal topology, discrete Laplacian spectrum, and the
+No-Exponential-Tail Lemma. Section~\ref{sec:correlations} proves the
+main correlation theorem on $\Sthree$. Section~\ref{sec:projection}
+derives the Projection Ring Theorem. Section~\ref{sec:fibonacci}
+constructs the Fibonacci preferred radii.
+Section~\ref{sec:identification} gives the phenomenological
+identification with the observed structures. Section~\ref{sec:comparison}
+presents the boundary-condition diagnosis of FLAMINGO and lists
+testable predictions. Section~\ref{sec:discussion} closes with
+open problems and comparison to alternative frameworks.
+
+\medskip\noindent
+\textbf{Conventions.} $c=1$ throughout. $\vp=(1+\sqrt5)/2$.
+Fibonacci: $F_1=F_2=1$, $F_{n+2}=F_{n+1}+F_n$. Proper distances at
+$z=0.802$ for $H_0=67\,\mathrm{km/s/Mpc}$, $\Omega_m=0.315$.
+
+%% =================================================================
+\section{Spectral Theory on Compact $S^3$}
+\label{sec:spectral}
+%% =================================================================
+
+\subsection{Minimal Topological Conditions}
+
+We consider spatial sections $\Sigma$ satisfying:
+\begin{enumerate}[label=\textbf{(M\arabic*)},noitemsep]
+\item $\Sigma$ is compact, connected, orientable, and boundaryless.
+\item $\pi_1(\Sigma)=0$ (trivial fundamental group).
+\item No additional topological structure is introduced beyond a round
+  Riemannian metric.
+\end{enumerate}
+By Perelman's proof of the Poincar\'e
+conjecture~\cite{Perelman2002,Perelman2003a,Perelman2003b}, the unique
+closed 3-manifold satisfying (M1)--(M3) is $\Sigma\cong\Sthree$.
+
+\begin{remark}[Status of $\Reff$ vs global curvature]
+  Throughout, $\Reff$ denotes the \emph{effective spectral curvature
+  scale} inferred from fitting the ring structures in a narrow redshift
+  shell. This is distinct from, and need not equal, the global
+  cosmological curvature radius $\Rcosm^{\mathrm{global}}$ constrained
+  by Planck 2015~\cite{Planck2016} to exceed $10\,\mathrm{Gpc}$.
+  We discuss this two-scale structure in Section~\ref{sec:discussion}.
+\end{remark}
+
+\subsection{Geometry of the Three-Sphere}
+
+The round three-sphere $\Sthree(\Reff)$ is the set of points in
+$\mathbb{R}^4$ lying at Euclidean distance $\Reff$ from the origin,
+equipped with the induced metric. In hyperspherical coordinates
+$(\chi,\theta,\phi)$, with $\chi\in[0,\pi]$, the line element is
+\begin{equation}
+  ds^2 = \Reff^2\left[d\chi^2+
+  \sin^2\chi\left(d\theta^2+\sin^2\theta\,d\phi^2\right)\right].
+  \label{eq:S3metric}
+\end{equation}
+The geodesic distance between two points $x,y\in \Sthree$ is
+$r=\Reff\,\Theta$, where $\Theta\in[0,\pi]$ is their angular separation.
+The total volume is $2\pi^2\Reff^3$.
+
+The scalar Laplace--Beltrami operator $\triangle_0$ is elliptic and
+self-adjoint on $L^2(\Sthree,dV)$. Since $\Sthree$ is compact and
+connected, its eigenvalues are discrete and its eigenfunctions are
+smooth and real-analytic. This is the spectral fact that distinguishes
+compact $\Sthree$ from the flat $\mathbb{R}^3$ intuition used in many
+large-volume approximations.
+
+\subsection{Discrete Laplacian Spectrum and Global Support}
+
+\begin{lemma}[Discrete global spectrum on $S^3$]
+  \label{lem:discrete}
+  The scalar Laplacian $\triangle_0$ on $\Sthree(\Reff)$ has purely
+  discrete eigenvalues
+  \begin{equation}
+    \lambda_\ell = \frac{\ell(\ell+2)}{\Reff^2},
+    \quad \ell=0,1,2,\ldots,
+    \label{eq:eigenvalues}
+  \end{equation}
+  with degeneracy $g_\ell=(\ell+1)^2$. The corresponding
+  hyperspherical harmonics form a complete orthonormal basis of
+  $L^2(\Sthree)$.
+\end{lemma}
+
+\begin{proof}
+  This is the standard scalar spectrum on the round $n$-sphere,
+  specialized to $n=3$; see, e.g., Refs.~\cite{Camporesi1994,Berger1971}.
+  The degeneracy follows from the dimension of the degree-$\ell$
+  harmonic subspace on $S^3$. Equivalently, using
+  $\Sthree\simeq SU(2)$, the isometry group is
+  $SO(4)\simeq (SU(2)_L\times SU(2)_R)/\mathbb{Z}_2$, and the scalar
+  harmonics at level $\ell$ transform in the $(\ell/2,\ell/2)$
+  representation of $SU(2)_L\times SU(2)_R$, of dimension $(\ell+1)^2$.
+\end{proof}
+
+\begin{remark}[Zero mode and global support]
+  For $\ell=0$ one obtains the constant zero mode. For $\ell\geq1$ the
+  eigenfunctions are non-constant but globally defined across the whole
+  manifold. A nonzero eigenfunction cannot vanish on an open set by the
+  unique-continuation principle for elliptic operators; in this precise
+  sense the compact modes have global support rather than finite spatial
+  support.
+\end{remark}
+
+\subsection{Low Multiplets and Four-Dimensional Harmonic Polynomials}
+\label{subsec:lowell}
+
+A useful algebraic construction of the scalar harmonics on $S^3$ is obtained
+by restricting homogeneous harmonic polynomials on $\mathbb{R}^4$ to the
+sphere. Let $u=x/\Reff\in S^3_1$ be the corresponding unit-sphere coordinate.
+If $P_\ell(u)$ is homogeneous of degree $\ell$ and harmonic in $\mathbb{R}^4$,
+then its restriction to $S^3_1$ is an eigenfunction of the unit-sphere
+Laplacian with eigenvalue $\ell(\ell+2)$. Restoring the radius gives
+Eq.~\eqref{eq:eigenvalues}.
+
+For orientation, the first multiplets may be written in a real basis as
+follows. With the unit-sphere volume convention used in Eq.~\eqref{eq:addition},
+\begin{align}
+  \ell=0: \quad &Y_0 = (2\pi^2)^{-1/2}, \\
+  \ell=1: \quad &Y_{1\mu}(u)=\sqrt{\frac{2}{\pi^2}}\,u_\mu,
+    \qquad \mu=1,\ldots,4 .
+\end{align}
+The $\ell=1$ sector is therefore the four-dimensional dipole multiplet.
+The $\ell=2$ sector is represented by traceless quadratic forms
+\begin{equation}
+  Q_{ij}(u)=u_i u_j-\frac{\delta_{ij}}{4},
+  \qquad i,j=1,\ldots,4,
+\end{equation}
+with nine independent components after imposing tracelessness. Higher
+multiplets are obtained analogously from higher-degree harmonic polynomials,
+or equivalently from the representation theory of
+$SU(2)_L\times SU(2)_R$.
+
+This construction also clarifies the phrase ``global support''. The modes
+are global functions on the whole compact manifold; they are not localized
+or compactly supported. They may, and generally do, possess nodal sets, so
+``global support'' should not be read as ``nowhere zero.''
+
+
+\subsection{Hyperspherical Harmonics and the Addition Theorem}
+
+Let $\{Y_{\ell\mu}\}_{\mu=1}^{(\ell+1)^2}$ be an orthonormal basis of the
+$\ell$th eigenspace. The rotationally invariant projector onto this
+eigenspace is given by the addition theorem
+\begin{equation}
+  \sum_{\mu=1}^{(\ell+1)^2}Y_{\ell\mu}(x)\overline{Y_{\ell\mu}(y)}
+  =\frac{\ell+1}{2\pi^2}\,
+  \frac{\sin[(\ell+1)\Theta]}{\sin\Theta},
+  \label{eq:addition}
+\end{equation}
+where $\Theta$ is the angular geodesic separation between $x$ and $y$.
+We denote the corresponding zonal function by
+\begin{equation}
+  \Xi_\ell(\Theta):=\frac{\ell+1}{2\pi^2}\,
+  \frac{\sin[(\ell+1)\Theta]}{\sin\Theta}.
+  \label{eq:zonal}
+\end{equation}
+This identity is the basic input for the isotropic two-point statistics
+used below. The apparent singularity at $\Theta=0$ is removable, with
+$\Xi_\ell(0)=(\ell+1)^2/(2\pi^2)$.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{xi_kernels.png}
+\caption{Zonal kernels $\Xi_\ell(\Theta)$ for the low modes used later in
+the phenomenological identification. The $\ell=1$ kernel is dipolar, while
+higher modes display the increasing sequence of nodes that motivates the
+projected-chord scale law.}
+\label{fig:Xi}
+\end{figure}
+
+\subsection{The Two-Point Correlation Function}
+
+Any square-integrable, mean-zero, statistically isotropic random field
+$f$ on $\Sthree(\Reff)$ admits the spectral expansion
+\begin{equation}
+  f(x)=\sum_{\ell=0}^{\infty}\sum_{\mu=1}^{(\ell+1)^2}
+  a_{\ell\mu}Y_{\ell\mu}(x),
+  \label{eq:fieldexpansion}
+\end{equation}
+with uncorrelated coefficients satisfying
+$\langle a_{\ell\mu}\overline{a_{\ell'\mu'}}\rangle=
+P_\ell\delta_{\ell\ell'}\delta_{\mu\mu'}$. The two-point function depends
+only on the angular separation:
+\begin{equation}
+  C(\Theta):=\langle f(x)f(y)\rangle
+  =\sum_{\ell=0}^{\infty}P_\ell\,\Xi_\ell(\Theta).
+  \label{eq:corrS3formal}
+\end{equation}
+At $\Theta=0$, this gives
+$C(0)=\sum_\ell P_\ell(\ell+1)^2/(2\pi^2)$, the total variance in the
+adopted normalization.
+
+\subsection{The No-Exponential-Tail Lemma}
+
+We now establish the precise formal obstacle to transferring
+$\mathbb{R}^3$ intuition to the compact case.
+
+\begin{lemma}[No global pure exponential tail on compact $S^3$]
+  \label{lem:notail}
+  Let $C:[0,\pi\Reff]\to\mathbb{R}$ be the two-point correlation
+  function of a stationary, mean-zero, isotropic random field on
+  $\Sthree(\Reff)$ with the spectral form~\eqref{eq:corrS3formal}. If
+  the field has nonzero power in any $\ell\geq1$ mode, then the compact
+  correlation function cannot be identified with a pure flat-space
+  exponential tail
+  \begin{equation}
+    C(r)=A\,e^{-r/\xi_0},\qquad A>0,\quad \xi_0>0,
+    \label{eq:expdecay}
+  \end{equation}
+  as a globally valid smooth isotropic covariance on the full geodesic
+  interval $r\in[0,\pi\Reff]$.
+\end{lemma}
+
+\begin{proof}
+  A smooth isotropic function on $\Sthree$ is a smooth function of
+  $\cos\Theta$, not an arbitrary smooth function of the coordinate
+  distance $\Theta$. In particular, regularity at the antipode requires
+  the first derivative with respect to $\Theta$ to vanish at
+  $\Theta=\pi$ for a smooth zonal covariance. This condition is satisfied
+  termwise by the zonal harmonics in Eq.~\eqref{eq:zonal}. A pure
+  exponential $A\exp[-\Reff\Theta/\xi_0]$ has derivative
+  $-(A\Reff/\xi_0)\exp[-\Reff\Theta/\xi_0]$, which is nonzero at
+  $\Theta=\pi$. Hence it cannot be a globally smooth isotropic covariance
+  on $S^3$.
+
+  Equivalently, Eq.~\eqref{eq:corrS3formal} expresses any isotropic
+  compact covariance as a discrete Gegenbauer/zonal-harmonic expansion.
+  Such a compact expansion may approximate exponential decay over a
+  finite subinterval, but it cannot equal a flat-space exponential tail
+  globally on the compact manifold once nontrivial compact modes are
+  present.
+\end{proof}
+
+\begin{remark}
+  Lemma~\ref{lem:notail} does not state that compact correlations are
+  everywhere large, nor does it exclude approximate exponential behaviour
+  over a limited observational range. It states only the mathematically
+  relevant point for the present paper: the pure exponential tail used as
+  flat-space intuition is not a globally valid covariance model on
+  compact $\Sthree$ with nontrivial discrete mode content.
+\end{remark}
+
+%% =================================================================
+\section{Non-Decaying Correlations on $S^3$}
+\label{sec:correlations}
+%% =================================================================
+
+\begin{theorem}[Compact-mode correlations on $S^3$]
+  \label{thm:nodecay}
+  Under the assumptions of Lemma~\ref{lem:notail}, the correlation
+  function $C(\Theta)$ on $\Sthree(\Reff)$ is a bounded discrete sum (or
+  convergent series) of compact zonal harmonics. It is therefore not a
+  globally valid pure exponential tail. In particular, any isolated
+  nonzero low-$\ell$ contribution remains globally supported on the full
+  geodesic interval, including the antipodal regime.
+\end{theorem}
+
+\begin{proof}
+  Equation~\eqref{eq:corrS3formal} gives $C$ as a discrete expansion in
+  the zonal kernels $\Xi_\ell$. For example, the $\ell=1$ contribution is
+  \begin{equation}
+    P_1\,\Xi_1(\Theta)
+    = P_1\cdot\frac{2}{2\pi^2}\cdot\frac{\sin 2\Theta}{\sin\Theta}
+    = \frac{2P_1}{\pi^2}\cos\Theta,
+    \label{eq:ell1}
+  \end{equation}
+  which is defined on the full interval $[0,\pi]$ and takes a nonzero
+  value at the antipode. Higher-$\ell$ terms behave similarly as global
+  compact harmonics with finitely many nodal sets. The assertion then
+  follows directly from the spectral representation and from
+  Lemma~\ref{lem:notail}.
+\end{proof}
+
+\begin{remark}[Physical content]
+  Theorem~\ref{thm:nodecay} states that compact $\Sthree$ geometry allows
+  globally supported correlation patterns. Coherent structures with
+  characteristic geodesic scale $r\sim\pi\Reff/\ell$ may therefore be
+  organised as compact eigenmode features, rather than only as accidental
+  finite-correlation-length fluctuations.
+\end{remark}
+
+\subsection{Contrast with the $\mathbb{R}^3$ Intuition}
+
+On $\mathbb{R}^3$, the Laplacian has continuous spectrum $[0,\infty)$,
+no globally-normalisable zero mode, and wave packets decay. Correlation
+functions typically satisfy $C(r)\sim e^{-r/\xi_0}$ at large $r$ for
+some correlation length $\xi_0$. Within \LCDM\ at late times,
+$\xi_0\approx 5$--$10\,\mathrm{Mpc}$ from the matter power spectrum,
+and coherent structures of size $\sim 1\,\mathrm{Gpc}$ require
+exponentially suppressed probabilities under a finite-correlation-length
+assumption. Lemma~\ref{lem:notail} shows that this \emph{decay pattern
+is not an option} on compact $\Sthree$ carrying non-trivial mode content.
+
+%% =================================================================
+\section{The Projection Ring Theorem}
+\label{sec:projection}
+%% =================================================================
+
+The observations~\cite{Lopez2026} suggest that the observed rings may be
+2D projections of underlying 3D spheroidal structures. We show that
+globally-supported spherical shells on $\Sthree$ generically project
+to rings or arcs on a narrow redshift slice, providing a structural
+link between the geometric framework and the observational morphology.
+
+\begin{theorem}[Projection Ring Theorem]
+  \label{thm:projring}
+  Let $\mathcal{S}_\rho\subset\Sthree(\Reff)$ be a geodesic sphere of
+  radius $\rho$ around a centre $\mathbf{c}$, representing a constant-phase
+  shell of a hyperspherical harmonic $Y_\ell^{mm'}$ with
+  $\rho\approx \pi\Reff/(\ell+1)$. Let $\pi_{\mathrm{obs}}: \Sthree\to\Sigma_{\mathrm{obs}}$
+  be the projection onto a narrow observational redshift slice
+  $\Sigma_{\mathrm{obs}}$, transverse to the line of sight of thickness
+  $\Delta r$. Then:
+  \begin{enumerate}[label=\textup{(\roman*)}]
+  \item If $\mathbf{c}\notin\Sigma_{\mathrm{obs}}$, the projection
+    $\pi_{\mathrm{obs}}(\mathcal{S}_\rho)$ is a circle or ellipse
+    on $\Sigma_{\mathrm{obs}}$ of projected radius
+    $r_{\mathrm{proj}} = \sqrt{\rho^2 - h^2}$, where $h$ is the geodesic
+    distance from $\mathbf{c}$ to $\Sigma_{\mathrm{obs}}$.
+  \item If $|h-\rho|<\Delta r$, the projection degenerates to an
+    arc (partial ring), with arc angle
+    $\Theta\approx 2\arccos\bigl((\rho^2-h^2-\Delta r^2)/(2\rho\Delta r)\bigr)$.
+  \item For globally-supported eigenmodes, multiple such shells exist,
+    and their projections superpose; constructive interference at
+    $r_{\mathrm{proj}} \approx \pi\Reff/(\ell+1)$ generates enhanced
+    ring-like or arc-like density contrast.
+  \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+  (i) The intersection of a geodesic sphere $\mathcal{S}_\rho$ with a
+  transverse 2-plane in $\Sthree$ is the standard spherical conic
+  section. In the large-$\Reff$ limit ($\rho\ll\Reff$), this reduces
+  to the Euclidean spherical intersection theorem: the intersection
+  is a circle of radius $r_{\mathrm{proj}}=\sqrt{\rho^2-h^2}$ when
+  $h<\rho$.
+
+  (ii) When the centre lies within one shell thickness $\Delta r$ of
+  $\Sigma_{\mathrm{obs}}$, only a partial arc intersects the slice.
+  The arc angle follows from elementary spherical trigonometry.
+
+  (iii) The density-contrast amplitude at $r_{\mathrm{proj}}$ is the
+  integral of the harmonic $Y_\ell^{mm'}$ over the shell, which is
+  maximised when the projection radius matches the harmonic's preferred
+  scale $\pi\Reff/(\ell+1)$.
+\end{proof}
+
+\begin{corollary}[Ring $\leftrightarrow$ Arc transition]
+  \label{cor:ringarc}
+  Whether an $\ell$-mode appears as a ring or as an arc on the observed
+  slice depends on the line-of-sight position of the shell centre
+  relative to the slice. This explains the simultaneous observation
+  of the Giant \emph{Arc} and Big/Giant \emph{Rings} in the same
+  redshift shell as projections of different shells with different
+  line-of-sight offsets.
+\end{corollary}
+
+%% =================================================================
+\section{Exact Projected-Chord Law and Asymptotics}
+\label{sec:fibonacci}
+%% =================================================================
+
+\subsection{Exact Projected-Chord Law}
+
+For the phenomenological size comparison, the more natural observable is
+not the geodesic radius itself but the visible chord obtained by
+projecting a shell-like compact mode onto a narrow redshift slice. If
+$d$ denotes the corresponding projected diameter and $\chi$ the central
+geodesic angle on $S^3$, then elementary geometry gives
+\begin{equation}
+  d = 2\Reff \sin\frac{\chi}{2}.
+  \label{eq:chord-basic}
+\end{equation}
+
+\begin{proposition}[Exact projected-chord law]
+  \label{prop:chordlaw}
+  Assume that the characteristic visible diameter associated with a mode
+  label $\ell$ is the chord subtending the central angle
+  \begin{equation}
+    \chi_\ell = \frac{2\pi}{\ell+1}.
+  \end{equation}
+  Then
+  \begin{equation}
+    d_\ell = 2\Reff \sin\!\left(\frac{\pi}{\ell+1}\right).
+    \label{eq:exactlaw}
+  \end{equation}
+\end{proposition}
+
+\begin{proof}
+  Substitute $\chi=2\pi/(\ell+1)$ into Eq.~\eqref{eq:chord-basic}.
+\end{proof}
+
+\begin{remark}[Fibonacci law as an asymptotic corollary]
+  For large $\ell$,
+  \begin{equation}
+    d_\ell
+    = 2\Reff \sin\!\left(\frac{\pi}{\ell+1}\right)
+    = \frac{2\pi\Reff}{\ell+1} + O\!\left((\ell+1)^{-3}\right).
+  \end{equation}
+  Hence the earlier v5 scaling is recovered asymptotically if the
+  visible subsequence satisfies $\ell_n+1\sim F_n$ or another
+  Fibonacci-like coarse-grained hierarchy.
+\end{remark}
+
+\subsection{Spectral Separation: Non-Decay vs Scale Quantization}
+
+Two logically distinct ingredients should be separated:
+\begin{itemize}[noitemsep]
+\item \emph{Compactness $\Rightarrow$ non-decaying global
+  correlations.} This follows from Lemma~\ref{lem:notail} and
+  Theorem~\ref{thm:nodecay} and does not depend on any Fibonacci or
+  mode-selection ansatz.
+\item \emph{Projected chord quantization $\Rightarrow$ preferred visible
+  diameters.} This follows from Proposition~\ref{prop:chordlaw}. Any
+  additional selection of visible mode labels is model-dependent.
+\end{itemize}
+
+\section{Phenomenological Identification}
+\label{sec:identification}
+%% =================================================================
+
+We now offer a phenomenological identification of the observed
+structures with explicit mode labels. This section is explicitly labelled
+\emph{phenomenological} because it involves empirical calibration of
+$\Reff$ and a model-dependent mode assignment, not a first-principles
+prediction.
+
+\subsection{Observed Proper Sizes}
+
+All linear sizes used in the comparison are treated as proper transverse
+sizes at the mean redshift $z=0.802$ of the Mg\,\textsc{ii}-selected
+structures, in the redshift slice $z=0.722$--$0.862$. We use a flat
+\LCDM\ background for the distance conversion,
+\begin{equation}
+  H_0=67\,\mathrm{km\,s^{-1}\,Mpc^{-1}},\quad
+  \Omega_m=0.315,\quad \Omega_\Lambda=0.685 .
+\end{equation}
+For an angular extent $\theta$, the proper transverse size is
+\begin{equation}
+  d_{\rm proper}=\theta\,D_M(z)/(1+z),
+\end{equation}
+where $D_M(z)$ is the transverse comoving distance. Varying $H_0$ within
+the Planck 2018 one-sigma range changes the common distance scale by less
+than one percent, which is smaller than the few-percent residuals in the
+phenomenological fit below.
+
+The observed scales used in the fit are
+\begin{itemize}[noitemsep]
+\item Giant Arc (GA): extent $L_{\mathrm{GA}}=940\,\mathrm{Mpc}$;
+\item Giant Ring (GR): diameter $d_{\mathrm{GR}}=840\,\mathrm{Mpc}$;
+\item Big Ring (BR): diameter $d_{\mathrm{BR}}=400\,\mathrm{Mpc}$;
+\item 2D PSA clustering scale: $\lambda_c=320\,\mathrm{Mpc}$.
+\end{itemize}
+These values are used as a consistent proper-size set for the present
+analysis and should not be interpreted as new measurements of the
+Lopez--Clowes structures.
+
+\subsection{Empirical Mode Assignment and One-Parameter Fit}
+
+We replace the earlier Fibonacci-level fit by the exact projected-chord
+law of Proposition~\ref{prop:chordlaw}. The empirical assignment is
+\begin{equation}
+  (\ell_{\mathrm{GA}},\ell_{\mathrm{GR}},\ell_{\mathrm{BR}},\ell_{\mathrm{PSA}})
+  =(1,2,6,8).
+  \label{eq:ellassign}
+\end{equation}
+This assignment is inferred from the observed nested morphology and fit
+quality; it is not derived from a first-principles selection rule.
+
+Define
+\begin{equation}
+  s_\ell := 2\sin\!\left(\frac{\pi}{\ell+1}\right),
+  \qquad
+  d_\ell^{\mathrm{th}} = s_\ell \Reff .
+\end{equation}
+For observed sizes $d_i^{\mathrm{obs}}$, the ordinary least-squares
+estimator for the single free parameter is
+\begin{equation}
+  \widehat{R}_{\mathrm{eff}}
+  = \frac{\sum_i d_i^{\mathrm{obs}} s_i}{\sum_i s_i^2}.
+  \label{eq:bestfitR}
+\end{equation}
+Using $(d_{\mathrm{GA}},d_{\mathrm{GR}},d_{\mathrm{BR}},d_{\mathrm{PSA}})
+=(940,840,400,320)\,\mathrm{Mpc}$ gives
+\begin{equation}
+  \widehat{R}_{\mathrm{eff}} = 474.511\,\mathrm{Mpc}.
+\end{equation}
+
+\begin{table}[t]
+\centering
+\scriptsize
+\caption{Single-parameter fit of the exact projected-chord law.}
+\label{tab:fitv7}
+\begin{tabular}{lcccc}
+\toprule
+Structure & $\ell$ & $d^{\rm th}$ & $d^{\rm obs}$ & rel. err. \\
+\midrule
+GA & 1 & 949.022 & 940 & 0.960\% \\
+GR & 2 & 821.877 & 840 & 2.157\% \\
+BR & 6 & 411.765 & 400 & 2.941\% \\
+PSA $\lambda_c$ & 8 & 324.585 & 320 & 1.433\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{remark}[Parameter-free ratios]
+The exact law also predicts ratios independent of $\Reff$. The three
+nearest checks are
+\begin{itemize}[leftmargin=*,noitemsep]
+  \item GA/GR: theory $1.1547$; observed $1.1190$.
+  \item GR/BR: theory $1.9960$; observed $2.10$.
+  \item BR/PSA: theory $1.2686$; observed $1.25$.
+\end{itemize}
+They provide a parameter-free consistency check at the few-percent level.
+\end{remark}
+
+\begin{remark}[Selection-rule caveat]
+The fit quality does not by itself derive the visibility of the mode
+labels $(1,2,6,8)$. A first-principles selection rule remains open and
+must be treated as an explicit unresolved problem rather than as an
+established consequence of the model.
+\end{remark}
+
+\subsection{The Giant Arc as an $\ell=1$ Mode}
+
+The $\ell=F_1=F_2=1$ assignment deserves comment. On $\Sthree$ the
+$\ell=1$ harmonic is a dipolar mode with a single great-circle node:
+projected onto a narrow redshift shell, it produces a single
+arc-like extended overdensity, not a closed ring. This is
+structurally consistent with the observed Giant Arc being an
+\emph{arc} rather than a ring~\cite{Lopez2022}. The GR and BR at
+$\ell=2,6$ have multiple nodes and can generically project to closed
+ring-like structures.
+
+
+
+\subsection{Bayesian Model-Comparison Extension}
+\label{subsec:bayes-extension}
+
+The one-parameter least-squares fit of Sec.~\ref{sec:identification}
+provides a phenomenological consistency check, not a completed model
+comparison. A natural next step is to promote the projected-chord law to
+a Bayesian model class $M_{S^3}$ and compare it with flat-space, periodic
+box, BAO-like, CCC-like, and string-like alternatives.
+
+Let
+\begin{equation}
+  \mathbf d_{\rm obs}=(L_{\rm GA},d_{\rm GR},d_{\rm BR},\lambda_c)
+\end{equation}
+be the vector of observed proper sizes. For a model $M$ with parameters
+$\theta$, the Gaussian likelihood is
+\begin{equation}
+\mathcal L(\mathbf d_{\rm obs}|\theta,M)=
+\frac{1}{\sqrt{(2\pi)^N|\mathbf C|}}
+\exp\!\left[-\frac12\Delta\mathbf d^{T}\mathbf C^{-1}\Delta\mathbf d\right],
+\label{eq:likelihood}
+\end{equation}
+where $\Delta\mathbf d=\mathbf d_{\rm obs}-\mathbf d_{\rm th}(\theta)$.
+For the compact-$S^3$ projected-chord model,
+\begin{equation}
+  d_{\ell}^{\rm th}=2\Reff\sin\!\left(\frac{\pi}{\ell+1}\right),
+  \label{eq:chord-bayes}
+\end{equation}
+with parameters including $\Reff$, the visible mode labels, and nuisance
+parameters describing projection and redshift-slice effects. If angular
+positions and survey masks are supplied, a topology-informed covariance
+may be built from the zonal two-point function,
+\begin{equation}
+  C_{ij}=\sum_{\ell}P_\ell\,\Xi_\ell(\Theta_{ij})\,W_iW_j
+  +\sigma_{\rm noise}^2\delta_{ij},
+  \label{eq:covariance}
+\end{equation}
+where $\Theta_{ij}$ is the angular separation of the pair, $W_i$ denotes
+window and selection effects, and $\sigma_{\rm noise}$ includes
+measurement and cosmic-variance terms.
+
+Reasonable priors are uniform in $\log\Reff$ over a broad range, e.g.
+$10$--$1000\,\mathrm{Mpc}$, and log-uniform for positive low-$\ell$
+amplitudes $P_\ell$, optionally regularized by a decaying smoothness
+prior. The Bayesian evidence is
+\begin{equation}
+  Z_M=\int \mathcal L(\mathbf d_{\rm obs}|\theta,M)\,
+       \pi(\theta|M)\,d\theta,
+  \label{eq:evidence}
+\end{equation}
+and model comparison proceeds through Bayes factors $B_{ij}=Z_i/Z_j$.
+The usual Jeffreys-scale convention treats $\ln B\gtrsim5$ as strong or
+decisive support, subject to the adopted priors and likelihood
+construction~\cite{Trotta2008,Vardanyan2009}.
+
+\subsubsection{Thermodynamic integration}
+
+One robust numerical route to Eq.~\eqref{eq:evidence} is thermodynamic
+integration. Introduce an inverse-temperature parameter $\beta\in[0,1]$
+and define the power posterior
+\begin{equation}
+  p_\beta(\theta)\propto
+  \mathcal L(\mathbf d_{\rm obs}|\theta,M)^\beta\,\pi(\theta|M).
+  \label{eq:powerpost}
+\end{equation}
+Then
+\begin{equation}
+  \log Z_M = \int_0^1
+  \left\langle \log\mathcal L(\mathbf d_{\rm obs}|\theta,M)\right\rangle_\beta
+  d\beta,
+  \label{eq:TI}
+\end{equation}
+where the expectation value is taken under $p_\beta(\theta)$. In
+practice one samples a grid of $\beta_k$ values with MCMC or nested
+sampling and performs numerical quadrature over
+$\langle\log\mathcal L\rangle_{\beta_k}$. This is the same evidence logic
+used in modern cosmological model comparison and in nested-sampling
+codes such as PolyChord~\cite{Trotta2008,Handley2015}.
+
+We do not quote a Bayes factor in this paper. The published uLSS size
+measurements do not yet provide the joint covariance matrix required for
+Eq.~\eqref{eq:likelihood}. Any numerical evidence based on assumed
+diagonal errors would therefore be an illustration, not an empirical
+result. The purpose of Eqs.~\eqref{eq:likelihood}--\eqref{eq:TI} is to
+make the future test explicit: once joint uncertainties, angular
+positions, window functions, and absorber selection effects are supplied,
+the projected-chord framework becomes a closed statistical model that can
+be compared directly with alternatives.
+
+Recent COMPACT Collaboration work provides a methodological precedent
+for topology-dependent eigenmode, covariance, and detectability analyses
+in cosmic topology. Those templates are not identical to the full
+simply-connected $S^3$ shell model studied here, but they demonstrate the
+same kind of covariance-based programme required for a decisive test
+\cite{COMPACT2024PRL,COMPACT2024IIa}.
+
+\subsection{Additional Projected-Diameter Predictions}
+\label{subsec:additional-predictions}
+
+If the empirical mode assignment in Eq.~\eqref{eq:ellassign} reflects a
+physical visibility rule rather than an accidental fit, additional
+coherent features in the same redshift shell should preferentially occur
+near the projected diameters predicted by
+Eq.~\eqref{eq:exactlaw}. Using $\Reff=474.511\,\mathrm{Mpc}$ gives the
+values in Table~\ref{tab:predictions}. These numbers are not new
+observational claims; they are falsifiable targets for deeper DESI,
+Euclid, or future Mg\,\textsc{ii} absorber analyses of the same field.
+
+\begin{table}[t]
+\centering
+\scriptsize
+\caption{Projected diameters predicted by the exact chord law for
+additional visible modes, using $\Reff=474.511\,\mathrm{Mpc}$.}
+\label{tab:predictions}
+\begin{tabular}{ccc}
+\toprule
+Mode $\ell$ & $d_\ell$ [Mpc] & Interpretation \\
+\midrule
+3  & 671.060 & intermediate shell \\
+4  & 557.821 & intermediate shell \\
+5  & 474.511 & shell-scale feature \\
+7  & 363.175 & below BR scale \\
+9  & 293.264 & below PSA scale \\
+10 & 267.370 & smaller shell \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The amplitudes of such features cannot be predicted from the present
+size-only fit. A future analysis would need to infer a low-$\ell$ power
+spectrum $\{P_\ell\}$ from the two-point function
+\begin{equation}
+  C(\Theta)=\sum_{\ell\ge 0}P_\ell\Xi_\ell(\Theta),
+\end{equation}
+combined with a survey window function, noise model, and selection
+function. Machine-learning topology classifiers and compactified
+simulation methods provide useful methodological precedents, but current
+published examples mainly concern toroidal/Euclidean topology or
+compactified infinite-space simulations rather than direct nonlinear
+structure formation on full $S^3$~\cite{Tamosiunas2024,Racz2018}.
+
+%% =================================================================
+\section{Comparison with \LCDM\ and Boundary-Condition Diagnosis}
+\label{sec:comparison}
+%% =================================================================
+
+\subsection{\LCDM\ Tension Under Finite-Correlation-Length Assumption}
+
+\begin{remark}[Heuristic tension with a finite-correlation-length flat-space picture]
+  \label{prop:tension}
+  In a spatially flat framework with an effective finite correlation
+  length $\xi_0\approx 5$--$10\,\mathrm{Mpc}$, constructing coherent
+  ring-like structures of size $\sim 1\,\mathrm{Gpc}$ is generically
+  nontrivial and typically strongly suppressed. The precise degree of
+  suppression depends on the adopted morphology statistic and on the
+  underlying field model.
+\end{remark}
+\paragraph{Heuristic basis.}
+  In Gaussian models with power spectrum $P(k)$, coherent structures of
+  physical extent $L$ are increasingly disfavoured once
+  $L\gg \xi_{\mathrm{corr}}(P)$. For $L\sim 1\,\mathrm{Gpc}$ and an
+  effective late-time correlation scale of order a few to ten
+  megaparsecs, the relevant tail behaviour is expected to be strongly
+  suppressed. The exact numerical penalty is statistic-dependent, which
+  is why we avoid attaching a universal probability estimate here.
+
+\begin{remark}
+  We deliberately avoid quoting a specific numerical upper bound here,
+  as such a bound requires a specific statistical model of the observed
+  uLSS morphology. The qualitative point is that any finite-correlation-length
+  assumption generates exponential suppression, which
+  Lemma~\ref{lem:notail} shows is inconsistent with compact geometry.
+\end{remark}
+
+\subsection{Boundary-Condition Diagnosis of FLAMINGO}
+
+\begin{remark}[Boundary-condition interpretation of FLAMINGO]
+  \label{prop:flamingo}
+  FLAMINGO-10K~\cite{Sawala2025} and similar large-box cosmological
+  simulations use periodic boundary conditions on a cubic box of side
+  $L_{\mathrm{box}}\sim$Gpc. Such boundary conditions implement
+  a flat torus topology $T^3$, not $\Sthree$. The torus has
+  $\pi_1(T^3)=\mathbb{Z}^3$ (violating condition M2), and the
+  lowest modes on $T^3$ have wavelength $L_{\mathrm{box}}/n$ for
+  integer $n$ with no $SO(4)$-symmetric structure.
+
+  The observation that FLAMINGO fields are consistent with random
+  expectations under the 2D PSA of~\cite{Lopez2026} can therefore be
+  interpreted as a test of the $T^3$ mode basis used in those
+  simulations, not necessarily of all compact topologies. In
+  particular, it does not directly test the $\Sthree$ mode basis used
+  here.
+\end{remark}
+\paragraph{Justification.}
+  Periodic boundary conditions on $[0,L_{\mathrm{box}}]^3$ identify
+  opposite faces and produce $T^3\cong\mathbb{R}^3/\mathbb{Z}^3$.
+  The Laplacian on $T^3$ has eigenvalues
+  $\lambda_{\mathbf{n}} = (2\pi)^2|\mathbf{n}|^2/L_{\mathrm{box}}^2$
+  for $\mathbf{n}\in\mathbb{Z}^3$. These eigenfunctions are
+  $\exp(2\pi i\mathbf{n}\cdot\mathbf{x}/L_{\mathrm{box}})$, with no
+  analogue of globally-supported low-$\ell$ $\Sthree$ harmonics in the
+  isotropic $SO(4)$ sense. The Lopez--Clowes 2D PSA on FLAMINGO fields
+  tests this mode basis, which excludes the $\Sthree$ modes.
+
+\begin{remark}[What this means]
+  Remark~\ref{prop:flamingo} is an interpretive point about boundary
+  conditions: within the present framework, the FLAMINGO result is most
+  naturally read as a constraint on the $T^3$ class of simulations
+  rather than on the $\Sthree$ mode basis considered here. We are
+  therefore offering a topology-explicit interpretation, not an
+  empirical claim established by the simulation paper itself.
+\end{remark}
+
+\begin{table*}[t]
+\centering
+\small
+\caption{Comparison of $\mathbb{R}^3$, $T^3$ (periodic torus, used in simulations), and compact $\Sthree$ as spatial topologies.}
+\label{tab:comparison}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lccc}
+\toprule
+Property & \LCDM/$\mathbb{R}^3$ & Simulation $T^3$ & Compact $\Sthree$ \\
+\midrule
+Laplacian spectrum & Continuous & Discrete box modes & Discrete $\ell(\ell+2)/\Reff^2$ \\
+Isotropy group & Full $SO(3)$ & Broken to box symmetries & $SO(4)\cong SU(2)_L\times SU(2)_R$ \\
+Low-$\ell$ global modes & None ($L^2$) & None ($SO(4)$-incompatible) & $Y_\ell^{mm'}$ for all $\ell$ \\
+Fundamental group $\pi_1$ & 0 & $\mathbb{Z}^3$ & 0 \\
+Correlations at $\sim$Gpc & Exponentially suppressed & Box-dependent & Non-decaying (Theorem~\ref{thm:nodecay}) \\
+Ring-like uLSS & Exponentially suppressed & Not generated in the same mode basis & Structural possibility in the compact-mode picture \\
+$\vp$-scale hierarchy & No & No & Emerges only asymptotically from the exact law \\
+\bottomrule
+\end{tabular}%
+}
+\end{table*}
+
+\subsection{Limited Observational Consequences}
+
+Under the compact-$\Sthree$ projected-shell hypothesis, the most direct
+consequences are the following:
+
+\begin{enumerate}[label=(\arabic*),noitemsep]
+\item \textbf{Scale-ratio test.} If additional uLSS features are identified at nearby visible mode labels, their size ratios should follow Eq.~\eqref{eq:exactlaw}; only at large mode number is an approximate $\vp$-hierarchy expected.
+
+\item \textbf{Same-field continuation.} Deeper surveys of the same
+  redshift shell may reveal further ring- or arc-like structure at
+  smaller radii within the same field.
+
+\item \textbf{Boundary-condition discrimination.} Simulations using
+  $T^3$ or $\mathbb{R}^3$ boundary conditions are not expected to probe
+  the same compact-mode basis and may therefore underproduce analogous
+  systems.
+\end{enumerate}
+
+\subsection{Application to DESI Data}
+\label{subsec:desi}
+
+The Dark Energy Spectroscopic Instrument (DESI) provides a natural
+next-generation test bed for the compact-$S^3$ projected-shell
+hypothesis. The DESI Early Data Release includes a public Mg\,\textsc{ii}
+absorber value-added catalog with $23{,}921$ absorber entries, and the
+DESI DR1 Mg\,\textsc{ii} catalog lists $270{,}529$ absorber entries
+\cite{DESIMgIIEDR,DESIMgIIDR1}. The DESI Mg\,\textsc{ii} pipeline was
+developed and validated on DESI quasar spectra by Napolitano et al., who
+also estimated that the completed five-year survey should contain more
+than $8\times10^5$ Mg\,\textsc{ii} absorbers\cite{Napolitano2023}.
+
+For the Lopez--Clowes field, or for equivalent redshift slices selected
+from DESI, these data would enable four concrete tests:
+\begin{enumerate}[label=(\roman*),noitemsep]
+\item a search for same-field structures near the predicted diameters in
+  Table~\ref{tab:predictions};
+\item construction of a data-driven covariance matrix for
+  Eq.~\eqref{eq:covariance}, including survey window and absorber
+  selection effects;
+\item a Bayesian evidence calculation using Eq.~\eqref{eq:TI}, comparing
+  the compact-$S^3$ projected-chord model against flat, periodic-box,
+  BAO-like, CCC-like, and string-like templates;
+\item a three-dimensional check of whether apparent rings remain
+  coherent shell-like structures when DESI redshifts are used rather
+  than only projected angular morphology.
+\end{enumerate}
+If additional coherent features cluster near the predicted scales, this
+would strengthen the compact-shell interpretation. Conversely, a null
+same-field search together with a Bayes factor disfavoring
+$M_{S^3}$ would rule out the present empirical mode assignment at high
+confidence. DESI therefore turns the present consistency analysis into a
+well-defined falsification programme, but not yet into an established
+Bayesian detection.
+
+
+
+%% =================================================================
+\section{Foundational Consistency Requirements}
+\label{sec:foundations}
+%% =================================================================
+
+This section records the minimal foundational commitments of the
+framework. Its purpose is not to enlarge the observational claim, but to
+make explicit which topology, causal structure, entropy principle,
+nonlocality statement, and Noether conservation law are being assumed.
+
+\subsection{Topology and Embedding}
+
+The spatial section used in the model is the compact, connected,
+orientable, boundaryless, simply connected three-manifold
+\begin{equation}
+  \Sigma \simeq S^3(\Rcosm) = \{X\in\mathbb R^4: |X|=\Rcosm\}.
+\end{equation}
+The local effective scale \(\Reff\) used in the projected-shell fit is a
+spectral coherence scale in a redshift shell, not the global curvature
+radius \(\Rcosm\). The topological status of the spaces relevant to the
+construction is summarized as follows:
+\begin{table}[t]
+\centering
+\caption{Topological roles of the basic model spaces.}
+\label{tab:topology-foundations}
+\begin{ruledtabular}
+\begin{tabular}{lcccc}
+Space & dim. & compact & connected & $\pi_1$ \\
+\hline
+$S^1$ & 1 & yes & yes & $\mathbb Z$ \\
+$S^2$ & 2 & yes & yes & $0$ \\
+$S^3\subset\mathbb R^4$ & 3 & yes & yes & $0$ \\
+$\mathbb R^3$ & 3 & no & yes & $0$ \\
+\end{tabular}
+\end{ruledtabular}
+\end{table}
+Thus \(S^1\) is compact but not simply connected, \(S^2\) is simply
+connected but has the wrong spatial dimension, and \(\mathbb R^3\) has
+the correct local dimension but is non-compact and lacks a discrete
+global Laplacian spectrum. The model therefore uses \(S^3\) as the
+minimal compact simply connected spatial topology; \(\mathbb R^3\)
+appears only as the local tangent-space or large-radius approximation.
+
+\subsection{Light Cone and the Value of the Speed of Light}
+
+The spacetime manifold is taken to be
+\begin{equation}
+  M=\mathbb R\times S^3,
+\end{equation}
+with Lorentzian metric, in the homogeneous limit,
+\begin{equation}
+  ds^2=-c^2dt^2+a^2(t)\Rcosm^2 d\Omega_3^2 .
+\end{equation}
+Massless propagation is determined by the null cone \(ds^2=0\). Locally,
+where the tangent space is Minkowskian, this gives
+\begin{equation}
+  \left|\frac{d\mathbf x}{dt}\right| = c .
+\end{equation}
+Equivalently, the Maxwell action
+\begin{equation}
+  S_{\rm em}=-\frac14\int_M d^4x\sqrt{-g}\,F_{\mu\nu}F^{\mu\nu}
+\end{equation}
+has principal symbol \(g^{\mu\nu}k_\mu k_\nu=0\); its characteristics are
+therefore the metric null cones. In this sense the theory fixes the
+\emph{origin} of the universal light speed: it is the invariant causal
+conversion constant of the local Lorentzian tangent spaces and the
+common characteristic speed of all minimally coupled massless fields.
+The numerical SI value,
+\begin{equation}
+  c=299792458\;{\rm m\,s^{-1}},
+\end{equation}
+is not a new dimensionless prediction of topology; it is the exact
+conversion factor fixed by the definitions of the metre and the second.
+In natural units used above, this statement is simply \(c=1\).
+
+\subsection{Entropy and the Arrow of Time}
+
+The compact topology does not by itself create an arrow of time. The
+microscopic dynamics is assumed to be Hamiltonian or unitary; hence the
+fine-grained Gibbs/von-Neumann entropy is conserved,
+\begin{equation}
+  S_{\rm fine}=-k_B{\rm Tr}\,\rho\ln\rho,\qquad
+  \frac{dS_{\rm fine}}{dt}=0 .
+\end{equation}
+The observed thermodynamic arrow arises from a low-entropy boundary
+condition together with coarse graining. If \({\cal C}\) denotes a
+coarse-graining map, then
+\begin{equation}
+  S_{\rm cg}=-k_B{\rm Tr}\,[{\cal C}\rho\ln({\cal C}\rho)]
+\end{equation}
+can increase under the effective irreversible evolution generated by
+tracing over inaccessible microscopic correlations. The model therefore
+separates two statements: compact \(S^3\) supplies a finite global mode
+basis, while the time arrow is a condition on the state and the
+coarse-graining, not on topology alone. For cosmological applications
+this is the usual Past-Hypothesis statement: the early slice occupies an
+exceptionally small macro-volume in phase space, and later macrostates
+occupy larger volumes.
+
+\subsection{Bell Nonlocality and No-Signalling}
+
+Bell nonlocality is included at the level of the quantum state, not as a
+superluminal signal on \(S^3\). For two spacelike separated subsystems
+with Hilbert space \({\cal H}_A\otimes{\cal H}_B\), an entangled singlet
+state gives
+\begin{equation}
+  E(\mathbf a,\mathbf b)=-\mathbf a\cdot\mathbf b .
+\end{equation}
+For suitable settings this yields the CHSH value
+\begin{equation}
+  |S_{\rm CHSH}|=2\sqrt2>2,
+\end{equation}
+violating the local-hidden-variable bound. At the same time the reduced
+state at either wing is independent of the measurement basis chosen at
+the other wing, so operational signalling remains excluded. In the
+present compact-mode language, Bell correlations are global quantum
+state correlations on a common boundaryless slice; they are not mediated
+by a signal travelling faster than the null cone fixed above.
+
+\subsection{Noether Symmetry and Conservation Law}
+
+The action is assumed to be invariant under diffeomorphisms of
+\(M=\mathbb R\times S^3\) and, for electromagnetism, under local
+\(U(1)\) gauge transformations. Variation with respect to the metric
+therefore gives the covariant conservation law
+\begin{equation}
+  \nabla_\mu T^{\mu\nu}=0 .
+\end{equation}
+In covariant phase-space notation, for a vector field \(\xi\),
+\begin{equation}
+  J_\xi=\Theta(\phi,{\cal L}_\xi\phi)-\xi\cdot L,
+  \qquad dJ_\xi\simeq 0,
+\end{equation}
+so that on shell
+\begin{equation}
+  J_\xi\simeq dQ_\xi .
+\end{equation}
+The Hamiltonian generator satisfies
+\begin{equation}
+  \delta H_\xi=\int_{\partial\Sigma}
+  \left(\delta Q_\xi-\xi\cdot\Theta\right).
+\end{equation}
+Since \(\Sigma\simeq S^3\) is boundaryless, \(\partial\Sigma=\varnothing\),
+and pure-gauge diffeomorphism charges vanish globally:
+\begin{equation}
+  H_\xi[\Sigma]=0\qquad (\xi\;{\rm gauge}) .
+\end{equation}
+This is the Noether consistency condition for a closed universe. Local
+or quasi-local charges can still be defined on finite subregions with an
+artificial boundary, but the total gauge generator on the full compact
+slice vanishes, as required by Noether's second theorem.
+
+
+%% =================================================================
+\section{Discussion}
+\label{sec:discussion}
+%% =================================================================
+
+\subsection{Two-Scale Structure: $\Reff$ vs Global Curvature}
+
+The inferred $\Reff\approx 475\,\mathrm{Mpc}$ at $z=0.8$ is \emph{not}
+the global curvature radius of the Universe: the Planck constraint
+$|\Omega_k|<5\times 10^{-3}$~\cite{Planck2016} sets
+$\Rcosm^{\mathrm{global}}>10\,\mathrm{Gpc}$. The two-scale structure
+is as follows:
+
+\begin{itemize}[noitemsep]
+\item \emph{Global topological radius} $\Rcosm^{\mathrm{global}}$:
+  the actual curvature radius of the cosmological 3-sphere, constrained
+  by Planck to $>10\,\mathrm{Gpc}$, governing the CMB power at low $\ell$.
+\item \emph{Effective shell curvature scale} $\Reff$: the local
+  spectral scale operative within a narrow redshift shell, inferred
+  from ring matching to be $474.511\,\mathrm{Mpc}$ at $z=0.8$.
+\end{itemize}
+
+The $\Reff$ scale may arise from non-linear collapse and mode-selection
+dynamics within the redshift shell, i.e. as a dynamically selected
+coherence scale. A detailed derivation would require numerical
+simulations on $\Sthree$ (see Open Problems below).
+
+\subsection{Relation to Conformal Cyclic Cosmology}
+
+Penrose's Conformal Cyclic Cosmology (CCC)~\cite{Penrose2014} offers an
+alternative mechanism for ring-like features: imprints from
+past-aeon black-hole collisions. The compact-$\Sthree$ projected-shell framework is
+complementary. Both frameworks predict ring-like structures;
+they differ in the predicted correlation between ring positions and
+CMB anomalies. CCC predicts correlation with Penrose
+circles~\cite{Gurzadyan2013}; our framework predicts enhanced power at
+compact projected-shell modes. Future data can distinguish the two.
+
+\subsection{Open Problems}
+
+\begin{enumerate}[label=(\arabic*),noitemsep]
+\item \textit{Bayesian evidence}: Construct a covariance matrix for
+  $(L_{\mathrm{GA}},d_{\mathrm{GR}},d_{\mathrm{BR}},\lambda_c)$ and compute
+  the evidence of the compact-$S^3$ projected-chord model relative to
+  flat $\mathbb R^3$, periodic $T^3$, BAO-like, CCC-like, and string-like
+  templates.
+\item \textit{$N$-body simulations on $\Sthree$}: Numerical structure
+  formation on $\Sthree$ with the appropriate boundary conditions
+  (not periodic torus) has not been performed. StePS-like compactified
+  simulations are a useful precedent, but they are not yet a direct
+  nonlinear $S^3$ calculation.
+\item \textit{Origin of the $\Reff$ scale}: Why does structure
+  formation at $z\approx 0.8$ select $\Reff\approx 475\,\mathrm{Mpc}$?
+\item \textit{Mode-selection rule}: The observed set $(1,2,6,8)$ must be
+  derived from dynamics, a survey-window selection rule, or a prior on
+  the low-$\ell$ power spectrum before the model becomes predictive in a
+  first-principles sense.
+\item \textit{Same-field prediction test}: Deeper surveys should search
+  the same redshift shell for coherent features near the additional
+  projected diameters listed in Table~\ref{tab:predictions}.
+\item \textit{Interaction with CMB}: Do the same compact shell modes
+  generate detectable signatures in the CMB covariance or low-$\ell$
+  power spectrum at an observable level?
+\end{enumerate}
+
+%% =================================================================
+\section{Conclusions}
+\label{sec:conclusions}
+%% =================================================================
+
+This paper develops a compact-$S^3$ consistency analysis for the
+Lopez--Clowes ring-like field near $z\approx 0.8$. The robust analytic
+core is independent of any specific mode assignment: compactness gives a
+discrete global mode basis, forbids a pure exponential-tail intuition
+for globally supported correlations, and naturally allows shell-like
+structures whose narrow-slice projections appear as rings or arcs.
+
+For the phenomenological size analysis, we use the exact
+projected-chord law
+\begin{equation}
+  d_\ell = 2\Reff \sin\!\left(\frac{\pi}{\ell+1}\right).
+\end{equation}
+Earlier Fibonacci scaling appears only as an asymptotic large-$\ell$
+limit. With the empirical mode assignment $(1,2,6,8)$ and the best-fit
+shell scale $\Reff=474.511\,\mathrm{Mpc}$, the model reproduces the
+four observed scales at the percent level.
+
+The paper does not claim that compact topology has been observationally
+established, nor that the mode assignment has been derived from first
+principles. The narrower claim is that a compact-$S^3$ projected-shell
+framework now admits an exact geometric size law and provides a sharply
+testable alternative to flat-space intuition for this field. The Bayesian
+and same-field tests described above turn this consistency analysis into
+a falsifiable programme rather than a completed detection claim.
+
+\begin{acknowledgments}
+The manuscript is based on analytical derivations and on comparison
+with observational results already available in the cited literature.
+\end{acknowledgments}
+
+\section*{Author contributions}
+A.P. and B.B. jointly developed the conceptual framework, analytical
+arguments, manuscript structure, and interpretation. Both authors
+reviewed and approved the submitted version.
+
+\section*{Data availability}
+No new observational or simulation datasets were generated in this
+study. All data discussed are drawn from published literature and public
+preprint sources cited in the reference list.
+
+
+\appendix
+\section{Reproducibility Skeleton for the Projected-Chord Fit}
+\label{app:fit-skeleton}
+
+The fit in Table~\ref{tab:fitv7} is reproducible from the following
+minimal computation:
+\begin{equation}
+  s_i=2\sin\!\left(\frac{\pi}{\ell_i+1}\right),\qquad
+  \widehat R_{\rm eff}=\frac{\sum_i d_i^{\rm obs}s_i}{\sum_i s_i^2},
+\end{equation}
+with
+\begin{equation}
+  (\ell_i)=(1,2,6,8),\qquad
+  (d_i^{\rm obs})=(940,840,400,320)\,\mathrm{Mpc}.
+\end{equation}
+This gives $\widehat R_{\rm eff}=474.511\,\mathrm{Mpc}$. A Bayesian
+extension replaces the ordinary least-squares objective by
+Eq.~\eqref{eq:likelihood}; no Bayes factor is quoted here because
+that requires an observational covariance matrix not yet available from
+the published uLSS size estimates.
+
+%% =================================================================
+\begin{thebibliography}{99}
+
+\bibitem{Lopez2022}
+A.~M.~Lopez, R.~G.~Clowes, and G.~M.~Williger,
+A Giant Arc on the sky,
+Mon.\ Not.\ Roy.\ Astron.\ Soc.\ \textbf{516}, 1557 (2022),
+arXiv:2201.06875.
+
+\bibitem{Lopez2024}
+A.~M.~Lopez, R.~G.~Clowes, and G.~M.~Williger,
+A Big Ring on the sky,
+JCAP \textbf{07}, 055 (2024), arXiv:2402.07591.
+
+\bibitem{Lopez2026}
+A.~M.~Lopez and R.~G.~Clowes,
+A Giant Ring on the sky,
+arXiv:2604.17534 (2026).
+
+\bibitem{Yadav2010}
+J.~K.~Yadav, J.~S.~Bagla, and N.~Khandai,
+Fractal dimension as a measure of the scale of homogeneity,
+Mon.\ Not.\ Roy.\ Astron.\ Soc.\ \textbf{405}, 2009 (2010).
+
+\bibitem{Sawala2025}
+T.~Sawala et~al.,
+The emperor's new arc: gigaparsec patterns abound in a \LCDM\ universe,
+Mon.\ Not.\ Roy.\ Astron.\ Soc.\ \textbf{541}, 1 (2025),
+arXiv:2502.03515.
+
+\bibitem{Perelman2002}
+G.~Perelman,
+The Entropy Formula for the Ricci Flow,
+arXiv:math/0211159 (2002).
+
+\bibitem{Perelman2003a}
+G.~Perelman,
+Ricci Flow with Surgery on Three-Manifolds,
+arXiv:math/0303109 (2003).
+
+\bibitem{Perelman2003b}
+G.~Perelman,
+Finite Extinction Time for the Solutions to the Ricci Flow,
+arXiv:math/0307245 (2003).
+
+\bibitem{Planck2016}
+Planck Collaboration,
+Planck 2015 results.\ XVIII.\ Background geometry and topology,
+Astron.\ Astrophys.\ \textbf{594}, A18 (2016).
+
+\bibitem{Camporesi1994}
+R.~Camporesi and A.~Higuchi,
+Spectral functions and zeta functions in hyperbolic spaces,
+J.\ Math.\ Phys.\ \textbf{35}, 4217 (1994).
+
+\bibitem{Berger1971}
+M.~Berger, P.~Gauduchon, and E.~Mazet,
+\textit{Le spectre d'une vari\'et\'e riemannienne},
+Springer Lecture Notes Math.\ \textbf{194} (1971).
+
+\bibitem{Zeckendorf1972}
+E.~Zeckendorf,
+Repr\'esentation des nombres naturels par une somme de nombres de Fibonacci,
+Bull.\ Soc.\ R.\ Sci.\ Li\`ege \textbf{41}, 179 (1972).
+
+\bibitem{Penrose2014}
+R.~Penrose,
+On the gravitization of quantum mechanics 2: Conformal Cyclic Cosmology,
+Found.\ Phys.\ \textbf{44}, 873 (2014).
+
+\bibitem{Gurzadyan2013}
+V.~G.~Gurzadyan and R.~Penrose,
+On CCC-predicted concentric low-variance circles in the CMB sky,
+Eur.\ Phys.\ J.\ Plus \textbf{128}, 2 (2013), arXiv:1302.5162.
+
+\bibitem{CMBS4}
+CMB-S4 Collaboration, CMB-S4 Science Book, arXiv:1610.02743 (2016).
+
+\bibitem{LiteBIRD}
+LiteBIRD Collaboration,
+Probing Cosmic Inflation with the LiteBIRD CMB Polarization Survey,
+PTEP \textbf{2023}, 042F01 (2023).
+
+\bibitem{Peebles2022}
+P.~J.~E.~Peebles,
+Anomalies in physical cosmology,
+Ann.\ Phys.\ \textbf{447} (2022), arXiv:2208.05018.
+
+
+\bibitem{Trotta2008}
+R.~Trotta,
+Bayes in the sky: Bayesian inference and model selection in cosmology,
+Contemp. Phys. \textbf{49}, 71 (2008), arXiv:0803.4089.
+
+\bibitem{Vardanyan2009}
+M.~Vardanyan, R.~Trotta, and J.~Silk,
+How flat can you get? A model comparison perspective on the curvature of the Universe,
+Mon. Not. Roy. Astron. Soc. \textbf{397}, 431 (2009), arXiv:0901.3354.
+
+
+
+\bibitem{Handley2015}
+W.~J.~Handley, M.~P.~Hobson, and A.~N.~Lasenby,
+PolyChord: nested sampling for cosmology,
+Mon. Not. Roy. Astron. Soc. \textbf{450}, L61 (2015),
+arXiv:1502.01856.
+
+\bibitem{Napolitano2023}
+L.~Napolitano et~al.,
+Detecting and characterizing Mg~II absorption in DESI survey-validation quasar spectra,
+Astron. J. \textbf{166}, 99 (2023).
+
+\bibitem{DESIMgIIEDR}
+DESI Collaboration,
+Mg~II Absorber Catalog, DESI Early Data Release value-added catalog, version 1.0.
+
+\bibitem{DESIMgIIDR1}
+DESI Collaboration,
+Mg~II Absorber Catalog, DESI DR1 value-added catalog, version 1.0.
+\bibitem{COMPACT2024PRL}
+Y.~Akrami et~al. (COMPACT Collaboration),
+Promise of future searches for cosmic topology,
+Phys. Rev. Lett. \textbf{132}, 171501 (2024).
+
+\bibitem{COMPACT2024IIa}
+C.~J.~Copi et~al. (COMPACT Collaboration),
+Cosmic topology. Part IIa. Eigenmodes, correlation matrices, and detectability of orientable Euclidean manifolds,
+JCAP \textbf{03}, 036 (2024).
+
+\bibitem{Racz2018}
+G.~Racz, I.~Szapudi, I.~Csabai, and L.~Dobos,
+Compactified cosmological simulations of the infinite universe,
+Mon. Not. Roy. Astron. Soc. \textbf{477}, 1949 (2018), arXiv:1711.04959.
+
+\bibitem{Tamosiunas2024}
+A.~Tamosiunas et~al. (COMPACT Collaboration),
+Cosmic topology. Part IVa. Classification of manifolds using machine learning: a case study with small toroidal universes,
+JCAP \textbf{09}, 057 (2024), arXiv:2404.01236.
+
+
+\bibitem{Bell1964}
+J.~S. Bell,
+On the Einstein Podolsky Rosen paradox,
+Physics \textbf{1}, 195 (1964).
+
+\bibitem{Clauser1969}
+J.~F. Clauser, M.~A. Horne, A.~Shimony, and R.~A. Holt,
+Proposed experiment to test local hidden-variable theories,
+Phys. Rev. Lett. \textbf{23}, 880 (1969).
+
+\bibitem{Noether1918}
+E.~Noether,
+Invariante Variationsprobleme,
+Nachr. Ges. Wiss. Goettingen, Math.-Phys. Kl. 1918, 235 (1918).
+
+\bibitem{IyerWald1994}
+V.~Iyer and R.~M. Wald,
+Some properties of Noether charge and a proposal for dynamical black hole entropy,
+Phys. Rev. D \textbf{50}, 846 (1994).
+
+\bibitem{Wald1984}
+R.~M. Wald,
+\textit{General Relativity}
+(University of Chicago Press, Chicago, 1984).
+
+\end{thebibliography}
+
+\end{document}

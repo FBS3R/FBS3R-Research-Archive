@@ -1,0 +1,1104 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{xcolor}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{geometry}
+\geometry{margin=2.4cm}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{enumitem}
+\usepackage{tikz-cd}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!60!black,
+  citecolor=blue!60!black,
+  urlcolor=blue!60!black
+}
+
+% theorem environments
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{ansatz}[theorem]{Phenomenological Ansatz}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{axiom}{Axiom}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+% shortcuts
+\newcommand{\Sn}[1]{S^{#1}}
+\newcommand{\Szero}{S^{0}}
+\newcommand{\Sone}{S^{1}}
+\newcommand{\Stwo}{S^{2}}
+\newcommand{\Sthree}{S^{3}}
+\newcommand{\Sfour}{S^{4}}
+\newcommand{\Sfive}{S^{5}}
+\newcommand{\Sseven}{S^{7}}
+\newcommand{\CP}{\mathbb{C}P}
+\newcommand{\HP}{\mathbb{H}P}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Hbb}{\mathbb{H}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\SU}{\mathrm{SU}}
+\newcommand{\SO}{\mathrm{SO}}
+\newcommand{\U}{\mathrm{U}}
+\newcommand{\Spin}{\mathrm{Spin}}
+\newcommand{\Vol}{\mathrm{Vol}}
+\newcommand{\Id}{\mathrm{id}}
+\newcommand{\golden}{\varphi}
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\coker}{\mathrm{coker}}
+\newcommand{\rank}{\mathrm{rank}}
+
+\title{\bfseries Suspension of Spheres and the Minimal Role of \texorpdfstring{$\Sthree$}{S3}\\
+in Spin, Hopf Geometry, and Irreversible Hierarchy}
+
+\author{%
+\texorpdfstring{$^{1}$}{1}Andrei Preece\thanks{\texttt{andre.preece@web.de}; ORCID: 0009-0004-5978-795X}
+\quad and \quad
+\texorpdfstring{$^{1}$}{1}Boris Batenin\thanks{\texttt{batenin@web.de}; ORCID: 0009-0000-7027-8583}\\[0.35em]
+\small \texorpdfstring{$^{1}$}{1}Independent Researchers
+}
+
+\date{Berlin, 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We reconstruct the suspension-chain argument
+\[
+\Szero \longrightarrow \Sone \longrightarrow \Stwo \longrightarrow \Sthree \longrightarrow \Sfour
+\]
+as a mathematical-core paper in topology, spin geometry, Hopf geometry, and scale hierarchy.
+The claim is deliberately narrower than a complete cosmology.  The result is not that topology
+alone derives matter content, amplitudes, or a final theory of physics.  The result is that
+$\Sthree$ occupies a distinguished minimal position in the suspension ladder: it is the first
+sphere which is simultaneously compact, simply connected, parallelizable, a non-Abelian Lie
+group, the total space of the nontrivial Hopf fibration
+\[
+\Sone \hookrightarrow \Sthree \twoheadrightarrow \Stwo,
+\]
+and a natural carrier of spinorial and phase-direction geometry.  The paper proves this carrier
+claim, separates it from physical over-interpretation, and formulates the remaining hierarchy
+claims as geometric consequences, phenomenological ansätze, or conjectures.
+
+The four-sphere is treated not as a replacement for physical three-dimensional spatial reality,
+but as a compensation endpoint in the suspension chain: $\Sfour\simeq\HP^{1}$ carries the
+quaternionic projective completion of the preceding $\Sthree$ structure, while the local
+spin geometry remains governed by $\SU(2)$ and its two chiral copies inside
+$\SO(4)\simeq(\SU(2)_{L}\times\SU(2)_{R})/\Z_{2}$.  The golden-ratio hierarchy is retained
+as a minimal additive self-similar scaling law; its entropy monotonicity is proved under an
+area/holographic counting assumption, while recurrence breaking is explicitly left as a
+conjecture requiring a specified Hamiltonian measure.  Observational consequences such as
+low-multipole suppression and log-periodic power-spectrum modulation are presented only as
+phenomenological tests, not as evidence for topology.  A new section develops the lowest level
+of the chain: $\Szero$ as minimal interdependent distinction, its non-contractibility within
+structure-preserving operations, the transport of the distinction class onto the fundamental
+class of $\Sthree$ by the suspension isomorphism, and the Planck scale as the lower operational
+realization of distinguishability; all interpretive readings are labelled as such.
+
+\medskip
+\noindent\textbf{Keywords:} suspension of spheres; $\Sthree$ topology; $\SU(2)$; Hopf fibration;
+Chern class; spin structure; parallelizability; golden-ratio hierarchy; compact cosmology;
+irreversible hierarchy.
+\end{abstract}
+
+\tableofcontents
+
+\section{Introduction}
+
+The purpose of this paper is to isolate the mathematical core of an idea that is easily
+overstated if presented as cosmology before it is presented as topology.  The core question is not
+``why does the universe exist?'' and not ``can topology alone explain all physics?''  The precise
+question is the following.
+
+\begin{quote}
+What is the minimal compact sphere in the suspension hierarchy that can simultaneously carry
+phase, direction, spin, non-Abelian internal structure, nowhere-vanishing flow, and a nontrivial
+phase--direction bundle?
+\end{quote}
+
+The answer developed here is $\Sthree$.  The suspension ladder
+\begin{equation}
+\Szero \xrightarrow{\Sigma} \Sone \xrightarrow{\Sigma} \Stwo
+\xrightarrow{\Sigma} \Sthree \xrightarrow{\Sigma} \Sfour
+\label{eq:suspension-ladder}
+\end{equation}
+is not used as decorative ontology.  It is used as a bookkeeping device for the following
+structural transition:
+\[
+\begin{aligned}
+\text{binary distinction}
+&\longrightarrow \text{phase}
+\longrightarrow \text{direction}\\
+&\longrightarrow \text{spin/volume/Hopf total space}
+\longrightarrow \text{quaternionic compensation}.
+\end{aligned}
+\]
+The special role of $\Sthree$ is not that one may pronounce it philosophically important.  Its
+special role is that the relevant structures meet there for the first time.  We use
+\emph{carrier} in this restricted sense: a carrier is a manifold on which the named structures
+exist naturally and compatibly.  It is not, by that fact alone, a derivation of dynamics,
+matter content, amplitudes, or observational data.
+
+\subsection{Claim-status convention}
+
+The paper uses five status labels.
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{@{}lX@{}}
+\toprule
+\textbf{Label} & \textbf{Meaning} \\
+\midrule
+Theorem & Proved under stated mathematical assumptions.\\
+Geometric consequence & Standard consequence of topology, geometry, or representation theory.\\
+Ansatz & A proposed scaling or phenomenological form, not derived from dynamics.\\
+Conjecture & A statement requiring additional Hamiltonian, measure, or dynamical data.\\
+Interpretation & Philosophy-of-physics reading; not a proof of physics.\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+This convention is essential.  The paper preserves the philosophical force of the suspension
+picture, but it does not promote philosophical interpretation to theorem.
+
+\subsection{What this paper does not claim}
+
+\begin{tcolorbox}[colback=gray!4,colframe=gray!50,title=Boundary of the paper]
+This paper does not prove that the observed universe is globally $\Sthree$; does not derive the
+Standard Model; does not derive dark matter or dark energy abundances; does not derive the
+numerical value of any fundamental constant; does not derive the spin-statistics theorem from
+topology alone; and does not treat the golden ratio as a fundamental physical coupling.
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=blue!3,colframe=blue!45!black,title=Structural roadmap]
+The argument has the following invariant spine:
+\[
+\Szero \xrightarrow{\Sigma} \Sone \xrightarrow{\Sigma} \Stwo
+\xrightarrow{\Sigma} \Sthree \xrightarrow{\Sigma} \Sfour ,
+\]
+with
+\[
+\begin{gathered}
+\text{distinction}\to\text{phase}\to\text{direction}\\
+\to\text{Hopf total space/spin carrier}
+\to\text{quaternionic compensation}.
+\end{gathered}
+\]
+The proof does not proceed from analogy.  It proceeds by checking which level first carries
+the joint package
+\[
+(\pi_{1}=0,\;\SU(2),\;c_{1}\neq0,\;w_{2}=0,\;T\Sthree\simeq\Sthree\times\R^{3}).
+\]
+\end{tcolorbox}
+
+The positive claim is narrower and stronger:
+\[
+\begin{aligned}
+\Sthree\quad &\text{is the minimal compact simply connected spherical carrier}\\
+&\text{of the joint }(\SU(2),\text{ Hopf},\text{ spin},\text{ parallelizable flow})
+\text{ structure}.
+\end{aligned}
+\]
+
+\section{Suspension Ladder and Sphere Hierarchy}
+
+\begin{definition}[Suspension]
+For a topological space $X$, its suspension is
+\begin{equation}
+\Sigma X := (X\times[0,1])/\sim,
+\end{equation}
+where $(x,0)\sim N$ and $(x,1)\sim S$ for all $x\in X$.  The two equivalence classes
+$N$ and $S$ are the suspension poles.
+\end{definition}
+
+For spheres one has the standard homeomorphism
+\begin{equation}
+\Sigma \Sn{n}\simeq \Sn{n+1}.
+\label{eq:sigma-sphere}
+\end{equation}
+Starting from $\Szero=\{-1,+1\}$, this gives the chain \eqref{eq:suspension-ladder}.
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{@{}c l l X@{}}
+\toprule
+Level & Sphere & Main structure & Minimal role in the chain\\
+\midrule
+0 & $\Szero$ & two points & binary distinction\\
+1 & $\Sone\simeq\U(1)$ & Abelian Lie group & phase\\
+2 & $\Stwo\simeq\CP^{1}$ & complex projective line & direction/Bloch sphere\\
+3 & $\Sthree\simeq\SU(2)$ & non-Abelian Lie group, Hopf total space & spin, phase--direction unity, volume\\
+4 & $\Sfour\simeq\HP^{1}$ & quaternionic projective line & compensation endpoint\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+
+The word ``minimal'' is used only in the order of the chain \eqref{eq:suspension-ladder}.  It
+does not assert uniqueness among all manifolds; it asserts first occurrence among the suspended
+spheres under discussion.
+
+\begin{proposition}[Interdependence of the middle levels]
+The Hopf fibration
+\begin{equation}
+\Sone \hookrightarrow \Sthree \xrightarrow{p} \Stwo
+\label{eq:hopf}
+\end{equation}
+uses $\Sone$ as fibre, $\Stwo$ as base, and $\Sthree$ as total space.  Thus phase and
+direction are not joined by a trivial Cartesian product $\Stwo\times\Sone$; they are joined by
+the nontrivial bundle \eqref{eq:hopf}.
+\end{proposition}
+
+\begin{proof}
+The classical Hopf map $p:\Sthree\to\Stwo$ is a principal $\U(1)$-bundle.  Its associated
+complex line bundle has first Chern class $c_{1}=1\in H^{2}(\Stwo;\Z)$, so it is not isomorphic
+to the trivial bundle.  Therefore $\Sthree$ is not globally $\Stwo\times\Sone$ as a principal
+$\U(1)$-bundle over $\Stwo$.
+\end{proof}
+
+The suspension hierarchy is therefore not merely dimensional.  It records the point at which
+phase and direction acquire a nontrivial global total space.
+
+\subsection{Geometric intuition: what suspension changes}
+
+Suspension is a topological operation, not merely an index shift.  The quotient
+\[
+\Sigma X=(X\times[-1,1])/(X\times\{-1\}\sim N,\;X\times\{1\}\sim S)
+\]
+keeps the local product structure away from the two poles, while concentrating the link of
+$X$ into the neighbourhoods of $N$ and $S$.  If $X$ is already a smooth sphere, this produces
+the ordinary smooth sphere one dimension higher.  If $X$ is only a homology sphere, the first
+suspension may have pole neighbourhoods whose links are homology spheres rather than standard
+spheres; the resulting object is then topologically meaningful but not automatically a smooth or
+PL manifold at the poles.
+
+The double-suspension theorem clarifies why this distinction matters.  For a homology sphere
+$H^{n}$, the double suspension $\Sigma^{2}H^{n}$ is homeomorphic to $\Sn{n+2}$.  Thus a second
+suspension can remove a topological local obstruction at the level of homeomorphism type.
+This is not the same as preserving a PL structure, nor is it a statement about exotic smooth
+structures.  Suspension may improve the topological manifold status while losing PL rigidity.
+The lesson for the present chain is simple: the ladder records topological carrier structure first;
+smooth and PL claims must be stated separately.
+
+\begin{definition}[Exotic sphere]
+An exotic $n$-sphere is a smooth manifold homeomorphic to the standard sphere $\Sn{n}$ but
+not diffeomorphic to it.  In this paper the word ``exotic'' is used only in this smooth sense.
+A topological sphere, a PL sphere, and a smooth sphere are therefore not interchangeable
+objects unless the relevant equivalence category has been specified.
+\end{definition}
+
+\begin{remark}[Category discipline]
+The suspension chain in this paper is a topological carrier chain.  Whenever smooth spin
+geometry, Dirac spectra, or Lie-group structure are used, the smooth structure is the standard
+smooth structure on the corresponding round sphere unless explicitly stated otherwise.
+\end{remark}
+
+\section{Minimality of \texorpdfstring{$\Sthree$}{S3}}
+
+\subsection{Lie-group spheres}
+
+Among spheres, the associative Lie group cases are
+\begin{equation}
+\Sone\simeq \U(1),\qquad \Sthree\simeq\SU(2).
+\end{equation}
+The seven-sphere is related to unit octonions, but octonionic multiplication is non-associative;
+therefore $\Sseven$ is not a Lie group in the strict associative sense.
+
+The explicit diffeomorphism $\Sthree\to\SU(2)$ is
+\begin{equation}
+(z_{1},z_{2})\longmapsto
+\begin{pmatrix}
+z_{1} & -\overline{z}_{2}\\
+z_{2} & \overline{z}_{1}
+\end{pmatrix},
+\qquad |z_{1}|^{2}+|z_{2}|^{2}=1.
+\label{eq:s3-su2}
+\end{equation}
+This is the first sphere in the suspension ladder that is both simply connected and a non-Abelian
+Lie group.
+
+\subsection{Hopf nontriviality and Chern class}
+
+\begin{lemma}[Hopf bundle]
+The map
+\begin{equation}
+p:\Sthree\to\Stwo,\qquad
+p(z_{1},z_{2})=
+\left(
+2z_{1}\overline{z}_{2},
+|z_{1}|^{2}-|z_{2}|^{2}
+\right)
+\in \C\times\R\simeq\R^{3}
+\label{eq:hopf-map}
+\end{equation}
+defines a principal $\U(1)$-bundle
+\[
+\Sone\hookrightarrow\Sthree\xrightarrow{p}\Stwo
+\]
+with first Chern class
+\begin{equation}
+c_{1}=1\in H^{2}(\Stwo;\Z)\simeq\Z.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+The fibre action is $(z_{1},z_{2})\mapsto(e^{i\alpha}z_{1},e^{i\alpha}z_{2})$, which leaves
+\eqref{eq:hopf-map} invariant.  The homotopy class of $p$ generates
+$\pi_{3}(\Stwo)\simeq\Z$, and the associated principal $\U(1)$-bundle over $\Stwo$ is classified
+by its first Chern class.  For the Hopf bundle this class is the generator of
+$H^{2}(\Stwo;\Z)$.
+\end{proof}
+
+\subsection{Spin structure and Dirac spectrum}
+
+Every orientable three-manifold is spin; in particular
+\begin{equation}
+w_{2}(T\Sthree)=0.
+\end{equation}
+For the round $\Sthree_{R}$, the Dirac operator has discrete spectrum
+\begin{equation}
+\mathrm{spec}(D_{\Sthree_{R}})
+=
+\left\{
+\pm\frac{1}{R}\left(n+\frac{3}{2}\right): n=0,1,2,\ldots
+\right\},
+\label{eq:dirac-spectrum}
+\end{equation}
+with finite multiplicities.  This discrete spectrum follows from compactness and ellipticity; it is
+not a lattice cutoff.
+
+\begin{remark}[Spin structure versus spin-statistics]
+The identification $\Sthree\simeq\SU(2)$ gives the natural double cover
+\[
+\SU(2)\to\SO(3),
+\]
+and therefore the geometric carrier for spin-$1/2$ representations.  The full spin-statistics
+theorem additionally requires the axioms of relativistic quantum field theory, including locality
+and positivity conditions.  Topology supplies the carrier; it is not by itself the complete theorem.
+\end{remark}
+
+\subsection{Parallelizability and nowhere-vanishing flows}
+
+Because $\Sthree\simeq\SU(2)$ is a Lie group, its tangent bundle is trivial:
+\begin{equation}
+T\Sthree\simeq \Sthree\times\R^{3}.
+\end{equation}
+Equivalently, $\Sthree$ is parallelizable.  In complex coordinates $\Sthree\subset\C^{2}$, an
+explicit nowhere-vanishing tangent vector field is
+\begin{equation}
+V(z_{1},z_{2})=(iz_{1},iz_{2}).
+\label{eq:hopf-vector-field}
+\end{equation}
+
+\begin{theorem}[Minimality of $\Sthree$ as geometric carrier]
+Among the spheres in the suspension chain, $\Sthree$ is the lowest-dimensional sphere that
+simultaneously satisfies:
+\begin{enumerate}[label=(C\arabic*)]
+\item compactness and simple connectivity;
+\item associative non-Abelian Lie-group structure;
+\item nontrivial principal $\U(1)$ Hopf fibration over $\Stwo$;
+\item vanishing $w_{2}$ and a natural spin carrier;
+\item parallelizability and nowhere-vanishing smooth vector fields.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+$\Szero$ is disconnected and has no manifold Lie-group structure relevant to spin geometry.
+$\Sone$ is a compact Lie group, but it is Abelian and not simply connected.  $\Stwo$ is simply
+connected but admits no Lie-group structure and is not parallelizable; indeed $\chi(\Stwo)=2$,
+so every smooth tangent vector field has a zero.  $\Sthree$ is compact, simply connected,
+parallelizable, and diffeomorphic to the non-Abelian Lie group $\SU(2)$; it is also the total
+space of the Hopf fibration with $c_{1}\neq0$.  $\Sfour$ is higher-dimensional and is not a Lie
+group.  Thus $\Sthree$ is the first sphere in the chain satisfying all five conditions.
+\end{proof}
+
+\subsection{Contrast with \texorpdfstring{$\Stwo$}{S2}}
+
+The two-sphere is geometrically indispensable as the base of the Hopf fibration, but it is not
+sufficient as a carrier of the full structure.
+
+\begin{proposition}[Three failures of $\Stwo$ as total carrier]
+The sphere $\Stwo$ fails to be the total carrier of the spin--Hopf--flow structure because:
+\begin{enumerate}[label=(\roman*)]
+\item $\chi(\Stwo)=2$, so every smooth tangent vector field has a zero;
+\item $\Stwo$ admits no Lie-group structure;
+\item $\Stwo$ is the base, not the total space, of the nontrivial Hopf bundle.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+The first statement is the hairy-ball theorem, or equivalently the Poincaré--Hopf theorem.
+The second follows from the classification of Lie-group spheres.  The third follows from the
+bundle sequence $\Sone\hookrightarrow\Sthree\twoheadrightarrow\Stwo$.
+\end{proof}
+
+\section{Dynamical Consequences}
+
+\subsection{Intrinsic versus externally imposed motion}
+
+A Lie group carries canonical left- and right-invariant vector fields.  For
+$\Sthree\simeq\SU(2)$, these fields are internal to the manifold rather than imposed by an
+external embedding.  This is the precise mathematical sense in which $\Sthree$ supports
+intrinsic dynamics.
+
+Let $\{e_{1},e_{2},e_{3}\}$ be a basis of $\mathfrak{su}(2)$ with
+\begin{equation}
+[e_{i},e_{j}]=2\epsilon_{ijk}e_{k}.
+\end{equation}
+Left translation gives a global frame on $\SU(2)$:
+\begin{equation}
+E_{i}(g)=(L_{g})_{*}e_{i},\qquad g\in\SU(2).
+\end{equation}
+Thus the local algebra is non-Abelian at every point, but the frame is globally defined.
+
+\subsection{The role of \texorpdfstring{$\Sfour$}{S4}}
+
+The four-sphere appears in the suspension chain as
+\[
+\Sigma\Sthree\simeq\Sfour.
+\]
+It also has the projective representation
+\begin{equation}
+\HP^{1}\simeq\Sfour.
+\end{equation}
+This makes $\Sfour$ a natural compensation endpoint of the chain in a restricted sense: the quaternionic line
+contains the preceding $\SU(2)$ phase structure as fibre data in the quaternionic Hopf map
+\[
+\Sthree\hookrightarrow\Sseven\twoheadrightarrow\Sfour.
+\]
+
+The relevant symmetry relation is
+\begin{equation}
+\Spin(4)\simeq \SU(2)_{L}\times\SU(2)_{R},
+\qquad
+\SO(4)\simeq(\SU(2)_{L}\times\SU(2)_{R})/\Z_{2}.
+\label{eq:so4}
+\end{equation}
+
+\begin{definition}[Chirality compensation]
+A pair $(U_{L},U_{R})\in\SU(2)_{L}\times\SU(2)_{R}$ is called compensated if
+\begin{equation}
+U_{R}=U_{L}^{-1}.
+\end{equation}
+In the quotient \eqref{eq:so4}, such pairs encode cancellation of opposite left/right rotations
+in the corresponding $\SO(4)$ action.
+\end{definition}
+
+\begin{remark}
+The statement that $\Sfour$ represents a compensation endpoint is an interpretation of the
+suspension and $\Spin(4)$ structure.  It is not a theorem that physical reality becomes $\Sfour$,
+nor that $\Sfour$ replaces $\Sthree$ as spatial carrier.
+\end{remark}
+
+\subsection{Why further suspension is not used as new physical content}
+
+Mathematically, $\Sigma\Sfour\simeq\Sfive$ exists.  The claim made here is not that $\Sfive$
+is impossible.  The claim is that the suspension chain has already passed through the minimal
+spin--Hopf--volume carrier at $\Sthree$ and the quaternionic compensation endpoint at $\Sfour$.
+A further suspension adds a new topological sphere, but it does not add a new member to the
+specific chain of binary distinction, phase, direction, total Hopf volume, and compensation used
+in this paper.
+
+\section{\texorpdfstring{$\golden$}{phi}-Scaling and Entropy Hierarchy}
+
+\subsection{Minimal additive self-similarity}
+
+The golden-ratio hierarchy is kept as a structural scaling ansatz, not as a fundamental coupling.
+
+\begin{axiom}[Self-similarity]
+There is a scale sequence $R_{n}>0$ such that
+\begin{equation}
+R_{n+1}=\alpha R_{n},\qquad \alpha>1.
+\end{equation}
+\end{axiom}
+
+\begin{axiom}[Additive closure]
+Adjacent levels close by
+\begin{equation}
+R_{n+1}=R_{n}+R_{n-1}.
+\end{equation}
+\end{axiom}
+
+\begin{theorem}[Golden-ratio selection]
+The two axioms imply
+\begin{equation}
+\alpha=\golden:=\frac{1+\sqrt5}{2}.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Using $R_{n-1}=R_{n}/\alpha$, the additive closure axiom gives
+\[
+\alpha R_{n}=R_{n}+\frac{R_{n}}{\alpha}.
+\]
+Dividing by $R_{n}$ and multiplying by $\alpha$ yields
+\[
+\alpha^{2}=\alpha+1.
+\]
+The positive root greater than one is $\golden=(1+\sqrt5)/2$.
+\end{proof}
+
+Thus
+\begin{equation}
+R_{n}=R_{0}\golden^{n}.
+\label{eq:phi-ladder}
+\end{equation}
+
+\begin{remark}[Status of $\golden$]
+Equation \eqref{eq:phi-ladder} is a minimal self-similar additive hierarchy.  It is not, by itself,
+a derivation of cosmic amplitudes.  Any claim that the hierarchy is physically selected requires
+an additional dynamical selection principle.
+\end{remark}
+
+\subsection{No exact multiplicative period}
+
+\begin{lemma}[Aperiodicity]
+The hierarchy $R_{n}=R_{0}\golden^{n}$ has no nontrivial exact multiplicative period:
+\[
+\golden^{k}=1\quad\Longrightarrow\quad k=0.
+\]
+\end{lemma}
+
+\begin{proof}
+Since $\golden>1$, $\golden^{k}>1$ for $k>0$ and $0<\golden^{k}<1$ for $k<0$.  Hence only
+$k=0$ gives $\golden^{k}=1$.
+\end{proof}
+
+This elementary aperiodicity is weaker than a proof of thermodynamic irreversibility.  It only
+states that the scaling hierarchy does not close by an exact multiplicative cycle.
+
+\subsection{Area-counting entropy}
+
+For a compact three-sphere with radius $R_{n}$, the equatorial two-sphere area scale is
+\begin{equation}
+A_{n}=4\pi R_{n}^{2}=4\pi R_{0}^{2}\golden^{2n}.
+\end{equation}
+If one uses an area/holographic counting rule
+\begin{equation}
+S_{n}=\eta\, k_{B}\frac{A_{n}}{\ell_{P}^{2}},
+\qquad \eta>0,
+\label{eq:entropy-area}
+\end{equation}
+then the entropy grows monotonically with $n$.
+
+\begin{theorem}[Monotonic hierarchy entropy]
+Under the counting rule \eqref{eq:entropy-area},
+\begin{equation}
+\frac{\dd S_{n}}{\dd n}
+=
+2(\ln\golden)S_{n}>0.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Substitute $A_{n}=4\pi R_{0}^{2}\golden^{2n}$ into \eqref{eq:entropy-area}.  Differentiation with
+respect to the continuous interpolation of $n$ gives the stated result.
+\end{proof}
+
+\begin{remark}[No volume-scaling shortcut]
+The area-counting rule is chosen because entropy bounds in gravity are area-based.  A volume
+formula $\exp(V/\ell_{P}^{3})$ is not used as a theorem here.
+\end{remark}
+
+\subsection{Recurrence status}
+
+\begin{conjecture}[Effective non-recurrence of an open hierarchy]
+If the hierarchy \eqref{eq:phi-ladder} is promoted to an unbounded sequence of dynamically
+accessible sectors with a measure whose total phase-space volume diverges, then ordinary
+Poincaré recurrence need not apply to the full hierarchy.
+\end{conjecture}
+
+\begin{remark}
+This is not a theorem until the Hamiltonian, state space, invariant measure, and allowed
+transitions between levels are specified.  Each fixed compact level may still satisfy recurrence
+hypotheses under an appropriate finite invariant measure.
+\end{remark}
+
+\section{Relation to Bell Geometry and Compact Quantum State Space}
+
+The suspension result is useful for quantum geometry because the Hopf fibration is already the
+geometry of a single qubit.  Pure one-qubit states form
+\[
+\CP^{1}\simeq\Stwo,
+\]
+while normalized spinors lie on $\Sthree\subset\C^{2}$:
+\[
+|\psi\rangle =
+\begin{pmatrix}
+z_{1}\\ z_{2}
+\end{pmatrix},
+\qquad |z_{1}|^{2}+|z_{2}|^{2}=1.
+\]
+The projection
+\[
+\Sthree\to\CP^{1}\simeq\Stwo
+\]
+quotients by the physically irrelevant global $\U(1)$ phase.  The same map is the Hopf map.
+
+\begin{proposition}[Phase-direction non-factorization]
+The normalized spinor space $\Sthree$ is not globally the product $\Stwo\times\Sone$ as a
+principal $\U(1)$-bundle over $\Stwo$.
+\end{proposition}
+
+\begin{proof}
+This is exactly the nontriviality of the Hopf bundle, expressed by $c_{1}=1$.
+\end{proof}
+
+\begin{remark}[Bell correlations]
+Bell-inequality violation is not derived in this paper.  What is established here is the geometric
+carrier: the nontrivial Hopf bundle that prevents the normalized spinor from being globally
+decomposed into an independent direction variable and an independent phase variable.  Any Bell
+analysis must still specify measurement maps, probability rules, and locality assumptions.
+\end{remark}
+
+\section{Phenomenological Consequences}
+
+This section records observationally suggestive consequences of compact $\Sthree$ geometry and
+$\golden$-hierarchy phenomenology.  They are not topology detections.
+
+\subsection{Low-multipole suppression}
+
+A compact spatial section has a largest global wavelength scale.  For a round $\Sthree$ of
+radius $R_{0}$, scalar harmonics have Laplacian eigenvalues
+\begin{equation}
+-\Delta Y_{n\ell m}=\frac{n(n+2)}{R_{0}^{2}}Y_{n\ell m},
+\qquad n=0,1,2,\ldots,
+\label{eq:laplace-spectrum}
+\end{equation}
+with degeneracy
+\begin{equation}
+g_{n}=(n+1)^{2}.
+\end{equation}
+Thus the infrared spectrum is discrete.  This motivates possible suppression or distortion of
+large-angle CMB power.
+
+\begin{ansatz}[Low-$\ell$ suppression]
+For a compact $\Sthree$ model with radius comparable to the last-scattering diameter, one may
+parametrize the low-$\ell$ spectrum by
+\begin{equation}
+C_{\ell}=C_{\ell}^{\mathrm{ref}}\,
+\mathcal{F}_{\ell}(R_{0},\mathcal{T}),
+\end{equation}
+where $\mathcal{T}$ denotes the transfer calculation and
+$\mathcal{F}_{\ell}\to1$ in the large-radius limit.
+\end{ansatz}
+
+\begin{remark}
+A genuine prediction requires a Boltzmann transfer calculation in the $\Sthree$ harmonic basis.
+Low-$\ell$ anomalies alone are not evidence for $\Sthree$ topology.
+\end{remark}
+
+\subsection{Log-periodic power-spectrum modulation}
+
+If the $\golden$-hierarchy is imprinted on primordial or late-time perturbations, the simplest
+phenomenological modulation is
+\begin{equation}
+P(k)=P_{\mathrm{sm}}(k)\left[1+A\cos\left(\omega\ln\frac{k}{k_{0}}+\delta\right)\right],
+\qquad
+\omega=\frac{2\pi}{\ln\golden}.
+\label{eq:logperiodic}
+\end{equation}
+
+\begin{ansatz}[Golden-ratio log-periodicity]
+Equation \eqref{eq:logperiodic} is the minimal log-periodic ansatz associated with the discrete
+scale ratio $\golden$.
+\end{ansatz}
+
+\begin{remark}
+The frequency $\omega=2\pi/\ln\golden$ is sharp if the ansatz is adopted.  The amplitude $A$,
+phase $\delta$, pivot $k_{0}$, and physical origin of the modulation are not fixed by topology.
+\end{remark}
+
+\subsection{Compact-mode versus box-mode simulations}
+
+A periodic Euclidean box uses $T^{3}$ boundary conditions.  Its eigenmodes are Fourier modes
+with an Abelian lattice structure.  A round $\Sthree$ uses hyperspherical harmonics with
+spectrum \eqref{eq:laplace-spectrum}.  Therefore a periodic-box simulation does not directly
+test the $\Sthree$ mode basis, even when both spaces are compact.
+
+\section{\texorpdfstring{$\Szero$}{S0}, Dependent Distinction, and the Chain of Carriers}
+\label{sec:s0-carriers}
+
+This section develops the lowest level of the ladder \eqref{eq:suspension-ladder} under the same
+claim-status discipline as the rest of the paper.  The propositions below are elementary
+topology; every reading attached to them is explicitly labelled \emph{Interpretation} and proves
+no physics.  The starting point of the programme is not an assertion of emergence from nothing:
+no absolute arising is assumed anywhere in this section.
+
+\subsection{Minimal distinction and its non-contractibility}
+
+$\Szero=\{-1,+1\}$ should not be pictured as two particles in space.  At level~$0$ no metric,
+no phase, no direction, and no causal structure has been introduced.  $\Szero$ is the minimal
+two-pole structure of formal distinguishability: this / not-this.  One point alone does not carry
+the structure; the two points co-define it.
+
+\begin{proposition}[Non-contractibility of minimal distinction]
+\label{prop:s0-noncontract}
+\leavevmode
+\begin{enumerate}[label=(\roman*)]
+\item $\Szero$ is not contractible; indeed $\widetilde H_{0}(\Szero)\simeq\Z$.
+\item Removing either point yields a one-point space, which no longer carries the distinction.
+\item The identification map $q:\Szero\to\{*\}$ is a quotient, not a homotopy equivalence:
+it annihilates $\widetilde H_{0}$.
+\item There is no map from the nonempty space $\Szero$ to $\varnothing$.
+\end{enumerate}
+Consequently, within operations preserving homotopy type, the two-component distinction
+persists; it can be destroyed only by an explicit operation of deletion or identification, never
+by continuous deformation.
+\end{proposition}
+
+\begin{proof}
+(i) $\Szero$ has two path components, so $H_{0}(\Szero)\simeq\Z\oplus\Z$ and
+$\widetilde H_{0}(\Szero)\simeq\Z$; a contractible space has vanishing reduced homology.
+(ii) is immediate.  (iii) The one-point space has $\widetilde H_{0}=0$, and a homotopy
+equivalence induces isomorphisms on reduced homology.  (iv) A map must assign a value to every
+point of its domain, and $\varnothing$ contains none.
+\end{proof}
+
+\begin{remark}[Interpretation: interdependence cannot be contracted, only failed to be preserved]
+The two points of $\Szero$ have no meaning \emph{as} $\Szero$ separately: each is a pole of
+distinction only because the other exists.  Proposition~\ref{prop:s0-noncontract} is the
+mathematical trace of this interdependence.  If a description asserts that the distinction has
+``disappeared,'' it must exhibit the operator responsible---a quotient, a deletion, a change of
+category---and pay its price: the erasure of the invariant $\widetilde H_{0}$.  Nothing in the
+structure-preserving language \emph{derives} that disappearance; it can only be imposed as an
+operation of forgetting.
+\end{remark}
+
+\subsection{Suspension carries the distinction upward}
+
+\begin{proposition}[The fundamental class of $\Sthree$ is a suspended distinction]
+\label{prop:susp-class}
+The suspension isomorphism $\widetilde H_{k}(X)\simeq\widetilde H_{k+1}(\Sigma X)$, applied
+three times along $\Szero\to\Sone\to\Stwo\to\Sthree$, gives
+\begin{equation}
+\widetilde H_{0}(\Szero)\;\simeq\;\widetilde H_{1}(\Sone)\;\simeq\;
+\widetilde H_{2}(\Stwo)\;\simeq\;\widetilde H_{3}(\Sthree)\;\simeq\;\Z,
+\label{eq:susp-transport}
+\end{equation}
+carrying the distinction class of $\Szero$ to a generator of the fundamental class of
+$\Sthree$.
+\end{proposition}
+
+\begin{proof}
+The suspension isomorphism holds for every space and every degree, by Mayer--Vietoris applied
+to the two cones of $\Sigma X$~\cite{Hatcher2002}.  Along $\Sigma\Sn{n}\simeq\Sn{n+1}$ it
+identifies generators up to sign, giving \eqref{eq:susp-transport}.
+\end{proof}
+
+\begin{remark}[Interpretation: carrier changes; generative relation persists]
+Suspension does not create the invariant from non-being and does not destroy it: it re-presents
+it on a richer carrier.  What is bare polarity on $\Szero$ acquires phase on $\Sone$, direction
+on $\Stwo$, and the spin/Hopf carrier on $\Sthree$.  In the vocabulary of the programme:
+\emph{information is not produced from non-being; it is transformed through carriers of
+distinguishability}.  A new state of comprehension does not entail a new state of the invariant
+content; the invariant is preserved while its mode of representation changes.  Minimal
+distinction is not annihilated by suspension; it is carried upward.  Destruction of the
+distinction would require an additional quotient operation, not a homotopy.  (This is a
+statement about the formal model, not a physical conservation law.)
+\end{remark}
+
+\subsection{Loop-trivial, carrier-nontrivial}
+
+\begin{proposition}[Geometric consequence]
+\label{prop:loop-carrier}
+$\pi_{1}(\Sthree)=0$, while $H_{3}(\Sthree;\Z)\simeq\Z$.  Hence every loop in $\Sthree$
+contracts, but $\Sthree$ itself is not contractible; in particular it is not homotopy equivalent
+to the ball $B^{3}$, which is contractible and has boundary $\Stwo$, whereas $\Sthree$ is
+compact and boundaryless.
+\end{proposition}
+
+The short formula is: on $\Sthree$ one can contract every loop, but the carrier itself cannot be
+contracted to a point without destroying its fundamental class.  Throughout this paper
+$\Sthree$ is therefore used as a compact, boundaryless, simply connected carrier with trivial
+fundamental group, \emph{not} as a contractible space:
+\begin{quote}
+$\Sthree$ is \emph{loop-trivial but carrier-nontrivial}:
+$\pi_{1}(\Sthree)=0$, while $H_{3}(\Sthree;\Z)\simeq\Z$.
+\end{quote}
+At the bottom of the chain the same pattern already holds in degree zero:
+$\widetilde H_{0}(\Szero)\simeq\Z$ is the trace of the distinction of components, and it is
+precisely this class that \eqref{eq:susp-transport} transports upward.
+
+\subsection{Planck realization of distinguishability}
+
+\begin{remark}[Interpretation: the lower operational grain]
+$\Szero$ as a topological object carries no distance.  But if minimal distinguishability
+receives a physical-geometric realization inside an effective theory, the natural lower
+operational scale of distinction is the Planck grain,
+\begin{equation}
+\ell_{P},\qquad t_{P}=\ell_{P}/c .
+\end{equation}
+The exact formula is: \emph{$\Szero$ is the formal carrier of minimal distinction; $\ell_{P}$
+and $t_{P}$ are the lower metric-causal realization of distinguishability in effective physical
+reconstruction.}  Below this grain the effective model is not obliged to assign an operationally
+verifiable causal-geometric state.  This does not mean that reality is absent there; it means
+that the language of distinguishable causal-geometric reconstruction has reached its lower
+boundary.  Without scale there is no distance; without time there is no causal relation; without
+causal relation there is no physically unfolded information; without distinguishability there is
+no observable phenomenon.  In brief: distinction $\to$ carrier $\to$ order/phase $\to$ causal
+relation $\to$ reconstructible information.
+\end{remark}
+
+\begin{remark}[Interpretation: connection with Ricci-type reconstruction]
+In the companion Ricci-flow work~\cite{BateninPreece2026} the same boundary appears
+dynamically: a reflecting barrier $a\ge\ell_{P}$ defines a forward-invariant region with
+$|\mathrm{Rm}|^{2}\le C/\ell_{P}^{4}$, mirroring a self-adjoint Wheeler--DeWitt endpoint on
+$a\in[\ell_{P},\infty)$ with zero probability flux through $a=\ell_{P}$.  The flow there is not
+the literal time of reality but an instrument of reconstruction: it shows which geometric modes
+smooth out, which lead to blow-up, where forcing is insufficient, and where a boundary condition
+becomes necessary.  The reading fixed by that programme applies verbatim here:
+\begin{quote}
+\emph{The Planck boundary is not the beginning of the universe; it is the universal lower
+boundary of quasi-local geometric reconstruction.}
+\end{quote}
+\end{remark}
+
+\subsection{\texorpdfstring{$\Sfour$}{S4} as another representational regime}
+
+$\Sfour$ is not a simple continuation of $\Sthree$ in the same sense.  It remains a compact,
+boundaryless, simply connected sphere, but it is not $\SU(2)$, not the group of unit
+quaternions, and not parallelizable ($\chi(\Sfour)=2$, so every smooth tangent vector field has
+a zero); and it is the \emph{base}, not the total space, of the quaternionic Hopf fibration
+$\Sthree\hookrightarrow\Sseven\twoheadrightarrow\Sfour$.  A terminologically precise description
+is the one-point compactification of the quaternionic line,
+\begin{equation}
+\Hbb\cup\{\infty\}\;\simeq\;\HP^{1}\;\simeq\;\Sfour ,
+\end{equation}
+consistent with Appendix~A.  \emph{Interpretation:} $\Sfour$ marks a transition to a regime in
+which the preceding conditioned form of distinguishability is transformed rather than continued
+as the same phenomenal configuration.  $\Sthree$ is the place of unfolded spin/Hopf
+phenomenology; $\Sfour$ is another carrier-class, where that phenomenology is not simply
+prolonged but re-represented.  It is not destroyed, but it ceases to be the same conditioned
+configuration.
+
+\subsection{Two protections: against self-being and against substantializing dependence}
+
+\begin{remark}[Interpretation: reading discipline]
+Two complementary protections govern the ontological reading of the chain; they are a reading
+discipline, not physics.  The first protects against the false view of self-existing arising
+(\emph{svabh\=ava}): if self-existing arising is asserted, it must survive the classical
+tetralemma of origination---from itself, from another, from both, or without
+cause~\cite{Garfield1995}---and it survives none of them.  The second protects dependence
+itself from being turned into a new substance: after refuting self-being one may not posit a
+special self-existing entity called ``Interdependence,'' which would be the same error under
+another name.  The compressed formula is: \emph{the first part cuts off the self-being of the
+phenomenon; the second part cuts off the self-being of dependence itself.}  In mathematical
+register: the object is not self-sufficient; it is given by a construction.  It is empty of
+own-nature, but not empty of dependent functioning.
+
+The same discipline applies to space, matter, and information.  Space is neither denied nor
+absolutized; it is considered as a dependently designated structure disclosed through matter,
+causal relations, and observer reconstruction.  Information is neither a self-existing thing nor
+nothing; it is dependently designated through distinguishability, carrier, scale, causality, and
+the possibility of reconstruction.
+\end{remark}
+
+\subsection{Suspension hierarchy principle}
+
+\begin{tcolorbox}[colback=gray!4,colframe=gray!50,title=Suspension hierarchy principle (Interpretation)]
+A minimal distinction represented by $\Szero$ may be transformed through a sequence of carriers
+$\Sigma\Sn{n}\simeq\Sn{n+1}$.  At each step the invariant content is neither simply identical
+nor simply different: it is preserved through a change of representational carrier
+(Proposition~\ref{prop:susp-class}).  The endpoint is not annihilation of information, but a
+regime in which the conditioned mode of distinction has been transformed.
+\end{tcolorbox}
+
+In brief: $\Szero$ gives minimal distinguishability; suspension changes the carriers of this
+distinguishability; $\Sthree$ gives the special compact spin/Hopf carrier; the Planck scale
+gives the lower metric-causal boundary of physical reconstruction; interdependence explains
+functioning but does not itself become a substance.  Not self-being, not nothing, but
+dependently reconstructible distinguishability passing through a chain of carriers.
+
+\section{Conclusion}
+
+The suspension ladder
+\[
+\Szero\to\Sone\to\Stwo\to\Sthree\to\Sfour
+\]
+has a precise mathematical reading.  $\Szero$ supplies binary distinction; $\Sone$ supplies
+phase; $\Stwo$ supplies direction; $\Sthree$ is the first sphere where phase and direction become
+a nontrivial total space carrying $\SU(2)$, spin geometry, parallelizable flow, and compact
+spectral discreteness; $\Sfour\simeq\HP^{1}$ supplies a quaternionic compensation endpoint.
+At the base of the ladder, $\Szero$ supplies minimal interdependent distinction, transported by
+the suspension isomorphism onto the fundamental class of $\Sthree$; the Planck grain is its
+lower operational realization in effective reconstruction (Sec.~\ref{sec:s0-carriers}).
+
+The central theorem is not that all physics is solved by topology.  The theorem is the minimal
+carrier statement: $\Sthree$ is the first sphere in the chain satisfying the joint spin--Hopf--flow
+conditions.  The golden-ratio hierarchy gives a minimal additive self-similar scaling; its entropy
+monotonicity follows under an area-counting rule; its recurrence-breaking interpretation remains
+conjectural until a Hamiltonian measure is specified.  Low-multipole suppression and
+log-periodic modulation are observational ansätze, not detections.
+
+The mathematical core is therefore strong but bounded:
+\[
+\text{topology supplies the carrier,}
+\qquad
+\text{dynamics and amplitudes require additional laws.}
+\]
+This is the clean form of the suspension-of-spheres programme.
+
+\appendix
+
+\section{\texorpdfstring{$\HP^{1}\simeq\Sfour$}{HP1 = S4}}
+
+The quaternionic projective line is
+\begin{equation}
+\HP^{1}=(\Hbb^{2}\setminus\{0\})/\Hbb^{\times}.
+\end{equation}
+Every equivalence class has a representative $(q_{1},q_{2})$ with
+$|q_{1}|^{2}+|q_{2}|^{2}=1$, unique up to right multiplication by a unit quaternion.
+Thus
+\[
+\Sthree\hookrightarrow\Sseven\twoheadrightarrow\HP^{1}.
+\]
+An explicit map $\Sseven\to\Sfour\subset\R^{5}$ is
+\begin{equation}
+(q_{1},q_{2})\longmapsto
+\left(
+|q_{1}|^{2}-|q_{2}|^{2},\,
+2q_{1}\overline{q}_{2}
+\right)\in\R\oplus\Hbb\simeq\R^{5}.
+\end{equation}
+The norm of the image is
+\[
+(|q_{1}|^{2}-|q_{2}|^{2})^{2}+4|q_{1}|^{2}|q_{2}|^{2}
+=(|q_{1}|^{2}+|q_{2}|^{2})^{2}=1,
+\]
+so the image lies on $\Sfour$.  This gives the standard identification
+$\HP^{1}\simeq\Sfour$.
+
+\section{RG Interpretation of the \texorpdfstring{$\golden$}{phi}-Hierarchy}
+
+A cautious renormalization-group reading of the hierarchy assigns a scale
+\[
+\Lambda_{n}=\Lambda_{0}\golden^{-n}
+\]
+or, equivalently, a length
+\[
+R_{n}=R_{0}\golden^{n}.
+\]
+The hierarchy is then a discrete RG skeleton with step size $\ln\golden$.  A log-periodic
+observable has the generic form
+\[
+F(x)=F_{0}(x)\left[1+A\cos\left(\frac{2\pi\ln x}{\ln\golden}+\delta\right)\right].
+\]
+This appendix does not claim that the RG flow is derived; it records the minimal form that any
+$\golden$-scale phenomenology must take.
+
+\section{Hausdorff Dimension: Heuristic Only}
+
+If an iterated-function system with $N$ self-similar copies at contraction ratio $r$ is specified,
+its similarity dimension is determined by
+\[
+Nr^{d}=1.
+\]
+Without an explicit IFS, the phrase ``fractal $\Sthree$'' has no unique Hausdorff dimension.
+For example, taking $r=\golden^{-1}$ and $N\simeq\golden^{3}$ gives $d\simeq3$, but this is a
+heuristic dimensional consistency check, not a theorem.
+
+\section{Additional Observational Notes}
+
+\paragraph{CMB topology searches.}
+Circles-in-the-sky and matched-correlation searches constrain compact topologies, but a null
+result only excludes compact radii below the search sensitivity and specific quotient structures.
+
+\paragraph{Matter power spectrum.}
+The log-periodic form \eqref{eq:logperiodic} gives a sharp frequency target
+$\omega=2\pi/\ln\golden$, but absence of this feature would falsify the imprint ansatz, not the
+pure topological minimality theorem.
+
+\paragraph{Gravitational waves.}
+Tensor modes on compact $\Sthree$ also have discrete harmonic labels.  Turning this into a
+detectable gravitational-wave line prediction requires a source model, transfer function, and
+instrumental likelihood.  Compactness alone gives the mode basis, not the stochastic amplitude.
+
+\begin{thebibliography}{99}
+
+\bibitem{Hatcher2002}
+A.~Hatcher, \emph{Algebraic Topology} (Cambridge University Press, 2002).
+
+\bibitem{Hopf1931}
+H.~Hopf, \emph{\"Uber die Abbildungen der dreidimensionalen Sph\"are auf die Kugelfl\"ache},
+Math.\ Ann.\ \textbf{104}, 637--665 (1931).
+
+\bibitem{Milnor1997}
+J.~Milnor, \emph{Topology from the Differentiable Viewpoint} (Princeton University Press, 1997).
+
+\bibitem{Milnor1956}
+J.~Milnor, \emph{On manifolds homeomorphic to the 7-sphere},
+Ann.\ of Math.\ \textbf{64}, 399--405 (1956).
+
+\bibitem{Cannon1979}
+J.~W.~Cannon, \emph{The recognition problem: what is a topological manifold?},
+Bull.\ Amer.\ Math.\ Soc.\ \textbf{84}, 832--866 (1978).
+
+\bibitem{Edwards1980}
+R.~D.~Edwards, \emph{The topology of manifolds and cell-like maps},
+Proceedings of the International Congress of Mathematicians, Helsinki (1978), 111--127.
+
+\bibitem{LawsonMichelsohn1989}
+H.~B.~Lawson and M.-L.~Michelsohn, \emph{Spin Geometry} (Princeton University Press, 1989).
+
+\bibitem{Besse1987}
+A.~L.~Besse, \emph{Einstein Manifolds} (Springer, 1987).
+
+\bibitem{Baez2002}
+J.~Baez, \emph{The Octonions}, Bull.\ Am.\ Math.\ Soc.\ \textbf{39}, 145--205 (2002).
+
+\bibitem{Perelman2002}
+G.~Perelman, \emph{The entropy formula for the Ricci flow and its geometric applications},
+arXiv:math/0211159 (2002).
+
+\bibitem{Perelman2003a}
+G.~Perelman, \emph{Ricci flow with surgery on three-manifolds},
+arXiv:math/0303109 (2003).
+
+\bibitem{Perelman2003b}
+G.~Perelman, \emph{Finite extinction time for the solutions to the Ricci flow on certain
+three-manifolds}, arXiv:math/0307245 (2003).
+
+\bibitem{Bousso1999}
+R.~Bousso, \emph{A covariant entropy conjecture}, JHEP \textbf{07}, 004 (1999).
+
+\bibitem{Planck2018}
+Planck Collaboration, \emph{Planck 2018 results. VI. Cosmological parameters},
+Astron.\ Astrophys.\ \textbf{641}, A6 (2020).
+
+\bibitem{Cornish1998}
+N.~J.~Cornish, D.~N.~Spergel, and G.~D.~Starkman,
+\emph{Circles in the sky: finding topology with the microwave background radiation},
+Class.\ Quantum Grav.\ \textbf{15}, 2657--2670 (1998).
+
+\bibitem{CMBS4}
+CMB-S4 Collaboration, \emph{CMB-S4 Science Book, First Edition}, arXiv:1610.02743 (2016).
+
+\bibitem{DESI2024}
+DESI Collaboration, \emph{DESI 2024 VI: cosmological constraints from the measurements of baryon
+acoustic oscillations}, arXiv:2404.03002 (2024).
+
+\bibitem{BateninPreece2026}
+B.~Batenin and A.~Preece, \emph{Hopf-Lifted Ricci-Type Flow on $\Sthree$: A No-Go for Bounded
+and Engineered Forcing, and a Planck-Barrier Invariant Region}, research manuscript (2026).
+
+\bibitem{Garfield1995}
+N\=ag\=arjuna, \emph{M\=ulamadhyamakak\=arik\=a}; English translation and commentary:
+J.~L.~Garfield, \emph{The Fundamental Wisdom of the Middle Way} (Oxford University Press, 1995).
+
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,297 @@
+\documentclass[12pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{geometry}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{hyperref}
+
+\geometry{margin=1in}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.65em}
+\hypersetup{colorlinks=true,linkcolor=blue,urlcolor=blue,citecolor=blue}
+
+\newcommand{\FBSR}{FBS$^3$R}
+\newcommand{\ph}{\varphi}
+\newcommand{\N}{\mathbb{N}}
+
+\title{\textbf{Fractal Quantum Entanglement Density via Fibonacci Embedding in \FBSR}}
+\author{Andrei Preece and Boris Batenin}
+\date{Berlin, 18 February 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We formulate a fractal cosmological model (\FBSR) in which spatial slices are compact 3-spheres $S^3$ and the discrete node hierarchy evolves by a minimal positive second-order recursion. Via the Perron--Frobenius theorem we prove that the golden ratio $\ph=(1+\sqrt{5})/2$ is the unique dominant eigenvalue of this recursion---not a free parameter. A Spectral--Geometric Consistency postulate (H3) bridges the combinatorial and geometric sectors by equating the maximal Laplacian mode index on $S^3$ to the node count, thereby deriving $R_n \propto \ph^n$. Scaling laws $C_n \to \ph^{-2}$, $I_n \sim \kappa\ph^{2n}$, and $D_n \sim \ph^{-n}$ are established as theorems. The $\ph$-exponents are shown to be robust under arbitrary connectivity schemes. Entropy is excluded from the core derivations absent a rigorous degree-distribution model.
+\end{abstract}
+
+\section*{0. Reader's Map: What Is Proved vs. Assumed}
+Every statement in this paper carries one of the following explicit epistemic labels:
+\begin{itemize}[leftmargin=2em]
+    \item \textbf{Postulate / Assumption} --- a structural condition defining the model (an input, not a claim about the world).
+    \item \textbf{Definition} --- precise designation of a quantity.
+    \item \textbf{Lemma / Theorem} --- a strict mathematical consequence of the postulates, with proof.
+    \item \textbf{Remark} --- commentary on physical interpretation; not part of any proof.
+\end{itemize}
+
+The principal objective is to show that $\ph$ is not a tuning parameter but the dominant eigenvalue of the minimal non-degenerate discrete composition of levels, and that the scaling laws for correlation and informational density follow as theorems.
+
+\section*{I. Geometric Sector}
+\textbf{Postulate G (Compact Boundaryless Spatial Topology)}
+
+Spatial slices are assumed to be compact, connected, boundaryless 3-manifolds. In the spherical sector:
+\[
+\Sigma \simeq S^3.
+\]
+
+\textit{Remark.} This is a geometric-sector postulate only. No dynamical equations are introduced at this stage. The choice of $S^3$ is a structural Ansatz; alternative compact topologies (lens spaces $L(p,q)$) are noted in Section XII.
+
+\section*{II. Discrete Hierarchical Sector}
+\textbf{Postulate H1 (Discrete Hierarchy)}
+
+There exists a discrete hierarchy of levels indexed by $n \in \N$. At each level:
+\begin{itemize}[leftmargin=2em]
+    \item $F_n \in \N$ --- number of elementary structural nodes.
+    \item $R_n > 0$ --- characteristic geometric scale.
+\end{itemize}
+
+\textbf{Postulate H2 (Minimal Non-Degenerate Second-Order Recursion)}
+
+The node count $F_n$ satisfies a positive integer recursion of second order. In the minimal case (coefficients $a=b=1$):
+\[
+F_{n+1}=F_n+F_{n-1}, \qquad F_1\ge 1, \qquad F_2\ge 1.
+\]
+
+\textit{Remark.} Second order reflects coupling between consecutive levels. Minimality ($a=b=1$) is the unique choice minimising the dominant growth rate in the class of positive integer second-order recursions (Theorem 6). The golden ratio $\ph$ is a consequence of this postulate, not a premise.
+
+\section*{III. Spectral Formulation and Perron--Frobenius Control}
+\textbf{Definition 1 (State Vector and Transfer Matrix)}
+
+Define the state vector $v_n=(F_n,F_{n-1})^T$ and transfer matrix:
+\[
+T=\begin{pmatrix}1&1\\[2pt]1&0\end{pmatrix}, \qquad \text{so that} \qquad v_{n+1}=T v_n.
+\]
+
+\textbf{Lemma 1 (Eigenvalues of the Fibonacci Transfer Matrix)}
+
+The characteristic polynomial of $T$ is $\lambda^2-\lambda-1=0$, with eigenvalues:
+\[
+\lambda_{\pm}=\frac{1\pm\sqrt{5}}{2}.
+\]
+
+\textit{Proof.} Standard computation from the quadratic characteristic equation. $\square$
+
+\textbf{Theorem 1 (Dominant Eigenvalue and Asymptotic Ratio)}
+
+For any positive initial conditions $F_1,F_2>0$:
+\[
+\lim_{n\to\infty}\frac{F_{n+1}}{F_n}=\ph=\frac{1+\sqrt{5}}{2}\approx 1.6180.
+\]
+
+\textit{Proof.} $T$ is non-negative and primitive ($T^2=\begin{pmatrix}2&1\\1&1\end{pmatrix}$ is strictly positive). By the Perron--Frobenius theorem, $T$ has a unique positive dominant eigenvalue equal to its spectral radius $\rho(T)=\lambda_+=\ph$, with a strictly positive eigenvector. For any positive initial vector $v_2$, the iterates $T^n v_2$ align asymptotically with this eigenvector, so consecutive component ratios converge to $\ph$.
+
+\textit{Remark.} Theorem 1 removes $\ph$ from the list of model inputs. It is the forced dominant exponent of the minimal positive second-order recursion.
+
+\section*{IV. Robustness: $\ph$ Under Perturbations}
+\textbf{Postulate H2$'$ (General Positive Second-Order Recursion)}
+
+Consider the broader class:
+\[
+F_{n+1}=aF_n+bF_{n-1}, \qquad a,b\in\N, \qquad a,b\ge 1.
+\]
+
+\textbf{Lemma 2 (Dominant Eigenvalue for General Positive Recursion)}
+
+The dominant eigenvalue of the corresponding transfer matrix is:
+\[
+\lambda_+(a,b)=\frac{a+\sqrt{a^2+4b}}{2}.
+\]
+
+\textit{Proof.} Direct application of the quadratic formula to the characteristic polynomial $\lambda^2-a\lambda-b=0$.
+
+\textbf{Theorem 2 (Structural Stability of Dominant Scaling)}
+
+For any $a,b\ge 1$ and positive initial conditions:
+\[
+\lim_{n\to\infty}\frac{F_{n+1}}{F_n}=\lambda_+(a,b).
+\]
+
+\textit{Proof.} The transfer matrix $T_{a,b}$ is primitive for all $a,b\ge 1$. The Perron--Frobenius argument of Theorem 1 applies verbatim.
+
+\textbf{Corollary 1 (Minimality of $\ph$ in the Positive Integer Class)}
+
+$\lambda_+(a,b)$ is strictly increasing in both $a$ and $b$. The minimum over $a,b\in\N_{\ge 1}$ is attained uniquely at $(a,b)=(1,1)$:
+\[
+\lambda_+(1,1)=\ph.
+\]
+
+\textit{Remark.} $\ph$ is not a convenient choice but the slowest-growing dominant exponent in the entire class of positive integer second-order recursions.
+
+\section*{V. Spectral--Geometric Consistency and Derivation of $R_n$}
+\textbf{Postulate H3 (Spectral--Geometric Consistency)}
+
+The Laplacian spectrum on $S^3(R_n)$ is discrete:
+\[
+\lambda_{\ell}=\frac{\ell(\ell+2)}{R_n^2}, \qquad \ell\in\N.
+\]
+
+We assume the maximal structurally realisable mode index equals the node count:
+\[
+\ell_{\max}(n)\sim F_n.
+\]
+
+Requiring invariance of modal density across levels:
+\[
+\frac{\ell_{\max}(n)}{R_n}=\mathrm{const}
+\quad\Rightarrow\quad
+\frac{F_n}{R_n}=\mathrm{const}
+\quad\Rightarrow\quad
+R_n\propto F_n\sim \ph^n.
+\]
+
+Therefore:
+\[
+R_n=R_0\ph^n.
+\]
+
+\textit{Remark.} H3 is the bridge between the combinatorial and geometric sectors. It asserts that the number of available Laplacian modes on $\Sigma_n$ matches the number of structural degrees of freedom at level $n$. Under this consistency condition $R_n$ inherits the $\ph$-exponential from the node-count asymptotics rather than being separately postulated.
+
+\section*{VI. Correlation Density}
+\textbf{Definition 2 (Node Increment and Correlation Density)}
+
+Define $\Delta F_n:=F_n-F_{n-1}$. In the Fibonacci case, $\Delta F_n=F_{n-2}$. The correlation fraction:
+\[
+C_n:=\frac{\Delta F_n}{F_n}.
+\]
+
+\textbf{Theorem 3 (Asymptotic Correlation Density)}
+
+In the Fibonacci model:
+\[
+\lim_{n\to\infty} C_n = \ph^{-2}\approx 0.382.
+\]
+
+\textit{Proof.} $C_n=F_{n-2}/F_n=(F_{n-2}/F_{n-1})\cdot(F_{n-1}/F_n)\to \ph^{-1}\cdot\ph^{-1}=\ph^{-2}$. $\square$
+
+\textit{Remark.} The corrected limit is $\ph^{-2}\approx 0.382$, superseding the preliminary value of $\ph^{-1}\approx 0.618$, which resulted from the incorrect identification $\Delta F_n=F_{n-1}$ rather than $F_{n-2}$.
+
+\section*{VII. Connectivity, Correlations, and Robustness}
+\textbf{Postulate C1 (Minimal Hierarchical Attachment)}
+
+At step $n$, new nodes attach to existing nodes subject to: (i) connections arise only between levels $n$ and $n-1$; (ii) no rewiring of prior connections occurs. With coupling density $\kappa\in(0,1]$:
+\[
+I_n:=\kappa F_{n-1}\Delta F_n.
+\]
+
+\textit{Remark.} C1 is the minimal hierarchical scheme, not a physical assertion. $\kappa=1$ gives full bipartite coupling; $\kappa<1$ sparse coupling. Theorem 4 shows the $\ph$-exponent is $\kappa$-independent.
+
+\textbf{Theorem 4 (Scaling of New Correlations)}
+
+For any $\kappa>0$ in the Fibonacci model:
+\[
+I_n\sim \frac{\kappa}{5}\ph^{2n-3}.
+\]
+In particular the growth exponent $2$ (base $\ph$) is independent of $\kappa$.
+
+\textit{Proof.} With $\Delta F_n=F_{n-2}$ and Binet's formula $F_n\sim \ph^n/\sqrt{5}$:
+\[
+I_n=\kappa F_{n-1}F_{n-2}\sim \kappa\left(\frac{\ph^{n-1}}{\sqrt{5}}\right)\left(\frac{\ph^{n-2}}{\sqrt{5}}\right)=\frac{\kappa}{5}\ph^{2n-3}.
+\]
+The exponent $2n$ is fixed; $\kappa$ affects only the prefactor.
+
+\textbf{Remark (Generality of the $\ph^{2n}$ Exponent)}
+
+Under random-graph, small-world, or scale-free connectivity with a linear number of new edges per step, the growth exponent of $I_n$ is determined by the product $F_n\cdot F_{n-1}\sim \ph^{2n}$. The $\ph$-exponents are therefore a robust consequence of the dominant eigenvalue structure, not of the specific connectivity rule.
+
+\section*{VIII. Informational Density}
+\textbf{Definition 3 (Combinatorial Informational Density)}
+
+The informational density of new correlations is $D_n:=I_n/V_n$, where $V_n\propto R_n^3$ is the 3-volume at scale $R_n$.
+
+\textbf{Theorem 5 (Decay of Informational Density)}
+
+In the Fibonacci-minimal model:
+\[
+D_n\propto \ph^{-n}\qquad (n\to\infty).
+\]
+
+\textit{Proof.} $I_n\sim \ph^{2n}$ (Theorem 4) and $V_n\propto R_n^3=R_0^3\ph^{3n}$ (Postulate H3). Therefore $D_n\sim \ph^{2n}/\ph^{3n}=\ph^{-n}$.
+
+\textit{Remark.} This is a purely combinatorial and geometric result. No thermodynamic or quantum-mechanical entropy is invoked.
+
+\section*{IX. Uniqueness of $\ph$ in the Minimal Positive Class}
+\textbf{Theorem 6 (Uniqueness of $\ph$ as Minimum Dominant Eigenvalue)}
+
+Among all recursions $F_{n+1}=aF_n+bF_{n-1}$ with $a,b\in\N_{\ge 1}$:
+\[
+\min_{a,b}\lambda_+(a,b)=\lambda_+(1,1)=\ph.
+\]
+
+\textit{Proof.} $\lambda_+(a,b)=(a+\sqrt{a^2+4b})/2$ has positive partial derivatives in $a$ and $b$ for all $a,b>0$. The lattice minimum over $a,b\in\N_{\ge 1}$ is therefore attained uniquely at $(a,b)=(1,1)$, giving $\lambda_+=\ph$.
+
+\textit{Remark.} $\ph$ is the minimal expansion rate compatible with a non-degenerate positive integer hierarchical recursion. It is forced by the model class, not chosen.
+
+\section*{X. On Entropy: Scope and Exclusion}
+Earlier versions of this work included the claim $S_n\sim n\log\ph$ for entanglement entropy. We exclude this from the present paper. Entanglement entropy in a graph-theoretic setting requires a well-defined probability distribution over the degree sequence. If all new nodes at level $n$ acquire the same degree $\sim F_{n-1}$, the degree distribution is degenerate and the Shannon entropy is zero. A non-trivial entropy requires either (a) a probabilistic attachment rule, or (b) an explicit bipartite quantum state assignment. Both extensions are deferred to future work.
+
+\section*{XI. Summary and Conclusions}
+The table below summarises the principal results.
+
+\begin{table}[h]
+\centering
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{0.31\textwidth} >{\raggedright\arraybackslash}p{0.31\textwidth} X}
+\toprule
+\textbf{Quantity} & \textbf{Scaling Law} & \textbf{Status} \\
+\midrule
+Correlation density $C_n$ & $C_n\to\ph^{-2}\approx 0.382$ & Theorem 3 \\
+New correlations $I_n$ & $I_n\sim\kappa\ph^{2n}$ & Theorem 4 \\
+Informational density $D_n$ & $D_n\propto\ph^{-n}$ & Theorem 5 \\
+Geometric scale $R_n$ & $R_n=R_0\ph^n$ & H3 (derived from Laplacian) \\
+Dominant eigenvalue & $\lambda_+=\ph$ & Theorem 1 (Perron--Frobenius) \\
+Entropy $S_n$ & Deferred & Excluded --- see Section X \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+The \FBSR{} framework, as formalised here, establishes that:
+\begin{itemize}[leftmargin=2em]
+    \item $\ph$ is forced as the dominant exponent by the minimal positive second-order recursion, via Perron--Frobenius.
+    \item The geometric scale $R_n$ follows from a spectral--geometric consistency condition (H3), not from a separate postulate.
+    \item Correlation and informational density scale as $\ph^{2n}$ and $\ph^{-n}$ respectively, as strict mathematical consequences of the postulates.
+    \item The $\ph$-exponents are robust under arbitrary connectivity schemes ($\kappa$-independence).
+    \item All metaphorical language (Indra's Net, self-aware lattice) is excluded from the mathematical core.
+\end{itemize}
+
+\section*{XII. Limitations and Future Directions}
+\begin{enumerate}[leftmargin=2em]
+    \item \textbf{Entropy extension.} Incorporate a probabilistic attachment rule to yield a non-trivial degree distribution and enable a rigorous Shannon or von Neumann entropy derivation.
+    \item \textbf{Dynamical sector.} Derive H3 from a variational principle or link $R_n$ to a Laplacian-based Hamiltonian on $S^3$, converting the consistency postulate into a theorem.
+    \item \textbf{Topology generalisation.} Extend beyond $S^3$ to lens spaces $L(p,q)$ and investigate how the modified Laplacian spectrum alters H3.
+    \item \textbf{Observational connection.} Identify candidate observational signatures of $\ph$-scaling in the CMB power spectrum or large-scale structure statistics.
+    \item \textbf{Higher-order recursions.} Study third- and higher-order positive recursions and characterise their dominant eigenvalue structure by analogy with Theorems 1--2.
+\end{enumerate}
+
+\section*{References}
+\begin{enumerate}[label={[\arabic*]}, leftmargin=2em]
+    \item Horn, R. A. and Johnson, C. R. (2013). \textit{Matrix Analysis}, 2nd ed. Cambridge University Press.
+    \item Seneta, E. (2006). \textit{Non-negative Matrices and Markov Chains}. Springer.
+    \item Calcagni, G. (2010). Fractal universe and quantum gravity. \textit{Physical Review Letters} \textbf{104}, 251301.
+    \item Calcagni, G. (2021). \textit{Classical and Quantum Cosmology}. Springer Graduate Texts in Physics.
+    \item Horodecki, R., Horodecki, P., Horodecki, M. and Horodecki, K. (2009). Quantum entanglement. \textit{Reviews of Modern Physics} \textbf{81}, 865--942.
+    \item Bousso, R. (2002). The holographic principle. \textit{Reviews of Modern Physics} \textbf{74}, 825--874.
+    \item Barab\'asi, A.-L. and Albert, R. (1999). Emergence of scaling in random networks. \textit{Science} \textbf{286}, 509--512.
+    \item Watts, D. J. and Strogatz, S. H. (1998). Collective dynamics of small-world networks. \textit{Nature} \textbf{393}, 440--442.
+    \item Penrose, R. (2004). \textit{The Road to Reality: A Complete Guide to the Laws of the Universe}. Jonathan Cape.
+    \item Berger, M. (2003). \textit{A Panoramic View of Riemannian Geometry}. Springer.
+    \item Landi, G. and Rovelli, C. (1997). General relativity in terms of Dirac eigenvalues. \textit{Physical Review Letters} \textbf{78}, 3051--3054.
+\end{enumerate}
+
+\end{document}

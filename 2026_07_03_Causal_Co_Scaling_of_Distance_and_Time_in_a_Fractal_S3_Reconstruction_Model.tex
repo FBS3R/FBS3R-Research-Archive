@@ -1,0 +1,557 @@
+\documentclass[11pt,a4paper]{article}
+
+% ── Packages ──────────────────────────────────────────────────────────────────
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{palatino}
+\usepackage{microtype}
+\usepackage{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{parskip}
+\usepackage{enumitem}
+
+% ── Page layout ───────────────────────────────────────────────────────────────
+\geometry{
+  a4paper,
+  top=2.75cm, bottom=3.15cm,
+  left=2.75cm, right=2.75cm,
+  headheight=22pt
+}
+
+% ── Colours ───────────────────────────────────────────────────────────────────
+\definecolor{deepblue}{HTML}{1a1a2e}
+\definecolor{midblue}{HTML}{2d3a7a}
+\definecolor{lightblue}{HTML}{eef2ff}
+\definecolor{ruleblue}{HTML}{9999bb}
+\definecolor{boxframe}{HTML}{2d3a7a}
+\definecolor{notegrey}{HTML}{555566}
+\definecolor{accentgold}{HTML}{7a5c00}
+
+% ── Hyperref ──────────────────────────────────────────────────────────────────
+\hypersetup{
+  colorlinks=true,
+  linkcolor=midblue,
+  urlcolor=midblue,
+  citecolor=midblue,
+  pdftitle={Causal Co-Scaling of Distance and Time in a Fractal S3 Reconstruction Model},
+  pdfauthor={Andrei Preece, Boris Batenin},
+  pdfsubject={Causal co-scaling, fractal S3 geometry, reconstruction time, speed of light}
+}
+
+% ── Section formatting ────────────────────────────────────────────────────────
+\titleformat{\section}
+  {\large\bfseries\color{deepblue}}
+  {\thesection.}{0.6em}{}
+  [\vspace{1pt}{\color{ruleblue}\hrule height 0.6pt}\vspace{2pt}]
+
+\titleformat{\subsection}
+  {\normalsize\bfseries\color{midblue}}
+  {\thesubsection}{0.6em}{}
+
+\titlespacing{\section}{0pt}{18pt}{8pt}
+\titlespacing{\subsection}{0pt}{11pt}{4pt}
+
+% ── Header / footer ───────────────────────────────────────────────────────────
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\color{midblue}\textit{Causal Co-Scaling — Fractal $S^3$ Geometry}}
+\fancyhead[R]{\small\color{midblue}Preece \& Batenin, 2026}
+\fancyfoot[C]{\small\color{notegrey}\thepage}
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\headrule}{\hbox to\headwidth{%
+  \color{ruleblue}\leaders\hrule height \headrulewidth\hfill}}
+
+% ── Theorem styles ────────────────────────────────────────────────────────────
+\newtheorem{axiom}{Axiom}
+\newtheorem{proposition}{Proposition}
+\newtheorem{remark}{Remark}
+
+% ── tcolorbox styles ──────────────────────────────────────────────────────────
+\newtcolorbox{principlebox}[1][]{
+  enhanced, breakable,
+  colback=deepblue!5,
+  colframe=deepblue,
+  boxrule=1pt, arc=4pt,
+  left=10pt, right=10pt, top=8pt, bottom=8pt,
+  title={\small\bfseries Causal Co-Scaling Principle},
+  fonttitle=\bfseries\color{white},
+  coltitle=white,
+  attach boxed title to top left={yshift=-2.5mm, xshift=7mm},
+  boxed title style={colback=deepblue, arc=3pt, boxrule=0pt, left=4pt, right=4pt},
+  #1
+}
+
+\newtcolorbox{noteBox}[1][]{
+  enhanced, breakable,
+  colback=lightblue,
+  colframe=boxframe,
+  boxrule=0.75pt, arc=4pt,
+  left=10pt, right=10pt, top=8pt, bottom=8pt,
+  #1
+}
+
+\newtcolorbox{cautionBox}[1][]{
+  enhanced, breakable,
+  colback=accentgold!8,
+  colframe=accentgold,
+  boxrule=0.75pt, arc=4pt,
+  left=10pt, right=10pt, top=8pt, bottom=8pt,
+  #1
+}
+
+% ── Shortcuts ─────────────────────────────────────────────────────────────────
+\newcommand{\Sthree}{S^{3}}
+\newcommand{\Szero}{S^{0}}
+\newcommand{\lP}{\ell_{P}}
+\newcommand{\tP}{t_{P}}
+\newcommand{\ph}{\varphi}
+\newcommand{\Rrec}{R_{\mathrm{rec}}}
+\newcommand{\Rstar}{R_{\ast}}
+\newcommand{\tstar}{t_{\ast}}
+\newcommand{\Vthree}{V_{S^3}}
+\newcommand{\dd}{\mathrm{d}}
+
+% ─────────────────────────────────────────────────────────────────────────────
+\begin{document}
+\thispagestyle{empty}
+
+% ── Title block ───────────────────────────────────────────────────────────────
+\begin{center}
+  {\LARGE\bfseries\color{deepblue}
+    Causal Co-Scaling of Distance and Time\\[5pt]
+    in a Fractal $\Sthree$ Reconstruction Model}\\[8pt]
+  {\Large\color{midblue}A Research Note on the Invariant Ratio $R/t=c$}\\[18pt]
+  {\large Andrei Preece \quad \& \quad Boris Batenin}\\[7pt]
+  {\small Independent Researchers}\\[4pt]
+  {\small
+    \href{mailto:andre.preece@web.de}{andre.preece@web.de}\quad
+    ORCID: \href{https://orcid.org/0009-0004-5978-795X}{0009-0004-5978-795X}\\[2pt]
+    \href{mailto:batenin@web.de}{batenin@web.de}\quad
+    ORCID: \href{https://orcid.org/0009-0000-7027-8583}{0009-0000-7027-8583}\\[7pt]
+    Berlin, 2026
+  }
+\end{center}
+
+\vspace{4pt}
+{\color{midblue}\hrule height 1.4pt}
+\vspace{12pt}
+
+\begin{center}
+\begin{minipage}{0.93\linewidth}
+\textbf{Manuscript scope.}\;
+This research note isolates one structural axiom used in the broader compact $\Sthree$
+programme: distance, reconstruction time, and the speed of light are not independent
+quantities, but co-scaled components of one causal package.
+\end{minipage}
+\end{center}
+
+\vspace{8pt}
+
+% ── Abstract ──────────────────────────────────────────────────────────────────
+\begin{center}
+\begin{minipage}{0.93\linewidth}
+\textbf{Abstract.}\;
+This note formulates an axiom of \emph{causal co-scaling} for fractal compact
+$\Sthree$ reconstruction.  The speed of light is not treated as an isolated number
+to be derived after distance and time have already been defined.  Instead, the causal
+ratio
+\[
+  c=\frac{R}{t}
+\]
+is taken as the invariant relation binding distance and reconstruction time.  If a
+Planck-normalised hierarchy scales carrier radii as $R_N=\lP\ph^N$, then causal
+self-consistency requires reconstruction times to scale as $t_N=\tP\ph^N$.  The ratio
+is then preserved at every level:
+\[
+  \frac{R_N}{t_N}=\frac{\lP}{\tP}=c.
+\]
+This does not derive the numerical value of $c$, since both $\lP$ and $\tP$ already
+encode the empirical causal scale.  Rather, it states a closure condition: a
+golden-ratio reconstruction hierarchy is causally admissible only when distance and
+time co-scale.  The note also separates the pre-photon reconstruction regime from
+the later photon-supported cosmological expansion regime, and clarifies the status
+of an internal transition index such as $N_{\ast}=207$.  Such an index is not an
+observational definition of recombination, but a model-internal reference scale at
+which the reconstruction mechanism is allowed to change regime.
+
+\smallskip
+\noindent\textbf{Keywords:} causal co-scaling;\ compact $\Sthree$;\;golden-ratio
+hierarchy;\;Planck scale;\;reconstruction time;\;speed of light;\;fixed-point closure.
+\end{minipage}
+\end{center}
+
+\vspace{10pt}
+{\color{ruleblue}\hrule}
+\vspace{14pt}
+
+% ─────────────────────────────────────────────────────────────────────────────
+\section{Purpose and Claim Status}
+% ─────────────────────────────────────────────────────────────────────────────
+
+The purpose of this note is narrow.  We isolate a single structural axiom:
+
+\begin{quote}
+\emph{If a carrier-distance scale is multiplied by a reconstruction factor, the
+corresponding reconstruction time must be multiplied by the same factor, or else
+the causal ratio $R/t$ is not preserved.}
+\end{quote}
+
+The note therefore does \textbf{not} claim:
+\begin{enumerate}[leftmargin=2em, itemsep=3pt]
+  \item to derive the empirical value of $c$ from pure topology;
+  \item to derive the Planck length independently of $c$;
+  \item to identify a fractal index with a directly observed cosmological epoch;
+  \item to replace the standard observational definition of recombination.
+\end{enumerate}
+
+It claims only the following.
+
+\begin{principlebox}
+Distance, time, and the speed of light form a single causal triad:
+\[
+  R=ct,\qquad c=\frac{R}{t},\qquad t=\frac{R}{c}.
+\]
+In a reconstruction hierarchy, one cannot scale distance while leaving time unchanged.
+Causal admissibility requires co-scaling.
+\end{principlebox}
+
+% ─────────────────────────────────────────────────────────────────────────────
+\section{The Causal Triad}
+% ─────────────────────────────────────────────────────────────────────────────
+
+Let $R$ denote an admissible causal distance, $t$ the corresponding reconstruction
+time, and $c$ the invariant causal speed.  The three elementary relations
+\[
+  R=ct,\qquad c=\frac{R}{t},\qquad t=\frac{R}{c}
+\]
+are formally equivalent, but conceptually they carry different emphases.
+
+If $c$ is viewed as the primitive constant, then $R$ is the distance accessible during
+time $t$.  If $R$ and $t$ are measured operationally, then $c$ appears as their invariant
+ratio.  In a geometric reconstruction model, neither view alone is sufficient: the
+causal geometry is the whole triad.
+
+\begin{noteBox}
+\textbf{Interpretation.}
+The speed of light is not introduced here as an isolated object.  It is the causal
+ratio binding distance and reconstruction time.  The model therefore asks not
+``Can $c$ be derived from $\Sthree$ topology alone?'', but rather:
+``Does the proposed $\Sthree$ reconstruction preserve the causal ratio $R/t=c$?''
+\end{noteBox}
+
+% ─────────────────────────────────────────────────────────────────────────────
+\section{Planck Normalisation and the No-Derivation Caveat}
+% ─────────────────────────────────────────────────────────────────────────────
+
+The Planck length and Planck time are
+\[
+  \lP=\sqrt{\frac{\hbar G}{c^3}},
+  \qquad
+  \tP=\frac{\lP}{c}
+  =\sqrt{\frac{\hbar G}{c^5}}.
+\]
+Thus any model that begins with $\lP$ or $\tP$ has already admitted the causal scale
+$c$ into its normalisation.  Consequently, such a model cannot honestly derive $c$
+as an independent result.
+
+\begin{cautionBox}
+\textbf{Caveat.}
+Using $\lP$ and then obtaining $c=\lP/\tP$ is not a derivation of the speed of light.
+It is a consistency check.  The value of $c$ is already present in the Planck
+normalisation.
+\end{cautionBox}
+
+The correct target is therefore \emph{causal closure}.  A reconstruction hierarchy
+must preserve the causal relation once the Planck causal unit has been fixed.
+
+% ─────────────────────────────────────────────────────────────────────────────
+\section{Axiom of Causal Co-Scaling}
+% ─────────────────────────────────────────────────────────────────────────────
+
+We now introduce the central axiom.
+
+\begin{axiom}[Causal co-scaling]
+Let a reconstruction hierarchy be indexed by $N\in\mathbb{Z}_{\ge 0}$ and let
+$\ph=(1+\sqrt5)/2$.  If the carrier radius is scaled from the Planck scale by
+\[
+  R_N=\lP\ph^N,
+\]
+then the corresponding reconstruction time must scale as
+\[
+  t_N=\tP\ph^N.
+\]
+The causal ratio is then invariant:
+\[
+  \frac{R_N}{t_N}=c.
+\]
+\end{axiom}
+
+\begin{proposition}[Causal closure]
+Under causal co-scaling, every golden-ratio reconstruction level has the same
+causal ratio:
+\[
+  \frac{R_N}{t_N}
+  =
+  \frac{\lP\ph^N}{\tP\ph^N}
+  =
+  \frac{\lP}{\tP}
+  =
+  c.
+\]
+\end{proposition}
+
+\noindent
+The proof is algebraic, but the interpretation is structural.  The factor $\ph^N$
+is not permitted to multiply distance alone.  If it multiplies the carrier-distance,
+it must multiply the reconstruction-time.  The scaling factor cancels from the ratio,
+leaving the causal boundary unchanged.
+
+% ─────────────────────────────────────────────────────────────────────────────
+\section{Compact \texorpdfstring{$\Sthree$}{S3} Carrier Volume}
+% ─────────────────────────────────────────────────────────────────────────────
+
+If the spatial carrier is a round compact $\Sthree$ of radius $R$, its volume is
+\[
+  \Vthree(R)=2\pi^2R^3.
+\]
+This must be distinguished from the Euclidean ball volume
+\[
+  V_{\mathrm{ball}}(R)=\frac{4}{3}\pi R^3.
+\]
+The first is the volume of the three-sphere as a compact three-dimensional manifold.
+The second is the volume enclosed by an ordinary two-sphere in Euclidean three-space.
+
+For a Planck-normalised golden hierarchy,
+\[
+  R_N=\lP\ph^N,
+\]
+the compact $\Sthree$ carrier volume becomes
+\[
+  \Vthree(N)=2\pi^2\lP^3\ph^{3N}.
+\]
+If a fixed carrier content $E_0$ is distributed across this carrier, then the associated
+energy-density scale is
+\[
+  \rho_E(N)=\frac{E_0}{\Vthree(N)}
+  =
+  \frac{E_0}{2\pi^2\lP^3}\ph^{-3N}.
+\]
+Thus a radius hierarchy scaling as $\ph^N$ induces a density hierarchy scaling as
+$\ph^{-3N}$.
+
+% ─────────────────────────────────────────────────────────────────────────────
+\section{Distance, Time, Density, and Reconstruction Capacity}
+% ─────────────────────────────────────────────────────────────────────────────
+
+The co-scaling axiom gives a clean separation between causal scaling and density
+scaling:
+\[
+  R_N\sim\ph^N,\qquad
+  t_N\sim\ph^N,\qquad
+  \rho_E(N)\sim\ph^{-3N}.
+\]
+
+The first two relations preserve the causal ratio.  The third expresses geometric
+dilution of a fixed carrier content across an expanding compact volume.  This permits
+one to introduce a distinct quantity: the number of reconstructible cells or the
+reconstructible distinguishability capacity.  At resolution $\epsilon$, a generic
+capacity law may be written
+\[
+  C_N(\epsilon)\sim \left(\frac{R_N}{\epsilon}\right)^{d_{\mathrm{eff}}},
+\]
+where $d_{\mathrm{eff}}$ is an effective reconstruction dimension.  At the Planck
+resolution $\epsilon=\lP$,
+\[
+  C_N(\lP)\sim \left(\frac{R_N}{\lP}\right)^{d_{\mathrm{eff}}}
+  =
+  \ph^{d_{\mathrm{eff}}N}.
+\]
+
+This gives two opposite monotonic tendencies:
+\[
+  \rho_E(N)\sim\ph^{-3N},
+  \qquad
+  C_N(\lP)\sim\ph^{d_{\mathrm{eff}}N}.
+\]
+
+\begin{noteBox}
+Energy density and reconstruction capacity are not the same quantity.  Energy
+density measures concentration of carrier content.  Reconstruction capacity measures
+how many distinguishable cells, modes, or states can be supported at a chosen
+resolution.  Expansion may decrease the first while increasing the second.
+\end{noteBox}
+
+% ─────────────────────────────────────────────────────────────────────────────
+\section{Two Regimes: Pre-Photon Reconstruction and Photon-Supported Expansion}
+% ─────────────────────────────────────────────────────────────────────────────
+
+The co-scaling law is most useful when the model distinguishes two regimes.
+
+\subsection{Pre-photon reconstruction regime}
+
+Before a free-photon description is introduced, one may model the carrier by pure
+Planck-to-fractal reconstruction:
+\[
+  R_N=\lP\ph^N,
+  \qquad
+  t_N=\tP\ph^N.
+\]
+This is a structural hierarchy.  It is not yet an observational expansion law with a
+measured Hubble parameter.  It states how causal distance and reconstruction time
+must scale if the hierarchy is to preserve the invariant ratio $c$.
+
+\subsection{Photon-supported expansion regime}
+
+After the model introduces freely propagating photons, the description must change.
+A later cosmological regime may involve quantities such as
+\[
+  a(t),\qquad H(t),\qquad z,\qquad R(t),
+\]
+and the empirical causal propagation of light.  The point of transition between the
+two descriptions is not defined by the integer alone.  It requires a matching
+condition.
+
+% ─────────────────────────────────────────────────────────────────────────────
+\section{Internal Transition Index}
+% ─────────────────────────────────────────────────────────────────────────────
+
+Suppose a model chooses an internal index $N_\ast$ and sets
+\[
+  \Rstar=\lP\ph^{N_\ast},
+  \qquad
+  \tstar=\tP\ph^{N_\ast}.
+\]
+Then by causal co-scaling,
+\[
+  \frac{\Rstar}{\tstar}=c.
+\]
+For example, if one takes $N_\ast=207$, this gives
+\[
+  \Rstar=\lP\ph^{207},
+  \qquad
+  \tstar=\tP\ph^{207}.
+\]
+This does not mean that ``the integer 207 is recombination.''  It means only that
+$207$ is an internal reconstruction index, selecting a reference scale inside the
+model.
+
+\begin{cautionBox}
+\textbf{Recombination caution.}
+A physical recombination epoch is defined by physical criteria: photon decoupling,
+temperature, ionisation state, redshift, and optical depth.  An internal golden-ratio
+index may be used as a reference scale, but it does not define recombination by
+itself.  To connect $N_\ast$ to recombination, one must supply an explicit matching
+condition.
+\end{cautionBox}
+
+\begin{cautionBox}
+\textbf{Numerical caution.}
+Under the pure Planck normalisation of this note, $N_\ast=207$ evaluates to
+\[
+  \Rstar=\lP\ph^{207}\approx 2.94\times10^{8}\ \mathrm{m},
+  \qquad
+  \tstar=\tP\ph^{207}\approx 0.98\ \mathrm{s},
+\]
+i.e.\ a scale of about one light-second---\emph{not} a recombination scale.  A
+light-travel time of order $3.8\times10^{5}$ years would instead require
+$N\approx269.6$ under the same simple normalisation.  Hence $N_\ast=207$ can only be
+an internal reference index of the reconstruction mechanism; any identification with
+a cosmological epoch requires an explicit, separately stated matching condition, and
+none is supplied or claimed here.
+\end{cautionBox}
+
+A precise statement is therefore:
+\begin{quote}
+If the pre-photon reconstruction mechanism is modeled by golden-ratio scaling from
+the Planck carrier, then after $N_\ast$ reconstruction steps the radius reaches the
+model's chosen pre-photon reference scale.  This does not observationally define
+recombination; it marks a possible point at which the model changes regime from
+$\ph$-reconstruction to photon-supported expansion.
+\end{quote}
+
+% ─────────────────────────────────────────────────────────────────────────────
+\section{Relation to Previous Causal Self-Consistency Work}
+% ─────────────────────────────────────────────────────────────────────────────
+
+A previous draft on causal self-consistency treated the speed of light as an empirical
+invariant and asked whether a fractal $\Sthree$ hierarchy could close consistently
+under that invariant.  The present note extracts the simpler algebraic core of that
+argument.
+
+The earlier closure form may be summarised schematically as a fixed-point condition:
+one accepts $c$ as an empirical causal speed and tests whether the proposed hierarchy
+returns the same value after its internal geometric substitutions.  The present note
+sharpens that idea:
+
+\[
+  R_N=\lP\ph^N,\qquad
+  t_N=\tP\ph^N
+  \quad\Longrightarrow\quad
+  R_N/t_N=c.
+\]
+
+Thus the closure is no longer presented as a derivation of $c$, but as the
+preservation of the causal triad under co-scaling.
+
+% ─────────────────────────────────────────────────────────────────────────────
+\section{Non-Claims}
+% ─────────────────────────────────────────────────────────────────────────────
+
+For clarity, the note explicitly rejects five overstatements.
+
+\begin{enumerate}[leftmargin=2em, itemsep=3pt]
+  \item \textbf{No derivation of $c$.}  Since $\lP$ and $\tP$ contain $c$, the ratio
+  $\lP/\tP=c$ is a consistency identity, not an independent prediction.
+  \item \textbf{No topology-only physics.}  Compact $\Sthree$ geometry supplies a
+  carrier structure, not a complete derivation of empirical constants.
+  \item \textbf{No direct recombination proof.}  A golden-ratio index requires a
+  matching condition before it can be related to photon decoupling.
+  \item \textbf{No replacement of observational cosmology.}  The framework is a
+  reconstruction model; observational cosmology remains the test.
+  \item \textbf{No observational support for the $\ph$-hierarchy is claimed.}  The
+  directly testable log-periodic signature $\omega=2\pi/\ln\ph$ associated with
+  golden-ratio scaling has been tested by us against DESI~DR2 BAO and Pantheon$+$
+  data with null results,\footnote{B.~Batenin and A.~Preece, \emph{A Null Test of
+  Golden-Ratio Log-Periodicity ($\omega=2\pi/\ln\varphi$) against DESI DR2 BAO and
+  Pantheon$+$}, research manuscript (2026).}  and that status is inherited here: the
+  co-scaling axiom is a structural admissibility condition on a model hierarchy, not
+  an empirically supported scaling law.  Nothing in the DRD information-theory line
+  depends on this note.
+\end{enumerate}
+
+% ─────────────────────────────────────────────────────────────────────────────
+\section{Conclusion}
+% ─────────────────────────────────────────────────────────────────────────────
+
+The central result is the axiom of causal co-scaling:
+\[
+  R_N=\lP\ph^N,\qquad
+  t_N=\tP\ph^N,\qquad
+  \frac{R_N}{t_N}=c.
+\]
+It expresses the simple but structurally important fact that distance and
+reconstruction time cannot be scaled independently once a causal speed is fixed.
+The golden-ratio factor may organise a reconstruction hierarchy, but it does not
+alter the causal ratio if time and distance co-scale.
+
+In the broader compact $\Sthree$ programme, this axiom supplies a clean interface
+between three ideas:
+\[
+  \text{Planck carrier}
+  \quad\longrightarrow\quad
+  \text{fractal reconstruction}
+  \quad\longrightarrow\quad
+  \text{photon-supported causal expansion}.
+\]
+The principle is modest, but useful.  It prevents false derivations of $c$ and replaces
+them with a sharper demand: every proposed reconstruction scale must preserve the
+causal triad of distance, time, and light.
+
+\end{document}

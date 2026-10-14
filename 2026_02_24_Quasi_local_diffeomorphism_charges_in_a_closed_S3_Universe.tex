@@ -1,0 +1,579 @@
+%===========================================================
+% FINAL MANUSCRIPT (RevTeX4-2) -- with FBS^3R bridge section inserted
+% Title: Quasi-local diffeomorphism charges in a closed S^3 universe
+%===========================================================
+\documentclass[
+  reprint,
+  amsmath,amssymb,
+  aps,
+  prd,
+  superscriptaddress,
+  nofootinbib,
+  longbibliography
+]{revtex4-2}
+%------------------ Packages ------------------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{bm}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage{siunitx}
+\sisetup{per-mode = symbol}
+\usepackage{graphicx}
+\usepackage{booktabs}
+% --- Plot generated inside LaTeX (no external figure file) ---
+\usepackage{tikz}
+\usepackage{pgfplots}
+% Publisher fallback: if pgfplots is disabled, replace Fig.~1 with an external PDF figure.
+\pgfplotsset{compat=1.18}
+\usepackage[hidelinks]{hyperref}
+\usepackage{orcidlink}
+\makeatletter
+\AtBeginDocument{%
+  \@ifpackageloaded{hyperref}{\hypersetup{hidelinks}}{}%
+}
+\makeatother
+%------------------ Macros ------------------
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\phifield}{\varphi} % glyph (phi), if needed
+\newcommand{\goldconst}{\ensuremath{\phi_{\!\mathrm{g}}}} % golden ratio constant symbol
+\newcommand{\gold}{\goldconst}
+\newcommand{\phig}{\goldconst} % shorthand for golden ratio constant
+\newcommand{\Sthree}{\ensuremath{S^3}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\Sig}{\Sigma}
+\newcommand{\del}{\partial}
+\newcommand{\Lie}{\mathcal{L}}
+\newcommand{\on}{\approx}
+\newcommand{\G}{G}
+\newcommand{\Lform}{\bm{L}}
+\newcommand{\tht}{\bm{\theta}}
+\newcommand{\om}{\bm{\omega}}
+\newcommand{\J}{\bm{J}}
+\newcommand{\Q}{\bm{Q}}
+\newcommand{\Bnd}{\bm{B}}
+\newcommand{\eps}{\bm{\epsilon}}
+%------------------ Theorem environments ------------------
+\newtheorem{theorem}{Theorem}
+\newtheorem{prop}{Proposition}
+\newtheorem{claim}{Claim}
+\newtheorem{cor}{Corollary}
+\begin{document}
+% Use \texorpdfstring to avoid hyperref PDF-string warnings due to math in title
+\title{\texorpdfstring{Quasi-local diffeomorphism charges in a closed $\Sthree$ universe:\\
+explicit Iyer--Wald charges, the Gibbons--Hawking--York term,\\
+and $\goldconst$-level boundary scanning}{Quasi-local diffeomorphism charges in a closed S^3 universe: explicit Iyer--Wald charges, the Gibbons--Hawking--York term, and golden-ratio level boundary scanning}}
+\author{Andrei Preece\orcidlink{0009-0004-5978-795X}}
+\affiliation{Independent Researcher, Berlin, Germany}
+\author{Boris Batenin\orcidlink{0009-0000-7027-8583}}
+\affiliation{Independent Researcher, Berlin, Germany}
+\date{\today}
+\begin{abstract}
+Diffeomorphism invariance implies Noether identities and first-class constraints rather than ordinary global conserved charges.
+In a compact closed universe with Cauchy slice $\Sigma \simeq S^{3}$ one has $\partial\Sigma=\varnothing$, hence the global Hamiltonian generator associated with gauge diffeomorphisms vanishes.
+Nevertheless, physically meaningful generators arise quasi-locally for subregions $D\subset\Sigma$ with $\partial D\neq\varnothing$ and are entirely encoded by boundary integrals.
+We provide a self-contained covariant phase space derivation in general relativity with an explicit Iyer--Wald Noether charge two-form $Q_\xi$ and an explicit boundary three-form $B$ corresponding to the Gibbons--Hawking--York term.
+For closed FRW geometry we compute the Brown--York energy of geodesic balls in $\Sigma\simeq S^{3}$ and obtain a closed expression in terms of the areal radius $R$ and curvature radius $a(t)$.
+We relate this boundary energy to the FRW Misner--Sharp mass and clarify that the two coincide only after additional dynamical input (e.g.\ Friedmann constraints and/or a choice of evolution vector field), since Brown--York is tied to a chosen slice and evolution vector field, whereas Misner--Sharp is the invariant quasi-local mass in spherical symmetry and is often associated with the Kodama flow.\cite{Kodama1980,Hayward1996}
+We also highlight constant-mean-curvature slicing and York time as a canonical choice of relational clock in compact universes.
+Finally, we introduce a $\goldconst$-discretized boundary scan (a golden-ratio discretization of radii, not a dynamical scalar field) $R_n = R_0\goldconst^{n}$ as a structured quasi-local bookkeeping device; a model-dependent $\zeta_{\goldconst}$ spectral overlay and a modular reflection map $n\leftrightarrow n'$ are recorded separately in an appendix.
+\end{abstract}
+\maketitle
+\section{Introduction}
+In diffeomorphism-invariant theories, conservation laws take a different structural form from those of global symmetries.
+Noether's second theorem implies identities among the Euler--Lagrange equations and yields first-class constraints.
+In general relativity (GR), the full compact-universe logic may be summarized in the one-line chain
+\begin{equation}
+\boxed{
+\begin{gathered}
+\mathrm{Diff}(\M)\Rightarrow \text{Noether II}\Rightarrow \J_{\xi}\approx \dd \Q_{\xi}\\
+H_{\xi}=\int_{\partial\Sigma}\bigl(\Q_{\xi}-\xi\cdot\Bnd\bigr)
+\Rightarrow \partial\Sigma=\varnothing\\
+\Rightarrow H_{\xi}[\Sigma]=0 (\text{gauge }\xi)
+\end{gathered}
+}
+\label{eq:masterChainBox}
+\end{equation}
+where $\approx$ denotes equality on-shell.
+The key point for cosmology is that a spatially closed universe with compact Cauchy slice $\Sigma\simeq S^{3}$ has no boundary.
+Hence there is no nontrivial \emph{global} boundary generator for \emph{gauge} diffeomorphisms.
+Physical information is encoded (i) in constraints, and (ii) in quasi-local boundary charges for subregions $D\subset\Sigma$.
+This paper makes these statements explicit in the covariant phase space formalism and computes the resulting quasi-local energy in closed FRW geometry.
+Throughout, $\xi^a$ denotes a smooth vector field used as an \emph{evolution/gauge parameter} in the covariant phase space formalism.
+Unless $\xi$ is a genuine symmetry (e.g.\ Killing), the associated quasi-local generator need not be conserved under time evolution; the construction yields a meaningful Hamiltonian generator on a chosen phase space with specified boundary conditions, not automatically a globally conserved charge in the Noether-I sense.
+\section{From Noether I to Noether II, boundary charges, and ADM}
+It is useful to situate the chain \eqref{eq:masterChainBox} within the more familiar Noether-I picture.
+For ordinary global symmetries (finite-dimensional parameters), Noether's first theorem yields a conserved current
+$\nabla_\mu j^\mu = 0$ and an associated charge obtained by integrating $j^\mu$ over a Cauchy slice.
+In that setting the charge is genuinely ``bulk'': its conservation follows from the local continuity equation together with Stokes' theorem.
+Diffeomorphisms, by contrast, are a local gauge redundancy with an arbitrary spacetime-dependent parameter $\xi^\mu(x)$.
+Noether's second theorem therefore applies: invariance under $\xi^\mu(x)$ produces identities among the Euler--Lagrange equations
+(Bianchi-type relations) and, in the Hamiltonian language, first-class constraints.
+In covariant phase space (CPS) this shows up as a strengthening of ``current conservation'': the diffeomorphism Noether current is on-shell exact,
+\begin{equation}
+  \J_\xi \on \dd \Q_\xi ,
+\end{equation}
+so the would-be charge is necessarily encoded by a surface integral.
+More precisely, writing the Lagrangian as a top form $\Lform$ and its variation as
+\begin{equation}
+\delta\Lform = E(\phi)\,\delta\phi + \dd\tht(\phi;\delta\phi),
+\end{equation}
+one defines
+\begin{equation}
+\J_\xi := \tht(\phi;\Lie_\xi\phi)-\xi\cdot\Lform.
+\end{equation}
+The CPS symplectic current $\om=\delta\tht$ then gives the variation of the Hamiltonian generator as a boundary term,
+\begin{equation}
+  \delta H_\xi[D]=\int_{\partial D}\Bigl(\delta\Q_\xi-\xi\cdot\tht(\phi;\delta\phi)\Bigr),
+\label{eq:dHxi}
+\end{equation}
+for any spatial region $D\subset\Sigma$.
+If the boundary conditions and the choice of phase space imply integrability,
+\begin{equation}
+\xi\cdot\tht(\phi;\delta\phi)=\delta(\xi\cdot\Bnd)
+\quad \text{on the chosen phase space,}
+\label{eq:integrability}
+\end{equation}
+then one obtains an actual generator
+\begin{equation}
+  H_\xi[D]=\int_{\partial D}\bigl(\Q_\xi-\xi\cdot\Bnd\bigr),
+\label{eq:Hxi}
+\end{equation}
+up to an additive constant.
+In general, non-integrability can occur (physically: boundary flux); addressing it may require additional structure (e.g.\ Wald--Zoupas-type prescriptions\cite{WaldZoupas2000}). In this work we restrict attention to boundary data for which \eqref{eq:integrability} holds. Concretely, we assume Dirichlet boundary conditions for the induced metric on the timelike worldtube swept out by $\partial D$, so that the GHY choice makes the Hamiltonian integrable on the chosen phase space.
+The ADM formulation makes the same statement in canonical language.
+Decomposing $\xi^\mu=N n^\mu+N^\mu$ into lapse $N$ and shift $N^i$, the canonical generator takes the form
+\begin{equation}
+  H_{\rm ADM}[N,N^i]
+  =\int_{\Sigma}\bigl(N\,\mathcal{H}+N^i\mathcal{H}_i\bigr)\;+\;\oint_{\partial\Sigma}\mathcal{B}[N,N^i].
+\end{equation}
+Here $\mathcal{H}\approx0$ and $\mathcal{H}_i\approx0$ are the first-class Hamiltonian and momentum constraints implied by Noether II,
+while $\mathcal{B}$ is the boundary functional needed for differentiability and for nonzero charges when a boundary exists.
+On-shell the bulk term vanishes and the generator is purely boundary-supported. Therefore, in a closed universe with compact $\Sigma\simeq S^{3}$ (or more generally any compact $\Sigma$ without boundary),
+\begin{equation}
+  \partial\Sigma=\varnothing
+  \qquad\Longrightarrow\qquad
+  H_\xi[\Sigma]=0
+\end{equation}
+for all smooth \emph{gauge} diffeomorphisms, while quasi-local charges can still be defined for subregions $D\subset\Sigma$ with $\partial D\neq\varnothing$.
+\subsection{Closed FRW in one line: \texorpdfstring{$\partial\Sigma=\varnothing\Rightarrow H_\xi[\Sigma]=0\ \text{(gauge }\xi\text{)}$}{dSigma=empty => H_xi[Sigma]=0}}
+In a closed FRW cosmology $\M=\mathbb{R}\times S^{3}$ one may write
+\begin{equation}
+\dd s^2=-\dd t^2+a(t)^2\,\dd\Omega_3^2,
+\qquad
+\Sigma_t\simeq S^3,
+\end{equation}
+so every Cauchy slice is compact and boundaryless: $\partial\Sigma_t=\varnothing$. Therefore
+\begin{equation}
+H_\xi[\Sigma_t] = \int_{\partial\Sigma_t}\bigl(\Q_\xi-\xi\cdot\Bnd\bigr)=0,
+\end{equation}
+for any smooth diffeomorphism parameter $\xi$ interpreted as a gauge direction on the phase space.
+\subsection{Explicit \texorpdfstring{$\Q_\xi$}{Q_xi} (Komar/Iyer--Wald) and a quasi-local \texorpdfstring{$S^2\subset S^3$}{S2 subset S3} example}
+For Einstein--Hilbert gravity, the Iyer--Wald Noether charge two-form is
+\begin{equation}
+(\Q_\xi)_{ab}=-\frac{1}{16\pi G}\,\epsilon_{abcd}\,\nabla^c\xi^d.
+\label{eq:QEH}
+\end{equation}
+Even though the global slice has no boundary, quasi-local charges are nontrivial for subregions.
+Take a geodesic ball $D\subset\Sigma_t\simeq S^{3}$ with boundary $\partial D\simeq S^{2}$ (e.g.\ $\chi=\chi_0$ in hyperspherical coordinates), and choose $\xi=u=\partial_t$ (the comoving time flow).
+Then the quasi-local generator is a boundary integral on $\partial D$,
+\begin{equation}
+H_u[D] = \int_{\partial D}\bigl(\Q_u-u\cdot \Bnd\bigr).
+\end{equation}
+With a suitable boundary term $\Bnd$ and a reference subtraction fixing the zero-point, this reproduces the Brown--York energy computed below.
+Since $u$ is not generally Killing in FRW, $H_u[D]$ should be viewed as a quasi-local Hamiltonian associated with the chosen slicing/evolution, not as an a priori conserved charge.
+\section{Covariant phase space preliminaries}
+We follow the covariant phase space formalism of Lee--Wald and the diffeomorphism-charge construction of Iyer--Wald.\cite{LeeWald1990,IyerWald1994}
+Let $\Lform(\phi)$ be a Lagrangian $4$-form on spacetime $\M$.
+Its variation is
+\begin{equation}
+\delta\Lform = E(\phi)\,\delta\phi + \dd\tht(\phi;\delta\phi),
+\end{equation}
+where $E(\phi)=0$ are equations of motion and $\tht$ is the symplectic potential $3$-form.
+The symplectic current $3$-form is
+\begin{equation}
+\om(\phi;\delta_1\phi,\delta_2\phi)=\delta_1\tht(\phi;\delta_2\phi)-\delta_2\tht(\phi;\delta_1\phi).
+\end{equation}
+For a vector field $\xi^{a}$, diffeomorphism invariance implies $\delta_\xi\Lform=\Lie_\xi\Lform=\dd(\xi\cdot\Lform)$.
+\section{Noether current, Noether II, and boundary Hamiltonians}
+Define the Noether current $3$-form
+\begin{equation}
+\J_\xi := \tht(\phi;\Lie_\xi\phi)-\xi\cdot\Lform.
+\end{equation}
+A standard identity yields $\dd\J_\xi=-E(\phi)\Lie_\xi\phi$, so $\dd\J_\xi\on 0$.
+For gauge symmetries such as diffeomorphisms, Noether II strengthens this to on-shell exactness:
+\begin{equation}
+\J_\xi \on \dd\Q_\xi,
+\end{equation}
+for some locally constructed $2$-form $\Q_\xi$.
+In the covariant phase space formalism, the variation of the Hamiltonian generator associated with $\xi$ over a spatial region $D\subset\Sigma$ reduces to a boundary expression \eqref{eq:dHxi}.
+When \eqref{eq:integrability} holds for the chosen boundary conditions, the integrable generator is given by \eqref{eq:Hxi}.
+\section{Explicit GR formulas: Iyer--Wald \texorpdfstring{$\Q_\xi$}{Q_xi} and the GHY boundary form \texorpdfstring{$\Bnd$}{B}}
+We now specialize to GR (with optional $\Lambda$). Let $\eps$ denote the spacetime volume $4$-form. The Einstein--Hilbert Lagrangian is
+\begin{equation}
+\Lform_{\rm EH}=\frac{1}{16\pi G}(R-2\Lambda)\,\eps.
+\end{equation}
+In Iyer--Wald conventions, the symplectic potential may be written as
+\begin{equation}
+\tht_{abc}(g;\delta g)=\frac{1}{16\pi G}\,\epsilon_{dabc}\Bigl(\nabla_e\delta g^{de}-\nabla^d\delta g\Bigr),
+\end{equation}
+where $\delta g := g_{mn}\delta g^{mn}$ and indices are moved with $g_{ab}$.
+The Iyer--Wald Noether charge $2$-form is \eqref{eq:QEH}.
+To make the variational principle well-posed on manifolds with a spacetime boundary hypersurface $\mathcal{B}$ under Dirichlet boundary conditions (fixed induced metric on $\mathcal{B}$), one adds the Gibbons--Hawking--York term,\cite{GibbonsHawking1977,York1972}
+\begin{equation}
+S_{\rm GHY}=\frac{1}{8\pi G}\int_{\mathcal B}\sqrt{|h|}\,K\,\dd^3x,
+\end{equation}
+corresponding to the boundary $3$-form
+\begin{equation}
+\Bnd_{\rm GHY}=\frac{1}{8\pi G}\,K\,\eps_{\mathcal B}.
+\end{equation}
+Here $K$ is the trace of the extrinsic curvature of the \emph{3D} boundary $\mathcal{B}\subset\M$ in spacetime, and $\eps_{\mathcal B}$ is its induced volume form.
+In quasi-local Hamiltonians one ultimately evaluates boundary functionals on \emph{2-surfaces} $\partial D\subset\Sigma$; a reference subtraction (or counterterm) is additionally required to fix the energy zero-point, as in the Brown--York construction below.
+\section{Closed FRW geometry and quasi-local energy on \texorpdfstring{$\Sigma\simeq S^3$}{Sigma~S3}}
+Consider a closed FRW slicing with spatial metric on $\Sigma_t\simeq S^3$:
+\begin{equation}
+\dd\ell^2=a(t)^2\left(\dd\chi^2+\sin^2\chi\,\dd\Omega^2\right),\qquad \chi\in[0,\pi].
+\end{equation}
+Let $D(\chi_0)$ be a geodesic ball $0\le\chi\le\chi_0$ with boundary $\partial D\simeq S^2$ at $\chi=\chi_0$. The areal radius and area are
+\begin{equation}
+R(\chi_0)=a(t)\sin\chi_0,\qquad A(\chi_0)=4\pi R^2,
+\end{equation}
+and the volume is
+\begin{equation}
+V(\chi_0)=2\pi a(t)^3\bigl(\chi_0-\sin\chi_0\cos\chi_0\bigr).
+\end{equation}
+The Brown--York energy of $D$ is
+\begin{equation}
+E_{\rm BY}=\frac{1}{8\pi G}\int_{\partial D}(k_0-k)\,\dd S,
+\label{eq:EBYdef}
+\end{equation}
+where $k$ is the trace of the extrinsic curvature of $\partial D$ embedded in $\Sigma$ (with outward unit normal in $\Sigma$) and $k_0$ is a reference term fixing the zero-point.
+A standard choice is the Euclidean reference: $k_0$ is taken as the mean curvature of an isometric embedding of the same intrinsic 2-metric into $\mathbb{R}^3$, giving $k_0=2/R$. For the round $S^2$ boundary with intrinsic metric $R^2 d\Omega^2$, the standard isometric embedding into $\mathbb{R}^3$ exists and yields this value.
+For $\chi=\chi_0$ spheres in $\Sigma\simeq S^3$,
+\begin{equation}
+k(\chi_0)=\frac{2}{a}\cot\chi_0=\frac{2}{R}\sqrt{1-\frac{R^2}{a^2}},\qquad
+k_0=\frac{2}{R}.
+\end{equation}
+Substituting into \eqref{eq:EBYdef} yields the closed expression
+\begin{equation}
+E_{\rm BY}(R,a)=\frac{R}{G}\left(1-\sqrt{1-\frac{R^2}{a^2}}\right),
+\qquad 0\le R\le a(t).
+\label{eq:EBYclosed}
+\end{equation}
+This result was previously obtained in the equivalent coordinate system by Afshar \cite{Afshar2009}.
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+  width=0.85\linewidth,
+  height=0.50\linewidth,
+  xlabel={$r=R/a$},
+  ylabel={$G E_{\rm BY}/a$},
+  xmin=0, xmax=0.7,
+  ymin=0,
+  domain=0:0.7,
+  samples=300,
+  axis lines=left,
+  legend style={draw=none, at={(0.03,0.97)}, anchor=north west},
+]
+\addplot+[mark=none] { x*(1 - sqrt(1 - x^2)) };
+\addlegendentry{Exact}
+\addplot+[mark=none, dashed] { x^3/2 };
+\addlegendentry{$r^3/2$}
+\end{axis}
+\end{tikzpicture}
+\caption{Brown--York quasi-local energy in closed FRW cosmology:
+$G E_{\rm BY}/a$ versus $r=R/a$ (solid curve).
+The small-ball approximation $r^3/2$ is shown dashed for comparison.}
+\label{fig:EBY}
+\end{figure}
+At the equator ($R\to a$) one has $E_{\rm BY}\to R/G$.
+For small balls $R\ll a$,
+\begin{equation}
+E_{\rm BY}(R,a)=\frac{R^3}{2Ga^2}+O\!\left(\frac{R^5}{a^4}\right).
+\end{equation}
+This small-ball limit highlights that, even before invoking dynamics, the positive spatial curvature of $S^3$ induces a nontrivial quasi-local energy relative to the Euclidean reference.
+\section{Misner--Sharp mass, Friedmann constraint, and comparison with Brown--York}
+In spherically symmetric spacetimes, the Misner--Sharp mass provides an invariant quasi-local energy:
+It is often associated with the Kodama vector field, which supplies a preferred energy current in spherical symmetry.
+\begin{equation}
+M_{\rm MS}(R)=\frac{R}{2G}\left(1-g^{ab}\nabla_aR\,\nabla_bR\right).
+\end{equation}
+For FRW, this becomes
+\begin{equation}
+M_{\rm MS}(R)=\frac{R^3}{2G}\left(H^2+\frac{k}{a^2}\right),
+\qquad H:=\frac{\dot a}{a}.
+\label{eq:MMSFRW}
+\end{equation}
+For the closed case ($k=+1$),
+\begin{equation}
+M_{\rm MS}(R)=\frac{R^3}{2G}\left(H^2+\frac{1}{a^2}\right).
+\end{equation}
+The Friedmann constraint reads
+\begin{equation}
+H^2+\frac{k}{a^2}=\frac{8\pi G}{3}\rho+\frac{\Lambda}{3},
+\end{equation}
+hence
+\begin{equation}
+M_{\rm MS}(R)=\frac{4\pi}{3}R^3\rho+\frac{\Lambda R^3}{6G}.
+\label{eq:MMSrho}
+\end{equation}
+Equation \eqref{eq:EBYclosed} depends only on the intrinsic/extrinsic geometry of the 2-surface $\partial D$ as embedded in the chosen spatial slice $\Sigma_t$ (plus the chosen reference subtraction), while \eqref{eq:MMSFRW} is a spacetime-covariant quantity depending on $\nabla_a R$ and thus on expansion via $H$.
+Accordingly, $E_{\rm BY}$ and $M_{\rm MS}$ should be viewed as complementary quasi-local energies: $E_{\rm BY}$ is naturally tied to a slicing and boundary conditions, whereas $M_{\rm MS}$ is invariant in spherical symmetry and directly relates to matter content through \eqref{eq:MMSrho}.
+A precise identification between them requires additional dynamical input and/or a preferred evolution vector field, and is not automatic at the level of purely kinematical definitions.
+\section{CMC slicing, York time, and relational observables in a compact universe}
+In a compact universe, $H_\xi[\Sigma]=0$ expresses that the total Hamiltonian is a sum of first-class constraints and vanishes on-shell.
+To interpret dynamics, one introduces a relational clock.
+For general discussions of relational clocks and relational observables in Hamiltonian constrained systems, see e.g.\ \cite{BrownKuchar1995,Dittrich2006}.
+A widely used choice is constant-mean-curvature (CMC) slicing. Let $h_{ij}$ be the induced metric on $\Sigma_t$ and $K_{ij}$ its extrinsic curvature in spacetime; define the mean curvature
+\begin{equation}
+K := h^{ij}K_{ij}.
+\end{equation}
+CMC slicing imposes $K=\mathrm{const}$ on each $\Sigma_t$.
+For standard FRW slicings, $K$ is spatially constant automatically by homogeneity and isotropy, so the usual cosmological foliation is a CMC foliation.
+York time is then defined (up to conventions) by
+\begin{equation}
+T_Y := -\frac{1}{3}K.
+\end{equation}
+In compact universes, such a choice supplies a canonical relational time variable compatible with constraint dynamics, providing a clean way to parametrize evolution despite the vanishing of the global Hamiltonian generator.
+\section{\texorpdfstring{$\goldconst$}{golden-ratio}-level boundary scanning and a one-block correspondence map}
+Define a $\goldconst$-discretized family of areal radii (where $\goldconst := (1+\sqrt{5})/2$ is the golden ratio)
+\begin{equation}
+\begin{aligned}
+R_n &= R_0\goldconst^{n},\\
+n   &= \frac{\log(R/R_0)}{\log\goldconst}.
+\end{aligned}
+\end{equation}
+restricted in $\Sigma\simeq S^3$ by $0\le R_n\le a(t)$.
+This discretization is introduced purely as a structured quasi-local bookkeeping device and does not represent a claim that GR dynamically selects the constant $\goldconst$.
+Then
+\begin{equation}
+\begin{aligned}
+E_{\rm BY}(n) &= \frac{R_n}{G}\left(1-\sqrt{1-\frac{R_n^2}{a^2}}\right),\\
+M_{\rm MS}(n) &= \frac{R_n^3}{2G}\left(H^2+\frac{1}{a^2}\right).
+\end{aligned}
+\end{equation}
+%===========================================================
+% INSERTED BRIDGE SECTION (FBS^3R core summary)
+%===========================================================
+\section{Discrete \texorpdfstring{$\Sthree$}{S3} evolution and golden-ratio consistency (summary of the FBS$^{3}$R core)}
+\label{sec:FBS3Rbridge}
+We briefly summarize the structural assumptions of the discrete evolution model developed in a companion discrete-framework note,
+restricting to the minimal elements needed to interface with the quasi-local diffeomorphism-charge analysis of
+Secs.~II--VI. The purpose of this section is \emph{not} to re-derive the FBS$^{3}$R construction, but only to record its
+postulates and to make the compatibility with covariant phase space (CPS) and GR explicit.
+\subsection{Postulates (minimal)}
+\label{subsec:FBS3Rpostulates}
+\paragraph{(P1) Topological ontology.}
+At each discrete stage the spatial manifold is compact, simply connected, and boundaryless:
+\begin{equation}
+\Sigma_n \simeq S^3,
+\qquad
+\partial\Sigma_n=\varnothing,
+\qquad
+\Sigma_n \cong \Sigma_{n+1}.
+\end{equation}
+No topology change is assumed.
+\paragraph{(P2) Causal continuity (internal evolution).}
+Evolution is internal (no external embedding space is required) and is represented as a discrete update
+\begin{equation}
+\text{state}_n \rightarrow \text{state}_{n+1},
+\end{equation}
+with the spatial topology fixed as in (P1).
+\paragraph{(P3) Fixed total energy.}
+A conserved total energy is postulated,
+\begin{equation}
+E_{\text{total}}=\text{const},
+\qquad
+\rho_n=\frac{E_{\text{total}}}{V_n},
+\end{equation}
+where $V_n$ is the model-assigned volume associated with the radius parameter introduced below.
+(When comparing to GR expressions on $\Sigma\simeq S^3$, one may instead use the geometric $S^3$ volume of a
+geodesic ball, cf.\ Sec.~VII; the present subsection merely records the postulated bookkeeping used in a companion discrete-framework note.)
+\subsection{Discrete geometric scaling}
+\label{subsec:FBS3Rscaling}
+The discrete radius is taken to scale as
+\begin{equation}
+R_n = \ell_P\,\goldconst^{N_n},
+\qquad
+\goldconst:=\frac{1+\sqrt{5}}{2},
+\label{eq:FBS3R_Rn}
+\end{equation}
+with integer level $N_n$ (possibly time-dependent through the discrete evolution).
+A corresponding volume scaling is assigned in the FBS$^{3}$R model as $V_n\propto R_n^3$, hence
+\begin{equation}
+\rho_n \propto \goldconst^{-3N_n}.
+\end{equation}
+This provides a compact encoding of density scaling compatible with the fixed-energy postulate (P3).
+\subsection{Quantum surface growth and Fibonacci asymptotics}
+\label{subsec:FBS3Rfibonacci}
+The number of ``surface quanta'' obeys a Fibonacci recursion,
+\begin{equation}
+N_{n+1}=N_n+N_{n-1},
+\end{equation}
+so that asymptotically
+\begin{equation}
+\lim_{n\to\infty}\frac{N_{n+1}}{N_n}=\goldconst.
+\end{equation}
+In particular, this yields an asymptotic $\goldconst$-ratio between successive radii,
+\begin{equation}
+\frac{R_{n+1}}{R_n}
+=\goldconst^{\,N_{n+1}-N_n}
+\;\;\xrightarrow[n\to\infty]{}\;\;
+\goldconst,
+\label{eq:FBS3R_phiConsistency}
+\end{equation}
+establishing golden-ratio consistency between (i) discrete geometric scaling, (ii) Fibonacci growth, and (iii) surface-based
+bookkeeping of density levels.
+(a companion discrete-framework note also introduces the normalization $F_n=\goldconst^n/\sqrt{5}$; we do not need it for the GR/CPS
+derivations in the present paper.)
+\subsection{Compatibility with diffeomorphism invariance and CPS/GR charges}
+\label{subsec:FBS3R_CPS_compat}
+Because each $\Sigma_n$ is diffeomorphic to $S^3$ and is globally boundaryless, the Hamiltonian generators of
+\emph{gauge} diffeomorphisms vanish on the full slice:
+\begin{equation}
+H_\xi[\Sigma_n]=\int_{\partial\Sigma_n}\bigl(\Q_\xi-\xi\cdot\Bnd\bigr)=0.
+\end{equation}
+This is precisely the compact-universe statement emphasized in Eq.~\eqref{eq:masterChainBox}.
+Nevertheless, for subregions $D\subset\Sigma_n$ with $\partial D\neq\varnothing$, quasi-local Hamiltonians remain
+well-defined and are encoded by boundary integrals,
+\begin{equation}
+H_\xi[D]=\int_{\partial D}\bigl(\Q_\xi-\xi\cdot\Bnd\bigr),
+\end{equation}
+with $(\Q_\xi,\Bnd)$ as constructed explicitly in GR in Secs.~V--VI.
+Thus, the discrete $\goldconst$-driven scaling recorded in \eqref{eq:FBS3R_Rn}--\eqref{eq:FBS3R_phiConsistency}
+does not conflict with diffeomorphism invariance: it specifies a relational/discrete parametrization of evolution
+within a fixed diffeomorphism class $\Sigma\simeq S^3$, while the CPS/GR charge algebra and the statement
+$H_\xi[\Sigma]=0$ remain intact.
+\subsection{York time as a relational parameter}
+\label{subsec:FBS3R_york}
+In compact $\Sigma\simeq S^3$ settings, dynamics is naturally described in relational terms.
+A standard canonical choice is constant-mean-curvature (CMC) slicing and York time,
+\begin{equation}
+T_Y := -\frac{1}{3}K,
+\end{equation}
+with $K$ the mean curvature of the embedding of $\Sigma$ in spacetime (Sec.~IX).
+Within this viewpoint, the discrete index $n$ (or level $N_n$) may be treated as a monotonic function of $T_Y$,
+\begin{equation}
+n=n(T_Y),
+\end{equation}
+providing a relational clock compatible with the vanishing of global gauge generators on a closed slice.
+%===========================================================
+% END INSERT
+%===========================================================
+\section{Conclusions}
+In a compact closed universe $\Sigma\simeq S^3$, diffeomorphism invariance implies that global gauge diffeomorphism generators vanish: $H_\xi[\Sigma]=0$.
+Nontrivial physics is carried by constraints and by quasi-local boundary charges for subregions.
+We made this explicit in GR by providing the closed-form Iyer--Wald charge $\Q_\xi$ and the GHY boundary form $\Bnd$, together with the standard integrability condition needed to define a Hamiltonian generator.
+For closed FRW geometry, we computed the Brown--York energy of geodesic balls and related it to the Misner--Sharp mass and the Friedmann constraint, emphasizing the complementary (slice-adapted vs spacetime-covariant) character of these notions.
+CMC slicing and York time supply a canonical relational clock compatible with compact-universe constraint dynamics.
+Finally, a $\goldconst$-discretized boundary scan offers a structured quasi-local bookkeeping scheme; model-dependent spectral overlays can be layered without altering the GR derivations.
+\appendix
+\section{Derivation notes and ambiguities}
+The covariant phase space formalism includes standard ambiguities:
+$\Lform\to\Lform+\dd\bm{\mu}$ and $\tht\to\tht+\delta\bm{\mu}+\dd\bm{\nu}$.
+These induce shifts in $(\J_\xi,\Q_\xi)$ and in the definition of the Hamiltonian by boundary terms.
+The choice of $\Bnd$ (including the GHY term and a reference subtraction/counterterm) fixes both integrability and the zero-point of quasi-local energy.
+\section{Extrinsic curvature on \texorpdfstring{$S^3$}{S3}}
+For $\chi=\mathrm{const}$ spheres, the unit normal within $\Sigma$ is
+\begin{equation}
+n_i=\frac{1}{a}\,(\partial/\partial\chi)_i.
+\end{equation}
+A direct computation yields
+\begin{equation}
+k=\sigma^{AB}\nabla_A n_B=\frac{2}{a}\cot\chi,
+\end{equation}
+where $\sigma_{AB}$ is the induced metric on the 2-sphere $\partial D$ and $\nabla$ is the Levi--Civita connection of $\Sigma$.
+\section{\texorpdfstring{$\zeta_{\goldconst}$}{zeta_phi_g} spectral overlay and modular reflection map (model-dependent)}
+This appendix records a phenomenological overlay used in $\goldconst$-hierarchical modeling; it does not modify any GR statements in the main text and is logically independent of the quasi-local derivations.
+Define an energy ladder
+\begin{equation}
+E^{(\zeta)}_n := \frac{\hbar c}{\ell_p\,\goldconst^n},
+\end{equation}
+with corresponding $m^{(\zeta)}_n=E^{(\zeta)}_n/c^2$.
+Fix a distinguished index $N$ and define a reflection map $n':=N-n$.
+\section{Explicit Killing generators on \texorpdfstring{$S^3$}{S3} (embedding form)}
+Let $S^3$ be the unit sphere embedded in $\mathbb{R}^4$ with Cartesian coordinates $X^A$ obeying $X^AX^A=1$.
+The full isometry group is $\mathrm{SO}(4)$, generated by six Killing fields $J_{AB}$:
+\begin{equation}
+J_{AB} := X^A\frac{\partial}{\partial X^B}-X^B\frac{\partial}{\partial X^A},
+\qquad 1\le A<B\le 4.
+\end{equation}
+%------------------ Bibliography ------------------
+\begin{thebibliography}{99}
+\bibitem{Noether1918}
+E.~Noether,
+\newblock Invariante Variationsprobleme,
+\newblock Nachr.\ Ges.\ Wiss.\ G\"ottingen, Math.-Phys.\ Kl.\ \textbf{1918}, 235 (1918).
+\bibitem{Wald1993}
+R.~M.~Wald,
+\newblock Black hole entropy is the Noether charge,
+\newblock Phys.\ Rev.\ D \textbf{48}, R3427 (1993).
+\bibitem{IyerWald1994}
+V.~Iyer and R.~M.~Wald,
+\newblock Some properties of Noether charge and a proposal for dynamical black hole entropy,
+\newblock Phys.\ Rev.\ D \textbf{50}, 846 (1994).
+\bibitem{BrownYork1993}
+J.~D.~Brown and J.~W.~York,
+\newblock Quasilocal energy and conserved charges derived from the gravitational action,
+\newblock Phys.\ Rev.\ D \textbf{47}, 1407 (1993).
+\bibitem{MisnerSharp1964}
+C.~W.~Misner and D.~H.~Sharp,
+\newblock Relativistic equations for adiabatic, spherically symmetric gravitational collapse,
+\newblock Phys.\ Rev.\ \textbf{136}, B571 (1964).
+\bibitem{Szabados2009}
+L.~B.~Szabados,
+\newblock Quasi-local energy-momentum and angular momentum in general relativity,
+\newblock Living Rev.\ Relativ.\ \textbf{12}, 4 (2009).
+\bibitem{RoserValentini2014}
+P.~Roser and A.~Valentini,
+\newblock Classical and quantum cosmology with York time,
+\newblock arXiv:1406.2036 [gr-qc] (2014).
+\bibitem{Afshar2009}
+M.~M.~Afshar,
+\newblock Quasilocal energy in FRW cosmology,
+\newblock arXiv:0903.3982 [gr-qc] (2009).
+\bibitem{BrownKuchar1995}
+J.~D.~Brown and K.~V.~Kucha\v{r},
+\newblock Dust as a standard of space and time in canonical quantum gravity,
+\newblock Phys.\ Rev.\ D \textbf{51}, 5600 (1995).
+\bibitem{Dittrich2006}
+B.~Dittrich,
+\newblock Partial and complete observables for Hamiltonian constrained systems,
+\newblock Class.\ Quant.\ Grav.\ \textbf{23}, 6155 (2006).
+
+
+\bibitem{LeeWald1990}
+J.~Lee and R.~M.~Wald,
+\newblock Local symmetries and constraints,
+\newblock J.\ Math.\ Phys.\ \textbf{31}, 725 (1990).
+
+\bibitem{WaldZoupas2000}
+R.~M.~Wald and A.~Zoupas,
+\newblock A general definition of ``conserved quantities'' in general relativity and other theories of gravity,
+\newblock Phys.\ Rev.\ D \textbf{61}, 084027 (2000).
+
+\bibitem{GibbonsHawking1977}
+G.~W.~Gibbons and S.~W.~Hawking,
+\newblock Action integrals and partition functions in quantum gravity,
+\newblock Phys.\ Rev.\ D \textbf{15}, 2752 (1977).
+
+\bibitem{York1972}
+J.~W.~York,
+\newblock Role of conformal three-geometry in the dynamics of gravitation,
+\newblock Phys.\ Rev.\ Lett.\ \textbf{28}, 1082 (1972).
+
+\bibitem{Kodama1980}
+H.~Kodama,
+\newblock Conserved energy flux for the spherically symmetric system and the backreaction problem in the black hole evaporation,
+\newblock Prog.\ Theor.\ Phys.\ \textbf{63}, 1217 (1980).
+
+\bibitem{Hayward1996}
+S.~A.~Hayward,
+\newblock Gravitational energy in spherical symmetry,
+\newblock Phys.\ Rev.\ D \textbf{53}, 1938 (1996).
+
+\end{thebibliography}
+\end{document}

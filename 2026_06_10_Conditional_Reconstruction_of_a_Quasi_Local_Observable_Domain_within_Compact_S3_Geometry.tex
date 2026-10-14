@@ -1,0 +1,2651 @@
+% PRD-style article: Quasi-local Observable Domain Reconstruction in S^3, v29 final submission package
+\documentclass[aps,prd,onecolumn,superscriptaddress,longbibliography,nofootinbib,notitlepage]{revtex4-2}
+
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{mathtools}
+\usepackage{physics}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{bm}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{microtype}
+\emergencystretch=2em
+
+% ----- Single-column journal layout layer -----
+\usepackage[a4paper,top=24mm,bottom=25mm,left=22mm,right=22mm]{geometry}
+\usepackage{etoolbox}
+\usepackage{colortbl}
+\usepackage[most]{tcolorbox}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{enumitem}
+\usepackage{needspace}
+\usepackage{titlesec}
+\definecolor{JournalBlue}{HTML}{143D59}
+\definecolor{JournalGold}{HTML}{B58B2B}
+\definecolor{JournalInk}{HTML}{202124}
+\definecolor{JournalSoft}{HTML}{F6F8FB}
+\definecolor{JournalRule}{HTML}{D9E2EC}
+\definecolor{JournalBox}{HTML}{EEF4FA}
+\color{JournalInk}
+\hypersetup{linkcolor=JournalBlue,citecolor=JournalBlue,urlcolor=JournalBlue}
+\setlength{\parindent}{1.1em}
+\setlength{\parskip}{0.16em}
+\setlist{itemsep=0.15em,topsep=0.2em}
+\renewcommand{\arraystretch}{1.17}
+\newcommand{\journalrule}{\par\vspace{0.45em}{\color{JournalGold}\hrule height 0.8pt}\vspace{0.65em}}
+\titleformat{\section}{\needspace{7\baselineskip}\large\bfseries\color{JournalBlue}}{\thesection}{0.75em}{}[\vspace{-0.25em}{\color{JournalGold}\titlerule[0.6pt]}]
+\titleformat{\subsection}{\needspace{5\baselineskip}\normalsize\bfseries\color{JournalBlue}}{\thesubsection}{0.65em}{}
+\titleformat{\subsubsection}{\needspace{4\baselineskip}\normalsize\bfseries\itshape\color{JournalBlue}}{\thesubsubsection}{0.55em}{}
+\titlespacing*{\section}{0pt}{1.35em}{0.65em}
+\titlespacing*{\subsection}{0pt}{1.0em}{0.4em}
+\tcbset{colback=JournalSoft,colframe=JournalBlue!55!black,boxrule=0.55pt,arc=1.4mm,left=1.1mm,right=1.1mm,top=0.8mm,bottom=0.8mm}
+\AtBeginEnvironment{quote}{\begin{tcolorbox}[enhanced,breakable,colback=JournalBox,colframe=JournalBlue!45!black,borderline west={1.5pt}{0pt}{JournalGold}]}
+\AtEndEnvironment{quote}{\end{tcolorbox}}
+\makeatletter
+\pretocmd{\table}{\small\rowcolors{2}{JournalSoft}{white}}{}{}
+\apptocmd{\endtable}{\normalsize}{}{}
+\makeatother
+\setlength{\headheight}{15pt}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\footnotesize\textsc{Conditional Reconstruction within Compact $S^3$ Geometry}}
+\fancyhead[R]{\footnotesize Preece \& Batenin}
+\fancyfoot[C]{\footnotesize\thepage\,/\,\pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!70!black,
+  citecolor=blue!70!black,
+  urlcolor=blue!70!black,
+  pdftitle={Conditional Reconstruction of a Quasi-Local Observable Domain within Compact S3 Geometry},
+  pdfauthor={Andrei Preece and Boris Batenin},
+  pdfsubject={Conditional compact S3 cosmological reconstruction and invariant diagnostic registry},
+  pdfkeywords={S3 geometry, compact cosmology, FLRW curvature, hyperspherical harmonics, CMB, topology}
+}
+
+% custom commands
+\newcommand{\SR}{S^3_R}
+\newcommand{\RS}{R_{\mathcal{S}^3}}
+\newcommand{\Gly}{\,\mathrm{Gly}}
+\newcommand{\Gyr}{\,\mathrm{Gyr}}
+\newcommand{\Mly}{\,\mathrm{Mly}}
+\newcommand{\phivarphi}{\varphi}
+\newcommand{\GammaT}{\Gamma(T)}
+
+\begin{document}
+\raggedbottom
+
+\title{Conditional Reconstruction of a Quasi-Local Observable Domain\\ within Compact \texorpdfstring{$S^3$}{S3} Geometry}
+
+\author{Andrei Preece}
+\email{andre.preece@web.de}
+\homepage[ORCID: ]{https://orcid.org/0009-0004-5978-795X}
+\affiliation{Independent Researcher, Berlin, Germany}
+
+\author{Boris Batenin}
+\email{batenin@web.de}
+\homepage[ORCID: ]{https://orcid.org/0009-0000-7027-8583}
+\affiliation{Independent Researcher, Berlin, Germany}
+
+\date{June 9, 2026}
+
+\begin{abstract}
+We present a conditional reconstruction of a quasi-local observable domain inside a
+compact, simply connected, positively curved round three-sphere $S^3_R$. The
+reconstruction is not a topology detection, dark-sector derivation, or residual-source
+completion. It is a background-reconstructive and benchmark-ready compact-geometry
+framework. In standard FLRW convention, closed positive spatial curvature corresponds to
+$\Omega_K<0$. We use the fiducial modulus $|\Omega_K|=0.0007$ only as a curvature-radius
+benchmark and set $\Omega_K^{S^3}=-0.0007$ for the closed branch. With
+$H_0=67.4\,\mathrm{km\,s}^{-1}\mathrm{Mpc}^{-1}$ this gives
+$R_{\mathcal S^3}\simeq548.3\,\mathrm{Gly}$; machine-precision benchmark values are
+kept only in the numerical table.
+
+The exact geometry then supplies $D_c=\pi R$, $C=2\pi R$,
+$V_{S^3}=2\pi^2R^3$, $K=R^{-2}$, and ${}^{(3)}R=6R^{-2}$. The observable particle-horizon
+scale used in the benchmark, $D_{\rm particle}\simeq46.13\,\mathrm{Gly}$, is treated as
+background dependent rather than as a theorem of $S^3$ geometry. Its geodesic-ball
+fraction is $\Gamma_{\rm obs}=1.2614\times10^{-4}\simeq0.0126\%$. The static-carrier
+comparison $ct_0/R\simeq1.44^\circ$ is only a diagnostic scale; FLRW causal propagation is
+governed by conformal distance. The finite radius is therefore a curvature scale, not a
+boundary: $\partial S^3_R=\varnothing$, while observer-defined subdomains can have
+relational reconstruction boundaries.
+
+The predictive content is registered through the chain
+$|\Omega_K|\to R_c\to\{D_M,H,dV/dz\,d\Omega\}\to\{\beta,\Delta_{\ell\beta}^X\}\to
+\{C_\ell^{TT,TE,EE},P(k,z),\xi\}\to\Delta\ln\mathcal L$ or $\Delta\ln Z$. Round
+$S^3_R$ has no invariant spatial direction under the full $SO(4)$ symmetry; any axis,
+ring normal, or preferred frame must enter through data, fields, survey windows, initial
+conditions, or quotient topology $S^3/\Gamma$. Thus the paper's empirical target is not a
+preferred direction but the replacement of the flat continuum by the $S^3$ eigenvalue
+ladder, degeneracy law, addition kernel, windowed responses, and covariance matrices.
+All amplitude claims remain transfer- and likelihood-dependent.
+\end{abstract}
+
+\maketitle
+\journalrule
+
+\section{Introduction and Purpose}
+\label{sec:intro}
+
+The aim of this paper is neither to prove that the physical Universe globally has
+the topology of $S^3$, nor to replace the standard cosmological model. The scope
+is deliberately narrower: we construct a conditional, but mathematically
+well-defined, reconstruction.
+
+We take an observationally admissible small curvature modulus, together with the
+closed-sign interpretation $\Omega_K^{S^3}<0$, not as a detected measurement but
+as a fiducial benchmark for a conditional positive-curvature reconstruction. In
+the standard FLRW convention,
+\begin{equation}
+  \Omega_K < 0
+\end{equation}
+corresponds to a closed, positively curved spatial geometry. If the spatial
+section is modelled as a round three-sphere $S^3_R$, a large but finite curvature
+radius is recovered from the small modulus $|\Omega_K|$.
+
+This approach continues the discipline already introduced in our earlier
+work~\cite{Preece2026causal}: $S^3$ is treated not as an arbitrary metaphor but
+as the minimal compact simply connected spherical carrier in which the following
+invariant structures meet: positive constant curvature, finite volume, a discrete
+round spectrum, $SU(2)$ spin geometry, and the Hopf fibration. Parallelisability
+alone is not sufficient to select $S^3$, since every closed orientable
+three-manifold is parallelisable~\cite{BenedettiLisca2018}. The selection is
+therefore made by the full invariant bundle, not by a single property. The
+topology defines the carrier; dynamics, amplitudes, and physical fields require
+additional laws.
+
+In the companion paper on light and causal coherence~\cite{Preece2026causal},
+the compact space $S^3_R \times \mathbb{R}$ is already used as the ambient model,
+where the causal diameter equals
+\begin{equation}
+  D_c = \pi R,
+\end{equation}
+and the global causal accessibility time is
+\begin{equation}
+  t_{\rm coh} = \frac{\pi R}{c}.
+\end{equation}
+There it is emphasised that this is not an ``echo of light'', not superluminal
+communication, and not a mystical interpretation, but finite null accessibility
+within a compact, boundaryless space.
+
+\section{Basic Reconstruction Hypothesis}
+\label{sec:hypothesis}
+
+Let the global spatial section be modelled as a round three-sphere:
+\begin{equation}
+  \Sigma_3 = S^3_R.
+\end{equation}
+Locally, for any sufficiently small observer domain:
+\begin{equation}
+  U \subset S^3_R, \qquad U \simeq \mathbb{R}^3.
+\end{equation}
+Therefore standard local physics is not abolished; it is preserved as a
+quasi-local approximation.
+
+Globally, however,
+\begin{equation}
+  S^3_R \neq \mathbb{R}^3.
+\end{equation}
+The differences are essential:
+\begin{itemize}
+  \item $S^3_R$ is compact, without boundary;
+  \item it has finite proper volume;
+  \item it has a finite causal diameter;
+  \item its Laplacian has a discrete spectrum;
+  \item its maximal geodesic distance is $\pi R$.
+\end{itemize}
+
+In this sense the flat $\mathbb{R}^3$ framework is not the unique ``default''
+ontology. It is itself a choice: non-compactness, infinite volume, and the absence
+of global closure. The compact $S^3$ framework offers a different choice: locally
+nearly flat physics within a globally finite geometry.
+
+
+\section{Invariant Geometry of the Round Carrier}
+\label{sec:round-invariants}
+
+For the round three-sphere of radius $R$,
+\begin{equation}
+  S^3_R=\{x\in\mathbb R^4:\norm{x}=R\},
+\end{equation}
+the intrinsic distance between two points is
+\begin{equation}
+  d(x,y)=R\arccos\!\left(\frac{x\cdot y}{R^2}\right).
+\end{equation}
+All local curvature invariants are fixed by the single radius $R$. The Riemann,
+Ricci, and scalar curvatures are
+\begin{align}
+  R_{ijkl}
+  &=\frac{1}{R^2}(g_{ik}g_{jl}-g_{il}g_{jk}), \\
+  R_{ij}&=\frac{2}{R^2}g_{ij}, \\
+  {}^{(3)}R&=\frac{6}{R^2}.
+\end{align}
+The round carrier is locally symmetric:
+\begin{equation}
+  \nabla_m R_{ijkl}=0.
+\end{equation}
+Consequently every local scalar curvature invariant is a polynomial in $R^{-2}$.
+For example,
+\begin{align}
+  R_{ijkl}R^{ijkl}&=\frac{12}{R^4}, \\
+  R_{ij}R^{ij}&=\frac{12}{R^4}, \\
+  \left({}^{(3)}R\right)^2&=\frac{36}{R^4}.
+\end{align}
+These identities complete the local invariant description of the round carrier:
+there is no hidden local curvature datum beyond the radius.
+
+\subsection{No invariant spatial direction on round \texorpdfstring{$S^3$}{S3}}
+\label{sec:no-invariant-direction}
+
+The round simply connected carrier has no nonzero invariant spatial direction.
+At any point $p\in S^3_R$, the stabilizer subgroup of the isometry group is
+$SO(3)$, acting on the tangent space $T_pS^3$. This action is transitive on the
+unit sphere in $T_pS^3$. If a tangent vector $v\in T_pS^3$ were invariant under
+all rotations in the stabilizer, then
+\begin{equation}
+  h_\ast v=v\qquad \forall h\in SO(3),
+\end{equation}
+which is possible only for
+\begin{equation}
+  v=0.
+\end{equation}
+Thus a round $S^3_R$ geometry by itself cannot generate a preferred axis, a
+preferred ring orientation, or a privileged spatial direction. In the same full
+$SO(4)$ sense, no nonzero invariant one-form or two-form is selected by the bare
+round carrier. Such features may arise only from data, observer position, survey
+masks, field dynamics, initial conditions, a Hopf-frame choice, or a nontrivial
+quotient topology $S^3/\Gamma$. The invariant content of the round carrier
+consists of distances, volumes, curvature, spectra, and correlation functions,
+not directions.
+
+\section{Invariant Selection Principle for \texorpdfstring{$S^3$}{S3}}
+\label{sec:invariant-selection}
+
+The word ``unique'' is used in this paper only under a precise bundle of
+assumptions. Positive curvature by itself does not determine global topology:
+closed spherical space forms may be quotients $S^3/\Gamma$ by finite freely acting
+isometry groups. Likewise, parallelisability by itself does not select $S^3$, since
+all closed orientable three-manifolds are parallelisable~\cite{BenedettiLisca2018}.
+The strict selection statement is therefore conditional:
+\begin{quote}
+\textbf{Invariant Selection Principle.}
+If the spatial carrier is required to be a smooth, compact, boundaryless,
+simply connected three-manifold with constant positive sectional curvature and
+with the minimal spinorial Lie-group carrier structure required by $SU(2)$, then
+the carrier is the round three-sphere $S^3_R$.
+\end{quote}
+
+The invariant support chain is:
+\begin{align}
+\text{closed + simply connected + dimension }3
+  &\Rightarrow S^3
+  \quad (\text{Poincar\'e--Perelman}), \\
+K>0\text{ and simply connected}
+  &\Rightarrow (S^3_R,g_R)\text{ as the spherical model}, \\
+S^3 \simeq SU(2) \simeq Sp(1)
+  &\Rightarrow \text{natural spin/rotation double-cover carrier}, \\
+S^1 \hookrightarrow S^3 \to S^2,
+  \qquad [S^3\to S^2]
+  &\in\pi_3(S^2)\simeq\mathbb Z .
+\end{align}
+where the last line is the nontrivial Hopf fibration. The theorem proved by
+Perelman, via Ricci flow and geometrization, states that every closed simply
+connected three-manifold is a three-sphere~\cite{MorganTian2007,ClayPoincare}.
+The identification $S^3\simeq SU(2)$ follows from unit quaternions and gives the
+standard double-cover relation $SU(2)\to SO(3)$ relevant for spin
+representations~\cite{SU2LieNotes}. The Hopf fibration supplies a nontrivial
+$S^1$--fibered total space whose total space is $S^3$.
+
+Thus $S^3$ is not claimed to be forced by observation alone. It is the unique
+object selected when the above invariant requirements are imposed simultaneously.
+This is the strict version of the topological claim used below.
+
+\section{Comparison of Thurston Geometries}
+\label{sec:thurston-comparison}
+
+To illustrate the selection logic, Table~\ref{tab:thurston-compare} compares the
+eight Thurston model geometries appearing in geometrization. The table does not
+claim that no compact quotients exist in other geometries. Compact Euclidean and
+hyperbolic quotients, for example, can have discrete Laplacian spectra. The point
+is narrower: among the simply connected Thurston model carriers, only the
+spherical model simultaneously supplies compact closure, simple connectivity,
+constant positive sectional curvature, the $SU(2)$/Hopf structure, round spectral
+data, and native integer topological charges without imposing boundary conditions
+at infinity.
+\begin{table}[htbp]
+\centering
+\caption{\label{tab:thurston-compare}Thurston model geometries under the invariant bundle used in this reconstruction. Compact quotients of other model geometries may have discrete spectra, but they are not simply connected model carriers.}
+\scriptsize
+\renewcommand{\arraystretch}{1.12}
+\resizebox{0.98\textwidth}{!}{%
+\begin{tabular}{llllll}
+\toprule
+Geometry & Model & $K$ & Compact SC? & $SU(2)$/Hopf? & Charges \\
+\midrule
+Spherical & $S^3$ & $+$ & Yes & Yes & Yes \\
+Euclidean & $\mathbb E^3$ & $0$ & No & No & quotient \\
+Hyperbolic & $\mathbb H^3$ & $-$ & No & No & quotient \\
+$S^2\!\times\!\mathbb R$ & $S^2\!\times\!\mathbb R$ & mixed & No & partial & no \\
+$\mathbb H^2\!\times\!\mathbb R$ & $\mathbb H^2\!\times\!\mathbb R$ & mixed & No & No & no \\
+$\widetilde{SL(2,\mathbb R)}$ & universal cover & mixed & No & partial & no \\
+Nil & Heisenberg & mixed & No & No & no \\
+Sol & solvable & mixed & No & No & no \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+\subsection{Relation to the Poincar\'e Dodecahedral Space}
+\label{sec:pds-comparison}
+
+A useful comparison object is the Poincar\'e dodecahedral space,
+\begin{equation}
+  M_{\rm PDS}=S^3/I^\ast ,
+\end{equation}
+where $I^\ast$ is the binary icosahedral group of order $120$. This is a compact
+multiply connected spherical space form of constant positive sectional curvature.
+Its fundamental domain may be represented by a regular dodecahedron whose opposite
+faces are identified after a $36^\circ$ twist. Since the quotient has $120$
+copies in the simply connected cover, its volume at the same curvature radius is
+\begin{equation}
+  V_{\rm PDS}
+  =
+  \frac{1}{120}V_{S^3}
+  =
+  \frac{2\pi^2R^3}{120}.
+\end{equation}
+It is a homology three-sphere, but not a simply connected one:
+\begin{equation}
+  H_\ast(M_{\rm PDS})\simeq H_\ast(S^3),
+  \qquad
+  \pi_1(M_{\rm PDS})\simeq I^\ast\neq 0.
+\end{equation}
+
+The Poincar\'e dodecahedral space is historically important in CMB topology
+because it was proposed as a finite positively curved model capable of suppressing
+large-angle temperature correlations and reducing low multipole power~\cite{Luminet2003,Aurich2005}.
+In such a quotient, the scalar harmonics are not the full set of round-$S^3$
+harmonics but the subset invariant under the deck group $I^\ast$. Equivalently,
+let $\mathcal H^{(n)}_{S^3}$ denote the scalar eigenspace of $-\Delta_{S^3}$
+with eigenvalue $n(n+2)/R^2$. For each such eigenspace one keeps only
+\begin{equation}
+  \mathcal H^{(n)}_{\rm PDS}
+  =
+  \left\{
+  Y\in\mathcal H^{(n)}_{S^3}
+  :\rho(g)Y=Y\;\;\forall g\in I^\ast
+  \right\},
+\end{equation}
+so the multiplicity is the dimension of the trivial $I^\ast$ representation
+inside the restricted $S^3$ eigenspace. In character language this is the group
+projection
+\begin{equation}
+  m^{\rm PDS}_n
+  =
+  \frac{1}{|I^\ast|}
+  \sum_{g\in I^\ast}\chi_n(g),
+\end{equation}
+where $\chi_n$ is the character of the corresponding round-$S^3$ harmonic
+representation restricted to $I^\ast$. Thus the PDS spectrum is a group-projected
+subcatalogue of the $S^3$ spectrum, not a new local curvature spectrum.
+Published PDS CMB calculations often use the notation
+$\lambda_\beta=(\beta^2-1)/R^2$, related to the present convention by
+\begin{equation}
+  \beta=n+1,
+  \qquad
+  \lambda_n=\frac{n(n+2)}{R^2}=\frac{\beta^2-1}{R^2}.
+\end{equation}
+In this notation the first nonconstant surviving PDS scalar modes occur only at
+comparatively high $\beta$ values, such as $\beta=13$~\cite{Aurich2005}. This
+illustrates the stronger infrared gap and reduced low-mode degeneracy relative to
+the simply connected cover. The radius $R$ and local curvature $K=1/R^2$ are the
+same; the difference is the quotient projection on the allowed global modes.
+
+The observational signature is also different. A multiply connected quotient may
+produce repeated images of the last-scattering surface and hence pairs of matched
+circles in the CMB sky~\cite{Cornish1998,PlanckTopology2016}. For the Poincar\'e
+dodecahedral model the standard signature consists of six pairs of matched
+circles with the characteristic dodecahedral phase shift. By contrast, the simply
+connected sector adopted here,
+\begin{equation}
+  \Gamma=\{1\},
+  \qquad
+  M=S^3_R,
+\end{equation}
+has no nontrivial deck transformations and therefore no matched-circle signature
+of this quotient type. The absence of detected matched circles in Planck rules out
+some small fundamental domains but does not close the topology programme; current
+COMPACT analyses emphasize that topology searches remain computationally and
+statistically open~\cite{COMPACTPromise2024,COMPACTPartIIA2024}. Recent lens-space
+circle searches also show how quotient sectors $L(p,q)=S^3/\mathbb Z_p$ are
+constrained by the absence of matched circles, while the simply connected sector
+has no such quotient-circle signature~\cite{COMPACTLens2025}.
+
+This distinction clarifies the role of the Invariant Selection Principle. The
+present paper does not claim that all spherical space forms are impossible.
+Rather, it deliberately selects the minimal simply connected carrier. Curvature
+alone fixes only the local spherical model and radius; it does not choose between
+$S^3$ and quotients $S^3/\Gamma$. The additional simply connected requirement
+sets $\Gamma=\{1\}$ and therefore selects the universal cover $S^3_R$.
+
+Thus the Poincar\'e dodecahedral space is best understood here as the leading
+excluded quotient sector. If future CMB temperature and polarization searches were
+to detect the specific matched-circle or off-diagonal correlation pattern of a
+nontrivial quotient, the simply connected sector choice would have to be revised.
+If such signatures remain absent while low-$\ell$ anomalies persist, the
+large-radius simply connected compact-mode programme remains the cleaner minimal
+option.
+
+For a general quotient $M=S^3/\Gamma$, the scalar eigenspace is
+\begin{equation}
+  \mathcal H_\beta(M)=
+  \{Q\in\mathcal H_\beta(S^3):Q(gx)=Q(x)\;\forall g\in\Gamma\},
+\end{equation}
+with multiplicity
+\begin{equation}
+  m_\beta^\Gamma
+  =\frac{1}{|\Gamma|}\sum_{g\in\Gamma}\chi_\beta(g).
+\end{equation}
+Such quotient sectors can generate off-diagonal CMB correlations of the form
+\begin{equation}
+  C_{\ell m,\ell'm'}^\Gamma
+  =\sum_{\beta,s}\mathcal P_\beta
+  \Delta_{\ell\beta}\Delta_{\ell'\beta}
+  \xi_{\beta s;\ell m}\xi^*_{\beta s;\ell'm'} .
+\end{equation}
+For the simply connected round sector $\Gamma=\{1\}$, statistical isotropy gives
+\begin{equation}
+  C_{\ell m,\ell'm'}=C_\ell\delta_{\ell\ell'}\delta_{mm'}.
+\end{equation}
+Therefore any attempt to explain a persistent axis or orientation by topology
+alone must move from the round simply connected carrier to a quotient sector or
+to additional anisotropic dynamics.
+
+\begin{table}[htbp]
+\centering
+\caption{Comparison between the simply connected round carrier used in this paper and the Poincar\'e dodecahedral quotient sector. At fixed curvature radius $R$, the quotient changes the allowed global modes and volume, not the local sectional curvature $K=1/R^2$.}
+\label{tab:s3-pds-comparison}
+\small
+\renewcommand{\arraystretch}{1.16}
+\resizebox{0.98\textwidth}{!}{%
+\begin{tabular}{lll}
+\toprule
+Feature & Simply connected carrier $S^3_R$ & Poincar\'e dodecahedral space $S^3/I^\ast$ \\
+\midrule
+Topology & $\pi_1(S^3)=0$ & $\pi_1(S^3/I^\ast)\simeq I^\ast$, $|I^\ast|=120$ \\
+Sector choice & Minimal universal cover, $\Gamma=\{1\}$ & Nontrivial spherical quotient, $\Gamma=I^\ast$ \\
+Volume at same $R$ & $V_{S^3}=2\pi^2R^3$ & $V_{S^3}/120$ \\
+Spectrum & Full round-$S^3$ hyperspherical spectrum & $I^\ast$-invariant subset of $S^3$ modes \\
+Low-mode effect & Subtle compact-mode transfer effect for large $R$ & Stronger infrared gap from group projection at fixed $R$ \\
+CMB signature & No quotient matched-circle signature & Six matched-circle pairs with dodecahedral phase relation \\
+Status in this paper & Selected by the simply connected invariant bundle & Excluded quotient sector / falsification alternative \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+\section{Quantum-Scale Consequences of the Round Carrier}
+\label{sec:quantum-s3-carrier}
+
+Global compactness becomes directly measurable only on scales comparable to the
+curvature radius $R_{\mathcal S^3}\approx548.32\,\mathrm{Gly}$. On all smaller
+laboratory, atomic, nuclear, and ordinary cosmological scales inside the particle
+horizon, every sufficiently small patch $U\subset S^3_R$ remains locally
+Euclidean, $U\simeq\mathbb R^3$, so the local form of standard physics is
+preserved. The quantum relevance of the round carrier is therefore not a local
+``new force''. It appears through global spectral, spinorial, and topological
+data that are intrinsic to round $S^3$ rather than to an arbitrary
+three-manifold.
+
+\subsection{Conservation: Strict Form and Limitation}
+
+For a compact spatial section without boundary there is no surface at spatial
+infinity through which a flux term can escape. In a static product spacetime
+$S^3_R\times\mathbb R$ with a timelike Killing field $X=\partial_t$, the Noether
+charge
+\begin{equation}
+  E_X[\Sigma]
+  =\int_{\Sigma}\! T_{\mu\nu}X^\mu n^\nu\,d\Sigma
+\end{equation}
+is conserved under the usual stress-energy conservation law
+$\nabla_\mu T^{\mu\nu}=0$. This is the correct strict statement. In a genuinely
+dynamical FLRW spacetime there is generally no global timelike Killing vector,
+so one should not claim an absolute globally conserved energy in the same sense;
+the invariant statement is local covariant conservation plus exact global
+charges only for actual symmetries.
+
+Thus the role of $S^3$ is precise: compactness removes boundary-at-infinity
+losses, while exact global conservation requires the corresponding Killing
+symmetry. This correction prevents the argument from confusing compact topology
+with time-translation invariance.
+
+
+\subsection{Round Spectral Data}
+\label{sec:round-spectral-data}
+
+On the round three-sphere the scalar Laplace--Beltrami spectrum is discrete. It is
+convenient to use the standard integer $\beta=n+1$:
+\begin{equation}
+  -\Delta_{S^3}Q_{\beta\ell m}
+  =\frac{\beta^2-1}{R^2}Q_{\beta\ell m},
+  \qquad
+  \beta=1,2,3,\ldots .
+\end{equation}
+For each $\beta$,
+\begin{equation}
+  \ell=0,1,\ldots,\beta-1,
+  \qquad
+  m=-\ell,\ldots,\ell,
+\end{equation}
+and the scalar degeneracy is
+\begin{equation}
+  g_\beta=\beta^2.
+\end{equation}
+This is the same spectrum as
+\begin{equation}
+  -\Delta Y_{n\ell m}=\frac{n(n+2)}{R^2}Y_{n\ell m},
+  \qquad g_n=(n+1)^2,
+\end{equation}
+with $\beta=n+1$. To avoid mixing conventions, the correspondence is
+\begin{center}
+\small
+\renewcommand{\arraystretch}{1.12}
+\begin{tabular}{llll}
+\toprule
+Old index & Hyperspherical index & Scalar eigenvalue & Degeneracy \\
+\midrule
+$n=0$ & $\beta=1$ & $0$ & $1$ \\
+$n=1$ & $\beta=2$ & $3/R^2$ & $4$ \\
+$n=2$ & $\beta=3$ & $8/R^2$ & $9$ \\
+$n$ & $\beta=n+1$ & $n(n+2)/R^2=(\beta^2-1)/R^2$ & $(n+1)^2=\beta^2$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The addition theorem gives the spectral kernel in closed form:
+\begin{align}
+  \sum_{\ell m}Q_{\beta\ell m}(x)Q^*_{\beta\ell m}(y)
+  &=\frac{\beta}{2\pi^2R^3}\frac{\sin(\beta\gamma)}{\sin\gamma}, \\
+  \gamma&=\frac{d(x,y)}{R}.
+\end{align}
+This is the invariant bridge between compactness and two-point correlations.
+A derivation of this addition theorem, its normalization, and its flat-space
+limit is given in Appendix~\ref{app:addition-theorem}.
+The heat trace is correspondingly a sum, not a continuum integral:
+\begin{equation}
+  Z(t)=\sum_{\beta=1}^{\infty}\beta^2
+  \exp\!\left[-t\frac{\beta^2-1}{R^2}\right].
+\end{equation}
+The difference from $\mathbb R^3$ is therefore not a local force; it is the
+replacement of a continuous $k$-integral by a discrete hyperspherical catalogue.
+
+The spectrum of free fields on $S^3_R\times\mathbb R$ is a discrete mode problem
+rather than an infinite-volume continuum problem. This gives exact
+hyperspherical-harmonic expansions for scalar, vector, tensor, and spinorial
+fields and is the mathematical basis of a compact-mode CMB and vacuum-energy
+programme. Vacuum-energy sums are still infinite discrete sums and require a
+renormalization prescription such as zeta-function, heat-kernel, or physical
+subtraction. The improvement relative to $\mathbb R^3$ is the absence of an
+infinite-volume infrared continuum and the presence of exact degeneracies and mode
+gaps. Casimir calculations in Einstein-universe backgrounds illustrate precisely
+this role of curvature and topology in renormalized vacuum energy~\cite{Mota2022}.
+
+\subsection{Spinors and the Dirac Gap}
+
+For the round spin three-sphere, the Dirac spectrum is explicitly known; with a
+common sign convention one may write
+\begin{equation}
+  \lambda_k^{\pm}=\pm\frac{k+3/2}{R},
+  \qquad
+  k=0,1,2,\ldots .
+\end{equation}
+Thus the round geometry supplies a nonzero spectral gap of order $R^{-1}$ for
+the untwisted Dirac operator~\cite{CamporesiHiguchi1996}. The Lichnerowicz
+formula implies that a compact spin manifold with positive scalar curvature has
+no untwisted harmonic spinors~\cite{GromovLawson1983}. This is a strong stability
+statement for the simplest spin sector.
+
+The limitation is equally important: twisted Dirac operators, gauge backgrounds,
+or additional bundles can alter zero-mode questions. Therefore the article uses
+the Dirac gap as a controlled round-$S^3$ spectral fact, not as a universal proof
+that all fermionic sectors are automatically anomaly-free.
+
+\subsection{Hopf Fibration and Quantum Phase Geometry}
+
+A normalized one-qubit state is a point on $S^3\subset\mathbb C^2$ before
+quotienting by the physically irrelevant global phase. The Hopf fibration
+\begin{equation}
+  S^1\hookrightarrow S^3\twoheadrightarrow S^2
+\end{equation}
+then sends the total state sphere to the Bloch sphere, while the circular fiber
+records the overall phase degree of freedom. This is the standard geometric
+relation between qubit state geometry, projective Hilbert space, and phase
+holonomy~\cite{MosseriDandoloff2001}.
+
+For field configurations the same domain $S^3$ supports the Hopf invariant:
+\begin{equation}
+  [S^3,S^2]\simeq\pi_3(S^2)\simeq\mathbb Z .
+\end{equation}
+The linking of inverse images under maps $S^3\to S^2$ is the geometric content of
+this invariant, and it underlies Hopfions and knotted field configurations in
+Faddeev--Skyrme type models~\cite{Urbantke2003,Sutcliffe2007}. On ordinary
+$\mathbb R^3$ this structure is normally obtained only after imposing a boundary
+condition at infinity and compactifying $\mathbb R^3\cup\{\infty\}\simeq S^3$.
+In a genuine compact $S^3$ carrier the same topology is native rather than
+artificially added.
+
+\subsection{Skyrmion Degree and Native Baryon Number}
+
+For the Skyrme field $U$, the target is $SU(2)\simeq S^3$. The topological
+charge is the degree of a map into $SU(2)$; in the usual $\mathbb R^3$ treatment
+this is well-defined after a boundary condition at infinity, effectively turning
+space into $S^3$~\cite{Manton1998}. On a compact $S^3$ spatial carrier the same
+topological degree is intrinsic:
+\begin{equation}
+  U:S^3\to SU(2)\simeq S^3,
+  \qquad
+  B=\deg(U)\in\mathbb Z .
+\end{equation}
+This supplies a precise sense in which a compact $S^3$ carrier makes Skyrmion
+number global without imposing an external point at infinity.
+
+\begin{center}
+\small
+\renewcommand{\arraystretch}{1.18}
+\resizebox{0.98\textwidth}{!}{%
+\begin{tabular}{lll}
+\toprule
+Claim type & Strict invariant content & Required wording in this article \\
+\midrule
+Local physics & $U\subset S^3_R$, $U\simeq\mathbb R^3$ & Standard local physics is preserved. \\
+Global energy & No boundary-at-infinity flux; exact energy needs $\partial_t$ Killing symmetry & Static conservation; local covariant conservation in FLRW. \\
+Vacuum energy & Discrete spectrum and finite volume; UV sums still need renormalization & Computable renormalized mode sums, not finite bare sums. \\
+Dirac sector & Positive scalar curvature; explicit round-$S^3$ gap & Untwisted spectral stability; twisted sectors separate. \\
+Hopf/qubit sector & $S^1\hookrightarrow S^3\to S^2$, $\pi_3(S^2)=\mathbb Z$ & Native phase, bundle, and Hopfion topology. \\
+Skyrmion sector & $S^3\to SU(2)\simeq S^3$, degree in $\mathbb Z$ & Native global baryon-number topology. \\
+Uniqueness & Full invariant bundle, not compactness alone & Conditional selection, not observational proof. \\
+\bottomrule
+\end{tabular}%
+}
+\end{center}
+
+This section strengthens the article without overclaiming. The round $S^3$
+carrier is not required in order to recover local quantum mechanics; it is
+selected by the demand that the global carrier simultaneously provide compact
+closure, exact round spectra, Hopf topology, $SU(2)$ spin geometry, and native
+integer topological charges.
+
+\section{Reconstructive Curvature Principle}
+\label{sec:rcp}
+
+The logical bridge from observation to geometry is formalised as follows.
+
+\begin{quote}
+\textbf{Reconstructive Curvature Principle (RCP).}
+\textit{If the spatial curvature parameter satisfies $\Omega_K < 0$ within
+observational bounds, and if this value is treated not as noise but as a
+conditional signal of positive spatial curvature, then the standard FLRW
+curvature radius formula
+\begin{equation}
+  R_c = \frac{c/H_0}{\sqrt{|\Omega_K|}}
+  \label{eq:rcp}
+\end{equation}
+specifies the simply connected constant-positive-curvature universal cover
+$S^3_{R_c}$. The physical global section may in principle be a spherical space
+form $S^3/\Gamma$; the minimal simply connected sector sets $\Gamma=\{1\}$ and
+therefore selects $S^3_{R_c}$ itself.}
+\end{quote}
+
+Four points of discipline govern this principle:
+
+\begin{enumerate}
+\item \textbf{The RCP is conditional, not demonstrative.}
+  It does not prove $\Omega_K < 0$ is real; it constructs what follows
+  \emph{if} it is.
+
+\item \textbf{The sign is decisive.}
+  The FLRW convention assigns $\Omega_K < 0$ to positive curvature (closed),
+  $\Omega_K > 0$ to negative curvature (open), and $\Omega_K = 0$ to flat.
+  A positive curvature reconstruction is therefore active only when
+  $\Omega_K < 0$ is robustly non-zero.
+
+\item \textbf{The formula is exact within the model.}
+  Given $H_0$ and $\Omega_K$, equation~\eqref{eq:rcp} is algebraically exact.
+  Uncertainty enters only through the observational inputs.
+
+\item \textbf{Topology requires a separate sector choice.}
+  Curvature fixes the local spherical model and radius. It does not by itself
+  exclude spherical quotient topologies $S^3/\Gamma$. The present paper uses the
+  minimal simply connected carrier sector.
+\end{enumerate}
+
+For the canonical Light-Trisphere reconstruction adopted in this paper, the
+input is not the Planck-only closed-universe anomaly. It is the fiducial
+radius-modulus benchmark
+\begin{equation}
+\begin{aligned}
+  |\Omega_K| &= 0.0007, \\
+  \Omega_K^{S^3} &= -0.0007, \\
+  H_0 &= 67.4\,\mathrm{km\,s}^{-1}\mathrm{Mpc}^{-1}.
+\end{aligned}
+\label{eq:canonical_inputs}
+\end{equation}
+The sign convention is essential: in standard FLRW notation $\Omega_K<0$ means
+closed positive spatial curvature. Previous curvature-modulus estimates quoting
+$\Omega_K=+0.0007$ are therefore used here only through the same modulus
+$|\Omega_K|=0.0007$, with the sign flipped for the closed $S^3$ interpretation.
+With these inputs,
+\begin{equation}
+  R_c = \frac{c/H_0}{\sqrt{|\Omega_K|}}
+      = 548.3\Gly,
+\end{equation}
+yielding the fiducial radius adopted throughout this paper:
+\begin{equation}
+  \boxed{R_{\mathcal{S}^3} = 548.3\Gly.}
+\end{equation}
+
+\subsection{Degeneration at Zero Curvature}
+
+The limiting behaviour as $|\Omega_K| \to 0$ shows why a small non-zero value
+is categorically different from zero:
+\begin{equation}
+\begin{aligned}
+  |\Omega_K| \to 0
+  &\Rightarrow R_c \to \infty \\
+  &\Rightarrow S^3_{R_c} \to \mathbb{R}^3
+  \quad\text{(locally and in the limit).}
+\end{aligned}
+\end{equation}
+The closed spherical model decompactifies into the flat limit. Conversely, even a
+tiny non-zero closed-sign curvature modulus produces a \emph{finite} spherical
+curvature radius:
+\begin{equation}
+\begin{aligned}
+  \Omega_K < 0
+  &\Rightarrow R_c < \infty \\
+  &\Rightarrow S^3_{R_c}\text{ is compact}
+  \quad\text{(simply connected sector).}
+\end{aligned}
+\end{equation}
+For $\Omega_K>0$ the corresponding FLRW sector is open/negative-curvature and
+belongs to the hyperbolic side, not to the $S^3$ reconstruction. The full
+reconstruction chain from observation to observable consequence is:
+\begin{equation}
+\begin{aligned}
+  \Omega_K &\mapsto R_c \mapsto S^3_{R_c} \\
+           &\mapsto D_{\rm obs} \\
+           &\mapsto \text{modes, causal relations, horizons, structures.}
+\end{aligned}
+\end{equation}
+A small closed-sign curvature is not ``nearly zero'' in the geometric sense; it
+fixes a finite radius for the spherical model. Zero gives decompactification; a
+closed-sign non-zero value gives a distinct compact spherical carrier in the
+chosen simply connected sector, with a specific spectrum, volume, and causal
+structure.
+
+
+\section{Curvature-Distance Law and Reconstruction Test}
+\label{sec:distance-law}
+
+The fiducial radius is only the kinematic starting point. Observable predictions
+require the FLRW distance-redshift relation, perturbation transfer functions, and
+a likelihood comparison to data. Let
+\begin{equation}
+  E(z)=\frac{H(z)}{H_0}.
+\end{equation}
+The line-of-sight comoving distance is
+\begin{equation}
+  D_C(z)=\frac{c}{H_0}\int_0^z\frac{dz'}{E(z')}.
+\end{equation}
+For a closed spatial section with $\Omega_K<0$, the dimensionless radial coordinate
+is
+\begin{equation}
+  \chi(z)=\frac{D_C(z)}{R_c}
+  =\sqrt{|\Omega_K|}\int_0^z\frac{dz'}{E(z')}.
+\end{equation}
+The transverse comoving distance is therefore
+\begin{equation}
+\boxed{
+  D_M(z)=R_c\sin\chi(z)
+  =\frac{c/H_0}{\sqrt{|\Omega_K|}}
+  \sin\!\left[
+    \sqrt{|\Omega_K|}\int_0^z\frac{dz'}{E(z')}
+  \right].}
+\end{equation}
+The usual angular-diameter and luminosity distances are
+\begin{equation}
+  D_A(z)=\frac{D_M(z)}{1+z},
+  \qquad
+  D_L(z)=(1+z)D_M(z),
+\end{equation}
+and the differential comoving volume per redshift and solid angle is
+\begin{equation}
+  \frac{dV}{dz\,d\Omega}=\frac{c\,D_M^2(z)}{H(z)}.
+\end{equation}
+For small curvature the expansion reads
+\begin{equation}
+  D_M=D_C\left[
+  1+\frac{\Omega_K}{6}\left(\frac{H_0D_C}{c}\right)^2
+  +O(\Omega_K^2)\right].
+\end{equation}
+Thus a closed model with $\Omega_K<0$ gives a negative leading correction to the
+flat transverse distance at fixed $D_C$. At the particle-horizon scale used in this
+paper, $D_C\simeq46.13\,\mathrm{Gly}$, the fiducial value
+$\Omega_K=-0.0007$ gives the order-of-magnitude diagnostic
+\begin{equation}
+  \frac{D_M-D_C}{D_C}
+  \simeq -1.179\times10^{-3},
+\end{equation}
+which is observable only through a full joint distance likelihood, not from the
+geometry alone.
+
+A model-independent FLRW consistency reconstruction is
+\begin{equation}
+\boxed{
+  \Omega_K(z)=
+  \frac{[H(z)D_M'(z)]^2-c^2}{H_0^2D_M^2(z)} .}
+\label{eq:ok_reconstruction}
+\end{equation}
+For any FLRW geometry this quantity must be constant in redshift. The closed
+$S^3$ reconstruction requires, within observational errors,
+\begin{equation}
+  \Omega_K(z)<0,
+  \qquad
+  \frac{d\Omega_K}{dz}=0.
+\end{equation}
+This is a stronger observational test than selecting a single fiducial curvature
+modulus. In current data the curvature benchmark used here remains a permitted
+modulus rather than a detection: Planck 2018 combined with BAO gives a curvature
+constraint consistent with flatness~\cite{Planck2020}, while DESI DR2 provides
+high-precision BAO distances from more than $14$ million galaxies and quasars and
+primarily sharpens the distance-redshift likelihood rather than proving positive
+spatial curvature~\cite{DESIDR2}. ACT DR6 extended-model constraints similarly
+report no statistically significant preference for departures from baseline
+$\Lambda$CDM, reinforcing the need to treat the present $S^3_R$ construction as a
+registered likelihood programme rather than as a detected curvature sector~\cite{ACTDR6Extensions}.
+
+\subsection{BAO and acoustic-scale diagnostic observables}
+\label{sec:bao-acoustic-diagnostics}
+
+The distance law enters present and future BAO analyses through the invariant
+combinations
+\begin{align}
+  D_H(z)&=\frac{c}{H(z)},\qquad
+  D_V(z)=\left[zD_H(z)D_M^2(z)\right]^{1/3},\\
+  F_{\rm AP}(z)&=\frac{D_M(z)H(z)}{c},\qquad
+  \ell_A=\pi\frac{D_M(z_\ast)}{r_s(z_\ast)}.
+\end{align}
+At fixed line-of-sight distance $D_C$, the leading closed-curvature correction is
+\begin{equation}
+  \frac{D_M-D_C}{D_C}
+  =\frac{\Omega_K}{6}\left(\frac{H_0D_C}{c}\right)^2
+  +O(\Omega_K^2),
+  \qquad \Omega_K<0.
+\end{equation}
+Thus the purely geometric transverse correction is negative for the closed sector.
+For volume and acoustic observables, however, the measured shift also depends on
+which background expansion history $E(z)$ is compared. Therefore
+this paper does not register a standalone BAO number as a detection. The
+registered observable is the joint likelihood of
+\begin{equation}
+  \left\{D_M/r_d,\ D_H/r_d,\ D_V/r_d,\ F_{\rm AP},\ \ell_A\right\}
+\end{equation}
+under the same priors and covariance as the flat baseline.
+
+\subsection{Compact mode-shift diagnostic}
+\label{sec:mode-shift-diagnostic}
+
+The compact spectrum samples wavenumbers at
+\begin{equation}
+  k_\beta=\frac{\sqrt{\beta^2-1}}{R},
+\end{equation}
+rather than integrating continuously over $k$. For a smooth transfer integrand,
+the leading effect of replacing an integral by a sum may be diagnosed by the local
+spectral slope rather than asserted as a universal quadrupole suppression:
+\begin{equation}
+\begin{aligned}
+  \Delta C_\ell^{XY}\sim
+  &\left.\frac{d C_\ell^{XY}}{d\ln k}\right|_{k=k_\ell}
+  \Delta\ln k_\ell \\
+  &+\text{window/covariance terms}.
+\end{aligned}
+\end{equation}
+This expression is only a diagnostic expansion. The prediction used for data
+analysis remains the full hyperspherical transfer sum of
+Sec.~\ref{sec:cmb-low-l} and Sec.~\ref{sec:transfer-likelihood-compressed}.
+
+
+\section{Scope Guardrail: Background Expansion and Effective Acceleration}
+\label{sec:background-expansion-scope}
+
+The reconstruction developed in this paper is geometric and spectral. It fixes a
+compact carrier, a curvature radius, the associated distance law, and a compact
+mode registry. It does not determine the physical origin of late-time acceleration.
+Consequently no statement in this article should be read as a proof that dark
+energy or dark matter do not exist, or as a derivation of a replacement for the
+late-time background sector.
+
+Any effective acceleration component must enter only through a specified expansion
+history,
+\begin{equation}
+  E(z)=\frac{H(z)}{H_0},
+\end{equation}
+and must be tested through the same BAO, supernova, CMB, lensing, and growth
+likelihoods used for standard cosmological models. The present work therefore
+uses $E(z)$ as an external background input for the distance and transfer-function
+pipeline. It does not import a separate dark-sector theory into the main
+reconstruction.
+
+\section{Numerical Anchoring}
+\label{sec:numerical}
+
+In the main text we quote observationally meaningful rounded values. Machine-precision
+numbers are retained only as fiducial benchmark outputs in Table~\ref{tab:summary}.
+For the adopted modulus one obtains
+\begin{equation}
+  R_{\mathcal{S}^3}\simeq 548.3\Gly,
+\end{equation}
+where $R_{\mathcal{S}^3}$ is the curvature radius of the global three-sphere.
+
+In units of $\mathrm{Gly}/\mathrm{Gyr}$, the speed of light is numerically unity:
+\begin{equation}
+  c = 1\,\mathrm{Gly/Gyr}.
+\end{equation}
+Hence the light-travel time corresponding to the curvature radius is:
+\begin{equation}
+  t_{\mathcal{S}^3} = \frac{R_{\mathcal{S}^3}}{c}
+  \simeq 548.3\Gyr.
+\end{equation}
+
+\textbf{Important:}
+\begin{equation}
+  \boxed{t_{\mathcal{S}^3} \text{ is \emph{not} the age of the Universe.}}
+\end{equation}
+This is the light-travel time of the curvature radius. The age of the manifested
+hot cosmological history remains a separate quantity:
+\begin{equation}
+  t_0 \simeq 13.79\Gyr.
+\end{equation}
+
+\section{Full Geometry of the Three-Sphere}
+\label{sec:geometry}
+
+\subsection{Diameter in the Embedding Space}
+
+If $S^3_R$ is regarded as the standard sphere in $\mathbb{R}^4$,
+\begin{equation}
+  S^3_R = \{x \in \mathbb{R}^4 : |x| = R\},
+\end{equation}
+the diameter in the ambient $\mathbb{R}^4$ embedding is:
+\begin{equation}
+  \boxed{D_{\rm embed} = 2R = 1096.6\Gly.}
+\end{equation}
+This is \emph{not} the maximal intrinsic distance along the three-sphere itself.
+
+\subsection{Intrinsic Causal Diameter \texorpdfstring{$D_{\rm causal} = \pi R$}{Dcausal = pi R}}
+
+Two distinct diameter concepts must be carefully distinguished on $S^3_R$:
+\begin{align}
+  D_{\rm embed}   &= 2R    \quad \text{(diameter in ambient }\mathbb{R}^4\text{),} \\
+  D_{\rm causal}  &= \pi R \quad \text{(maximal intrinsic geodesic distance).}
+\end{align}
+These differ by the factor $\pi/2 \approx 1.571$; conflating them leads to a
+systematic overestimate of the intrinsic scale by $57\%$.
+
+On $S^3_R$, the maximum intrinsic geodesic distance between antipodal points is:
+\begin{equation}
+  D_{\rm causal} \equiv D_{\rm geo,max} = \pi R.
+\end{equation}
+Numerically:
+\begin{equation}
+  \boxed{D_{\rm causal} = 1722.6\Gly.}
+\end{equation}
+This is the causal diameter: the maximum finite distance any null signal can
+traverse within the compact spatial section. It is not a horizon in the
+particle-horizon sense; it is the intrinsic diameter of the manifold.
+
+\subsection{Full Great Circle}
+
+The complete traversal along a great geodesic circle is
+\begin{equation}
+  C = 2\pi R.
+\end{equation}
+Numerically:
+\begin{equation}
+  \boxed{C_{\mathcal{S}^3} = 3445.2\Gly.}
+\end{equation}
+The corresponding light-travel time for a full traversal is
+\begin{equation}
+  t_{\rm loop} = \frac{2\pi R}{c} = 3445.2\Gyr.
+\end{equation}
+Half and quarter great circles are
+\begin{equation}
+\begin{aligned}
+  \pi R &= 1722.6\Gly, \\
+  \frac{\pi R}{2} &= 861.3\Gly .
+\end{aligned}
+\end{equation}
+
+\section{Proper Volume of \texorpdfstring{$S^3$}{S3}}
+\label{sec:volume}
+
+The proper three-dimensional volume of the round three-sphere is:
+\begin{equation}
+  V_{S^3} = 2\pi^2 R^3.
+\end{equation}
+Substituting $R = 548.3\Gly$ gives
+\begin{equation}
+  \boxed{V_{\mathcal{S}^3} = 3.254\times 10^{9}\Gly^3.}
+\end{equation}
+This is \emph{not} the volume of an ordinary ball,
+$V_{\rm ball} = 4\pi R^3/3$. It is the proper volume of the closed
+three-dimensional manifold $S^3$ itself.
+
+\section{Curvature}
+\label{sec:curvature}
+
+For the round three-sphere, the sectional curvature is:
+\begin{equation}
+  K_{\mathcal{S}^3} = \frac{1}{R^2}.
+\end{equation}
+Numerically:
+\begin{equation}
+  \boxed{K_{\mathcal{S}^3} = 3.326\times 10^{-6}\Gly^{-2}.}
+\end{equation}
+The three-dimensional scalar curvature is
+\begin{equation}
+  {}^{(3)}R = \frac{6}{R^2}.
+\end{equation}
+Numerically:
+\begin{equation}
+  \boxed{{}^{(3)}R = 1.996\times 10^{-5}\Gly^{-2}.}
+\end{equation}
+In SI units:
+\begin{align}
+  \boxed{|K|} &= 3.716\times 10^{-56}\,\mathrm{m}^{-2}, \\
+  \boxed{|{}^{(3)}R|} &= 2.230\times 10^{-55}\,\mathrm{m}^{-2}.
+\end{align}
+
+The curvature is positive but extremely small. A quasi-local observer will
+therefore consistently reconstruct their domain as nearly flat.
+
+\section{Static-Carrier Age Diagnostic}
+\label{sec:arc}
+
+The age of the hot cosmological history is
+\begin{equation}
+  t_0 \simeq 13.79\Gyr.
+\end{equation}
+Its ratio to the light-travel time of the curvature radius is
+\begin{equation}
+  \frac{t_0}{t_{\mathcal{S}^3}}
+  = \frac{13.788}{548.3}.
+\end{equation}
+Evaluating:
+\begin{equation}
+  \boxed{\frac{t_0}{t_{\mathcal{S}^3}} = 0.02515
+  \approx 2.515\%.}
+\end{equation}
+The inverse ratio is
+\begin{equation}
+  \boxed{\frac{t_{\mathcal{S}^3}}{t_0} = 39.77,}
+\end{equation}
+i.e. the curvature-radius light-time exceeds the age of the observable hot
+history by a factor of approximately $39.77$.
+
+Expressing $ct_0$ as an arc on radius $R_{\mathcal{S}^3}$:
+\begin{equation}
+  \theta_0 = \frac{ct_0}{R_{\mathcal{S}^3}}
+  = \frac{t_0}{t_{\mathcal{S}^3}}
+  = 0.02515\,\mathrm{rad}.
+\end{equation}
+In degrees:
+\begin{equation}
+  \boxed{\theta_0 = 1.441^\circ.}
+\end{equation}
+Thus the static comparison length $ct_0$ corresponds to approximately
+$1.44^\circ$ on a great circle of the fiducial carrier.
+
+\textbf{Note:} This is a static-carrier diagnostic only. It is not the radius of
+the observable Universe and not the FLRW causal light-cone distance. In FLRW,
+causal propagation is controlled by the conformal distance
+$\int c\,d\tau/a(\tau)$, while the particle horizon is larger than $ct_0$ because
+of expansion.
+
+\section{Observable Horizon within the Three-Sphere}
+\label{sec:horizon}
+
+For the benchmark observable-domain calculation we adopt the particle-horizon radius
+\begin{equation}
+  D_{\rm particle} = 46.13\Gly.
+\end{equation}
+This value is not a theorem of $S^3$ geometry. It is a background-dependent input fixed
+by the chosen expansion history $E(z)$ and by the assumed radiation, matter, neutrino,
+and curvature content used to compute the conformal particle horizon.
+Its fraction of the three-sphere radius is
+\begin{equation}
+  \frac{D_{\rm particle}}{R_{\mathcal{S}^3}} = 0.08412.
+\end{equation}
+The corresponding angular size is
+\begin{equation}
+  \theta_{\rm particle}
+  = \frac{D_{\rm particle}}{R_{\mathcal{S}^3}} \cdot \frac{180^\circ}{\pi}.
+\end{equation}
+Numerically:
+\begin{equation}
+  \boxed{\theta_{\rm particle} = 4.820^\circ.}
+\end{equation}
+Hence, the particle-horizon radius subtends approximately $4.82^\circ$ on the
+great circle of $S^3$.
+
+The diameter of the observable region is
+\begin{equation}
+  2D_{\rm particle} = 92.25\Gly.
+\end{equation}
+Its fraction of the full great circle is
+\begin{equation}
+  \frac{2D_{\rm particle}}{2\pi R_{\mathcal{S}^3}} = 0.02678
+  \approx 2.678\%.
+\end{equation}
+
+The central result of this section is that the observable Universe can be a
+small quasi-local domain of a large compact $S^3$.
+
+\subsection{Volumetric Fraction of the Observable Domain}
+
+The angular subtended arc gives an intuitive picture, but the volumetric fraction
+is more quantitatively revealing. Define the geodesic half-angle:
+\begin{equation}
+  \chi = \frac{D_{\rm particle}}{R_{\mathcal{S}^3}}
+       = 0.08412\,\mathrm{rad}.
+\end{equation}
+The fraction of the total $S^3$ volume enclosed within geodesic distance
+$D_{\rm particle}$ of the observer follows from the $S^3$ volume element:
+\begin{equation}
+  \Gamma(\chi)
+  = \frac{\chi - \tfrac{1}{2}\sin(2\chi)}{\pi}.
+  \label{eq:Gamma_chi}
+\end{equation}
+This follows directly from the round-$S^3$ volume element
+$dV=R^3\sin^2\chi\,d\chi\,d\Omega_2$, since
+\begin{equation}
+  V(\chi)=4\pi R^3\int_0^\chi\sin^2 u\,du
+  =2\pi R^3\left(\chi-\tfrac12\sin 2\chi\right),
+\end{equation}
+and $V_{S^3}=2\pi^2R^3$. For small $\chi \ll 1$ (the regime relevant here),
+the leading-order expansion is:
+\begin{equation}
+  \Gamma(\chi) \approx \frac{2}{3\pi}\,\chi^3
+  \qquad (\chi \ll 1).
+  \label{eq:Gamma_approx}
+\end{equation}
+Equation~\eqref{eq:Gamma_approx} shows that the volumetric fraction falls as the
+\emph{cube} of the angular scale, making it far smaller than the linear angular
+comparison ($4.82^\circ$) suggests. Substituting $\chi \simeq 0.08412$:
+\begin{equation}
+\begin{aligned}
+  \Gamma_{\rm obs}
+  &= \Gamma(\chi_{\rm particle}) \\
+  &= 1.261\,377\,743\,887\,7\times10^{-4} \\
+  &= 0.012\,613\,777\,438\,877\%.
+\end{aligned}
+\end{equation}
+The small-angle approximation gives $0.012\,631\,642\%$, differing from the exact
+value by about $0.14\%$ relative. Thus the observable Universe occupies about
+$\mathbf{1.26\times10^{-2}\%}$ of
+the total volume of $S^3_R$---not only angularly small, but volumetrically
+negligible. The corrected value follows directly from the cubic small-angle
+scaling in Eq.~\eqref{eq:Gamma_approx}; the linear angular fraction must not be
+read as a volume fraction.
+
+The $\Gamma(\chi)$ function is the spatial analogue of the causal fraction
+$\Gamma(T)$ introduced in Sec.~\ref{sec:causal}; together they express the
+incompleteness of the observer's domain in both space and time. The joint benchmark
+reported in Table~I is defined exactly as
+\begin{equation}
+  \Gamma_{\rm ST}
+  =\Gamma\!\left(\frac{ct_0}{R}\right)\Gamma(\chi_{\rm particle})
+  =4.2551\times10^{-10}.
+\end{equation}
+This is a static-carrier diagnostic product, not a new causal horizon in dynamical
+FLRW spacetime:
+\begin{center}
+\fbox{\begin{minipage}{0.92\columnwidth}
+\centering
+We observe a small quasi-local sector, not the global $S^3$.
+\end{minipage}}
+\end{center}
+
+\section{The Quasi-Local Observer Domain}
+\label{sec:quasilocal}
+
+\subsection{Formal Definition and Strict Incompleteness}
+
+The quasi-local observer domain is not identified with the global three-sphere. It
+is defined by finite causal accessibility, the particle horizon, the age of the
+manifested history, and the reconstruction procedure. Therefore, even under the
+compact $S^3$ ontology, the observable region remains a partial perspective.
+
+Formally, the causal domain of an observer at point $p$ after cosmic time $T$ is:
+\begin{equation}
+  D_{\rm obs}(p,T)
+  = \{q \in S^3_R : d_{S^3}(p,q) \leq cT\},
+\end{equation}
+so that $D_{\rm obs}(p,T) \subseteq S^3_R$. The strict incompleteness theorem
+holds as follows:
+\begin{equation}
+\begin{aligned}
+  D_{\rm obs}(p,T) &\subset S^3_R, \\
+  D_{\rm obs}(p,T) &\neq S^3_R.
+\end{aligned}
+\end{equation}
+This holds for every finite manifested reconstruction. This is not a contingent
+observational limitation. It is a structural consequence: a domain is defined by
+its observer and its horizon. Were it to coincide with the full $S^3_R$, it would
+cease to be \emph{quasi}-local and would instead be the global spatial section
+itself---a categorically different object.
+
+The fractional causal accessibility volume is
+\begin{equation}
+  \Gamma(T)
+  = \frac{\mathrm{Vol}(D_{\rm obs}(p,T))}{\mathrm{Vol}(S^3_R)}.
+\end{equation}
+For all $T < t_{\rm coh}$,
+\begin{equation}
+  \Gamma(T) < 1.
+\end{equation}
+
+\subsection{Boundary Without Boundary}
+\label{sec:boundary-without-boundary}
+
+The finite curvature radius recovered by the closed-branch reconstruction is not
+an edge of the Universe. It is a radius of curvature of the carrier geometry:
+\begin{equation}
+  R_c=\frac{c/H_0}{\sqrt{|\Omega_K|}},
+  \qquad
+  \Sigma\simeq S^3_{R_c}
+\end{equation}
+for the simply connected closed sector.
+The global spatial carrier is compact and finite, but boundaryless:
+\begin{equation}
+  \partial S^3_R=\varnothing .
+\end{equation}
+By contrast, an observer-defined domain may have a nonempty relational boundary,
+for example
+\begin{equation}
+  D_{\rm obs}\subset S^3_R,
+  \qquad
+  \partial D_{\rm obs}\simeq S^2 .
+\end{equation}
+Thus
+\begin{equation}
+  \boxed{
+  \partial S^3_R=\varnothing,
+  \qquad
+  \partial D_{\rm obs}\neq\varnothing,
+  \qquad
+  \partial D_{\rm obs}\not\equiv\partial S^3_R .}
+\end{equation}
+The boundary of $D_{\rm obs}$ is a boundary of reconstruction, causal access,
+windowing, or imposed boundary data; it is not an ontological boundary of space.
+
+This distinction is also the correct gravitational one. In covariant phase-space
+language the on-shell diffeomorphism current is exact, schematically
+\begin{equation}
+  J_\xi\approx dQ_\xi,
+\end{equation}
+so Hamiltonian generators for diffeomorphisms reduce to boundary functionals
+rather than bulk charges~\cite{IyerWald1994}. For a compact boundaryless global
+slice there is no spatial edge term. For a proper subregion $D\subset S^3_R$,
+however, the quasi-local generator is encoded on $\partial D$:
+\begin{equation}
+  H_\xi[D]
+  =
+  \int_{\partial D}
+  (Q_\xi-\xi\cdot B) .
+\end{equation}
+This is compatible with Brown--York type quasi-local energy constructions, but the
+present paper does not evaluate such charges or introduce a York-time dynamics
+sector~\cite{BrownYork1993}. The point used here is only categorical:
+\begin{center}
+\fbox{\begin{minipage}{0.92\columnwidth}
+\centering
+The universe has no global edge; observer domains may have quasi-local boundaries.
+\end{minipage}}
+\end{center}
+
+\subsection{Reachability Is Not Empirical Reconstruction}
+
+At $T = t_{\rm coh} = \pi R/c$, the condition $\Gamma(T) = 1$ is achieved---but
+only in the idealised static model sense of \emph{null accessibility}:
+\begin{equation}
+\begin{aligned}
+  \Gamma(t_{\rm coh}) = 1
+  \quad &\Leftrightarrow \quad
+  \text{every point of }S^3_R \\
+  &\text{is null-reachable from }p .
+\end{aligned}
+\end{equation}
+This is a statement about geometric \emph{reachability}---the existence of a null
+geodesic connecting any two points---not about empirical \emph{reconstruction}.
+Reachability does not imply that an observer has access to, has measured, or has
+integrated the information from the entire $S^3_R$.
+
+The distinction is essential:
+\begin{align}
+  \Gamma(t_{\rm coh}) = 1
+  &\quad \Leftrightarrow \quad
+    \text{global null accessibility (geometric fact)}, \\
+  D_{\rm obs}(p, t_{\rm coh}) = S^3_R
+  &\quad \not\Leftrightarrow \quad
+    \text{full empirical reconstruction (physical claim)}.
+\end{align}
+The local null-cone structure is preserved at all times, and no single observer
+instantaneously integrates the entire compact section. The $\Gamma(T)$ function
+measures causal accessibility, not the actual data held by the observer.
+
+\subsection{Protection against False Universalism}
+
+The two key methodological principles of this framework are:
+\begin{quote}
+The quasi-local domain is the observational shadow of $S^3$, not $S^3$ itself.
+
+$S^3$ is not exhausted by any quasi-local perspective.
+\end{quote}
+
+Standard flat cosmology performs the substitution
+$\text{locally reconstructed near-flatness} \to \mathbb{R}^3\text{-ontology}$.
+This programme refuses that substitution:
+\begin{equation}
+\begin{aligned}
+  \text{local near-flatness}
+  &\not\Rightarrow \mathbb{R}^3, \\
+  &\text{nor non-compact global geometry.}
+\end{aligned}
+\end{equation}
+Local near-flatness is compatible with any large compact carrier:
+$U \subset S^3_R$, $U \simeq \mathbb{R}^3$, provided $R$ is sufficiently large.
+The inference from local flatness to global non-compactness is an \emph{additional
+ontological assumption}, not a deduction.
+
+\section{Apparent Flatness and Curvature Sagitta Visualization}
+\label{sec:flatness}
+
+This section is an embedding visualization and curvature-intuition diagnostic only. It
+is not an invariant observational curvature estimator and does not replace the FLRW
+distance test in Eq.~\eqref{eq:ok_reconstruction}. To estimate the deviation from a
+flat chord, one may use the sagitta (arc-to-chord deviation):
+\begin{equation}
+  s(L)=R-\sqrt{R^2-\left(\frac{L}{2}\right)^2},
+\end{equation}
+which for small $L/R$ reduces to
+\begin{equation}
+  s(L) \approx \frac{L^2}{8R}.
+\end{equation}
+
+\textbf{For the light-travel age $L = ct_0 = 13.788\Gly$:}
+\begin{equation}
+  \boxed{s = 0.043\,338\,547\Gly = 43.34\Mly.}
+\end{equation}
+
+\textbf{For the particle horizon $L \simeq 46.13\Gly$:}
+\begin{equation}
+  \boxed{s = 0.485\,222\,026\Gly.}
+\end{equation}
+
+\textbf{For the diameter of the observable Universe $L = 92.250\Gly$:}
+\begin{equation}
+  \boxed{s = 1.943\,473\,550\Gly.}
+\end{equation}
+
+These figures demonstrate: on the scale of the entire observable region, the
+curvature is geometrically non-zero, but it is extraordinarily gentle. Local
+reconstructions will therefore robustly yield a nearly flat picture.
+
+\section{Causal Accessibility}
+\label{sec:causal}
+
+In the compact $S^3_R$ geometry, the maximum intrinsic distance is $D_c = \pi R$,
+and the time of full causal accessibility is
+\begin{equation}
+  t_{\rm coh} = \frac{\pi R}{c}.
+\end{equation}
+For the chosen radius:
+\begin{equation}
+  \boxed{t_{\rm coh} = 1722.6\Gyr.}
+\end{equation}
+
+This is neither the ``return time of a signal'' nor a physical echo. It is the
+limiting time for null propagation to render every point of the spatial section
+causally accessible from every other point in a static compact model. In the
+causal coherence framework~\cite{Preece2026causal}, this is expressed through the
+compact causal diameter $D_c = \pi R$, the causal accessibility ratio $\GammaT$,
+and the condition $\Gamma(T) = 1$ for $T \geq \pi R/c$.
+
+The fraction of causally accessible volume at $0 < T < t_{\rm coh}$ is
+\begin{equation}
+  \GammaT = \frac{cT/R - \tfrac{1}{2}\sin(2cT/R)}{\pi}.
+\end{equation}
+This function grows monotonically from $0$ to $1$. Thus, compact $S^3$ geometry
+has not infinite causal openness, but finite global causal accessibility.
+
+\section{Research Programme}
+\label{sec:programme}
+
+This calculation opens not a proof, but a research programme.
+
+If the small negative $\Omega_K$ is accepted as a possible imprint of real positive
+spatial curvature, one can construct models not in infinite $\mathbb{R}^3$ but in
+compact $S^3_R$ geometry with $R = 548.3\Gly$. The following
+directions are natural.
+
+
+\subsection{CMB Low Multipoles and the Compact-Mode Test}
+\label{sec:cmb-low-l}
+The compact $S^3_R$ reconstruction naturally motivates a dedicated analysis of
+the largest angular scales of the cosmic microwave background. The observed CMB
+temperature field exhibits several well-known low-multipole anomalies, including
+suppressed quadrupole power, quadrupole--octupole alignment, unusually weak
+two-point correlations at angular separations above roughly $60^\circ$, and
+related large-scale asymmetry or parity features~\cite{Copi2010,PlanckIsotropy2019}.
+These anomalies are not regarded here as proof of nontrivial topology. Their
+statistical significance is modest and is affected by cosmic variance, foreground
+modelling, sky cuts, and look-elsewhere effects. They are therefore used only as
+phenomenological targets for a compact-mode test.
+
+The correct predictive object is the closed-FLRW hyperspherical transfer
+spectrum, not the slogan that compactness suppresses the quadrupole. For
+$X,Y\in\{T,E\}$ the compact calculation should take the schematic form
+\begin{equation}
+\boxed{
+  C_\ell^{XY,S^3}
+  =\sum_\beta W_\beta\,
+  \mathcal P_{\mathcal R}(\beta)
+  \Delta_{\ell\beta}^{X}\Delta_{\ell\beta}^{Y}.}
+\end{equation}
+The flat-space comparison is
+\begin{equation}
+  C_\ell^{XY,\mathbb R^3}
+  =4\pi\int d\ln k\,
+  \mathcal P_{\mathcal R}(k)
+  \Delta_\ell^X(k)\Delta_\ell^Y(k).
+\end{equation}
+The compact-mode prediction is the difference
+\begin{equation}
+  \Delta C_\ell^{XY}=C_\ell^{XY,S^3}-C_\ell^{XY,\mathbb R^3}.
+\end{equation}
+A likelihood-level test should use the data covariance:
+\begin{equation}
+  \Delta\chi^2
+  =\sum_{\ell\ell',XY}
+  \Delta C_\ell^{XY}
+  \mathrm{Cov}^{-1}_{\ell XY,\ell'X'Y'}
+  \Delta C_{\ell'}^{X'Y'} .
+\end{equation}
+This is the operative CMB prediction pipeline.
+
+For the fiducial radius used in this paper,
+\begin{equation}
+  R_{\mathcal S^3}=548.3\Gly,
+\end{equation}
+the observed particle-horizon radius subtends only
+\begin{equation}
+  \chi_{\rm obs}
+  =\frac{D_{\rm particle}}{R_{\mathcal S^3}}
+  =0.08412\,\mathrm{rad}\simeq4.82^\circ .
+\end{equation}
+Thus the observable region is a small quasi-local patch of the global carrier.
+The low multipoles cannot be claimed to be suppressed by topology alone without
+an explicit transfer calculation. Evidence in favour of the compact-mode
+interpretation would consist not merely of low quadrupole power, but of a
+coherent pattern across $TT$, $TE$, and $EE$, together with phase or correlation
+structures characteristic of the selected sector. Temperature-only anomalies are
+therefore insufficient; polarization is decisive~\cite{LiteBIRD2021}.
+
+\subsection{Large-Scale Structure}
+
+One may investigate whether a compact, gently curved geometry creates preferential
+conditions for large arcs, rings, walls, and correlation structures beyond the
+standard homogeneity scale. The formal chain is:
+\begin{equation}
+  \Omega_K \mapsto R_{\mathcal{S}^3}^{\rm global}
+  \mapsto (S^3, g_R)
+  \mapsto \Delta_{S^3}
+  \mapsto Y_{n\ell\mu}
+  \mapsto \text{projected shells}
+  \mapsto \text{rings/arcs.}
+\end{equation}
+
+\subsection{Compact-Mode vs. Box-Mode Simulations}
+
+A periodic Euclidean box $T^3$ is not equivalent to $S^3$. They have different
+modes, different spectral bases, and different global geometry. Simulations on
+$S^3$ harmonics can therefore produce different infrared effects.
+
+\subsection{Matter and Gravity Dynamics}
+
+The next step is to specify the dynamics: FLRW evolution on $S^3$, perturbation
+theory, transfer functions, structure growth, lensing, and the CMB angular power
+spectrum. These are dynamical tasks, not consequences of topology alone. The
+compact carrier supplies the background geometry and spectral catalogue; it does
+not by itself determine amplitudes, matter content, or an effective acceleration
+sector.
+
+\subsection{Causal Accessibility Observables}
+
+Through $\GammaT$, $D_c = \pi R$, and compact null accessibility, one can search
+not for ``echoes'' but for correlation signatures of finite global causal
+accessibility.
+
+\subsection{Global/Local Spectral Bridge to Ring-Like Ultra-Large-Scale Structures}
+\label{sec:rings}
+
+In~\cite{Preece2026rings} we identified ring-like and arc-like structures at
+$z \approx 0.8$ with an effective spectral coherence scale
+$R_{\rm eff} \approx 474.5\,\mathrm{Mpc} \approx 1.547\Gly$.
+The present curvature reconstruction requires a strict separation between two
+scales that must not be conflated:
+\begin{equation}
+  \boxed{R_{\mathcal{S}^3}^{\rm global} \neq R_{\rm eff}.}
+\end{equation}
+
+\textbf{Global carrier:}
+$R_{\mathcal{S}^3}\simeq548.3\Gly$ is the curvature radius of the three-sphere
+itself. It sets the Laplacian eigenvalues, the discrete mode spectrum, and the
+compact causal diameter. It is a property of the manifold.
+
+\textbf{Local spectral coherence scale:}
+$R_{\rm eff} \approx 474.5\,\mathrm{Mpc}$ is an effective scale extracted from
+projected-shell correlations within a narrow redshift bin. Formally,
+\begin{equation}
+  R_{\rm eff}=R_{\rm eff}(z,n,\Delta z,{\cal P}),
+\end{equation}
+where ${\cal P}$ denotes the projection and selection kernel of the observed
+shell. It is a property of a particular $S^3$ mode projected onto the observable
+redshift shell; it depends on the shell's comoving distance, width,
+hyperspherical harmonic index, and survey window. This paper does not derive
+$R_{\rm eff}$; it states the geometric separation between the global carrier
+radius and a projected local coherence scale.
+
+The logical chain connecting the two levels is:
+\begin{equation}
+\begin{split}
+  \Omega_K
+  &\mapsto R_{\mathcal{S}^3}^{\rm global}
+   \mapsto (S^3, g_R)
+   \mapsto \Delta_{S^3} \\
+  &\mapsto Y_{n\ell\mu}
+   \mapsto \text{projected modes} \\
+  &\mapsto R_{\rm eff}(z,n,\Delta z,{\cal P}).
+\end{split}
+\end{equation}
+The $474.5\,\mathrm{Mpc}$ scale is therefore not the radius of the Universe
+but a \emph{derived observable} of a specific compact mode in a specific shell.
+The global $S^3$ carrier provides the mode catalogue; the local $R_{\rm eff}$
+is a read-out of one mode in one shell.
+As a first diagnostic, Sec.~\ref{sec:transfer-likelihood-compressed} records the
+projected-shell estimator $\beta_{\rm shell}\simeq618.38$ for $z=0.8$ under the
+physical-scale convention stated in Sec.~\ref{sec:transfer-likelihood-compressed}.
+This is a target for the full shell-transfer pipeline, not a proof of a mode assignment by itself.
+
+Before the present paper, the $S^3$ framework explained the \emph{morphology}
+of ring-like structures. The curvature reconstruction now adds an
+\emph{external geometric criterion}: the global carrier is conditionally
+recoverable from $\Omega_K$, not just postulated for spectral convenience. In
+short:
+\begin{quote}
+Before: $S^3$ explained ring morphology.\par
+Now: $\Omega_K$ provides the reconstructable background for that morphology.
+\end{quote}
+
+\section{Canonical Reconstruction Summary}
+\label{sec:canonical}
+
+\subsection{Three-Sphere Geometry}
+
+\begin{align}
+  \mathcal{S}^3_{\rm Light}:\quad R &= 548.3\Gly, \\
+  t_R &= 548.3\Gyr, \\
+  D_{\rm embed}=2R &= 1096.6\Gly, \\
+  D_{\rm causal}=\pi R &= 1722.6\Gly, \\
+  C=2\pi R &= 3445.2\Gly, \\
+  V &\simeq 3.254\times 10^{9}\Gly^3.
+\end{align}
+
+\subsection{Manifested History}
+
+\begin{align}
+  t_0 &= 13.788\Gyr, \\
+  \frac{t_0}{t_R} &= 0.02515, \\
+  \theta_0 &= 1.441^\circ.
+\end{align}
+
+\subsection{Observable Horizon}
+
+\begin{align}
+  D_{\rm particle} &= 46.13\Gly, \\
+  \theta_{\rm particle} &= 4.820^\circ, \\
+  \Gamma_{\rm obs} &= \Gamma(\chi_{\rm particle}) \approx 0.0126\%.
+\end{align}
+
+\subsection{Fundamental Geometric Relations}
+
+The following relations hold as exact theorems of $S^3_R$ geometry:
+\begin{equation}
+\begin{aligned}
+  D_{\rm causal} &= \pi R, &
+  V_{S^3} &= 2\pi^2 R^3, \\
+  K &= \frac{1}{R^2}, &
+  {}^{(3)}R &= \frac{6}{R^2}.
+\end{aligned}
+\end{equation}
+Two-scale distinction (never conflate):
+\begin{equation}
+\begin{aligned}
+  D_{\rm embed} &= 2R
+    &&\text{(in }\mathbb{R}^4\text{)}, \\
+  D_{\rm causal} &= \pi R
+    &&\text{(intrinsic on }S^3\text{)}.
+\end{aligned}
+\end{equation}
+
+
+
+
+\section{Invariant Registry, Diagnostics, and Necessity Taxonomy}
+\label{sec:invariant-registry-compressed}
+
+This section consolidates the invariant content needed for the reconstruction. It is
+not an encyclopedia of natural phenomena. It is a registry of the structures actually
+used by this paper.
+
+\subsection{Exact round-\texorpdfstring{$S^3_R$}{S3R} invariants}
+
+The round carrier is homogeneous and isotropic:
+\begin{equation}
+  S^3_R\simeq SO(4)/SO(3),
+  \qquad \operatorname{Isom}^+(S^3_R)\simeq SO(4).
+\end{equation}
+The stabilizer $SO(3)$ acts transitively on the unit sphere in each tangent space.
+Therefore there is no nonzero fully invariant direction:
+\begin{equation}
+\begin{aligned}
+  \mathfrak X(S^3_R)^{SO(4)}&=0,
+  \qquad
+  \Omega^1(S^3_R)^{SO(4)}=0,
+  \qquad
+  \Omega^2(S^3_R)^{SO(4)}=0,\\
+  \Omega^0(S^3_R)^{SO(4)}&=\mathbb R,
+  \qquad
+  \Omega^3(S^3_R)^{SO(4)}=\mathbb R\,\mathrm{vol}_{S^3}.
+\end{aligned}
+\label{eq:full_no_direction_law}
+\end{equation}
+Equivalently, invariant directions, axes, ring normals, Hopf-frame directions, and
+preferred frames do not follow from the round simply connected carrier alone. They can
+only enter after additional structure is chosen: an observer, field configuration,
+subgroup, quotient topology, survey window, or initial condition. The same isotropy
+also fixes the invariant symmetric-tensor sector:
+\begin{equation}
+  \mathrm{Sym}^2(T^*S^3_R)^{SO(4)}=\mathbb R\,g .
+\end{equation}
+Thus the round carrier alone cannot generate a geometric anisotropic stress tensor;
+any anisotropy must come from perturbations, matter fields, quotient topology, survey
+selection, or initial data.
+
+The local curvature catalogue is completely fixed by $R$:
+\begin{equation}
+\begin{aligned}
+  R_{ijkl} &= R^{-2}(g_{ik}g_{jl}-g_{il}g_{jk}),\\
+  R_{ij} &= 2R^{-2}g_{ij},
+  \qquad {}^{(3)}R = 6R^{-2},
+  \qquad \nabla_mR_{ijkl}=0 .
+\end{aligned}
+\end{equation}
+The scalar curvature polynomials are therefore powers of $R^{-2}$, for example
+\begin{equation}
+  R_{ijkl}R^{ijkl}=12R^{-4},
+  \qquad
+  R_{ij}R^{ij}=12R^{-4}.
+\end{equation}
+In three spatial dimensions the Weyl tensor has no independent components; the
+conformal-flatness diagnostic is the Cotton tensor. For the round carrier,
+\begin{equation}
+  C^{\rm Cotton}_{ijk}=0,
+\end{equation}
+so the intrinsic spatial curvature is fully fixed by the metric and the single radius
+$R$. This statement is purely spatial and does not assert that the four-dimensional
+perturbed FLRW spacetime has vanishing Weyl curvature.
+
+\subsection{Compact spectral diagnostics}
+
+The empirical content of $S^3_R$ mode discreteness is the replacement of a flat
+continuum by a compact hyperspherical catalogue,
+\begin{equation}
+  \int d^3k \quad\longrightarrow\quad \sum_{\beta\ell m},
+\end{equation}
+with
+\begin{equation}
+\begin{aligned}
+  -\Delta Q_{\beta\ell m}
+  &=\frac{\beta^2-1}{R^2}Q_{\beta\ell m},\\
+  g^{(0)}_\beta&=\beta^2,
+  \qquad
+  k_\beta=\frac{\sqrt{\beta^2-1}}{R}.
+\end{aligned}
+\end{equation}
+For the fiducial benchmark,
+\begin{equation}
+\begin{aligned}
+  R^{-1}&=1.8237\times10^{-3}\,\mathrm{Gly}^{-1},\\
+  k_{\beta=2}&=3.1588\times10^{-3}\,\mathrm{Gly}^{-1}.
+\end{aligned}
+\end{equation}
+The constant mode $\beta=1$ is a background mode and carries no mean-zero spatial
+structure. The first non-constant scalar mode is therefore $\beta=2$, with
+\begin{equation}
+  k_{\rm min}^{(0)}=\frac{\sqrt 3}{R}.
+\end{equation}
+This is an admissibility floor in the compact scalar catalogue. It is not, by itself,
+an amplitude-suppression theorem: any statement about quadrupole power or large-angle
+correlations still requires a primordial spectrum, transfer functions, survey window,
+and likelihood comparison.
+The exact scalar addition kernel is
+\begin{equation}
+  K_\beta(\gamma)=
+  \frac{\beta}{2\pi^2R^3}\frac{\sin(\beta\gamma)}{\sin\gamma},
+  \qquad \gamma=d(x,y)/R .
+\end{equation}
+The corresponding scalar correlation diagnostic is
+\begin{equation}
+  \xi_{S^3}(\gamma)=
+  \sum_{\beta=1}^{\infty}P_\beta
+  \frac{\beta}{2\pi^2R^3}\frac{\sin(\beta\gamma)}{\sin\gamma}.
+\end{equation}
+The addition kernel obeys the normalization rule
+\begin{equation}
+  \int_{S^3_R}K_\beta(\gamma(x,y))\,dV_y
+  =\begin{cases}
+  1, & \beta=1,\\
+  0, & \beta>1,
+  \end{cases}
+\end{equation}
+which separates the constant mode from all mean-zero modes. The high-mode counting is
+controlled by Weyl's law,
+\begin{equation}
+  N(\Lambda)=\sum_{(\beta^2-1)/R^2\leq\Lambda}\beta^2
+  \sim \frac{R^3}{3}\Lambda^{3/2}\qquad(\Lambda\to\infty).
+\end{equation}
+Consequently compact spectral effects are infrared diagnostics; at large $\beta$ the
+compact sum approaches the flat continuum density. A useful angular scale for the
+particle-horizon benchmark is
+\begin{equation}
+  \ell_{\rm IR}^{\rm diag}\sim\frac{1}{\chi_{\rm particle}}
+  =\frac{R}{D_{\rm particle}}\simeq 11.9,
+\end{equation}
+but this is only a diagnostic window, not a substitute for a full hyperspherical
+transfer calculation.
+
+On a finite survey or causal domain $D$, the relevant quantity is the windowed response
+\begin{equation}
+  W_\beta[D]
+  =\frac{1}{\mathrm{Vol}(D)^2}
+  \int_DdV_x\int_DdV_y\,K_\beta(\gamma(x,y)).
+\end{equation}
+More generally, the finite observer domain induces a quasi-local mode-coupling matrix
+\begin{equation}
+\begin{aligned}
+  M_{ab}[D]&=\int_D Q_a(x)Q_b^*(x)\,dV_x,\\
+  a&=(\beta,\ell,m),\qquad b=(\beta^\prime,\ell^\prime,m^\prime).
+\end{aligned}
+\end{equation}
+For $D=S^3_R$ this reduces to the orthonormal identity matrix. For a strict subdomain,
+including the particle-horizon ball or a real survey mask, $M_{ab}[D]$ need not be
+diagonal. This is a windowing and projection effect, not a new physical force. It can
+mix global compact modes in quasi-local estimators, but it does not by itself force a
+quadrupole deficit, an octupole alignment, or a preferred axis. Those claims require
+$P_\beta$, transfer functions, foreground and mask modelling, and a likelihood test.
+Thus compact-mode claims become observationally meaningful only after applying the
+survey mask, transfer functions, and likelihood.
+
+The untwisted Dirac spectrum is also discrete,
+\begin{equation}
+  \lambda_k^\pm=\pm\frac{k+3/2}{R},
+  \qquad d_k=(k+1)(k+2),
+\end{equation}
+which gives the benchmark infrared spinor floor
+\begin{equation}
+  \Delta_D=5.7058\times10^{-35}\,\mathrm{eV}.
+\end{equation}
+This is a mathematical infrared threshold of the round spin carrier, not a neutrino-mass
+prediction.
+
+\subsection{Necessity taxonomy}
+
+The paper uses three necessity classes. First, structures native to the full round
+simply connected carrier include
+\begin{equation}
+  S^3\simeq SU(2),
+  \qquad
+  S^1\hookrightarrow S^3\to S^2,
+  \qquad
+  \pi_3(S^2)\simeq\mathbb Z,
+\end{equation}
+and the Skyrme degree
+\begin{equation}
+  U:S^3\to SU(2)\simeq S^3,
+  \qquad \deg(U)\in\mathbb Z.
+\end{equation}
+Second, compactness-dependent but non-exclusive effects include discrete spectra,
+finite-volume quantum-field-theory corrections, heat kernels, and Casimir-type
+renormalized sums. These also occur on other compact manifolds or in bounded boxes.
+Third, ordinary local physics---local quantum mechanics, chemistry, local QFT, local GR,
+and laboratory-scale physics---does not require global $S^3$. It is preserved because
+$U\subset S^3_R$ is locally $\mathbb R^3$.
+
+\section{Transfer and Likelihood Pipeline}
+\label{sec:transfer-likelihood-compressed}
+
+The distance sector is the first observational layer. With $E(z)=H(z)/H_0$ supplied by
+an external background expansion model,
+\begin{equation}
+  \chi(z)=\sqrt{|\Omega_K|}\int_0^z\frac{dz'}{E(z')},
+  \qquad
+  D_M(z)=R_c\sin\chi(z).
+\end{equation}
+The reconstruction test is
+\begin{equation}
+  \Omega_K(z)=\frac{[H(z)D_M'(z)]^2-c^2}{H_0^2D_M^2(z)}.
+\end{equation}
+A closed $S^3_R$ reconstruction requires $\Omega_K(z)<0$ and $d\Omega_K/dz=0$ within
+errors. The BAO/SN/CMB distance observables are then
+\begin{equation}
+  D_A=\frac{D_M}{1+z},
+  \qquad
+  D_L=(1+z)D_M,
+  \qquad
+  \frac{dV}{dz\,d\Omega}=\frac{cD_M^2}{H(z)}.
+\end{equation}
+
+The CMB and large-scale-structure layer is transfer-grade rather than completed here:
+\begin{equation}
+  C_\ell^{XY,S^3}
+  =\sum_\beta W_\beta\,
+  \mathcal P_{\mathcal R}(\beta)
+  \Delta_{\ell\beta}^{X}\Delta_{\ell\beta}^{Y},
+  \qquad X,Y\in\{T,E\}.
+\end{equation}
+For a quotient topology $S^3/\Gamma$, the mode catalogue is projected by the deck group:
+\begin{equation}
+  \mathcal H_\beta(S^3/\Gamma)=\mathcal H_\beta(S^3)^\Gamma,
+  \qquad
+  m_\beta^\Gamma=\frac1{|\Gamma|}\sum_{g\in\Gamma}\chi_\beta(g).
+\end{equation}
+The full harmonic covariance is then
+\begin{equation}
+  C_{\ell m,\ell'm'}^{XY,\Gamma}
+  =\sum_{\beta,s}
+  \mathcal P_\beta\Delta_{\ell\beta}^X\Delta_{\ell'\beta}^Y
+  \xi_{\beta s;\ell m}\xi^*_{\beta s;\ell'm'}.
+\end{equation}
+For the round simply connected sector with statistically isotropic perturbations this
+reduces to the diagonal $C_\ell$ form. For quotient sectors it can generate off-diagonal
+covariances and matched-circle-type constraints.
+
+The registered distinguishability targets are likelihood and evidence differences,
+including the Gaussian covariance KL diagnostic
+\begin{equation}
+  D_{\rm KL}(i\|0)=\frac12
+  \left[\operatorname{tr}(C_0^{-1}C_i)-N
+  +\ln\frac{\det C_0}{\det C_i}\right].
+\end{equation}
+Until the transfer functions, nuisance parameters, window operators, and covariance are
+implemented, the compact spectrum remains a mode catalogue and diagnostic registry, not a
+completed CMB or LSS prediction.
+
+A useful length-to-mode diagnostic is
+\begin{equation}
+  \beta_{\rm wave}(L_{\rm com})=
+  \sqrt{1+\left(\frac{2\pi R}{L_{\rm com}}\right)^2},
+  \qquad
+  \beta_{\rm half}\simeq\frac{\pi R}{L_{\rm com}}.
+\end{equation}
+For the ring-scale benchmark at $z\simeq0.8$, the quoted value $\beta\simeq618.38$
+uses the convention that $R_{\rm eff}=474.5\,\mathrm{Mpc}$ is a physical shell scale
+at that redshift and is first converted to a comoving length,
+\begin{equation}
+\begin{aligned}
+  L_{\rm com}&=(1+z)R_{\rm eff}\simeq2.786\Gly,\\
+  \beta_{\rm half}&\simeq\frac{\pi R}{L_{\rm com}}\simeq618.38 .
+\end{aligned}
+\end{equation}
+If $474.5\,\mathrm{Mpc}$ is instead treated as an already-comoving full length, the
+index would be about $1113$; if $2R_{\rm eff}$ is used as the comoving wavelength, it
+would be about $557$. The convention must therefore be fixed before any shell claim is
+used in a likelihood. This is a registered shell diagnostic, not a Fibonacci law or
+topology proof.
+
+\section{Guardrails and Nonclaims}
+\label{sec:guardrails-compressed}
+
+Topology and compactness supply invariant slots, spectra, and covariance structures; they
+do not supply amplitudes by themselves. In particular, this manuscript does not derive or
+abolish the dark sector, does not explain late-time acceleration, does not determine dark
+matter, does not derive Standard Model parameters, and does not claim a preferred cosmic
+axis. The background expansion $E(z)$ is an external input to the distance and transfer
+pipeline.
+The same rule applies to chiral gauge sectors and symmetry breaking. The Hopf fibration
+makes Hopf and Skyrme topological sectors native on $S^3$, but it does not quantize the
+magnetic helicity of an arbitrary primordial $U(1)$ field and does not force nonzero
+$TB$ or $EB$ CMB spectra. Such parity-odd signatures would belong to a separate chiral
+gauge-field model with its own action, coupling, initial state, and transfer functions.
+Likewise, a vector condensate that breaks $SO(4)$ to a subgroup is an additional
+dynamical hypothesis, not a consequence of the round carrier. Introducing such a field
+would move the analysis beyond the minimal simply connected $S^3_R$ reconstruction
+studied here.
+
+The carrier geometry and the stress-energy state are distinct inputs: $T_{\mu\nu}$ is
+defined on the spacetime geometry and does not by itself select the global topology. All
+amplitude statements require a dynamics, transfer functions, covariance model, and
+likelihood comparison.
+
+\section{Status of Claims}
+\label{sec:status}
+
+\subsection{Mathematical Theorems}
+
+The following are exact for any $S^3_R$:
+\begin{equation}
+\begin{aligned}
+  D_c &= \pi R, &
+  V_{S^3} &= 2\pi^2 R^3, \\
+  K &= \frac{1}{R^2}, &
+  {}^{(3)}R &= \frac{6}{R^2}.
+\end{aligned}
+\end{equation}
+
+\subsection{Conditional Reconstruction}
+
+If a small negative $\Omega_K$ is read as a real imprint of positive curvature,
+then a large finite $S^3$ radius is recovered. This is conditional on the sign
+and stability of $\Omega_K$.
+
+\subsection{Phenomenological Programme}
+
+CMB low-$\ell$ transfer spectra, BAO/AP distance diagnostics, large-scale
+structure shell projections, compact harmonic simulations, causal accessibility
+correlations, and quotient-topology circle or off-diagonal covariance searches.
+
+\subsection{What Is \emph{Not} Claimed}
+
+\begin{itemize}
+  \item Global $S^3$ topology is \emph{not} proved.
+  \item The finite curvature radius $R$ or intrinsic diameter $\pi R$ is \emph{not} a spatial edge or wall.
+  \item The Standard Model of particle physics is \emph{not} derived.
+  \item Perturbation amplitudes are \emph{not} derived.
+  \item The origin of $c$ is \emph{not} proved.
+  \item The $\varphi$ coordinate is \emph{not} used as a curvature measurement or prediction.
+  \item Temperature-only CMB anomalies are \emph{not} claimed to prove compact topology.
+  \item No tensor-to-scalar amplitude, magnetic-helicity quantization, vector condensate, $SO(4)$ symmetry-breaking field, or Standard-Model anomaly cancellation is derived from topology alone.
+  \item The finite-size Casimir benchmark is \emph{not} claimed to explain dark energy.
+  \item The present reconstruction does \emph{not} derive or replace the late-time acceleration sector; late-time acceleration is treated only through the background function $E(z)$.
+  \item A round simply connected $S^3_R$ is \emph{not} claimed to generate a preferred spatial direction or axis.
+  \item Aharonov--Bohm phases, quantum Hall Chern numbers, non-Abelian anyons, and Chern--Simons invariants are \emph{not} claimed to require a cosmological $S^3_R$ carrier.
+  \item The model is predictive only through the curvature-distance law, transfer functions, and registered likelihood comparisons.
+\end{itemize}
+
+
+\section{Falsification Conditions}
+\label{sec:falsification}
+
+Scientific strength requires explicit falsification criteria. Each component of
+this programme is falsifiable independently. For clarity, the registered targets
+are separated from diagnostics:
+\begin{center}
+\small
+\renewcommand{\arraystretch}{1.16}
+\resizebox{0.98\textwidth}{!}{%
+\begin{tabular}{llll}
+\toprule
+Target & Observable & Required calculation & Falsification condition \\
+\midrule
+Curvature anchor & $\Omega_K(z)$ & $H(z)$ and $D_M(z)$ reconstruction & no constant negative $\Omega_K(z)$ within errors \\
+BAO geometry & $D_M/r_d$, $D_H/r_d$, $D_V/r_d$, $F_{\rm AP}$ & same priors/covariance as flat baseline & no likelihood gain or inconsistent sign under joint fit \\
+Compact CMB transfer & $TT$, $TE$, $EE$ low-$\ell$ covariance & hyperspherical Boltzmann transfer sum & no $S^3$-specific improvement after parameter penalty \\
+Quotient topology & matched circles or off-diagonal $C_{\ell m,\ell'm'}$ & group-projected spectrum for $S^3/\Gamma$ & positive quotient signature rejects $\Gamma=\{1\}$ minimal sector \\
+Shell spectra & $\beta(z,L)$ in LSS catalogues & windowed shell projection with survey mask & no reproducible index across independent masks/catalogues \\
+\bottomrule
+\end{tabular}%
+}
+\end{center}
+
+\subsection{Global Curvature Reconstruction}
+
+The global closed-$S^3$ reading rests entirely on a robustly non-zero curvature
+modulus together with a closed-sign interpretation, $\Omega_K^{S^3}<0$.
+Falsification condition: if improved precision from DESI, Euclid, CMB-S4, or
+successor surveys drives $|\Omega_K|\to0$, then $R_c\to\infty$ and the finite
+radius reconstruction loses its observational anchor. If future surveys find
+$|\Omega_K| < 10^{-4}$ at high significance, or if the reconstructed
+$\Omega_K(z)$ of Sec.~\ref{sec:distance-law} is not redshift-independent within
+errors, the specific fiducial radius $R_{\mathcal{S}^3} = 548\Gly$ loses its
+observational anchor. The compact-mode phenomenology may remain as an independent
+hypothesis, but the RCP linkage breaks.
+
+\subsection{CMB Low-Multipole Prediction}
+
+The $S^3$ Laplacian spectrum supplies a discrete compact-mode catalogue, but for
+the large fiducial radius used here it does not by itself imply a hard infrared
+cutoff in the observed low multipoles. The test is therefore not simply whether
+the quadrupole is low. The test is whether a closed-FLRW hyperspherical transfer
+calculation predicts a coherent, $S^3$-specific pattern across low-$\ell$ $TT$,
+$TE$, and $EE$ spectra, phase correlations, and off-diagonal mode couplings.
+
+Falsification condition: if improved CMB temperature and polarization data, for
+example from LiteBIRD or CMB-S4, show no detectable $S^3$-specific low-$\ell$
+pattern under the fiducial curvature radius, the compact-mode CMB explanation is
+weakened. Temperature-only anomalies are insufficient; polarization is decisive.
+A concrete likelihood implementation should report
+\begin{equation}
+  \Delta\chi^2_{\rm CMB}
+  =\chi^2_{S^3\text{-transfer}}-\chi^2_{\Lambda{\rm CDM}}
+\end{equation}
+for the registered low-$\ell$ $TT/TE/EE$ data vector. If the compact transfer
+model fails to improve the fit, or is disfavoured after the appropriate
+information-criterion penalty, the CMB compact-mode claim fails as a predictive
+explanation.
+
+A positive detection of matched circles with a quotient-specific phase relation
+would favour a multiply connected spherical space form such as $S^3/\Gamma$ and
+would falsify the minimal simply connected sector choice, although not the broader
+positive-curvature compact-geometry programme.
+
+\subsection{Ring-Like Structure Predictions}
+
+The ring analysis of~\cite{Preece2026rings} predicts specific angular scales,
+redshift-dependent $R_{\rm eff}(z,n,\Delta z,{\cal P})$, and a discrete mode
+selection rule. Falsification conditions:
+\begin{itemize}
+  \item DESI/Euclid find no preferred angular clustering at the predicted
+    compact-mode scales in the relevant redshift bins
+    $\Rightarrow$ ring-mode assignment weakened.
+  \item The observed ring scales at $z \approx 0.8$ are better explained by
+    acoustic or projection effects within $\Lambda$CDM
+    $\Rightarrow$ $S^3$-mode interpretation loses parsimony.
+  \item A claimed shell index $\beta(z,L)$ is not reproduced in independent
+    catalogues, redshift shells, or survey masks
+    $\Rightarrow$ projected spectral assignment falsified.
+\end{itemize}
+
+\subsection{Compact vs. Box Simulations}
+
+Falsification condition: if $S^3$-harmonic N-body simulations produce no
+infrared differences from $T^3$ periodic-box simulations at the observed scales,
+the compact-geometry simulation programme is weakened.
+
+\medskip
+\noindent\textbf{Summary of falsification logic:} Each of the five components
+is independently testable. Falsification of the global reconstruction
+($\Omega_K \to 0$) does not automatically falsify the local spectral programme
+(ring modes, compact simulations). The programme is \emph{modular}: observational
+pressure on any one component produces knowledge, not collapse.
+
+
+\paragraph*{Carrier-state distinction.}
+The carrier geometry and the stress-energy state are distinct inputs: $T_{\mu\nu}$ is
+specified on the spacetime geometry and does not by itself select the global topology.
+
+\section{Conclusion}
+\label{sec:conclusion}
+
+If a small curvature modulus is used together with the closed-sign interpretation
+$\Omega_K^{S^3}<0$, it specifies a vast but finite $S^3$ geometry with curvature
+radius $R \approx 548.3\Gly$.
+
+In such a geometry, the observable Universe occupies only a small quasi-local
+region of approximately $4.82^\circ$ in particle-horizon radius along the great
+geodesic of the three-sphere. The locally nearly flat reconstruction is therefore
+natural, but it does not prove a global $\mathbb{R}^3$ ontology.
+
+The principal scientific claim is:
+\begin{quote}
+The flat infinite framework is not mandatory. The compact $S^3$ framework
+preserves local physics while yielding testable global consequences.
+\end{quote}
+
+This makes the reconstruction scientifically substantive: it does not ``invent an
+age for the Universe'', but recovers a possible curvature scale of a compact
+three-sphere and thereby provides a numerical foundation for further CMB modelling,
+large-scale structure analysis, and compact spectral cosmology. The CMB
+low-multipole anomalies do not prove this geometry; they define a disciplined
+compact-mode falsification target for future temperature and polarization data.
+
+\clearpage
+\section*{Summary of Key Numerical Values}
+
+\begin{center}
+\textbf{Table I. Fiducial benchmark numerical values of the $S^3_R$ reconstruction
+($R = 548.324\,513\,026\,856\,\mathrm{Gly}$). These machine-precision values are
+algebraic outputs of the chosen inputs, not observational significant figures.
+Distances are in gigalight-years (Gly), times in gigayears (Gyr).}
+\label{tab:summary}
+\small
+\renewcommand{\arraystretch}{1.18}
+\resizebox{0.98\textwidth}{!}{%
+\begin{tabular}{llll}
+\toprule
+Quantity & Symbol & Value & Unit \\
+\midrule
+Curvature radius & $R_{\mathcal{S}^3}$ & $548.324\,513\,026\,856$ & Gly \\
+Light-travel time of $R$ & $t_{\mathcal{S}^3}$ & $548.324\,513\,026\,856$ & Gyr \\
+Embedding diameter & $D_{\rm embed}=2R$ & $1096.649\,026\,053\,712$ & Gly \\
+Causal intrinsic diameter & $D_{\rm causal}=\pi R$ & $1722.612\,261\,908\,368$ & Gly \\
+Full great circle & $C=2\pi R$ & $3445.224\,523\,816\,736$ & Gly \\
+Proper volume & $V_{S^3}=2\pi^2R^3$ & $3.254\,188\,648\,717\times10^{9}$ & Gly$^3$ \\
+Sectional curvature & $K=1/R^2$ & $3.326\,018\,624\,722\times10^{-6}$ & Gly$^{-2}$ \\
+Scalar curvature & ${}^{(3)}R=6/R^2$ & $1.995\,611\,174\,833\times10^{-5}$ & Gly$^{-2}$ \\
+Causal accessibility time & $t_{\rm coh}=\pi R/c$ & $1722.612\,261\,908\,368$ & Gyr \\
+Cosmic age & $t_0$ & $13.787\,718\,785\,602$ & Gyr \\
+Age ratio & $t_0/t_{\mathcal{S}^3}$ & $0.025\,145\,180\,377\,75$ & $2.515\%$ \\
+Age as great-circle arc & $\theta_0$ & $1.440\,712\,710\,740$ & deg \\
+Particle horizon & $D_{\rm particle}$ & $46.125\,169\,765\,204$ & Gly \\
+Horizon arc & $\theta_{\rm particle}$ & $4.819\,732\,647\,519$ & deg \\
+Volumetric fraction & $\Gamma_{\rm obs}$ & $\approx 0.0126$ & $\%$ \\
+Joint accessibility diagnostic & $\Gamma_{\rm ST}$ & $4.255\,135\times10^{-10}$ & -- \\
+Boundary-area benchmark & $A_{\partial D_{\rm obs}}$ & $2.667\,234\times10^{4}$ & Gly$^2$ \\
+Dirac infrared gap & $\Delta_D$ & $5.705\,785\times10^{-35}$ & eV \\
+Conformal scalar Casimir density & $\rho_{\rm Cas}^{(0)}$ & $9.215\,238\times10^{-141}$ & J m$^{-3}$ \\
+Projected shell estimator & $\beta_{\rm shell}(z=0.8)$ & $618.38$ & convention-dependent \\
+Full-wavelength shell bridge & $\beta_{\rm wave}(L_{\rm com})$ & $\sqrt{1+(2\pi R/L_{\rm com})^2}$ & -- \\
+Quasi-local scalar kernel & $\xi_{S^3}(\gamma)$ & discrete $\beta$ sum & -- \\
+\bottomrule
+\end{tabular}%
+}
+\end{center}
+
+
+
+\clearpage
+
+\appendix
+\section{Derivation of the Scalar Addition Theorem on \texorpdfstring{$S^3_R$}{S3R}}
+\label{app:addition-theorem}
+
+This appendix derives the scalar addition theorem used in the compact spectral
+kernel. Let $\mathcal H_\beta$ denote the eigenspace of the scalar
+Laplace--Beltrami operator on the round three-sphere $S^3_R$ with eigenvalue
+\begin{equation}
+  -\Delta_{S^3}Q_{\beta\ell m}
+  =
+  \frac{\beta^2-1}{R^2}Q_{\beta\ell m},
+  \qquad
+  \beta=1,2,\ldots,
+\end{equation}
+where $\ell=0,\ldots,\beta-1$ and $m=-\ell,\ldots,\ell$. The dimension of this
+eigenspace is
+\begin{equation}
+  \dim\mathcal H_\beta=\beta^2 .
+\end{equation}
+For any orthonormal basis $\{Q_{\beta\ell m}\}$ of $\mathcal H_\beta$, define the
+finite-rank spectral projector kernel
+\begin{equation}
+  K_\beta(x,y)
+  =
+  \sum_{\ell=0}^{\beta-1}
+  \sum_{m=-\ell}^{\ell}
+  Q_{\beta\ell m}(x)\,
+  Q^*_{\beta\ell m}(y).
+\end{equation}
+It satisfies the reproducing property
+\begin{equation}
+  \int_{S^3_R}K_\beta(x,z)f(z)\,dV_z=f(x),
+  \qquad f\in\mathcal H_\beta.
+\end{equation}
+
+By $SO(4)$ invariance of the round metric, the kernel can depend on $x$ and $y$
+only through their geodesic separation
+\begin{equation}
+  \gamma=\frac{d(x,y)}{R},
+  \qquad
+  \cos\gamma=\frac{x\cdot y}{R^2}.
+\end{equation}
+Thus $K_\beta(x,y)=K_\beta(\gamma)$ is a zonal harmonic. On $S^3$, the zonal
+harmonics of degree $n$ are proportional to Gegenbauer polynomials
+$C_n^{(1)}(\cos\gamma)$. Since
+\begin{equation}
+  C_n^{(1)}(\cos\gamma)
+  =
+  \frac{\sin[(n+1)\gamma]}{\sin\gamma},
+\end{equation}
+and the convention used in this manuscript is $\beta=n+1$, the kernel must have
+the form
+\begin{equation}
+  K_\beta(\gamma)
+  =
+  A_\beta
+  \frac{\sin(\beta\gamma)}{\sin\gamma}.
+\end{equation}
+
+The constant $A_\beta$ is fixed by evaluating the diagonal. Since $K_\beta(x,x)$
+is constant by homogeneity,
+\begin{equation}
+  \int_{S^3_R}K_\beta(x,x)\,dV_x
+  =
+  \dim\mathcal H_\beta
+  =
+  \beta^2 .
+\end{equation}
+Using $\operatorname{Vol}(S^3_R)=2\pi^2R^3$, this gives
+\begin{equation}
+  K_\beta(x,x)=\frac{\beta^2}{2\pi^2R^3}.
+\end{equation}
+Moreover,
+\begin{equation}
+  \lim_{\gamma\to0}
+  \frac{\sin(\beta\gamma)}{\sin\gamma}
+  =
+  \beta,
+\end{equation}
+so
+\begin{equation}
+  A_\beta=\frac{\beta}{2\pi^2R^3}.
+\end{equation}
+Therefore the scalar addition theorem on the round three-sphere is
+\begin{equation}
+  \boxed{
+  \sum_{\ell=0}^{\beta-1}
+  \sum_{m=-\ell}^{\ell}
+  Q_{\beta\ell m}(x)Q^*_{\beta\ell m}(y)
+  =
+  \frac{\beta}{2\pi^2R^3}
+  \frac{\sin(\beta\gamma)}{\sin\gamma}
+  } .
+\end{equation}
+
+Equivalently,
+\begin{equation}
+  -\Delta_x K_\beta(x,y)
+  =
+  \frac{\beta^2-1}{R^2}K_\beta(x,y),
+\end{equation}
+or
+\begin{equation}
+  \left(-\Delta_x-\frac{\beta^2-1}{R^2}\right)K_\beta(x,y)=0.
+\end{equation}
+This equation holds for the smooth finite-rank projector $K_\beta$. It should not
+be confused with a Green function: a delta source appears only after summing over
+all eigenspaces,
+\begin{equation}
+  \sum_{\beta=1}^{\infty}K_\beta(x,y)
+  =
+  \delta_{S^3_R}(x,y)
+\end{equation}
+in the distributional sense.
+
+For the flat-space limit, set $r=R\gamma$ and $k=\beta/R$. At fixed physical
+separation $r$ and $R\to\infty$,
+\begin{equation}
+  K_\beta(r)
+  \sim
+  \frac{1}{R}
+  \frac{k^2}{2\pi^2}
+  \frac{\sin(kr)}{kr}.
+\end{equation}
+The factor $1/R$ is the discrete spacing $\Delta k$. Hence the sum over $\beta$
+becomes the ordinary flat radial Fourier measure,
+\begin{equation}
+  \sum_\beta K_\beta(r)
+  \longrightarrow
+  \int_0^\infty
+  \frac{k^2\,dk}{2\pi^2}
+  \frac{\sin(kr)}{kr}.
+\end{equation}
+
+This theorem is the exact bridge between the compact spectral catalogue and
+isotropic two-point statistics on $S^3_R$. It collapses the sum over $(\ell,m)$
+into a single zonal kernel indexed by $\beta$, and it underlies the compact
+correlation functions, shell projections, windowed responses, mode-coupling
+matrices, and transfer-function sums used in the main text.
+
+\section{Complete Invariant Registry}
+\label{app:complete-registry}
+
+This appendix summarizes the invariant content used in the paper. It is not an
+encyclopedia of all natural phenomena. It is a closed registry only with respect
+to the geometric, topological, spectral, observational, and diagnostic structures
+actually used in the reconstruction.
+
+\begin{center}
+\small
+\renewcommand{\arraystretch}{1.15}
+\resizebox{0.98\textwidth}{!}{%
+\begin{tabular}{llll}
+\toprule
+Class & Invariant object & Formula or criterion & Role in the paper \\
+\midrule
+Local curvature & Sectional curvature & $K=R^{-2}$ & Exact geometry \\
+Local curvature & Ricci tensor & $R_{ij}=2R^{-2}g_{ij}$ & Exact geometry \\
+Local curvature & Scalar curvature & ${}^{(3)}R=6R^{-2}$ & Exact geometry \\
+Local curvature & Riemann tensor & $R_{ijkl}=R^{-2}(g_{ik}g_{jl}-g_{il}g_{jk})$ & Exact geometry \\
+Local curvature & Cotton tensor & $C^{\rm Cotton}_{ijk}=0$ & Spatial conformal flatness of round carrier \\
+Local symmetry & Covariant curvature derivative & $\nabla_mR_{ijkl}=0$ & Round local symmetry \\
+No-axis theorem & Invariant tangent vector & $(T_pS^3_R)^{SO(3)}=\{0\}$ & Excludes geometric preferred axes \\
+Invariant tensors & Symmetric 2-tensor sector & $\mathrm{Sym}^2(T^*S^3_R)^{SO(4)}=\mathbb Rg$ & Excludes geometry-only anisotropic stress \\
+Global geometry & Proper volume & $V_{S^3}=2\pi^2R^3$ & Compact volume \\
+Global geometry & Intrinsic diameter & $D_c=\pi R$ & Maximal geodesic distance \\
+Global geometry & Great circle & $C=2\pi R$ & Closed geodesic scale \\
+Global geometry & Causal-volume identity & $D_cV_{S^3}^{1/3}/R^2=\pi(2\pi^2)^{1/3}$ & Pure round-$S^3$ benchmark \\
+Geodesic ball & Volume fraction & $\Gamma(\chi)=[\chi-\tfrac12\sin(2\chi)]/\pi$ & Observable-domain fraction \\
+Boundary benchmark & Geodesic-sphere area & $A(\chi)=4\pi R^2\sin^2\chi$ & Isoperimetric diagnostic \\
+Scalar spectrum & Laplace eigenvalues & $\lambda_\beta=(\beta^2-1)/R^2$ & Compact mode catalogue \\
+Scalar spectrum & Degeneracy & $g^{(0)}_\beta=\beta^2$ & Mode counting \\
+Scalar spectrum & Weyl counting law & $N(\Lambda)\sim R^3\Lambda^{3/2}/3$ & High-mode flat-limit check \\
+Wave number & Discrete scalar wave number & $k_\beta=\sqrt{\beta^2-1}/R$ & Bridge to transfer variables \\
+Addition theorem & Scalar two-point kernel & $K_\beta(\gamma)=\dfrac{\beta}{2\pi^2R^3}\dfrac{\sin(\beta\gamma)}{\sin\gamma}$ & Exact correlation kernel \\
+Addition theorem & Kernel normalization & $\int_{S^3}K_\beta\,dV=\delta_{\beta1}$ & Constant-mode/mean-zero separation \\
+Spinors & Untwisted Dirac spectrum & $\lambda_k^\pm=\pm(k+\tfrac32)/R$ & Infrared spinor gap \\
+Spinors & Dirac degeneracy & $d_k=(k+1)(k+2)$ & Spinor mode counting \\
+Topology & Fundamental group & $\pi_1(S^3)=0$ & Simply connected sector \\
+Topology & Cohomology & $H^1=H^2=0,\ H^3\simeq\mathbb Z$ & No native one/two cohomology; volume class \\
+Topology & Hopf sector & $S^1\hookrightarrow S^3\to S^2$, $\pi_3(S^2)\simeq\mathbb Z$ & Native Hopf charge domain \\
+Topology & Skyrme degree & $\deg(S^3\to SU(2)\simeq S^3)\in\mathbb Z$ & Native Skyrmion topology \\
+Quotients & Deck-group projection & $\mathcal H_\beta(S^3/\Gamma)=\mathcal H_\beta(S^3)^\Gamma$ & Alternative topology sector \\
+Quotients & Mode multiplicity & $m_\beta^\Gamma=|\Gamma|^{-1}\sum_{g\in\Gamma}\chi_\beta(g)$ & Quotient spectral selection \\
+FLRW distance & Transverse distance & $D_M(z)=R_c\sin\chi(z)$ & Observational curvature law \\
+FLRW test & Curvature consistency & $\Omega_K(z)=([H D_M']^2-c^2)/(H_0^2D_M^2)$ & Reconstruction test \\
+Causal geometry & Accessibility time & $t_{\rm coh}=\pi R/c$ & Global null-accessibility scale \\
+Causal geometry & Accessibility fraction & $\Gamma(T)=[cT/R-\tfrac12\sin(2cT/R)]/\pi$ & Causal-domain fraction \\
+Spectral bridge & Full-wave convention & $\beta_{\rm wave}=\sqrt{1+(2\pi R/L_{\rm com})^2}$ & Diagnostic length-to-mode map \\
+Spectral bridge & Half-wave convention & $\beta_{\rm half}\simeq \pi R/L_{\rm com}$ & Registered shell diagnostic \\
+Windowed response & Domain-mode response & $W_\beta[D]=\mathrm{Vol}(D)^{-2}\int_DdV_x\int_DdV_yK_\beta(\gamma)$ & Mask/domain diagnostic \\
+Likelihood chain & Predictive endpoint & $\Delta\ln\mathcal L,\ \Delta\ln Z$ & Required status for amplitude predictions \\
+Guardrail & Non-prediction criterion & no likelihood slot $\Rightarrow$ diagnostic only & Prevents overclaiming \\
+\bottomrule
+\end{tabular}%
+}
+\end{center}
+
+The registry separates exact mathematical statements from observational claims.
+Objects in the first columns are exact within the chosen round-$S^3_R$ model.
+Their physical use becomes predictive only after they enter an observable transfer
+or likelihood pipeline. The causal-volume identity and the shell-index rows are
+benchmarks: they are not independent detections of topology. This is the operative
+closure rule of the paper:
+\begin{equation}
+\begin{aligned}
+  S^3_R
+  &\longrightarrow
+  \{D_M,H,dV/dz\,d\Omega,k_\beta,K_\beta\} \\
+  &\longrightarrow
+  \{C_\ell^{TT,TE,EE},P(k,z),\xi(r,z)\} \\
+  &\longrightarrow
+  \Delta\ln\mathcal L\ \text{or}\ \Delta\ln Z .
+\end{aligned}
+\end{equation}
+Anything outside this chain is retained only as a diagnostic, a taxonomy entry,
+or an explicit non-claim.
+
+\clearpage
+
+\section{Optional Descriptive \texorpdfstring{$\varphi$}{phi} Scale Coordinate}
+\label{app:phi-coordinate}
+
+The $\varphi$-hierarchy is not used as evidence for the compact reconstruction. It is a
+descriptive scale coordinate only:
+\begin{equation}
+  n_\varphi(R)=\frac{\ln(R/\ell_P)}{\ln\varphi},
+  \qquad
+  \varphi=\frac{1+\sqrt5}{2}.
+\end{equation}
+For the fiducial radius this gives $n_\varphi(R_{\mathcal S^3})\simeq299.09$. This
+number is not a topology proof, not a curvature measurement, and not an amplitude
+prediction. The established appearance of $\varphi$ in Fibonacci anyon theory is a
+mathematical analogy in topological quantum matter, not an independent derivation of
+cosmological curvature.
+
+\begin{thebibliography}{99}
+
+\bibitem{Preece2026causal}
+A.~Preece and B.~Batenin,
+``Causal Coherence and Compact Null Accessibility in
+  $S^3_R \times \mathbb{R}$ Cosmology,''
+Independent Researchers, Berlin (2026), manuscript in preparation.
+
+\bibitem{Preece2026rings}
+A.~Preece and B.~Batenin,
+``Ring-Like Ultra-Large-Scale Structures at $z \approx 0.8$:
+  A Compact $S^3$-Mode Analysis,''
+Independent Researchers, Berlin (2026), manuscript in preparation.
+
+\bibitem{Preece2026suspension}
+A.~Preece and B.~Batenin,
+``Suspension Hierarchy $S^0 \to S^1 \to S^2$
+  and $S^3 \to S^4$ Self-Similar Scale Organisation,''
+Independent Researchers, Berlin (2026), manuscript in preparation.
+
+\bibitem{Planck2020}
+N.~Aghanim \textit{et al.} (Planck Collaboration),
+``Planck 2018 results. VI. Cosmological parameters,''
+Astron.\ Astrophys.\ \textbf{641}, A6 (2020),
+doi:10.1051/0004-6361/201833910.
+
+\bibitem{PlanckIsotropy2019}
+Y.~Akrami \textit{et al.} (Planck Collaboration),
+``Planck 2018 results. VII. Isotropy and statistics of the CMB,''
+Astron.\ Astrophys.\ \textbf{641}, A7 (2020),
+arXiv:1906.02552.
+
+
+\bibitem{ACTDR6Extensions}
+E.~Calabrese \textit{et al.} (ACT Collaboration),
+``The Atacama Cosmology Telescope: DR6 Constraints on Extended Cosmological Models,''
+arXiv:2503.14454 (2025).
+
+\bibitem{PlanckTopology2016}
+P.~A.~R.~Ade \textit{et al.} (Planck Collaboration),
+``Planck 2015 results. XVIII. Background geometry and topology of the Universe,''
+Astron.\ Astrophys.\ \textbf{594}, A18 (2016),
+arXiv:1502.01593.
+
+\bibitem{COMPACTPromise2024}
+N.~J.~Cornish \textit{et al.} (COMPACT Collaboration),
+``Promise of Future Searches for Cosmic Topology,''
+arXiv:2210.11426 (2024 version).
+
+\bibitem{COMPACTPartIIA2024}
+J.~R.~Eskilt \textit{et al.} (COMPACT Collaboration),
+``Cosmic topology. Part IIa. Eigenmodes, correlation matrices, and detectability
+  of orientable Euclidean manifolds,''
+JCAP \textbf{03}, 036 (2024), arXiv:2306.17112.
+
+
+\bibitem{COMPACTPower2026}
+J.~Carron Duque \textit{et al.} (COMPACT Collaboration),
+``Cosmic topology. Part IIc. Detectability with non-standard primordial power spectrum,''
+arXiv:2602.15527 (2026).
+
+\bibitem{COMPACTLens2025}
+S.~Saha \textit{et al.} (COMPACT Collaboration),
+``Cosmic topology. Part Ic. Limits on lens spaces from circle searches,''
+JCAP \textbf{01}, 004 (2025), arXiv:2409.02226.
+
+\bibitem{DESI2024}
+A.~G.~Adame \textit{et al.} (DESI Collaboration),
+``DESI 2024 VI: Cosmological Constraints from the Measurements of
+  Baryon Acoustic Oscillations,''
+arXiv:2404.03002 (2024).
+
+\bibitem{DESIDR2}
+M.~Abdul-Karim \textit{et al.} (DESI Collaboration),
+``DESI DR2 Results II: Measurements of Baryon Acoustic Oscillations and
+  Cosmological Constraints,''
+arXiv:2503.14738 (2025).
+
+\bibitem{Euclid2024}
+A.~Blanchard \textit{et al.} (Euclid Collaboration),
+``Euclid preparation: Sensitivity to dark energy,''
+Astron.\ Astrophys.\ \textbf{690}, A148 (2024).
+
+\bibitem{LiteBIRD2021}
+E.~Allys \textit{et al.} (LiteBIRD Collaboration),
+``Probing cosmic inflation with the LiteBIRD cosmic microwave background polarization survey,''
+Prog.\ Theor.\ Exp.\ Phys.\ \textbf{2023}, 042F01 (2023),
+arXiv:2202.02773; see also arXiv:2101.12449 for the mission overview.
+
+\bibitem{Luminet2003}
+J.-P.~Luminet, J.~R.~Weeks, A.~Riazuelo, R.~Lehoucq, and J.-P.~Uzan,
+``Dodecahedral space topology as an explanation for weak wide-angle temperature
+  correlations in the cosmic microwave background,''
+Nature \textbf{425}, 593--595 (2003).
+
+\bibitem{Cornish1998}
+N.~J.~Cornish, D.~N.~Spergel, and G.~D.~Starkman,
+``Measuring the topology of the Universe,''
+Proc.\ Natl.\ Acad.\ Sci.\ \textbf{95}, 82--84 (1998).
+
+\bibitem{Aurich2005}
+R.~Aurich, S.~Lustig, and F.~Steiner,
+``CMB anisotropy of the Poincar\'e dodecahedron,''
+Class.\ Quantum Grav.\ \textbf{22}, 2061--2083 (2005).
+
+\bibitem{LachiezeReyLuminet1995}
+M.~Lachi\`eze-Rey and J.-P.~Luminet,
+``Cosmic topology,''
+Phys.\ Rep.\ \textbf{254}, 135--214 (1995).
+
+\bibitem{Weeks2003}
+J.~R.~Weeks,
+``Detecting topology in a nearly flat hyperbolic universe,''
+Mod.\ Phys.\ Lett.\ A \textbf{18}, 2099--2108 (2003).
+
+\bibitem{Handley2021}
+W.~Handley,
+``Curvature tension: Evidence for a closed universe,''
+Phys.\ Rev.\ D \textbf{103}, L041301 (2021).
+
+\bibitem{DiValentino2020}
+E.~Di~Valentino, A.~Melchiorri, and J.~Silk,
+``Planck evidence for a closed Universe and a possible crisis for cosmology,''
+Nature Astron.\ \textbf{4}, 196--203 (2020).
+
+\bibitem{Copi2010}
+C.~J.~Copi, D.~Huterer, D.~J.~Schwarz, and G.~D.~Starkman,
+``Large-angle anomalies in the CMB,''
+Adv.\ Astron.\ \textbf{2010}, 847541 (2010).
+
+\bibitem{Bielewicz2011}
+P.~Bielewicz and A.~J.~Banday,
+``Constraints on the topology of the Universe derived from the
+  lensing power spectrum,''
+Mon.\ Not.\ R.\ Astron.\ Soc.\ \textbf{412}, 2104--2110 (2011).
+
+\bibitem{MorganTian2007}
+J.~Morgan and G.~Tian,
+\textit{Ricci Flow and the Poincar\'e Conjecture},
+Clay Mathematics Monographs, Vol.~3, American Mathematical Society / Clay Mathematics Institute (2007).
+
+\bibitem{ClayPoincare}
+Clay Mathematics Institute,
+``Poincar\'e Conjecture,'' Millennium Problems overview,
+https://www.claymath.org/millennium/poincare-conjecture/ .
+
+\bibitem{Adams1962}
+J.~F.~Adams,
+``Vector fields on spheres,''
+Annals of Mathematics \textbf{75}, 603--632 (1962).
+
+\bibitem{BenedettiLisca2018}
+R.~Benedetti and P.~Lisca,
+``Framing 3-manifolds with bare hands,''
+arXiv:1806.04991.
+
+\bibitem{SU2LieNotes}
+C.~Scaduto,
+``Lie Theory as Illustrated by $SU(2)$,'' lecture notes, Stony Brook University.
+
+\bibitem{Nayak2008}
+C.~Nayak, S.~H. Simon, A.~Stern, M.~Freedman, and S.~Das Sarma,
+``Non-Abelian anyons and topological quantum computation,''
+Rev.\ Mod.\ Phys.\ \textbf{80}, 1083 (2008).
+
+\bibitem{Trebst2008}
+S.~Trebst, M.~Troyer, Z.~Wang, and A.~W.~W. Ludwig,
+``A short introduction to Fibonacci anyon models,''
+Prog.\ Theor.\ Phys.\ Suppl.\ \textbf{176}, 384--407 (2008).
+
+\bibitem{MosseriDandoloff2001}
+R.~Mosseri and R.~Dandoloff,
+``Geometry of entangled states, Bloch spheres and Hopf fibrations,''
+J. Phys. A: Math. Gen.\ \textbf{34}, 10243--10252 (2001),
+arXiv:quant-ph/0108137.
+
+\bibitem{Urbantke2003}
+H.~K.~Urbantke,
+``The Hopf fibration---seven times in physics,''
+J. Geom. Phys.\ \textbf{46}, 125--150 (2003).
+
+\bibitem{Sutcliffe2007}
+P.~Sutcliffe,
+``Knots in the Skyrme--Faddeev model,''
+Proc. R. Soc. A \textbf{463}, 3001--3020 (2007), arXiv:0705.1468.
+
+\bibitem{Manton1998}
+N.~S.~Manton,
+``Understanding Skyrmions using rational maps,''
+in \textit{Proceedings of the Third European Congress of Mathematics} (1998).
+
+\bibitem{CamporesiHiguchi1996}
+R.~Camporesi and A.~Higuchi,
+``On the eigenfunctions of the Dirac operator on spheres and real hyperbolic spaces,''
+J. Geom. Phys.\ \textbf{20}, 1--18 (1996), arXiv:gr-qc/9505009.
+
+\bibitem{GromovLawson1983}
+M.~Gromov and H.~B.~Lawson,
+``Positive scalar curvature and the Dirac operator on complete Riemannian manifolds,''
+Publ. Math. IHES \textbf{58}, 83--196 (1983).
+
+
+\bibitem{Witten1989}
+E.~Witten,
+``Quantum field theory and the Jones polynomial,''
+Commun. Math. Phys. \textbf{121}, 351--399 (1989).
+
+\bibitem{AharonovBohm1959}
+Y.~Aharonov and D.~Bohm,
+``Significance of electromagnetic potentials in the quantum theory,''
+Phys. Rev. \textbf{115}, 485--491 (1959).
+
+\bibitem{TKNN1982}
+D.~J.~Thouless, M.~Kohmoto, M.~P.~Nightingale, and M.~den Nijs,
+``Quantized Hall conductance in a two-dimensional periodic potential,''
+Phys. Rev. Lett. \textbf{49}, 405--408 (1982).
+
+\bibitem{IyerWald1994}
+V.~Iyer and R.~M.~Wald,
+``Some properties of Noether charge and a proposal for dynamical black hole entropy,''
+Phys. Rev. D \textbf{50}, 846--864 (1994).
+
+\bibitem{BrownYork1993}
+J.~D.~Brown and J.~W.~York,
+``Quasilocal energy and conserved charges derived from the gravitational action,''
+Phys. Rev. D \textbf{47}, 1407--1419 (1993).
+
+\bibitem{Mota2022}
+H.~F.~S.~Mota, E.~R.~Bezerra de Mello, and K.~Bakke,
+``Thermal Casimir Effect in the Einstein Universe with a Spherical Boundary,''
+Universe \textbf{8}, 597 (2022).
+
+
+
+
+
+\end{thebibliography}
+
+\end{document}

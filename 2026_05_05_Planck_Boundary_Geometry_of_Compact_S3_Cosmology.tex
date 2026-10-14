@@ -1,0 +1,1018 @@
+\documentclass[reprint,aps,prd,letterpaper,superscriptaddress,nofootinbib,longbibliography,floatfix]{revtex4-2}
+
+%% ----------------------------------------------------------------
+%%  PACKAGES
+%% ----------------------------------------------------------------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{bm}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{microtype}
+\usepackage{hyperref}
+
+\hypersetup{
+  hidelinks,
+  pdftitle={Planck-Boundary Geometry of Compact S3 Cosmology},
+  pdfauthor={Boris Batenin and Andrei Preece}
+}
+
+\emergencystretch=2em
+\allowdisplaybreaks
+
+%% ----------------------------------------------------------------
+%%  THEOREM ENVIRONMENTS  (with epistemic labelling)
+%% ----------------------------------------------------------------
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{assumption}[theorem]{Assumption}
+\newtheorem{ansatz}[theorem]{Ansatz}
+\newtheorem{interpretation}[theorem]{Interpretation}
+
+%% ----------------------------------------------------------------
+%%  MACROS
+%% ----------------------------------------------------------------
+\newcommand{\lP}{\ell_P}
+\newcommand{\tP}{t_P}
+\newcommand{\mP}{m_P}
+\newcommand{\zetaS}{\zeta_{S^3}}
+\newcommand{\Riemann}{\zeta_{\rm R}}
+\newcommand{\Czeta}{C_\zeta}
+\newcommand{\model}{\texorpdfstring{\(\mathrm{FB}(S^3)\mathrm{R}\)}{FB(S3)R}}
+\newcommand{\modelmath}{\mathrm{FB}(S^3)\mathrm{R}}
+
+%% ----------------------------------------------------------------
+\begin{document}
+%% ----------------------------------------------------------------
+
+\title{Planck-Boundary Geometry of Compact \texorpdfstring{$S^3$}{S3} Cosmology}
+
+\author{Boris Batenin}
+\affiliation{Independent Researcher, Berlin, Germany}
+
+\author{Andrei Preece}
+\affiliation{Independent Researcher, Berlin, Germany}
+
+\date{May 2026}
+
+\begin{abstract}
+We analyze a compact \(S^3\) cosmological framework in the limiting regime
+\(a\to\ell_P\).  The Planck epoch is modelled as a regular self-adjoint
+boundary of minisuperspace, not as a classical curvature singularity: the
+effective domain is \(a\in[\ell_P,\infty)\), the wave function may have a finite
+non-zero value at \(a=\ell_P\), and the sub-Planck interval is not assigned a
+probability measure in the effective theory.
+
+The model is restricted to the smooth closed connected orientable
+simply-connected spatial sector.  In that sector, the Poincar\'e--Perelman
+theorem, together with uniqueness of smooth structures on three-manifolds,
+selects \(\Sigma\simeq S^3\).  The scalar spectrum of the round three-sphere is
+then organized by a Fibonacci coarse-graining.  The golden ratio
+\(\varphi=(1+\sqrt5)/2\) enters only as the asymptotic ratio of successive
+Fibonacci scales; it is not an additional dynamical constant.
+
+Within the stated assumptions we prove four conditional results.  First, for a
+closed FLRW metric with \(k=+1\), the Kretschmann scalar satisfies
+\(K(t_P)\le C/\ell_P^4<\infty\) whenever the regularised scale factor is bounded
+below and \(H,\dot H\) are finite at the Planck boundary.  This is a kinematic
+semiclassical regularity theorem, not a microscopic quantum-gravity derivation.
+Second, for any scale-covariant compact \(S^3\) spectrum whose spectral zeta
+function is finite at the Casimir point,
+\[
+  \rho_{\rm vac}^{\rm reg}(a)=\frac{\Czeta}{2\pi^2a^4}.
+\]
+For the conformally shifted scalar reference spectrum,
+\(\Czeta=1/240\), so
+\(\rho_{\rm vac}^{\rm reg}=1/(480\pi^2a^4)\).  This is a regularised
+compact-spectrum contribution, not a prediction of the observed late-time dark
+energy density.  Third, a self-adjoint Wheeler--DeWitt operator on
+\(L^2([\ell_P,\infty),a\,da)\) gives zero probability flux through the Planck
+boundary.  Fourth, diffeomorphism invariance gives Noether-II differential
+identities; in covariant phase space the full closed Cauchy slice has no
+Iyer--Wald boundary Hamiltonian variation because \(\partial\Sigma=\varnothing\),
+although quasi-local charges on internal subdomains remain possible.
+\end{abstract}
+
+\keywords{Planck boundary; closed cosmology; \(S^3\) topology; Fibonacci spectral coarse-graining; spectral zeta regularisation; Wheeler--DeWitt equation; Noether's second theorem; bounded curvature; compact Casimir energy}
+
+\maketitle
+
+%% ================================================================
+\section{Introduction and Scope}
+%% ================================================================
+
+Classical FLRW cosmology, extrapolated without modification to \(a=0\), produces
+divergent curvature invariants.  Perturbative quantum field theory, extrapolated
+without regularisation to arbitrarily short wavelengths, produces ultraviolet
+divergences.  The Planck length
+\[
+  \ell_P=\sqrt{\hbar G/c^3}
+\]
+marks the scale at which neither extrapolation should be taken as literal
+classical physics.
+
+This paper isolates a conservative Planck-boundary structure.  It does not claim
+to construct a full microscopic theory of quantum gravity.  The framework has
+five ingredients:
+\begin{enumerate}
+\item a spatial sector assumption: smooth, closed, connected, orientable, and
+  simply connected three-manifolds;
+\item a closed FLRW homogeneous geometry with \(k=+1\);
+\item a lower effective boundary \(a=\ell_P\) for minisuperspace;
+\item a compact \(S^3\) spectral zeta regularisation of vacuum sums;
+\item a self-adjoint Wheeler--DeWitt boundary condition at \(a=\ell_P\).
+\end{enumerate}
+The mathematical question is then precise: what follows from these assumptions,
+and what does not?
+
+The answer is deliberately limited.  The model gives a conditional curvature
+bound, a finite regularised compact-spectrum scale, norm preservation in the
+minisuperspace sector, and the expected Noether-II identities of generally
+covariant dynamics.  It does not derive finite \(H(t_P)\) or \(\dot H(t_P)\)
+from first principles, does not predict the observed cosmological constant, and
+does not turn the Fibonacci hierarchy into an exact spacetime symmetry.
+
+\medskip
+\noindent\textbf{Conventions.}
+We use natural units \(c=\hbar=k_B=1\) except when defining \(\ell_P\).
+The reduced Planck mass is \(\mP=(8\pi G)^{-1/2}\), the metric signature is
+\((-+++) \), and \(S^3\) denotes the unit three-sphere.  The physical radius is
+\(a(t)\).
+
+%% ================================================================
+\section{Topological and Spectral Framework}
+%% ================================================================
+
+\subsection{Selection of the \texorpdfstring{$S^3$}{S3} sector}
+
+The topology is not derived from normalisability of the wave function.  It is a
+sector assumption.
+
+\begin{assumption}[Closed simply-connected spatial sector]
+\label{ass:closed-sector}
+The admissible spatial slice is restricted to the smooth, closed, connected,
+orientable, simply-connected three-manifold sector:
+\[
+  \Sigma\ \text{smooth, closed, connected, orientable},
+  \qquad \pi_1(\Sigma)=0 .
+\]
+\end{assumption}
+
+\begin{theorem}[Topological uniqueness in the assumed sector]
+\label{thm:topology}
+Under Assumption~\ref{ass:closed-sector}, the spatial slice is homeomorphic to
+\(S^3\).  In the smooth three-dimensional category used here, it is
+diffeomorphic to the standard \(S^3\):
+\[
+  \Sigma \simeq S^3 .
+\]
+\end{theorem}
+
+\begin{proof}
+The Poincar\'e--Perelman theorem states that every closed simply-connected
+topological three-manifold is homeomorphic to \(S^3\)
+\cite{Perelman1,Perelman2,Perelman3}, building on Hamilton's Ricci-flow
+programme~\cite{Hamilton}.  Moise's theorem gives the uniqueness, up to
+diffeomorphism, of smooth structures on topological three-manifolds
+\cite{Moise}.  Hence in the smooth category relevant for the metric formulation
+the assumed sector is the standard \(S^3\) sector.
+\end{proof}
+
+\begin{remark}
+Compactness supports a global \(L^2\) inner product and orientability supplies a
+global volume form.  Simple connectivity excludes lens spaces and other closed
+topological sectors.  These are assumptions of the present model; they are not
+deduced from the Wheeler--DeWitt equation alone.
+\end{remark}
+
+\subsection{Fibonacci coarse-graining of the \texorpdfstring{$S^3$}{S3} spectrum}
+
+The scalar Laplacian on the unit \(S^3\) has eigenvalues
+\[
+  -\Delta_{S^3}Y_{\ell mn}=\ell(\ell+2)Y_{\ell mn},
+  \qquad \ell=0,1,2,\ldots ,
+\]
+with eigenspace dimension \((\ell+1)^2\).
+
+Let
+\[
+  F_0=0,\qquad F_1=1,\qquad F_{n+1}=F_n+F_{n-1}\quad(n\ge1)
+\]
+be the Fibonacci sequence.  To avoid the repeated cut point \(F_1=F_2=1\), define
+a strictly increasing cut sequence by
+\[
+  \mathcal F_0=0,\qquad
+  \mathcal F_1=1,\qquad
+  \mathcal F_n=F_{n+1}\quad(n\ge2).
+\]
+The non-empty Fibonacci spectral bands are
+\[
+  B_n=\{\ell\in\mathbb N_0:\mathcal F_n\leq \ell<\mathcal F_{n+1}\},
+  \qquad n=0,1,2,\ldots .
+\]
+Thus \(B_0=\{0\}\), \(B_1=\{1\}\), \(B_2=\{2\}\), \(B_3=\{3,4\}\), and so on.
+
+For non-constant modes, a characteristic angular half-wavelength scale is
+\[
+  d_n(t)\sim \frac{\pi a(t)}{\mathcal F_n},
+  \qquad n\ge1 .
+\]
+At the Planck boundary \(a_{\rm eff}(t_P)\simeq\ell_P\), this formula is a formal
+spectral scale.  The effective theory does not claim operational access to
+spatial resolution below \(\ell_P\).
+
+\begin{proposition}[Planck-boundary resolution of the stratification]
+\label{prop:resolution}
+Assume \(a_{\rm eff}(t_P)\ge\ell_P\) and assume that the effective theory assigns
+no operational support to sub-Planck spatial resolution.  Then the Fibonacci
+bands remain a well-defined organization of the compact \(S^3\) spectrum, but
+only bands associated with resolvable observables belong to the semiclassical
+description.  Modes whose formal wavelength is below \(\ell_P\) are part of the
+mathematical spectral tower, not independent resolved degrees of freedom of the
+effective Planck-boundary theory.
+\end{proposition}
+
+\begin{remark}
+The golden ratio enters through
+\[
+  \lim_{n\to\infty}\frac{\mathcal F_{n+1}}{\mathcal F_n}
+  =\varphi=\frac{1+\sqrt5}{2}.
+\]
+This is a consequence of the Fibonacci recurrence.  It is not a new local
+coupling, field, or physical constant.
+\end{remark}
+
+\subsection{Metric near the boundary}
+
+The closed FLRW metric is
+\[
+  ds^2=-dt^2+a(t)^2
+  \bigl[d\chi^2+\sin^2\chi\,(d\vartheta^2+\sin^2\vartheta\,d\varphi^2)\bigr].
+\]
+In the homogeneous semiclassical regime, \(a(t)\) is interpreted as an effective
+scale variable, for instance as an expectation value of a geometric operator in
+a suitable state.  Quantum corrections are represented schematically by
+\[
+  g_{ij}(t)=g^{(0)}_{ij}(t)+\hbar\,\Delta g_{ij}(t),
+\]
+where \(g^{(0)}_{ij}\) is the round \(S^3\) spatial metric with physical scale
+factor \(a(t)\).  This notation records a semiclassical expansion; it is not a
+microscopic quantisation prescription.
+
+\begin{assumption}[Regular Planck-boundary semiclassical data]
+\label{ass:regular-data}
+At the Planck boundary the effective scale factor and kinematic data satisfy
+\[
+\begin{aligned}
+  a_{\rm eff}(t_P)&\ge a_{\rm min}\ge \ell_P,\\
+  |H(t_P)|&<\infty,\\
+  |\dot H(t_P)|&<\infty .
+\end{aligned}
+\]
+Metric fluctuations are assumed bounded in the restricted sense that their
+contribution to \(a_{\rm eff}\), \(H\), and \(\dot H\) remains finite.
+\end{assumption}
+
+\begin{remark}
+The spatial metric does not become Euclidean.  In the homogeneous \(k=+1\)
+sector the background spatial geometry remains the round metric on \(S^3\),
+regularised only by the non-zero effective radius.
+\end{remark}
+
+%% ================================================================
+\section{Kinematic Curvature Bound}
+%% ================================================================
+\label{sec:curvature}
+
+For a closed FLRW metric with \(k=+1\), the four-dimensional Kretschmann scalar is
+\[
+\begin{aligned}
+  K
+  &=R_{\mu\nu\rho\sigma}R^{\mu\nu\rho\sigma}  \\
+  &=12\left[
+      \left(\frac{\ddot a}{a}\right)^2
+      +\left(\frac{\dot a^2+1}{a^2}\right)^2
+    \right]                                      \\
+  &=12\left[
+      (\dot H+H^2)^2
+      +\left(H^2+\frac1{a^2}\right)^2
+    \right].
+\end{aligned}
+\]
+Classically, \(a\to0\) together with uncontrolled \(H\) or \(\dot H\) produces a
+curvature singularity.  The present framework instead removes \(a=0\) from the
+effective configuration space.
+
+\begin{theorem}[Kinematic curvature bound from regular Planck-boundary data]
+\label{thm:curvature}
+For a closed FLRW metric with \(k=+1\), assume that at the Planck boundary
+\[
+  a_{\rm eff}(t_P)=\alpha_P\ell_P,\qquad \alpha_P\ge1,
+\]
+and
+\[
+  |H(t_P)|<\infty,\qquad |\dot H(t_P)|<\infty .
+\]
+Then
+\[
+  K(t_P)\leq \frac{C}{\ell_P^4}<\infty,
+\]
+where
+\[
+\begin{aligned}
+  C&=12\left[(q_P+h_P^2)^2+\left(h_P^2+\alpha_P^{-2}\right)^2\right],\\
+  h_P&=\ell_P H(t_P),\qquad
+  q_P=\ell_P^2\dot H(t_P).
+\end{aligned}
+\]
+\end{theorem}
+
+\begin{proof}
+Substitution into the FLRW expression gives
+\[
+  K(t_P)=
+  \frac{12}{\ell_P^4}
+  \left[(q_P+h_P^2)^2+\left(h_P^2+\alpha_P^{-2}\right)^2\right].
+\]
+The assumptions imply that \(\alpha_P^{-1}\), \(h_P\), and \(q_P\) are finite.
+Therefore \(C\) is finite.
+\end{proof}
+
+\begin{remark}
+The theorem is not a dynamical singularity-resolution theorem.  It states the
+exact kinematic consequence of regular boundary data.  A complete quantum-gravity
+model would still have to explain why the finite values of \(H(t_P)\) and
+\(\dot H(t_P)\) are dynamically selected.
+\end{remark}
+
+\begin{corollary}
+Within any interval on which \(a_{\rm eff}\ge\ell_P\) and \(H,\dot H\) remain
+finite, the closed-FLRW curvature scalar \(K\) remains finite.
+\end{corollary}
+
+\begin{interpretation}[No external Planck-boundary time]
+\label{int:no-external-time}
+The Wheeler--DeWitt equation is a constraint equation, \(\hat H\Psi=0\), and
+does not contain an external time parameter.  A semiclassical clock can emerge in
+a WKB/Born--Oppenheimer regime, but that approximation is not assumed at the
+Planck boundary.  Thus statements about \(\partial_t g_{ij}\) at
+\(a\simeq\ell_P\) are clock- and gauge-dependent unless a specific clock
+reconstruction has been supplied.
+\end{interpretation}
+
+%% ================================================================
+\section{Spectral Zeta Regularisation of the Vacuum Scale}
+%% ================================================================
+
+\subsection{Scale-covariant compact spectra}
+
+For a free field on a compact spatial manifold the formal vacuum energy is
+\[
+  E_{\rm vac}=\frac12\sum_k\omega_k .
+\]
+On a round \(S^3\) of physical radius \(a\), a scale-covariant spectral family
+has
+\[
+  \omega_k(a)=\frac{\nu_k}{a},
+\]
+where \(\nu_k\) is the dimensionless spectrum on the unit sphere.  Define
+\[
+  \zeta_\omega(s)=\sum_k\nu_k^{-s},
+  \qquad
+  \zeta_\omega(s;a)=\sum_k\omega_k(a)^{-s}=a^s\zeta_\omega(s).
+\]
+If the spectral zeta function admits a finite analytic continuation to \(s=-1\),
+the zeta-regularised Casimir energy is
+\[
+  E_{\rm vac}^{\rm reg}(a)=\frac{1}{2a}\zeta_\omega(-1)
+  =\frac{\Czeta}{a},
+  \qquad
+  \Czeta=\frac12\zeta_\omega(-1).
+\]
+Since
+\[
+  V_{S^3}(a)=2\pi^2a^3,
+\]
+the corresponding regularised density is
+\[
+  \rho_{\rm vac}^{\rm reg}(a)
+  =\frac{\Czeta}{2\pi^2a^4}.
+\]
+The \(a^{-4}\) law follows from scale covariance: energy scales as \(a^{-1}\)
+and volume as \(a^3\).
+
+\subsection{Conformally shifted scalar reference spectrum}
+
+For a massless conformally shifted scalar on \(S^3\), the relevant unit-sphere
+operator is \(-\Delta_{S^3}+1\), with
+\[
+  \nu_\ell=\ell+1,\qquad d_\ell=(\ell+1)^2,\qquad
+  \ell=0,1,2,\ldots .
+\]
+Thus
+\[
+  \zeta_\omega(s)
+  =\sum_{\ell=0}^\infty(\ell+1)^2(\ell+1)^{-s}
+  =\sum_{n=1}^\infty n^{2-s}
+  =\Riemann(s-2).
+\]
+Analytic continuation gives
+\[
+  \zeta_\omega(-1)=\Riemann(-3)=\frac1{120},
+  \qquad
+  \Czeta=\frac1{240},
+\]
+and therefore
+\[
+  \rho_{\rm vac}^{\rm reg}(a)=\frac{1}{480\pi^2a^4}.
+\]
+
+\begin{remark}
+The numerical coefficient and sign of a Casimir contribution depend on field
+content, spin structure, operator choice, subtraction prescription, and
+renormalisation convention.  In semiclassical gravity the absolute vacuum energy
+also mixes with the renormalisation of the cosmological and gravitational
+couplings.  The invariant statement used here is the compact spectral scaling
+and finiteness for \(a\ge\ell_P\), not a direct prediction of the observed
+cosmological constant.
+\end{remark}
+
+\subsection{Fibonacci organization and the zeta sum}
+
+The Fibonacci bands \(B_n\) organize the same \(S^3\) spectral tower.  For a
+characteristic dimensionless frequency in a band one may use, for example,
+\[
+  \Omega_n=\sqrt{\nu_{\mathcal F_n}\nu_{\mathcal F_{n+1}-1}},
+  \qquad n\ge1 .
+\]
+Then
+\[
+  \frac{\Omega_{n+1}}{\Omega_n}\longrightarrow\varphi
+  \qquad (n\to\infty),
+\]
+provided the underlying spectrum is asymptotically linear in \(\ell\), as it is
+for the conformal scalar frequencies.
+
+A schematic band-counting zeta
+\[
+  \zeta_{\rm band}(s)=\sum_{n\ge1}|B_n|\Omega_n^{-s}
+\]
+behaves asymptotically like a geometric series in \(\varphi^{1-s}\), so it
+converges for \(\operatorname{Re}s>1\).  If the full degeneracy of the
+three-dimensional spectrum is included, the large-band contribution scales as
+\(\mathcal F_n^{3-s}\), and the usual convergence domain
+\(\operatorname{Re}s>3\) is recovered before analytic continuation.
+
+\begin{figure}[!tbp]
+\centering
+\includegraphics[width=0.98\columnwidth]{figures/fibonacci_ratio_convergence.pdf}
+\caption{The ratio \(\mathcal F_{n+1}/\mathcal F_n\) converges to
+\(\varphi\).  The golden ratio is an asymptotic coding scale of the Fibonacci
+coarse-graining, not an independent physical coupling.}
+\label{fig:fibonacci-ratio}
+\end{figure}
+
+\begin{theorem}[Spectral-zeta vacuum-density scale]
+\label{thm:vacenergy}
+Let a compact \(S^3\) spectral family satisfy \(\omega_k(a)=\nu_k/a\), and let
+\(\zeta_\omega(s)=\sum_k\nu_k^{-s}\) admit a finite analytic continuation at
+\(s=-1\).  Then
+\[
+\begin{aligned}
+  E_{\rm vac}^{\rm reg}(a)&=\frac{\Czeta}{a},\\
+  \rho_{\rm vac}^{\rm reg}(a)&=\frac{\Czeta}{2\pi^2a^4},\\
+  \Czeta&=\frac12\zeta_\omega(-1).
+\end{aligned}
+\]
+In particular, \(\rho_{\rm vac}^{\rm reg}\) is finite for every
+\(a\ge\ell_P\).  For the conformally shifted scalar reference spectrum,
+\[
+  \rho_{\rm vac}^{\rm reg}(a)=\frac{1}{480\pi^2a^4}.
+\]
+\end{theorem}
+
+\begin{proof}
+Scale covariance gives
+\[
+  E_{\rm vac}^{\rm reg}(a)
+  =\frac12\sum_k^{\rm reg}\frac{\nu_k}{a}
+  =\frac{1}{2a}\zeta_\omega(-1)
+  =\frac{\Czeta}{a}.
+\]
+Dividing by \(V_{S^3}(a)=2\pi^2a^3\) gives the stated density.  Since
+\(a\ge\ell_P>0\) and \(\zeta_\omega(-1)\) is finite by hypothesis, the density is
+finite at the Planck boundary.
+\end{proof}
+
+\begin{figure}[!tbp]
+\centering
+\includegraphics[width=0.98\columnwidth]{figures/vacuum_density_scaling.pdf}
+\caption{Dimensionless compact-spectrum vacuum-density scale for the conformally
+shifted scalar reference spectrum.  The exact scaling is \(a^{-4}\).}
+\label{fig:vacuum-scaling}
+\end{figure}
+
+%% ================================================================
+\section{Self-Adjoint Wheeler--DeWitt Boundary}
+%% ================================================================
+
+The minisuperspace wave function is defined on the effective domain
+\[
+  a\in[\ell_P,\infty).
+\]
+The sub-Planck interval \(0<a<\ell_P\) is not part of the Hilbert-space measure
+of this effective theory.
+
+A schematic factor ordering for the Wheeler--DeWitt operator is
+\[
+  \hat H
+  =-\frac{\hbar^2}{12\pi\mP^2}\frac1a
+    \frac{\partial}{\partial a}
+    \left(a\frac{\partial}{\partial a}\right)
+    +\hat H_m+U_{\rm eff}(a),
+\]
+where \(U_{\rm eff}\) contains curvature, matter, and regularised compact
+spectral contributions.  The later argument requires not this precise potential
+but self-adjointness of the operator on the chosen domain.
+
+The minisuperspace Hilbert space is
+\[
+\begin{aligned}
+  \mathcal H_{\rm mini}&=L^2([\ell_P,\infty),a\,da),\\
+  \langle\Phi|\Psi\rangle
+  &=\int_{\ell_P}^{\infty}a\,\Phi^*(a)\Psi(a)\,da .
+\end{aligned}
+\]
+At the regular endpoint \(a=\ell_P\), a local one-parameter self-adjoint boundary
+condition is
+\[
+  \cos\alpha\,\Psi(\ell_P)
+  +\sin\alpha\,\ell_P\Psi'(\ell_P)=0,
+  \qquad \alpha\in[0,\pi).
+\]
+At \(a=\infty\) we assume either the usual limit-point case or, more generally,
+that the operator domain is chosen so that the boundary form vanishes there.
+Thus no probability flux is allowed through either endpoint of the effective
+half-line.
+
+\begin{theorem}[Norm preservation in the effective minisuperspace domain]
+\label{thm:unitarity}
+Assume that the Wheeler--DeWitt operator is given a self-adjoint extension on
+\(L^2([\ell_P,\infty),a\,da)\), with vanishing boundary form at
+\(a=\ell_P\) and at \(a=\infty\).  Then, for every relational or semiclassical
+clock parameter \(\tau\) for which an effective Schr\"odinger form is valid,
+\[
+  \frac{d}{d\tau}\|\Psi\|^2=0 .
+\]
+Equivalently, no probability is lost into the excluded sub-Planck region.
+\end{theorem}
+
+\begin{proof}
+For the Sturm--Liouville differential expression
+\[
+  L\Psi=-\frac1a(a\Psi')',
+\]
+the boundary form is proportional to
+\[
+  \bigl[a(\Phi^*\Psi'-\Phi'^*\Psi)\bigr]_{\ell_P}^{\infty}.
+\]
+Self-adjointness is precisely the vanishing of this form on the operator domain.
+Taking \(\Phi=\Psi\) gives zero probability flux at the endpoints.  The usual
+Schr\"odinger conservation identity in any valid relational-time reconstruction
+therefore yields \(d\|\Psi\|^2/d\tau=0\).
+\end{proof}
+
+\begin{corollary}[Regular Planck boundary]
+The boundary condition permits \(\Psi(\ell_P)\ne0\) for generic Robin parameter
+\(\alpha\).  The Planck boundary is therefore a regular endpoint of the
+effective quantum problem, not an absorbing singularity.
+\end{corollary}
+
+\subsection{WKB behaviour near the boundary}
+
+If a minisuperspace potential produces a classically forbidden interval adjacent
+to the Planck boundary, a WKB branch may have the schematic form
+\[
+  \Psi(a)\sim A\exp\!\left[
+  -\frac1\hbar\int_{\ell_P}^{a}|p_a(a')|\,da'
+  \right],
+  \qquad a\ge\ell_P .
+\]
+This expression is used only on the physical domain.  The value at
+\(a=\ell_P\) is determined by the self-adjoint boundary condition and need not
+vanish.
+
+\begin{figure}[!tbp]
+\centering
+\includegraphics[width=0.98\columnwidth]{figures/planck_boundary_wavefunction.pdf}
+\caption{Schematic finite-amplitude WKB profile on the effective domain
+\(a\ge\ell_P\).  No probability measure is assigned to \(0<a<\ell_P\).}
+\label{fig:planck-wavefunction}
+\end{figure}
+
+\begin{corollary}[State-dependent Planck-scale correlations]
+In a compact \(S^3\) universe, globally constrained quantum states need not
+factorise over arbitrary spatial partitions.  Correlations between subregions
+may therefore persist to the Planck boundary.  The corresponding entanglement
+entropy is state-dependent and is not fixed by topology alone.
+\end{corollary}
+
+%% ================================================================
+\section{Noether-II Identities on Closed Cauchy Slices}
+%% ================================================================
+
+Let the generally covariant action be written schematically as
+\[
+  S[g,\psi]=\int_{\mathcal M}d^4x\,\sqrt{-g}\,
+  \mathcal L(g_{\mu\nu},\psi,\nabla\psi).
+\]
+Diffeomorphism invariance is a local gauge symmetry.  By Noether's second
+theorem~\cite{Noether}, it gives differential identities among the Euler--Lagrange
+expressions.  It does not give, by itself, an independent global energy
+conservation law of the Noether-I type.
+
+\begin{theorem}[Noether-II identities and closed-slice boundary charges]
+\label{thm:noether}
+Let a generally covariant theory be defined on a spacetime with closed Cauchy
+slice \(\Sigma\simeq S^3\).  Then:
+\begin{enumerate}
+\item Diffeomorphism invariance gives Noether-II differential identities among
+the Euler--Lagrange expressions.  In Einstein gravity coupled to matter these
+include the contracted Bianchi identity and the corresponding covariant
+stress-energy conservation law on shell.
+\item In Iyer--Wald covariant phase-space notation~\cite{IyerWald},
+\[
+  J_\xi=\Theta(\phi;\mathcal L_\xi\phi)-\xi\cdot L,
+  \qquad
+  J_\xi\simeq dQ_\xi ,
+\]
+and the Hamiltonian variation associated with \(\xi\) is
+\[
+  \delta H_\xi
+  =\int_{\partial\Sigma}
+  \left(\delta Q_\xi-\xi\cdot\Theta\right).
+\]
+For the full closed slice, \(\partial\Sigma=\varnothing\), so
+\[
+  \delta H_\xi=0
+\]
+for pure-gauge diffeomorphisms on the full slice.
+\item This full-slice statement does not exclude quasi-local charges on internal
+subdomains \(D\subset\Sigma\) with \(\partial D\ne\varnothing\).
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+Part (1) is the standard Noether-II consequence of local diffeomorphism
+invariance.  Part (2) is the Iyer--Wald variational identity evaluated on a
+Cauchy slice with empty boundary.  Part (3) follows because an internal subdomain
+can have a boundary even when the whole Cauchy slice does not.
+\end{proof}
+
+\begin{remark}
+For compact cosmology there is no ADM boundary at spatial infinity.  Global
+``energy'' is therefore not a boundary charge of the asymptotically flat type.
+The Hamiltonian content of general relativity in the closed case is carried by
+constraints and possible internal or quasi-local boundary terms.
+\end{remark}
+
+\subsection{Asymptotic Fibonacci scaling}
+
+The Fibonacci shift \(n\mapsto n+1\) is discrete and only asymptotically
+represented by multiplication by \(\varphi\).  It is therefore not a continuous
+variational symmetry and does not fall under Noether's first or second theorem.
+
+\begin{proposition}[Asymptotic Fibonacci scaling law]
+\label{prop:fib-scaling}
+For an exactly scale-covariant spectral family,
+\[
+  \zeta_\omega(s;a)=a^s\zeta_\omega(s).
+\]
+Consequently,
+\[
+  \zeta_\omega(s;\varphi a)=\varphi^s\zeta_\omega(s;a),
+\]
+and at the regularised Casimir point,
+\[
+  E_{\rm vac}^{\rm reg}(\varphi a)
+  =\varphi^{-1}E_{\rm vac}^{\rm reg}(a),
+  \qquad
+  \rho_{\rm vac}^{\rm reg}(\varphi a)
+  =\varphi^{-4}\rho_{\rm vac}^{\rm reg}(a).
+\]
+The Fibonacci interpretation of this rescaling is asymptotic in the band index.
+\end{proposition}
+
+\begin{proof}
+The first identity is the definition of scale covariance.  Substituting
+\(a\mapsto\varphi a\) gives the second.  The energy scaling follows at
+\(s=-1\), and the density acquires the additional volume factor
+\((\varphi a)^{-3}\).
+\end{proof}
+
+%% ================================================================
+\section{Possible Observational Signatures}
+%% ================================================================
+
+The following items are qualitative targets, not predictions derived in this
+paper.  A connection between Planck-boundary data and observations requires a
+separate perturbation-transfer model.
+
+\medskip
+\noindent\textbf{CMB power spectrum.}
+The Fibonacci banding motivates searches for residual structure near multipoles
+\[
+  \ell=2,3,5,8,13,21,34,55,89,\ldots .
+\]
+The dipole \(\ell=1\) is not a clean primordial observable because it is
+dominated by the observer's motion.  No universal amplitude is derived here.
+
+\medskip
+\noindent\textbf{Primordial power spectrum.}
+A regular Planck boundary can modify admissible initial data for perturbation
+modes.  The scale \(1/\ell_P\) is ultraviolet, while low-\(\ell\) CMB anomalies
+are infrared; relating them requires explicit inflationary or pre-inflationary
+transfer dynamics.
+
+\medskip
+\noindent\textbf{Dark-energy sector.}
+The compact-spectrum term obtained above scales as \(a^{-4}\).  It therefore
+does not by itself mimic a constant late-time cosmological constant.  DESI-class
+evolving-dark-energy fits are external phenomenological targets, not predictions
+of the present theorem~\cite{DESI}.
+
+\medskip
+\noindent\textbf{Stochastic gravitational-wave background.}
+A discrete compact \(S^3\) tensor spectrum could motivate searches for resonance
+or modulation features in a stochastic background.  The present-day frequencies
+would depend on the full expansion and transfer history and are not fixed here.
+
+\begin{table*}[!tbp]
+\centering
+\small
+\renewcommand{\arraystretch}{1.25}
+\caption{Possible qualitative signatures.  None is a definitive prediction of
+the present Planck-boundary theorem.}
+\label{tab:signatures}
+\begin{tabular}{p{0.25\textwidth}p{0.43\textwidth}p{0.22\textwidth}}
+\toprule
+Observable & Possible qualitative signature & Required extra input\\
+\midrule
+CMB low multipoles & Residual structure near Fibonacci multipoles \(\ell\ge2\) &
+Perturbation transfer model\\
+Primordial spectrum & Modified admissible initial data & Inflationary or pre-inflationary dynamics\\
+Dark-energy sector & No direct prediction from the \(a^{-4}\) term & Additional late-time dynamics\\
+Compact Casimir component & \(\rho_{\rm vac}^{\rm reg}\propto a^{-4}\) &
+Renormalisation and field content\\
+SGWB & Possible discrete-spectrum modulation & Expansion and tensor-mode transfer history\\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+%% ================================================================
+\section{Discussion}
+%% ================================================================
+
+The model proves conditional statements inside a deliberately narrow domain.  Its
+logical structure is
+\[
+\begin{aligned}
+  &\text{closed }S^3\text{ sector}\\
+  &+ a\ge \ell_P\\
+  &+ \text{finite }H,\dot H\\
+  &+ \text{self-adjoint WDW boundary}\\
+  &+ \text{compact spectral zeta regularisation}.
+\end{aligned}
+\]
+From these inputs one obtains finite FLRW curvature at the boundary, finite
+regularised compact-spectrum vacuum density, norm preservation in the
+minisuperspace Hilbert space, and the standard Noether-II identities of
+generally covariant dynamics.
+
+\subsection{Claims established here}
+
+\begin{enumerate}
+\item Within the smooth closed connected orientable simply-connected spatial
+sector, the Poincar\'e--Perelman theorem together with Moise's theorem selects
+the standard \(S^3\) sector.
+\item Under finite Planck-boundary data, the closed-FLRW Kretschmann scalar
+obeys \(K(t_P)\le C/\ell_P^4\).
+\item Zeta regularisation of a scale-covariant compact \(S^3\) spectrum gives
+\(\rho_{\rm vac}^{\rm reg}=\Czeta/(2\pi^2a^4)\), finite for
+\(a\ge\ell_P\).
+\item A self-adjoint Wheeler--DeWitt boundary condition prevents probability
+flux through \(a=\ell_P\) in the effective minisuperspace description.
+\item Diffeomorphism invariance gives Noether-II differential identities, and
+the full closed Cauchy slice has no Iyer--Wald boundary Hamiltonian variation.
+\end{enumerate}
+
+\subsection{Claims not established here}
+
+The following are not consequences of the present model:
+\begin{enumerate}
+\item a microscopic derivation of the Planck boundary;
+\item a derivation of finite \(H(t_P)\) and \(\dot H(t_P)\);
+\item an LQC-type bounce;
+\item a prediction of the observed cosmological constant;
+\item an exact Fibonacci spacetime symmetry;
+\item a universal entanglement entropy fixed by topology;
+\item a quantitative CMB or SGWB prediction.
+\end{enumerate}
+
+\subsection{Relation to loop quantum cosmology and CDT}
+
+The curvature result resembles loop quantum cosmology in its final boundedness
+statement, but the mechanism is different.  LQC derives effective boundedness
+from polymer quantisation and a discrete geometric spectrum~\cite{Ashtekar}.
+Here boundedness is conditional on a self-adjoint Planck boundary and finite
+semiclassical boundary data.
+
+Causal dynamical triangulations supplies another independent example in which
+Planck-scale geometry may differ from smooth classical intuition~\cite{CDT}.
+The present Fibonacci coarse-graining is only an analogy at the level of
+effective spectral organization; it is not a derivation of CDT spectral
+dimensional flow.
+
+%% ================================================================
+\section{Summary}
+%% ================================================================
+
+The \model{} framework gives a rigorous conditional Planck-boundary construction
+for compact \(S^3\) minisuperspace cosmology.  Its main results are:
+
+\begin{enumerate}
+\item \textbf{Topological sector.}
+Assuming smooth closed connected orientable simple connectivity, the spatial
+slice is the standard \(S^3\).
+
+\item \textbf{Fibonacci coarse-graining.}
+The \(S^3\) Laplacian spectrum may be organized into Fibonacci bands.  The
+golden ratio enters only through the asymptotic limit
+\(\mathcal F_{n+1}/\mathcal F_n\to\varphi\).
+
+\item \textbf{Curvature bound.}
+For closed FLRW data with \(a_{\rm eff}(t_P)=\alpha_P\ell_P\), \(\alpha_P\ge1\),
+and finite \(H(t_P)\), \(\dot H(t_P)\),
+\[
+  K(t_P)\le\frac{C}{\ell_P^4}<\infty .
+\]
+
+\item \textbf{Vacuum scale.}
+For a scale-covariant compact spectrum with finite \(\zeta_\omega(-1)\),
+\[
+  \rho_{\rm vac}^{\rm reg}(a)=\frac{\Czeta}{2\pi^2a^4}.
+\]
+For the conformally shifted scalar,
+\[
+  \rho_{\rm vac}^{\rm reg}(a)=\frac{1}{480\pi^2a^4}.
+\]
+
+\item \textbf{Self-adjoint boundary.}
+A self-adjoint Wheeler--DeWitt operator on
+\(L^2([\ell_P,\infty),a\,da)\) gives zero probability flux through the Planck
+boundary.
+
+\item \textbf{Noether-II structure.}
+Diffeomorphism invariance gives differential identities.  On the full closed
+slice, Iyer--Wald boundary Hamiltonian variations vanish because
+\(\partial\Sigma=\varnothing\), while internal quasi-local charges are not
+excluded.
+\end{enumerate}
+
+Thus the model is mathematically coherent as a conditional effective
+Planck-boundary framework.  Its strength is not that it solves quantum gravity,
+but that it states exactly which assumptions are sufficient for bounded
+curvature, compact-spectrum finiteness, and minisuperspace norm preservation.
+
+%% ================================================================
+\begin{thebibliography}{99}
+%% ================================================================
+
+\bibitem{Perelman1}
+G.~Perelman,
+The entropy formula for the Ricci flow and its geometric applications,
+arXiv:math/0211159 (2002).
+
+\bibitem{Perelman2}
+G.~Perelman,
+Ricci flow with surgery on three-manifolds,
+arXiv:math/0303109 (2003).
+
+\bibitem{Perelman3}
+G.~Perelman,
+Finite extinction time for the solutions to the Ricci flow on certain three-manifolds,
+arXiv:math/0307245 (2003).
+
+\bibitem{Hamilton}
+R.~S.~Hamilton,
+Three-manifolds with positive Ricci curvature,
+\textit{J. Differential Geom.} \textbf{17}, 255 (1982).
+
+\bibitem{Moise}
+E.~E.~Moise,
+Affine structures in 3-manifolds. V. The triangulation theorem and Hauptvermutung,
+\textit{Ann. of Math.} \textbf{56}, 96 (1952).
+
+\bibitem{Zeckendorf}
+E.~Zeckendorf,
+Repr\'esentation des nombres naturels par une somme de nombres de Fibonacci,
+\textit{Bull. Soc. R. Sci. Li\`ege} \textbf{41}, 179 (1972).
+
+\bibitem{Elizalde}
+E.~Elizalde, S.~D.~Odintsov, A.~Romeo, A.~A.~Bytsenko, and S.~Zerbini,
+\textit{Zeta Regularization Techniques with Applications}
+(World Scientific, Singapore, 1994).
+
+\bibitem{Vassilevich}
+D.~V.~Vassilevich,
+Heat kernel expansion: User's manual,
+\textit{Phys. Rep.} \textbf{388}, 279 (2003),
+arXiv:hep-th/0306138.
+
+\bibitem{DeWitt}
+B.~S.~DeWitt,
+Quantum theory of gravity. I. The canonical theory,
+\textit{Phys. Rev.} \textbf{160}, 1113 (1967).
+
+\bibitem{Wheeler}
+J.~A.~Wheeler,
+Superspace and the nature of quantum geometrodynamics,
+in \textit{Batelle Rencontres}, Benjamin, New York, pp.~242--307 (1968).
+
+\bibitem{Hartle}
+J.~B.~Hartle and S.~W.~Hawking,
+Wave function of the Universe,
+\textit{Phys. Rev. D} \textbf{28}, 2960 (1983).
+
+\bibitem{PageWootters}
+D.~N.~Page and W.~K.~Wootters,
+Evolution without evolution,
+\textit{Phys. Rev. D} \textbf{27}, 2885 (1983).
+
+\bibitem{Isham}
+C.~J.~Isham,
+Canonical quantum gravity and the problem of time,
+arXiv:gr-qc/9210011 (1993).
+
+\bibitem{Noether}
+E.~Noether,
+Invariante Variationsprobleme,
+\textit{Nachr. Ges. Wiss. G\"ottingen} \textbf{1918}, 235 (1918).
+
+\bibitem{Wald}
+R.~M.~Wald,
+\textit{General Relativity}
+(University of Chicago Press, Chicago, 1984).
+
+\bibitem{IyerWald}
+V.~Iyer and R.~M.~Wald,
+Some properties of Noether charge and a proposal for dynamical black hole entropy,
+\textit{Phys. Rev. D} \textbf{50}, 846 (1994),
+arXiv:gr-qc/9403028.
+
+\bibitem{Ashtekar}
+A.~Ashtekar, T.~Pawlowski, and P.~Singh,
+Quantum nature of the Big Bang,
+\textit{Phys. Rev. Lett.} \textbf{96}, 141301 (2006),
+arXiv:gr-qc/0602086.
+
+\bibitem{CDT}
+J.~Ambj\o{}rn, J.~Jurkiewicz, and R.~Loll,
+Emergence of a 4D world from causal quantum gravity,
+\textit{Phys. Rev. Lett.} \textbf{95}, 171301 (2005),
+arXiv:hep-th/0505113.
+
+\bibitem{Planck2018}
+Planck Collaboration,
+Planck 2018 results. VI. Cosmological parameters,
+\textit{Astron. Astrophys.} \textbf{641}, A6 (2020),
+arXiv:1807.06209.
+
+\bibitem{DESI}
+M.~Abdul Karim et al. (DESI Collaboration),
+DESI DR2 results. II. Measurements of baryon acoustic oscillations and cosmological constraints,
+\textit{Phys. Rev. D} \textbf{112}, 083515 (2025),
+arXiv:2503.14738, doi:10.1103/tr6y-kpc6.
+
+\bibitem{Carroll}
+S.~M.~Carroll,
+\textit{Spacetime and Geometry: An Introduction to General Relativity}
+(Addison-Wesley, San Francisco, 2004).
+
+\bibitem{Weinberg}
+S.~Weinberg,
+\textit{Cosmology}
+(Oxford University Press, Oxford, 2008).
+
+\end{thebibliography}
+
+\end{document}

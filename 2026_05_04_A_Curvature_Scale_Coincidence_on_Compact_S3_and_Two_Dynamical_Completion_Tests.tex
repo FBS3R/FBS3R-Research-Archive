@@ -1,0 +1,1044 @@
+%% ============================================================
+%% A Curvature-Scale Coincidence on Compact S^3
+%% and Two Dynamical Completion Tests
+%% Technical preprint v1.3.5-final-checked
+%% Andrei Preece & Boris Batenin -- Berlin, 2026
+%% ============================================================
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsfonts,mathtools}
+\usepackage{bm}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{siunitx}
+\usepackage{hyperref}
+\usepackage{geometry}
+\usepackage{xcolor}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{parskip}
+\usepackage[numbers,sort&compress]{natbib}
+
+\geometry{margin=1in, top=2.2cm, bottom=2.2cm}
+\setlength{\headheight}{15pt}
+\sisetup{per-mode=symbol, detect-all=true, exponent-product=\times}
+\tcbuselibrary{most}
+
+\definecolor{resultcol}{RGB}{0,90,160}
+\definecolor{caveatcol}{RGB}{170,60,0}
+\definecolor{openpcol}{RGB}{130,0,130}
+\definecolor{falsecol}{RGB}{0,120,50}
+\definecolor{defcol}{RGB}{50,50,100}
+
+\newtcolorbox{resultbox}[1][Result]{
+  colback=blue!5,colframe=resultcol,fonttitle=\bfseries\small,
+  title=#1,boxrule=0.7pt,arc=3pt,left=4pt,right=4pt,top=4pt,bottom=4pt}
+\newtcolorbox{caveatbox}[1][Caveat]{
+  colback=orange!7,colframe=caveatcol,fonttitle=\bfseries\small,
+  title=#1,boxrule=0.7pt,arc=3pt,left=4pt,right=4pt,top=4pt,bottom=4pt}
+\newtcolorbox{openpbox}[1][Open Problem]{
+  colback=purple!5,colframe=openpcol,fonttitle=\bfseries\small,
+  title=#1,boxrule=0.7pt,arc=3pt,left=4pt,right=4pt,top=4pt,bottom=4pt}
+\newtcolorbox{falsebox}[1][Falsifiability Test]{
+  colback=green!5,colframe=falsecol,fonttitle=\bfseries\small,
+  title=#1,boxrule=0.7pt,arc=3pt,left=4pt,right=4pt,top=4pt,bottom=4pt}
+\newtcolorbox{defbox}[1][Definition]{
+  colback=gray!5,colframe=defcol,fonttitle=\bfseries\small,
+  title=#1,boxrule=0.6pt,arc=3pt,left=4pt,right=4pt,top=4pt,bottom=4pt}
+
+\hypersetup{colorlinks=true,linkcolor=resultcol,citecolor=resultcol,urlcolor=resultcol}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textcolor{resultcol}{Curvature-Scale Coincidence on Compact $S^3$}}
+\fancyhead[R]{\small\textcolor{gray}{Preece \& Batenin, 2026 -- v1.3.5}}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\newcommand{\vph}{\varphi}
+\newcommand{\ellP}{\ell_{\rm P}}
+\newcommand{\rhoP}{\rho_{\rm P}}
+\newcommand{\rhoL}{\rho_{\Lambda,{\rm obs}}}
+\newcommand{\rhoC}{\rho_{\rm crit}}
+\newcommand{\RH}{R_H}
+\newcommand{\Reff}{R_{\rm eff}}
+\newcommand{\Rcurv}{R_{\rm curv}}
+\newcommand{\RS}{R_{S^3}}
+\newcommand{\OmL}{\Omega_\Lambda}
+\newcommand{\OmK}{\Omega_k}
+\newcommand{\CEH}{C_{\rm EH}}
+\newcommand{\Cobs}{C_{\rm obs}}
+\newcommand{\Mpc}{\mathrm{Mpc}}
+\newcommand{\Gly}{\mathrm{Gly}}
+\newcommand{\sech}{\operatorname{sech}}
+
+\begin{document}
+
+\begin{titlepage}
+\begin{center}
+\vspace*{0.7cm}
+{\fontsize{18}{22}\bfseries\color{resultcol}
+  A Curvature-Scale Coincidence on Compact $S^3$}\\[0.5em]
+{\fontsize{15}{19}\bfseries
+  and Two Dynamical Completion Tests}
+
+\vspace{0.6cm}
+{\large\itshape\color{gray}
+  Technical preprint on a constant-positive-curvature $R^{-2}$ scale}
+
+\vspace{0.8cm}
+\rule{0.85\textwidth}{1.2pt}
+
+\vspace{0.4cm}
+{\large Andrei Preece\textsuperscript{1} \quad Boris Batenin\textsuperscript{1}}\\[0.3em]
+{\normalsize\textsuperscript{1}Independent Researchers, Berlin, Germany}\\[0.15em]
+{\small\texttt{andre.preece@web.de} \quad \texttt{batenin@web.de}}
+
+\vspace{0.4cm}
+\rule{0.85\textwidth}{1.2pt}
+
+\vspace{0.8cm}
+\begin{minipage}{0.88\textwidth}
+\textbf{Abstract.}
+We study compact, simply connected spatial geometry $\Sigma\simeq S^3$ and the
+associated curvature-density scale on $S^3(R)$.  The algebraic core is the
+identity $\rho_P\ell_P^2=c^4/G$: in the tested integer family
+$\rho_\beta(n)=\rho_P\varphi^{-\beta n}$, the branch $\beta=2$ is exactly
+$\rho_2(R)=c^4/(G R^2)$ and is the only branch among $\beta=1,2,3,4$ that reaches
+the observed dark-energy density at cosmological radii.  The $\varphi$ ladder is
+therefore used here as a logarithmic bookkeeping coordinate unless an independent
+integer-level selection principle is supplied.  For constant positive curvature, and in particular on compact $S^3(R)$, the spatial
+Einstein--Hilbert scalar-curvature integral satisfies
+$\int_{S^3}\sqrt{g}\,{}^{(3)}R\,d^3x=12\pi^2R$, giving the natural positive
+scalar-curvature scale
+\[\rho_{\rm EH}^{(3)}(R)=\frac{3}{8\pi}\frac{c^4}{G R^2}.\]
+The coefficient $3/(8\pi)$ is a constant-positive-curvature density coefficient;
+compactness makes the total integral finite but does not make the local density
+coefficient topological.  Evaluated at the observationally defined radius
+$\Reff=\RH/\sqrt{\OmL}=c/(H_0\sqrt{\OmL})$, this reproduces
+$\rho_\Lambda=\OmL\rho_c$ exactly because $\Reff$ is defined from the observed
+dark-energy scale.  This equality is not a derivation of dark energy: $\OmL$ and
+$\Reff$ are inserted from the Friedmann decomposition, and a conserved $R^{-2}$
+component has $w=-1/3$, not $w\simeq-1$.  We therefore separate four layers: (i) the robust algebraic scaling
+result, (ii) the geometrically normalized positive scalar-curvature scale,
+(iii) the observationally inserted radius identification, and (iv) two incomplete
+dynamical completion tests--a CMC/York phase-drift ansatz and post-recombination
+null-domain kinematics, whose product-rule identity is
+$\ddot D_\gamma=\ddot R\chi_\gamma+c\dot R/R$.  The resulting program is
+falsifiable through global
+curvature bounds, closed-geometry distances, low-$\ell$ CMB/topology tests,
+Pantheon+ supernovae, DESI DR2 BAO, and the sign and magnitude of the
+dark-energy equation-of-state evolution.
+\end{minipage}
+
+\vspace{0.7cm}
+\textbf{Keywords:} compact $S^3$ topology; vacuum energy; curvature density;
+$\vph$-bookkeeping; Einstein--Hilbert action; CMC phase law; null-domain kinematics;
+dark energy
+
+\vspace{0.5cm}
+\textit{Preprint v1.3.5 -- May 2026.}
+\end{center}
+\end{titlepage}
+
+\tableofcontents
+\newpage
+
+\section{Introduction and Scope}
+\label{sec:intro}
+
+The observed dark-energy density is of order
+$\rhoL\simeq5.25\times10^{-10}\,\mathrm{J\,m^{-3}}$ for the Planck 2018
+baseline values $H_0\simeq67.4\,\mathrm{km\,s^{-1}\,Mpc^{-1}}$ and
+$\OmL\simeq0.685$~\cite{Planck2018}.  Its smallness relative to Planck-scale
+vacuum estimates is the cosmological-constant problem~\cite{Wald1984}.
+The aim of this note is narrow: to test whether compact positive curvature and
+the associated $R^{-2}$ scaling can reproduce the \emph{scale} of $\rhoL$ without
+claiming a complete derivation of late-time acceleration.
+
+The proposed geometry is a closed spatial section $\Sigma\simeq S^3$.
+The proposed scale ladder is
+\begin{equation}
+R_n=\ellP\vph^n,\qquad \vph=\frac{1+\sqrt5}{2}.
+\end{equation}
+The main result is that the branch $\rho\propto R^{-2}$ is uniquely selected
+within the small integer family tested in Sec.~\ref{sec:beta}.  The same branch
+is generated by the spatial Einstein--Hilbert scalar-curvature integral on $S^3$.
+This establishes a curvature-scale coincidence, not a derivation of the
+late-time dark-energy component.
+
+\begin{defbox}[Status convention]
+The paper uses three labels.  \emph{Result} means an algebraic, numerical, or
+geometric statement derived in the paper.  \emph{Candidate} means a proposed
+completion requiring additional derivation or data fitting.  \emph{Open problem}
+means no claim of solution is made here.
+\end{defbox}
+
+\textbf{Nonclaims.}  We do not prove that dark energy is topology, do not remove
+$\Lambda$ from the gravitational action, do not infer cosmic topology from
+large-scale structure alone, and do not identify $\Reff$ with the global FLRW
+curvature radius.  The result is a geometrically normalized scale-setting observation plus a set of
+conservative dynamical tests.
+
+\section{Compact \texorpdfstring{$S^3$}{S3} Geometry}
+\label{sec:geom}
+
+\begin{defbox}[Spatial topology]
+The spatial manifold is assumed to be compact, orientable, boundaryless and
+simply connected: $\Sigma\simeq S^3$.  By the Poincare--Perelman theorem, a
+closed simply connected 3-manifold is homeomorphic to $S^3$~\cite{Perelman2002,Perelman2003}.
+Spherical quotient spaces $S^3/\Gamma$ remain possible extensions, but the
+minimal case studied here is the simply connected one.
+\end{defbox}
+
+With curvature radius $R(t)$, the closed FLRW line element is
+\begin{equation}
+ ds^2=-c^2dt^2+R^2(t)\left[d\chi^2+\sin^2\chi\,d\Omega_2^2\right],
+ \qquad 0\leq\chi\leq\pi .
+\label{eq:metric}
+\end{equation}
+When comparison with FLRW observables is required, we write
+$R(t)=a(t)R_c$ with $a_0=1$, so that $R_c$ is the present global curvature
+radius.  The effective normalization radius $\Reff$ introduced below is not
+identified with $R_c$.
+
+The standard geometric quantities are
+\begin{align}
+V_{S^3}(R)&=2\pi^2R^3,\label{eq:VS3}\\
+{}^{(3)}R&=\frac{6}{R^2},\label{eq:3R}\\
+V_{\rm ball}(\chi,R)&=2\pi R^3\left(\chi-\frac12\sin2\chi\right),\\
+A(\chi,R)&=4\pi R^2\sin^2\chi .
+\end{align}
+The dimensionless volume-growth kernel of a geodesic ball is
+\begin{equation}
+K(\chi)=\frac{1}{V_{\rm ball}}\frac{dV_{\rm ball}}{d\chi}
+=\frac{2\sin^2\chi}{\chi-\sin\chi\cos\chi}.
+\label{eq:kernel}
+\end{equation}
+It has $K(\chi)\sim3/\chi$ as $\chi\to0$ and $K(\chi)\to0$ as $\chi\to\pi$.
+
+\section{The \texorpdfstring{$\varphi$}{phi}-Hierarchy and the Two-Index Correction}
+\label{sec:hier}
+
+The geometric hierarchy is
+\begin{equation}
+R_n=\ellP\vph^n,
+\qquad
+V_n=2\pi^2\ellP^3\vph^{3n},
+\qquad
+A_n=4\pi\ellP^2\vph^{2n},
+\qquad
+n_R(R)=\frac{\ln(R/\ellP)}{\ln\vph}.
+\label{eq:hier}
+\end{equation}
+\begin{caveatbox}[$\varphi$-hierarchy status]
+Because $n_R=\ln(R/\ell_P)/\ln\varphi$ is allowed to be non-integer in the present
+paper, the golden-ratio hierarchy is currently a logarithmic coordinate and
+bookkeeping device.  It does not by itself explain the vacuum scale.  A physical
+$\varphi$-hierarchy would require an independent principle selecting integer
+levels, phase locking, spectral gaps, or a genuinely $\varphi$-recursive
+dynamical structure.
+\end{caveatbox}
+For the Planck 2018 baseline,
+\begin{equation}
+ n_R(\RH)=291.5436,
+ \qquad
+ n_R(\Reff)=291.9367.
+\end{equation}
+Thus a cosmic radius is a geometric level near $292$, not near $85$.
+
+\begin{caveatbox}[Level 85 is not a geometric cosmic radius]
+Under $R_n=\ellP\vph^n$, one finds
+\begin{equation}
+R_{85}=9.3855\times10^{-18}\,\mathrm{m},
+\end{equation}
+which is sub-nuclear.  Any separate ``85-level'' used in auxiliary notes must
+therefore be interpreted as a distinct amplitude or calibration index, not as
+$R_{85}$ in the geometric ladder.
+\end{caveatbox}
+
+A possible two-index relation is
+\begin{equation}
+ n_A=n_R-n_{\rm cal},\qquad n_{\rm cal}\simeq207,
+\label{eq:ncal}
+\end{equation}
+for which $R_{207}=2.9441\times10^8\,\mathrm{m}$ and
+$n_A(\RH)\simeq84.54$.  Equation~\eqref{eq:ncal} is only a calibration
+hypothesis.
+
+\section{Density Scaling Family and Selection of \texorpdfstring{$\beta=2$}{beta=2}}
+\label{sec:beta}
+
+Let $E_n=E_P\vph^{\alpha n}$ and divide by $V_n\propto\vph^{3n}$.  Then
+\begin{equation}
+\rho_n=\rhoP\vph^{-\beta n},\qquad \beta=3-\alpha,
+\label{eq:rho_beta}
+\end{equation}
+where the Planck energy density is
+\begin{equation}
+\rhoP=\frac{c^7}{\hbar G^2}=4.6329\times10^{113}\,\mathrm{J\,m^{-3}}.
+\end{equation}
+The matching level and radius for a target density $\rhoL$ are
+\begin{equation}
+n^*_\beta=\frac{\ln(\rhoP/\rhoL)}{\beta\ln\vph},
+\qquad
+R^*_\beta=\ellP\vph^{n^*_\beta}.
+\label{eq:nstar}
+\end{equation}
+
+\begin{table}[htbp]
+\centering
+\caption{$\beta$-branch matching table.  The radius labels are corrected: $\beta=3$ is Earth-scale, and $\beta=4$ is sub-millimetre.}
+\label{tab:beta}
+\small
+\begin{tabular}{@{}cllrrl@{}}
+\toprule
+$\beta$ & $\alpha$ & $\rho\propto$ & $n^*_{\beta}$ & $R^*_{\beta}$ & Status \\
+\midrule
+1 & 2 & $R^{-1}$ & 588.2904 & $1.43\times10^{88}\,\mathrm{m}$ & excluded: super-cosmic \\
+\textbf{2} & \textbf{1} & $\mathbf{R^{-2}}$ & \textbf{294.1452} & $\mathbf{4.80\times10^{26}\,\mathrm{m}=50.73\,Gly}$ & \textbf{scale-compatible} \\
+3 & 0 & $R^{-3}$ & 196.0968 & $1.55\times10^6\,\mathrm{m}$ & excluded: planetary \\
+4 & $-1$ & $R^{-4}$ & 147.0726 & $8.81\times10^{-5}\,\mathrm{m}$ & excluded: sub-mm \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Because $\rhoP\ellP^2=c^4/G$, the $\beta=2$ branch is exactly
+\begin{equation}
+\rho_2(R)=\frac{c^4}{GR^2}.
+\label{eq:C1scale}
+\end{equation}
+The coefficient in Eq.~\eqref{eq:C1scale} is unity.  The spatial
+Einstein--Hilbert normalization derived below supplies a geometric coefficient
+$\CEH=3/(8\pi)$, moving the equality radius from $50.73\,\Gly$ to
+$17.53\,\Gly$.
+
+\begin{resultbox}[Scaling-level result]
+Within the tested integer family $\beta=1,2,3,4$, only $\beta=2$ places the
+observed vacuum-density scale at cosmological radii.  This is a scaling result,
+not a derivation of the dark-energy equation of state.
+\end{resultbox}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.92\textwidth]{figures/fig1_density_scaling.pdf}
+\caption{Density scaling $\rho_\beta(n)=\rhoP\vph^{-\beta n}$ for
+$\beta=1,2,3,4$.  Only $\beta=2$ intersects $\rhoL$ at a cosmological level.}
+\label{fig:density}
+\end{figure}
+
+\section{Einstein--Hilbert Curvature Normalization on \texorpdfstring{$S^3$}{S3}}
+\label{sec:EH}
+
+On $S^3(R)$,
+\begin{equation}
+\int_{S^3}\sqrt{g}\,{}^{(3)}R\,d^3x
+=\frac{6}{R^2}\,2\pi^2R^3=12\pi^2R.
+\label{eq:integral}
+\end{equation}
+The integral scales linearly with $R$.  Thus an EH-type curvature-energy scale
+is proportional to $R$, and the corresponding density is proportional to
+$R^{-2}$.
+
+Define
+\begin{equation}
+E_{\rm curv}^{(3)}(R)
+=\frac{c^4}{16\pi G}\int_{S^3}\sqrt{g}\,{}^{(3)}R\,d^3x
+=\frac{3\pi c^4}{4G}R.
+\label{eq:Ecurv}
+\end{equation}
+Dividing by $V_{S^3}=2\pi^2R^3$ gives
+\begin{equation}
+\rho_{\rm EH}^{(3)}(R)
+=\frac{E_{\rm curv}^{(3)}}{V_{S^3}}
+=\frac{3}{8\pi}\frac{c^4}{GR^2}.
+\label{eq:rho_EH}
+\end{equation}
+
+\begin{resultbox}[Geometric normalization]
+\begin{equation}
+\boxed{\CEH=\frac{3}{8\pi}=0.1193662073.}
+\end{equation}
+This is the constant-positive-curvature scalar-density coefficient.  Compactness
+makes the total spatial integral finite; it does not by itself make the local
+density coefficient topological.  The same density coefficient is obtained on
+spherical quotients $S^3/\Gamma$ after division by their volume.
+\end{resultbox}
+
+\begin{caveatbox}[Hamiltonian status]
+Equation~\eqref{eq:rho_EH} is a spatial EH curvature-density scale.  It is not a
+complete ADM Hamiltonian energy, since the full Hamiltonian constraint also
+contains extrinsic curvature, lapse dependence, matter, and possible subtraction
+or reference terms.  The paper therefore uses $\rho_{\rm EH}^{(3)}$ as a
+scale-setting density, not as a closed gravitational energy theorem.  In particular,
+no conserved quasi-local or global gravitational energy is being claimed for the
+compact slice.
+\end{caveatbox}
+
+\begin{caveatbox}[Sign of the FLRW curvature fluid]
+The positive sign of $\rho_{\rm EH}^{(3)}$ is a convention for a scalar-curvature
+scale.  It is not the sign of the effective FLRW curvature density.  In the
+standard closed Friedmann equation,
+\begin{equation}
+H^2=\frac{8\pi G}{3c^2}\rho-\frac{c^2}{a^2R_c^2},
+\end{equation}
+so moving the curvature term to the matter side gives
+\begin{equation}
+\rho_k=-\frac{3c^4}{8\pi G a^2R_c^2}\quad(k=+1),
+\end{equation}
+which is negative.  Therefore $\rho_{\rm EH}^{(3)}$ must not be confused with the
+standard closed-curvature fluid.
+\end{caveatbox}
+
+\section{Critical-Density Identity and the Tautology Warning}
+\label{sec:tautology}
+
+The Hubble radius is $\RH=c/H_0$.  With energy density units,
+\begin{equation}
+\rhoC=\frac{3H_0^2c^2}{8\pi G}
+      =\frac{3}{8\pi}\frac{c^4}{G\RH^2}
+      =\CEH\frac{c^4}{G\RH^2}.
+\label{eq:crit_EH}
+\end{equation}
+The observed dark-energy density is
+\begin{equation}
+\rhoL=\OmL\rhoC
+=\frac{3\OmL}{8\pi}\frac{c^4}{G\RH^2}
+=\Cobs\frac{c^4}{G\RH^2},
+\qquad
+\frac{\Cobs}{\CEH}=\OmL.
+\label{eq:rhoL}
+\end{equation}
+
+\begin{caveatbox}[Tautology warning]
+Substituting $R=\RH=c/H_0$ into $c^4/(GR^2)$ reproduces the critical density by
+definition.  Likewise, $\rho_{\rm EH}^{(3)}(\Reff)=\rho_\Lambda$ is exact only
+because $\Reff=\RH/\sqrt{\OmL}=c/(H_0\sqrt{\OmL})$ is the observed
+dark-energy length written in this normalization.  Equivalently, with
+$H_\Lambda=H_0\sqrt{\OmL}$, one has $\Reff=c/H_\Lambda$.  The construction
+therefore reproduces $\rho_\Lambda$ because $\Reff$ is defined from
+$\rho_\Lambda$.  The nontrivial task is to derive $\OmL$, $\Reff$, or a
+dynamical selection rule from compact geometry rather than inserting them from
+data.
+\end{caveatbox}
+
+Define the effective curvature-energy radius by
+\begin{equation}
+\rho_{\rm EH}^{(3)}(\Reff)=\rhoL.
+\end{equation}
+Using Eq.~\eqref{eq:rhoL},
+\begin{equation}
+\boxed{\Reff=\frac{\RH}{\sqrt{\OmL}}=1.6583\times10^{26}\,\mathrm{m}=17.53\,\Gly.}
+\label{eq:Reff}
+\end{equation}
+This equality is exact given the definitions and the observed input $\OmL$; it is the observed dark-energy length written in the present normalization.
+It is not a first-principles derivation of $\OmL$.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.88\textwidth]{figures/fig2_rho_EH.pdf}
+\caption{$\rho_{\rm EH}^{(3)}(R)=\CEH c^4/(GR^2)$.  The equality with
+$\rhoL$ occurs at $\Reff=\RH/\sqrt{\OmL}$; the equality with $\rhoC$ at $\RH$ is
+the critical-density identity.}
+\label{fig:rho_EH}
+\end{figure}
+
+\section{Three Radii That Must Not Be Conflated}
+\label{sec:radii}
+
+The construction contains three different radii.
+
+\textbf{Hubble radius.}
+\begin{equation}
+\RH=\frac{c}{H_0}=1.3725\times10^{26}\,\mathrm{m}=14.51\,\Gly .
+\end{equation}
+
+\textbf{Effective curvature-energy radius.}
+This is $\Reff=\RH/\sqrt{\OmL}=17.53\,\Gly$.  If the Hubble radius is represented
+as an arc length on an auxiliary $S^3(\Reff)$, the angle is
+\begin{equation}
+\chi_H=\frac{\RH}{\Reff}=\sqrt{\OmL}=0.827647.
+\label{eq:chiH}
+\end{equation}
+The corresponding geodesic-ball volume fraction is
+\begin{equation}
+f_{\rm obs}(\chi_H)=\frac{V_{\rm ball}(\chi_H,\Reff)}{V_{S^3}(\Reff)}
+=\frac{\chi_H-\frac12\sin2\chi_H}{\pi}=0.104861.
+\label{eq:fobs}
+\end{equation}
+This fraction is a diagnostic number, not yet a derived $\OmL$.
+
+\textbf{Global FLRW curvature radius.}
+For a closed FLRW model with present scale factor $a_0=1$,
+\begin{equation}
+\Rcurv=\frac{\RH}{\sqrt{|\OmK|}}.
+\label{eq:Rcurv}
+\end{equation}
+Planck combined with BAO is consistent with spatial flatness, with constraints
+of order $|\OmK|\lesssim10^{-3}$--$10^{-2}$ depending on data and model
+choices~\cite{Planck2018}.  Thus the global $S^3$ radius must be much larger
+than $\RH$.
+
+\begin{caveatbox}[Curvature conflict if $\Reff$ is misidentified]
+If $\Reff$ were identified with the global FLRW curvature radius, then
+\begin{equation}
+\OmK=-\left(\frac{\RH}{\Reff}\right)^2=-\OmL\simeq-0.685,
+\end{equation}
+which is excluded.  Therefore $\Reff$ can only be an effective curvature-energy
+scale, not the global FLRW curvature radius.
+\end{caveatbox}
+
+\begin{table}[htbp]
+\centering
+\caption{Physically distinct radii and $\vph$ levels.}
+\label{tab:radii}
+\small
+\begin{tabular}{@{}lrrrrl@{}}
+\toprule
+Description & $R$ [m] & $R$ [Gly] & $n_R$ & $n_R-207$ & Role \\
+\midrule
+$\RH=c/H_0$ & $1.3725\times10^{26}$ & 14.51 & 291.5436 & 84.5436 & observational \\
+$\Reff=\RH/\sqrt{\OmL}$ & $1.6583\times10^{26}$ & 17.53 & 291.9367 & 84.9367 & effective scale \\
+$\Rcurv(|\OmK|=10^{-2})$ & $1.3725\times10^{27}$ & 145.1 & 296.3285 & 89.3285 & global lower bound \\
+$\Rcurv(|\OmK|=10^{-3})$ & $4.3402\times10^{27}$ & 458.8 & 298.7210 & 91.7210 & global lower bound \\
+$\Rcurv(|\OmK|=10^{-4})$ & $1.3725\times10^{28}$ & 1450.7 & 301.1135 & 94.1135 & global lower bound \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.88\textwidth]{figures/fig3_radii.pdf}
+\caption{The Hubble radius, the effective curvature-energy radius, and two
+illustrative global curvature radii.}
+\label{fig:radii}
+\end{figure}
+
+\section{The Equation-of-State Gap}
+\label{sec:eosgap}
+
+If $\rho_{\rm eff}(a)=\rho_0a^{-2}$ is treated as a conserved perfect-fluid
+energy density, the continuity equation gives
+\begin{equation}
+\rho(a)\propto a^{-3(1+w)},
+\qquad
+-3(1+w)=-2,
+\qquad
+w=-\frac13.
+\label{eq:w13}
+\end{equation}
+The acceleration equation in energy-density units is
+\begin{equation}
+\frac{\ddot a}{a}=-\frac{4\pi G}{3c^2}\rho(1+3w).
+\label{eq:ray}
+\end{equation}
+For $w=-1/3$ this gives no acceleration from that component alone.
+
+\begin{resultbox}[Equation-of-state gap]
+The branch $\rho\sim R^{-2}$ gives the correct magnitude near cosmic radii, but
+as a conserved fluid it has $w=-1/3$, not $w\simeq-1$.  A second dynamical
+principle is required if the branch is to model late-time acceleration.
+\end{resultbox}
+
+The conservative interpretation is therefore not
+``dark energy is simply $a^{-2}$ curvature fluid.''  Instead, the present paper
+uses $\rho_{\rm EH}^{(3)}(\Reff)$ as a normalization scale and asks whether a
+separate dynamical factor can keep the effective component nearly constant.
+
+\section{Candidate Test I: Post-Recombination Null-Domain Kinematics}
+\label{sec:nulldom}
+
+After recombination, photons propagate freely and define an observable null
+domain.  A radial null geodesic of Eq.~\eqref{eq:metric} satisfies
+\begin{equation}
+\dot\chi_\gamma=\frac{c}{R(t)}.
+\label{eq:chidot}
+\end{equation}
+Define a light-front arc length
+\begin{equation}
+D_\gamma(t)=R(t)\chi_\gamma(t).
+\label{eq:Dgamma}
+\end{equation}
+The product rule gives
+\begin{equation}
+\dot D_\gamma=\dot R\chi_\gamma+R\dot\chi_\gamma
+=\dot R\chi_\gamma+c,
+\label{eq:Dgamma_dot}
+\end{equation}
+and
+\begin{equation}
+\ddot D_\gamma
+=\ddot R\chi_\gamma+2\dot R\dot\chi_\gamma+R\ddot\chi_\gamma.
+\end{equation}
+Since $\dot\chi_\gamma=c/R$,
+\begin{equation}
+\ddot\chi_\gamma=-\frac{c\dot R}{R^2},
+\end{equation}
+so
+\begin{equation}
+\boxed{\ddot D_\gamma=\ddot R\chi_\gamma+\frac{c\dot R}{R}.}
+\label{eq:Dgamma_ddot}
+\end{equation}
+For a coasting scale $\ddot R=0$ with $\dot R>0$, this coordinate light-front
+length has $\ddot D_\gamma=c\dot R/R>0$.
+
+\begin{caveatbox}[Interpretation limit]
+Equation~\eqref{eq:Dgamma_ddot} is a kinematic identity for the chosen physical
+arc-length variable, and by itself it does not distinguish the model from a
+standard FLRW description.  Until $D_\gamma$ is mapped into $D_C,D_M,D_L,D_A$
+and fitted against redshift observables, it is a coordinate-domain identity
+rather than a falsifiability test.
+\end{caveatbox}
+
+The observable null-domain volume is
+\begin{equation}
+V_\gamma(t)=2\pi R^3(t)\left[\chi_\gamma(t)-\frac12\sin2\chi_\gamma(t)\right],
+\qquad
+\frac{1}{R}\,K(\chi_\gamma)=\frac{1}{V_\gamma}\frac{\partial V_\gamma}{\partial \chi_\gamma}.
+\end{equation}
+Figure~\ref{fig:kernel_null} shows the kernel and toy light-front behavior.
+
+\begin{figure}[htbp]
+\centering
+\begin{subfigure}[b]{0.48\textwidth}
+\includegraphics[width=\textwidth]{figures/fig4_kernel.pdf}
+\caption{$S^3$ volume-growth kernel.}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.48\textwidth}
+\includegraphics[width=\textwidth]{figures/fig5_null_kinematics.pdf}
+\caption{Toy light-front growth.}
+\end{subfigure}
+\caption{Null-domain diagnostics.  The plotted light-front curves are illustrative
+only and are not fits to data.}
+\label{fig:kernel_null}
+\end{figure}
+
+\section{Candidate Test II: CMC/York Phase Drift}
+\label{sec:cmc}
+
+The second completion is a phase-clock ansatz in a compact CMC/York treatment.
+York-time quantum cosmology has been studied in related canonical contexts
+\cite{RoserValentini2014}.  The present paper uses only the following ansatz as a candidate completion:
+\begin{equation}
+H(t)=\frac{1}{3}\dot{\Theta}(t)+\mathcal{O}(\epsilon_{\rm BO}^2),
+\label{eq:phaselaw}
+\end{equation}
+where $\Theta$ is a gauge-invariant determinant-line geometric phase for a
+transported transverse-traceless sector.  Equation~\eqref{eq:phaselaw} is not
+assumed to be established by existing quantum gravity; it is a candidate closure condition requiring independent derivation.
+
+If $\dot{\Theta}\to\Theta_1$ at late times, then $H\to H_\infty=\Theta_1/3$ and
+\begin{equation}
+\Lambda_{\rm eff}=\frac{3H_\infty^2}{c^2}.
+\end{equation}
+For an asymptotic phase-dominated regime, or for the total effective fluid after
+the usual Friedmann reduction, one may write
+\begin{equation}
+w_{\rm eff}(a)=-1-\frac{2}{3}\frac{\dot H}{H^2}.
+\label{eq:weff_general}
+\end{equation}
+In a mixed matter-plus-dark-energy universe this is not automatically the
+separate dark-energy equation of state unless matter, radiation, and curvature
+have first been subtracted.
+If the time derivative in Eq.~\eqref{eq:phaselaw} is the same cosmic-time
+derivative, then
+\begin{equation}
+\dot H=\frac{1}{3}\ddot{\Theta},
+\qquad
+H^2=\frac{1}{9}\dot{\Theta}^{2},
+\end{equation}
+and hence
+\begin{equation}
+\boxed{w_{\rm eff}=-1-2\frac{\ddot{\Theta}}{\dot{\Theta}^{2}}.}
+\label{eq:weff_cmc}
+\end{equation}
+Slow phase-rate drift gives $w_{\rm eff}\simeq-1$.
+
+\begin{caveatbox}[Phase-law status]
+The phase law is an ansatz, not a result derived in this paper.  A mathematical
+completion must define the family of Hilbert spaces $\mathcal H_t$, the connection
+$\nabla_t$, the phase $\Theta(t)$, the TT-sector state or density matrix
+$\rho_{\rm TT}$, the regularization, and the time parameter.  The York-time
+literature supports the use of York time in canonical cosmology, but does not by
+itself establish the determinant-line phase law used here.  Earlier sign problems
+in negative effective occupation numbers are therefore not repaired here; they
+define the next calculation.
+\end{caveatbox}
+
+\section{Conservative Hybrid Parameterization}
+\label{sec:hybrid}
+
+The conservative model separates scale from evolution:
+\begin{equation}
+\rho_{\rm DE,eff}(a)=\rho_{\rm scale}F_{\rm dyn}(a),
+\qquad
+\rho_{\rm scale}=\rho_{\rm EH}^{(3)}(\Reff)=\rhoL,
+\qquad
+F_{\rm dyn}(1)=1.
+\label{eq:hybrid}
+\end{equation}
+A minimal phenomenological proxy is
+\begin{equation}
+w(a)=-1+\varepsilon a^p,
+\qquad
+F_{\rm dyn}(a)=\exp\left[-\frac{3\varepsilon}{p}(a^p-1)\right],
+\qquad \varepsilon>0,\quad p>0.
+\label{eq:proxy}
+\end{equation}
+At $a=1$, $w_0=-1+\varepsilon$ and $w_a=-\varepsilon p$ in the usual
+$w(a)=w_0+w_a(1-a)$ convention.  The minus sign in $F_{\rm dyn}$ follows
+from $d\rho/d\ln a=-3(1+w)\rho$; for $\varepsilon>0$ and $p>0$ the component
+is quintessence-like, with larger density in the past than at $a=1$.
+
+The closed-geometry Friedmann equation should use a separate global curvature
+radius $R_c$:
+\begin{equation}
+H^2(a)=\frac{8\pi G}{3c^2}\left[\rho_{m0}a^{-3}+\rho_{r0}a^{-4}+\rhoL F_{\rm dyn}(a)\right]
+-\frac{kc^2}{a^2R_c^2},
+\qquad k=+1.
+\label{eq:friedmann_corrected}
+\end{equation}
+The normalization radius $\Reff$ in Eq.~\eqref{eq:hybrid} is not $R_c$.
+
+\begin{figure}[htbp]
+\centering
+\begin{subfigure}[b]{0.48\textwidth}
+\includegraphics[width=\textwidth]{figures/fig6_eos_proxy.pdf}
+\caption{Toy $w(a)$ proxy.}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.48\textwidth}
+\includegraphics[width=\textwidth]{figures/fig7_Ez_residuals.pdf}
+\caption{Expansion residuals.}
+\end{subfigure}
+\caption{Phenomenological diagnostics.  These panels illustrate the difference
+between an excluded pure $w=-1/3$ curvature-fluid interpretation and a near-$\Lambda$
+phase proxy.  They are not likelihood fits.}
+\label{fig:eos}
+\end{figure}
+
+\section{Numerical Tables}
+\label{sec:numerical}
+
+\begin{table}[htbp]
+\centering
+\caption{Constants and derived targets used in the numerical checks.}
+\label{tab:const}
+\small
+\begin{tabular}{@{}llll@{}}
+\toprule
+Quantity & Symbol & Value & Units/status \\
+\midrule
+Speed of light & $c$ & $2.9979245800\times10^8$ & exact SI \\
+Reduced Planck constant & $\hbar$ & $1.0545718170\times10^{-34}$ & J s \\
+Newton constant & $G$ & $6.6743000000\times10^{-11}$ & SI \\
+Planck length & $\ellP$ & $1.6162550239\times10^{-35}$ & m \\
+Planck energy density & $\rhoP$ & $4.6329467907\times10^{113}$ & J m$^{-3}$ \\
+Golden ratio & $\vph$ & $1.6180339887$ & exact \\
+Hubble constant & $H_0$ & $2.1842852411\times10^{-18}$ & s$^{-1}$ \\
+Dark-energy fraction & $\OmL$ & $0.6850000000$ & baseline input \\
+Hubble radius & $\RH$ & $1.3724968349\times10^{26}$ & m \\
+Critical density & $\rhoC$ & $7.6689477678\times10^{-10}$ & J m$^{-3}$ \\
+Observed DE density & $\rhoL$ & $5.2532292210\times10^{-10}$ & J m$^{-3}$ \\
+$\CEH=3/(8\pi)$ & $\CEH$ & $0.1193662073$ & derived \\
+Effective radius & $\Reff$ & $1.6583113220\times10^{26}$ & m \\
+Observable angle & $\chi_H$ & $0.8276472679$ & rad \\
+Ball fraction & $f_{\rm obs}$ & $0.1048612055$ & diagnostic \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+\centering
+\caption{Coefficient candidates in $\rho=Cc^4/(GR^2)$.}
+\label{tab:coeff}
+\small
+\begin{tabular}{@{}lrrrl@{}}
+\toprule
+$C$ expression & $C$ & $R(C)$ [Gly] & $R(C)/\RH$ & Status \\
+\midrule
+$3/(8\pi)$ & 0.119366 & 17.53 & 1.208 & spatial EH coefficient \\
+$3\OmL/(8\pi)$ & 0.081766 & 14.51 & 1.000 & observational coefficient \\
+$1/(2\pi^2)$ & 0.050661 & 11.42 & 0.787 & geometric candidate only \\
+$3/(4\pi^2)$ & 0.075991 & 13.99 & 0.964 & geometric candidate only \\
+$1$ & 1.000000 & 50.73 & 3.497 & raw $\beta=2$ Planck scaling \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.88\textwidth]{figures/fig8_Rstar_beta.pdf}
+\caption{Matching radius as a function of $\beta$.  The integer branch $\beta=2$
+lands in the cosmological-radius band; neighboring integer branches do not.}
+\label{fig:Rstar}
+\end{figure}
+
+\section{Observational Protocol}
+\label{sec:obs}
+
+For the global closed geometry, use the standard relations
+\begin{align}
+D_C(z)&=c\int_0^z\frac{dz'}{H(z')},\\
+D_M(z)&=R_c\sin\left(\frac{D_C(z)}{R_c}\right),\\
+D_L(z)&=(1+z)D_M(z),\qquad D_A(z)=\frac{D_M(z)}{1+z}.
+\end{align}
+The model must be compared to supernova, BAO, and CMB data using these distances,
+not by fitting $D_\gamma$ directly.  Pantheon+ provides 1701 light curves of
+1550 distinct Type Ia supernovae across $z=0.001$--$2.26$~\cite{PantheonPlus2022}.
+DESI DR2 BAO uses more than 14 million galaxies and quasars and, in combined
+$w_0w_a$ fits, reports a favored quadrant $w_0>-1$, $w_a<0$ while still finding
+that BAO distances are well described by flat $\Lambda$CDM~\cite{DESIDR2BAO2025}.
+
+\begin{falsebox}[Falsifiability tests]
+\begin{enumerate}[leftmargin=1.5em,itemsep=2pt]
+\item \textbf{Equation-of-state sign and size.}  The proxy in Eq.~\eqref{eq:proxy}
+with $\varepsilon>0$ and $p>0$ predicts $w_0>-1$ and $w_a<0$.  Strong evidence for the
+opposite sign would falsify that realization.
+\item \textbf{Pure curvature-fluid rejection.}  If the model is forced to evolve
+as $\rho\propto a^{-2}$, it predicts $w=-1/3$ and must fail late-time acceleration
+fits.
+\item \textbf{Curvature bound.}  The global $R_c$ must satisfy CMB+BAO curvature
+bounds.  $R_c=\Reff$ is excluded.
+\item \textbf{Topology tests.}  Matched circles apply only to multiply connected
+quotients $S^3/\Gamma$, not to simply connected $S^3$.  Non-detection constrains
+quotient models, not the minimal simply connected model by itself~\cite{Cornish1998}.
+\item \textbf{Low-mode spectrum.}  Compact positive curvature gives a discrete
+Laplacian spectrum.  Any claimed low-$\ell$ CMB signature must be computed with
+proper transfer functions and likelihoods.
+\end{enumerate}
+\end{falsebox}
+
+\section{Internal Consistency Conditions}
+\label{sec:corrections}
+
+\begin{enumerate}[leftmargin=1.5em,itemsep=3pt]
+\item \textbf{Volume normalization.}  Use $V_{S^3}=2\pi^2R^3$, not the Euclidean
+ball volume $4\pi R^3/3$, except in the local $\chi\ll1$ limit.
+\item \textbf{Coefficient separation.}  $\CEH=3/(8\pi)$ is geometrically derived.
+$\Cobs=3\OmL/(8\pi)$ is observational until $\OmL$ is derived.
+\item \textbf{Branch labels.}  The raw $\beta=2$ Planck scaling has coefficient
+$C=1$ and equality radius $50.73\,\Gly$; the EH-normalized equality radius is
+$17.53\,\Gly$.
+\item \textbf{Radius separation.}  $\Reff$ must not be identified with the global
+FLRW curvature radius $R_c$.
+\item \textbf{85-level disambiguation.}  $n=85$ is not a geometric cosmic level.
+It can only be an amplitude/calibration index if Eq.~\eqref{eq:ncal} is justified.
+\item \textbf{Dimensional hygiene.}  Expressions such as $3R_n+H$ are invalid.
+Use $c/R_n$, $H R_n/c$, or $3/R_n$ depending on the intended dimension.
+\item \textbf{Matched circles.}  They are not a direct test of simply connected
+$S^3$; they test multiply connected quotient identifications.
+\item \textbf{CMC phase law.}  It is a candidate closure, not a completed derivation.
+\end{enumerate}
+
+\section{Critical Weak Points}
+\label{sec:weak}
+
+\begin{openpbox}[P1: Missing derivation of $\OmL$]
+The ratio $\Cobs/\CEH=\OmL$ is inserted from observation.  A first-principles
+compact-$S^3$ derivation is still absent.
+\end{openpbox}
+
+\begin{openpbox}[P2: Effective radius vs. global curvature radius]
+The model survives curvature bounds only if $\Reff$ is an effective
+curvature-energy scale, not the global FLRW curvature radius.  This separation
+needs an action-level derivation.
+\end{openpbox}
+
+\begin{openpbox}[P3: No action for $F_{\rm dyn}$]
+The hybrid factor $F_{\rm dyn}(a)$ is phenomenological until it is derived from a
+Lagrangian, Hamiltonian constraint, or controlled semiclassical approximation.
+\end{openpbox}
+
+\begin{openpbox}[P4: Null-domain distances not fitted]
+The identity for $D_\gamma$ is a coordinate-domain identity until it is mapped to
+$D_C,D_M,D_L,D_A$, BAO distances, and redshift.  It is not yet a falsifiability
+test by itself.
+\end{openpbox}
+
+\begin{openpbox}[P5: CMC phase computation incomplete]
+A viable phase completion must specify $(\mathcal H_t,\nabla_t,\Theta(t),
+\rho_{\rm TT})$, the regularization and time parameter, then compute
+$\Theta(t)$ from a concrete compact quantum state while verifying positivity,
+gauge invariance, and time-convention stability.
+\end{openpbox}
+
+\section{Final Verdict}
+\label{sec:verdict}
+
+\begin{tcolorbox}[colback=green!4,colframe=falsecol,fonttitle=\bfseries\large,
+  title=Four-Level Verdict,boxrule=1.0pt,arc=4pt]
+\textbf{Level 1 -- established algebraic scaling:}
+\[
+\rho_P\ell_P^2=\frac{c^4}{G},
+\qquad
+\beta=2 \quad\Longleftrightarrow\quad
+\rho_2(R)=\frac{c^4}{G R^2}.
+\]
+Among the tested integer branches $\beta=1,2,3,4$, this is the only one that
+reaches the observed dark-energy density at cosmological radii.
+
+\medskip
+\textbf{Level 2 -- established scalar-curvature normalization:}
+\[
+\int_{S^3}\sqrt{g}\,{}^{(3)}R\,d^3x=12\pi^2R
+\quad\Longrightarrow\quad
+\rho_{\rm EH}^{(3)}(R)=\frac{3}{8\pi}\frac{c^4}{GR^2}.
+\]
+This is a positive constant-curvature scalar-density scale, not the negative
+effective curvature fluid of the closed Friedmann equation, and not a uniquely
+topological density coefficient.
+
+\medskip
+\textbf{Level 3 -- observationally inserted coincidence:}
+\[
+\rho_{\rm EH}^{(3)}(\Reff)=\rho_\Lambda,
+\qquad
+\Reff=\frac{\RH}{\sqrt{\OmL}}=17.53\,\Gly.
+\]
+This identity is exact after inserting $\OmL$: $\Reff=c/(H_0\sqrt{\OmL})=c/H_\Lambda$
+is the observed dark-energy length in this normalization.  Thus the equality is a
+curvature-scale coincidence, not a derivation from compact geometry.
+
+\medskip
+\textbf{Level 4 -- open dynamics:}
+A conserved $R^{-2}$ component has $w=-1/3$ and does not drive late-time
+acceleration.  The remaining problem is dynamical: derive $F_{\rm dyn}(a)$ from
+an action, phase law, or null-domain likelihood construction, or reject the
+model.
+\end{tcolorbox}
+
+\begin{quote}
+\itshape
+The paper establishes a robust curvature-scale coincidence: the unique tested
+integer density branch $\beta=2$ gives $\rho\propto R^{-2}$, and the
+constant-positive-curvature scalar-density calculation fixes the natural coefficient
+$3/(8\pi)$.  Compactness makes the total integral finite, but the local density
+coefficient is not uniquely topological.  Evaluated at the observationally defined
+radius $\RH/\sqrt{\OmL}=c/H_\Lambda$, this reproduces $\rho_\Lambda$ because that
+radius is defined from the observed dark-energy scale.  This is not a derivation
+of dark energy, because $\OmL$ and the effective radius are inserted from the
+Friedmann decomposition, and a conserved $R^{-2}$ component has $w=-1/3$.  The
+remaining problem is dynamical: derive $F_{\rm dyn}(a)$, or reject the model.
+\end{quote}
+
+\section{Next Calculations Required}
+\label{sec:next}
+
+\begin{enumerate}[leftmargin=1.5em,itemsep=3pt]
+\item \textbf{ADM closure.}  Derive or reject Eq.~\eqref{eq:rho_EH} inside the
+full ADM Hamiltonian constraint with lapse, extrinsic curvature, and reference terms.
+\item \textbf{$\OmL$ derivation.}  Test whether $\OmL$ can arise from a phase-sector
+ratio, renormalized curvature residue, or observable-domain mapping without
+circular input.
+\item \textbf{Null-domain likelihood.}  Map $D_\gamma$ to $D_C,D_M,D_L,D_A$ and fit
+Pantheon+ and DESI DR2.
+\item \textbf{CMC phase calculation.}  Compute $\Theta(t)$ for a concrete compact
+$S^3$ TT bundle or density matrix and verify Eq.~\eqref{eq:phaselaw}.
+\item \textbf{Closed-mode Boltzmann implementation.}  Implement $S^3$ mode sums in
+CLASS/CAMB-like pipelines and compare low-$\ell$ spectra to Planck likelihoods.
+\item \textbf{Model comparison.}  Run Bayesian comparison against $\Lambda$CDM for
+parameters $(\varepsilon,p,R_c)$ with conservative priors, including $\varepsilon>0$ and $p>0$ for the proxy tested here.
+\end{enumerate}
+
+\appendix
+
+\section{Notation Dictionary}
+\label{app:notation}
+
+\begin{center}
+\small
+\begin{tabular}{@{}lll@{}}
+\toprule
+Symbol & Meaning & First defined \\
+\midrule
+$\vph$ & golden ratio $(1+\sqrt5)/2$ & Sec.~\ref{sec:hier} \\
+$R_n=\ellP\vph^n$ & $\vph$-hierarchy radius & Sec.~\ref{sec:hier} \\
+$n_R$ & geometric level $\ln(R/\ellP)/\ln\vph$ & Sec.~\ref{sec:hier} \\
+$n_A=n_R-207$ & amplitude-level hypothesis & Sec.~\ref{sec:hier} \\
+$\CEH=3/(8\pi)$ & spatial EH curvature coefficient & Sec.~\ref{sec:EH} \\
+$\Reff=\RH/\sqrt{\OmL}$ & effective curvature-energy radius & Sec.~\ref{sec:tautology} \\
+$R_c$ & global FLRW curvature radius & Sec.~\ref{sec:radii} \\
+$\chi_H=\sqrt{\OmL}$ & Hubble angle on auxiliary $S^3(\Reff)$ & Sec.~\ref{sec:radii} \\
+$K(\chi)$ & $S^3$ volume-growth kernel & Sec.~\ref{sec:geom} \\
+$D_\gamma$ & light-front arc-length variable & Sec.~\ref{sec:nulldom} \\
+$F_{\rm dyn}(a)$ & phenomenological DE evolution factor & Sec.~\ref{sec:hybrid} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Independent Numerical Check}
+\label{app:numeric}
+
+The central identities can be reproduced from
+\begin{align}
+\ellP&=\sqrt{\frac{\hbar G}{c^3}},
+&\rhoP&=\frac{c^7}{\hbar G^2},
+&\rhoP\ellP^2&=\frac{c^4}{G},\\
+\rhoC&=\frac{3H_0^2c^2}{8\pi G},
+&\rhoL&=\OmL\rhoC,
+&\Reff&=\sqrt{\frac{\CEH c^4}{G\rhoL}}.
+\end{align}
+With the values of Table~\ref{tab:const},
+\begin{equation}
+\frac{\rho_{\rm EH}^{(3)}(\Reff)}{\rhoL}=1.0000000000
+\end{equation}
+within rounding precision.
+
+\begin{thebibliography}{9}
+
+\bibitem{Planck2018}
+N.~Aghanim \textit{et al.} (Planck Collaboration),
+``Planck 2018 results. VI. Cosmological parameters,''
+\emph{Astron. Astrophys.} \textbf{641}, A6 (2020), arXiv:1807.06209.
+
+\bibitem{Wald1984}
+R.~M. Wald,
+\emph{General Relativity}, University of Chicago Press, Chicago (1984).
+
+\bibitem{Perelman2002}
+G.~Perelman,
+``The entropy formula for the Ricci flow and its geometric applications,''
+arXiv:math/0211159 (2002).
+
+\bibitem{Perelman2003}
+G.~Perelman,
+``Ricci flow with surgery on three-manifolds,''
+arXiv:math/0303109 (2003).
+
+\bibitem{RoserValentini2014}
+P.~Roser and A.~Valentini,
+``Classical and quantum cosmology with York time,''
+\emph{Class. Quantum Grav.} \textbf{31}, 245001 (2014).
+
+
+\bibitem{DESIDR2BAO2025}
+M.~Abdul Karim \textit{et al.} (DESI Collaboration),
+``DESI DR2 Results II: Measurements of Baryon Acoustic Oscillations and Cosmological Constraints,''
+\emph{Phys. Rev. D} \textbf{112}, 083515 (2025), arXiv:2503.14738.
+
+\bibitem{PantheonPlus2022}
+D.~Brout \textit{et al.},
+``The Pantheon+ Analysis: Cosmological Constraints,''
+\emph{Astrophys. J.} \textbf{938}, 110 (2022), arXiv:2202.04077.
+
+\bibitem{Cornish1998}
+N.~J. Cornish, D.~N. Spergel, and G.~D. Starkman,
+``Circles in the sky: finding topology with the microwave background radiation,''
+\emph{Class. Quantum Grav.} \textbf{15}, 2657--2670 (1998), arXiv:astro-ph/9801212.
+
+
+\end{thebibliography}
+
+\end{document}

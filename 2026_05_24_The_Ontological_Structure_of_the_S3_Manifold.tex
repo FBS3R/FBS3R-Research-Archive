@@ -1,0 +1,3274 @@
+%% ============================================================
+%%  The Ontological Structure of the S^3-Manifold
+%%  Preece & Batenin  —  Berlin, 2026
+%%  Journal-quality typesetting
+%% ============================================================
+\documentclass[12pt,a4paper]{article}
+
+%% — Page geometry (mirror of a typical math journal) --------
+\usepackage[a4paper,
+            top=3cm, bottom=3cm,
+            inner=3cm, outer=2.5cm,
+            headheight=15pt]{geometry}
+
+%% — Fonts & encoding ----------------------------------------
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{microtype}          % character-level fine-tuning
+
+%% — Mathematics ---------------------------------------------
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}          % \vcentcolon etc.
+
+%% — Layout helpers ------------------------------------------
+\usepackage{setspace}
+\usepackage{parskip}            % inter-paragraph spacing
+\usepackage{enumitem}
+\usepackage{booktabs}
+
+%% — Section formatting (journal style) ----------------------
+\usepackage{titlesec}
+\usepackage{titletoc}
+
+%% — Headers & footers ---------------------------------------
+\usepackage{fancyhdr}
+
+%% — Colour & links ------------------------------------------
+\usepackage[dvipsnames]{xcolor}
+\definecolor{linkblue}{RGB}{0,56,120}
+\usepackage[colorlinks=true,
+            linkcolor=linkblue,
+            urlcolor=linkblue,
+            citecolor=linkblue,
+            pdftitle={The Ontological Structure of the S3-Manifold},
+            pdfauthor={Andrei Preece and Boris Batenin}]{hyperref}
+
+%% — Abstract box --------------------------------------------
+\usepackage[most]{tcolorbox}
+
+%% — Miscellaneous -------------------------------------------
+\usepackage{graphicx}
+
+%% — Bibliography --------------------------------------------
+\usepackage[numbers,sort&compress]{natbib}
+\bibliographystyle{plainnat}
+
+%% — Claim-status colour boxes --------------------------------
+\definecolor{clEstab}{RGB}{220,240,220}   % green  — established physics
+\definecolor{clModel}{RGB}{220,230,245}   % blue   — mathematical model
+\definecolor{clSpec} {RGB}{255,245,210}   % amber  — speculative extension
+\definecolor{clMeta} {RGB}{245,235,250}   % violet — metaphysical interpretation
+
+\newcommand{\claimbox}[3]{%
+  \par\smallskip
+  \begin{tcolorbox}[
+    enhanced,
+    breakable,
+    width=\linewidth,
+    colback=#1,
+    colframe=#1,
+    boxrule=0pt,
+    arc=0pt,
+    left=4pt, right=4pt,
+    top=4pt, bottom=4pt,
+    boxsep=0pt]
+    \footnotesize\textbf{[#2]}\enspace #3
+  \end{tcolorbox}%
+  \smallskip}
+
+%% ============================================================
+%%  TYPOGRAPHY SETTINGS
+%% ============================================================
+\setstretch{1.18}
+\setlength{\parskip}{4pt plus 1pt minus 1pt}
+\setlength{\parindent}{1.5em}
+% Keep parindent after parskip
+\makeatletter
+\AtBeginDocument{\@afterindentfalse\aftergroup\@afterindenttrue}
+\makeatother
+
+%% — Section headings (journal style) ------------------------
+\titleformat{\section}
+  {\large\bfseries\scshape}
+  {\thesection.}
+  {0.6em}
+  {}
+  [\vspace{-2pt}\rule{\linewidth}{0.4pt}\vspace{2pt}]
+
+\titleformat{\subsection}
+  {\normalsize\bfseries}
+  {}
+  {0pt}
+  {}
+
+\titlespacing{\section}{0pt}{18pt plus 3pt minus 2pt}{6pt plus 1pt}
+\titlespacing{\subsection}{0pt}{10pt plus 2pt minus 1pt}{3pt plus 1pt}
+
+%% — Running heads -------------------------------------------
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancyhead[LE,RO]{\small\thepage}
+\fancyhead[LO]{\small\itshape The Ontological Structure of the $S^3$-Manifold}
+\fancyhead[RE]{\small\itshape Preece \& Batenin}
+\fancypagestyle{plain}{\fancyhf{}\renewcommand{\headrulewidth}{0pt}%
+  \fancyfoot[C]{\small\thepage}}
+
+%% — List indentation ----------------------------------------
+\setlist[itemize]{leftmargin=2em,itemsep=1pt,topsep=3pt}
+\setlist[enumerate]{leftmargin=2em,itemsep=1pt,topsep=3pt}
+
+%% — tcolorbox style for abstract ----------------------------
+\tcbset{
+  abstractbox/.style={
+    colback=gray!5,
+    colframe=gray!40,
+    boxrule=0.5pt,
+    arc=3pt,
+    left=10pt, right=10pt,
+    top=8pt, bottom=8pt,
+    fontupper=\small
+  }
+}
+
+%% — Theorem-like environments (for potential use) -----------
+\theoremstyle{definition}
+\newtheorem{principle}{Principle}[section]
+\newtheorem{remark}{Remark}[section]
+
+%% ============================================================
+%%  MATH SHORTHAND
+%% ============================================================
+\newcommand{\defeq}{\coloneqq}
+\newcommand{\Def}{\mathrm{Def}}
+\newcommand{\Obs}{\mathrm{Obs}}
+
+\begin{document}
+
+%% ============================================================
+%%  PAGE 1 — TITLE PAGE
+%% ============================================================
+\begin{titlepage}
+\thispagestyle{empty}
+\begin{center}
+
+\vspace*{0.18\textheight}
+
+{\LARGE\bfseries The Ontological Structure\\[0.25em]
+of the \(S^3\)-Manifold}
+
+\vspace{0.9em}
+{\large\itshape A Philosophical and Mathematical Treatise}
+
+\vspace{2.8em}
+
+{\large\bfseries Andrei Preece\textsuperscript{1}
+\quad and \quad Boris Batenin\textsuperscript{1}}\\[0.7em]
+{\normalsize\textsuperscript{1}\itshape Independent Researchers}\\[1.2em]
+{\normalsize\itshape Berlin, 2026}
+
+\vspace{2.6em}
+\rule{0.88\linewidth}{0.6pt}
+
+\end{center}
+\end{titlepage}
+
+%% ============================================================
+%%  PAGE 2 — ABSTRACT, KEYWORDS, MSC, CONTRIBUTIONS
+%% ============================================================
+\clearpage
+\thispagestyle{plain}
+\setcounter{page}{2}
+
+\begin{center}
+{\large\bfseries The Ontological Structure of the \(S^3\)-Manifold}\\[0.3em]
+{\normalsize\itshape A Philosophical and Mathematical Treatise}
+\end{center}
+
+\vspace{0.8em}
+
+\begin{tcolorbox}[abstractbox]
+\textbf{Abstract.}\enspace
+This treatise develops a systematic ontological and mathematical account of
+three-dimensional space modelled as the compact, simply connected, boundaryless
+manifold~$S^3$.
+Beginning from a logical classification of all possible modes of emergence of a
+spatial manifold, it is argued that none of the four fundamental
+alternatives — self-emergence, emergence from an other, joint emergence, or
+uncaused emergence — is fully satisfactory, and that the most coherent position
+treats the manifold as a persistent global structure rather than as the product
+of a local physical process.
+Subsequent sections analyse completeness, boundarylessness, invariance, observer
+limitations, causal dynamics, polarity, rhythm, and non-anthropomorphic
+description, each grounded in the geometric properties of~$S^3$.
+A closing section embeds the standard $\Lambda$CDM cosmology as a local
+effective limit of compact $S^3_R$-cosmology, and discusses observational
+implications, the discrete spectral structure, global unitarity, entropy as
+redistribution, and the treatment of the dark sector as an Einstein residual
+rather than a new substance.
+The treatise maintains a strict four-level classification of claims:
+established physics~(EP), mathematical model~(MM), speculative
+extension~(SE), and metaphysical interpretation~(MI).
+\end{tcolorbox}
+
+\medskip\noindent
+\textbf{Keywords.}\enspace
+\begin{minipage}[t]{\dimexpr\linewidth-6.2em}
+\raggedright
+$S^3$-manifold; compact topology; ontology of space;
+$\Lambda$CDM cosmology; Hopf fibration; observer and knowability;
+dark sector residual; implicative causality; non-anthropomorphic description.
+\end{minipage}
+
+\medskip\noindent
+\textbf{MSC~2020.}\enspace
+83F05~(Cosmology);\enspace
+57N10~(Topology of 3-manifolds);\enspace
+83C05~(Einstein's equations);\enspace
+00A30~(Philosophy of mathematics);\enspace
+83C45~(Quantization of the gravitational field).
+
+\medskip\noindent
+\textbf{Acknowledgements.}\enspace
+The authors express their gratitude to the scientific community whose
+mathematical, physical, and philosophical work made the present investigation
+possible.
+
+\vspace{0.6em}
+\noindent\rule{\linewidth}{0.3pt}
+
+%% ============================================================
+%%  PAGE 3 — TABLE OF CONTENTS
+%% ============================================================
+\clearpage
+\setcounter{page}{3}
+\tableofcontents
+
+\clearpage
+
+\section{The Ontological Status of the Three-Dimensional Manifold}
+\subsection{Block 1. The Status of the Three-Dimensional Manifold: Emergence or Persistence}
+The question of whether the three-dimensional manifold emerges or persists precedes all cosmological dynamics. Any dynamical equation already presupposes a domain on which fields, metrics, states, and causal relations are defined. Therefore, prior to asking ``how does the Universe evolve?'', a more fundamental question must be posed: what exactly is regarded as the substrate of that evolution?
+
+For a three-dimensional observer, space is not an external abstraction. It is given as the condition for localization, measurement, the differentiation of events, and the construction of physical laws. Consequently, its status cannot simply be concealed within initial conditions.
+
+Two primary schemes are possible here.
+
+First: the manifold emerges. In that case, one must specify the mechanism by which the very domain of definition of physical quantities comes into being. Yet such a mechanism cannot itself be an ordinary dynamics within space, since space, within this scheme, has not yet been defined.
+
+Second: the manifold persists as a global structure. In that case, physical dynamics pertains not to the emergence of the substrate itself, but to changes in metric, field, spectral, or causal states within it.
+
+In the present treatise, the second scheme is adopted:
+\[
+M \simeq S^3
+\]
+is a global three-dimensional manifold that is not the result of a local physical process. Cosmological evolution describes not the emergence of \(M\), but the modification of structures defined on \(M\):
+\[
+g(t),\quad \Phi(t),\quad \rho(t),\quad \mathcal C(t),
+\]
+where \(g\) is the metric, \(\Phi\) the totality of fields, \(\rho\) the distribution of matter and energy, and \(\mathcal C\) the causal structure of observability.
+
+Thus, the fundamental distinction is the following:
+\[
+\text{it is not } M \text{ that emerges, but states on } M.
+\]
+This distinction must precede the equations of cosmology. Without it, the model conflates the substrate of dynamics with dynamics itself.
+
+
+
+\subsection{Block 2. The Principle of Completeness of Ontological Alternatives}
+If it is claimed that the three-dimensional manifold emerges, then the type of such emergence must be specified. The complete set of fundamental ontological alternatives is given by four cases:
+\[
+\mathcal G=\{G_s,\;G_o,\;G_{s/o},\;G_{\varnothing}\},
+\]
+where
+\[
+\begin{aligned}
+G_s &: \text{emergence from itself},\\
+G_o &: \text{emergence from an other},\\
+G_{s/o} &: \text{emergence simultaneously from itself and from an other},\\
+G_{\varnothing} &: \text{uncaused emergence}.
+\end{aligned}
+\]
+Then any claim concerning the origin of the manifold belongs to one of these classes:
+\[
+\forall G\in\Omega_G,\quad G\in\mathcal G,
+\]
+where \(\Omega_G\) denotes the set of conceivable models of emergence.
+
+This statement is not a physical theorem. It is a classification of possible ontological grounds of emergence. Every model of origin must answer the question of whether emergence depends on the object itself, on an external ground, on both simultaneously, or on nothing at all.
+
+A fifth alternative is admissible only if it is logically independent of all four classes listed above. If such independence is not demonstrated, the new scheme is merely a reformulation of one of the already defined categories.
+
+Consequently, the problem of the emergence of the manifold is not unlimited. It is closed by a finite set of fundamental ontological possibilities. Therefore, the subsequent analysis proceeds as an examination of the internal consistency of each class.
+
+\subsection{Block 3. The Impossibility of the Emergence of the Manifold from Itself}
+The hypothesis of self-emergence asserts that the manifold \(M\) serves as the ground of its own genesis:
+\[
+G_s(M):\quad M\to M.
+\]
+However, the relation of emergence presupposes logical asymmetry: the ground of emergence must be distinguishable from that which emerges. Let the relation of ontological precedence be denoted by \(\prec\). Then proper genesis requires:
+\[
+A\prec B\Rightarrow A\neq B.
+\]
+If self-emergence is assumed, we obtain:
+\[
+M\prec M.
+\]
+But the relation \(\prec\) is, by definition, antireflexive:
+\[
+\neg(M\prec M).
+\]
+Therefore, the hypothesis \(G_s\) leads to contradiction.
+
+In substantive terms, this means that for \(M\) to generate itself, it must already exist as the ground of its own emergence. Yet in that case the very act of emergence loses meaning, since the object is already given prior to its appearance.
+
+Self-causation requires the simultaneous fulfillment of incompatible conditions:
+\[
+M=\varnothing
+\quad\text{and}\quad
+M\neq\varnothing
+\]
+within the same ontological relation. Thus, the minimal distinction between cause and effect collapses.
+
+Therefore:
+\[
+G_s\Rightarrow\bot,
+\]
+where \(\bot\) denotes contradiction.
+
+
+
+\subsection{Block 4. The Problem of the Emergence of the Manifold from the Other}
+The hypothesis of emergence from the other asserts the existence of some ground \(X\), distinct from \(M\), from which the manifold emerges:
+\[
+G_o(M)\Rightarrow \exists X,(X\neq M\land X\prec M).
+\]
+However, the introduction of \(X\) is not, in itself, an explanation. The ontological status of \(X\) must also be specified. Otherwise, the problem of origin is merely displaced:
+\[
+G_o(M)\Rightarrow G(X).
+\]
+If the origin of \(X\) is left undefined, then \(X\) functions as an ungrounded ground.
+
+But even this is insufficient. If \(X\) is ontologically distinct from \(M\), one must define the mechanism of transition between different modes of being. The statement
+\[
+X\neq M\quad\land\quad X\Rightarrow M
+\]
+does not by itself establish the rule according to which one state becomes another.
+
+Therefore, a transition operator is required:
+\[
+T:X\to M,
+\]
+where \(T\) defines the law of ontological transformation. Without such an operator, origin remains a declaration rather than an explanation.
+
+This is especially important in models in which three-dimensional space is derived from a manifold of different dimensionality:
+\[
+M^n\to M^3.
+\]
+In such a case, one must rigorously define:
+\[
+T:M^n\to M^3,
+\]
+and the operator \(T\) must explain:
+
+the change of dimensionality;
+
+the preservation of causal connectedness;
+
+the preservation of topological coherence;
+
+the emergence of continuous observable physics.
+
+Otherwise, the transition between distinct spatial structures remains merely a formal designation devoid of ontological content.
+
+A mere reference to a ``more fundamental structure'' explains nothing until it is specified how that structure generates the observable three-dimensional manifold.
+
+Consequently, the hypothesis of emergence from the other simultaneously requires:
+\[
+(X\prec M)\quad\land\quad G(X)\quad\land\quad T(X\to M).
+\]
+Without this, the model remains ontologically incomplete.
+
+
+
+\subsection{Block 5. Emergence from Itself and from the Other}
+The hypothesis of joint emergence from itself and from the other combines the two preceding schemes:
+\[
+G_{s/o}(M)
+\Rightarrow
+(M\prec M)\land \exists X,(X\neq M\land X\prec M).
+\]
+Thus, it simultaneously asserts:
+
+the self-causation of the manifold;
+
+the existence of an external ground.
+
+But the combination of two problems does not constitute a solution. On the contrary, this scheme inherits the difficulties of both models.
+
+From the condition
+\[
+M\prec M
+\]
+follows the violation of the antireflexivity of the relation of emergence:
+\[
+\neg(M\prec M).
+\]
+From the condition
+\[
+\exists X,(X\neq M\land X\prec M)
+\]
+follows the necessity of explaining:
+\[
+G(X)
+\quad\text{and}\quad
+T(X\to M),
+\]
+that is, the origin of \(X\) itself and the mechanism of transition from \(X\) to \(M\).
+
+Consequently, the model \(G_{s/o}\) eliminates neither the internal contradiction of self-causation nor the incompleteness of the external ground. It merely combines them within a single construction.
+
+Logically:
+\[
+G_s\Rightarrow\bot,
+\qquad
+G_o\Rightarrow\text{incompleteness},
+\]
+therefore
+\[
+G_{s/o}\Rightarrow \bot\land \text{incompleteness}.
+\]
+In other words, the combined scheme does not constitute a new ontological category. It represents a superposition of already identified difficulties.
+
+
+
+\subsection{Block 6. The Problem of Uncaused Emergence}
+The final ontological alternative is uncaused emergence:
+\[
+G_{\varnothing}(M)
+\Rightarrow
+\neg\exists C,(C\prec M),
+\]
+where \(C\) denotes any ground or condition of emergence.
+
+This hypothesis asserts that the appearance of the manifold depends neither on cause, nor law, nor prior structure.
+
+However, the elimination of every ground creates another problem: the explanation of the determinacy of observable reality disappears.
+
+If emergence is conditioned by nothing, then no principle exists that singles out precisely this structure \(M\) among all logically possible states. In that case, one cannot explain:
+
+the stability of physical laws;
+
+the reproducibility of processes;
+
+causal connectedness;
+
+the mathematical regularity of the observable world.
+
+Formally:
+\[
+\neg\exists C,(C\prec M)
+\Rightarrow
+\neg\mathrm{Def}(M),
+\]
+where \(\mathrm{Def}(M)\) denotes the determinability of the manifold structure.
+
+Radical acausality does not imply any specific form of space. It is no less compatible with arbitrary, incoherent, or unstable states than with an ordered cosmology.
+
+Yet observable reality possesses a high degree of structural stability. There exist:
+\[
+\text{invariants},
+\quad
+\text{conservation laws},
+\quad
+\text{repeatable experiments},
+\quad
+\text{predictable dynamics}.
+\]
+For this reason, mathematical physics, unitary evolution, model computability, and scientific prediction are possible.
+
+Consequently, if the ground of the world is radically acausal, then the stability of laws itself requires additional explanation. Without such an explanation, the hypothesis of uncaused emergence remains ontologically incomplete.
+
+It is important to distinguish between two statements:
+\[
+\text{``the cause is unknown''}
+\neq
+\text{``there is no cause.''}
+\]
+The first expresses an epistemic limitation. The second is a strong ontological assertion requiring independent justification.
+
+Therefore, the hypothesis \(G_{\varnothing}\) is not eliminated by formal contradiction, as in the case of \(G_s\), but it nevertheless remains insufficient as an explanation of structurally ordered reality.
+
+
+
+\subsection{Block 7. Implicative Continuity and Interdependent Becoming}
+Following the analysis of the four alternatives, it becomes clear that the issue must concern neither self-generation, nor an ungrounded external basis, nor radical acausality, but rather an interdependent mode of persistence and manifestation of states.
+
+Interdependence does not mean that all states are identical to one another. It means that no state exists independently of the conditions of its manifestation.
+
+The fundamental form of such connectedness is expressed by implication:
+\[
+A\Rightarrow B,
+\]
+that is:
+\[
+\text{if } A \text{ is present, then } B \text{ arises.}
+\]
+In negative form:
+\[
+\neg A\Rightarrow \neg B.
+\]
+This means that the emergence of a state is determined by the presence of corresponding conditions.
+
+However, within a continuous structure of reality, the consequence does not remain a terminal point. The arisen state itself becomes the condition for subsequent states:
+\[
+A_1\Rightarrow A_2\Rightarrow A_3\Rightarrow\dots
+\]
+Thus, causality here is not a linear transmission of influence from an absolutely independent source to an absolutely independent object.
+
+Each state is simultaneously the consequence of preceding conditions and the condition for subsequent states.
+
+It is in this sense that causality is understood as interdependent becoming.
+
+The compact closure
+\[
+M\simeq S^3
+\]
+renders such a structure globally connected. Within a compact manifold, causal chains neither disappear into an infinite external background nor rupture through absolute isolation.
+
+The stability of the world is therefore determined neither by rigid predestination nor by radical randomness, but by the preservation of a continuous structure of conditioned emergence.
+
+If invariants exist,
+\[
+I(M)=\mathrm{const},
+\]
+and the coherence of transitions between states is preserved, then the sequence of implications constitutes a stable physical process.
+
+In this sense, unitary evolution may be regarded as a physical analogy of a more general principle:
+\[
+\text{when conditions are present, the state arises;}
+\]
+\[
+\text{when conditions are absent, the state does not arise.}
+\]
+Thus, the dynamics of the world is determined not by isolated entities, but by a continuous network of interdependent conditions within a compact manifold.
+
+\medskip
+\noindent\colorbox{clMeta}{\small\textbf{[MI]}} The principle of implicative continuity ($A\Rightarrow B\Rightarrow\cdots$) as the ground of causality is a philosophical thesis. It is consistent with, but not derivable from, the physical principle of unitary evolution \cite{Weinberg1995} and the Leibnizian tradition of relational causality.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Completeness, Boundarylessness, and Structural Correspondence of the \(S^3\)-Manifold}
+\subsection{Block 8. The Principle of Completeness of the \(S^3\)-Manifold}
+Since
+\[
+M\simeq S^3
+\]
+is defined as a compact, boundaryless, simply connected, and interdependently persisting three-dimensional manifold, it is regarded within the present formalism as a complete ontological structure.
+
+This means:
+\[
+\forall x:\quad \mathrm{Exist}(x)\Rightarrow x\in M.
+\]
+Everything that possesses any mode of physical, causal, or observable existence belongs to the structure \(M\).
+
+Consequently, fields, processes, observers, states, quantum configurations, geometric relations, and causal connections are not external entities with respect to the manifold. They are internal modes of its organization.
+
+If one assumes the existence of some
+\[
+y\notin M
+\]
+with an independent ontological status, then \(M\) ceases to be a complete structure and becomes merely a region within a broader foundation. In that case, one must explain the relation
+\[
+M\leftrightarrow y.
+\]
+But this returns one of the previously analyzed difficulties:
+\[
+G_o(M),
+\]
+or else requires an operator of ontological transition:
+\[
+T:y\to M.
+\]
+Without such an operator, the external ground remains unexplained.
+
+Therefore, the assumption of an external ontological object destroys the completeness of the definition of the \(S^3\)-Manifold.
+
+Since
+\[
+\partial S^3=\varnothing,
+\]
+the manifold possesses no external boundary through which it could pass into an otherness or receive existence from an external environment.
+
+Therefore:
+\[
+M\not\to \mathrm{Outside}(M).
+\]
+All changes pertain to internal states and relations:
+\[
+\Delta\mathcal R_M\subset M.
+\]
+In other words, evolution does not carry the manifold beyond itself. Configurations within \(M\) change, but no transition into an ontologically external space occurs.
+
+The completeness of \(M\) does not mean that a local observer knows the entire structure. Completeness pertains to ontology, not to local knowledge.
+\[
+\mathrm{Know}_{\mathrm{local}}(M)\subsetneq \mathrm{Struct}(M).
+\]
+Furthermore, completeness is consistent with the requirement of causal coherence and unitary evolution. If a physical state evolves unitarily,
+\[
+U^\dagger U=I,
+\]
+then the total structure of states should not arbitrarily collapse into absolute incoherence and subsequently re-emerge from it without a law of transition.
+
+The scheme
+\[
+\mathrm{NonUnitary}\to \mathrm{Unitary}\to \mathrm{NonUnitary}
+\]
+requires separate explanation:
+\[
+T_{\mathrm{NU}\to \mathrm U},
+\qquad
+T_{\mathrm U\to \mathrm{NU}}.
+\]
+Without these operators, it remains unclear:
+\[
+\text{how incoherence generates coherence,}
+\]
+\[
+\text{how non-unitarity generates unitarity,}
+\]
+\[
+\text{how randomness generates stable regularity.}
+\]
+A more coherent formulation is the following: causal coherence, interconnectedness, and structural preservation belong to the \(S^3\)-Manifold itself, rather than constituting a temporary anomaly between two states of incoherence.
+
+The resulting principle is:
+\[
+\mathrm{Reality}=\mathrm{Struct}(M).
+\]
+Everything that truly exists within the framework of the present formalism belongs to the \(S^3\)-Manifold, and all observable phenomenology is an internal manifestation of its own structure.
+
+
+
+\subsection{Block 9. The Principle of Boundarylessness and Continuous Persistence of the \(S^3\)-Manifold}
+Since
+\[
+M\simeq S^3
+\]
+is defined as a complete compact structure, it possesses no external boundary, external environment, or external container.
+
+Formally:
+\[
+\partial S^3=\varnothing.
+\]
+Boundarylessness here does not mean infinite extension within flat space \(\mathbb R^3\). It means the absence of a boundary beyond which an external ontological domain would begin.
+
+Consequently, it is not meaningful to posit an object that bounds \(M\) from outside:
+\[
+\mathrm{Outside}(M)\Rightarrow \neg \mathrm{Def}.
+\]
+There exists no external region into which \(M\) is placed, and no external space relative to which it could possess a boundary.
+
+The same applies to time. If time is understood as the order of changes of states,
+\[
+\mathrm{Time}(M)=\mathrm{Order}(\mathrm{Change}(M)),
+\]
+then time is not an external container of the manifold.
+
+More rigorously:
+\[
+\mathrm{Time}\subset \mathrm{Struct}(M),
+\]
+rather than
+\[
+M\subset \mathrm{Time}.
+\]
+Therefore, the \(S^3\)-Manifold should not be called ``eternal'' or ``non-eternal'' in the ordinary temporal sense. Such terms already presuppose an external temporal scale. More precisely, time arises as the internal order of changes of states within \(M\).
+
+Internal dynamics generates the observable flow of time:
+\[
+\Delta \mathrm{State}(M)\Rightarrow \mathrm{TimeFlow}.
+\]
+Thus, change pertains not to the transition of the manifold into an external otherness, but to the transformation of its internal states:
+\[
+\Delta\mathcal R_M\subset M.
+\]
+If \(M\) had been created from outside, an external ground would be required:
+\[
+X\to M.
+\]
+But this returns the already analyzed problem of emergence from the other and requires a transition operator:
+\[
+T:X\to M.
+\]
+If, on the other hand, one assumes the destruction of \(M\), then a state of absolute non-being into which it transitions would be required. But absolute non-being contains no conditions for transition:
+\[
+\mathrm{NonBeing}\Rightarrow \neg \mathrm{Transition}.
+\]
+Therefore, neither emergence nor annihilation can be derived from absolute absence.
+
+Thus, the \(S^3\)-Manifold neither arises from nothing nor disappears into nothing. Its continuity expresses the absence of any external condition capable of generating or terminating the structure itself.
+
+Formally:
+\[
+\nexists\, t :\; M(t)=\varnothing.
+\]
+This does not mean that all internal states are unchanging. On the contrary, density, phase, causal coherence, field distributions, and local configurations do change. Yet the manifold itself does not pass into absolute absence.
+
+The resulting principle is:
+\[
+\mathrm{Boundary}(M)=\varnothing,
+\qquad
+\mathrm{Time}\subset \mathrm{Struct}(M),
+\qquad
+\nexists\, t :\; M(t)=\varnothing.
+\]
+The \(S^3\)-Manifold persists as a compact, boundaryless, and causally coherent structure within which local processes, rhythms, states, and observable temporal relations arise.
+
+
+
+
+
+
+
+\subsection{Block 10. The Principle of Invariance of the \(S^3\)-Manifold}
+Since
+\[
+M\simeq S^3
+\]
+is defined as a complete, compact, simply connected, and boundaryless structure, the manifold itself does not change relative to its own topological class.
+
+Any change requires a distinction between states relative to some basis of comparison. But for \(M\) there exists no external environment relative to which it could become ``other,'' ``larger,'' ``smaller,'' or transition into a different ontological regime.
+
+Consequently, changes pertain only to the internal states of the manifold, not to its fundamental topological class.
+
+Formally:
+\[
+\mathrm{Class}(M)=\mathrm{const}.
+\]
+At the same time, internal transformations remain possible:
+\[
+\Delta\mathcal R_M\subset M,
+\]
+where \(\mathcal R_M\) denotes the totality of internal relations and states.
+
+Therefore:
+\[
+\Delta\mathrm{State}(M)\neq \Delta\mathrm{Class}(M).
+\]
+Fields, densities, phases, rhythms, and local configurations change, but the structural identity of the manifold itself does not.
+
+An observer,
+\[
+\mathrm{Obs}\subset M,
+\]
+may interpret local regimes of dynamics as the ``beginning of the Universe,'' the ``end of the Universe,'' a ``singularity,'' or ``heat death.'' However, such descriptions pertain to internal states:
+\[
+\mathrm{State}_i(M),
+\]
+rather than to the destruction or emergence of \(M\) itself.
+
+Therefore:
+\[
+\text{singularity}
+\neq
+\text{the absolute emergence of } M,
+\]
+\[
+\text{heat death}
+\neq
+\text{the annihilation of } M.
+\]
+Since
+\[
+\partial S^3=\varnothing,
+\]
+the \(S^3\)-Manifold cannot ``expand outward'' relative to an external space. Likewise, because
+\[
+\mathrm{Time}\subset \mathrm{Struct}(M),
+\]
+the manifold itself does not change ``in time'' as though time were an external container.
+
+Time pertains to the internal order of changes of states:
+\[
+\mathrm{Time}(M)=\mathrm{Order}(\mathrm{Change}(M)).
+\]
+Thus, internal dynamics is compatible with the global invariance of the topological class.
+
+For this reason:
+\[
+\mathrm{Motion}(M)\in \mathrm{Struct}(M).
+\]
+Motion does not destroy the structure, but expresses the mode of preservation of its internal coherence.
+
+From this it follows that:
+
+rhythm does not destroy wholeness;
+
+polarity does not generate an external otherness;
+
+local dynamics does not alter the fundamental nature of \(M\).
+
+Therefore, there exists no transition operator
+\[
+T:M\to Y,
+\qquad
+Y\neq M,
+\]
+that would transfer the manifold into another ontological class.
+
+The resulting principle is:
+\[
+\mathrm{Class}(M)=\mathrm{const},
+\qquad
+\Delta\mathrm{State}(M)\neq \Delta\mathrm{Class}(M).
+\]
+The \(S^3\)-Manifold persists as an invariant topological foundation within which all local processes, rhythms, causal transitions, and observable forms of dynamics occur.
+
+
+
+
+
+
+
+
+
+
+
+\subsection{Block 11. The Axiom of Structural Correspondence}
+Since
+\[
+M\simeq S^3
+\]
+is regarded as a unified compact three-dimensional manifold, no local region is ontologically separated from the general structure \(M\).
+
+For any regions
+\[
+U,V\subset M
+\]
+the following holds:
+\[
+U\in M,
+\qquad
+V\in M.
+\]
+Consequently, distinctions between regions of the manifold are determined not by differences of substance, but by differences of:
+
+position;
+
+scale;
+
+local geometry;
+
+distributions of states and fields.
+
+Formally:
+\[
+\forall U,V\subset M:\quad
+\mathrm{Sub}(U)=\mathrm{Sub}(V)=\mathrm{Sub}(M).
+\]
+This means that all local regions belong to one and the same structural totality.
+
+Therefore, oppositions such as
+\[
+\text{local / global},
+\quad
+\text{micro / macro},
+\quad
+\text{center / periphery}
+\]
+do not represent divisions between independent realities. They express different modes of description of one and the same manifold.
+
+From this follows the principle of structural correspondence:
+\[
+\mathrm{Loc}(M)\Longrightarrow \mathrm{Info}(M).
+\]
+That is, local investigation may contain information about the global properties of the structure.
+
+The very possibility of physics and cosmology is grounded in this principle. An observer never possesses direct access to the entirety of the manifold; nevertheless, local measurements permit the reconstruction of:
+
+global geometry;
+
+causal structure;
+
+spectral properties;
+
+cosmological dynamics.
+
+Modern cosmology already operates on the basis of this principle. Since the speed of light is finite,
+\[
+c<\infty,
+\]
+the observer always receives information with temporal delay. Consequently, the observable Universe is not a direct perception of ``everything as it exists now,'' but a reconstruction based on incoming radiation.
+
+For this reason, cosmological models are constructed on the basis of:
+
+the cosmic microwave background;
+
+redshift;
+
+spectral distributions;
+
+astrophysical and geological remnants;
+
+the distribution of matter and energy.
+
+Formally, the observable domain may be denoted as
+\[
+D_{\mathrm{obs}}\subset M.
+\]
+But the finiteness of the observable domain does not automatically imply:
+\[
+D_{\mathrm{obs}}=M.
+\]
+Therefore, the locally observable region need not coincide with the entire structure of the manifold.
+
+Within the compact model
+\[
+M\simeq S^3
+\]
+the extrapolation toward states of extreme density or extreme curvature need not be interpreted as the absolute emergence of space from non-being. Such limits may instead describe extreme geometrical states within an already existing manifold.
+
+Therefore:
+\[
+\text{singular extrapolation}
+\neq
+\text{proof of an absolute beginning}.
+\]
+Consequently, the transition from the local to the global is not a mystical analogy, but a consequence of the belonging of all regions to a unified topological structure.
+
+The global manifests through local states, while local states acquire meaning within the global structure:
+\[
+\mathrm{Global}(M)
+\subset
+\mathrm{Relations}\bigl(\mathrm{Loc}(M)\bigr).
+\]
+Thus, the local and the global are not different realities, but interrelated levels of description of one and the same compact three-dimensional manifold.
+
+\medskip
+\noindent\colorbox{clModel}{\small\textbf{[MM]}} The structural correspondence $\mathrm{Loc}(M)\Rightarrow\mathrm{Info}(M)$ is formalised as the injectivity of the restriction map from global to local data on a compact manifold; its physical content is the basis of observational cosmology \cite{Peebles1993,Ryden2003}.
+\noindent\colorbox{clSpec}{\small\textbf{[SE]}} The specific claim that the singular limit of FLRW backward evolution describes a geometrical state of $M$ rather than its absolute origin is a speculative reinterpretation pending a quantum-gravity account of the Planck regime \cite{Isham1993,Penrose2004}.
+
+
+
+\section{The Observer and Knowability}
+\subsection{Block 12. The Principle of Non-Objecthood and Limited Observability of the \(S^3\)-Manifold}
+An observer within the \(S^3\)-Manifold cannot occupy an external position with respect to the manifold itself.
+
+If the observer belongs to the structure,
+\[
+\mathrm{Obs}\subset M,
+\]
+then it is impossible to construct a physically definable position
+\[
+\mathrm{Obs}\not\subset M,
+\]
+from which the entire manifold would be given as an external object of observation.
+
+Consequently,
+\[
+M\simeq S^3
+\]
+cannot be fully objectified from within the structure itself.
+
+This does not imply the existence of a ``hidden object'' outside the world. On the contrary, space, time, motion, causality, and observation arise as modes of differentiating states within the manifold itself.
+
+Therefore, the ground of reality is understood here not as an external object, but as a non-objective structure of interrelated manifestations.
+
+The local observer is always limited by their own domain of causal accessibility. Let
+\[
+\mathrm{Obs}(M,t)\subset M
+\]
+denote the region causally accessible to the observer at time \(t\). Then:
+\[
+\mathrm{Obs}(M,t)\neq M.
+\]
+This limitation is determined by the light structure of spacetime:
+\[
+ds^2=0.
+\]
+The light horizon is therefore not a boundary of the existence of the manifold, but a boundary of local causal accessibility.
+
+Consequently, beyond the observable horizon there is not necessarily an ``other reality.'' Rather, the same interrelated \(S^3\)-Manifold continues there, not yet included within the current domain of coherent observation.
+
+It is important to distinguish:
+\[
+\text{limit of observability}
+\neq
+\text{limit of the manifold}.
+\]
+In the compact model:
+\[
+\partial S^3=\varnothing.
+\]
+The \(S^3\) has no external edge. Therefore, the question
+\[
+\text{``what is outside } S^3\text{?''}
+\]
+loses strict categorical meaning, since the very concepts of ``outside,'' ``existence,'' ``non-existence,'' and ``observability'' are defined only within the structure of distinctions of the manifold itself.
+
+Therefore, neither existence nor non-existence can be correctly attributed to the ``outside'':
+\[
+\mathrm{Outside}(M)\Rightarrow \neg\mathrm{Def}.
+\]
+In other words, beyond the structure of distinction, the very categories of ontological description lose definability.
+
+This also means that the incompleteness of local observation does not indicate incompleteness of the manifold itself.
+
+Light within the \(S^3\)-Manifold performs a dual function:
+\[
+c=\text{the local limit of causal transmission},
+\]
+but at the same time,
+\[
+\mathrm{Coherence}(M)
+\]
+supports the global connectedness of the compact structure.
+
+Therefore, the local limitation of the observer is compatible with the global coherence of the manifold.
+
+The unitarity of quantum evolution,
+\[
+U^\dagger U=I,
+\]
+also expresses the principle of continuity of the structure of states. Information need not remain locally accessible, but evolution preserves the connectedness of states within the complete system.
+
+Consequently, interdependent manifestation within the \(S^3\)-Manifold is not a transition from absolute non-being into being. It is a continuous unfolding of local states within an already existing interrelated structure.
+
+The resulting thesis is:
+\[
+\text{the observable does not exhaust the manifold,}
+\]
+\[
+\text{but neither does it exist outside it.}
+\]
+Thus, non-objecthood does not mean a mystical hidden reality, but the impossibility of a complete external description of the structure from within the structure itself.
+
+
+
+\subsection{Block 13. The Principle of Incomplete Knowability of the \(S^3\)-Manifold}
+Since
+\[
+M\simeq S^3
+\]
+is understood as a compact, boundaryless, simply connected, and interdependent three-dimensional manifold, it cannot be fully objectified by a local observer.
+
+The reason is simple: the observer is part of the manifold itself:
+\[
+\mathrm{Obs}\subset M.
+\]
+Consequently, the observer does not occupy an external position:
+\[
+\mathrm{Obs}\not\subset M
+\]
+is physically unattainable as a condition for a complete external description.
+
+Therefore, \(M\) cannot be given to the observer as a completed external object.
+
+Moreover, observation is limited by causal accessibility. Since the transmission of physical influence is limited by the speed of light,
+\[
+v_{\mathrm{signal}}\leq c,
+\]
+the local observer encompasses only a finite region:
+\[
+\mathrm{Obs}(M,t)\subset M.
+\]
+Even if compact geometry contains a finite causal diameter,
+\[
+D_c=\pi R,
+\]
+this does not mean that the entire manifold can be localized as one fully given object of observation.
+
+Therefore:
+\[
+\mathrm{Obs}(M,t)\neq M.
+\]
+The global structure of the \(S^3\)-Manifold always exceeds any local domain of observation.
+
+Incomplete knowability is also connected with the dynamic nature of the manifold. Motion belongs to its structure:
+\[
+\mathrm{Motion}(M)\in \mathrm{Struct}(M).
+\]
+Therefore, local states should not be understood as absolutely motionless entities. More precisely, one should write not
+\[
+\forall x\in M:\frac{\partial x}{\partial t}\neq 0,
+\]
+but rather
+\[
+\frac{\partial \mathcal R_M}{\partial t}\neq 0,
+\]
+where \(\mathcal R_M\) denotes the totality of observable relations within the manifold.
+
+If an object is defined as a fully localized and unchanging state,
+\[
+\mathrm{Obj}(x)\Rightarrow \frac{\partial x}{\partial t}=0,
+\]
+then such a definition is an idealization. Within the interdependent \(S^3\)-Manifold, a physical state is determined not by isolated self-identity, but by relations, changes, and causal inclusion.
+
+Consequently, no local region can be finally fixed as a completely independent and immutable object.
+
+Incomprehensibility here does not mean mystical inaccessibility. It means the structural impossibility of fully encompassing the manifold from within the manifold itself.
+
+The reasons are:
+\[
+\mathrm{Obs}\subset M,
+\]
+\[
+\mathrm{Obs}(M,t)\neq M,
+\]
+\[
+v_{\mathrm{signal}}\leq c,
+\]
+\[
+\partial S^3=\varnothing,
+\]
+\[
+\frac{\partial \mathcal R_M}{\partial t}\neq 0.
+\]
+That is, the observer is local, causal accessibility is finite, no external position exists, and the states of the manifold are dynamic.
+
+Therefore, the \(S^3\)-Manifold cannot be fully exhausted by perception, measurement, or any finite system of concepts.
+
+The resulting formula is:
+\[
+\mathrm{Know}_{\mathrm{local}}(M)
+\subsetneq
+\mathrm{Struct}(M).
+\]
+Local knowledge may be true, precise, and mathematically rigorous, but it is not identical to the complete structure of the manifold.
+
+
+
+\subsection{Block 14. The Phenomenology of the Present}
+For the observer, the three-dimensional manifold is given as the fullness of the present. The past and the future are not observed directly; they are reconstructed relative to the current state of observation.
+
+Even modern cosmology is based precisely on this principle. Since the speed of light is finite,
+\[
+c < \infty,
+\]
+the observer never perceives objects ``as they are now'' in an absolute sense. The observer always registers the state of radiation that has arrived from the past.
+
+Therefore, the cosmological picture of the Universe is constructed as a reconstruction:
+
+from the cosmic microwave background;
+
+from the redshift of galaxies;
+
+from spectral lines;
+
+from geological and astrophysical remnants;
+
+from the distribution of matter and radiation.
+
+In other words, the past is not given directly. It is inferred from structures present in actual observation.
+
+Formally:
+\[
+\mathrm{Past}(M)
+\subset
+\mathrm{Reconstruction}(t_n).
+\]
+The future is likewise not observed directly. For the observer, it exists as a set of projected or probabilistic states:
+\[
+\mathrm{Future}(M)
+\subset
+\mathrm{Prediction}(t_n).
+\]
+Consequently, only the present state is directly given:
+\[
+t_n \in \mathrm{Present}(M).
+\]
+Therefore, motion should be described not as a transition between independently existing domains of past and future, but as a sequence of actual states:
+\[
+t_n \longrightarrow t_{n+1}.
+\]
+Each state contains:
+
+traces of the reconstructed past;
+
+conditions of the probabilistic future;
+
+the immediate fullness of present observation.
+
+Even when temporal parametrization is introduced, the three-dimensional manifold preserves the fullness of its givenness for the observer. Time then functions not as a separate substance, but as the order of differentiation of successive states:
+\[
+\{t_n\}_{n\in\mathbb{Z}}.
+\]
+Thus, the past conceptually unfolds from the present through reconstruction, while the future unfolds through the probabilistic continuation of current conditions. What is directly observed, however, is only the actual state of the manifold.
+
+
+
+\section{Dynamics and Causal Coherence}
+\subsection{Block 15. The Principle of Continuous Motion and Structural Dynamics}
+Within the \(S^3\)-Manifold, absolute rest is not a physically definable state.
+
+This does not mean that every object must move mechanically relative to every observer. The claim is more precise: the complete absence of change would eliminate the distinguishability of states, causality, time, and observability.
+
+Let
+\[
+x\in M
+\]
+denote a local state of the manifold. The state \(x\) is not defined in isolation, but through relations to other states:
+\[
+x\sim\{x_i\}.
+\]
+If all relations are unchanged,
+\[
+\frac{\partial \mathcal R}{\partial t}=0,
+\]
+where \(\mathcal R\) denotes the totality of structural relations, then the distinguishability of successive states disappears:
+\[
+x(t_1)=x(t_2)\Rightarrow \Delta x=0.
+\]
+But if there is no distinguishability of states, then neither motion, nor time, nor causal sequence can be defined. Therefore, the observable manifold requires nonzero structural variability:
+\[
+\mathrm{Obs}(M)\Rightarrow \Delta \mathcal R\neq 0.
+\]
+In standard cosmology, this is expressed through the dynamics of scale:
+\[
+ds^2=-c^2dt^2+a^2(t)d\Sigma_k^2,
+\]
+where $a(t)$ is the scale factor. For a dynamic universe,
+\[
+\dot a(t)\neq 0,
+\]
+and the expansion rate is given by the Hubble parameter:
+\[
+H(t)=\frac{\dot a(t)}{a(t)}.
+\]
+Thus, even the geometry of the observable Universe is described not as a motionless stage, but as a dynamic structure.
+
+In relativistic physics, absolute rest is likewise absent. A state of rest is always relative to a chosen reference frame. There is no privileged global frame relative to which all reality could be declared motionless.
+
+In quantum theory, the complete elimination of dynamics is also impossible. The canonical uncertainty relation
+\[
+\Delta x,\Delta p\geq \frac{\hbar}{2}
+\]
+forbids the simultaneous absolute fixation of position and momentum. For an oscillator mode of a field, the minimal energy is not zero:
+\[
+E_0=\frac{1}{2}\hbar\omega.
+\]
+Quantum field theory is built precisely upon this: the field is not a dead substance. It decomposes into modes, each of which possesses quantum dynamics:
+\[
+\hat\phi(x)=
+\sum_k
+\left(
+a_k u_k(x)+a_k^\dagger u_k^*(x)
+\right).
+\]
+Even the vacuum state is defined not by the absence of structure, but by the minimal state of the field:
+\[
+a_k|0\rangle=0,
+\qquad
+\langle 0|\hat\phi^2|0\rangle\neq 0.
+\]
+Therefore, the ``vacuum'' in quantum field theory is not absolute emptiness, but a state with nonzero correlations.
+
+
+
+\subsection{Block 16. The Uniqueness of Symmetry and Continuous Motion in the \(S^3\)-Manifold}
+Among spherical manifolds, \(S^3\) possesses a special topological property: it admits globally continuous nonzero tangent fields over the entire manifold.
+
+For the two-dimensional sphere
+\[
+S^2
+\]
+this is impossible. The hairy ball theorem \cite{Milnor1956} states that on \(S^2\), every continuous tangent vector field must have a point of degeneracy:
+\[
+\forall V\in \Gamma(TS^2),
+\quad
+\exists p\in S^2:
+\quad
+V(p)=0.
+\]
+Therefore, on \(S^2\) it is impossible to define a global continuous flow without singularities.
+
+For \(S^3\), the situation is fundamentally different. The three-sphere is a parallelizable manifold \cite{Hatcher2002}:
+\[
+TS^3\simeq S^3\times \mathbb R^3.
+\]
+Moreover,
+\[
+S^3\simeq SU(2),
+\]
+that is, \(S^3\) also possesses the structure of a Lie group \cite{Thurston1997}. This makes it possible to define globally continuous nonzero tangent fields over the entire manifold.
+
+Consequently, continuous motion in the \(S^3\)-Manifold is not an accidental property of local physical objects. It is structurally permitted by the topology of the manifold itself.
+
+In this sense, motion is compatible with global symmetry rather than destructive of it.
+
+Let
+\[
+\Phi_t:M\to M
+\]
+denote a flow of states on the manifold. Then evolution may proceed continuously without topological rupture of the structure:
+\[
+\Phi_t\in \mathrm{Diff}(M),
+\qquad
+\Phi_{t+s}=\Phi_t\circ\Phi_s.
+\]
+Local changes of states do not destroy the wholeness of the manifold, because the topology itself permits the continuous redistribution of configurations.
+
+Therefore, motion within the \(S^3\)-Manifold should be understood not as the opposite of symmetry, but as a form of preserving symmetry through continuous dynamics.
+
+For this reason, dynamism here does not mean a chaotic violation of structure. On the contrary, continuous motion sustains the coherence of states within the compact manifold.
+
+In this sense, ``vibration'' means:
+\[
+\text{the continuous dynamic self-consistency of } M.
+\]
+That is, observable variability arises not in spite of the symmetry of the manifold, but because of the topological conditions that the structure \(S^3\) itself admits globally.
+
+
+
+Corollary to Block 16. The Non-Constancy of Local States
+
+If
+\[
+M\simeq S^3
+\]
+is understood as an interdependently persisting manifold, then its local states cannot be absolutely isolated and finally fixed.
+
+More precisely, one should not write
+\[
+\forall x\in M:\frac{\partial x}{\partial t}\neq 0,
+\]
+since a point of the manifold itself is not required to ``move.'' More rigorously:
+\[
+\frac{\partial \mathcal R}{\partial t}\neq 0
+\]
+for the totality of observable relations \(\mathcal R\) within \(M\).
+
+Consequently, non-constancy does not mean the chaotic alteration of every point, but the nonzero variability of states, relations, and configurations:
+\[
+\mathrm{Motion}(M)\in \mathrm{Struct}(M).
+\]
+That is, motion belongs not only to objects inside space, but also to the very structure of observability. The complete elimination of motion would destroy distinguishability, causality, temporal order, and physical definability.
+
+Therefore, ``vibration'' in the present treatise means:
+\[
+\text{the continuous variability of local states while preserving the global coherence of } S^3.
+\]
+\subsection{Block 17. Light as the Limit of Causal Coherence}
+The theory of relativity excludes absolute rest. Motion is not a property of an object in itself; it is defined only relative to another state or observer:
+\[
+v=v(A,B).
+\]
+If the correlation between \(A\) and \(B\) is absent, then velocity becomes undefinable:
+\[
+\neg\mathrm{Corr}(A,B)\Rightarrow \neg\mathrm{Def}(v).
+\]
+Therefore, motion is not an absolute state, but a relation between states.
+
+In the compact geometry
+\[
+S^3_R\times \mathbb R
+\]
+the speed of light \(c\) functions not only as a physical constant, but also as a limiting parameter of causal connectedness. It sets the maximal speed of causal influence and information transfer between local regions of the manifold.
+
+For a three-sphere of radius \(R\), the maximal geodesic distance is
+\[
+D_c=\pi R.
+\]
+Then the minimal scale of complete causal accessibility between maximally separated regions is given by
+\[
+t_{\mathrm{coh}}=\frac{\pi R}{c}.
+\]
+This does not mean that \(c\) is derived from topology. More precisely:
+\[
+c\not\Leftarrow \mathrm{Top}(S^3).
+\]
+The speed of light is a physical parameter that converts the geometric diameter of compact space into a causal temporal scale.
+
+Consequently, \(c\) may be understood as the limit of causal coherence within the \(S^3\)-Manifold:
+\[
+c=\lim v_{\mathrm{causal}}.
+\]
+Since \(S^3\) is compact and boundaryless, the global connectedness of the manifold is compatible with the local restrictions of the light cone. Causality does not become instantaneous; it remains locally bounded:
+\[
+ds^2=0
+\]
+for lightlike trajectories.
+
+But the globally finite diameter means that causal accessibility has a finite limiting scale.
+
+Let us introduce the coefficient of causal accessibility:
+\[
+\Gamma(T)\in[0,1],
+\]
+where \(\Gamma(T)\) denotes the fraction of the manifold causally accessible within time \(T\). Then, in the idealized compact model:
+\[
+\Gamma(T)\to 1
+\quad\text{as}\quad
+T\to \frac{\pi R}{c}.
+\]
+This means that no region of the \(S^3\)-Manifold is ontologically external to another region, although local causal transmission is always limited by the speed of light.
+
+Therefore, motion and causality within the \(S^3\)-Manifold possess a dual character:
+\[
+\text{local limitation}
+\quad+\quad
+\text{global connectedness}.
+\]
+From this follows the structural impossibility of the complete isolation of a local state. If
+\[
+x\subset M,
+\]
+then \(x\) cannot be defined as absolutely independent of \(M\):
+\[
+x\subset M\Rightarrow x\leftrightarrow M.
+\]
+Every measurement is a partial selection of a state within a broader interdependent structure.
+
+Here a connection with the uncertainty principle arises. Quantum uncertainty is not determined directly by topology, but by the noncommutativity of conjugate observables:
+\[
+\Delta x,\Delta p\geq \frac{\hbar}{2}.
+\]
+Yet the topological non-isolability of a local state agrees with the same general conclusion: a state cannot be absolutely fixed as a completely independent point of being.
+
+Therefore, the principle of continuous motion and the uncertainty principle converge in one structural thesis:
+\[
+\text{the observed state is always partial, relative, and dynamically included.}
+\]
+In this sense, ``vibration'' does not mean chaotic oscillation, but the continuous causal and structural involvement of every local state in the wholeness of the \(S^3\)-Manifold.
+
+
+
+
+
+
+
+
+
+
+
+\subsection{Block 18. The Principle of Cause and Effect in the \(S^3\)-Manifold}
+The principle of cause and effect in the \(S^3\)-Manifold expresses the continuity of interrelated states within a compact, causally coherent manifold.
+
+Cause and effect are not two absolutely independent entities. They are successive phases of one process of state evolution.
+
+Let
+\[
+S_n
+\]
+denote the state of the system. Then:
+\[
+S_n\to S_{n+1},
+\]
+but at the same time
+\[
+S_n=F(S_{n-1}),
+\]
+where \(F\) defines the law of transition between states.
+
+Consequently, the current state is always:
+
+the effect of preceding states;
+
+the condition of subsequent states.
+
+Causality is understood here not as a single mechanical push, but as the continuous evolution of interrelated configurations.
+
+In ordinary perception, the cause is localized in the past and the effect in the future. But within a continuous structure:
+\[
+C\to E,
+\qquad
+E\to C',
+\]
+that is, every effect becomes the cause of a further state.
+
+Therefore, there is no absolute rupture between cause and effect.
+
+In physics, this transition is limited by the speed of causal transmission. In a relativistic structure, interactions propagate within the light cone:
+\[
+ds^2=0.
+\]
+The speed of light \(c\) sets the limiting speed of causal coherence:
+\[
+v_{\mathrm{causal}}\leq c.
+\]
+The cause does not ``teleport'' the effect; between them there is a continuous process of state transmission.
+
+Quantum theory additionally requires the unitarity of evolution:
+\[
+U^\dagger U=I.
+\]
+The state changes through a continuous transformation:
+\[
+|\Psi(t_2)\rangle
+=
+U(t_2,t_1)|\Psi(t_1)\rangle.
+\]
+Therefore, the future state does not arise independently of the previous one. It is a transformation of the preceding configuration.
+
+At the same time, unitarity does not mean rigid predetermination. The quantum state evolves through a superposition of probability amplitudes:
+\[
+|\Psi\rangle=\sum_i c_i|i\rangle.
+\]
+Therefore, quantum uncertainty does not destroy causality; it makes causal evolution probabilistic in the distribution of states.
+
+In the compact manifold
+\[
+M\simeq S^3
+\]
+causality possesses global connectedness. Since
+\[
+\pi_1(S^3)=0,
+\]
+the manifold contains no topological ruptures of connectedness. Compactness also means that a local change does not disappear into an external infinity.
+
+Therefore:
+\[
+\delta x\Rightarrow \delta \mathcal R_M,
+\]
+where \(\mathcal R_M\) denotes the distribution of relations within \(M\).
+
+Causality is therefore not a linear chain of independent events, but a network of interrelated transitions within a unified structure.
+
+The phase evolution of a quantum state also expresses the continuity of causal becoming:
+\[
+\Psi=Ae^{i\Theta},
+\]
+where
+\[
+\frac{d\Theta}{dt}=\omega.
+\]
+Without continuous phase transition, it is impossible to define the distinguishability of states, temporal order, and observable dynamics.
+
+In the Hopf fibration \cite{Hopf1931}
+\[
+S^1\hookrightarrow S^3\to S^2
+\]
+local phase is connected with the global structure of the space of states. Therefore, phase change is not a completely isolated local event.
+
+This does not imply superluminal signal transmission. Quantum correlations may be structurally nonlocal while preserving operational locality:
+\[
+v_{\mathrm{signal}}\leq c.
+\]
+Thus, causality in the \(S^3\)-Manifold simultaneously possesses:
+
+continuity;
+
+unitarity;
+
+phase connectedness;
+
+local lightlike limitation;
+
+global structural coherence.
+
+The resulting principle may be expressed as follows:
+\[
+\mathrm{Cause}(S_n)\subset S_{n+1},
+\qquad
+S_{n+1}\subset \mathrm{Cause}(S_{n+2}).
+\]
+Cause and effect are inseparable as successive states of a single process.
+
+Therefore, causality is not an external law imposed upon the Universe, but a form of the continuous existence of the interrelated \(S^3\)-Manifold.
+
+
+
+\section{Polarity and Rhythm}
+\subsection{Block 19. The Principle of Polarity and Limiting Coherence in the \(S^3\)-Manifold}
+Polarity within the \(S^3\)-Manifold does not signify the existence of two independent opposing substances, but rather the presence of interdependent limiting states within a single structure.
+
+Opposites are not autonomous entities. They represent extreme values of a continuous spectrum of states:
+\[
+P(\alpha),\qquad \alpha\in[-1,1],
+\]
+where
+\[
+P^- = P(-1),\qquad P^+ = P(1).
+\]
+Consequently, a polar pair is defined not as a rupture,
+\[
+P^-\not\perp P^+,
+\]
+but as an internal differentiation within one domain of states:
+\[
+P^-,P^+\in\{P(\alpha)\}.
+\]
+Thus, heat and cold, motion and rest, local and global, observable and unobservable are not independent worlds, but limiting regimes of a single relation.
+
+In the compact manifold
+\[
+M\simeq S^3
+\]
+polarity is intensified by the finite causal accessibility of the observer. The observer does not encompass the entire structure simultaneously:
+\[
+D_{\mathrm{obs}}(t)\subset M.
+\]
+Hence there arise the pairs:
+\begin{gather*}
+\text{local / global},\quad
+\text{observable / unobservable},\\
+\text{actual / potential},\quad
+\text{determinate / indeterminate}.
+\end{gather*}
+These distinctions are not errors of perception. They express the finiteness of the local position within a compact structure.
+
+Since \(S^3\) is compact and boundaryless, maximal separation does not imply absolute disconnection. Geodesic motion remains within the same manifold:
+\[
+\gamma(t)\subset M.
+\]
+In a closed geometry, extreme regions remain connected through a common topological wholeness. Therefore, the expression ``extremes converge'' should be understood rigorously: limiting differences remain differences within one structure, rather than transitions into absolute externality.
+
+The same applies to existence and non-existence. A local state possesses neither absolute self-being independent of conditions, nor pure nothingness. Its status is determined by causal and observational conditions:
+\[
+\mathrm{Exist}(x)=f(C,t,\mathrm{Obs}),
+\]
+where \(C\) denotes the totality of conditions, \(t\) the state parameter, and \(\mathrm{Obs}\) the mode of observability.
+
+Consequently,
+\[
+\text{absolute being}
+\quad\text{and}\quad
+\text{absolute non-being}
+\]
+are limiting abstractions rather than physically observable states.
+
+Local truth is likewise partial, since every proposition is formed within a limited observational domain:
+\[
+\mathrm{Obs}(x)\subset M.
+\]
+Therefore, it is more precise to write:
+\[
+\mathrm{Truth}(P)=f(C,t,\mathrm{Obs},S),
+\]
+where \(S\) denotes the descriptive system. This does not deny truth; rather, it means that a local description does not exhaust the complete structure of the manifold.
+
+At this point, one may cautiously draw an analogy with the limitations of formal systems: a system is not always capable of fully closing its own description from within itself. However, this is an analogy, not a direct proof of the cosmological thesis.
+
+Thus, the principle of polarity in the \(S^3\)-Manifold asserts:
+\[
+\text{opposites are limiting regimes of a unified interdependent structure.}
+\]
+Polarity does not destroy the unity of the manifold. It expresses the mode of its internal differentiation while preserving compactness, causal limitation, and global connectedness.
+
+
+
+\subsection{Block 20. The Principle of Rhythm in the \(S^3\)-Manifold}
+The principle of rhythm follows from the three previously introduced principles: polarity, continuous motion, and causal coherence.
+
+If within
+\[
+M\simeq S^3
+\]
+there exist limiting regimes
+\[
+P^-,
+\qquad
+P^+,
+\]
+and motion is an internal property of the structure, then the transition between poles is not arbitrary. It possesses measure, phase, amplitude, and order.
+
+Rhythm is the ordered form of transition between interdependent limiting states.
+
+Formally, a polar state may be written as
+\[
+P(t)\in[P^-,P^+].
+\]
+The simplest periodic form is:
+
+\[
+P(t)=A\sin(\omega t+\varphi)
+\]
+
+where \(A\) is the amplitude, \(\omega\) the frequency, and \(\varphi\) the phase.
+
+This does not imply that every dynamics must be sinusoidal. The sine function serves here only as a minimal model of ordered oscillatory transition.
+
+More generally:
+\[
+P(t)=F(A,\omega,\varphi,t),
+\]
+where \(F\) defines the law of state variation.
+
+Within the structure of \(S^3\), rhythm possesses a natural geometrical foundation. Since
+\[
+S^3\simeq SU(2),
+\]
+and also admits the Hopf fibration
+\[
+S^1\hookrightarrow S^3\to S^2,
+\]
+phase variation in \(S^1\) is not separated from the directional structure of the base \(S^2\). Phase, direction, and the wholeness of the state are connected within one topological organization.
+
+Therefore, rhythm in the \(S^3\)-Manifold may be understood as phase-directional dynamics within a compact structure.
+
+Quantum field theory provides a physical language for this idea. A field state is not a motionless object; it is described through modes, amplitudes, phases, and frequencies. The wave function takes the form:
+\[
+\Psi=Ae^{i\Theta},
+\]
+where \(A\) determines the amplitude aspect of the state and \(\Theta\) its phase aspect.
+
+Consequently, a physically definable state includes not only ``what exists,'' but also ``how it changes'':
+
+amplitude;
+
+phase;
+
+frequency;
+
+law of evolution.
+
+On the cosmological scale, the state of the manifold may analogously be written as
+\[
+\Psi_M(t)=A(t)e^{i\Theta(t)}.
+\]
+Here $A(t)$ expresses the intensity, density, or amplitude aspect of the state, while \(\Theta(t)\) expresses the phase aspect of its transformation.
+
+However, this should be understood as a model language rather than as proof that the entire manifold literally constitutes a single wave function.
+
+In a compact interdependent manifold, local variation does not disappear into an external infinity. It remains included within the general structure of relations:
+\[
+\delta x(t)\Rightarrow \delta\mathcal R_M(t),
+\]
+where \(\mathcal R_M\) denotes the distribution of relations within \(M\).
+
+Therefore, local dynamics requires global coordination. This is the compensatory meaning of rhythm: the change of one region enters into the redistribution of the entire structure.
+
+The relation to time may be expressed as follows:
+\[
+\mathrm{Time}(M)=\mathrm{Order}(\mathrm{Change}(M)),
+\]
+\[
+\mathrm{Rhythm}(M)=\mathrm{Measure}(\mathrm{Change}(M)).
+\]
+Time establishes the order of change; rhythm establishes its measure.
+
+Consequently, rhythm is not an external ornament of physics. It expresses the ordered character of transitions within a dynamic manifold.
+
+The resulting formula is:
+\[
+\mathrm{Rhythm}(M)\in \mathrm{Struct}(M).
+\]
+Rhythm belongs to the structure of the \(S^3\)-Manifold as the form of preservation of coherence between the local and the global, between phase and direction, and between change and stability.
+
+
+
+
+
+
+
+\section{Non-Anthropomorphic Description}
+\subsection{Block 21. The Principle of Non-Anthropomorphic Description of the \(S^3\)-Manifold}
+\[
+M\simeq S^3.
+\]
+The \(S^3\)-Manifold is understood as a compact, boundaryless, simply connected three-dimensional manifold, not as a person, subject, will, mind, deity, or superhuman agent.
+
+Therefore, no human properties are attributed to \(M\):
+\[
+\text{desire},\quad
+\text{intention},\quad
+\text{anger},\quad
+\text{punishment},\quad
+\text{demand for worship}.
+\]
+Such properties may belong only to local psychophysical configurations within the manifold.
+
+If a human configuration is denoted by
+\[
+\psi_h\subset M,
+\]
+then its properties cannot be transferred to the entire manifold:
+\[
+\mathrm{Prop}(\psi_h)\neq \mathrm{Prop}(M).
+\]
+Otherwise, an error of projection occurs: the local state of the observer is mistaken for a property of the global structure.
+
+Consequently, theological and mythological descriptions may possess symbolic, cultural, or psychological significance, but they do not constitute a mathematical description of the \(S^3\)-Manifold.
+
+Within the present framework, \(M\) is described through:
+\[
+\text{connectedness},\quad
+\text{compactness},\quad
+\text{boundarylessness},\quad
+\text{topology},
+\]
+\[
+\text{causal coherence},\quad
+\text{symmetry},\quad
+\text{dynamics}.
+\]
+It is not described through human passions, intentions, or personal attributes.
+
+The resulting principle is:
+\[
+\mathrm{AnthroProp}(\psi_h)
+\not\Rightarrow
+\mathrm{AnthroProp}(M).
+\]
+That is, an anthropomorphic description of local experience cannot serve as the basis for describing the global manifold.
+
+
+
+\section{Reconstructive Cosmology on \(S^3\)}
+\subsection{Block 22. Formal Discipline of the Model}
+The following discussion distinguishes three levels:
+\[
+\text{manifold}
+\neq
+\text{physical model}
+\neq
+\text{observational reconstruction}.
+\]
+Cosmology must not conflate global ontology with local data fitting. The observable domain \(D\) is not identical to the entire spatial structure \(\Sigma\):
+\[
+D\subset \Sigma,
+\qquad
+\mathcal R(D)\neq \mathcal R(\Sigma).
+\]
+Here \(\mathcal R(D)\) denotes the reconstruction obtained from data within the observable domain, while \(\mathcal R(\Sigma)\) denotes the global structure, provided it is correctly defined.
+
+The basic principle is:
+\[
+\text{local reconstruction}
+\neq
+\text{global ontology}.
+\]
+Therefore, the task of further cosmology is not to declare the locally observable domain to be the whole of reality, but to construct a testable model of the relation between \(D\) and \(\Sigma\).
+
+
+
+\subsection{Block 23. The Topological Hypothesis}
+Let \(\Sigma\) denote a spatial slice. In the present program, the following topological hypothesis is adopted:
+\[
+\Sigma\simeq S^3.
+\]
+This means that spatial structure is considered as a compact, boundaryless, simply connected three-dimensional manifold.
+
+Compactness means the finitude of the global structure in the topological sense. Boundarylessness means the absence of an edge:
+\[
+\partial S^3=\varnothing.
+\]
+Simple connectedness means:
+\[
+\pi_1(S^3)=0.
+\]
+These properties are not decorative. They define a strict framework: space may be finite without an external boundary, locally resemble \(\mathbb R^3\), yet globally possess a different topology. By the Geometrisation theorem \cite{Perelman2003,Thurston1997}, \(S^3\) is the unique compact, simply connected, boundaryless three-dimensional manifold.
+
+
+
+\subsection{Block 24. Geometry of the Round Three-Sphere}
+The round three-sphere of radius \(a\) is defined as a submanifold of \(\mathbb R^4\):
+\[
+S^3_a=
+\left\{
+X\in\mathbb R^4:
+X_1^2+X_2^2+X_3^2+X_4^2=a^2
+\right\}.
+\]
+Its volume is:
+\[
+V(S^3_a)=2\pi^2a^3.
+\]
+The scalar curvature of the spatial slice is:
+\[
+R^{(3)}=\frac{6}{a^2}.
+\]
+These formulas show an important distinction: a globally compact geometry may have finite volume without an edge. Therefore, the finitude of space does not require an external container.
+
+Locally, for \(r\ll a\), the geometry of \(S^3\) may be close to Euclidean geometry:
+\[
+S^3_a \sim \mathbb R^3
+\quad
+\text{locally}.
+\]
+Thus, local near-flatness does not refute global compactness.
+
+
+
+\subsection{Block 25. Friedmann Equations as Background, Not Ontology}
+For an FLRW model with positive spatial curvature \cite{Friedmann1922,Robertson1935,Walker1937,Wald1984}, the metric has the form:
+\[
+ds^2=-c^2dt^2+a^2(t)d\Sigma^2_{k=+1}.
+\]
+The Friedmann equation is:
+\[
+H^2=
+\frac{8\pi G}{3}\rho
+-\frac{c^2}{a^2}
++\frac{\Lambda c^2}{3}.
+\]
+The acceleration equation is:
+\[
+\frac{\ddot a}{a}
+=
+-\frac{4\pi G}{3}
+\left(
+\rho+\frac{3p}{c^2}
+\right)
++\frac{\Lambda c^2}{3}.
+\]
+The curvature term
+\[
+-\frac{c^2}{a^2}
+\]
+decreases during expansion. Therefore, the late Universe may appear nearly flat even if its global topology is compact.
+
+The essential point is this: the Friedmann equations describe the dynamics of the scale factor $a(t)$, but they do not prove the absolute emergence of the manifold itself. They are a dynamical model of states on \(\Sigma\), not an ontology of the origin of \(\Sigma\).
+
+
+
+\subsection{Block 26. Spectral Structure: Discreteness Without a Lattice}
+On a compact manifold, the Laplacian has a discrete spectrum. For the round three-sphere:
+\[
+\lambda_l=\frac{l(l+2)}{a^2},
+\qquad
+l=0,1,2,\dots
+\]
+The multiplicity of the eigenvalues is:
+\[
+m_l=(l+1)^2.
+\]
+This means that fields on \(S^3\) may be decomposed into discrete modes. But the discreteness of the spectrum does not mean that space consists of cells or a lattice.
+
+The correct statement is:
+\[
+\text{compactness}
+\Rightarrow
+\text{discreteness of the operator spectrum}.
+\]
+The incorrect statement is:
+\[
+\text{discrete spectrum}
+\Rightarrow
+\text{discrete space}.
+\]
+Thus, the \(S^3\)-Manifold preserves smooth geometry while admitting a discrete modal structure.
+
+
+
+\subsection{Block 27. Quasilocal Charges}
+In general relativity, the energy of the gravitational field is not a local density in the Newtonian sense. Gravitational charges are defined through symmetries, constraints, boundary terms, and boundary conditions.
+
+In asymptotically flat space, one may speak of ADM energy at infinity. But a compact boundaryless spatial slice has no such infinity.
+
+In covariant phase space, the Hamiltonian associated with a vector field \(\xi\) has a variation of the form:
+\[
+\delta H_\xi
+=
+\int_{\partial D}
+\left(
+\delta Q_\xi-\xi\cdot\Theta
+\right).
+\]
+If the region \(D\subset\Sigma\) has a boundary \(\partial D\), quasilocal charges are possible. But for the entire compact boundaryless \(\Sigma\),
+\[
+\partial\Sigma=\varnothing.
+\]
+Consequently, global charges of this type are not defined through external infinity. This reinforces the distinction between local reconstruction and global structure.
+
+
+
+\subsection{Block 28. Residual Cosmology}
+The so-called ``dark sector'' is first understood in the present program not as an independent substance, but as an object of residual reconstruction.
+
+If the geometry \(G_{\mu\nu}\) is reconstructed and the visible energy-momentum tensor \(T^{\mathrm{vis}}_{\mu\nu}\) is accounted for, then one may formally define a residual tensor:
+\[
+T^D_{\mu\nu}
+=
+\frac{c^4}{8\pi G}G_{\mu\nu}
+-
+T^{\mathrm{vis}}_{\mu\nu}.
+\]
+But the mere existence of such a residual does not imply that it is a new microphysical substance.
+
+The correct discipline is:
+\[
+\text{residual}
+\neq
+\text{substance}.
+\]
+The residual tensor may indicate:
+
+unknown matter;
+
+effective geometry;
+
+reconstruction error;
+
+incompleteness of the model;
+
+dynamical dark energy;
+
+a topological or boundary effect.
+
+Therefore, the dark sector must be treated as a testable reconstructive structure, not as a preassigned ontology.
+
+
+
+\subsection{Block 29. The Observable Domain and the Limit of Reconstruction}
+Let
+\[
+D\subset\Sigma
+\]
+denote the observable domain. Its boundaries may be causal, physical, statistical, or instrumental: horizon, surface of last scattering, survey mask, redshift, or noise level.
+
+The basic principle is:
+\[
+\mathcal R(D)\neq \mathcal R(\Sigma).
+\]
+Data within \(D\) do not determine the global structure \(\Sigma\) without additional assumptions.
+
+This does not make global cosmology impossible. But it requires an honest distinction:
+\[
+\text{the observable}
+\neq
+\text{all that exists}.
+\]
+Consequently, any claim about global topology must not be a direct inference from local observation, but part of a testable model.
+
+
+
+\subsection{Block 30. The Big Bang as a Reconstructive Limit}
+In classical FLRW cosmology, evolution backward in time leads to a small scale factor, high density, and possible singularity:
+\[
+a(t)\to a_{\min}.
+\]
+Ordinary language turns this into a claim about the ``birth of the Universe.'' But a more precise formulation is:
+\[
+\text{Big Bang}
+=
+\text{limit of causal reconstruction},
+\]
+unless a deeper theory proves more.
+
+Singularity theorems show geodesic incompleteness under certain conditions. But geodesic incompleteness is not identical to proof of the absolute emergence of space from non-being.
+
+Therefore:
+\[
+\text{singularity}
+\neq
+\text{ontological beginning of }M.
+\]
+Within the \(S^3\)-Manifold framework, the early state may be understood as a limiting phase of high curvature, high density, or minimal effective volume, but not as a proven emergence of the manifold itself.
+
+
+
+\subsection{Block 31. Dynamical Dark Energy and the Late Quasi-Flat Regime}
+The late Universe may be locally close to flat even under global compactness. The reason is simple: the curvature contribution decreases as
+\[
+\frac{1}{a^2}.
+\]
+Therefore, compact \(S^3\)-geometry may exist in a late quasi-flat regime.
+
+If dark energy is dynamical, it may be described by an equation-of-state parameter:
+\[
+w(z)=\frac{p_D(z)}{\rho_D(z)c^2}.
+\]
+For \(\Lambda\)CDM:
+\[
+w=-1.
+\]
+Deviations
+\[
+w(z)\neq -1
+\]
+do not prove the \(S^3\)-model, but they define a domain of testing. Within reconstructive cosmology, it is important not to declare dynamical dark energy a new substance in advance, but to investigate whether it may be a residual effect of geometry, reconstruction, or global structure.
+
+
+
+\subsection{Block 32. Formal Admissibility and Physical Realizability}
+Not everything that can be written formally is physically realizable.
+
+The set of formally admissible objects is broader than the set of physical objects:
+\[
+\mathcal F_{\mathrm{formal}}
+\supset
+\mathcal F_{\mathrm{physical}}.
+\]
+One can write exotic metrics, analytic continuations, topological transitions, or geometries with unusual properties. But physical realizability requires testing:
+
+dynamics;
+
+constraints;
+
+energy conditions;
+
+stability;
+
+causal structure;
+
+observational compatibility.
+
+Therefore, formal possibility is not equal to ontological existence:
+\[
+\mathrm{Formal}(X)
+\not\Rightarrow
+\mathrm{Exist}(X).
+\]
+This principle protects the treatise from arbitrarily turning mathematically writable structures into physical entities.
+
+
+
+\subsection{Block 33. Quantum Unitarity and Compact Causality}
+In quantum theory, a closed system does not allow arbitrary local change of geometry without consequences for the global state.
+
+Unitary evolution is defined by the condition:
+\[
+U^\dagger U=I.
+\]
+The state evolves as
+\[
+|\Psi(t_2)\rangle
+=
+U(t_2,t_1)|\Psi(t_1)\rangle.
+\]
+This means preservation of the complete structure of the state under evolution. Information may become locally inaccessible and may be redistributed into correlations, but it should not arbitrarily disappear from the complete system.
+
+In compact geometry, a local operation is not isolated from the global structure:
+\[
+\delta x\Rightarrow \delta\mathcal R_\Sigma.
+\]
+This does not mean that compactness by itself derives quantum unitarity. More precisely:
+\[
+\text{compact causality}
+\quad
+\text{is compatible with}
+\quad
+\text{unitary global evolution}.
+\]
+That is, a compact causally connected structure naturally agrees with the idea of global state preservation, but it does not replace quantum theory.
+
+
+
+\subsection{Block 34. Light as a Structure of Causal Reconstruction}
+In the strict physical sense, light is the electromagnetic field, and in the quantum description, photon excitations under appropriate conditions.
+
+But in cosmological reconstruction, light also has a structural role. It determines:
+
+the past light cone;
+
+causal accessibility;
+
+distances;
+
+horizons;
+
+observable correlations;
+
+reconstruction of the past.
+
+Therefore, the expression ``light as causal coherence'' is admissible only in a clarified sense. It does not mean a mystical substance. It means that lightlike structure defines the boundaries of the observable and thereby determines the form of cosmological knowledge.
+
+Formally:
+\[
+ds^2=0
+\]
+defines null trajectories along which a light signal propagates.
+
+The speed of light sets the local limit of signal transmission:
+\[
+v_{\mathrm{signal}}\leq c.
+\]
+And in compact \(S^3_R\)-geometry, the global causal scale may be written as
+\[
+t_{\mathrm{coh}}=\frac{\pi R}{c}.
+\]
+Thus, light connects local observability with global reconstruction, without becoming a metaphysical entity.
+
+
+
+\subsection{Block 35. The Interdependent Definition of Physical Objects}
+Physical objects are defined not in isolation, but through relations.
+
+Charge is defined through symmetry, currents, boundaries, and conservation conditions. A particle is defined through a representation, a field state, and a detection procedure. Geometry is defined through intervals, curvature, and measurement procedures. A cosmological parameter is defined through a reconstruction model and observational data.
+
+Consequently:
+\[
+\mathrm{Object}
+=
+\mathrm{Relations}
++
+\mathrm{Conditions}
++
+\mathrm{Measurement}.
+\]
+This does not abolish the objectivity of physics. On the contrary, it refines it: an object becomes physically definable only within a structure of relations.
+
+Such an understanding is consistent with the general line of the treatise: the local does not exist as an absolutely independent self-entity, but is defined through its inclusion within the \(S^3\)-Manifold.
+
+
+
+\subsection{Block 36. Perturbative Testability}
+Agreement of the background model with $H(z)$ is insufficient. A cosmological model must be tested at the level of perturbations.
+
+For compact \(S^3\)-cosmology, one must construct:
+
+scalar perturbations;
+
+vector perturbations;
+
+tensor perturbations;
+
+gauge-invariant variables;
+
+transfer functions;
+
+observable spectra.
+
+Background viability is not equal to full physical viability:
+\[
+\mathrm{Viability}\{\mathrm{background}\}
+\not\Rightarrow
+\mathrm{Viability}\{\mathrm{perturbative}\}.
+\]
+For scalar perturbations, one must compute potentials, density contrast, sound horizons, and the matter power spectrum.
+
+For tensor perturbations, the discrete modal structure on \(S^3\) must be taken into account.
+
+If the model does not simultaneously reproduce the CMB, BAO, SN Ia, lensing, and structure growth, it must be constrained or rejected.
+
+
+
+\subsection{Block 37. Observational Program}
+The testing program must be not only confirmatory, but also falsificatory. It is necessary to specify not only possible signatures of compactness, but also the conditions under which the model fails comparison with data.
+
+The main directions of testing are:
+
+Curvature consistency.
+Estimates of \(\Omega_k\) from CMB, BAO, SN Ia, and lensing must be compatible with the (k=+1) model and finite $a(t)$.
+
+Spectral signatures.
+Compactness may appear in the discrete structure of modes, suppression of large scales, or CMB correlations \cite{PlanckTopology2016,Cornishetal2004}.
+
+Quasilocal reconstructions.
+The observable domain \(D\) must be distinguished from the global slice \(\Sigma\).
+
+The dark sector as residual.
+The residual tensor must yield testable perturbations, not merely background fitting.
+
+Growth of structure.
+The model must reproduce observational data on large-scale structure formation.
+
+The criterion is strict:
+\[
+\mathrm{Model}
+\quad
+\text{must fit}
+\quad
+\{
+\mathrm{CMB},\mathrm{BAO},\mathrm{SN},\mathrm{lensing},\mathrm{growth}
+\}.
+\]
+Otherwise, it remains philosophically interesting but physically incomplete.
+
+
+
+\subsection{Block 38. Classification of Claims}
+All claims of the treatise must be separated according to their level of rigor.
+
+Mathematical statements.
+For example:
+\[
+V(S^3_a)=2\pi^2a^3,
+\qquad
+R^{(3)}=\frac{6}{a^2},
+\qquad
+\lambda_l=\frac{l(l+2)}{a^2}.
+\]
+Geometrical consequences.
+For example: local resemblance to \(\mathbb R^3\) is compatible with global compactness.
+
+Physical models.
+For example: FLRW dynamics on \(S^3\), the residual tensor \(T^D_{\mu\nu}\), and dynamical dark energy.
+
+Phenomenological hypotheses.
+For example: a possible connection between compact topology and observable anomalies or the residual sector.
+
+Ontological interpretations.
+For example: the distinction between the emergence of \(M\) and the change of states on \(M\).
+
+Speculative extensions.
+These are admissible only as explicitly marked hypotheses.
+
+The main prohibition is:
+\[
+\text{mathematical admissibility}
+\not\Rightarrow
+\text{physical realizability}
+\not\Rightarrow
+\text{ontological proof}.
+\]
+\subsection{Block 39. Final Formula of Reconstructive Cosmology}
+If the entire formal block is reduced to one line, it is this:
+\[
+\text{cosmology must distinguish local reconstruction from global ontology}.
+\]
+That is, cosmology must distinguish local reconstruction from global ontology.
+
+The compact \(S^3\)-hypothesis defines the arena:
+\[
+\Sigma\simeq S^3,
+\qquad
+\partial\Sigma=\varnothing,
+\qquad
+\pi_1(\Sigma)=0.
+\]
+Geometry defines finite volume:
+\[
+V=2\pi^2a^3.
+\]
+The spectrum defines discrete modes:
+\[
+\lambda_l=\frac{l(l+2)}{a^2}.
+\]
+Observation defines the domain:
+\[
+D\subset\Sigma.
+\]
+Reconstruction defines the limitation:
+\[
+\mathcal R(D)\neq \mathcal R(\Sigma).
+\]
+The residual sector defines a testable unknown:
+\[
+T^D_{\mu\nu}
+=
+\frac{c^4}{8\pi G}G_{\mu\nu}
+-
+T^{\mathrm{vis}}_{\mu\nu}.
+\]
+The final discipline is:
+\[
+M\neq \mathrm{State}(M),
+\qquad
+D\neq \Sigma,
+\qquad
+\mathrm{Residual}\neq \mathrm{Substance}.
+\]
+The treatise therefore does not claim to be a completed physical theory. It establishes a strict framework in which global compactness, local observability, causal reconstruction, and ontological discipline are considered as a unified program.
+
+\medskip
+\begin{tcolorbox}[colback=gray!4,colframe=gray!35,boxrule=0.4pt,arc=2pt,
+  left=8pt,right=8pt,top=6pt,bottom=6pt,fontupper=\small]
+\textbf{Epistemic summary of this section (Blocks 22–39).}\\[4pt]
+\colorbox{clEstab}{\textbf{EP}} — FLRW dynamics, Friedmann equations,
+$\Lambda$CDM parameter set \cite{Planck2020}, spectral geometry of $S^3$
+\cite{Berger2003}, ADM energy \cite{Wald1984}, quasilocal charges
+\cite{Brown1993}, Noether's theorems \cite{Noether1918}.\\[3pt]
+\colorbox{clModel}{\textbf{MM}} — Residual tensor $T^D_{\mu\nu}$, the two
+protected closure channels (dust-like and fixed-vacuum), the discrete-mode
+interpretation of ultra-large-scale correlations, global unitarity via
+$L^2(S^3,d\mu)$.\\[3pt]
+\colorbox{clSpec}{\textbf{SE}} — $\Lambda\mathrm{CDM}$ as the local limit of
+compact $S^3_R$-cosmology; ultra-large-scale structures as projected spectral
+modes \cite{LumenetRoukema1995,Cornishetal2004,Lopezetal2024}; the full
+observational programme of Block~37 (CMB, BAO, SN~Ia, lensing, growth).\\[3pt]
+\colorbox{clMeta}{\textbf{MI}} — Big Bang as reconstructive limit; dark sector
+as residual rather than substance; ontological discipline
+$M\neq\mathrm{State}(M)$.
+\end{tcolorbox}
+
+\section{Compact \(S^3\)-Topology as a Natural Global Framework for Local \(\Lambda\)CDM}
+
+\subsection*{8.1. \(\Lambda\)CDM as a Local Effective Reconstruction}
+\addcontentsline{toc}{subsection}{8.1. \(\Lambda\)CDM as a Local Effective Reconstruction}
+
+The standard \(\Lambda\)CDM cosmology is not rejected. It is treated as a locally successful effective model describing the observable domain \(D_{\mathrm{obs}}\) \cite{Planck2020,Peebles1993}. However, the local success of \(\Lambda\)CDM does not require identifying the entire global structure of space with open infinite \(\mathbb R^3\).
+
+The broader interpretation proposed here is:
+\[
+\Lambda\mathrm{CDM}
+=
+\text{the local effective limit of compact } S^3_R\text{-cosmology}.
+\]
+
+If the radius \(R\) of the global three-sphere is much larger than the observable causal domain,
+\[
+R\gg D_{\mathrm{obs}},
+\]
+then locally
+\[
+S^3_R\big|_{D_{\mathrm{obs}}}\approx \mathbb R^3.
+\]
+Thus an internal observer may reconstruct the local domain as nearly flat. But it does not follow that
+\[
+M=\mathbb R^3.
+\]
+In other words,
+\[
+\text{local flatness}\neq \text{global openness}.
+\]
+
+\(\Lambda\)CDM may be an accurate model of the local domain \(D_{\mathrm{obs}}\), but this does not prove that the global manifold \(M\) is identical to open \(\mathbb R^3\). The task of this section is therefore not to refute \(\Lambda\)CDM, but to clarify its ontological status: \(\Lambda\)CDM may be a local normal form of reconstruction inside a broader compact topology.
+
+\subsection*{8.2. Boundarylessness without Open Infinity}
+\addcontentsline{toc}{subsection}{8.2. Boundarylessness without Open Infinity}
+
+The compact three-sphere \(S^3_R\) has finite volume,
+\[
+\mathrm{Vol}(S^3_R)=2\pi^2R^3,
+\]
+but no boundary:
+\[
+\partial S^3=\varnothing.
+\]
+
+It is therefore boundaryless, but not infinite in the sense of open \(\mathbb R^3\). For an internal observer, if \(R\) is sufficiently large, such a structure may appear practically infinite; topologically, however, it remains compact and closed upon itself.
+
+The distinction is essential:
+\[
+\text{boundarylessness}\neq \text{open infinity}.
+\]
+
+\(\mathbb R^3\) has infinite volume and an open structure. \(S^3_R\) has finite volume and no external boundary. Compact topology therefore gives space a different global status without disturbing locally almost-flat physics.
+
+In this sense, when \(R\gg D_{\mathrm{obs}}\), \(S^3_R\) is not locally inferior to \(\mathbb R^3\), but globally it possesses a stricter structure: finite volume, absence of an edge, and topological closure.
+
+\subsection*{8.3. Observer, Domain, and the Limit of Global Inference}
+\addcontentsline{toc}{subsection}{8.3. Observer, Domain, and the Limit of Global Inference}
+
+The observer always belongs to the manifold:
+\[
+\mathrm{Obs}\subset M.
+\]
+The observer does not occupy an external position with respect to the whole structure. The observer's data belong to a bounded observable domain:
+\[
+D_{\mathrm{obs}}\subset M.
+\]
+Therefore local reconstruction is not identical to global ontology:
+\[
+\mathcal R(D_{\mathrm{obs}})\neq \mathcal R(M).
+\]
+
+A local observer may have precise, reproducible, and mathematically strict data inside \(D_{\mathrm{obs}}\). It does not follow that the observer directly grasps the whole structure \(M\).
+
+Hence local flatness, local \(\Lambda\)CDM dynamics, and local values of cosmological parameters do not prove global openness of space. The methodological thesis is:
+\[
+\text{the observable}\neq \text{the whole of what exists}.
+\]
+More strictly:
+\[
+\text{local reconstruction}\neq \text{global topology}.
+\]
+
+\subsection*{8.4. Redshift as a Reconstructive Observable}
+\addcontentsline{toc}{subsection}{8.4. Redshift as a Reconstructive Observable}
+
+Redshift is an observed fact: spectral lines of distant objects are shifted toward the red. Its ontological interpretation, however, depends on the model.
+
+The standard FLRW interpretation relates cosmological redshift to the expansion of the scale factor. This interpretation is successful and forms the basis of \(\Lambda\)CDM. But the observed fact of redshift must not be confused with a unique possible ontology of space.
+
+The correct distinction is:
+\[
+\text{redshift is observed;}
+\qquad
+\text{its ontological interpretation is model-dependent.}
+\]
+
+What is observed is spectral displacement. The claim concerning what exactly expands, what global substrate carries this expansion, and what the topology of space is belongs already to the level of model interpretation.
+
+In the compact \(S^3_R\)-framework, redshift may be studied not only as kinematic recession, but also as an object of geometric, phase, wave, or topological reconstruction. This does not cancel the FLRW description; it shows only that FLRW does not exhaust all logically admissible structural interpretations.
+
+Thus \(S^3_R\) has methodological standing: if the global topology of space is not fixed in advance, redshift should not automatically be converted into proof of open \(\mathbb R^3\)-ontology.
+
+\subsection*{8.5. Ultra-Large-Scale Structures and the Limits of Local \(\mathbb R^3\) Intuition}
+\addcontentsline{toc}{subsection}{8.5. Ultra-Large-Scale Structures and the Limits of Local \(\mathbb R^3\) Intuition}
+
+Ultra-large-scale structures provide an important observational motivation for considering compact topology. The point is not that such structures prove the \(S^3\)-framework. The narrower point is that they expose a tension between the open \(\mathbb R^3\) intuition of finite correlation length and coherent morphology on scales of several hundred megaparsecs to approximately one gigaparsec.
+
+Examples include the Giant Arc, the Big Ring, and the Giant Ring reported near \(z\approx0.8\) \cite{Lopezetal2024,LopezCorredoira2022}. These are not merely local clusters. They are extended arc-like or ring-like configurations whose characteristic scales approach or exceed the usual scale at which statistical homogeneity is expected.
+
+In the standard \(\Lambda\)CDM/\(\mathbb R^3\) intuition, large-scale statistical homogeneity is expected above a scale of order
+\[
+\lambda_{\mathrm{hom}}\approx 370\,\mathrm{Mpc}.
+\]
+If correlations in the matter distribution are treated as having an effective finite correlation length, then structures of scale
+\[
+L\sim 1\,\mathrm{Gpc}
+\]
+are statistically nontrivial. They are not logically impossible, but they require a careful explanation in terms of morphology statistics, survey-window effects, selection effects, covariance structure, and comparison with simulations.
+
+Thus the correct statement is not:
+\[
+\text{ultra-large-scale structures falsify }\Lambda\mathrm{CDM}.
+\]
+The correct statement is:
+\[
+\text{ultra-large-scale structures create tension for a simple open } \mathbb{R}^3
+\]
+\[
+\text{picture with finite-correlation-length intuition,}
+\]
+and therefore motivate a topology-explicit analysis.
+
+In a compact \(S^3_R\)-framework, the situation changes. The Laplacian on a round three-sphere has a discrete global spectrum:
+\[
+\lambda_l=\frac{l(l+2)}{R^2},
+\]
+with multiplicity
+\[
+m_l=(l+1)^2.
+\]
+The corresponding modes are not compactly supported local fluctuations. They are globally defined modes of the compact manifold. Therefore the correlation structure on \(S^3_R\) is not required to follow the same pure exponential-tail intuition as in open \(\mathbb R^3\).
+
+Schematically:
+\begin{multline*}
+\mathbb{R}^3\text{ intuition: finite correlation length}\\
+\Rightarrow
+\text{ suppressed Gpc-scale coherence,}
+\end{multline*}
+whereas
+\begin{multline*}
+S^3\text{ intuition: compact global modes}\\
+\Rightarrow
+\text{ coherent projected structures are structurally admissible.}
+\end{multline*}
+
+This does not mean that every observed ring or arc is topological in origin. It means that compact topology supplies a mathematically controlled language for analysing such morphology: discrete modes, global support, phase shells, and projections onto narrow redshift slices.
+
+In this framework, a constant-phase shell in \(S^3_R\) can appear to a local observer as a ring-like or arc-like structure when projected onto an observational redshift slice. Therefore ring-like and arc-like ultra-large-scale structures need not be interpreted only as accidental gigaparsec fluctuations of an open \(\mathbb R^3\) field. They may also be investigated as possible projected manifestations of global spectral structure.
+
+The resulting methodological thesis is:
+\[
+\text{ultra-large-scale structures do not prove }S^3,
+\]
+but they make compact \(S^3\)-topology a natural candidate for investigation, because compact geometry admits globally supported correlations and projected ring-like morphologies without immediately appealing to a rare open-space fluctuation.
+
+\subsection*{8.6. Compact Topology and Global Unitarity}
+\addcontentsline{toc}{subsection}{8.6. Compact Topology and Global Unitarity}
+
+Compactness of \(S^3_R\) gives a natural normalization of the wave function on the entire spatial slice:
+\[
+\int_{S^3}|\Psi(x,t)|^2\,d\mu_{S^3}=1.
+\]
+Since the volume of \(S^3_R\) is finite,
+\[
+\mathrm{Vol}(S^3_R)=2\pi^2R^3,
+\]
+one does not need an artificial normalization in an infinite volume. On a compact manifold the Hilbert space \(L^2(S^3,d\mu)\) is naturally defined, and the state may be considered globally normalizable.
+
+If a self-adjoint quantum dynamics is defined on this space,
+\[
+\widehat H=\widehat H^\dagger,
+\]
+then the evolution is unitary:
+\[
+U^\dagger U=I,
+\]
+and
+\[
+|\Psi(t_2)\rangle=U(t_2,t_1)|\Psi(t_1)\rangle.
+\]
+
+In the full quantum-cosmological model this is strengthened by the fact that the full state is not assigned to an open external environment, but to the complete system:
+\[
+\mathcal H=\mathcal H_{\mathrm{grav}}\otimes\mathcal H_m\otimes\mathcal H_v.
+\]
+The growth of entropy in a subsector then does not imply loss of information in the complete system. If
+\[
+\rho_m=\mathrm{Tr}_v|\Psi\rangle\langle\Psi|,
+\]
+then \(\rho_m\) may be mixed, while the full state remains pure:
+\[
+\rho_{\mathrm{total}}=|\Psi\rangle\langle\Psi|.
+\]
+The entanglement entropy
+\[
+S_{\mathrm{ent}}=-\mathrm{Tr}(\rho_m\ln\rho_m)
+\]
+may increase without destroying global unitarity. Information does not disappear from the full structure; it is redistributed among sectors, modes, phases, and correlations.
+
+In this sense compact boundarylessness supports global unitary bookkeeping of state:
+\[
+\partial M=\varnothing,
+\]
+and
+\[
+\text{complete Hilbert space}+\text{self-adjoint dynamics}
+\Rightarrow
+\text{global unitary evolution}.
+\]
+This does not mean that topology alone replaces quantum dynamics. It means that a compact boundaryless manifold naturally corresponds to a closed complete system in which there is no external edge and no external sink of information.
+
+\subsection*{8.7. Discrete Spectrum and Infrared Regularization}
+\addcontentsline{toc}{subsection}{8.7. Discrete Spectrum and Infrared Regularization}
+
+On a compact manifold the Laplacian has discrete spectrum. For a round three-sphere,
+\[
+\lambda_l=\frac{l(l+2)}{R^2},
+\qquad
+l=0,1,2,\ldots,
+\]
+with multiplicity
+\[
+m_l=(l+1)^2.
+\]
+Thus
+\[
+\text{compact }S^3\Rightarrow \text{discrete mode spectrum}.
+\]
+
+This does not mean that space itself is discrete. Space remains smooth. What becomes discrete is the spectral structure of modes.
+
+Such a spectrum gives a natural infrared scale:
+\[
+k_{\min}\sim \frac{1}{R}.
+\]
+In open \(\mathbb R^3\), long-wavelength modes form a continuous infrared sector. In compact \(S^3_R\), a natural infrared regulator appears. Compact topology need not solve every infrared problem automatically, but it removes the open infinite infrared extension itself.
+
+In other words:
+\[
+\text{open }\mathbb R^3\Rightarrow \text{continuous infrared tail},
+\]
+whereas
+\[
+\text{compact }S^3_R\Rightarrow \text{discrete global modes and finite infrared scale}.
+\]
+
+This is another place where compact topology is structurally economical: it does not introduce an artificial boundary, but gives a natural lower mode scale through finite global volume.
+
+\subsection*{8.8. Uncertainty, Non-Isolability, and Hopf--Bell Correlations}
+\addcontentsline{toc}{subsection}{8.8. Uncertainty, Non-Isolability, and Hopf--Bell Correlations}
+
+The uncertainty principle is not derived directly from topology. Its standard basis is the noncommutativity of conjugate operators:
+\[
+[\widehat x,\widehat p]=i\hbar,
+\]
+from which
+\[
+\Delta x\,\Delta p\geq \frac{\hbar}{2}.
+\]
+
+In the \(S^3\)-picture, however, a local state is not an absolutely isolated point. It is included in global geometry, spectrum, phase relations, causal relations, and the procedure of observation. Therefore the impossibility of absolute fixation of a state has not only an operational but also a structural meaning: a state does not exist as a completely independent self-subsisting entity.
+
+Thus:
+\[
+\text{quantum uncertainty is not derived from topology,}
+\]
+but
+\[
+\text{compact topology gives it a natural structural home}.
+\]
+
+Moreover, the Hopf geometry of \(S^3\) gives a natural geometric framework for quantum correlational nonlocality. The three-sphere carries the Hopf fibration
+\[
+S^1\hookrightarrow S^3\to S^2.
+\]
+Here \(S^3\) may be regarded as the space of normalized spinors, \(S^2\) as the sphere of directions, and \(S^1\) as the phase fibre.
+
+For spin-singlet correlations, the standard quantum formula is
+\[
+E(a,b)=-a\cdot b=-\cos\theta.
+\]
+In the Hopf-geometric formulation, this correlation structure receives a representation through \(U(1)\)-holonomy of the phase fibre.
+
+This is not a hidden-variable theory, does not violate Bell's theorem, and does not introduce superluminal signalling. The operational bound remains
+\[
+v_{\mathrm{signal}}\leq c.
+\]
+But the nonseparable structure of correlations receives a natural geometric realization:
+\[
+S^1\hookrightarrow S^3\to S^2
+\quad+\quad
+U(1)\text{-holonomy}
+\quad\Rightarrow\quad
+E(a,b)=-a\cdot b.
+\]
+
+Thus quantum nonlocality is not reduced to topology as a mechanical explanation, but compact Hopf topology of \(S^3\) gives a natural geometric form for the nonseparable correlation structure of quantum mechanics.
+
+\subsection*{8.9. Light, Causal Time, and Relational Temporality}
+\addcontentsline{toc}{subsection}{8.9. Light, Causal Time, and Relational Temporality}
+
+The speed of light connects space, causality, and time. For \(S^3_R\), the maximal geodesic distance is
+\[
+D_c=\pi R.
+\]
+The speed of light defines the causal time scale
+\[
+t_{\mathrm{coh}}=\frac{\pi R}{c}.
+\]
+That is,
+\[
+c:\quad \text{space}\to \text{causal time}.
+\]
+
+Time is therefore not treated as an external container, but as an internal relational measure of the order of changes:
+\[
+\mathrm{Time}(M)=\mathrm{Order}(\mathrm{Change}(M)).
+\]
+Light does not create time as a substance. It defines the limit of causal coherence through which local states acquire temporal ordering.
+
+This agrees with the general line of the treatise: \(M\) does not unfold inside external time; temporal order is reconstructed through relations among states inside \(M\).
+
+\subsection*{8.10. Entropy and the Arrow of Time}
+\addcontentsline{toc}{subsection}{8.10. Entropy and the Arrow of Time}
+
+Compactness is compatible with the entropic arrow of time as an internal redistribution of states. Entropy may be written as
+\[
+S_{\mathrm{ent}}=k_B\ln\Omega.
+\]
+If the state of the manifold is expanded in modes,
+\[
+\Psi_M(t)=\sum_l c_l(t)Y_l,
+\]
+then entropy change may be interpreted as redistribution of amplitudes among available modes. The arrow of time then expresses the direction of coarse-grained redistribution, not disappearance of information from the complete system:
+\[
+\text{arrow of time}
+=
+\text{direction of coarse-grained redistribution}.
+\]
+
+Local irreversibility is compatible with global unitarity if the entropy of a subsystem grows through entanglement rather than through loss of complete information. In this sense compact \(S^3_R\)-structure separates two levels:
+\[
+\text{fine-grained information conservation}
+\]
+and
+\[
+\text{coarse-grained entropy growth}.
+\]
+The first concerns the full system. The second concerns the local observer, subsystems, and accessible degrees of freedom.
+
+\subsection*{8.11. Suspension of Spheres and the Special Role of \(S^3\)}
+\addcontentsline{toc}{subsection}{8.11. Suspension of Spheres and the Special Role of \(S^3\)}
+
+\(S^3\) occupies a special place in the topological ladder of spheres:
+\[
+S^0\to S^1\to S^2\to S^3\to S^4.
+\]
+It is the minimal sphere that is simultaneously compact, boundaryless, simply connected, parallelizable, and equipped with the structure of a Lie group:
+\[
+S^3\simeq SU(2).
+\]
+It also carries the Hopf fibration:
+\[
+S^1\hookrightarrow S^3\to S^2.
+\]
+
+Thus \(S^3\) naturally appears as a minimal carrier of phase-directed geometry, linking phase, direction, spinor structure, and volumetric wholeness.
+
+This does not mean that all physics is derived from the suspension of spheres. It means that \(S^3\) has an unusually dense structural suitability for describing state spaces, spin, phases, and global connectedness.
+
+\subsection*{8.12. Gauss, Noether, and Conservation without External Leakage}
+\addcontentsline{toc}{subsection}{8.12. Gauss, Noether, and Conservation without External Leakage}
+
+A compact boundaryless manifold is naturally consistent with a global discipline of conservation. By Gauss' theorem,
+\[
+\int_M \mathrm{div}\,J\,dV=\int_{\partial M}J\cdot n\,dS.
+\]
+But if
+\[
+\partial M=\varnothing,
+\]
+then
+\[
+\int_M \mathrm{div}\,J\,dV=0.
+\]
+There is no external flux through the boundary because there is no boundary.
+
+Local fluxes, redistributions, and exchanges between sectors may still exist. But globally there is no external sink.
+
+The first Noether theorem \cite{Noether1918} states:
+\[
+\text{continuous global symmetry}\Rightarrow \text{conserved current}.
+\]
+That is, under a global continuous symmetry,
+\[
+\partial_\mu j^\mu=0,
+\]
+or covariantly,
+\[
+\nabla_\mu j^\mu=0.
+\]
+
+The second Noether theorem relates local gauge symmetries to identities. In general relativity, diffeomorphism invariance gives the Bianchi identities:
+\[
+\nabla^\mu G_{\mu\nu}=0.
+\]
+Together with Einstein's equations,
+\[
+G_{\mu\nu}=\frac{8\pi G}{c^4}T_{\mu\nu},
+\]
+this gives local conservation:
+\[
+\nabla^\mu T_{\mu\nu}=0.
+\]
+
+Thus local Einstein covariance is not violated. Compact topology adds global closure:
+\begin{multline*}
+\text{local Einstein covariance}
++
+\text{global compact closure}\\
+\Rightarrow
+\text{ stronger conservation bookkeeping}.
+\end{multline*}
+This is why \(S^3_R\) does not destroy local \(\mathbb R^3\)-physics. It adds a global discipline of conservation that cannot take the form of leakage through an external boundary, since there is no boundary.
+
+\subsection*{8.13. Dark Sector as Einstein Residual}
+\addcontentsline{toc}{subsection}{8.13. Dark Sector as Einstein Residual}
+
+The dark sector can be considered as a residual structure rather than as a preassigned primary substance.
+
+For a given geometry and visible sector,
+\[
+T^D_{\mu\nu}
+=
+\frac{c^4}{8\pi G}G_{\mu\nu}
+-
+T^{\mathrm{vis}}_{\mu\nu}.
+\]
+Thus
+\[
+\text{dark sector}
+=
+\text{Einstein residual under declared convention}.
+\]
+The main principle is:
+\[
+\mathrm{Residual}\neq \mathrm{Substance}.
+\]
+
+The residual sector may represent unknown matter, effective geometry, incompleteness of reconstruction, dynamical dark energy, topological contribution, or error in the model. It need not be ontologized at once as two independent unknown substances.
+
+This is especially important for \(\Lambda\)CDM: dark matter and dark energy successfully parametrize observed phenomenology, but their ontological status remains open. In the compact \(S^3_R\)-framework, part of the explanatory load may be transferred from new entities to global structure, symmetries, phase relations, topological constraints, and residual bookkeeping in Einstein's equations.
+
+The correct formulation is therefore not:
+\[
+\text{dark matter and dark energy are topology}.
+\]
+Rather:
+\[
+\text{dark-sector phenomenology may be reconstructed as residual structure}
+\]
+before being ontologized as new substance.
+
+\subsection*{8.14. Two Protected Residual Channels}
+\addcontentsline{toc}{subsection}{8.14. Two Protected Residual Channels}
+
+Minimal homogeneous closure naturally selects two protected residual channels.
+
+The first channel is dust-like:
+\[
+p_D=0,
+\qquad
+\epsilon_D(a)=\epsilon_{m,0}a^{-3}.
+\]
+It imitates cold dark matter.
+
+The second channel is fixed-vacuum:
+\[
+p_q=-\epsilon_q,
+\qquad
+\epsilon_q=\mathrm{const}.
+\]
+It imitates the cosmological constant or vacuum contribution.
+
+The general form is
+\[
+\epsilon_D(a)=\epsilon_{w,0}a^{-3}+\epsilon_q,
+\qquad
+p_D(a)=-\epsilon_q.
+\]
+Define the closure pair:
+\[
+A_q=-p_D,
+\qquad
+A_w=a^3(\epsilon_D+p_D).
+\]
+The minimal dust-plus-vacuum form occurs when
+\[
+\frac{dA_q}{d\ln a}=0,
+\qquad
+\frac{dA_w}{d\ln a}=0,
+\qquad
+A_q\geq0,
+\qquad
+A_w\geq0.
+\]
+Then the local \(\Lambda\)CDM form may be understood as a normal residual form:
+\[
+\Lambda\mathrm{CDM}
+=
+\text{dust channel}
++
+\text{fixed vacuum channel}.
+\]
+
+This does not prove that dark matter and dark energy are topology. It shows that compact global structure naturally admits two protected slots that coincide with the two principal dark components of the standard model.
+
+\subsection*{8.15. Big Bang as Reconstructive Limit}
+\addcontentsline{toc}{subsection}{8.15. Big Bang as Reconstructive Limit}
+
+In classical FLRW cosmology, backward evolution in time leads to a small scale factor, high density, and possible singularity:
+\[
+a(t)\to a_{\min}.
+\]
+Ordinary language turns this into a claim about the birth of the Universe. A more precise formulation is:
+\[
+\text{Big Bang}
+=
+\text{limit of causal reconstruction},
+\]
+unless a deeper theory proves more.
+
+A singular extrapolation is not identical to proof of absolute emergence of space from nothing:
+\[
+\text{singularity}
+\neq
+\text{ontological beginning of }M.
+\]
+
+Within the \(S^3\)-Manifold, an early state may be understood as a limiting phase of high curvature, high density, or minimal effective volume, but not as a proven emergence of the manifold itself. This agrees with the earlier distinction:
+\[
+M\neq \mathrm{State}(M).
+\]
+States on \(M\) may change; it does not follow that \(M\) itself emerges as the carrier.
+
+Thus the compact \(S^3_R\)-framework is more consistent with causal continuity: the ground of reality is not a random event from absolute nothing, but a structurally given manifold within which local states reach limiting regimes.
+
+\subsection*{8.16. Why Structural Convergence Matters}
+\addcontentsline{toc}{subsection}{8.16. Why Structural Convergence Matters}
+
+\(S^3_R\) preserves what is needed locally:
+\[
+\text{local }\mathbb{R}^3\text{-physics},
+\qquad
+\text{local }\Lambda\mathrm{CDM}\text{-approximation},
+\]
+\[
+\text{local Einstein equations},
+\qquad
+v_{\mathrm{signal}}\leq c.
+\]
+
+At the same time it adds global structures:
+\begin{gather*}
+\text{compactness},\quad
+\text{boundarylessness},\quad
+\text{finite volume},\\
+\text{global normalization},\quad
+\text{unitary bookkeeping},\quad
+\text{discrete spectrum},\\
+\text{IR regulator},\quad
+\text{Hopf--Bell geometry},\quad
+\text{relational time},\\
+\text{entropy as redistribution},\quad
+\text{Gauss/Noether closure},\\
+\text{residual dark sector},\quad
+\text{dust/fixed-vacuum channels.}
+\end{gather*}
+
+One of these features could be accidental. Two could be coincidence. But when many independent structures naturally converge in one compact framework, there is strong reason for further investigation.
+
+The final thesis of this section is:
+\[
+\Lambda\mathrm{CDM}
+\text{ is not rejected;}
+\]
+it is included as a local residual normal form inside compact \(S^3_R\)-cosmology.
+
+Moreover,
+\[
+D_{\mathrm{obs}}\approx \mathbb R^3
+\not\Rightarrow
+M=\mathbb R^3,
+\]
+\[
+\text{local flatness}\neq \text{global openness},
+\]
+\[
+\mathrm{Residual}\neq \mathrm{Substance},
+\]
+and
+\[
+\text{compact }S^3_R\text{ preserves local }\mathbb{R}^3\text{-physics}
+\text{ while adding global closure.}
+\]
+
+Therefore compact \(S^3\)-topology deserves to be considered as a more natural global framework for locally successful \(\Lambda\)CDM, since it does not destroy local physics but gathers normalization, unitarity, causality, quantum correlationality, conservation, infrared regularity, and residual description of the dark sector within one structure.
+
+%% ============================================================
+\clearpage
+\section*{Appendix: Classification of Claims by Epistemic Status}
+\addcontentsline{toc}{section}{Appendix: Classification of Claims by Epistemic Status}
+%% ============================================================
+
+Every substantive assertion in this treatise belongs to one of four epistemic categories.
+The colour-coded boxes below identify the category and state the corresponding standard of justification required.
+
+\bigskip
+\noindent
+\colorbox{clEstab}{\textbf{Established Physics (EP)}}\enspace
+Statements that follow directly from tested physical theory (General Relativity, Quantum Field Theory, standard cosmology, differential geometry).
+They are not original claims of this treatise; they are cited background.
+
+\medskip
+\noindent
+\colorbox{clModel}{\textbf{Mathematical Model (MM)}}\enspace
+Formally precise statements within an explicitly defined mathematical framework.
+They are internally consistent but require additional physical input to become empirically binding.
+
+\medskip
+\noindent
+\colorbox{clSpec}{\textbf{Speculative Extension (SE)}}\enspace
+Physically motivated conjectures that go beyond current data.
+They are falsifiable in principle but not yet tested. They are offered as research hypotheses.
+
+\medskip
+\noindent
+\colorbox{clMeta}{\textbf{Metaphysical Interpretation (MI)}}\enspace
+Ontological and philosophical claims. They frame the physical discussion but are not themselves
+subject to direct experimental test. They can be evaluated for internal consistency and philosophical coherence.
+
+\bigskip
+
+\subsection*{Section-by-Section Register}
+
+\paragraph{Section 1 — Ontological Status of the Three-Dimensional Manifold.}
+\claimbox{clMeta}{MI}{The manifold $M$ persists as a global structure; what changes are states \emph{on} $M$, not $M$ itself.  This is a foundational framing choice, not a derivable theorem.}
+\claimbox{clModel}{MM}{The distinction $M \not= \mathrm{State}(M)$ is formally sharp once a fibre-bundle or state-space picture is adopted.}
+
+\paragraph{Section 1 — Blocks 2–6: Completeness of Ontological Alternatives.}
+\claimbox{clMeta}{MI}{The four-fold classification $\mathcal{G}=\{G_s,G_o,G_{s/o},G_\varnothing\}$ exhausts the logical space of emergence hypotheses. This is a philosophical claim about conceptual completeness.}
+\claimbox{clMeta}{MI}{The impossibility of $G_s$ (self-emergence) rests on the antireflexivity of ontological precedence $\prec$, which is itself a philosophical axiom, not an empirical finding.}
+\claimbox{clMeta}{MI}{The incompleteness of $G_o$, $G_{s/o}$, and $G_\varnothing$ is argued from consistency requirements and from the observed structural stability of physical laws. The argument is philosophical; the premise (structural stability) is empirical.}
+
+\paragraph{Section 2 — Completeness, Boundarylessness, Invariance.}
+\claimbox{clEstab}{EP}{$\partial S^3=\varnothing$, $\pi_1(S^3)=0$, $TS^3 \simeq S^3\times\mathbb{R}^3$ (parallelisability) are standard results of differential topology \cite{Milnor1956,Hatcher2002}.}
+\claimbox{clModel}{MM}{The principle $\mathrm{Class}(M)=\mathrm{const}$ while $\Delta\mathrm{State}(M)\not=0$ is a model-level commitment:  topology is fixed; geometry and matter fields evolve.}
+\claimbox{clMeta}{MI}{The claim that boundarylessness entails the absence of an ``ontological exterior'' is a philosophical interpretation of the mathematical boundary condition.}
+
+\paragraph{Section 3 — Observer and Knowability.}
+\claimbox{clEstab}{EP}{The light-cone constraint $ds^2=0$ and the finite signal speed $v_\mathrm{signal}\le c$ are established relativistic facts \cite{Wald1984,HawkingEllis1973}.}
+\claimbox{clModel}{MM}{The horizon scale $D_c=\pi R$ and the causal accessibility coefficient $\Gamma(T)$ are consequences of compact $S^3_R$-geometry and standard causality.}
+\claimbox{clMeta}{MI}{The claim that the observer's internal position makes a complete ``objective'' description of $M$ impossible is a philosophical consequence of the structural framework, related to but not identical with Gödelian incompleteness.}
+
+\paragraph{Section 4 — Dynamics and Causal Coherence.}
+\claimbox{clEstab}{EP}{Unitary quantum evolution $U^\dagger U=I$, the Heisenberg uncertainty relation $\Delta x\,\Delta p\ge\hbar/2$, and the zero-point energy $E_0=\tfrac{1}{2}\hbar\omega$ are standard QFT results \cite{Weinberg1995}.}
+\claimbox{clEstab}{EP}{The hairy-ball theorem ($S^2$ admits no nowhere-vanishing continuous tangent field) and the parallelisability of $S^3\simeq SU(2)$ are classical topology theorems \cite{Milnor1956,Hatcher2002}.}
+\claimbox{clModel}{MM}{The flow $\Phi_t\in\mathrm{Diff}(M)$ with $\Phi_{t+s}=\Phi_t\circ\Phi_s$ is a standard dynamical-systems formulation on a compact manifold.}
+
+\paragraph{Sections 5–7 — Polarity, Rhythm, Non-Anthropomorphic Description.}
+\claimbox{clMeta}{MI}{The principles of polarity and rhythm ($P(t)=F(A,\omega,\varphi,t)$ as ordered polar transitions) extend physical concepts into a philosophical register. The sinusoidal model is explicitly offered only as a minimal illustration.}
+\claimbox{clMeta}{MI}{The prohibition on attributing anthropomorphic properties to $M$ is a methodological principle. It is philosophically grounded but not empirically testable.}
+
+\paragraph{Section 8 (Blocks 22–39) — Reconstructive Cosmology.}
+\claimbox{clEstab}{EP}{The FLRW metric, Friedmann equations, acceleration equation, and $\Lambda$CDM parameter set are the standard concordance cosmology \cite{Planck2020,Peebles1993,Ryden2003}.}
+\claimbox{clEstab}{EP}{The discrete Laplacian spectrum $\lambda_l=l(l+2)/a^2$ on $S^3$ and the volume formula $V(S^3_a)=2\pi^2 a^3$ are exact mathematical results \cite{Berger2003}.}
+\claimbox{clEstab}{EP}{ADM energy and quasilocal charges in GR, and their dependence on boundary data, are standard results \cite{Wald1984,Brown1993}.}
+\claimbox{clModel}{MM}{The residual-tensor definition $T^D_{\mu\nu}=\tfrac{c^4}{8\pi G}G_{\mu\nu}-T^\mathrm{vis}_{\mu\nu}$ is a formal accounting identity within Einstein's equations. It is model-consistent but empirically neutral until the visible sector is specified.}
+\claimbox{clModel}{MM}{The two protected residual channels (dust-like and fixed-vacuum) follow from minimising the closure pair $(A_q,A_w)$. The result that they reproduce $\Lambda$CDM phenomenology is a mathematical consequence within the compact framework.}
+\claimbox{clSpec}{SE}{The interpretation of ultra-large-scale structures (Giant Arc, Big Ring) as possible projected manifestations of global $S^3_R$ spectral modes is a speculative but falsifiable hypothesis. It requires dedicated $N$-body simulations and CMB topology searches \cite{LumenetRoukema1995,Cornishetal2004}.}
+\claimbox{clSpec}{SE}{The claim that $\Lambda$CDM is the local effective limit of $S^3_R$-cosmology requires a perturbation theory on $S^3$ that simultaneously fits CMB, BAO, SN~Ia, lensing, and growth-of-structure data. This program is outlined (Block~37) but not completed.}
+\claimbox{clMeta}{MI}{The Big Bang as a ``reconstructive limit'' rather than an absolute ontological beginning is a philosophical reinterpretation consistent with (but not forced by) the mathematics.}
+
+\bigskip
+\noindent\textbf{Summary table.}
+
+\medskip
+\begin{center}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{@{}lp{9cm}@{}}
+\toprule
+\textbf{Status} & \textbf{Justification required} \\
+\midrule
+\colorbox{clEstab}{EP} & Direct citation of established theory; no new claim. \\
+\colorbox{clModel}{MM} & Internal consistency proof within the stated formal framework. \\
+\colorbox{clSpec}{SE} & Comparison with observational data; must be falsifiable. \\
+\colorbox{clMeta}{MI} & Philosophical coherence; consistency with EP and MM. \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\bigskip
+The core scientific claim of the treatise — that compact $S^3$-topology is a mathematically consistent and observationally testable alternative to open $\mathbb{R}^3$ as the global spatial structure — belongs to category \colorbox{clSpec}{\textbf{SE}}.
+The ontological framing belongs to \colorbox{clMeta}{\textbf{MI}}.
+The mathematical apparatus belongs to \colorbox{clModel}{\textbf{MM}} and \colorbox{clEstab}{\textbf{EP}}.
+These categories are not in conflict; they occupy different levels of discourse and require different standards of evaluation.
+
+%% ============================================================
+\clearpage
+\begin{thebibliography}{99}
+
+\bibitem{Riemann1854}
+B.~Riemann.
+\newblock \"{U}ber die Hypothesen, welche der Geometrie zu Grunde liegen.
+\newblock \emph{Abhandlungen der K\"{o}niglichen Gesellschaft der Wissenschaften zu G\"{o}ttingen}, 13:133--152, 1868.
+\newblock (Habilitation lecture, 1854.)
+
+\bibitem{Poincare1904}
+H.~Poincar\'{e}.
+\newblock Cinqui\`{e}me compl\'{e}ment \`{a} l'analysis situs.
+\newblock \emph{Rendiconti del Circolo Matematico di Palermo}, 18:45--110, 1904.
+
+\bibitem{Einstein1915}
+A.~Einstein.
+\newblock Die Feldgleichungen der Gravitation.
+\newblock \emph{Sitzungsberichte der Preussischen Akademie der Wissenschaften}, pages 844--847, 1915.
+
+\bibitem{Einstein1917}
+A.~Einstein.
+\newblock Kosmologische Betrachtungen zur allgemeinen Relativit\"{a}tstheorie.
+\newblock \emph{Sitzungsberichte der Preussischen Akademie der Wissenschaften}, pages 142--152, 1917.
+
+\bibitem{Friedmann1922}
+A.~Friedmann.
+\newblock \"{U}ber die Kr\"{u}mmung des Raumes.
+\newblock \emph{Zeitschrift f\"{u}r Physik}, 10(1):377--386, 1922.
+
+\bibitem{Robertson1935}
+H.~P.~Robertson.
+\newblock Kinematics and world-structure.
+\newblock \emph{Astrophysical Journal}, 82:284--301, 1935.
+
+\bibitem{Walker1937}
+A.~G.~Walker.
+\newblock On Milne's theory of world-structure.
+\newblock \emph{Proceedings of the London Mathematical Society}, 42:90--127, 1937.
+
+\bibitem{HawkingEllis1973}
+S.~W.~Hawking and G.~F.~R.~Ellis.
+\newblock \emph{The Large Scale Structure of Space-Time}.
+\newblock Cambridge University Press, Cambridge, 1973.
+
+\bibitem{Wald1984}
+R.~M.~Wald.
+\newblock \emph{General Relativity}.
+\newblock University of Chicago Press, Chicago, 1984.
+
+\bibitem{Penrose1965}
+R.~Penrose.
+\newblock Gravitational collapse and space-time singularities.
+\newblock \emph{Physical Review Letters}, 14(3):57--59, 1965.
+
+\bibitem{Weinberg1972}
+S.~Weinberg.
+\newblock \emph{Gravitation and Cosmology}.
+\newblock Wiley, New York, 1972.
+
+\bibitem{Weinberg1995}
+S.~Weinberg.
+\newblock \emph{The Quantum Theory of Fields}, Volume~I.
+\newblock Cambridge University Press, Cambridge, 1995.
+
+\bibitem{Milnor1956}
+J.~Milnor.
+\newblock On manifolds homeomorphic to the 7-sphere.
+\newblock \emph{Annals of Mathematics}, 64(2):399--405, 1956.
+
+\bibitem{Hatcher2002}
+A.~Hatcher.
+\newblock \emph{Algebraic Topology}.
+\newblock Cambridge University Press, Cambridge, 2002.
+\newblock (Available freely at \url{https://pi.math.cornell.edu/~hatcher/AT/ATpage.html}.)
+
+\bibitem{Thurston1997}
+W.~P.~Thurston.
+\newblock \emph{Three-Dimensional Geometry and Topology}, Volume~1.
+\newblock Princeton University Press, Princeton, 1997.
+
+\bibitem{Perelman2003}
+G.~Perelman.
+\newblock The entropy formula for the Ricci flow and its geometric applications.
+\newblock \emph{arXiv:math/0211159}, 2002.
+\newblock (Proof of the Poincar\'{e} conjecture; $S^3$ is the unique simply connected compact 3-manifold.)
+
+\bibitem{Berger2003}
+M.~Berger.
+\newblock \emph{A Panoramic View of Riemannian Geometry}.
+\newblock Springer, Berlin, 2003.
+
+\bibitem{Peebles1993}
+P.~J.~E.~Peebles.
+\newblock \emph{Principles of Physical Cosmology}.
+\newblock Princeton University Press, Princeton, 1993.
+
+\bibitem{Ryden2003}
+B.~Ryden.
+\newblock \emph{Introduction to Cosmology}.
+\newblock Addison-Wesley, San Francisco, 2003.
+
+\bibitem{Planck2020}
+Planck Collaboration (N.~Aghanim et al.).
+\newblock Planck 2018 results. VI. Cosmological parameters.
+\newblock \emph{Astronomy \& Astrophysics}, 641:A6, 2020.
+\newblock \texttt{arXiv:1807.06209}.
+
+\bibitem{PlanckTopology2016}
+Planck Collaboration (P.~A.~R.~Ade et al.).
+\newblock Planck 2015 results. XVIII. Background geometry and topology.
+\newblock \emph{Astronomy \& Astrophysics}, 594:A18, 2016.
+\newblock \texttt{arXiv:1502.01593}.
+
+\bibitem{LumenetRoukema1995}
+J.-P.~Lum\^{e}net and B.~F.~Roukema.
+\newblock Topology of the Universe: theory and observation.
+\newblock In \emph{Theoretical and Observational Cosmology}, NATO ASI Series, pages 117--157. Kluwer, 1999.
+\newblock \texttt{arXiv:astro-ph/9901364}.
+
+\bibitem{Cornishetal2004}
+N.~J.~Cornish, D.~N.~Spergel, G.~D.~Starkman, and E.~Komatsu.
+\newblock Constraining the topology of the Universe.
+\newblock \emph{Physical Review Letters}, 92:201302, 2004.
+\newblock \texttt{arXiv:astro-ph/0310233}.
+
+\bibitem{LopezCorredoira2022}
+M.~L\'{o}pez-Corredoira and F.~Sylos~Labini.
+\newblock Violation of the cosmological principle in the Sloan Digital Sky Survey.
+\newblock \emph{Astronomy \& Astrophysics}, 662:A51, 2022.
+
+\bibitem{Lopezetal2024}
+A.~M.~L\'{o}pez, R.~G.~Clowes, and G.~M.~Williger.
+\newblock A giant arc on the sky.
+\newblock \emph{Monthly Notices of the Royal Astronomical Society}, 516(1):L185--L190, 2022.
+\newblock \texttt{arXiv:2201.06875}.
+
+\bibitem{Brown1993}
+J.~D.~Brown and J.~W.~York.
+\newblock Quasilocal energy and conserved charges derived from the gravitational action.
+\newblock \emph{Physical Review D}, 47(4):1407--1419, 1993.
+
+\bibitem{Noether1918}
+E.~Noether.
+\newblock Invariante Variationsprobleme.
+\newblock \emph{Nachrichten von der Gesellschaft der Wissenschaften zu G\"{o}ttingen}, pages 235--257, 1918.
+
+\bibitem{Hopf1931}
+H.~Hopf.
+\newblock \"{U}ber die Abbildungen der dreidimensionalen Sph\"{a}re auf die Kugelfl\"{a}che.
+\newblock \emph{Mathematische Annalen}, 104:637--665, 1931.
+
+\bibitem{Baum2015}
+H.~Baum.
+\newblock \emph{Eichfeldtheorie}.
+\newblock Springer, Berlin, 2nd edition, 2014.
+\newblock (Gauge theory, fibre bundles, and the Hopf fibration in a mathematical physics context.)
+
+\bibitem{Penrose2004}
+R.~Penrose.
+\newblock \emph{The Road to Reality: A Complete Guide to the Laws of the Universe}.
+\newblock Jonathan Cape, London, 2004.
+
+\bibitem{Isham1993}
+C.~J.~Isham.
+\newblock Canonical quantum gravity and the problem of time.
+\newblock In \emph{Integrable Systems, Quantum Groups, and Quantum Field Theories}, NATO ASI Series, pages 157--287. Kluwer, 1993.
+\newblock \texttt{arXiv:gr-qc/9210011}.
+
+\end{thebibliography}
+
+\end{document}

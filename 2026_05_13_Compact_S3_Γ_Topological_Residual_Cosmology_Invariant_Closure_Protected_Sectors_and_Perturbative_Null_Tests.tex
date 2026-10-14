@@ -1,0 +1,1185 @@
+
+\documentclass[
+  aps,
+  prd,
+  reprint,
+  superscriptaddress,
+  floatfix,
+  nofootinbib,
+  longbibliography
+]{revtex4-2}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsfonts,amsthm,mathtools,bm}
+\usepackage{booktabs,array,tabularx}
+\usepackage{microtype}
+\usepackage{hyperref}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue,
+  citecolor=blue,
+  urlcolor=blue
+}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{criterion}[theorem]{Criterion}
+\newtheorem{protocol}[theorem]{Protocol}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\dd}{\mathrm d}
+\newcommand{\D}{\mathcal D}
+\newcommand{\M}{\mathcal M}
+\newcommand{\vis}{\mathrm{vis}}
+\newcommand{\w}{\mathrm w}
+\newcommand{\eff}{\mathrm{eff}}
+\newcommand{\crit}{\mathrm{crit}}
+\newcommand{\topo}{\mathrm{topo}}
+\newcommand{\amp}{\mathrm{amp}}
+\newcommand{\GI}{\mathrm{GI}}
+\newcommand{\Ok}{\Omega_K}
+\newcommand{\Ow}{\Omega_{\mathrm w}}
+\newcommand{\Oq}{\Omega_q}
+\newcommand{\Aq}{\mathcal A_q}
+\newcommand{\Aw}{\mathcal A_{\mathrm w}}
+\newcommand{\Rcl}{\mathcal R}
+\newcommand{\Vol}{\operatorname{Vol}}
+\newcommand{\Spec}{\operatorname{Spec}}
+\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\id}{\mathbf 1}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\R}{\mathbb R}
+\newcommand{\eps}{\epsilon}
+\newcommand{\qhat}{\widehat q}
+
+\begin{document}
+
+\title{Compact \texorpdfstring{\(S^3/\Gamma\)}{S3/Gamma} Topological Residual Cosmology:\texorpdfstring{\\}{ } 
+Invariant Closure, Protected Sectors, and Perturbative Null Tests}
+
+\author{Andrei~Preece}
+\email{andre.preece@web.de}
+\affiliation{Independent Researcher, Berlin, Germany}
+
+\author{Boris~Batenin}
+\email{batenin@web.de}
+\affiliation{Independent Researcher}
+
+\date{May 13, 2026}
+
+\begin{abstract}
+A topological origin theory for the homogeneous dark sector is scientifically meaningful only if it separates invariant closure from amplitude selection.  We formulate such a separation for compact positive-curvature Friedmann--Lemaître--Robertson--Walker cosmology.  The primitive object is not a new material stress tensor, but the Einstein-form residual
+\[
+T^\D_{\mu\nu}:=\frac{c^4}{8\pi G}G_{\mu\nu}-T^{\vis}_{\mu\nu},
+\]
+defined after the metric and the visible-sector convention have been specified.  On a closed background, the minimal topological current plus compact four-form source class is exactly equivalent to
+\[
+\eps_\D(a)=\eps_{\w,0}a^{-3}+\eps_q,\qquad p_\D(a)=-\eps_q,
+\]
+and therefore to the two invariant constants
+\[
+\Aq(a):=-p_\D(a),\qquad
+\Aw(a):=a^3[\eps_\D(a)+p_\D(a)].
+\]
+The topology supplies protected slots, not numerical abundances: \(S^3/\Gamma\) gives compact volume, a discrete spectrum, an orientable fundamental class, and winding/flux labels, but does not by itself determine \(\Ow\), \(\Oq\), or \(\Lambda_{\eff}\).  We prove the exact homogeneous closure criterion, the conditional \(S^3\) selection theorem, the quotient-space refinement \(S^3/\Gamma\), the no-topology-only-amplitude theorem, a curvature-linear amplitude no-go, and a local-quantum no-go for determining cosmic global topology.  We also give the perturbative closure conditions on compact spherical modes: a fixed four-form has no independent scalar perturbation, while the current branch must reduce to a pressureless geodesic component unless further sectors are introduced.  The result is not a present proof that the Universe is globally \(S^3\).  It is a falsifiable residual-closure programme in which topology, protected sectors, amplitude selection, and cosmological likelihoods are distinct and separately testable.
+\end{abstract}
+
+\maketitle
+
+\section{Decision boundary}
+
+The claim developed here is deliberately narrower than the slogan that the Universe is a three-sphere.  The invariant programme is the following chain:
+\begin{equation}
+\boxed{
+\begin{aligned}
+(g,T^{\vis})&\longrightarrow T^\D,\\
+\Sigma_A&\longrightarrow S^3_A/\Gamma,\\
+([\Sigma,S^3],H^3,\hbox{EFT},F_4)&\longrightarrow
+\eps_{\w,0}a^{-3}+\eps_q,\\
+\mathfrak S_{\amp}+\hbox{data}&\longrightarrow
+\Ow,\Oq,\Lambda_{\eff}.
+\end{aligned}}
+\label{eq:programme_chain}
+\end{equation}
+Each arrow has a different logical status.  The first is a definition.  The second is a theorem about constant-curvature space forms.  The third is a conditional source construction.  The fourth is not fixed by topology and must be supplied by a separate ultraviolet, global, boundary, or empirical amplitude-selection rule.
+
+The paper therefore has a positive and a negative content.  Positively, it gives a sharp residual-closure test.  Negatively, it excludes overstatements that would make the construction nonfalsifiable: positive curvature alone does not prove simple connectedness; topology alone does not fix the dark abundances; local laboratory quantum phases do not determine cosmic global topology; and a current/form closure at background level is not a perturbation theory unless the reconstructed perturbations also close.
+
+Throughout, \(c\) is kept explicit, and the differential-geometric conventions follow Wald~\cite{Wald}.  A timelike four-velocity \(U^\mu\) satisfies
+\begin{equation}
+U^\mu U_\mu=-c^2 .
+\label{eq:U_norm}
+\end{equation}
+For a perfect fluid with energy density \(\eps\) and pressure \(p\),
+\begin{equation}
+T_{\mu\nu}=(\eps+p)\frac{U_\mu U_\nu}{c^2}+p\,g_{\mu\nu}.
+\label{eq:perfect_fluid_convention}
+\end{equation}
+
+\section{Primitive invariant: the Einstein residual}
+
+Let \((\M,g_{\mu\nu})\) be a four-dimensional spacetime with the regularity required for the Einstein tensor.  Let \(T^{\vis}_{\mu\nu}\) be the stress tensor assigned, by convention and data model, to baryons, photons, neutrinos, and any other sector not to be counted as residual.  The dark residual is defined by
+\begin{equation}
+\boxed{
+T^\D_{\mu\nu}:=
+\frac{c^4}{8\pi G}G_{\mu\nu}-T^{\vis}_{\mu\nu}.
+}
+\label{eq:primitive_residual}
+\end{equation}
+A bare cosmological-constant term, if present in the gravitational field-equation convention, is included in \(T^\D_{\mu\nu}\) unless the geometric side is explicitly redefined as \(G_{\mu\nu}+\Lambda g_{\mu\nu}\).  This definition uses only local covariance and the visible-sector convention.  It does not presuppose particles, fluids, topology, or an equation of state.
+
+\begin{theorem}[Residual uniqueness]
+If \(S_{\mu\nu}\) satisfies
+\begin{equation}
+G_{\mu\nu}=\frac{8\pi G}{c^4}\left(T^{\vis}_{\mu\nu}+S_{\mu\nu}\right),
+\label{eq:residual_uniqueness_assumption}
+\end{equation}
+then \(S_{\mu\nu}=T^\D_{\mu\nu}\).
+\end{theorem}
+
+\begin{proof}
+Move \(T^{\vis}_{\mu\nu}\) to the geometric side and multiply by \(c^4/(8\pi G)\).  No field equation for \(S_{\mu\nu}\) and no matter model are used.
+\end{proof}
+
+The contracted Bianchi identity gives
+\begin{equation}
+\nabla^\mu T^\D_{\mu\nu}=-\nabla^\mu T^{\vis}_{\mu\nu}.
+\label{eq:residual_conservation_general}
+\end{equation}
+Thus the residual is separately conserved if and only if the visible sector is separately conserved under the adopted convention.
+
+\section{First-principle axioms of minimal CTRC}
+
+The following axioms define the minimal Compact Topological Residual Cosmology (CTRC) class.  They are not observations; they are the model assumptions whose consequences are tested.
+
+\begin{definition}[Visible subtraction axiom]
+The pair \((g_{\mu\nu},T^{\vis}_{\mu\nu})\) fixes \(T^\D_{\mu\nu}\) through Eq.~\eqref{eq:primitive_residual}.  Changing the visible-sector convention changes the residual.  All quoted residual amplitudes are therefore conditional on the visible subtraction.
+\end{definition}
+
+\begin{definition}[Compact spherical space-form axiom]
+Each constant-time spatial slice is assumed to be a compact orientable spherical space form
+\begin{equation}
+\Sigma_A=S^3_A/\Gamma ,
+\label{eq:spherical_space_form}
+\end{equation}
+where \(S^3_A\) is the round three-sphere of curvature radius \(A\), and \(\Gamma\) is a finite freely acting group of orientation-preserving isometries.  The simply connected branch is \(\Gamma=\id\).
+\end{definition}
+
+\begin{definition}[Minimal protected source axiom]
+The residual is allowed to contain only two protected homogeneous sectors:
+\begin{enumerate}
+\item a conserved topological-current branch whose homogeneous energy density scales as \(a^{-3}\);
+\item a compact three-form/four-form branch whose stress tensor is vacuum-like and constant within a flux sector.
+\end{enumerate}
+The order-parameter map defining the topological current is not assigned an
+independent sigma-model, Skyrme, elastic, or gradient stress in the minimal
+branch; adding such terms defines an extended CTRC model.  Any additional
+pressure, anisotropic stress, clustering, vector mode, or tensor source is an
+extra sector, not part of minimal CTRC.
+\end{definition}
+
+\begin{definition}[Leading linear current EFT axiom]
+At homogeneous leading order, the winding branch is represented by a conserved
+current effective theory whose rest-frame energy density is linear in the
+topological number density,
+\begin{equation}
+\eps_{\w}(n_{\topo})=\mu_{\w}c^2 n_{\topo},
+\qquad
+\mu_{\w}\ge0 .
+\label{eq:leading_current_eft_axiom}
+\end{equation}
+Equivalently, the current branch is the pressureless specialization of a
+Brown-type relativistic fluid.  Nonlinear functions of \(n_{\topo}\),
+sigma-model gradients, Skyrme terms, elastic stresses, sound speed,
+anisotropic stress, or additional perturbative degrees of freedom define
+extensions of minimal CTRC.
+\end{definition}
+
+\begin{definition}[Amplitude-selection axiom]
+Topology and homotopy labels are not amplitude selectors.  A physical origin model must add a law
+\begin{equation}
+\mathfrak S_{\amp}[Q,N,A_0,\mu_{\w},e;\mathcal B]
+\label{eq:amplitude_selector_symbolic}
+\end{equation}
+that determines or dynamically selects the current mass scale \(\mu_{\w}\),
+flux unit \(e\), integer labels \(Q,N\), boundary data \(\mathcal B\), and
+curvature radius \(A_0\).  A phenomenological likelihood prior may constrain
+these quantities, but it is not by itself an origin law.
+\end{definition}
+
+The word ``origin'' will always mean origin within this conditional axiom set.  It never means that topology alone numerically derives the observed dark matter or dark energy abundances.
+
+\section{Closed-FLRW reconstruction}
+
+Use the closed FLRW line element
+\begin{equation}
+\dd s^2=-c^2\dd t^2+a^2(t)A_0^2\,\dd\Omega_3^2,
+\qquad
+\Ok=-\frac{c^2}{H_0^2A_0^2}<0 ,
+\label{eq:closed_metric}
+\end{equation}
+where \(A_0\) is the present curvature radius of the simply connected cover.  For a quotient \(S^3/\Gamma\), the local metric is unchanged while the volume and mode spectrum are globally restricted.  Define
+\begin{equation}
+E(a)=\frac{H(a)}{H_0},
+\qquad
+\eps_{\crit,0}=\frac{3H_0^2c^2}{8\pi G}.
+\label{eq:E_epscrit}
+\end{equation}
+If the residual is homogeneous and isotropic, Eq.~\eqref{eq:primitive_residual} reconstructs
+\begin{align}
+\eps_\D(a)
+&=
+\eps_{\crit,0}\left[E^2(a)-\Ok a^{-2}\right]
+-\eps_{\vis}(a),
+\label{eq:eps_reconstruction}
+\\
+p_\D(a)
+&=
+-\frac{\eps_{\crit,0}}{3}
+\left[
+2E(a)\frac{\dd E}{\dd\ln a}
+\right.
+\nonumber\\
+&\left.
+\hspace{1.1cm}
++3E^2(a)-\Ok a^{-2}
+\right]
+-p_{\vis}(a).
+\label{eq:p_reconstruction}
+\end{align}
+These equations are only a rearrangement of the Friedmann and acceleration equations.  They provide the data-facing input to the closure test.
+
+\section{Exact homogeneous current/form closure}
+
+The minimal homogeneous current/form source class is
+\begin{equation}
+T^\D_{\mu\nu}
+=
+\eps_{\w,0}a^{-3}\frac{U_\mu U_\nu}{c^2}
+-\eps_q g_{\mu\nu},
+\qquad
+\eps_{\w,0}\ge0,\quad \eps_q\ge0 .
+\label{eq:current_form_tensor}
+\end{equation}
+It is equivalent to
+\begin{equation}
+\eps_\D(a)=\eps_{\w,0}a^{-3}+\eps_q,
+\qquad
+p_\D(a)=-\eps_q .
+\label{eq:current_form_eps_p}
+\end{equation}
+
+\begin{theorem}[Exact background closure criterion]
+A reconstructed homogeneous residual \((\eps_\D(a),p_\D(a))\) is exactly representable by Eq.~\eqref{eq:current_form_tensor} on an interval of scale factors if and only if
+\begin{equation}
+\boxed{
+\Aq(a):=-p_\D(a),\qquad
+\Aw(a):=a^3[\eps_\D(a)+p_\D(a)]
+}
+\label{eq:closure_observables}
+\end{equation}
+are constant and nonnegative on that interval.  The constants are
+\begin{equation}
+\eps_q=\Aq,\qquad
+\eps_{\w,0}=\Aw .
+\label{eq:closure_constants}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+If Eq.~\eqref{eq:current_form_eps_p} holds, then \(-p_\D=\eps_q\) and \(a^3(\eps_\D+p_\D)=\eps_{\w,0}\).  Conversely, if Eq.~\eqref{eq:closure_observables} is constant, then \(p_\D=-\Aq\) and \(\eps_\D=\Aw a^{-3}+\Aq\), which is Eq.~\eqref{eq:current_form_eps_p}.
+\end{proof}
+
+The sharp null residuals are
+\begin{align}
+\boxed{\Rcl_q(a):=\frac{\dd p_\D}{\dd\ln a}=0,}
+\label{eq:closure_derivative_tests}\\
+\boxed{\Rcl_{\w}(a):=\frac{\dd}{\dd\ln a}
+\{a^3[\eps_\D(a)+p_\D(a)]\}=0.}
+\nonumber
+\end{align}
+together with
+\begin{equation}
+-p_\D(a)\ge0,\qquad
+a^3[\eps_\D(a)+p_\D(a)]\ge0.
+\label{eq:closure_positivity_tests}
+\end{equation}
+
+\section{Topology selection and quotient refinement}
+
+The classification of complete constant-curvature spatial manifolds separates local geometry from global topology~\cite{Wolf,HawkingEllis}:
+\begin{equation}
+\Sigma=\widetilde\Sigma/\Gamma,
+\qquad
+\widetilde\Sigma\in\{S^3,\R^3,H^3\},
+\label{eq:space_form_atlas}
+\end{equation}
+where \(\Gamma\) is a discrete group of isometries acting freely and properly discontinuously.  In the compact spherical case, \(\Gamma\) is finite.
+
+\begin{theorem}[Conditional \(S^3\) selection]
+If a spatial slice is complete, compact, orientable, simply connected, FLRW, and has positive constant sectional curvature \(K=A^{-2}\), then it is isometric to the round three-sphere \(S^3_A\).  If simple connectedness is removed, the invariant conclusion is only that the universal cover is \(S^3_A\), and the spatial manifold may be \(S^3_A/\Gamma\).
+\end{theorem}
+
+\begin{proof}
+A complete simply connected Riemannian three-manifold of constant positive sectional curvature is isometric to the round \(S^3_A\).  Quotienting by a finite freely acting isometry group preserves the local curvature and changes the global topology.  Hence positive curvature fixes the cover, while simple connectedness fixes the manifold.
+\end{proof}
+
+For an orientable spherical quotient,
+\begin{equation}
+\Vol(S^3_A/\Gamma)=\frac{2\pi^2A^3}{|\Gamma|},
+\qquad
+\pi_1(S^3_A/\Gamma)\simeq \Gamma ,
+\label{eq:quotient_invariants_1}
+\end{equation}
+and the orientable fundamental class gives
+\begin{equation}
+H^3(S^3_A/\Gamma,\Z)\simeq \Z,
+\qquad
+\pi_3(S^3_A/\Gamma)\simeq \pi_3(S^3)=\Z .
+\label{eq:quotient_invariants_2}
+\end{equation}
+For the simply connected case, scalar harmonics obey
+\begin{align}
+-\Delta_{S^3_A}Y_{n\ell m}
+&=
+\frac{n(n+2)}{A^2}Y_{n\ell m},
+\label{eq:s3_scalar_spectrum}\\
+{\rm mult}(n)&=(n+1)^2,\qquad n=0,1,2,\ldots .
+\nonumber
+\end{align}
+For a quotient \(S^3/\Gamma\), the admissible scalar modes are the \(\Gamma\)-invariant subspace of these cover modes.  Thus compact topology changes the global spectrum, but not the local FLRW curvature tensor.
+
+\section{Topological slots and the no-amplitude theorem}
+
+The compact spherical branch supplies protected mathematical slots:
+\begin{align}
+[\Sigma,S^3]&\simeq H^3(\Sigma,\Z)\simeq\Z,
+\label{eq:protected_slots}\\
+H^3(\Sigma,\Z)&\simeq \Z .
+\nonumber
+\end{align}
+The top cohomology slot \(H^3(\Sigma,\Z)\simeq\Z\) is a compact orientability
+datum and is not unique to spherical topology.  What is special to the compact
+spherical branch is the combination of positive-curvature FLRW geometry,
+finite-volume quotient structure, discrete spherical spectrum, and the protected
+degree/current and compact three-form slots within the same residual framework.
+The first line classifies degree/winding-current labels through the degree of
+maps \(\Sigma\to S^3\), equivalently through obstruction theory and algebraic
+topology~\cite{Hatcher}.  The equality
+\(\pi_3(\Sigma)\simeq\Z\) is also true for spherical quotients, but the winding
+current used here is classified by \([\Sigma,S^3]\), not by \(\pi_3(\Sigma)\).
+The second line records the integral large-gauge and zero-mode structure
+available to a compact three-form on an orientable compact spatial slice; the
+potential \(C_3\) itself need not represent a closed cohomology class on a
+branch with \(F_4=\dd C_3\neq0\).  These are exact invariants.  They are not
+numerical cosmological densities.
+
+\begin{theorem}[No topology-only amplitude theorem]
+The discrete topological and compact-sector data
+\[
+(\Gamma,[\Sigma,S^3],H^3(\Sigma,\Z),Q,N)
+\]
+do not determine the numerical values of \(\Ow\), \(\Oq\), or
+\(\Lambda_{\eff}\).  Even if the non-topological metric scale \(A_0\) is supplied, the
+amplitudes remain undetermined unless the current mass scale \(\mu_{\w}\), the
+four-form flux unit \(e\), and a branch-selection rule are also supplied.
+\end{theorem}
+
+\begin{proof}
+The listed data fix a quotient group, degree or winding label, orientable
+three-form slot, and integer branch labels.  They do not fix a dimensionful
+current mass scale, a compact gauge normalization, a flux spacing, boundary
+conditions, or a dynamical rule selecting a branch.  Supplying \(A_0\) gives a
+geometric volume scale, but it still does not determine the conversion from
+integer labels to energy densities.  Hence no invariant map from these data
+alone to \(\Ow\), \(\Oq\), or \(\Lambda_{\eff}\) is defined.
+\end{proof}
+
+This theorem is essential.  It protects the theory from confusing a topological slot with a measured abundance.
+
+\section{Amplitude-selector completion routes}
+
+The abstract selector \(\mathfrak S_{\amp}\) may be replaced by an explicit
+completion only if it supplies invariant dimensionful data and a branch-selection
+rule.  This distinction is the same structural lesson that underlies the
+cosmological-constant problem: symmetry, covariance, and topology constrain the
+form of the vacuum sector, but they do not by themselves select its observed
+amplitude~\cite{WeinbergCC}.
+
+\begin{definition}[Admissible amplitude completion]
+An admissible completion of minimal CTRC is a covariant rule which preserves the
+minimal branch assumptions and fixes, or dynamically selects, the branch data
+\begin{equation}
+(\Gamma,Q,N,A_0,\mu_{\w},e;\mathcal B)
+\end{equation}
+without inserting the observed values of \(\Omega_c\) and \(\Omega_\Lambda\) as
+inputs.  Equivalently, it is an explicit construction replacing the abstract
+functional \(\mathfrak S_{\amp}\) in Eq.~\eqref{eq:amplitude_selector_symbolic}.
+\end{definition}
+
+\begin{proposition}[Taxonomy of admissible completion routes]
+Within the stated CTRC assumptions, natural invariant routes for completing
+\(\mathfrak S_{\amp}\) fall into six classes:
+\begin{enumerate}
+\item spectral-geometric rules using metric invariants of \(\Sigma\), such as
+\(\Vol(\Sigma)\), \(A_0\), or \(\Spec(\Delta_\Sigma)\);
+\item flux-lattice or membrane-charge rules fixing \(e\) and selecting \(N\);
+\item covariant global variational principles whose stationarity equations fix
+\((Q,N,A_0,\mu_{\w},e)\);
+\item sequestering or global-constraint mechanisms in which four-forms impose
+spacetime-integrated constraints;
+\item dynamical relaxation over flux or topology sectors with specified
+transition rates and an equilibrium, absorbing, or dominant-branch rule;
+\item statistical or path-integral branch measures whose saddle point selects
+the compact-sector data.
+\end{enumerate}
+In every class the observed \(\Omega_c\) and \(\Omega_\Lambda\) must be outputs,
+or likelihood targets used to test the completion, not inserted as defining
+inputs.
+\end{proposition}
+
+A schematic example of the first class would be a rule of the form
+\begin{equation}
+\begin{aligned}
+\mu_{\w}&=F_{\w}[A_0,\Spec(\Delta_\Sigma),\ldots],\\
+e&=F_q[A_0,\Spec(\Delta_\Sigma),\ldots].
+\end{aligned}
+\end{equation}
+followed by a branch-selection law for \(Q\) and \(N\).  A flux completion
+instead fixes \(e\) through compact gauge normalization or membrane charge and
+then supplies a selection rule for \(N\).  A path-integral completion would have
+to specify a measure, for example schematically
+\begin{equation}
+Z=\sum_{\Gamma,Q,N}\int \dd A_0\,\dd\mu_{\w}\,\dd e\,
+\exp[-I_{\eff}(\Gamma,Q,N,A_0,\mu_{\w},e)],
+\end{equation}
+and show that a well-defined saddle or measure concentration realizes
+\(\mathfrak S_{\amp}\).
+
+\begin{remark}[Observational inversion is not an origin law]
+Setting \(C_{\w}\) and \(C_q\), or equivalently \(\Omega_{\w}\) and \(\Omega_q\),
+equal to the observed dark-sector values is legitimate phenomenology and is
+useful for falsification.  It is not, by itself, a derivation of the residual
+origin.  The remaining task for a full origin theory is to construct one of the
+completion routes above and show that its selected branch satisfies the
+background and perturbative closure tests.
+\end{remark}
+
+\section{Winding current branch}
+
+Let \(\phi:\Sigma\to X\) be a map from the spatial slice to a compact orientable target \(X\simeq S^3\), with normalized volume form \(\widehat\Omega\) satisfying \(\int_X\widehat\Omega=1\).  The pullback defines the identically conserved current
+\begin{align}
+J^\mu
+&=
+\frac{1}{3!\sqrt{-g}}\,
+\varepsilon^{\mu\nu\rho\sigma}
+\widehat\Omega_{ABC}(\phi)
+\partial_\nu\phi^A
+\partial_\rho\phi^B
+\partial_\sigma\phi^C,
+\label{eq:topological_current_general}\\
+\nabla_\mu J^\mu&=0 .
+\nonumber
+\end{align}
+The charge
+\begin{equation}
+Q=\int_{\Sigma_t}J^\mu n_\mu\,\dd\Sigma\in\Z
+\label{eq:winding_charge}
+\end{equation}
+is the degree of the map in a smooth homotopy sector.  In the \(SU(2)\simeq S^3\) representation, this is equivalently the standard Skyrme-type topological current~\cite{Skyrme}:
+\begin{align}
+B^\mu
+&=
+\frac{1}{24\pi^2\sqrt{-g}}
+\varepsilon^{\mu\nu\rho\sigma}
+\Tr\!\left[
+(U^{-1}\partial_\nu U)
+\right.
+\nonumber\\
+&\hspace{2.0cm}\left.
+\times
+(U^{-1}\partial_\rho U)
+(U^{-1}\partial_\sigma U)
+\right].
+\label{eq:skyrme_current}
+\end{align}
+
+The map \(U\) or \(\phi\) is used here only to define the protected conserved
+current.  A generic sigma-model or Skyrme kinetic action for \(U\) would add
+gradient energy, pressure, anisotropic stress, and additional perturbative
+degrees of freedom.  Those terms are not part of minimal CTRC unless explicitly
+introduced.  The minimal homogeneous dark-matter-like branch is obtained only
+after retaining the conserved current and supplying the Brown-type linear
+current EFT.
+
+A conserved integer by itself is not dark matter.  To become a pressureless branch one must add a covariant current effective action, here the pressureless specialization of Brown's relativistic-fluid formalism~\cite{BrownFluid}.  Let
+\begin{equation}
+n=\frac{\sqrt{-J_\mu J^\mu}}{c},
+\qquad
+S_{\w}=-\int_{\M}\sqrt{-g}\,\mu_{\w}c^2 n\,\dd^4x .
+\label{eq:dust_current_action}
+\end{equation}
+This is the linear-in-density perfect-fluid action for dust.  It gives
+\begin{equation}
+T^{\w}_{\mu\nu}=\eps_{\w}\frac{U_\mu U_\nu}{c^2},
+\qquad
+p_{\w}=0,
+\qquad
+\eps_{\w}=\mu_{\w}c^2 n .
+\label{eq:dust_stress}
+\end{equation}
+For a homogeneous sector on \(\Sigma_{A_0}=S^3_{A_0}/\Gamma\),
+\begin{equation}
+n(a)=\frac{|Q|}{a^3\Vol(\Sigma_{A_0})},
+\qquad
+\eps_{\w}(a)=
+\frac{\mu_{\w}c^2|Q|}{\Vol(\Sigma_{A_0})}\,a^{-3}.
+\label{eq:winding_density}
+\end{equation}
+The integer \(Q\) is protected under smooth deformations, whereas \(\mu_{\w}\) is an amplitude datum.
+
+\section{Compact four-form branch}
+
+Let \(C_3\) be a three-form gauge potential and \(F_4=\dd C_3\).  Four-form vacuum branches of this kind are standard in gravitational theory~\cite{Aurilia,HenneauxTeitelboim,BrownTeitelboim,BoussoPolchinski}.  In four spacetime dimensions take
+\begin{equation}
+S_F=-\frac{Z_F}{2\cdot4!}
+\int\sqrt{-g}\,
+F_{\mu\nu\rho\sigma}F^{\mu\nu\rho\sigma}\,\dd^4x,
+\qquad Z_F>0 .
+\label{eq:four_form_action}
+\end{equation}
+The field equation gives
+\begin{equation}
+\dd\,{\star F_4}=0,
+\qquad
+{\star F_4}=f=\hbox{constant}
+\label{eq:four_form_solution}
+\end{equation}
+on each branch.  With
+\begin{equation}
+\qhat=\sqrt{Z_F}\,f,
+\qquad
+\eps_q=\frac12\qhat^2,
+\label{eq:four_form_energy}
+\end{equation}
+the stress tensor is
+\begin{equation}
+T^q_{\mu\nu}=-\eps_q g_{\mu\nu},
+\qquad
+\Lambda_{\eff}=\frac{8\pi G}{c^4}\eps_q .
+\label{eq:four_form_stress}
+\end{equation}
+
+If \(C_3\) is treated as compact and the spatial zero mode
+\begin{equation}
+\Theta=\int_{\Sigma}C_3
+\label{eq:theta_zero_mode}
+\end{equation}
+has a specified period, canonical quantization can place the conjugate four-form flux on a lattice,
+\begin{equation}
+\qhat=N e,\qquad N\in\Z .
+\label{eq:flux_lattice}
+\end{equation}
+The spacing \(e\) is not fixed by \(H^3(\Sigma,\Z)\) alone; it is part of the compact gauge normalization or UV completion.
+
+In four dimensions \(C_3\wedge F_4\) is a seven-form and is not a local four-dimensional Lagrangian density without extra structure.  The admissible local object is the kinetic branch \eqref{eq:four_form_action}, possible boundary terms, or a compact zero-mode quantization.
+
+\section{Conditional origin theorem}
+
+\begin{theorem}[Conditional origin of the homogeneous dark residual]
+Assume the visible subtraction axiom, compact spherical space-form axiom,
+minimal protected source axiom, the leading linear current EFT, and the compact
+four-form branch.  A reconstructed homogeneous Einstein residual is representable
+by the minimal CTRC source class if and only if it satisfies the exact
+background closure criterion,
+\begin{equation}
+\begin{aligned}
+-p_\D(a)&=\eps_q=\hbox{constant}\ge0,\\
+a^3[\eps_\D(a)+p_\D(a)]&=\eps_{\w,0}=\hbox{constant}\ge0 .
+\end{aligned}
+\label{eq:conditional_origin_closure}
+\end{equation}
+In that case it has the form
+\begin{equation}
+T^\D_{\mu\nu}
+=
+\eps_{\w,0}a^{-3}\frac{U_\mu U_\nu}{c^2}
+-\eps_q g_{\mu\nu}.
+\label{eq:conditional_origin_tensor}
+\end{equation}
+If, in addition, the amplitude selector chooses the branch
+\begin{equation}
+\eps_{\w,0}=\eps_{\w,0}^{\star},
+\qquad
+\eps_q=\eps_q^{\star},
+\label{eq:selected_branch_values}
+\end{equation}
+then the admitted residual is
+\begin{equation}
+T^\D_{\mu\nu}
+=
+\eps_{\w,0}^{\star}a^{-3}\frac{U_\mu U_\nu}{c^2}
+-\eps_q^{\star}g_{\mu\nu}.
+\label{eq:selected_branch_tensor}
+\end{equation}
+The first term is the current branch associated with the protected integer
+\(Q\in[\Sigma,S^3]\simeq H^3(\Sigma,\Z)\), once the dust current EFT is supplied.
+The second term is the compact four-form branch associated with a fixed flux
+label, once the compact normalization is supplied.
+\end{theorem}
+
+\begin{proof}
+The minimal protected source axiom admits only a conserved current branch and a
+fixed four-form branch.  The linear current EFT
+\eqref{eq:dust_current_action} gives
+\begin{equation}
+p_{\w}=0,
+\qquad
+n\propto a^{-3},
+\qquad
+\eps_{\w}=\eps_{\w,0}a^{-3}.
+\end{equation}
+The four-form solution \eqref{eq:four_form_solution} gives
+\begin{equation}
+T^q_{\mu\nu}=-\eps_q g_{\mu\nu},
+\qquad
+\eps_q=\hbox{constant}.
+\end{equation}
+Adding the two sectors gives Eq.~\eqref{eq:conditional_origin_tensor}, and
+therefore
+\begin{equation}
+-p_\D(a)=\eps_q,
+\qquad
+a^3[\eps_\D(a)+p_\D(a)]=\eps_{\w,0}.
+\end{equation}
+Thus every minimal CTRC residual satisfies the closure criterion.
+Conversely, if the reconstructed homogeneous residual satisfies the closure
+criterion with nonnegative constants, then
+\begin{equation}
+p_\D=-\eps_q,
+\qquad
+\eps_\D=\eps_{\w,0}a^{-3}+\eps_q,
+\end{equation}
+so it is exactly reconstructed by the sum of the pressureless current branch
+and the fixed four-form branch.  If the closure criterion fails, the minimal
+CTRC branch is falsified under the adopted visible subtraction rather than
+repaired by adding unstated sectors.  Finally, the amplitude selector replaces
+the free constants by the selected branch values
+\(\eps_{\w,0}^{\star}\) and \(\eps_q^{\star}\).
+\end{proof}
+
+\begin{corollary}[Exact observational closure]
+Under the same assumptions, the reconstructed residual must satisfy Eq.~\eqref{eq:closure_derivative_tests} and Eq.~\eqref{eq:closure_positivity_tests}.  Failure of either derivative condition or either positivity condition falsifies the minimal homogeneous branch under the adopted visible subtraction.
+\end{corollary}
+
+\section{Branch budget and curvature-linear no-go}
+
+At \(a=1\), define
+\begin{equation}
+\Ow=\frac{\eps_{\w,0}}{\eps_{\crit,0}},
+\qquad
+\Oq=\frac{\eps_q}{\eps_{\crit,0}} .
+\label{eq:Omega_definitions}
+\end{equation}
+The background budget is
+\begin{equation}
+1=\Omega_{\vis,0}+\Ow+\Oq+\Ok .
+\label{eq:budget}
+\end{equation}
+Using \(\Vol(\Sigma_{A_0})=2\pi^2A_0^3/|\Gamma|\), the current amplitude is
+\begin{equation}
+\Ow=
+\frac{8\pi G}{3H_0^2c^2}
+\frac{\mu_{\w}c^2|Q|}{\Vol(\Sigma_{A_0})}
+=
+\frac{4G\mu_{\w}|Q|\,|\Gamma|}{3\pi H_0^2 A_0^3},
+\label{eq:current_Omega_budget}
+\end{equation}
+where the final expression keeps the dimension carried by \(\mu_{\w}\) as a mass parameter.  In units with \(c=1\), the same expression reads \(4G\mu_{\w}|Q||\Gamma|/(3\pi H_0^2A_0^3)\).
+
+A useful toy selector is holographic winding saturation: set the total current energy equal to the Schwarzschild energy associated with the curvature radius,
+\begin{equation}
+\mu_{\w}c^2|Q|=\frac{c^4A_0}{2G}.
+\label{eq:HWS_energy}
+\end{equation}
+For the simply connected branch this yields
+\begin{equation}
+\boxed{
+\Omega_{\w}^{\rm HWS}=\frac{2}{3\pi}|\Omega_K|.
+}
+\label{eq:HWS}
+\end{equation}
+For a quotient, the result acquires the volume factor \(|\Gamma|\) if the same total-energy saturation is imposed on the quotient volume:
+\begin{equation}
+\Omega_{\w}^{\rm HWS}(\Gamma)=
+\frac{2|\Gamma|}{3\pi}|\Omega_K|.
+\label{eq:HWS_quotient}
+\end{equation}
+
+\begin{theorem}[Curvature-linear amplitude no-go]
+Any leading selector of the form
+\begin{equation}
+\Omega_{\w}=C|\Omega_K|
+\label{eq:linear_curvature_selector}
+\end{equation}
+with \(C=O(1)\) cannot produce a present dark-matter fraction of order \(\Omega_c\simeq0.26\) in a near-flat universe, as inferred in standard cosmological fits~\cite{Planck2018}.
+\end{theorem}
+
+\begin{proof}
+As \(|\Omega_K|\to0\), Eq.~\eqref{eq:linear_curvature_selector} forces \(\Omega_{\w}\to0\).  The observed matter abundance is not parametrically zero in that limit.  Therefore either \(C\) must be large, the curvature must be large, or the selector cannot be the leading origin of the observed dark-matter abundance.
+\end{proof}
+
+The HWS calculation is therefore valuable as a no-go instrument.  It should not be presented as the leading dark-matter amplitude law under near-flat curvature constraints.
+
+\section{Perturbative closure on compact spherical modes}
+
+A successful background closure is not yet a perturbation theory.  We use standard scalar-perturbation conventions~\cite{Bardeen,KodamaSasaki,Mukhanov,MaBertschinger}.  Perturbatively, the residual is again defined invariantly:
+\begin{equation}
+\boxed{
+\delta T^\D_{\mu\nu}
+=
+\frac{c^4}{8\pi G}\delta G_{\mu\nu}
+-\delta T^{\vis}_{\mu\nu}.
+}
+\label{eq:linear_residual}
+\end{equation}
+This is a tensor equation before any gauge choice.  If
+\begin{equation}
+\delta G_{\mu\nu}
+=
+\frac{8\pi G}{c^4}
+\left(\delta T^{\vis}_{\mu\nu}+S_{\mu\nu}\right),
+\label{eq:linear_residual_assumption}
+\end{equation}
+then \(S_{\mu\nu}=\delta T^\D_{\mu\nu}\).
+
+On \(S^3_A\), perturbations are expanded in discrete scalar, vector, and tensor harmonics.  On \(S^3_A/\Gamma\), only the \(\Gamma\)-invariant combinations survive.  In conformal Newtonian form,
+\begin{equation}
+\dd s^2=a^2(\eta)
+\left[
+-c^2(1+2\Psi)\dd\eta^2
++A_0^2(1-2\Phi)\gamma_{ij}\dd x^i\dd x^j
+\right].
+\label{eq:newtonian_metric}
+\end{equation}
+The reconstructed scalar residual can be decomposed as
+\begin{align}
+\delta T^{\D\,0}{}_{0}&=-\delta\eps_\D,\\
+\delta T^{\D\,0}{}_{i}&=(\bar\eps_\D+\bar p_\D)D_i v_\D/c^2,\\
+\delta T^{\D\,i}{}_{j}
+&=\delta p_\D\,\delta^i{}_j
++\left(D^iD_j-\frac13\delta^i{}_jD^2\right)\Pi_\D .
+\label{eq:scalar_decomp}
+\end{align}
+
+With one index raised, the fixed four-form branch has no independent
+mixed-index perturbation,
+\begin{equation}
+\delta T^{q\,\mu}{}_{\nu}=0,
+\label{eq:four_form_mixed_perturb}
+\end{equation}
+even though in covariant-index form
+\begin{equation}
+\delta T^q_{\mu\nu}=-\eps_q\,\delta g_{\mu\nu}.
+\label{eq:four_form_covariant_perturb}
+\end{equation}
+Equivalently, the four-form contributes no independent scalar perturbation:
+\begin{equation}
+\delta\eps_q=0,\qquad
+\delta p_q=0,\qquad
+\delta T^{q\,0}{}_{i}=0,\qquad
+\Pi_q=0.
+\label{eq:four_form_null_perturb}
+\end{equation}
+
+The current branch in its minimal dust limit requires
+\begin{equation}
+\delta p_{\w}^{\GI}=0,\qquad
+\Pi_{\w}^{\GI}=0,\qquad
+c^2_{s,\w}=0,
+\label{eq:dust_null_conditions}
+\end{equation}
+and its density and velocity perturbations must obey the geodesic conserved-current equations on the compact harmonic spectrum.
+
+\begin{criterion}[Exact linear scalar closure]
+For every physical compact scalar mode surviving the quotient projection, minimal CTRC requires the gauge-invariant null conditions
+\begin{equation}
+\boxed{
+\delta p_\D^{\GI}=0,\qquad
+\Pi_\D^{\GI}=0,
+}
+\label{eq:linear_null_pressure_anisotropy}
+\end{equation}
+after subtracting the fixed vacuum branch, together with the continuity and Euler equations of a pressureless geodesic current.  A statistically significant residual pressure, sound speed, anisotropic stress, entropy mode, vector source, or tensor source not attributable to the visible sector falsifies the minimal perturbative branch.
+\end{criterion}
+
+This perturbative statement is often the strongest observational discriminator.  A model that reproduces \(\eps_{\w,0}a^{-3}+\eps_q\) at background level but requires extra clustering physics at linear order is no longer minimal CTRC.
+
+\section{Local quantum no-go for cosmic topology}
+
+Aharonov--Bohm phases, Berry phases, superconducting flux quantization,
+quantum Hall Chern numbers, topological-insulator indices, topological-insulator
+edge modes, neutron interferometry, atom interferometry, and gravitational
+Aharonov--Bohm phases are topology- or connection-sensitive quantum phenomena
+\cite{AharonovBohm,Tonomura,DeaverFairbank,Berry,TKNN,Konig,COW,Overstreet}.
+They demonstrate that holonomies, indices, phases, and spectra are physical.
+They do not, by themselves, determine the topology of the cosmological spatial
+slice.
+
+\begin{theorem}[Local quantum no-go for global topology]
+Let two candidate spacetimes agree on the metric, gauge bundles, states, and operator algebra restricted to the causal diamond \(D\) containing a laboratory experiment.  Then every expectation value and interference statistic constructed from operators supported in \(D\) is identical in the two models.  Therefore no laboratory quantum experiment whose support does not probe a noncontractible cosmological cycle, global boundary condition, repeated image, or global spectrum can determine the global topology of a spatial slice.
+\end{theorem}
+
+\begin{proof}
+The experiment samples only the restricted algebra \(\mathcal A(D)\) and the restricted state on that algebra.  If these restrictions are identical, all correlation functions and probabilities computed from operators supported in \(D\) are identical.  Global topology can enter only through information not contained in \(D\): noncontractible cycles, boundary conditions, spectra, or multiple imaging.
+\end{proof}
+
+This theorem is operational.  It does not deny that quantum fields on different global manifolds can have different spectra.  It says that the difference is observable only when the experiment has access to the relevant global data.
+
+\paragraph*{Neutron-interferometer boundary.}
+The Colella--Overhauser--Werner neutron interferometer is the clean laboratory
+case: split neutron wave packets accumulate a gravitational phase
+\(\Delta\varphi=\Delta S/\hbar\) determined by the local metric, the path
+geometry, and the experimental state~\cite{COW}.  This phase is a genuine
+quantum response to gravity, but it is still computed inside the laboratory
+causal diamond.  Hence it can test the local gravitational connection and
+quantum phase coherence, not the global distinction between \(S^3\),
+\(S^3/\Gamma\), flat, or hyperbolic cosmological topology.  It would become
+a direct cosmic-topology probe only if the coherent experiment accessed a
+noncontractible cosmological cycle, repeated image, boundary condition, or
+global eigenmode spectrum.  Atom-interferometric gravitational
+Aharonov--Bohm measurements lie in the same operational class~\cite{Overstreet}.
+
+\section{Observational status and falsification protocol}
+
+Current observations constrain compact topology and curvature rather than proving
+a global \(S^3\)~\cite{Cornish,PlanckTopology,SahaLens,Planck2018,DESIDR2}.
+CMB topology searches are sensitive to repeated patterns, matched circles, and
+covariance structures whose scale is comparable to the last-scattering diameter.
+The absence of a detected compact signature excludes only the corresponding
+detectable domains and topology families.
+
+The appropriate observational protocol is:
+\begin{enumerate}
+\item choose a visible-sector convention and reconstruct \(T^\D_{\mu\nu}\);
+\item compute \(\Aq(a)\) and \(\Aw(a)\) from Eqs.~\eqref{eq:eps_reconstruction}--\eqref{eq:closure_observables};
+\item fit constants and report the slopes \(\Rcl_q\) and \(\Rcl_{\w}\) with covariance;
+\item test positivity;
+\item perform the perturbative null tests \eqref{eq:linear_null_pressure_anisotropy};
+\item compare \(S^3\), \(S^3/\Gamma\), flat, and hyperbolic candidates using the same likelihood pipeline and priors;
+\item report amplitude selectors separately from topology.
+\end{enumerate}
+
+\begin{protocol}[Finite-volume likelihood guardrail]
+A compact-topology likelihood must not gain apparent evidence from comparing unequal perturbation spaces.  For each candidate \(\Sigma\), the mode basis, covariance, transfer functions, priors, masks, noise model, and visible-sector subtraction must be specified before evaluating the evidence.
+\end{protocol}
+
+The homogeneous branch is falsified by any one of the following:
+\begin{equation}
+\frac{\dd p_\D}{\dd\ln a}\ne0,\qquad
+\frac{\dd}{\dd\ln a}\{a^3(\eps_\D+p_\D)\}\ne0,
+\label{eq:background_falsifiers}
+\end{equation}
+or
+\begin{equation}
+-p_\D<0,\qquad a^3(\eps_\D+p_\D)<0,
+\label{eq:positivity_falsifiers}
+\end{equation}
+within the adopted confidence criterion.  The perturbative branch is falsified by nonzero residual pressure, anisotropic stress, or non-CDM sound speed that survives visible-sector subtraction and systematics.
+
+\section{Radiative stability and sequestering guardrails}
+
+A protected integer \(Q\) cannot be shifted continuously by local perturbative
+renormalization; neither can a flux integer \(N\), once the compact normalization
+is fixed.  This is a statement about labels, not about the numerical amplitude:
+\begin{align}
+Q\in\Z,\quad N\in\Z
+&\qquad \hbox{protected},
+\label{eq:protected_vs_amplitude}\\
+\mu_{\w},\ e,\ A_0,\ \mathcal B
+&\qquad \hbox{amplitude data}.
+\nonumber
+\end{align}
+Radiative corrections and vacuum-energy sensitivity must be separated from
+topological label protection~\cite{WeinbergCC}.  Radiative corrections may
+renormalize the current EFT, the flux kinetic coefficient, or the visible-sector
+subtraction convention.  They cannot continuously change \(Q\) or \(N\), but
+they also cannot by themselves select the observed \(\Ow\) or \(\Oq\).
+
+Global sequestering mechanisms can prevent protected vacuum-energy shifts from
+gravitating in the usual way~\cite{KaloperPadilla}.  They still require global
+variables, boundary conditions, finite residual curvature, or branch data.  Thus
+sequestering is compatible with CTRC, but it is not an amplitude theorem unless
+it supplies the missing selector and perturbative consequences without spoiling
+the closure tests.
+
+\section{Final invariant statement}
+
+The strongest admissible claim is the conditional implication
+\begin{widetext}
+\begin{equation}
+\boxed{
+\begin{gathered}
+\hbox{compact positive-curvature FLRW}
++\hbox{simple connectedness}
+\Rightarrow \Sigma\simeq S^3,\\
+\hbox{compact positive-curvature FLRW}
+\Rightarrow \widetilde\Sigma\simeq S^3,\quad
+\Sigma\simeq S^3/\Gamma,\\
+[\Sigma,S^3]\simeq H^3(\Sigma,\Z)\simeq\Z,\quad
+\hbox{dust current EFT}
+\Rightarrow \eps_{\w}\propto a^{-3},\\
+H^3(\Sigma,\Z)\simeq\Z,\quad
+\hbox{compact four-form normalization}
+\Rightarrow \eps_q=\hbox{constant},\\
+\hbox{current branch}+\hbox{four-form branch}
+\Rightarrow
+-p_\D=\eps_q,\quad
+a^3(\eps_\D+p_\D)=\eps_{\w,0}.
+\end{gathered}}
+\label{eq:final_invariant_claim}
+\end{equation}
+\end{widetext}
+Everything beyond Eq.~\eqref{eq:final_invariant_claim} is an amplitude selector, a perturbative model, or an observational likelihood.
+
+\section{Conclusion}
+
+CTRC becomes a scientific theory precisely when its invariant content is separated from its amplitude hypotheses.  The invariant content is strong: the Einstein residual is unique; the minimal current/form branch has an exact background closure criterion; positive curvature selects the \(S^3\) cover while simple connectedness selects the \(S^3\) manifold; spherical quotients \(S^3/\Gamma\) remain admissible without simple connectedness; winding and four-form labels are protected; and compact topology gives a discrete perturbation spectrum.
+
+The same separation removes inadmissible claims.  \(S^3\) alone does not derive \(\Omega_c\), \(\Omega_\Lambda\), or \(\Lambda_{\eff}\).  Local quantum topological phenomena do not measure cosmic global topology.  A conserved winding current is not automatically pressureless dark matter without a current EFT.  A compact four-form is not automatically a solution of the cosmological constant problem without a finite residual-selection rule.  A curvature-linear winding selector is not a leading explanation of the observed dark matter abundance in a near-flat universe.
+
+The final output is therefore a falsifiable residual-closure programme:
+\[
+\begin{aligned}
+T^\D_{\mu\nu}
+&\longrightarrow
+\Aq(a),\ \Aw(a)\\
+&\longrightarrow
+\hbox{background and perturbative null tests}\\
+&\longrightarrow
+\hbox{topology likelihood and amplitude selection}.
+\end{aligned}
+\]
+If these tests are passed, the compact topological residual branch remains a viable conditional-origin framework.  If any one of them fails, the minimal branch is falsified.  That is the form in which the proposal is most valuable to cosmology, quantum field theory, and the empirical study of cosmic topology.
+
+\appendix
+
+\section{Dimensional audit}
+
+\(G_{\mu\nu}\) has units \(L^{-2}\), so \(c^4G_{\mu\nu}/G\) has stress-energy units.  Energy density is denoted \(\eps\), and
+\[
+\eps_{\crit,0}=\frac{3H_0^2c^2}{8\pi G}.
+\]
+The curvature parameter
+\[
+\Omega_K=-\frac{c^2}{H_0^2A_0^2}
+\]
+is dimensionless.  For \(U^\mu U_\mu=-c^2\), dust has
+\[
+T^{\w}_{\mu\nu}=\eps_{\w}\frac{U_\mu U_\nu}{c^2}.
+\]
+The topological number density \(n\) has units \(L^{-3}\), and
+\[
+\eps_{\w}=\mu_{\w}c^2n .
+\]
+The four-form branch has
+\[
+\eps_q=\frac12\qhat^2
+\]
+after choosing the normalization of \(\qhat\).  The effective cosmological constant has units \(L^{-2}\):
+\[
+\Lambda_{\eff}=\frac{8\pi G}{c^4}\eps_q .
+\]
+
+\section{Holographic winding saturation}
+
+For \(\Gamma=\id\), the present volume is \(2\pi^2A_0^3\).  If the total winding energy is saturated at
+\[
+E_{\w}=\mu_{\w}c^2|Q|=\frac{c^4A_0}{2G},
+\]
+then
+\[
+\eps_{\w,0}=\frac{E_{\w}}{2\pi^2A_0^3}
+=\frac{c^4}{4\pi^2GA_0^2}.
+\]
+Therefore
+\[
+\begin{aligned}
+\Omega_{\w}^{\rm HWS}
+&=
+\frac{\eps_{\w,0}}{\eps_{\crit,0}}
+=
+\frac{c^4}{4\pi^2GA_0^2}
+\frac{8\pi G}{3H_0^2c^2}\\
+&=
+\frac{2}{3\pi}\frac{c^2}{H_0^2A_0^2}
+=
+\frac{2}{3\pi}|\Omega_K|.
+\end{aligned}
+\]
+For \(S^3/\Gamma\), replacing the volume by \(2\pi^2A_0^3/|\Gamma|\) gives the additional factor \(|\Gamma|\), provided the same total-energy saturation is imposed.
+
+\section{Minimal data-analysis recipe}
+
+Given a posterior or reconstruction for \(E(a)\), \(\Omega_K\), and visible-sector parameters:
+\begin{enumerate}
+\item compute \(\eps_\D(a)\) and \(p_\D(a)\) from Eqs.~\eqref{eq:eps_reconstruction} and \eqref{eq:p_reconstruction};
+\item compute \(\Aq(a)\) and \(\Aw(a)\);
+\item fit constants and slopes with full covariance;
+\item test positivity;
+\item reconstruct \(\delta T^\D_{\mu\nu}\) and test the perturbative null conditions;
+\item repeat on \(S^3\), spherical quotients \(S^3/\Gamma\), flat, and hyperbolic spaces with matched likelihood assumptions;
+\item introduce amplitude selectors only as separately declared model components.
+\end{enumerate}
+
+\begin{thebibliography}{99}
+
+\bibitem{Wald}
+R.~M. Wald, \emph{General Relativity} (University of Chicago Press, Chicago, 1984).
+
+\bibitem{HawkingEllis}
+S.~W. Hawking and G.~F.~R. Ellis, \emph{The Large Scale Structure of Space-Time} (Cambridge University Press, Cambridge, 1973).
+
+\bibitem{Wolf}
+J.~A. Wolf, \emph{Spaces of Constant Curvature}, 6th ed. (AMS Chelsea, Providence, 2011).
+
+\bibitem{Hatcher}
+A. Hatcher, \emph{Algebraic Topology} (Cambridge University Press, Cambridge, 2002).
+
+\bibitem{BrownFluid}
+J.~D. Brown, Action functionals for relativistic perfect fluids,
+Class. Quantum Grav. \textbf{10}, 1579 (1993).
+
+\bibitem{Skyrme}
+T.~H.~R. Skyrme, A nonlinear field theory,
+Proc. R. Soc. Lond. A \textbf{260}, 127 (1961).
+
+\bibitem{Aurilia}
+A. Aurilia, H. Nicolai, and P.~K. Townsend,
+Hidden constants: the theta parameter of QCD and the cosmological constant of \(N=8\) supergravity,
+Nucl. Phys. B \textbf{176}, 509 (1980).
+
+\bibitem{HenneauxTeitelboim}
+M. Henneaux and C. Teitelboim,
+The cosmological constant as a canonical variable,
+Phys. Lett. B \textbf{143}, 415 (1984).
+
+\bibitem{BrownTeitelboim}
+J.~D. Brown and C. Teitelboim,
+Neutralization of the cosmological constant by membrane creation,
+Nucl. Phys. B \textbf{297}, 787 (1988).
+
+\bibitem{BoussoPolchinski}
+R. Bousso and J. Polchinski,
+Quantization of four-form fluxes and dynamical neutralization of the cosmological constant,
+JHEP \textbf{06}, 006 (2000).
+
+\bibitem{WeinbergCC}
+S. Weinberg, The cosmological constant problem,
+Rev. Mod. Phys. \textbf{61}, 1 (1989).
+
+\bibitem{KaloperPadilla}
+N. Kaloper and A. Padilla,
+Sequestering the standard model vacuum energy,
+Phys. Rev. Lett. \textbf{112}, 091304 (2014).
+
+\bibitem{Bardeen}
+J.~M. Bardeen,
+Gauge-invariant cosmological perturbations,
+Phys. Rev. D \textbf{22}, 1882 (1980).
+
+\bibitem{KodamaSasaki}
+H. Kodama and M. Sasaki,
+Cosmological perturbation theory,
+Prog. Theor. Phys. Suppl. \textbf{78}, 1 (1984).
+
+\bibitem{Mukhanov}
+V. Mukhanov, H. Feldman, and R. Brandenberger,
+Theory of cosmological perturbations,
+Phys. Rep. \textbf{215}, 203 (1992).
+
+\bibitem{MaBertschinger}
+C.-P. Ma and E. Bertschinger,
+Cosmological perturbation theory in the synchronous and conformal Newtonian gauges,
+Astrophys. J. \textbf{455}, 7 (1995).
+
+\bibitem{AharonovBohm}
+Y. Aharonov and D. Bohm,
+Significance of electromagnetic potentials in the quantum theory,
+Phys. Rev. \textbf{115}, 485 (1959).
+
+\bibitem{Tonomura}
+A. Tonomura \emph{et al.},
+Evidence for Aharonov--Bohm effect with magnetic field completely shielded from electron wave,
+Phys. Rev. Lett. \textbf{56}, 792 (1986).
+
+\bibitem{DeaverFairbank}
+B.~S. Deaver and W.~M. Fairbank,
+Experimental evidence for quantized flux in superconducting cylinders,
+Phys. Rev. Lett. \textbf{7}, 43 (1961).
+
+\bibitem{Berry}
+M.~V. Berry,
+Quantal phase factors accompanying adiabatic changes,
+Proc. R. Soc. Lond. A \textbf{392}, 45 (1984).
+
+\bibitem{TKNN}
+D.~J. Thouless, M. Kohmoto, M.~P. Nightingale, and M. den Nijs,
+Quantized Hall conductance in a two-dimensional periodic potential,
+Phys. Rev. Lett. \textbf{49}, 405 (1982).
+
+\bibitem{Konig}
+M. K\"onig \emph{et al.},
+Quantum spin Hall insulator state in HgTe quantum wells,
+Science \textbf{318}, 766 (2007).
+
+\bibitem{COW}
+R. Colella, A.~W. Overhauser, and S.~A. Werner,
+Observation of gravitationally induced quantum interference,
+Phys. Rev. Lett. \textbf{34}, 1472 (1975).
+
+\bibitem{Overstreet}
+C. Overstreet, P. Asenbaum, J. Curti, M. Kim, and M.~A. Kasevich,
+Observation of a gravitational Aharonov--Bohm effect,
+Science \textbf{375}, 226 (2022).
+
+\bibitem{Cornish}
+N.~J. Cornish, D.~N. Spergel, G.~D. Starkman, and E. Komatsu,
+Constraining the topology of the Universe,
+Phys. Rev. Lett. \textbf{92}, 201302 (2004).
+
+\bibitem{PlanckTopology}
+P.~A.~R. Ade \emph{et al.} (Planck Collaboration),
+Planck 2015 results. XVIII. Background geometry and topology,
+Astron. Astrophys. \textbf{594}, A18 (2016),
+arXiv:1502.01593.
+
+\bibitem{Planck2018}
+N. Aghanim \emph{et al.} (Planck Collaboration),
+Planck 2018 results. VI. Cosmological parameters,
+Astron. Astrophys. \textbf{641}, A6 (2020),
+arXiv:1807.06209.
+
+\bibitem{SahaLens}
+S. Saha \emph{et al.} (COMPACT Collaboration),
+Cosmic topology. Part Ic. Limits on lens spaces from circle searches,
+JCAP \textbf{01}, 004 (2025),
+arXiv:2409.02226.
+
+\bibitem{DESIDR2}
+M. Abdul-Karim \emph{et al.} (DESI Collaboration),
+DESI DR2 results II: Measurements of baryon acoustic oscillations and cosmological constraints,
+Phys. Rev. D \textbf{112}, 083515 (2025),
+arXiv:2503.14738.
+
+\end{thebibliography}
+
+\end{document}

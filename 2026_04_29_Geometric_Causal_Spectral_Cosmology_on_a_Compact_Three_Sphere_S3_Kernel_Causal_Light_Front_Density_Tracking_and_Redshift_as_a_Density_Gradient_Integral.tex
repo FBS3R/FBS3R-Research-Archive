@@ -1,0 +1,796 @@
+\documentclass[12pt,a4paper]{amsart}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{xcolor}
+
+\geometry{margin=2.4cm, top=2.8cm, bottom=3cm}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!70!black,
+  citecolor=blue!70!black,
+  urlcolor=blue!70!black
+}
+
+%% ---- Theorem Environments ----
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{postulate}[theorem]{Postulate}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+%% ---- Shortcuts ----
+\newcommand{\vp}{\varphi}
+\newcommand{\Sthree}{S^3}
+\newcommand{\lP}{\ell_{\mathrm{P}}}
+\newcommand{\Hzero}{H_0}
+\newcommand{\Heff}{H_{\mathrm{eff}}}
+\newcommand{\trec}{t_{\mathrm{rec}}}
+\newcommand{\Rrec}{R_{\mathrm{rec}}}
+\newcommand{\Lam}{\ensuremath{\Lambda}}
+\newcommand{\LCDM}{\ensuremath{\Lambda}CDM}
+\newcommand{\half}{\tfrac{1}{2}}
+\newcommand{\Rfrac}{R_{\mathrm{frac}}}
+\newcommand{\Rlight}{R_{\mathrm{light}}}
+\newcommand{\Vtot}{V_{\mathrm{total}}}
+\newcommand{\Vobs}{V_{\mathrm{obs}}}
+\newcommand{\chiL}{\chi_{\mathrm{L}}}
+\newcommand{\rhotot}{\rho_{\mathrm{total}}}
+\newcommand{\rhoobs}{\rho_{\mathrm{obs}}}
+\newcommand{\Eeff}{E_{\mathrm{eff}}}
+
+%% ================================================================
+\title[Geometric--Causal--Spectral Cosmology on Compact $S^3$]{
+  Geometric--Causal--Spectral Cosmology\\
+  on a Compact Three-Sphere:\\
+  $S^3$ Kernel, Causal Light Front, Density Tracking,\\
+  and Redshift as a Density-Gradient Integral}
+
+\author{Andrei Preece}
+\address{Independent Researcher, Berlin, Germany}
+\email{andre.preece@web.de}
+
+\author{Boris Batenin}
+\address{Independent Researcher, Berlin, Germany}
+\email{batenin@web.de}
+
+\date{April 2026}
+
+\subjclass[2020]{83F05, 83F30, 11B39, 58J50, 83C45}
+\keywords{compact $S^3$ topology, FLRW $k=+1$, $S^3$ kernel,
+  causal light front, observable volume, two-sector expansion,
+  Fibonacci hierarchy, golden ratio, Perron--Frobenius eigenvalue,
+  density tracking, redshift gradient, observable Hubble law,
+  Hubble tension}
+
+\begin{document}
+
+\begin{abstract}
+\textbf{Positioning.} This paper proposes a geometrically constrained
+phenomenological framework on compact $\Sthree$. It is \emph{not} a
+replacement of $\Lambda$CDM, \emph{not} a first-principles derivation
+of cosmological parameters, and \emph{not} a modification of local
+Einstein gravity. The central conceptual content is: the observable
+universe should be distinguished from the full spatial geometric
+volume, and density may track this observable domain dynamically rather
+than fill it instantaneously.
+
+We formulate a Geometric--Causal--Spectral cosmology on a compact,
+simply-connected three-sphere $\Sthree(R(t))$ as the joint evolution
+of three fundamental fields: the geometric radius $R(t)$; the
+dimensionless causal light angle
+$\chiL(t)=\int_0^t c\,dt'/R(t')$; and the energy density $\rho(t)$.
+
+We introduce the $\Sthree$ kernel
+$K(\chi)=2\sin^2\!\chi/(\chi-\sin\chi\cos\chi)$ governing radial volume
+growth, with limits $K\sim 3/\chi$ (Euclidean) and $K(\pi)=0$
+(antipodal). The observable volume is
+$\Vobs=2\pi R^3[\chiL-\half\sin 2\chiL]$, distinct from
+$\Vtot=2\pi^2 R^3$.
+
+The radius obeys a sigmoid-bridged two-sector law with a discrete
+Fibonacci pre-recombination phase (Perron--Frobenius eigenvalue $\vp$)
+and an exponential post-recombination phase governed by an
+\emph{effective} expansion rate $\Heff\neq\Hzero$.
+
+The observable density obeys the postulated relaxation
+$\dot\rhoobs=-\Gamma(t)[\rhoobs-\rhotot]$ with $\Gamma=c/(R\chiL)$.
+The cosmological redshift is the line integral
+$\ln(1+z)=\int_0^\ell p(V(r))K(\chi(r))/R(r)\,dr$.
+The observable Hubble parameter is window-dependent,
+$H(\ell)=3cp/\ell$, suggesting a phenomenological two-regime structure with ratio
+$\Hzero^{\mathrm{late}}/\Hzero^{\mathrm{CMB}}\approx 1.08$--$1.10$,
+consistent with the observed CMB--late-time split at the
+phenomenological level (not a parameter-free prediction).
+
+We do not eliminate $\Lam$, do not derive $\Hzero$, $\Lam$, or the
+vacuum energy density from first principles, do not replace the
+Friedmann equations, and do not provide a theory of quantum
+gravity. The Hubble-tension consistency is a phenomenological
+check, not a derivation.
+\end{abstract}
+
+\maketitle
+\tableofcontents
+
+%% =================================================================
+\section{Geometry of $S^3$}
+\label{sec:geom}
+%% =================================================================
+
+We assume spatial sections $\Sigma$ that are compact, connected,
+orientable, boundaryless, with trivial fundamental group, and
+endowed with a round Riemannian metric. By the Poincar\'e--Perelman
+theorem~\cite{Perelman2002,Perelman2003a,Perelman2003b},
+$\Sigma\cong\Sthree$ uniquely.
+
+The total geometric volume of $\Sthree(R)$ is
+\begin{equation}
+  \Vtot(R) = 2\pi^2 R^3.
+  \label{eq:Vtot}
+\end{equation}
+The geodesic radial coordinate $\chi\in[0,\pi]$ measures dimensionless
+angular distance from a chosen pole. The volume of a geodesic ball
+of comoving angle $\chi$ on $\Sthree(R)$ is
+\begin{equation}
+  \Vobs(\chi, R) = 2\pi R^3\bigl[\chi - \half\sin(2\chi)\bigr].
+  \label{eq:Vobs}
+\end{equation}
+At $\chi=\pi$, $\Vobs=\Vtot$; for $\chi<\pi$, $\Vobs<\Vtot$.
+
+\medskip
+\begin{center}
+\fbox{\quad$\Vobs \neq \Vtot$\quad}
+\end{center}
+
+%% =================================================================
+\section{The $S^3$ Kernel}
+\label{sec:kernel}
+%% =================================================================
+
+\begin{definition}[$\Sthree$ kernel]
+  \label{def:K}
+  The $\Sthree$ kernel governing radial volume growth is
+  \begin{equation}
+    K(\chi) \equiv \frac{1}{V}\frac{dV}{d\chi}
+       = \frac{2\sin^2\!\chi}{\chi - \sin\chi\cos\chi},
+    \quad \chi\in(0,\pi).
+    \label{eq:Kdef}
+  \end{equation}
+\end{definition}
+
+\begin{theorem}[Limits of $K$]
+  \label{thm:Klimits}
+  $K(\chi)\to 3/\chi$ as $\chi\to 0$;
+  $K(\chi)\to 0$ as $\chi\to\pi$;
+  $K(\pi/2) = 4/\pi\approx 1.273$.
+\end{theorem}
+
+\begin{proof}
+  Taylor expansion: $\sin\chi\cos\chi=\sin(2\chi)/2=\chi-2\chi^3/3+\cdots$,
+  so denominator $\chi-\sin\chi\cos\chi\to 2\chi^3/3$. Numerator
+  $2\sin^2\!\chi\to 2\chi^2$. Ratio $\to 3/\chi$.
+  At $\chi=\pi$: $\sin\pi=0$ in numerator, $\pi$ in denominator.
+  At $\chi=\pi/2$: numerator $2$, denominator $\pi/2$.
+\end{proof}
+
+\begin{remark}[Physical interpretation]
+  $K(\chi)$ is the fractional rate of volume growth per unit angular
+  distance. In small-$\chi$ Euclidean regime, $K\sim 3/\chi$ recovers
+  the standard $4\pi r^2/[(4\pi/3)r^3]=3/r$ shell-to-volume ratio.
+  Near the antipode, $K\to 0$: no further volume is gained as the
+  geodesic ball wraps around the closed manifold.
+\end{remark}
+
+%% =================================================================
+\section{Three Fundamental Fields}
+\label{sec:fields}
+%% =================================================================
+
+\begin{definition}[Three fundamental fields]
+  \label{def:fields}
+  The cosmological state is specified by three independent fields:
+  \begin{enumerate}[label=\textbf{(F\arabic*)},noitemsep]
+  \item \emph{Geometric radius} $R(t)>0$: curvature radius of $\Sthree$
+    at cosmic time $t$.
+  \item \emph{Causal light angle}
+    $\chiL(t) = \int_0^t c\,dt'/R(t')\in[0,\pi]$, the dimensionless
+    angular distance traversed by a null geodesic.
+  \item \emph{Energy density} $\rho(t)>0$: distributed on $\Sthree(R(t))$.
+  \end{enumerate}
+\end{definition}
+
+\begin{remark}[Why $\chiL$ rather than a dimensionful $r_L$]
+  $\chiL$ is the natural causal coordinate on $\Sthree$: it is
+  dimensionless, bounded above by $\pi$, and parametrises the causal
+  geometry without conflating spatial growth with light propagation.
+  The proper causal distance is $r_L=R(t)\chiL(t)$.
+\end{remark}
+
+%% =================================================================
+\section{Observable Volume}
+\label{sec:obsvol}
+%% =================================================================
+
+\begin{definition}[Observable volume]
+  \label{def:Vobs_t}
+  The observable volume at time $t$ is the geodesic ball of angle
+  $\chiL(t)$:
+  \begin{equation}
+    \Vobs(t) = 2\pi R^3(t)\bigl[\chiL(t) - \half\sin 2\chiL(t)\bigr].
+    \label{eq:Vobs_t}
+  \end{equation}
+\end{definition}
+
+\begin{theorem}[Properties of $\Vobs(t)$]
+  \label{thm:Vobsprop}
+  For $\chiL\ll 1$: $\Vobs\approx (4\pi/3)(R\chiL)^3$ (Euclidean limit).
+  For $\chiL=\pi$: $\Vobs=\Vtot$.
+  Today, $\chiL\sim 0.07$ and $\Vobs/\Vtot\sim 7\times 10^{-5}$.
+\end{theorem}
+
+\begin{proof}
+  Direct: small-$\chi$ Taylor of \eqref{eq:Vobs_t} gives $(4\pi/3)R^3\chi^3$.
+  Numerical evaluation at $\chi=0.07$, $R=1.85\times 10^{27}\,\mathrm{m}$
+  gives $\Vobs/\Vtot=7.4\times 10^{-5}$.
+\end{proof}
+
+%% =================================================================
+\section{Fractal Spectral Structure}
+\label{sec:phi}
+%% =================================================================
+
+\begin{lemma}[Minimality of the Fibonacci recursion]
+  \label{lem:minimal}
+  Among all positive integer second-order recursions
+  $a_{n+1}=p\,a_n+q\,a_{n-1}$ ($p,q\in\mathbb{Z}_{\geq 1}$), the
+  Fibonacci recursion ($p=q=1$) has the smallest Perron--Frobenius
+  growth rate $\lambda_+=\vp$.
+\end{lemma}
+
+\begin{proof}
+  Companion matrix
+  $T_{p,q}=\bigl(\begin{smallmatrix}p&q\\1&0\end{smallmatrix}\bigr)$
+  has dominant eigenvalue $\lambda_+(p,q)=(p+\sqrt{p^2+4q})/2$,
+  minimised at $p=q=1$ with $\lambda_+=\vp$.
+\end{proof}
+
+\begin{theorem}[$\varphi$ as Perron--Frobenius eigenvalue]
+  \label{thm:phi}
+  The Fibonacci ratio $F_{n+1}/F_n$ converges to $\vp=(1+\sqrt5)/2$,
+  with rate $|F_{n+1}/F_n-\vp|=O(\vp^{-2n})$.
+\end{theorem}
+
+\begin{proof}
+  Standard via Binet's formula~\cite{Hardy1979,Meyer2000}.
+\end{proof}
+
+\begin{remark}[Status of $\varphi$]
+  The golden ratio is the dominant eigenvalue of the minimal positive
+  second-order recursion (Lemma~\ref{lem:minimal}). The $\vp$-ladder
+  supplies the discrete spectral hierarchy used to organise scales;
+  its observational realisation in the cosmological dynamics remains
+  model-dependent.
+\end{remark}
+
+\begin{corollary}[Spectral bridge]
+  \label{cor:bridge}
+  If the discrete pre-recombination radii satisfy $F_n/R_n=\mathrm{const}$,
+  then $R_n\propto\vp^n$ and density scales as $\rho_n\propto\vp^{-3n}$.
+\end{corollary}
+
+%% =================================================================
+\section{Two-Sector Radius Law (Centre of the Framework)}
+\label{sec:twosector}
+%% =================================================================
+
+\begin{definition}[Two-sector radius law]
+  \label{def:twosector}
+  Let $\trec>0$ be the recombination time, $\Delta t>0$ its width,
+  and $\sigma(t)=[1+e^{-(t-\trec)/\Delta t}]^{-1}$ the sigmoid weight.
+  Define
+  \begin{align}
+    \Rfrac(t)  &= \lP\,\vp^{N(t)},
+      &&\text{(fractal sector)}\label{eq:Rfrac}\\
+    \Rlight(t) &= \Rrec\,e^{\Heff(t-\trec)},
+      &&\text{(light sector)}\label{eq:Rlight}
+  \end{align}
+  with $\Rrec=\Rfrac(\trec)=\Rlight(\trec)$. The cosmological radius is
+  \begin{equation}
+    \boxed{
+      R(t) = \Rfrac(t)\bigl[1-\sigma(t)\bigr] + \Rlight(t)\,\sigma(t).
+    }
+    \label{eq:twosector}
+  \end{equation}
+\end{definition}
+
+\begin{theorem}[$C^1$-smoothness]
+  \label{thm:C1}
+  Under matching $\Rfrac(\trec)=\Rlight(\trec)$: $R(t)$ and $\dot R(t)$
+  are continuous everywhere; $R(\trec)=\Rrec$;
+  $\dot R(\trec)=\half[\dot{\Rfrac}+\dot{\Rlight}]_{\trec}$.
+\end{theorem}
+
+\subsection{Effective Expansion Rate $\Heff\neq H_0$}
+
+\begin{definition}[Effective post-recombination rate]
+  \label{def:Heff}
+  \begin{equation}
+    \Heff = \frac{\ln(R_{\mathrm{today}}/\Rrec)}{t_0-\trec}.
+    \label{eq:Heff}
+  \end{equation}
+\end{definition}
+
+\begin{remark}[$\Heff\neq H_0$]
+  $\Heff$ is the \emph{average} expansion rate over the post-recombination
+  era; $H_0$ is the present-day \emph{instantaneous} rate.
+  With $R_{\mathrm{today}}/\Rrec\approx 1100$ and $t_0-\trec\approx 4.35\times 10^{17}\,\mathrm{s}$:
+  \begin{equation}
+    \Heff\approx 1.61\times 10^{-17}\,\mathrm{s}^{-1}\approx 7.4\,H_0,
+    \label{eq:Heffvalue}
+  \end{equation}
+  with $H_0=2.18\times 10^{-18}\,\mathrm{s}^{-1}$ (Planck~2018).
+  These are different physical quantities. $\Heff$ is a
+  matching parameter of the two-sector radius law, not the measured
+  late-time Hubble constant. Earlier
+  presentations~\cite{Preece2025FBS3R_GoldenRatio} that used
+  $H=2.45\times 10^{-17}\,\mathrm{s}^{-1}$ in the exponential were
+  approximating $\Heff$, but mis-identifying it as $H_0$.
+\end{remark}
+
+%% =================================================================
+\section{Causal Light Propagation}
+\label{sec:lightprop}
+%% =================================================================
+
+\begin{theorem}[Null-geodesic equation on $\Sthree$]
+  \label{thm:null}
+  In the FLRW metric on $\Sthree$, null geodesics satisfy
+  $c\,dt = R(t)\,d\chi$, integrating to
+  \begin{equation}
+    \chiL(t) = \int_0^t \frac{c\,dt'}{R(t')}.
+    \label{eq:chiLdef}
+  \end{equation}
+\end{theorem}
+
+\subsection{Light as the Generator of Observable Volume}
+
+The dimensionless causal angle $\chiL(t)$ defines, via~\eqref{eq:Vobs_t},
+the observable volume. Light is therefore not merely an in-sphere
+propagating signal: \emph{it is the operative agent that determines
+what is causally accessible} at time $t$.
+
+In the pre-recombination era ($\sigma\ll 1$), the cosmic plasma is
+opaque and the operational meaning of $\Vobs$ is restricted. In the
+post-recombination era, free-streaming photons make $\Vobs(t)$ the
+operationally meaningful domain.
+
+
+
+%% =================================================================
+\section{Compatibility with FLRW and Einstein Gravity}
+\label{sec:flrw}
+%% =================================================================
+
+The framework is compatible with general relativity. Spatial topology
+$\Sthree$ corresponds to FLRW geometry with curvature index $k=+1$:
+\begin{equation}
+  ds^2 = -c^2dt^2 + a^2(t)R_0^2\,d\Omega_3^2.
+  \label{eq:flrw_metric}
+\end{equation}
+Local Einstein equations are unchanged; the Friedmann constraint reads
+\begin{equation}
+  H_{\mathrm{GR}}^2 = \frac{8\pi G}{3}\rho - \frac{c^2}{a^2 R_0^2}
+    + \frac{\Lam c^2}{3}.
+  \label{eq:friedmann}
+\end{equation}
+
+\begin{remark}[Compatibility, not replacement]
+  The present framework is compatible with this geometry but does
+  \emph{not} claim to replace the Friedmann equations. The Gradient
+  Redshift Ansatz (Postulate~\ref{post:gradient}) is a coarse-grained
+  observational ansatz, not a substitute for local geodesic optics
+  in GR. The framework introduces no local modification of Einstein
+  gravity.
+\end{remark}
+
+%% =================================================================
+\section{Density Dynamics: A Postulate of Causal Tracking}
+\label{sec:density}
+%% =================================================================
+
+\begin{definition}[Two density fields]
+  \label{def:rhotwo}
+  Assuming an effective conserved energy $\Eeff$:
+  \begin{align}
+    \rhotot(t) &= \frac{\Eeff}{\Vtot(R(t))}\quad\text{(global)}\label{eq:rhotot}\\
+    \rhoobs(t) &= \frac{E_{\mathrm{eff,within}\,\Vobs}(t)}{\Vobs(t)}
+                 \quad\text{(observable)}\label{eq:rhoobs}
+  \end{align}
+\end{definition}
+
+\begin{postulate}[Causal Density Tracking]
+  \label{post:tracking}
+  The observable density relaxes towards the global density at a rate
+  set by the inverse causal information time:
+  \begin{equation}
+    \boxed{
+      \dot\rhoobs(t) = -\Gamma(t)\bigl[\rhoobs(t) - \rhotot(t)\bigr],
+      \qquad \Gamma(t) = \frac{c}{R(t)\,\chiL(t)}.
+    }
+    \label{eq:tracking}
+  \end{equation}
+\end{postulate}
+
+\begin{remark}[Status of Postulate~\ref{post:tracking}]
+  This equation models relaxation of observable density toward the
+  global geometric density. It is \emph{not} derived from microscopic
+  kinetic theory in this paper. The form $\Gamma=c/(R\chiL)$ is the
+  simplest causal scaling consistent with the framework. A microscopic
+  derivation is deferred to future work. Physically, the relaxation
+  rate $\Gamma=c/(R\chiL)$ can be interpreted as a finite propagation
+  speed of equilibration across the causal domain, bounded by light
+  travel.
+\end{remark}
+
+\begin{remark}[Density tracks volume, not the reverse]
+  The postulate formalises the central thesis: density does not
+  instantaneously fill the geometric volume; it tracks the growth of
+  the causal observable region with finite relaxation time
+  $\Gamma^{-1}=R\chiL/c$.
+\end{remark}
+
+%% =================================================================
+\section{Redshift as a Density-Gradient Integral: Phenomenological Ansatz}
+\label{sec:redshift}
+%% =================================================================
+
+\subsection{Phenomenological Gradient Redshift Law}
+
+\begin{postulate}[Gradient Redshift Ansatz]
+  \label{post:gradient}
+  The photon angular frequency $\omega$ along a null geodesic
+  parametrised by affine parameter $\lambda$ evolves according to a
+  local volume gradient:
+  \begin{equation}
+    \frac{d\ln\omega}{d\lambda} = -p(V)\,\frac{1}{V}\frac{dV}{d\lambda},
+    \label{eq:omega_local}
+  \end{equation}
+  where $p(V)$ is a dimensionless coarse-grained morphology index
+  characterising effective photon coupling to local volume change.
+\end{postulate}
+
+\begin{remark}[Status of Postulate~\ref{post:gradient}]
+  Equation~\eqref{eq:omega_local} is \emph{not} derived from local
+  GR or QFT. It is introduced as an effective coarse-grained transport
+  rule for photon frequency along null geodesics in a compact $\Sthree$
+  causal domain. This ansatz should be interpreted as an effective
+  coarse-grained description and is not unique; alternative transport
+  laws may exist.
+\end{remark}
+
+\begin{remark}[Status of $p(V)$]
+  $p(V)$ is \emph{not} a fluid equation-of-state parameter and must
+  not be identified with $1+w$. It is a coarse-grained
+  morphology/rarefaction index. We constrain $0<p(V)\leq p_{\max}$
+  and adopt a piecewise-constant simplification $p_{\mathrm{rec}},
+  p_{\mathrm{late}}$ for distinct observational windows. A
+  first-principles derivation of $p(V)$ is deferred to future work.
+\end{remark}
+
+\subsection{Redshift--Distance Relation on $\Sthree$}
+
+\begin{proposition}[Conditional consequence of the Gradient Redshift Ansatz]
+  \label{thm:redshift}
+  \emph{Conditional on Postulate~\ref{post:gradient}}, the redshift
+  along a null geodesic from a source at proper distance $\ell$ obeys
+  \begin{equation}
+    \frac{d\ln(1+z)}{dr} = \frac{p(V)\,K(\chi(r))}{R(r)},
+    \label{eq:dlnz}
+  \end{equation}
+  giving
+  \begin{equation}
+    \boxed{
+      \ln(1+z) = \int_0^\ell \frac{p(V(r))\,K(\chi(r))}{R(r)}\,dr.
+    }
+    \label{eq:zintegral}
+  \end{equation}
+\end{proposition}
+
+\begin{proof}
+  Combining~\eqref{eq:omega_local} with $1+z=\omega_{\mathrm{em}}/\omega_{\mathrm{obs}}$
+  gives $d\ln(1+z)=p\,d\ln V$. Using $d\ln V/dr=K(\chi)/R$ along the
+  null geodesic gives~\eqref{eq:dlnz}.
+\end{proof}
+
+\begin{remark}[Physical interpretation]
+  Redshift is the integral of the local fractional volume gradient
+  along the photon's path, weighted by $p$. The $\Sthree$ kernel
+  $K(\chi)$ encodes the geometric correction: in the Euclidean limit
+  $K\sim 3/\chi$ recovers the standard inverse-distance dilution; near
+  the antipode $K\to 0$ photons stop acquiring further redshift.
+\end{remark}
+
+%% =================================================================
+\section{Observable Hubble Law}
+\label{sec:hubble}
+%% =================================================================
+
+\begin{proposition}[Effective windowed Hubble slope]
+  \label{thm:Hwindow}
+  \emph{Conditional on Postulate~\ref{post:gradient}}, for an
+  observation window of proper extent $\ell$ with $\ell>\ell_{\min}$,
+  approximately constant $p$, and $\chi\ll 1$ (so $K\sim 3R/r$),
+  the redshift--distance relation can be approximated as
+  $\ln(1+z)\approx 3p\ln(\ell/\ell_0)$. For $z\ll 1$, the
+  effective windowed Hubble slope can be written as
+  \begin{equation}
+    \boxed{
+      H(\ell) = \frac{cz}{\ell}\Big|_{z\ll 1} = \frac{3cp}{\ell}.
+    }
+    \label{eq:Hell}
+  \end{equation}
+  The $\ell\to 0$ limit is not physical.
+\end{proposition}
+
+\begin{proof}
+  In the small-$\chi$ regime $K(\chi)/R=3/r$, so~\eqref{eq:zintegral}
+  gives $\ln(1+z)=3p\int_{\ell_0}^\ell dr/r = 3p\ln(\ell/\ell_0)$.
+  Linearising for $z\ll 1$ gives~\eqref{eq:Hell}.
+\end{proof}
+
+\begin{remark}[$H(\ell)$ is not a fundamental Hubble parameter]
+  $H(\ell)$ is \emph{not} a universal global expansion rate. It is an
+  observationally windowed slope obtained after smoothing the local
+  $\Sthree$ gradient over a finite scale $\ell$. The expression is
+  valid only for finite observational windows $\ell>\ell_{\min}$;
+  the $\ell\to 0$ limit is not physical. The dependence on $\ell$
+  implies that observational inference of $\Hzero$ may be sensitive
+  to window selection effects.
+\end{remark}
+
+%% =================================================================
+\section{Two Regimes and the Hubble Tension}
+\label{sec:tworegimes}
+%% =================================================================
+
+The window-dependent Hubble law naturally accommodates two distinct effective values:
+
+\begin{align}
+  \Hzero^{\mathrm{CMB}} &= \frac{3c\,p_{\mathrm{rec}}}{\ell_{\mathrm{rec}}},
+    \quad p_{\mathrm{rec}}\approx 1/3,\label{eq:HCMB}\\
+  \Hzero^{\mathrm{late}} &= \frac{3c\,p_{\mathrm{loc}}}{\ell_{\mathrm{loc}}}.
+    \label{eq:Hlate}
+\end{align}
+
+\begin{theorem}[Window ratio]
+  \label{thm:Hratio}
+  \begin{equation}
+    \frac{\Hzero^{\mathrm{late}}}{\Hzero^{\mathrm{CMB}}}
+      = \frac{p_{\mathrm{loc}}}{p_{\mathrm{rec}}}\cdot
+        \frac{\ell_{\mathrm{rec}}}{\ell_{\mathrm{loc}}}.
+    \label{eq:Hratio}
+  \end{equation}
+\end{theorem}
+
+For the parameters consistent with the two-sector law, this ratio
+falls in the range
+\begin{equation}
+  \frac{\Hzero^{\mathrm{late}}}{\Hzero^{\mathrm{CMB}}}\approx 1.08\text{--}1.10,
+\end{equation}
+consistent at the percent-level with the observed CMB--late-time split between Planck
+($\sim 67.4\,\mathrm{km/s/Mpc}$) and SH0ES local
+measurements~\cite{Riess2022} ($\sim 73\,\mathrm{km/s/Mpc}$):
+ratio $\approx 73.0/67.4=1.083$. This consistency is a phenomenological check, not a parameter-free prediction.
+
+\begin{remark}[Status of the Hubble-tension consistency]
+  The ratio $\Hzero^{\mathrm{late}}/\Hzero^{\mathrm{CMB}}\approx 1.08$--$1.10$
+  should be interpreted as a phenomenological consistency check, not
+  as a parameter-free prediction. $p$ and $\ell$ are taken from
+  observational fits, not derived from first principles. We do not
+  claim that the Hubble tension is solved. This mechanism does
+  not exclude standard systematic explanations of the Hubble tension.
+\end{remark}
+
+%% =================================================================
+\section{Numerical Consistency}
+\label{sec:numerics}
+%% =================================================================
+
+\begin{table}[h]
+\centering
+\caption{Numerical consistency check. Planck~2018 parameters
+  used throughout~\cite{Planck2018}.}
+\label{tab:numerics}
+\begin{tabular}{lcc}
+\toprule
+Quantity & Symbol & Value \\
+\midrule
+Planck length & $\lP$ & $1.616\times 10^{-35}\,\mathrm{m}$ \\
+Recombination time & $\trec$ & $1.20\times 10^{13}\,\mathrm{s}$ \\
+Recombination radius & $\Rrec$ & $9.46\times 10^{20}\,\mathrm{m}$ \\
+Today (cosmic) & $t_0$ & $4.35\times 10^{17}\,\mathrm{s}$ \\
+Today scale factor & $R(t_0)$ & $\sim 1.04\times 10^{24}\,\mathrm{m}$ \\
+Effective rate & $\Heff$ & $1.61\times 10^{-17}\,\mathrm{s}^{-1}$ \\
+Present-day rate & $H_0$ & $2.18\times 10^{-18}\,\mathrm{s}^{-1}$ \\
+Ratio $\Heff/H_0$ & --- & $\approx 7.4$ \\
+Curvature radius & $R_{\mathrm{curv}}$ & $\geq 1.85\times 10^{27}\,\mathrm{m}$ \\
+Today $\chiL$ & --- & $\sim 0.07$ \\
+$\Vobs/\Vtot$ today & --- & $\sim 7\times 10^{-5}$ \\
+$N(\trec)$ Fibonacci level & --- & $\approx 266.85$ \\
+$K(\pi/2)$ kernel mid-value & --- & $4/\pi\approx 1.273$ \\
+$\Hzero^{\mathrm{late}}/\Hzero^{\mathrm{CMB}}$ predicted & --- & $1.08$--$1.10$ \\
+$\Hzero^{\mathrm{late}}/\Hzero^{\mathrm{CMB}}$ observed & --- & $1.083$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+%% =================================================================
+\section{Physical Interpretation}
+\label{sec:interp}
+%% =================================================================
+
+The framework rests on three operational principles:
+
+\begin{enumerate}[label=(\arabic*),noitemsep]
+\item \textbf{Light defines what is accessible.} The observable volume
+  $\Vobs(t)$ is the geodesic ball of comoving angle $\chiL(t)$,
+  bounded above by $\pi$ on compact $\Sthree$.
+\item \textbf{Density is dynamical, not instantaneous.} $\rhoobs$
+  relaxes toward $\rhotot$ at rate $\Gamma=c/(R\chiL)$
+  (Postulate~\ref{post:tracking}).
+\item \textbf{Redshift is a path integral.} $\ln(1+z)$ is the line
+  integral of $p(V)K(\chi)/R$ along null geodesics
+  (Theorem~\ref{thm:redshift}); $H(\ell)=3cp/\ell$ is therefore
+  window-dependent.
+\end{enumerate}
+
+The Hubble tension between CMB and local measurements is a direct
+consequence: different observational ladders correspond to different
+effective $(p,\ell)$ pairs, giving distinct effective Hubble parameters
+without contradiction.
+
+%% =================================================================
+\section{Scope and Limitations}
+\label{sec:scope}
+%% =================================================================
+
+\subsection{What This Paper Does}
+
+\begin{enumerate}[label=(Y\arabic*),noitemsep]
+\item Establishes the three-field framework: $R(t)$, $\chiL(t)$, $\rho(t)$.
+\item Introduces the $\Sthree$ kernel $K(\chi)$ with its limits.
+\item Derives $\vp$ as the Perron--Frobenius eigenvalue
+  (Theorem~\ref{thm:phi}).
+\item States the $C^1$-smooth two-sector law with $\Heff\neq H_0$.
+\item Postulates causal density tracking
+  (Postulate~\ref{post:tracking}).
+\item Reformulates redshift conditionally as a density-gradient integral
+  (Theorem~\ref{thm:redshift}).
+\item Predicts a window-dependent Hubble law $H(\ell)=3cp/\ell$.
+\item Identifies $\Hzero^{\mathrm{late}}/\Hzero^{\mathrm{CMB}}\approx 1.08$--$1.10$,
+  consistent with the observed Hubble tension.
+\end{enumerate}
+
+\subsection{What This Paper Does Not Do}
+
+\begin{enumerate}[label=(N\arabic*),noitemsep]
+\item Does \emph{not} derive $\Lam$ from first principles.
+\item Does \emph{not} derive $\Hzero$ from first principles.
+\item Does \emph{not} derive $p(V)$ from microscopic theory.
+\item Does \emph{not} replace the Friedmann equations.
+\item Does \emph{not} provide a full quantum gravity model.
+\item Does \emph{not} claim that the Hubble tension is solved.
+\item Does \emph{not} claim that the observed vacuum density is
+  predicted without calibration.
+\item Does \emph{not} eliminate dark energy. The exponential sector
+  requires $\Lam$ as in \LCDM.
+\item Does \emph{not} derive $\Heff$, $\Eeff$, or
+  $\Gamma=c/(R\chiL)$ from first principles. They are matching
+  parameters and postulates.
+\item Does \emph{not} provide a wave function of the universe;
+  earlier ansatze~\cite{Preece2025FBS3R_GoldenRatio} are withdrawn.
+\end{enumerate}
+
+%% =================================================================
+\section*{Conclusions}
+%% =================================================================
+
+The principal contributions are:
+\begin{enumerate}[noitemsep]
+\item $\Sthree$ kernel: $K(\chi)\to 3/\chi$ (Euclidean), $K(\pi)=0$
+  (antipodal).
+\item Volume distinction: $\Vobs/\Vtot\sim 7\times 10^{-5}$ today.
+\item $\vp$ as Perron--Frobenius eigenvalue, not a parameter.
+\item Two-sector $C^1$-smooth law with $\Heff\approx 7.4\,H_0$.
+\item Causal density tracking
+  $\dot\rhoobs=-[c/(R\chiL)][\rhoobs-\rhotot]$ as postulate.
+\item Conditional reformulation of redshift as gradient integral
+  $\ln(1+z)=\int p(V)K(\chi)/R\,dr$.
+\item Window-dependent Hubble law $H(\ell)=3cp/\ell$.
+\item Estimated within the present phenomenological framework: Hubble tension ratio $\approx 1.08$--$1.10$, consistent with
+  observation $1.083$.
+\end{enumerate}
+
+\medskip
+\noindent\textbf{Final positioning.} The main result of this paper
+is \emph{not} a replacement of \LCDM, \emph{not} a derivation of
+cosmological parameters, and \emph{not} a modification of local GR.
+It is a controlled geometric reinterpretation of observable
+cosmological volume and density on compact $\Sthree$. The distinction
+between $\Vobs$ and $\Vtot$, together with the causal density-tracking
+postulate and the gradient redshift ansatz, provides a phenomenological
+framework for studying whether observed expansion parameters may depend
+on finite observational windows.
+
+\medskip
+\begin{center}
+\textit{All rigorous content lies in the geometry: $\Sthree$ topology,
+volume formula, kernel $K(\chi)$, Perron--Frobenius~$\vp$.\\
+All physical interpretation is at the level of postulates, ans\"atze,
+and phenomenological consistency.}
+\end{center}
+
+%% =================================================================
+\begin{thebibliography}{99}
+
+\bibitem{Preece2025FBS3R_GoldenRatio}
+A.~Preece and B.~Batenin,
+Fractal Bindu $(S^3)$ of Reality: The Golden Ratio as the Principle of
+Perfection and Harmony in Interdependent Existence,
+Zenodo (2025), \href{https://doi.org/10.5281/zenodo.15538573}{doi:10.5281/zenodo.15538573}.
+
+\bibitem{Planck2018}
+Planck Collaboration,
+Planck 2018 results.\ VI.\ Cosmological parameters,
+Astron.\ Astrophys.\ \textbf{641}, A6 (2020).
+
+\bibitem{Perelman2002}
+G.~Perelman,
+The Entropy Formula for the Ricci Flow,
+arXiv:math/0211159 (2002).
+
+\bibitem{Perelman2003a}
+G.~Perelman,
+Ricci Flow with Surgery on Three-Manifolds,
+arXiv:math/0303109 (2003).
+
+\bibitem{Perelman2003b}
+G.~Perelman,
+Finite Extinction Time for the Solutions to the Ricci Flow,
+arXiv:math/0307245 (2003).
+
+\bibitem{Hardy1979}
+G.~H.~Hardy and E.~M.~Wright,
+\textit{An Introduction to the Theory of Numbers}, 5th ed.,
+Oxford Univ.\ Press (1979).
+
+\bibitem{Meyer2000}
+C.~D.~Meyer,
+\textit{Matrix Analysis and Applied Linear Algebra}, SIAM (2000).
+
+\bibitem{Riess2022}
+A.~G.~Riess et~al.,
+A Comprehensive Measurement of the Local Value of the Hubble Constant,
+Astrophys.\ J.\ Lett.\ \textbf{934}, L7 (2022).
+
+\bibitem{PreeceBatenin2026Bell}
+A.~Preece and B.~Batenin,
+Compact Simply-Connected Cosmology and the Geometric Origin of Quantum
+Nonlocality (Version 3.0), Berlin (2026).
+
+\end{thebibliography}
+
+\end{document}

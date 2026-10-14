@@ -1,0 +1,1132 @@
+\documentclass[reprint,aps,pra,superscriptaddress,nofootinbib,longbibliography]{revtex4-2}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{bm}
+\usepackage{booktabs}
+\usepackage{microtype}
+\usepackage{hyperref}
+\usepackage{listings}
+\hypersetup{hidelinks}
+\emergencystretch=2em
+
+\lstset{
+  basicstyle=\footnotesize\ttfamily,
+  breaklines=true,
+  breakatwhitespace=true,
+  columns=fullflexible,
+  keepspaces=true,
+  frame=single
+}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\ket}[1]{|#1\rangle}
+\newcommand{\bra}[1]{\langle #1|}
+\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\Id}{\mathbb I}
+\newcommand{\EE}{\mathcal E}
+\newcommand{\HH}{\mathcal H}
+\newcommand{\Kbr}{K_{\rm br}}
+\newcommand{\N}{\mathcal N}
+\newcommand{\Ftel}{\mathcal F_{\rm tel}}
+\newcommand{\diag}{\operatorname{diag}}
+\newcommand{\sech}{\operatorname{sech}}
+\newcommand{\Repart}{\operatorname{Re}}
+\newcommand{\Impart}{\operatorname{Im}}
+\newcommand{\dd}{\mathrm d}
+
+\begin{document}
+
+\title{Computable Multibranch Transfer Kernels for Endpoint Quantum Usefulness}
+
+\author{Andrei Preece}
+\email{andre.preece@web.de}
+\affiliation{Independent Researcher, Berlin, Germany}
+
+\author{Boris Batenin}
+\email{batenin@web.de}
+\affiliation{Independent Researcher, Berlin, Germany}
+
+\date{May 2026}
+
+\begin{abstract}
+Projected multipartite resources are useful only through the correlations that survive the operational cut: intermediate filtering, conditioning, and discarded records.  We give a computable calculus for this transfer problem.  For a \(d\)-branch resource
+\[
+\ket{\Psi}=\sum_{i=1}^d a_i\ket{i_A}\ket{i_M}\ket{i_B},
+\]
+a successful completely positive trace-nonincreasing operation \(\mathcal E\) on the middle subsystem induces the branch-transfer kernel
+\[
+(K_{\rm br})_{ij}=\Tr\mathcal E(\ket{i_M}\bra{j_M}).
+\]
+Equivalently, \(K_{\rm br}\) is the transpose of the success effect restricted to the branch subspace; hence
+\[
+0\le K_{\rm br}\le I.
+\]
+Conversely, every positive contraction on the branch sector is realizable by some successful completely positive trace-nonincreasing operation, as an endpoint-equivalent representative after the middle output is discarded.  The endpoint state is the maximally correlated embedding of
+\[
+R=\frac{D_aK_{\rm br}D_a^\dagger}{p},
+\qquad
+p=\sum_i |a_i|^2(K_{\rm br})_{ii},
+\qquad
+D_a=\diag(a_1,\ldots,a_d).
+\]
+This single matrix \(R\) gives stable formulas for negativity, entropy, pair extraction visibility, cycle phases, and task-dependent usefulness.  In the two-branch case the standard pair-conditional measures considered here collapse to one visibility.  For \(d\ge3\), this collapse fails: pairwise visibilities do not determine the endpoint structure because gauge-invariant cycle phases and positivity constraints remain.  We provide the exact invariants, a numerically stable reconstruction and projection calculus, and benchmark reporting standards for experiments and simulations.  The result is not a new dynamics; it is a finite-dimensional operational normal form for what is preserved, what is transferred, and what is lost.
+\end{abstract}
+
+\maketitle
+
+\section{Introduction}
+
+A multipartite quantum resource is not useful merely because it contains many correlations.  Its endpoint usefulness depends on what survives the operational cut: a successful operation on intermediate systems, normalization by the success probability, and trace-out of records that are not retained.  The correct object is therefore not the raw tensor of the parent state.  It is the branch-transfer kernel induced by the successful operation.
+
+The language used here is standard finite-dimensional quantum information: completely positive trace-nonincreasing maps, effects, and Kraus/Choi representations \cite{Kraus1983,Choi1975,NielsenChuang}.  The novelty is not a new dynamics.  It is the operational identification of the finite matrix that must be reconstructed and reported when a multibranch resource is projected through a successful intermediate operation and the successful output record is discarded.
+
+For two GHZ branches this calculus reduces to one positive \(2\times2\) kernel
+\[
+K_{\mathcal E}=
+\begin{pmatrix}
+A&\Gamma\\
+\Gamma^*&B
+\end{pmatrix},
+\]
+and the endpoint visibility factorizes as
+\[
+V_{\rm eff}=q\,\sech(\ln r),
+\qquad
+q=\frac{|\Gamma|}{\sqrt{AB}},
+\qquad
+r=\frac{|a_1|\sqrt A}{|a_2|\sqrt B}.
+\]
+This formula separates two losses: coherence loss \(q<1\), which cannot be repaired by diagonal branch balancing, and balance loss \(r\ne1\), which can be corrected probabilistically.
+
+The present paper gives the computable \(d\)-branch version.  The central point is that for \(d>2\) there is generally no single scalar visibility.  The complete transferred object is the positive contraction
+\[
+0\le K_{\rm br}\le I,
+\]
+together with the input amplitude vector \(a\).  Endpoint usefulness becomes task-dependent:
+\[
+U_{\rm endpoint}=F_{\rm task}(K_{\rm br},a).
+\]
+This is the multibranch endpoint transfer law: after success and discard of the middle output, the endpoint does not depend on the full implementation of the successful operation, but only on the restricted success kernel and the input branch amplitudes.  Different tasks---pair extraction, Bell testing, diagonal-phase teleportation-like benchmarking, routing, sensing, or error correction---interrogate different functions of the same transferred matrix.  In this sense, \(K_{\rm br}\) is a calibrated link-layer object for heralded multibranch quantum resources.
+
+The construction is closely related to Schur-product maps on branch coherences: multiplication by a positive matrix is completely positive by the Schur product theorem \cite{Schur1911,HornJohnson2013}.  It is also naturally expressed in the theory of maximally correlated states, for which several entanglement quantities have closed forms \cite{Rains1999,VidalWerner2002}.  The contribution of the present note is to combine these standard ingredients into a task-facing normal form for endpoint resource evaluation.
+
+The paper is organized as follows.  Section~\ref{sec:setup} defines multibranch resources and the success kernel.  Section~\ref{sec:kernel} proves \(0\le K_{\rm br}\le I\) and the converse realization theorem.  Section~\ref{sec:endpoint} derives the endpoint state.  Section~\ref{sec:pairwise} gives pairwise visibilities and the stable computational form.  Section~\ref{sec:cycles} shows why \(d\ge3\) contains new gauge-invariant cycle phases.  Section~\ref{sec:filtering} proves the filtering invariants.  Section~\ref{sec:usefulness} gives task-dependent usefulness measures.  Section~\ref{sec:algorithms} states numerically stable algorithms.  Section~\ref{sec:examples} gives diagnostic examples.  Section~\ref{sec:tomography} gives reconstruction rules.  Section~\ref{sec:reporting} gives a reporting standard.
+
+\section{Multibranch resources and successful maps}
+\label{sec:setup}
+
+Let the endpoint systems \(A,B\) and the middle system \(M\) contain a distinguished \(d\)-branch sector with orthonormal branch states
+\[
+\{\ket{i_A}\}_{i=1}^d,\qquad
+\{\ket{i_M}\}_{i=1}^d,\qquad
+\{\ket{i_B}\}_{i=1}^d.
+\]
+The resource is
+\begin{equation}
+\ket{\Psi}
+=
+\sum_{i=1}^d a_i
+\ket{i_A}\ket{i_M}\ket{i_B},
+\qquad
+\sum_i |a_i|^2=1.
+\label{eq:resource}
+\end{equation}
+The successful operation on \(M\) is a completely positive trace-nonincreasing map
+\begin{equation}
+\EE(X)=\sum_\alpha L_\alpha X L_\alpha^\dagger,
+\qquad
+\sum_\alpha L_\alpha^\dagger L_\alpha\le \Id_M.
+\label{eq:cp-tni}
+\end{equation}
+The output space of the successful map need not have the same dimension as the input branch space; it will be traced out after success.
+
+\begin{definition}[Branch-transfer kernel]
+The branch-transfer kernel restricted to the \(d\)-branch sector is the matrix
+\begin{equation}
+(K_{\rm br})_{ij}
+=
+\Tr\EE(\ket{i_M}\bra{j_M}).
+\label{eq:kernel-def}
+\end{equation}
+\end{definition}
+
+After success and discard of the middle output, the restricted success effect, equivalently \(K_{\rm br}\), is the complete endpoint transfer object on the chosen branch sector.  Its diagonal entries are success weights for individual branches.  Its off-diagonal entries are transferred branch coherences.
+
+\section{The branch kernel is a positive contraction}
+\label{sec:kernel}
+
+\begin{theorem}[Effect representation]
+Let \(\EE^\dagger\) be the adjoint map, defined by
+\[
+\Tr[Y\,\EE(X)]=\Tr[\EE^\dagger(Y)X].
+\]
+Set
+\begin{equation}
+E=\EE^\dagger(\Id_{\rm out}).
+\label{eq:success-effect}
+\end{equation}
+Then \(E\) is the success effect,
+\[
+0\le E\le \Id_M,
+\]
+and the branch kernel is the transpose of \(E\) in the branch basis:
+\begin{equation}
+(K_{\rm br})_{ij}=\bra{j_M}E\ket{i_M}.
+\label{eq:kernel-effect}
+\end{equation}
+Consequently,
+\begin{equation}
+0\le K_{\rm br}\le I_d.
+\label{eq:kernel-contraction}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Complete positivity of \(\EE\) gives complete positivity of \(\EE^\dagger\), hence \(E=\EE^\dagger(\Id_{\rm out})\ge0\).  The trace-nonincreasing condition is precisely
+\[
+\Tr\EE(X)\le \Tr X
+\]
+for all \(X\ge0\), equivalently \(E\le \Id_M\).  Now
+\[
+\begin{aligned}
+(K_{\rm br})_{ij}
+&=
+\Tr\EE(\ket{i_M}\bra{j_M})
+\\
+&=
+\Tr[E\ket{i_M}\bra{j_M}]
+=
+\bra{j_M}E\ket{i_M}.
+\end{aligned}
+\]
+Thus \(K_{\rm br}\) is the transpose of the branch-sector matrix of \(E\).  Transposition preserves the spectrum for Hermitian matrices, so the restriction satisfies \(0\le K_{\rm br}\le I_d\).
+\end{proof}
+
+\begin{theorem}[Converse realization]
+Let \(K\) be any \(d\times d\) positive contraction, \(0\le K\le I_d\).  Then there exists a completely positive trace-nonincreasing map \(\EE\) whose branch-transfer kernel is \(K\).
+\end{theorem}
+
+\begin{proof}
+Choose an extension of the branch sector to the input Hilbert space and define an effect \(E\) by setting \(E_{\rm branch}=K^T\) on the branch sector and, for example, \(E=0\) on its orthogonal complement.  Since transposition preserves positivity and spectrum for Hermitian matrices, \(0\le E\le I\).  Let \(\sigma\) be any fixed output density operator and define
+\[
+\EE(X)=\Tr(EX)\,\sigma .
+\]
+This map is completely positive because its Choi operator is \(E^T\otimes\sigma\ge0\).  It is trace-nonincreasing since, for every \(X\ge0\),
+\[
+\Tr\EE(X)=\Tr(EX)\le \Tr X .
+\]
+Finally,
+\[
+\Tr\EE(\ket{i_M}\bra{j_M})
+=\Tr(E\ket{i_M}\bra{j_M})
+=\bra{j_M}E\ket{i_M}
+=K_{ij}.
+\]
+Thus every positive contraction is operationally realizable as a branch-transfer kernel.
+This construction proves endpoint-operational realizability after the successful middle output is discarded; it does not claim that different laboratory implementations with the same \(K\) are equivalent before discard or for tasks that access the middle output record.
+\end{proof}
+
+\begin{proposition}[Realizability and endpoint-only equivalence]
+Conversely, every positive contraction \(K\) on the branch sector can be realized, at the endpoint level after discard of the middle output, by a successful CP trace-nonincreasing operation.  Let \(E=K^T\) on the branch sector, extended by zero on the orthogonal complement if needed, and choose any output state \(\sigma\).  The map
+\[
+\mathcal E(X)=\Tr(EX)\,\sigma
+\]
+is completely positive and trace-nonincreasing, and its branch-transfer kernel is \(K\).  This construction proves endpoint operational realizability.  It does not imply that every laboratory implementation with the same \(K\) is internally equivalent before the middle output or records are discarded.
+\end{proposition}
+
+\begin{corollary}[Pairwise coherence bound]
+For every pair \(i,j\),
+\begin{equation}
+|K_{ij}|^2\le K_{ii}K_{jj},
+\qquad
+0\le K_{ii}\le1.
+\label{eq:pair-bound}
+\end{equation}
+If \(K_{ii}K_{jj}>0\), the normalized pair coherence
+\begin{equation}
+q_{ij}
+=
+\frac{|K_{ij}|}{\sqrt{K_{ii}K_{jj}}}
+\label{eq:qij}
+\end{equation}
+satisfies \(0\le q_{ij}\le1\).
+\end{corollary}
+
+\begin{proof}
+The \(2\times2\) principal minor of a positive matrix is positive:
+\[
+\begin{pmatrix}
+K_{ii}&K_{ij}\\
+K_{ji}&K_{jj}
+\end{pmatrix}\ge0.
+\]
+Its determinant is nonnegative, giving \(|K_{ij}|^2\le K_{ii}K_{jj}\).  The diagonal bounds follow from \(0\le K\le I\).
+\end{proof}
+
+\section{Endpoint state theorem}
+\label{sec:endpoint}
+
+Define
+\begin{equation}
+D_a=\diag(a_1,\ldots,a_d).
+\label{eq:Da}
+\end{equation}
+The success probability for the resource \eqref{eq:resource} is
+\begin{equation}
+p
+=
+\sum_i |a_i|^2K_{ii}
+=
+\Tr(D_aKD_a^\dagger).
+\label{eq:p-correct}
+\end{equation}
+It is important that \(p\) is not \(a^\dagger Ka\) in general.  The endpoint branches \(\ket{i_Ai_B}\) are mutually orthogonal, so only diagonal branch success weights enter the total success probability.
+
+\begin{theorem}[Endpoint normal form]
+For \(p>0\), the normalized endpoint state after successful operation on \(M\) and trace-out of the middle output is
+\begin{equation}
+\rho_{AB}
+=
+\sum_{i,j=1}^d
+R_{ij}\,
+\ket{i_Ai_B}\bra{j_Aj_B},
+\label{eq:rho-endpoint}
+\end{equation}
+where
+\begin{equation}
+R
+=
+\frac{D_aKD_a^\dagger}{p},
+\qquad
+R_{ij}
+=
+\frac{a_i a_j^*K_{ij}}{p}.
+\label{eq:R}
+\end{equation}
+The matrix \(R\) is a density matrix on the abstract \(d\)-dimensional branch space:
+\begin{equation}
+R\ge0,\qquad \Tr R=1.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Expanding \(\ket{\Psi}\bra{\Psi}\) gives terms
+\[
+a_i a_j^*
+\ket{i_A}\bra{j_A}
+\otimes
+\ket{i_M}\bra{j_M}
+\otimes
+\ket{i_B}\bra{j_B}.
+\]
+Applying \(\EE\) to \(M\), tracing out the successful middle output, and using the definition of \(K_{ij}\) gives the unnormalized endpoint operator
+\[
+\widetilde\rho_{AB}
+=
+\sum_{i,j}
+a_i a_j^*K_{ij}
+\ket{i_Ai_B}\bra{j_Aj_B}.
+\]
+Its trace is
+\[
+p=\sum_i |a_i|^2K_{ii}.
+\]
+Dividing by \(p\) gives \eqref{eq:rho-endpoint}--\eqref{eq:R}.  Since \(K\ge0\), also \(D_aKD_a^\dagger\ge0\), and normalization gives \(\Tr R=1\).
+\end{proof}
+
+Let
+\begin{equation}
+W:\mathbb C^d\to \HH_A\otimes\HH_B,
+\qquad
+W\ket{i}=\ket{i_Ai_B}.
+\label{eq:isometry}
+\end{equation}
+Then
+\begin{equation}
+\rho_{AB}=WRW^\dagger.
+\label{eq:isometric-embedding}
+\end{equation}
+Thus all nonzero eigenvalues of \(\rho_{AB}\) equal the eigenvalues of \(R\).
+
+\begin{corollary}[Endpoint transfer-kernel law]
+For every successful CP trace-nonincreasing operation on the middle system whose output record is discarded, all endpoint quantities are functions of the pair \((K_{\rm br},a)\).  Equivalently,
+\[
+\rho_{AB}
+=
+W\left(
+\frac{D_aK_{\rm br}D_a^\dagger}
+{\sum_i |a_i|^2(K_{\rm br})_{ii}}
+\right)W^\dagger .
+\]
+Thus two successful operations with the same restricted success effect on the branch sector are endpoint-indistinguishable after the middle output is traced out.
+\end{corollary}
+
+\section{Pairwise visibility and stable formulas}
+\label{sec:pairwise}
+
+For a pair \(i,j\) with nonzero pair success
+\begin{equation}
+p_{ij}
+=
+|a_i|^2K_{ii}+|a_j|^2K_{jj}>0,
+\label{eq:pij}
+\end{equation}
+define the extracted two-branch endpoint state by restricting to the pair and normalizing.  The pair visibility is
+\begin{equation}
+V_{ij}
+=
+\frac{2|a_i a_j^*K_{ij}|}{|a_i|^2K_{ii}+|a_j|^2K_{jj}}.
+\label{eq:Vij-stable}
+\end{equation}
+This is the stable computational form.  It uses no logarithms and no hyperbolic functions.
+
+When \(K_{ii}K_{jj}|a_i a_j|^2>0\), set
+\begin{equation}
+r_{ij}
+=
+\frac{|a_i|\sqrt{K_{ii}}}{|a_j|\sqrt{K_{jj}}},
+\qquad
+q_{ij}
+=
+\frac{|K_{ij}|}{\sqrt{K_{ii}K_{jj}}}.
+\label{eq:rij-qij}
+\end{equation}
+Then
+\begin{equation}
+V_{ij}
+=
+q_{ij}\frac{2r_{ij}}{1+r_{ij}^2}
+=
+q_{ij}\sech(\ln r_{ij}).
+\label{eq:pair-law}
+\end{equation}
+The maximum over balance at fixed \(q_{ij}\) is attained at
+\begin{equation}
+r_{ij}=1,
+\qquad
+V_{ij}^{\rm max}=q_{ij}.
+\end{equation}
+
+\begin{remark}[Unnormalized coherent weight]
+The unnormalized pair coherent weight is
+\begin{equation}
+p_{ij}V_{ij}
+=
+2|a_i a_j^*K_{ij}|.
+\label{eq:unnormalized-weight}
+\end{equation}
+This quantity is often the better engineering benchmark: it records how much coherence is transferred before postselection normalization inflates the conditional visibility.
+\end{remark}
+
+\section{Cycle phases and the failure of scalar visibility}
+\label{sec:cycles}
+
+For \(d=2\) there is only one off-diagonal entry.  Its phase can be removed by a diagonal endpoint phase convention.  For \(d\ge3\), this is no longer true.
+
+\begin{definition}[Branch gauge transformation]
+A diagonal branch phase change is
+\begin{equation}
+\ket{i}\mapsto e^{i\theta_i}\ket{i}.
+\end{equation}
+It sends
+\begin{equation}
+K_{ij}\mapsto e^{i(\theta_i-\theta_j)}K_{ij}.
+\label{eq:gauge}
+\end{equation}
+\end{definition}
+
+\begin{definition}[Cycle phase]
+For a triple \(i,j,k\) with nonzero product \(K_{ij}K_{jk}K_{ki}\), define
+\begin{equation}
+\Phi_{ijk}
+=
+\arg(K_{ij}K_{jk}K_{ki}).
+\label{eq:cycle-phase}
+\end{equation}
+\end{definition}
+
+\begin{lemma}[Gauge invariance of cycle phase]
+The phase \(\Phi_{ijk}\) is invariant under diagonal branch gauge transformations.
+\end{lemma}
+
+\begin{proof}
+Under \eqref{eq:gauge},
+\[
+\begin{aligned}
+K_{ij}K_{jk}K_{ki}
+&\mapsto
+e^{i(\theta_i-\theta_j)}
+e^{i(\theta_j-\theta_k)}
+e^{i(\theta_k-\theta_i)}
+K_{ij}K_{jk}K_{ki}
+\\
+&=
+K_{ij}K_{jk}K_{ki}.
+\end{aligned}
+\]
+\end{proof}
+
+Let \(Q\) be the normalized coherence matrix on a set of nonzero branches:
+\begin{equation}
+Q_{ij}
+=
+\frac{K_{ij}}{\sqrt{K_{ii}K_{jj}}},
+\qquad
+Q_{ii}=1.
+\label{eq:Q}
+\end{equation}
+For a triple \(i,j,k\), positivity of the \(3\times3\) principal minor gives
+\begin{equation}
+\det Q_{\{i,j,k\}}\ge0.
+\label{eq:triple-det}
+\end{equation}
+Writing \(q_{ij}=|Q_{ij}|\) gives the explicit constraint
+\begin{equation}
+1
++2q_{ij}q_{jk}q_{ki}\cos\Phi_{ijk}
+-q_{ij}^2-q_{jk}^2-q_{ki}^2
+\ge0.
+\label{eq:triple-constraint}
+\end{equation}
+If all three \(q\)'s are nonzero, this is equivalently
+\begin{equation}
+\cos\Phi_{ijk}
+\ge
+\frac{
+q_{ij}^2+q_{jk}^2+q_{ki}^2-1
+}{
+2q_{ij}q_{jk}q_{ki}
+}.
+\label{eq:cos-lower-bound}
+\end{equation}
+
+\begin{proposition}[No scalar visibility for \(d\ge3\)]
+For \(d\ge3\), the collection of pair magnitudes \(\{|K_{ij}|\}\) and diagonal entries \(\{K_{ii}\}\) does not determine the branch kernel up to branch gauge.  Gauge-invariant cycle phases remain.
+\end{proposition}
+
+\begin{proof}
+It suffices to give a three-branch family.  Let
+\[
+K(\Phi)=\eta Q(\Phi),
+\qquad
+0<\eta\le \frac13,
+\]
+where
+\[
+Q(\Phi)=
+\begin{pmatrix}
+1&q&q e^{-i\Phi}\\
+q&1&q\\
+q e^{i\Phi}&q&1
+\end{pmatrix}.
+\]
+For \(0<q\le1/2\), \(Q(\Phi)\ge0\) for every \(\Phi\), since
+\[
+\det Q(\Phi)=1+2q^3\cos\Phi-3q^2\ge0
+\]
+and the \(2\times2\) principal minors are nonnegative.  Moreover,
+\(\lambda_{\max}(Q)\le \Tr Q=3\), hence
+\[
+0\le K(\Phi)\le I.
+\]
+All diagonal entries \(\eta\) and all off-diagonal magnitudes \(\eta q\) are independent of \(\Phi\), but
+\[
+\arg(K_{12}K_{23}K_{31})=\Phi
+\]
+is invariant under all diagonal branch rephasings.  Hence admissible success kernels can have identical diagonal data and pair magnitudes but different endpoint cycle structure.  Therefore no scalar function of pairwise visibilities can determine the multibranch endpoint structure.
+\end{proof}
+
+Consequently, pairwise visibility data are incomplete for \(d\ge3\).  The missing data are not a matter of convention: they are gauge-invariant cycle phases constrained by positivity.  The two-branch theory survives inside each pair, but the \(d\)-branch theory is not the sum of independent pairs.
+
+\section{Diagonal branch filtering}
+\label{sec:filtering}
+
+Consider a branch-preserving diagonal endpoint filter on the maximally correlated branch subspace:
+\begin{equation}
+\ket{i_Ai_B}\mapsto f_i e^{i\theta_i}\ket{i_Ai_B},
+\qquad
+f_i\ge0.
+\label{eq:diag-filter}
+\end{equation}
+For a physical trace-nonincreasing filter one must choose the overall scale so that \(0\le f_i\le1\) for all \(i\).  Since the normalized postselected state is invariant under a common rescaling of all \(f_i\), the ratios of the \(f_i\)'s are the relevant filtering parameters.  If a local endpoint filter is required, one may write diagonal local Kraus operators
+\begin{align}
+F_A&=\sum_i \alpha_i\ket{i_A}\bra{i_A},&
+F_B&=\sum_i \beta_i\ket{i_B}\bra{i_B},\nonumber\\
+\alpha_i\beta_i&=f_i e^{i\theta_i}.&
+\end{align}
+with the overall scale chosen so that the product operation is trace-nonincreasing on the relevant endpoint subspace.
+Its success probability on \(R\) is
+\begin{equation}
+P_F=\sum_i f_i^2R_{ii}.
+\label{eq:filter-P}
+\end{equation}
+For \(P_F>0\), the filtered branch matrix is
+\begin{equation}
+R'_{ij}
+=
+\frac{f_if_j e^{i(\theta_i-\theta_j)}R_{ij}}{P_F}.
+\label{eq:R-filtered}
+\end{equation}
+
+\begin{theorem}[Pair coherence qualities are filtering invariants]
+For any pair with \(R_{ii}R_{jj}>0\) and \(f_if_j>0\),
+\begin{equation}
+\frac{|R'_{ij}|}{\sqrt{R'_{ii}R'_{jj}}}
+=
+\frac{|R_{ij}|}{\sqrt{R_{ii}R_{jj}}}.
+\label{eq:filter-q-invariant}
+\end{equation}
+Equivalently, diagonal branch-preserving filters can change branch balance but cannot increase pairwise coherence quality.
+\end{theorem}
+
+\begin{proof}
+Substitute \eqref{eq:R-filtered}:
+\[
+\frac{|R'_{ij}|}{\sqrt{R'_{ii}R'_{jj}}}
+=
+\frac{f_if_j|R_{ij}|/P_F}{\sqrt{(f_i^2R_{ii}/P_F)(f_j^2R_{jj}/P_F)}}
+=
+\frac{|R_{ij}|}{\sqrt{R_{ii}R_{jj}}}.
+\]
+\end{proof}
+
+\begin{corollary}[Filtered negativity]
+The negativity after diagonal filtering is
+\begin{equation}
+\N(R')
+=
+\frac{1}{P_F}\sum_{i<j} f_if_j |R_{ij}|.
+\label{eq:filtered-negativity}
+\end{equation}
+It is not, in general, equal to \(\N(R)/P_F\).
+\end{corollary}
+
+\section{Endpoint usefulness}
+\label{sec:usefulness}
+
+The endpoint state \(\rho_{AB}=WRW^\dagger\) is a maximally correlated state.  Several useful quantities have closed forms, but different tasks depend on different functions of \(R\).
+
+\subsection{Spectrum and entropy}
+
+Since \(W\) is an isometry, the nonzero spectrum of \(\rho_{AB}\) is the spectrum of \(R\).  Hence
+\begin{equation}
+S(\rho_{AB})
+=
+S(R)
+=
+-\Tr R\log R.
+\label{eq:entropy}
+\end{equation}
+This is the von Neumann entropy of the endpoint state, not by itself an entanglement measure for the mixed bipartite state.  It is not, in general, determined by pair visibility alone.
+
+\subsection{Negativity}
+
+The partial transpose of a maximally correlated state has eigenvalues \(R_{ii}\) and, for each \(i<j\), a pair \(\pm |R_{ij}|\) \cite{Rains1999,VidalWerner2002}.  Therefore
+\begin{equation}
+\N(\rho_{AB})
+=
+\sum_{i<j}|R_{ij}|
+=
+\frac12\sum_{i\ne j}|R_{ij}|.
+\label{eq:negativity}
+\end{equation}
+
+\subsection{Pair extraction}
+
+The pair visibility \(V_{ij}\) in \eqref{eq:Vij-stable} gives the exact two-branch visibility after selecting the pair \(i,j\).  For the standard two-qubit pair-conditional quantities considered here, concurrence equals \(V_{ij}\) \cite{Wootters1998}, negativity equals \(V_{ij}/2\), and the CHSH optimum is \cite{Horodecki1995}
+\begin{equation}
+S_{\max}^{(ij)}=2\sqrt{1+V_{ij}^2}.
+\label{eq:pair-chsh}
+\end{equation}
+This statement is pair-conditional.  It is not a universal Bell criterion for the full \(d\)-level endpoint, nor does it imply that all endpoint quantities are functions of one visibility.
+
+\subsection{Diagonal-phase entanglement benchmark}
+
+Let
+\begin{equation}
+\ket{\Phi_\theta}
+=
+\frac1{\sqrt d}\sum_i e^{i\theta_i}\ket{i_Ai_B}.
+\end{equation}
+The diagonal-phase maximally entangled overlap is
+\begin{equation}
+f_{\rm diag}(R)
+=
+\frac1d
+\max_{\theta_1,\ldots,\theta_d}
+\sum_{i,j}
+R_{ij}e^{i(\theta_j-\theta_i)}.
+\label{eq:fdiag}
+\end{equation}
+The associated diagonal-phase teleportation-like benchmark is
+\begin{equation}
+\Ftel^{\rm diag}
+=
+\frac{d f_{\rm diag}+1}{d+1}.
+\label{eq:Fdiag}
+\end{equation}
+This is not claimed to be the full teleportation optimum.  The standard relation between fully entangled fraction and teleportation fidelity involves optimization over the relevant full task class \cite{Horodecki1999}.  If a larger class of local unitaries or protocols is allowed, one must optimize over that larger class.  This is precisely why the correct multibranch statement is
+\[
+U_{\rm endpoint}=F_{\rm task}(K,a),
+\]
+not a universal scalar formula.
+
+\section{Numerically stable algorithms}
+\label{sec:algorithms}
+
+The following operations are sufficient for a robust implementation.  In data analysis it is useful to keep both the raw reconstructed matrix and the projected physical representative.
+
+\subsection{Simple spectral physical projection}
+
+Experimental reconstruction may yield a nearly Hermitian matrix with small negative eigenvalues or eigenvalues slightly larger than one.  A simple spectral physical projection onto \(0\le K\le I\) is
+\begin{equation}
+K\mapsto
+U\,\diag(\min\{1,\max\{0,\lambda_\ell\}\})\,U^\dagger,
+\label{eq:project-effect}
+\end{equation}
+where
+\[
+\frac{K+K^\dagger}{2}=U\,\diag(\lambda_\ell)\,U^\dagger.
+\]
+This spectral clipping is useful for engineering downstream calculations, but it is not a substitute for statistical reconstruction.  For precision experimental analysis one should use maximum-likelihood estimation or a semidefinite program with confidence regions.
+
+\subsection{Stable endpoint construction}
+
+Compute
+\begin{equation}
+p=\sum_i |a_i|^2\Re K_{ii}.
+\end{equation}
+If \(p\) is below tolerance, the successful endpoint state is undefined.  Otherwise compute
+\[
+R=\frac{D_aKD_a^\dagger}{p}
+\]
+and Hermitize by replacing \(R\) with \((R+R^\dagger)/2\) to remove roundoff asymmetry.
+
+\subsection{Stable entropy}
+
+Compute the eigenvalues \(\lambda_\ell\) of \(R\), clip tiny negative roundoff values to zero, renormalize, and evaluate
+\[
+S(R)=-\sum_{\lambda_\ell>0}\lambda_\ell\log\lambda_\ell.
+\]
+
+\subsection{Stable pair visibility}
+
+Use the direct formula
+\[
+V_{ij}
+=
+\frac{2|a_i a_j^*K_{ij}|}
+{|a_i|^2\Re K_{ii}+|a_j|^2\Re K_{jj}},
+\]
+not the logarithmic form \(q_{ij}\sech(\ln r_{ij})\).
+
+\subsection{Reference implementation}
+
+\begin{widetext}
+\begin{lstlisting}[language=Python]
+import itertools
+import numpy as np
+
+class MultibranchKernel:
+    def __init__(self, K, a, tol=1e-14, project=True):
+        self.tol = float(tol)
+        self.K_raw = np.asarray(K, dtype=complex)
+        self.a = np.asarray(a, dtype=complex)
+
+        if self.K_raw.ndim != 2 or self.K_raw.shape[0] != self.K_raw.shape[1]:
+            raise ValueError("K must be a square matrix.")
+        if self.a.ndim != 1 or len(self.a) != self.K_raw.shape[0]:
+            raise ValueError("a must be a vector with len(a)=K.shape[0].")
+        norm_a = np.linalg.norm(self.a)
+        if norm_a <= self.tol:
+            raise ValueError("a must be nonzero.")
+
+        self.a = self.a / norm_a
+        self.d = len(self.a)
+        self.K_projected = self.project_effect(self.K_raw)
+        self.K = self.K_projected if project else 0.5 * (self.K_raw + self.K_raw.conj().T)
+        self.Da = np.diag(self.a)
+
+        diagK = np.real(np.diag(self.K))
+        self.p = float(np.sum(np.abs(self.a)**2 * diagK))
+        self.defined = self.p > self.tol
+
+        if self.defined:
+            self.R = (self.Da @ self.K @ self.Da.conj().T) / self.p
+            self.R = 0.5 * (self.R + self.R.conj().T)
+        else:
+            self.R = None
+
+    @staticmethod
+    def project_effect(K):
+        K = 0.5 * (K + K.conj().T)
+        vals, vecs = np.linalg.eigh(K)
+        vals = np.clip(np.real(vals), 0.0, 1.0)
+        return (vecs * vals) @ vecs.conj().T
+
+    def require_defined(self):
+        if not self.defined:
+            raise ValueError("Endpoint state is undefined because success probability is below tolerance.")
+
+    def negativity(self):
+        self.require_defined()
+        off = self.R - np.diag(np.diag(self.R))
+        return 0.5 * float(np.sum(np.abs(off)))
+
+    def entropy(self):
+        self.require_defined()
+        vals = np.linalg.eigvalsh(self.R)
+        vals = np.clip(np.real(vals), 0.0, None)
+        s = np.sum(vals)
+        if s <= self.tol:
+            raise ValueError("Invalid density matrix normalization.")
+        vals = vals / s
+        vals = vals[vals > self.tol]
+        return float(-np.sum(vals * np.log(vals)))
+
+    def V_ij(self, i, j):
+        if i == j:
+            return np.nan
+        denom = (abs(self.a[i])**2 * np.real(self.K[i, i])
+                 + abs(self.a[j])**2 * np.real(self.K[j, j]))
+        if denom <= self.tol:
+            return np.nan
+        return float(2 * abs(self.a[i] * np.conj(self.a[j]) * self.K[i, j]) / denom)
+
+    def q_ij(self, i, j):
+        kii = np.real(self.K[i, i])
+        kjj = np.real(self.K[j, j])
+        if kii <= self.tol or kjj <= self.tol:
+            return np.nan
+        return float(abs(self.K[i, j]) / np.sqrt(kii * kjj))
+
+    def cycle_phase(self, i, j, k):
+        z = self.K[i, j] * self.K[j, k] * self.K[k, i]
+        if abs(z) <= self.tol:
+            return np.nan
+        return float(np.angle(z))
+
+    def three_cycle_margin(self, i, j, k):
+        qij = self.q_ij(i, j)
+        qjk = self.q_ij(j, k)
+        qki = self.q_ij(k, i)
+        if np.any(np.isnan([qij, qjk, qki])):
+            return np.nan
+        phi = self.cycle_phase(i, j, k)
+        return float(1 + 2*qij*qjk*qki*np.cos(phi) - qij**2 - qjk**2 - qki**2)
+
+    def f_diag_lower_bound(self, n_random=2000, seed=0):
+        """Random-search lower bound on the diagonal-phase overlap."""
+        self.require_defined()
+        rng = np.random.default_rng(seed)
+
+        def objective(theta):
+            v = np.exp(1j * theta)
+            return float(np.real(np.vdot(v, self.R @ v)) / self.d)
+
+        best = objective(np.zeros(self.d))
+        for _ in range(n_random):
+            theta = rng.uniform(0.0, 2*np.pi, self.d)
+            best = max(best, objective(theta))
+        return best
+
+    def report(self):
+        self.require_defined()
+        V = np.array([[self.V_ij(i, j) for j in range(self.d)] for i in range(self.d)])
+        Q = np.array([[self.q_ij(i, j) if i != j else 1.0 for j in range(self.d)]
+                      for i in range(self.d)])
+        cycles = {(i, j, k): self.cycle_phase(i, j, k)
+                  for i, j, k in itertools.combinations(range(self.d), 3)}
+        return {
+            "p": self.p,
+            "negativity": self.negativity(),
+            "entropy": self.entropy(),
+            "V_matrix": V,
+            "q_matrix": Q,
+            "cycle_phases": cycles,
+            "raw_hermiticity_error": np.linalg.norm(self.K_raw - self.K_raw.conj().T),
+            "projected_eig_min": np.min(np.linalg.eigvalsh(self.K_projected)),
+            "projected_eig_max": np.max(np.linalg.eigvalsh(self.K_projected)),
+            "projected_I_minus_K_eig_min": np.min(np.linalg.eigvalsh(np.eye(self.d) - self.K_projected)),
+        }
+\end{lstlisting}
+\end{widetext}
+
+\section{Examples and diagnostics}
+\label{sec:examples}
+
+\subsection{Two branches}
+
+For \(d=2\), the branch kernel has one coherence.  The endpoint matrix
+\[
+R=
+\begin{pmatrix}
+u&w\\
+w^*&v
+\end{pmatrix},
+\qquad u+v=1,
+\]
+has pair visibility
+\[
+V_{12}=2|w|.
+\]
+The standard two-branch pair-conditional quantities considered here collapse to functions of \(V_{12}\):
+\[
+C=V_{12},\qquad
+\N=\frac{V_{12}}2,\qquad
+S_{\max}=2\sqrt{1+V_{12}^2}.
+\]
+This does not mean that every endpoint quantity is determined by \(V_{12}\).  For example, the eigenvalues
+\[
+\lambda_\pm=
+\frac{1\pm\sqrt{(2u-1)^2+4|w|^2}}2
+\]
+also depend on the balance \(u\), and therefore \(S(R)\) is not a function of \(V_{12}\) alone.
+
+\subsection{Three branches with identical pair magnitudes}
+
+A valid success kernel must satisfy both \(K\ge0\) and \(K\le I\).  Therefore the example must be scaled rather than taking \(K=Q\) with unit diagonal and nonzero off-diagonal entries.  Let
+\[
+K(\Phi)=\eta Q(\Phi),
+\qquad
+0<\eta\le\frac13,
+\]
+where
+\[
+Q(\Phi)=
+\begin{pmatrix}
+1&q&q e^{-i\Phi}\\
+q&1&q\\
+q e^{i\Phi}&q&1
+\end{pmatrix}.
+\]
+Then
+\[
+\det Q(\Phi)
+=
+1+2q^3\cos\Phi-3q^2.
+\]
+For \(0<q\le1/2\), \(Q(\Phi)\ge0\) for every \(\Phi\), while \(\lambda_{\max}(Q)\le\Tr Q=3\) implies \(0\le K(\Phi)\le I\).  All diagonal entries of \(K(\Phi)\) equal \(\eta\), all off-diagonal magnitudes equal \(\eta q\), and nevertheless
+\[
+\arg(K_{12}K_{23}K_{31})=\Phi .
+\]
+Thus these admissible success kernels have identical pair magnitudes but different cycle structure.  Therefore pairwise visibility data alone do not determine the endpoint matrix.
+
+\subsection{Routing benchmark}
+
+Suppose a network protocol extracts disjoint endpoint pairs.  A simple routing objective is
+\[
+\max_{\mathcal P}
+\sum_{(i,j)\in\mathcal P}
+p_{ij}V_{ij},
+\]
+where \(\mathcal P\) is a matching on the branch graph.  Using \eqref{eq:unnormalized-weight}, this becomes
+\[
+\max_{\mathcal P}
+\sum_{(i,j)\in\mathcal P}
+2|a_i a_j^*K_{ij}|.
+\]
+This is a weighted matching problem on the coherence graph.  It is not a new physical law; it is a task-specific use of the same transferred kernel.
+
+\section{Tomography and reconstruction}
+\label{sec:tomography}
+
+
+The kernel can be calibrated directly from branch-sector success probabilities, without endpoint tomography.  Prepare the middle branch state
+\[
+\ket{\psi_{ij}(\theta)}
+=
+\frac{\ket{i}+e^{i\theta}\ket{j}}{\sqrt2}.
+\]
+The success probability is
+\begin{equation}
+p_{ij}(\theta)
+=
+\frac{K_{ii}+K_{jj}}2
++
+\Repart\!\left(e^{-i\theta}K_{ij}\right).
+\label{eq:direct-calibration}
+\end{equation}
+Thus \(K_{ii}\) is obtained from single-branch preparations, and \(K_{ij}\) is obtained from two phase settings, for example \(\theta=0,\pi/2\).  Up to statistical repetitions, the full kernel is reconstructed from \(d^2\) branch-sector settings.  This direct calibration assumes coherent preparation of the branch superpositions on \(M\); if that preparation is unavailable, one must use endpoint tomography or several input resources with different branch supports.
+
+
+If the endpoint state is tomographically reconstructed and the input amplitudes \(a_i\) are known, then for \(a_i a_j^*\ne0\),
+\begin{equation}
+K_{ij}
+=
+p\,\frac{\bra{i_Ai_B}\rho_{AB}\ket{j_Aj_B}}{a_i a_j^*}.
+\label{eq:K-reconstruct}
+\end{equation}
+The success probability \(p\) is measured as the empirical success rate of the intermediate operation on the prepared resource.  Reconstruction should then be projected, with error bars, onto the physical set \(0\le K\le I\).
+
+When some \(a_i=0\), the corresponding rows and columns of \(K\) are not observable from that input state.  Multiple preparations with different amplitude supports are then required to reconstruct the full kernel.
+
+\section{Benchmark reporting standard}
+\label{sec:reporting}
+
+A useful report for multibranch projected resources should include
+\begin{widetext}
+\[
+\boxed{
+p,\quad K,\quad R,\quad
+\{q_{ij}\},\quad \{V_{ij}\},\quad \{\Phi_{ijk}\},\quad
+\N,\quad S(R),\quad F_{\rm task}.
+}
+\]
+\end{widetext}
+The task functional \(F_{\rm task}\) must be stated explicitly.  A scalar ``visibility'' is insufficient for \(d\ge3\).
+
+For numerical reproducibility one should also report:
+\[
+\|K-K^\dagger\|,
+\qquad
+\lambda_{\min}(K),
+\qquad
+\lambda_{\max}(K),
+\qquad
+\lambda_{\min}(I-K),
+\]
+before and after any physical projection.  These quantities diagnose whether the reconstructed kernel is a valid success effect.
+
+\section{Discussion}
+
+The multibranch transfer kernel is an operational normal form.  It does not modify quantum mechanics.  It identifies the object that a successful intermediate operation transfers from the parent resource to the endpoint.  Operationally, it is a compact interface
+\[
+\text{device parameters}\longrightarrow K_{\rm br}\longrightarrow R\longrightarrow F_{\rm task}(R),
+\]
+which is why it can serve as a link-layer calibration matrix for heralded multibranch resources.
+
+We call this normal form the multibranch endpoint transfer law.  Its content is not that a new dynamics has been introduced, but that the operationally relevant residue of any successful middle operation is exactly the positive contraction \(K_{\rm br}\) on the branch sector.
+
+The two-branch case is unusually simple because one complex coherence controls many pair-conditional quantities.  It does not control all endpoint quantities, since balance-dependent quantities such as entropy require additional data.  The \(d\)-branch case contains still more structure: pairwise coherence qualities, balance coordinates, cycle phases, positivity constraints, and task-dependent objectives.  Trying to compress all this into one scalar destroys information.
+
+The central distinction is:
+\begin{widetext}
+\[
+\boxed{
+\text{conserved by closed dynamics}
+\ne
+\text{transferred by successful operation}
+\ne
+\text{useful for a chosen task}.
+}
+\]
+\end{widetext}
+Closed dynamics preserves spectra and inner products.  A successful CP trace-nonincreasing operation produces a success effect \(K\).  The endpoint task then evaluates a functional of the normalized matrix \(R\).  These are different mathematical layers, and confusing them is the common source of false universal claims.
+
+\section{Conclusion}
+
+For a \(d\)-branch projected resource, the computable transfer law is
+\begin{widetext}
+\[
+\boxed{
+K_{\rm br}=E^T_{\rm branch},\qquad
+0\le K_{\rm br}\le I,\qquad
+\rho_{AB}
+=
+W
+\left(
+\frac{D_aK_{\rm br}D_a^\dagger}
+{\sum_i|a_i|^2(K_{\rm br})_{ii}}
+\right)
+W^\dagger .
+}
+\]
+\end{widetext}
+Conversely, every positive contraction \(K_{\rm br}\) is realizable by a successful CP trace-nonincreasing operation.  Every stable endpoint calculation begins from the resulting matrix \(R\).  Pair extraction gives
+\[
+V_{ij}
+=
+\frac{2|a_i a_j^*K_{ij}|}
+{|a_i|^2K_{ii}+|a_j|^2K_{jj}},
+\]
+while \(d\ge3\) adds gauge-invariant cycle phases
+\[
+\Phi_{ijk}=\arg(K_{ij}K_{jk}K_{ki})
+\]
+subject to positivity constraints.  Thus, in two branches the pair-conditional quantities considered here reduce to one visibility, whereas in three or more branches pairwise visibility data are incomplete and the task functional must be specified:
+\begin{widetext}
+\[
+\boxed{
+d=2:\ \text{specified pair-coherence tasks reduce to }V,
+\qquad
+d\ge3:\ U_{\rm endpoint}=F_{\rm task}(K_{\rm br},a).
+}
+\]
+\end{widetext}
+This normal form says exactly what survives the operational cut and how it must be reported, reconstructed, filtered, and optimized.
+
+\begin{acknowledgments}
+No external funding was received.
+\end{acknowledgments}
+
+\section*{Data Availability}
+All calculations are analytic.  The reference implementation is included in the text.
+
+\section*{Author Contributions}
+Both authors contributed to the conceptual formulation, analytic derivations, and manuscript preparation.
+
+\begin{thebibliography}{99}
+
+\bibitem{Kraus1983}
+K. Kraus,
+\textit{States, Effects, and Operations}
+(Springer, Berlin, 1983).
+
+\bibitem{NielsenChuang}
+M. A. Nielsen and I. L. Chuang,
+\textit{Quantum Computation and Quantum Information}
+(Cambridge University Press, Cambridge, 2000).
+
+\bibitem{Choi1975}
+M.-D. Choi,
+Completely positive linear maps on complex matrices,
+Linear Algebra Appl. \textbf{10}, 285 (1975).
+
+\bibitem{Schur1911}
+J. Schur,
+Bemerkungen zur Theorie der beschr\"ankten Bilinearformen mit unendlich vielen Ver\"anderlichen,
+J. Reine Angew. Math. \textbf{140}, 1 (1911).
+
+\bibitem{HornJohnson2013}
+R. A. Horn and C. R. Johnson,
+\textit{Matrix Analysis}, 2nd ed.
+(Cambridge University Press, Cambridge, 2013).
+
+
+
+\bibitem{Wootters1998}
+W. K. Wootters,
+Entanglement of formation of an arbitrary state of two qubits,
+Phys. Rev. Lett. \textbf{80}, 2245 (1998).
+
+\bibitem{Horodecki1995}
+R. Horodecki, P. Horodecki, and M. Horodecki,
+Violating Bell inequality by mixed spin-\(\frac12\) states: necessary and sufficient condition,
+Phys. Lett. A \textbf{200}, 340 (1995).
+
+\bibitem{Horodecki1999}
+M. Horodecki, P. Horodecki, and R. Horodecki,
+General teleportation channel, singlet fraction, and quasidistillation,
+Phys. Rev. A \textbf{60}, 1888 (1999).
+
+\bibitem{Rains1999}
+E. M. Rains,
+Bound on distillable entanglement,
+Phys. Rev. A \textbf{60}, 179 (1999).
+
+\bibitem{VidalWerner2002}
+G. Vidal and R. F. Werner,
+Computable measure of entanglement,
+Phys. Rev. A \textbf{65}, 032314 (2002).
+
+\end{thebibliography}
+
+\end{document}

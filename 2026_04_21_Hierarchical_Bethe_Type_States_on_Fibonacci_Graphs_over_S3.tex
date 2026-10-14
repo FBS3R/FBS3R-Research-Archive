@@ -1,0 +1,511 @@
+\documentclass[
+  aps,
+  prd,
+  reprint,
+  superscriptaddress,
+  nofootinbib,
+  longbibliography,
+  amsmath,
+  amssymb
+]{revtex4-2}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage{bm}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage[hidelinks]{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\newtheorem{corollary}{Corollary}
+\newtheorem{definition}{Definition}
+\newtheorem{conjecture}{Conjecture}
+\newtheorem{ansatz}{Phenomenological Ansatz}
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}
+
+\newcommand{\Sthree}{S^{3}}
+\newcommand{\lPl}{\ell_{\mathrm{Pl}}}
+\newcommand{\phig}{\varphi}
+\newcommand{\Gn}{\mathcal{G}_{n}}
+\newcommand{\An}{\mathcal{A}_{n}}
+\newcommand{\Ln}{\mathcal{L}_{n}}
+\newcommand{\Vn}{\mathcal{V}_{n}}
+\newcommand{\En}{\mathcal{E}_{n}}
+\newcommand{\Vol}{\operatorname{Vol}}
+\newcommand{\ones}{\mathbf{1}}
+
+\begin{document}
+
+\title{Hierarchical Bethe-Type States on Fibonacci Graphs over \texorpdfstring{$S^3$}{S3}}
+
+\author{Andrei Preece}
+\email{andre.preece@web.de}
+\affiliation{Independent Researchers, Berlin, Germany}
+
+\author{Boris Batenin}
+\email{batenin@web.de}
+\affiliation{Independent Researchers, Berlin, Germany}
+
+\begin{abstract}
+We formulate a hierarchy of finite graphs $\Gn$ embedded on round three-spheres of radii $R_n=\lPl\phig^n$, where $\phig=(1+\sqrt5)/2$ and the vertex numbers satisfy the shifted Fibonacci recursion $F_1=3$, $F_2=5$, $F_{n+1}=F_n+F_{n-1}$. The hierarchy is defined by a block-recursive adjacency operator. For the maximally coupled model, in which the newly added vertices are connected to the previous level by a rank-one all-ones coupling, we derive an exact characteristic-polynomial recursion via the Schur complement and the matrix determinant lemma. This yields a resolvent equation for the nonzero spectral branches, an exact lower bound on the multiplicity of the zero eigenvalue, and norm bounds for the adjacency operator. We also restore the broader structure of the original Bethe-type program: the formal hierarchical Bethe sector, the nonlocality and phenomenology layers, the $S$-matrix and entropy viewpoints, and explicit numerical estimates. These restored components are included only with the logical status warranted by the present level of control: exact theorem, proposition, ansatz, or conjecture. In particular, no exact integrability theorem, no exact orthogonality theorem, and no derived cosmological observable are claimed.
+\end{abstract}
+
+\maketitle
+
+\section{Introduction}
+\label{sec:intro}
+
+Hierarchical graph constructions provide a natural bridge between discrete many-body structures and scale-dependent geometry. Quantum-graph techniques have long been used in spectral theory and mathematical physics~\cite{Berkolaiko2013}, while Bethe-type constructions remain the standard language for factorized many-body sectors~\cite{Bethe1931}. The present paper restores the full architecture of the Fibonacci-$\Sthree$ project, but with a strict separation of logical status.
+
+The exact mathematical core is matrix-theoretic: a recursive graph definition, an exact block-matrix recursion for the adjacency operator, and its immediate spectral consequences. Around this core sit broader layers --- Bethe-type sector, nonlocality, and phenomenology --- which remain formal, compatible, or conjectural rather than proved.
+
+We use units $\hbar=c=1$ and define the shifted Fibonacci sequence by
+\begin{equation}
+F_1=3,
+\qquad
+F_2=5,
+\qquad
+F_{n+1}=F_n+F_{n-1}
+\quad (n\ge 2),
+\label{eq:fibrec}
+\end{equation}
+with golden ratio
+\begin{equation}
+\phig=\frac{1+\sqrt5}{2}.
+\label{eq:phi}
+\end{equation}
+
+\section{The Fibonacci Graph on \texorpdfstring{$S^3$}{S3}}
+\label{sec:graph}
+
+\subsection{Definition}
+
+\begin{definition}[Fibonacci graph hierarchy]
+\label{def:graph}
+For each $n\ge 1$, let $\Gn=(\Vn,\En)$ be a finite graph with $|\Vn|=F_n$. The graph is placed on the round sphere $\Sthree(R_n)$ with radius
+\begin{equation}
+R_n=\lPl\phig^n.
+\label{eq:radius}
+\end{equation}
+The hierarchy is defined recursively:
+\begin{enumerate}
+    \item $\mathcal G_1$ and $\mathcal G_2$ are fixed seed graphs with $|\mathcal V_1|=3$ and $|\mathcal V_2|=5$.
+    \item For $n\ge 2$, the vertex set of $\mathcal G_{n+1}$ is the disjoint union
+    \begin{equation}
+    \mathcal V_{n+1}=\mathcal V_n\sqcup \mathcal V'_{n-1},
+    \qquad
+    |\mathcal V'_{n-1}|=F_{n-1}.
+    \label{eq:vertexsplit}
+    \end{equation}
+    \item The new vertices couple to the old level through a matrix
+    \begin{equation}
+    B_n\in\{0,1\}^{F_n\times F_{n-1}}.
+    \end{equation}
+\end{enumerate}
+\end{definition}
+
+The ambient round sphere has volume
+\begin{equation}
+\Vol\bigl(\Sthree(R_n)\bigr)=2\pi^2R_n^3=2\pi^2\lPl^3\phig^{3n}.
+\label{eq:volume}
+\end{equation}
+
+\subsection{Scaling laws}
+
+\begin{theorem}[Fibonacci scaling]
+\label{thm:scaling}
+The shifted sequence~\eqref{eq:fibrec} satisfies
+\begin{equation}
+F_n=\frac{\phig^{n+2}-\psi^{n+2}}{\sqrt5},
+\qquad
+\psi=\frac{1-\sqrt5}{2},
+\label{eq:binet}
+\end{equation}
+so that
+\begin{equation}
+F_n=\frac{\phig^{n+2}}{\sqrt5}+O(\phig^{-n})
+\qquad (n\to\infty),
+\label{eq:fibasymp}
+\end{equation}
+and therefore
+\begin{equation}
+\frac{F_{n-1}}{F_n}\longrightarrow \phig^{-1}.
+\label{eq:ratio}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Equation~\eqref{eq:binet} is the Binet formula for the shifted Fibonacci sequence fixed by the initial data $F_1=3$, $F_2=5$. Since $|\psi|<1$, the asymptotic estimate and the ratio limit follow immediately.
+\end{proof}
+
+\subsection{Block-recursive adjacency structure}
+
+\begin{lemma}[Block-recursive adjacency]
+\label{lem:block}
+With respect to the splitting~\eqref{eq:vertexsplit}, the adjacency matrix of $\mathcal G_{n+1}$ is
+\begin{equation}
+\mathcal A_{n+1}=
+\begin{pmatrix}
+\mathcal A_n & B_n\\
+B_n^T & 0
+\end{pmatrix}.
+\label{eq:block}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+The old-old block is exactly the adjacency of $\mathcal G_n$, the new-new block vanishes because no intra-block edges are added at the recursive step, and the off-diagonal blocks are precisely the old-new couplings encoded by $B_n$.
+\end{proof}
+
+\section{The Hierarchical Bethe-Type Ansatz}
+\label{sec:bethe}
+
+\subsection{Motivation and disclaimer}
+
+The original motivation of the project was to attach a Bethe-type sector to the recursive graph hierarchy. In the present manuscript this construction is retained, but only as a formal layer. It is not used as the source of any theorem.
+
+\subsection{Choice of Hilbert space}
+
+A natural formal configuration space is
+\begin{equation}
+\mathcal H_n=L^2\bigl((\Sthree)^{F_n},d\mu_n\bigr),
+\label{eq:hilbert}
+\end{equation}
+where $d\mu_n$ is the product measure induced by the round metric on $\Sthree(R_n)$. This choice is convenient for geometric bookkeeping, but the exact results of the paper do not depend on it.
+
+\subsection{Definition of the FBA state}
+
+If one chooses a distinguished family of fiber or great-circle coordinates and writes $N=F_n$, one may define the formal Bethe-type sector
+\begin{equation}
+\Psi_{n,P}(x_1,\dots,x_N)
+=
+A_n(P)
+\exp\!\Bigl(i\sum_{j=1}^{N}k_j^{(n)}x_{P(j)}+i\Theta_n(P)\Bigr),
+\label{eq:betheformal}
+\end{equation}
+with permutation label $P\in S_N$. This is retained as part of the project identity, but no exact integrability or exact orthogonality theorem is claimed here.
+
+\section{Matrix Recursion and Spectral Theory}
+\label{sec:matrix}
+
+\subsection{Recursive matrix formulation}
+
+Define
+\begin{equation}
+M_n(\lambda):=\lambda I_{F_n}-\mathcal A_n,
+\qquad
+\chi_n(\lambda):=\det M_n(\lambda).
+\label{eq:Mn}
+\end{equation}
+
+\begin{theorem}[Exact Schur-complement recursion]
+\label{thm:schur-general}
+For every $n\ge 2$ and every $\lambda$ outside the spectrum of $\mathcal A_n$,
+\begin{equation}
+\chi_{n+1}(\lambda)
+=
+\det M_n(\lambda)
+\det\!\Bigl(\lambda I_{F_{n-1}}-B_n^T M_n(\lambda)^{-1}B_n\Bigr).
+\label{eq:schur-general}
+\end{equation}
+By polynomial identity, Eq.~\eqref{eq:schur-general} extends to all $\lambda$.
+\end{theorem}
+
+\begin{proof}
+Apply the standard determinant formula for a block matrix with invertible upper-left block to Eq.~\eqref{eq:block}. Since both sides are rational functions that agree away from the poles and are induced by the same characteristic polynomial, the identity extends to all $\lambda$.
+\end{proof}
+
+\begin{definition}[Maximally coupled hierarchy]
+\label{def:max}
+The maximally coupled model is the choice
+\begin{equation}
+B_n=\ones_n\ones_{n-1}^{T},
+\label{eq:maximalB}
+\end{equation}
+where $\ones_m$ denotes the all-ones vector of length $m$.
+\end{definition}
+
+\begin{theorem}[Characteristic-polynomial recursion]
+\label{thm:charrec}
+Assume Eq.~\eqref{eq:maximalB}. Define
+\begin{equation}
+g_n(\lambda):=\ones_n^T M_n(\lambda)^{-1}\ones_n,
+\qquad
+q_n(\lambda):=\ones_n^T\operatorname{adj}(M_n(\lambda))\ones_n.
+\label{eq:gnqn}
+\end{equation}
+Then
+\begin{equation}
+\chi_{n+1}(\lambda)
+=
+\lambda^{F_{n-1}-1}
+\Bigl[\lambda\chi_n(\lambda)-F_{n-1}q_n(\lambda)\Bigr].
+\label{eq:charrec}
+\end{equation}
+Equivalently, away from poles of $g_n$,
+\begin{equation}
+\chi_{n+1}(\lambda)
+=
+\chi_n(\lambda)
+\,\lambda^{F_{n-1}-1}
+\Bigl[\lambda-F_{n-1}g_n(\lambda)\Bigr].
+\label{eq:charrec-resolvent}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Under Eq.~\eqref{eq:maximalB},
+\begin{equation}
+B_n^T M_n(\lambda)^{-1}B_n
+=
+\bigl(\ones_n^T M_n(\lambda)^{-1}\ones_n\bigr)
+\ones_{n-1}\ones_{n-1}^{T}
+=
+ g_n(\lambda)\ones_{n-1}\ones_{n-1}^{T}.
+\end{equation}
+The matrix determinant lemma then yields
+\begin{equation}
+\det\!\Bigl(\lambda I_{F_{n-1}}-g_n(\lambda)\ones_{n-1}\ones_{n-1}^{T}\Bigr)
+=
+\lambda^{F_{n-1}-1}
+\bigl[\lambda-F_{n-1}g_n(\lambda)\bigr].
+\end{equation}
+Substitution into Eq.~\eqref{eq:schur-general} proves Eq.~\eqref{eq:charrec-resolvent}. Since $q_n(\lambda)=\chi_n(\lambda)g_n(\lambda)$, the polynomial form~\eqref{eq:charrec} follows.
+\end{proof}
+
+\begin{corollary}[Zero-mode multiplicity bound]
+\label{cor:zero}
+In the maximally coupled model, the zero eigenvalue of $\mathcal A_{n+1}$ has multiplicity at least $F_{n-1}-1$.
+\end{corollary}
+
+\begin{proof}
+Equation~\eqref{eq:charrec} contains the explicit factor $\lambda^{F_{n-1}-1}$.
+\end{proof}
+
+\begin{corollary}[Resolvent equation for the nonzero branches]
+\label{cor:resolvent}
+Any nonzero eigenvalue that is not inherited from a root of $\chi_n$ satisfies
+\begin{equation}
+\lambda = F_{n-1}g_n(\lambda).
+\label{eq:eigcond}
+\end{equation}
+\end{corollary}
+
+\subsection{Graph Laplacian and spectral consequences}
+
+The normalized graph Laplacian is
+\begin{equation}
+\mathcal L_n = I-D_n^{-1/2}\mathcal A_nD_n^{-1/2},
+\label{eq:laplacian}
+\end{equation}
+where $D_n$ is the degree matrix. The exact recursion obtained above is an adjacency-level statement. It does not by itself produce a closed formula for the spectrum of $\mathcal L_n$, but it gives the rigorous algebraic input from which any normalized-Laplacian analysis must proceed.
+
+\begin{proposition}[Adjacency norm bound]
+\label{prop:norm}
+In the maximally coupled model,
+\begin{equation}
+\|\mathcal A_{n+1}\|\le \|\mathcal A_n\|+\sqrt{F_nF_{n-1}},
+\label{eq:normbound}
+\end{equation}
+so that
+\begin{equation}
+\|\mathcal A_n\|=O(\phig^n).
+\label{eq:normasymp}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+From Eq.~\eqref{eq:block},
+\begin{equation}
+\left\|\begin{pmatrix}
+\mathcal A_n & B_n\\
+B_n^T & 0
+\end{pmatrix}\right\|
+\le
+\left\|\begin{pmatrix}
+\mathcal A_n & 0\\
+0 & 0
+\end{pmatrix}\right\|
++
+\left\|\begin{pmatrix}
+0 & B_n\\
+B_n^T & 0
+\end{pmatrix}\right\|.
+\end{equation}
+For the maximally coupled model $\|B_n\|=\sqrt{F_nF_{n-1}}$, which yields Eq.~\eqref{eq:normbound}. Since $F_nF_{n-1}=\Theta(\phig^{2n})$, Eq.~\eqref{eq:normasymp} follows.
+\end{proof}
+
+\section{Compatibility with Quantum Nonlocality}
+\label{sec:nonlocal}
+
+The Hopf fibration $S^1\hookrightarrow \Sthree\twoheadrightarrow S^2$ supplies a natural global structure that is absent on simply factorized configuration spaces. In the broader project, Bell-type correlations are associated with bundle holonomy. In the present manuscript this layer is retained only as a compatibility statement.
+
+\begin{proposition}[Compatibility statement]
+\label{prop:bell}
+If the large-$n$ formal Bethe sector organizes asymptotically into effective pairings along Hopf fibers, then the two-point correlator takes the singlet form
+\begin{equation}
+E(\mathbf a,\mathbf b)=-\mathbf a\cdot\mathbf b+O(\phig^{-n}).
+\label{eq:bell}
+\end{equation}
+\end{proposition}
+
+\begin{remark}
+This proposition is conditional and not derived from the exact matrix core of the paper.
+\end{remark}
+
+\section{Phenomenological Consequences}
+\label{sec:pheno}
+
+The following statements are retained only as phenomenological ans\"atze.
+
+\begin{ansatz}[CMB spectral tilt]
+\label{ans:cmb}
+A phenomenological link between the Fibonacci hierarchy and the scalar spectral tilt is
+\begin{equation}
+ n_s - 1 = -\beta \ln\phig,
+ \qquad \beta=0.073\pm0.005,
+\end{equation}
+which gives
+\begin{equation}
+ n_s=0.965\pm0.004.
+\end{equation}
+\end{ansatz}
+
+\begin{ansatz}[Galaxy correlation function]
+\label{ans:lss}
+A scale-free correlation law of the form
+\begin{equation}
+\xi(r)\propto r^{-\gamma},
+\qquad \gamma\approx 1.8\pm0.1,
+\end{equation}
+is taken as the phenomenological large-scale counterpart of the hierarchy.
+\end{ansatz}
+
+\begin{ansatz}[Effective dark-energy equation of state]
+\label{ans:w}
+If the hierarchy depth is related to the scale factor by
+\begin{equation}
+ n(t)=\frac{\ln[a(t)/\lPl]}{\ln\phig},
+\end{equation}
+then a cancellation between volumetric and holographic scaling can yield an effective equation of state close to
+\begin{equation}
+ w\approx -1.
+\end{equation}
+\end{ansatz}
+
+\section{Discussion}
+\label{sec:discussion}
+
+\subsection{Relation to companion papers}
+
+The present manuscript should be read as the graph-theoretic layer of a wider program involving $\Sthree$, Hopf geometry, nonlocality, and compact-space cosmology. It is not identical to the separate closed-FLRW and Wheeler--DeWitt manuscript; the two papers address different levels of the project.
+
+\subsection{Limitations}
+
+The exact results are matrix-theoretic. The Bethe-type construction is formal. The Bell section is conditional. The phenomenology is ansatz-level. No exact integrability theorem, no exact orthogonality theorem, and no derived cosmological observable are claimed.
+
+\subsection{Arrow of time}
+
+\begin{conjecture}
+A natural coarse-grained entropy candidate is
+\begin{equation}
+S_n=2\pi^2k_B\phig^{2n}.
+\label{eq:entropy}
+\end{equation}
+If one identifies a macroscopic time variable with the hierarchy depth, then $dS/dt>0$ suggests an arrow of time.
+\end{conjecture}
+
+\section{Conclusions}
+\label{sec:conclusions}
+
+The manuscript now contains both the exact matrix core and the restored broader structure of the original project. Its logically strongest results are:
+\begin{enumerate}
+    \item the recursive Fibonacci graph construction on $\Sthree$,
+    \item the exact Schur-complement recursion~\eqref{eq:schur-general},
+    \item the exact characteristic-polynomial recursion~\eqref{eq:charrec},
+    \item the zero-mode multiplicity bound,
+    \item the resolvent equation~\eqref{eq:eigcond},
+    \item the adjacency norm estimate~\eqref{eq:normbound}.
+\end{enumerate}
+The formal Bethe sector, the nonlocality layer, the phenomenology layer, the $S$-matrix viewpoint, and the entropy viewpoint are all restored, but with explicitly weakened logical status wherever proof is not yet available.
+
+\appendix
+
+\section{$S$-Matrix Factorisation}
+\label{app:smatrix}
+
+The original project contained an explicit $S$-matrix layer connecting the hierarchy to integrability language. In the present restored master version this layer is kept only as a formal factorization scheme. One may write an effective two-body block
+\begin{equation}
+S^{(n)}_{jk}=\phig^{-1}e^{i\phig^{n-1}},
+\end{equation}
+not as a derived scattering matrix, but as a bookkeeping device for future work on hierarchical factorization.
+
+\section{Phenomenological Details}
+\label{app:pheno}
+
+\paragraph{Dark-energy equation of state.}
+If the hierarchy depth is related to the scale factor by
+\begin{equation}
+ n(t)=\frac{\ln[a(t)/\lPl]}{\ln\phig},
+\end{equation}
+then the effective equation-of-state parameter may remain close to $w\approx -1$.
+
+\paragraph{Discrete gravitational-wave spectrum.}
+On compact $\Sthree(R_0)$, a discrete mode estimate of the form
+\begin{equation}
+ f_n=\frac{nc}{2\pi R_0}
+\end{equation}
+produces a lowest mode of order $10^{-19}\,\mathrm{Hz}$ when $R_0$ is cosmological.
+
+\section{Numerical Estimates}
+\label{app:numbers}
+
+Using the seed convention $|\mathcal E_1|=3$, $|\mathcal E_2|=5$, and the maximally coupled recursion $|\mathcal E_{n+1}|=|\mathcal E_n|+F_nF_{n-1}$, one obtains the internally consistent sample values shown in Table~\ref{tab:values}.
+
+\begin{table}[b]
+\caption{Sample values in the maximally coupled hierarchy.}
+\label{tab:values}
+\begin{ruledtabular}
+\begin{tabular}{cccccc}
+$n$ & $F_n$ & $R_n/\lPl$ & $|\mathcal E_n|$ & $F_{n-1}/F_n$ & $\sqrt{F_nF_{n-1}}$ \\
+\colrule
+1 & 3 & 1.618 & 3 & --- & --- \\
+2 & 5 & 2.618 & 5 & 0.600 & 3.873 \\
+5 & 21 & 11.090 & 164 & 0.619 & 16.523 \\
+10 & 233 & 122.992 & 20732 & 0.618 & 183.182 \\
+20 & 28657 & $1.513\times 10^4$ & $3.137\times 10^8$ & 0.618 & $2.028\times 10^4$ \\
+\end{tabular}
+\end{ruledtabular}
+\end{table}
+
+\begin{thebibliography}{99}
+
+\bibitem{Bethe1931}
+H.~A.~Bethe,
+``Zur Theorie der Metalle. I. Eigenwerte und Eigenfunktionen der linearen Atomkette,''
+Z. Phys. \textbf{71}, 205 (1931).
+
+\bibitem{Berkolaiko2013}
+G.~Berkolaiko and P.~Kuchment,
+\emph{Introduction to Quantum Graphs}
+(American Mathematical Society, Providence, RI, 2013).
+
+\bibitem{Chalker1988}
+J.~T.~Chalker and P.~D.~Coddington,
+``Percolation, quantum tunnelling and the integer Hall effect,''
+J. Phys. C \textbf{21}, 2665 (1988).
+
+\bibitem{HornJohnson2013}
+R.~A.~Horn and C.~R.~Johnson,
+\emph{Matrix Analysis}, 2nd ed.
+(Cambridge University Press, Cambridge, England, 2013).
+
+\end{thebibliography}
+
+\end{document}

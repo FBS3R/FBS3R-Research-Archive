@@ -1,0 +1,139 @@
+\documentclass[12pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{geometry}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{microtype}
+\usepackage{hyperref}
+
+\geometry{letterpaper, margin=1in}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!50!black,
+  urlcolor=blue!50!black,
+  citecolor=blue!50!black
+}
+
+\definecolor{sectionblue}{RGB}{34,94,138}
+\newcommand{\blueheading}[1]{\textcolor{sectionblue}{#1}}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.75em}
+\renewcommand{\arraystretch}{1.25}
+
+\title{\textbf{The Vanishing of Diffeomorphism Hamiltonians}}
+\author{
+Boris Batenin and Andrei Preece\\
+Independent Researcher, Berlin, Germany\\
+\texttt{batenin@web.de} $\mid$ \texttt{andre.preece@web.de}
+}
+\date{Dated: February 2026}
+
+\begin{document}
+\maketitle
+
+\begin{center}
+\small
+\begin{minipage}{0.96\linewidth}
+\[
+\mathrm{Diff}(M)
+\Rightarrow
+\mathrm{Noether\ II}
+\Rightarrow
+J_{\xi} \approx dQ_{\xi}
+\Rightarrow
+H_{\xi}=\int_{\partial\Sigma}\bigl(Q_{\xi}-\xi\cdot B\bigr)
+\Rightarrow
+\partial\Sigma=\varnothing
+\Rightarrow
+H_{\xi}=0.
+\]
+\end{minipage}
+\end{center}
+
+This chain is one of the most profound results in the geometry of gauge theories.
+
+\section{\blueheading{Diff$(M)$ $\Rightarrow$ Noether II}}
+
+Because diffeomorphisms form an infinite-dimensional gauge group --- symmetries parametrised by arbitrary vector fields $\xi\in\mathrm{Vect}(M)$ --- Noether's second theorem applies, not the first. Where Noether I gives conserved currents for global symmetries, Noether II gives differential identities among the Euler--Lagrange equations for local/gauge symmetries.
+
+Concretely, for any $\xi\in\mathrm{Vect}(M)$, invariance of the action under $x\mapsto x+\xi$ yields an off-shell identity:
+\[
+E_a\cdot\mathcal{L}_{\xi}\phi^a \equiv \nabla_{\mu}J^{\mu}_{\xi}
+\qquad\text{(off-shell)}.
+\]
+This is not a conservation law --- it holds by virtue of the gauge structure alone, before imposing equations of motion.
+
+\section{\blueheading{Noether II $\Rightarrow$ $J_{\xi}\approx dQ_{\xi}$}}
+
+The Noether current associated to $\xi$ takes the form:
+\[
+J_{\xi}=\Theta\bigl(\phi,\mathcal{L}_{\xi}\phi\bigr)-\xi\cdot L,
+\]
+where $\Theta$ is the symplectic potential from the boundary term
+\[
+\delta L = E\cdot\delta\phi+d\Theta.
+\]
+The key consequence of Noether II is that on-shell $(\approx)$ this current is not merely closed but actually exact:
+\[
+J_{\xi}\approx dQ_{\xi}.
+\]
+$Q_{\xi}$ is the Noether charge $(n-2)$-form. Its existence follows from the off-shell identity: the gauge structure forces $J_{\xi}$ to be trivial in cohomology on-shell. In general relativity, with $\xi$ a Killing vector,
+\[
+Q_{\xi}=-\frac{1}{16\pi G}\,\epsilon_{\mu\nu}\nabla^{\mu}\xi^{\nu},
+\]
+the Komar form.
+
+\section{\blueheading{$J_{\xi}\approx dQ_{\xi}$ $\Rightarrow$ $H_{\xi}=\int_{\partial\Sigma}(Q_{\xi}-\xi\cdot B)$}}
+
+In the covariant phase space formalism, the Hamiltonian generating the flow of $\xi$ is defined via:
+\[
+\delta H_{\xi}=\int_{\Sigma}\omega\bigl(\phi,\delta\phi,\mathcal{L}_{\xi}\phi\bigr),
+\]
+where $\omega=\delta\Theta$ is the pre-symplectic form. Using $J_{\xi}\approx dQ_{\xi}$ and Stokes' theorem, this bulk integral localises to a boundary integral:
+\[
+H_{\xi}=\int_{\partial\Sigma}\bigl(Q_{\xi}-\xi\cdot B\bigr).
+\]
+The $B$-term arises from ambiguities in $\Theta$ (defined up to $dB$) and ensures integrability on phase space. This is the Iyer--Wald formula. The diffeomorphism Hamiltonian is pure boundary --- there is no bulk piece. This is the gravitational avatar of the fact that the stress-energy of gravity is a pseudotensor.
+
+\section{\blueheading{$\partial\Sigma=\varnothing$ $\Rightarrow$ $H_{\xi}=0$}}
+
+If the spatial slice $\Sigma$ is a closed manifold without boundary --- as in a compact universe, or when boundaries are pushed to infinity with sufficiently fast field decay --- then $\partial\Sigma=\varnothing$ and Stokes' theorem gives nothing:
+\[
+H_{\xi}=0.
+\]
+
+\section{\blueheading{What This Actually Means}}
+
+This vanishing is not a failure of the formalism. It is a deep structural feature of diffeomorphism-invariant theories:
+
+\begin{center}
+\begin{tabular}{>{\raggedright\arraybackslash}p{0.24\linewidth} >{\raggedright\arraybackslash}p{0.66\linewidth}}
+\toprule
+\textbf{Interpretation} & \textbf{Content} \\
+\midrule
+Constraints & $H_{\xi}=0$ is the diffeomorphism constraint (and the Hamiltonian constraint for $\xi=\hat n$, the normal). The Hamiltonian is the constraint. \\
+\addlinespace
+No local energy & Gravity has no gauge-invariant local energy density. Energy is only defined relationally, at boundaries. \\
+\addlinespace
+ADM / BMS charges & When $\partial\Sigma\neq\varnothing$ (asymptotic boundaries), $H_{\xi}$ recovers ADM mass, angular momentum, and BMS charges --- all as boundary integrals. \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{\blueheading{The Problem of Time}}
+
+The equation $H_{\xi}=0$ in the bulk is precisely the content of the Wheeler--DeWitt equation in canonical quantum gravity: the physical Hilbert space consists of states annihilated by all constraints. Time, energy, and dynamics as ordinarily conceived must be reconstructed from correlations --- the problem of time.
+
+\begin{center}
+\vspace{1em}
+\rule{0.85\linewidth}{0.4pt}\\[0.8em]
+\Large\textit{The boundary is not a technicality. It is the physics.}
+\end{center}
+
+\end{document}

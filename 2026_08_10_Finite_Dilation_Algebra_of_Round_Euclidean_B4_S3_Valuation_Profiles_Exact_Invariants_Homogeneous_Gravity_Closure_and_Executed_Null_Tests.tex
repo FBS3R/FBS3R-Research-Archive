@@ -1,0 +1,2864 @@
+\documentclass[aps,prd,preprint,onecolumn,nofootinbib,superscriptaddress,showkeys]{revtex4-2}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{mathrsfs}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\IfFileExists{orcidlink.sty}{\usepackage{orcidlink}}{}
+\usepackage{hyperref}
+\usepackage[nameinlink,noabbrev]{cleveref}
+
+\providecommand{\orcidlink}[1]{%
+  \href{https://orcid.org/#1}{\textsuperscript{\scriptsize ORCID}}%
+}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!55!black,
+  citecolor=blue!55!black,
+  urlcolor=blue!55!black,
+  pdftitle={Finite Dilation Algebra of Round B4/S3 Valuation Profiles: Exact Invariants, Homogeneous Gravity Closure, and Executed Null Tests},
+  pdfauthor={Andrei Preece and Boris Batenin},
+  pdfsubject={Closed FLRW cosmology; Euclidean valuations; finite dilation spectrum; exact invariant tests},
+  pdfkeywords={closed cosmology; S3; B4 filling; convex valuations; dilation algebra; Hankel pencils; Fisher geometry; Einstein-Dilation spectral closure; dark energy null tests}
+}
+
+\numberwithin{equation}{section}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{hypothesis}{Hypothesis}[section]
+\newtheorem{criterion}{Criterion}[section]
+\newtheorem{remark}{Remark}[section]
+\newtheorem{nogotheorem}{No-go theorem}[section]
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{corollary}{Corollary}[section]
+
+\crefname{definition}{definition}{definitions}
+\Crefname{definition}{Definition}{Definitions}
+\crefname{hypothesis}{hypothesis}{hypotheses}
+\Crefname{hypothesis}{Hypothesis}{Hypotheses}
+\crefname{criterion}{criterion}{criteria}
+\Crefname{criterion}{Criterion}{Criteria}
+\crefname{remark}{remark}{remarks}
+\Crefname{remark}{Remark}{Remarks}
+\crefname{nogotheorem}{no-go theorem}{no-go theorems}
+\Crefname{nogotheorem}{No-go theorem}{No-go theorems}
+\crefname{theorem}{theorem}{theorems}
+\Crefname{theorem}{Theorem}{Theorems}
+\crefname{lemma}{lemma}{lemmas}
+\Crefname{lemma}{Lemma}{Lemmas}
+\crefname{proposition}{proposition}{propositions}
+\Crefname{proposition}{Proposition}{Propositions}
+\crefname{corollary}{corollary}{corollaries}
+\Crefname{corollary}{Corollary}{Corollaries}
+
+\newcommand{\Sthree}{S^3}
+\newcommand{\Bfour}{B^4}
+\newcommand{\R}{\mathbb R}
+\newcommand{\dd}{\mathrm d}
+\newcommand{\Dil}{\mathscr D}
+\newcommand{\vol}{\operatorname{Vol}}
+\newcommand{\Spec}{\operatorname{Spec}}
+\newcommand{\Ann}{\operatorname{Ann}}
+\newcommand{\spanop}{\operatorname{span}}
+\newcommand{\diag}{\operatorname{diag}}
+
+\begin{document}
+
+\title{Finite Dilation Algebra of Round Euclidean \texorpdfstring{$B^4/S^3$}{B4/S3} Valuation Profiles: Exact Invariants, Homogeneous Gravity Closure, and Executed Null Tests}
+
+\author{Andrei~Preece\,\orcidlink{0009-0004-5978-795X}}
+\email{andre.preece@web.de}
+\affiliation{Independent Researcher, Berlin, Germany}
+
+\author{Boris~Batenin\,\orcidlink{0009-0000-7027-8583}}
+\email{batenin@web.de}
+\affiliation{Independent Researcher, Berlin, Germany}
+
+\date{August 10, 2026}
+
+\begin{abstract}
+We prove a finite homogeneous classification for round Euclidean valuation profiles associated with a closed FLRW spatial section \(S^3_A\).  The universal work map from an auxiliary filling energy to homogeneous density and pressure is algebraically invertible and therefore supplies a representation, not a predictive closure.  Predictivity enters only after assuming that the filling energy is a continuous, rigid-motion invariant, additive valuation on convex bodies in \(\mathbb R^4\).  On the round homothetic family this forces the five dilation weights \(S_{\rm val}=\{1,0,-1,-2,-3\}\) and the annihilator \(P_{\rm val}(\mathscr D)\varepsilon=0\), with \(P_{\rm val}(z)=(z-1)z(z+1)(z+2)(z+3)\).  Hence the polynomial dilation action is the semisimple algebra \(\mathbb R[z]/(P_{\rm val})\simeq\mathbb R^5\).  When general relativity and a closed FLRW ansatz are declared, the same dilation calculus gives an Einstein--Dilation Spectral Closure (EDSC) of the homogeneous gravitational sector: the Friedmann constraint defines the physical density \(E_F=F-\Omega_K^{\rm geom}a^{-2}\), the Bianchi identity gives \(P_F=-E_F-\mathscr D E_F/3\), and the finite projectors plus curvature split leave no additional homogeneous GR datum once the support and amplitudes are specified.
+
+The resulting invariant calculus includes primitive branch projectors, support ideals, derivative and sampled Hankel pencils, inertia sign certificates, exact observable jet inequalities, and complete normalization/pivot quotient coordinates.  For positive mixtures the spectral fractions form an exponential family with \(\mathscr D^2\ln\varepsilon=\operatorname{Var}_\pi(s)\) and \(\mathscr D w=-\operatorname{Var}_\pi(s)/3\).  We derive an exact Bhatia--Davis interior-branch remainder, the global rigidity bound \(L_F\ge\pi\), a hierarchy of pivot-independent weighted cumulant integral identities, and a local third-order Fisher--Rao geodesic-curvature invariant whose vanishing characterizes two-branch support.  Every positive two-branch orbit has a universal logistic/tanh normal form and constant Schwarzian \(\{w,\ln A\}=-(s_+-s_-)^2/2\).  For the smooth-source growth lift, the classical Heath integral is exact only for the matter-plus-\(\{a^0,a^{-2}\}\) background alphabet; within the boundary alphabet the \(s=-1\) term produces an exact closed-form obstruction.  Within the declared boundary-local class, quotienting the powers degenerate with vacuum, curvature, and dust leaves the unique nonstandard direction \(a^{-1}\), corresponding to \(w=-2/3\).
+
+We then evaluate the exact nulls on supplied pinned-CLASS and DESI DR2 BAO-only artifacts.  The executed source lift obeys \(\rho_X\propto a^{-1}\) with maximum residual \(1.88\times10^{-9}\), while the best-fit ledger satisfies the exact coefficient and Hankel/curvature diagnostics.  The BAO-only likelihood ratio gives \(q_X=1.364\) and one-sided \(p=0.121\), hence no detection.  Because \(w_X=-2/3\) is imposed in the executed lift, these numerical spectral recoveries are consistency tests, not independent identification of the valuation roots.  No microscopic source action or dimensional amplitude is derived.
+\end{abstract}
+
+\keywords{closed FLRW cosmology; \(S^3\); \(B^4\) filling; convex valuations; finite dilation spectrum; Hankel pencils; Fisher information; homogeneous null tests; Einstein--Dilation spectral closure}
+
+\maketitle
+
+\section{Claim Boundary}
+
+This paper proves a finite dilation-module theorem.  It does not prove a microscopic origin of dark energy.
+
+The logical separation used throughout is
+\begin{equation}
+\boxed{
+\begin{gathered}
+\text{homogeneous reconstruction}\neq\text{source action}\neq\text{amplitude selection},\\
+\text{background/transfer prediction}\neq\text{consistency testing}\neq\text{independent identification},\\
+\text{independent identification}\neq\text{likelihood evidence}.
+\end{gathered}}
+\end{equation}
+The first layer is algebraic.  The later layers require additional physical input, and a fit to a branch whose exponent was fixed in advance is not by itself an independent identification of that exponent.
+
+\begin{criterion}[Consistency versus identification]\label{crit:identification}
+A calculation in which a candidate dilation weight is fixed a priori and only its amplitude is inferred tests consistency with that branch.  Independent identification requires the spectral location itself to remain free in the inference, for example through free-exponent exponential-sum reconstruction, covariance-aware generalized-eigenvalue estimation, or model comparison against alternatives whose exponents are not pinned to the valuation spectrum.  Statistical preference is a further layer and requires an external likelihood.
+\end{criterion}
+
+The main result is the conditional implication
+\begin{equation}
+\boxed{
+\begin{gathered}
+\text{Euclidean convex valuation closure on }\Bfour_A\\
+\Longrightarrow
+\text{a five-dimensional semisimple dilation module.}
+\end{gathered}}
+\end{equation}
+The theorem is conditional on the stated valuation hypothesis.  Enlarging the admissible class to nonlocal functionals, support-function boundary terms, additional fields, effective-field-theory operators, quotient-topology data, or external dimensional scales can add new invariants.  No global uniqueness claim over all dark-sector theories is made.
+
+\section{Round Filling Geometry and the Work Map}
+
+Let
+\begin{equation}
+\Sigma\simeq \Sthree,
+\qquad
+g_A=A^2\dd\Omega_3^2,
+\qquad
+A>0.
+\end{equation}
+The round volume and the auxiliary Euclidean filling volume are
+\begin{equation}
+V_3(A)=\vol(\Sthree_A)=2\pi^2A^3,
+\qquad
+V_4(A)=\vol(\Bfour_A)=\frac{\pi^2}{2}A^4.
+\end{equation}
+Thus
+\begin{equation}
+\frac{\dd V_4}{\dd A}=V_3,
+\qquad
+\frac{V_4}{V_3}=\frac A4.
+\end{equation}
+The ball \(\Bfour_A\) is an auxiliary Euclidean filling of the metric representative \((\Sthree,g_A)\).  It is not a physical extra spatial dimension.
+
+Let \(E_4(A)\) be a \(C^1\) filling energy.  Define the accumulated boundary density and work pressure by
+\begin{equation}
+\varepsilon(A):=\frac{E_4(A)}{V_3(A)},
+\qquad
+p(A):=-\frac{\dd E_4}{\dd V_3}
+=-\frac{E_4'(A)}{V_3'(A)}.
+\end{equation}
+
+\begin{theorem}[Homogeneous work identity]
+Let \(V_3(A)=2\pi^2A^3\).  Then
+\begin{equation}
+p(A)=-\varepsilon(A)-\frac A3\varepsilon'(A).
+\end{equation}
+Consequently, along a homogeneous FLRW history with
+\[
+H=\frac1A\frac{\dd A}{\dd\tau},
+\]
+one has
+\begin{equation}
+\frac{\dd\varepsilon}{\dd\tau}+3H(\varepsilon+p)=0.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Write \(E_4=\varepsilon V_3\).  Then
+\[
+p=-\frac{\dd(\varepsilon V_3)/\dd A}{\dd V_3/\dd A}
+=-\varepsilon-\frac{V_3}{V_3'}\varepsilon'.
+\]
+Since \(V_3'/V_3=3/A\), this gives
+\[
+p=-\varepsilon-\frac A3\varepsilon'.
+\]
+Multiplication of
+\[
+\varepsilon'+\frac3A(\varepsilon+p)=0
+\]
+by \(\dd A/\dd\tau=HA\) gives the continuity identity.
+\end{proof}
+
+\begin{theorem}[Inverse homogeneous representation]
+Every differentiable homogeneous density \(\varepsilon(A)\) has a unique adiabatic representative in the round homothetic filling class:
+\begin{equation}
+E_4(A)=\varepsilon(A)V_3(A),
+\qquad
+\rho_4(A):=\frac{E_4(A)}{V_4(A)}
+=\frac4A\varepsilon(A).
+\end{equation}
+A prescribed pair \((\varepsilon,p)\) is represented by the adiabatic work map if and only if
+\begin{equation}
+p(A)=-\varepsilon(A)-\frac A3\varepsilon'(A).
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+The definition \(E_4=\varepsilon V_3\) and the ratio \(V_3/V_4=4/A\) give \(\rho_4=4\varepsilon/A\).  Uniqueness follows from the fixed volume ratio.  The pressure condition is exactly the previous theorem.
+\end{proof}
+
+\begin{remark}[Limit of the universal map]
+The inverse map reconstructs only a homogeneous representative.  It does not reconstruct microscopic fields, perturbations, sound speed, anisotropic stress, a covariant matter action, or a dimensional amplitude.  A predictive theory begins only after a restricted functional class or source completion is supplied.
+\end{remark}
+
+For a pure power \(\varepsilon_s\propto A^s\),
+\begin{equation}
+w_s:=\frac{p_s}{\varepsilon_s}
+=-1-\frac s3.
+\end{equation}
+
+\section{Euclidean Valuation Closure}
+
+We use the standard valuation classification as input, not as something reproved here.  Hadwiger's theorem says that continuous, rigid-motion invariant, additive valuations on convex bodies in \(\R^4\) lie in the intrinsic-volume span \cite{Hadwiger1957,Schneider2014}.  We need only its round homothetic specialization.
+
+\begin{hypothesis}[Euclidean convex valuation closure]
+The auxiliary filling energy is assumed to be a continuous, rigid-motion invariant, additive valuation on convex bodies in \(\R^4\), restricted to the round homothetic family \(\Bfour_A\).  For the smooth round representatives, write
+\begin{equation}
+E_4^{\rm val}(A)
+=
+\gamma V_4(A)
++\sum_{j=0}^3\alpha_j
+\int_{\Sthree_A}e_j(K)\,\dd\Sigma,
+\end{equation}
+where \(K^a{}_b\) is the Weingarten map of the boundary and \(e_j(K)\) are the elementary symmetric polynomials in its principal curvatures.
+\end{hypothesis}
+
+For the round boundary,
+\begin{equation}
+K^a{}_b=\frac1A\delta^a_b,
+\qquad
+e_j(K)=\binom3jA^{-j},
+\qquad
+\dd\Sigma=A^3\dd\Omega_3.
+\end{equation}
+
+\begin{theorem}[Round valuation spectrum]
+Under the Euclidean convex valuation closure,
+\begin{equation}
+E_4^{\rm val}(A)
+=
+\frac{\pi^2}{2}\gamma A^4
++
+2\pi^2
+\left(
+\alpha_0A^3+3\alpha_1A^2+3\alpha_2A+\alpha_3
+\right).
+\end{equation}
+The induced boundary density is
+\begin{equation}
+\varepsilon(A)
+=
+\frac{\gamma A}{4}
++\alpha_0
++\frac{3\alpha_1}{A}
++\frac{3\alpha_2}{A^2}
++\frac{\alpha_3}{A^3}.
+\end{equation}
+Thus the density dilation spectrum is
+\begin{equation}
+S_{\rm val}=\{1,0,-1,-2,-3\}.
+\end{equation}
+The corresponding equations of state are
+\begin{equation}
+s=1,0,-1,-2,-3
+\quad\Longleftrightarrow\quad
+w=-\frac43,-1,-\frac23,-\frac13,0.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+The bulk term is \(\gamma V_4=(\pi^2/2)\gamma A^4\).  Moreover,
+\[
+\int_{\Sthree_A}e_j(K)\,\dd\Sigma
+=
+2\pi^2\binom3j A^{3-j}.
+\]
+Division by \(V_3=2\pi^2A^3\) gives the displayed density.  For a density branch \(A^s\), the work-map equation of state is \(w_s=-1-s/3\).
+\end{proof}
+
+\begin{remark}[Normalization]
+The coefficients \(\gamma,\alpha_j\) absorb conventional normalizations of the intrinsic volumes.  The powers of \(A\), the dilation eigenvalues, and the equations of state do not depend on these normalization choices.
+\end{remark}
+
+\section{Finite Dilation Algebra}
+
+Define
+\begin{equation}
+\Dil:=A\frac{\dd}{\dd A}.
+\end{equation}
+Equivalently, with \(x=\ln(A/A_*)\),
+\begin{equation}
+\Dil=\frac{\dd}{\dd x}.
+\end{equation}
+
+Let
+\begin{equation}
+\mathcal V_{\rm val}
+:=
+\spanop\{A,1,A^{-1},A^{-2},A^{-3}\}.
+\end{equation}
+
+\begin{theorem}[ODE characterization]
+Let \(J\subset(0,\infty)\) be an interval and \(\varepsilon\in C^5(J)\).  Then
+\begin{equation}
+P_{\rm val}(\Dil)\varepsilon=0,
+\qquad
+P_{\rm val}(z)=(z-1)z(z+1)(z+2)(z+3),
+\end{equation}
+if and only if
+\begin{equation}
+\varepsilon(A)
+=
+C_1A+C_0+C_{-1}A^{-1}+C_{-2}A^{-2}+C_{-3}A^{-3}.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+In the variable \(x=\ln(A/A_*)\), the equation becomes a constant-coefficient ODE with simple characteristic roots \(1,0,-1,-2,-3\).  Hence its solution space is
+\[
+\spanop\{e^x,1,e^{-x},e^{-2x},e^{-3x}\},
+\]
+equivalently the displayed powers of \(A\).  The converse is immediate.
+\end{proof}
+
+For a nonzero profile
+\begin{equation}
+\varepsilon(A)=\sum_{s\in S_{\rm val}}\widehat C_sA^s,
+\end{equation}
+define
+\begin{equation}
+\operatorname{supp}_{\Dil}(\varepsilon)
+:=
+\{s:\widehat C_s\ne0\},
+\qquad
+m_\varepsilon(z)
+:=
+\prod_{s\in\operatorname{supp}_{\Dil}(\varepsilon)}(z-s).
+\end{equation}
+
+\begin{theorem}[Elementwise annihilator]
+For every nonzero \(\varepsilon\in\mathcal V_{\rm val}\),
+\begin{equation}
+\Ann_{\Dil}(\varepsilon)
+:=
+\{p\in\R[z]:p(\Dil)\varepsilon=0\}
+=
+(m_\varepsilon).
+\end{equation}
+In particular,
+\begin{equation}
+m_\varepsilon(z)\mid P_{\rm val}(z).
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+The powers \(A^s\) with distinct real exponents are linearly independent on \(J\), and \(p(\Dil)A^s=p(s)A^s\).  Hence \(p(\Dil)\varepsilon=0\) exactly when \(p(s)=0\) on every active spectral value.  The monic polynomial of least degree with these roots is \(m_\varepsilon\).
+\end{proof}
+
+\begin{theorem}[Semisimple operator algebra]
+Let
+\begin{equation}
+\varrho:\R[z]\longrightarrow\operatorname{End}(\mathcal V_{\rm val}),
+\qquad
+p\longmapsto p(\Dil)|_{\mathcal V_{\rm val}}.
+\end{equation}
+Then
+\begin{equation}
+\ker\varrho=(P_{\rm val}),
+\end{equation}
+and hence
+\begin{equation}
+\boxed{
+\mathfrak A_{\Dil}
+:=
+\varrho(\R[z])
+\simeq
+\R[z]/(P_{\rm val})
+\simeq
+\prod_{s\in S_{\rm val}}\R
+\simeq
+\R^5.
+}
+\end{equation}
+The module \(\mathcal V_{\rm val}\) is faithful over \(\mathfrak A_{\Dil}\).  It is not a pointwise multiplication algebra, since \(A\cdot A=A^2\notin\mathcal V_{\rm val}\).
+\end{theorem}
+
+\begin{proof}
+The kernel consists of polynomials vanishing at all five eigenvalues \(1,0,-1,-2,-3\), hence is the ideal \((P_{\rm val})\).  Since \(P_{\rm val}\) has five simple real roots, the Chinese remainder theorem gives the product decomposition.
+\end{proof}
+
+\begin{corollary}[Primitive projectors]
+For \(s\in S_{\rm val}\), define
+\begin{equation}
+e_s(z):=
+\prod_{\substack{t\in S_{\rm val}\\t\ne s}}
+\frac{z-t}{s-t},
+\qquad
+\mathsf P_s:=e_s(\Dil).
+\end{equation}
+Then
+\begin{equation}
+\mathsf P_s\mathsf P_t=\delta_{st}\mathsf P_s,
+\qquad
+\sum_s\mathsf P_s=1,
+\end{equation}
+and
+\begin{equation}
+\mathsf P_s\varepsilon=\widehat C_sA^s.
+\end{equation}
+These projectors are the primitive idempotents of \(\mathfrak A_{\Dil}\).
+\end{corollary}
+
+Explicitly,
+\begin{align}
+e_1(z)&=\frac{z(z+1)(z+2)(z+3)}{24},\\
+e_0(z)&=-\frac{(z-1)(z+1)(z+2)(z+3)}{6},\\
+e_{-1}(z)&=\frac{(z-1)z(z+2)(z+3)}{4},\\
+e_{-2}(z)&=-\frac{(z-1)z(z+1)(z+3)}{6},\\
+e_{-3}(z)&=\frac{(z-1)z(z+1)(z+2)}{24}.
+\end{align}
+
+\begin{definition}[Spectral subspaces]
+For \(S\subseteq S_{\rm val}\), define
+\begin{equation}
+\mathcal V_S:=\spanop\{A^s:s\in S\}.
+\end{equation}
+\end{definition}
+
+\begin{corollary}[Spectral lattice]
+For \(S,T\subseteq S_{\rm val}\),
+\begin{equation}
+\mathcal V_S\cap\mathcal V_T=\mathcal V_{S\cap T},
+\qquad
+\mathcal V_S+\mathcal V_T=\mathcal V_{S\cup T}.
+\end{equation}
+Moreover,
+\begin{equation}
+\Ann_{\Dil}(\mathcal V_S)
+=
+\left(
+\prod_{s\in S}(z-s)
+\right).
+\end{equation}
+\end{corollary}
+
+\section{Positive Cone and Moment Tests}
+
+Assume that all active branch energies are nonnegative:
+\begin{equation}
+\mathsf P_s\varepsilon(A)\ge0,
+\qquad
+\varepsilon(A)>0.
+\end{equation}
+Define the branch fractions
+\begin{equation}
+\pi_s(A):=\frac{\mathsf P_s\varepsilon(A)}{\varepsilon(A)}.
+\end{equation}
+Then
+\begin{equation}
+\sum_s\pi_s=1.
+\end{equation}
+Thus \(\pi_s\) is a finite probability distribution on \(S_{\rm val}\).
+
+Define the dilation moments
+\begin{equation}
+\mathfrak m_n(A):=
+\frac{\Dil^n\varepsilon(A)}{\varepsilon(A)}
+=
+\sum_s s^n\pi_s(A).
+\end{equation}
+
+\begin{theorem}[Log-convexity and monotone equation of state]
+For a positive valuation mixture,
+\begin{equation}
+\Dil\mathfrak m_1
+=
+\mathfrak m_2-\mathfrak m_1^2
+=
+\operatorname{Var}_\pi(s)\ge0.
+\end{equation}
+Equivalently,
+\begin{equation}
+\boxed{
+\Dil^2\ln(\varepsilon/\varepsilon_*)=
+\operatorname{Var}_\pi(s)\ge0,
+}
+\end{equation}
+where \(\varepsilon_*>0\) is an arbitrary fixed normalization.  Since
+\begin{equation}
+w=-1-\frac{\mathfrak m_1}{3},
+\end{equation}
+one also has
+\begin{equation}
+\boxed{
+\Dil w=-\frac13\operatorname{Var}_\pi(s)\le0.
+}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Differentiate \(\mathfrak m_1=(\Dil\varepsilon)/\varepsilon\):
+\[
+\Dil\mathfrak m_1
+=
+\frac{\Dil^2\varepsilon}{\varepsilon}
+-
+\left(\frac{\Dil\varepsilon}{\varepsilon}\right)^2
+=
+\mathfrak m_2-\mathfrak m_1^2.
+\]
+The moment formula identifies this with the variance of \(s\).  The equation-of-state identity follows from \(w=-1-\mathfrak m_1/3\).
+\end{proof}
+
+\begin{corollary}[CPL tangent sign]
+For the local expansion
+\[
+w(a)=w_0+w_a(1-a)+O((1-a)^2),
+\]
+one has
+\[
+w_a=-\Dil w|_{a=1}.
+\]
+Every positive valuation mixture therefore satisfies
+\begin{equation}
+w_a\ge0.
+\end{equation}
+\end{corollary}
+
+\begin{theorem}[Bhatia--Davis envelope]
+Let a positive mixture have active support contained in \([m,M]\), and let
+\begin{equation}
+\bar s:=\sum_s s\pi_s=-3(1+w).
+\end{equation}
+Then
+\begin{equation}
+0\le-\Dil w
+=
+\frac13\operatorname{Var}_\pi(s)
+\le
+\frac13(M-\bar s)(\bar s-m).
+\end{equation}
+Equality in the upper bound occurs precisely when the active probability is supported on the two endpoints \(m\) and \(M\) \cite{BhatiaDavis2000}.
+\end{theorem}
+
+\begin{corollary}[Endpoint saturation in the boundary cone]
+For the positive boundary spectrum \(S_\partial=\{0,-1,-2,-3\}\subset[-3,0]\),
+\begin{equation}
+0\le-\Dil w\le -3w(1+w).
+\end{equation}
+Equality for all \(A\) occurs if and only if the active support is contained in \(\{0,-3\}\).
+\end{corollary}
+
+\begin{theorem}[Exact Bhatia--Davis slack and local interior-branch detector]\label{thm:bd-slack}
+Let a positive mixture have support contained in $[m,M]$ and mean $\bar s=\kappa_1$.  Define the variance slack
+\begin{equation}
+\Delta_{mM}
+:=(M-\bar s)(\bar s-m)-\kappa_2.
+\end{equation}
+Then the Bhatia--Davis remainder has the exact branch decomposition
+\begin{equation}
+\boxed{
+\Delta_{mM}
+=\sum_s\pi_s(M-s)(s-m)\ge0.
+}
+\end{equation}
+It vanishes at one finite scale if and only if every active branch lies at the two endpoints $\{m,M\}$.  Thus $\Delta_{mM}$ is a first-derivative local detector of probability carried by interior spectral branches.
+
+For the positive boundary support $\{-3,-2,-1,0\}$,
+\begin{equation}
+\boxed{
+\Delta_{\partial}
+=2(\pi_{-1}+\pi_{-2})
+=3\bigl[\Dil w-3w(1+w)\bigr]\ge0.
+}
+\end{equation}
+Hence the total instantaneous occupation of the two interior boundary branches is recovered from only $w$ and its first dilation derivative:
+\begin{equation}
+\boxed{
+\pi_{-1}+\pi_{-2}
+=\frac32\bigl[\Dil w-3w(1+w)\bigr].
+}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Using $\kappa_2=\mathbb E[s^2]-\bar s^2$,
+\begin{align*}
+(M-\bar s)(\bar s-m)-\kappa_2
+&=(M+m)\bar s-Mm-\mathbb E[s^2]\\
+&=\mathbb E\!\left[(M-s)(s-m)\right].
+\end{align*}
+Every summand is nonnegative on $[m,M]$ and is zero only at $m$ or $M$.  For $m=-3$ and $M=0$, the polynomial $(0-s)(s+3)$ takes the values $0,2,2,0$ on $s=-3,-2,-1,0$, respectively.  Finally $\bar s=-3(1+w)$ and $\kappa_2=-3\Dil w$, which gives the observable formula.
+\end{proof}
+
+\begin{theorem}[Hankel positivity and rank]
+For \(r\ge0\), define
+\[
+H_r(A):=\left[\Dil^{i+j}\varepsilon(A)\right]_{i,j=0}^{r}.
+\]
+For a positive valuation mixture,
+\begin{equation}
+H_r(A)\succeq0.
+\end{equation}
+If exactly \(k\) distinct dilation branches are active, then
+\begin{equation}
+\operatorname{rank}H_r=\min\{r+1,k\}.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Let \(v_s=(1,s,\ldots,s^r)^T\).  Then
+\[
+H_r=\sum_s(\widehat C_sA^s)v_sv_s^T,
+\]
+a positive sum of rank-one matrices.  Distinct spectral values give the Vandermonde rank statement.
+\end{proof}
+
+
+\section{Local Spectral Fingerprints, Complete Quotient Invariants, and Information Geometry}
+
+The semisimple dilation algebra admits a stronger local formulation that does not require a global branch fit.  The active dilation support can be recovered from a single sufficiently high derivative jet of the homogeneous profile.
+
+\begin{theorem}[Hankel-pencil spectral fingerprint]\label{thm:hankel-pencil}
+Let
+\begin{equation}
+\varepsilon(A)=\sum_{j=1}^{k} C_j A^{s_j},
+\qquad
+C_j\neq0,
+\qquad
+s_i\neq s_j\ \ (i\neq j),
+\end{equation}
+and write
+\begin{equation}
+M_n(A):=\Dil^n\varepsilon(A).
+\end{equation}
+Define the two $k\times k$ Hankel matrices
+\begin{equation}
+H_0(A):=[M_{i+j}(A)]_{i,j=0}^{k-1},
+\qquad
+H_1(A):=[M_{i+j+1}(A)]_{i,j=0}^{k-1}.
+\end{equation}
+Then
+\begin{equation}
+\det H_0(A)
+=
+\Delta(s)^2\prod_{j=1}^{k} C_j A^{s_j},
+\qquad
+\Delta(s):=\prod_{1\le i<j\le k}(s_j-s_i),
+\end{equation}
+and therefore $H_0$ is invertible.  Moreover,
+\begin{equation}
+\boxed{
+\frac{\det\!\bigl(\lambda H_0-H_1\bigr)}{\det H_0}
+=
+\prod_{j=1}^{k}(\lambda-s_j)
+=
+ m_\varepsilon(\lambda).
+}
+\end{equation}
+Hence the generalized eigenvalues of the pencil $(H_1,H_0)$ are exactly the active dilation weights.  The polynomial on the left is independent of $A$ and of all branch amplitudes.
+\end{theorem}
+
+\begin{proof}
+Let $V_{ij}=s_j^{\,i}$ for $i=0,\ldots,k-1$, let
+\[
+W(A)=\diag(C_1A^{s_1},\ldots,C_kA^{s_k}),
+\qquad
+S=\diag(s_1,\ldots,s_k).
+\]
+Then
+\begin{equation}
+H_0=VWV^T,
+\qquad
+H_1=VWSV^T.
+\end{equation}
+Since the $s_j$ are distinct, $V$ is a nonsingular Vandermonde matrix and
+\[
+\det H_0=(\det V)^2\det W
+=\Delta(s)^2\prod_j C_jA^{s_j}.
+\]
+Likewise,
+\[
+\lambda H_0-H_1
+=VW(\lambda I-S)V^T.
+\]
+Taking determinants and dividing by $\det H_0$ gives the stated characteristic polynomial.
+\end{proof}
+
+\begin{corollary}[Amplitude-free determinant flow]\label{cor:det-flow}
+Under the hypotheses of \cref{thm:hankel-pencil},
+\begin{equation}
+\boxed{
+\Dil\ln|\det H_0|
+=
+\sum_{j=1}^{k}s_j,
+\qquad
+\Dil^2\ln|\det H_0|=0.
+}
+\end{equation}
+Thus the logarithmic determinant slope is a local, amplitude-independent support invariant.  For the principal supports in this paper,
+\begin{align}
+S_{\rm val}=\{1,0,-1,-2,-3\}:&\qquad
+\Dil\ln|\det H_0|=-5,
+\\
+S_{\partial}=\{0,-1,-2,-3\}:&\qquad
+\Dil\ln|\det H_0|=-6,
+\\
+S_{\rm end}=\{0,-3\}:&\qquad
+\Dil\ln|\det H_0|=-3.
+\end{align}
+If all listed branches are active, the corresponding exact determinant prefactors are
+\begin{align}
+\det H_0^{\rm val}
+&=82944\,\Bigl(\prod_{s\in S_{\rm val}}\widehat C_s\Bigr)A^{-5},\\
+\det H_0^{\partial}
+&=144\,\Bigl(\prod_{s\in S_\partial}\widehat C_s\Bigr)A^{-6},\\
+\det H_0^{\rm end}
+&=9\,\widehat C_0\widehat C_{-3}A^{-3}.
+\end{align}
+\end{corollary}
+
+\begin{remark}[Local spectroscopy]
+The pencil identity strengthens the elementwise annihilator theorem: the minimal annihilator can be reconstructed directly from a local derivative jet without first solving for the branch amplitudes.  Rank detects the number of active branches; the generalized eigenvalues identify which branches are active; and the determinant flow provides an independent support checksum.  In noisy applications the same structure can be implemented by covariance-aware matrix-pencil or Prony methods rather than raw differentiation.
+\end{remark}
+
+\begin{theorem}[Complete normalized-jet positivity certificate]\label{thm:jet-simplex}
+Let $\varepsilon\in\mathcal V_{\rm val}$ with $\varepsilon>0$, and define
+\begin{equation}
+\mathfrak m_n:=\frac{\Dil^n\varepsilon}{\varepsilon},
+\qquad \mathfrak m_0=1.
+\end{equation}
+Then the five branch fractions are recovered pointwise from the fourth-order normalized jet by
+\begin{align}
+\pi_{1}
+&=\frac{\mathfrak m_4+6\mathfrak m_3+11\mathfrak m_2+6\mathfrak m_1}{24},\\
+\pi_{0}
+&=1+\frac{5\mathfrak m_1-5\mathfrak m_2-5\mathfrak m_3-\mathfrak m_4}{6},\\
+\pi_{-1}
+&=\frac{\mathfrak m_4+4\mathfrak m_3+\mathfrak m_2-6\mathfrak m_1}{4},\\
+\pi_{-2}
+&=\frac{-\mathfrak m_4-3\mathfrak m_3+\mathfrak m_2+3\mathfrak m_1}{6},\\
+\pi_{-3}
+&=\frac{\mathfrak m_4+2\mathfrak m_3-\mathfrak m_2-2\mathfrak m_1}{24}.
+\end{align}
+Consequently, inside the valuation closure, nonnegative branch energy is equivalent to the five explicit inequalities
+\begin{equation}
+\boxed{\pi_s\ge0\quad(s\in S_{\rm val}).}
+\end{equation}
+Equivalently, the normalized jet $(\mathfrak m_1,\ldots,\mathfrak m_4)$ lies in the convex hull of the five moment-curve vertices
+\begin{equation}
+(s,s^2,s^3,s^4),
+\qquad s\in S_{\rm val}.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+By the primitive-projector formula,
+\[
+\pi_s=\frac{e_s(\Dil)\varepsilon}{\varepsilon}.
+\]
+Expanding the five Lagrange polynomials $e_s$ gives the displayed linear expressions in the normalized moments.  Since the projectors sum to the identity, the recovered fractions sum to one.  Positivity of every branch is therefore equivalent to nonnegativity of these five barycentric coordinates.
+\end{proof}
+
+\begin{corollary}[Observable sharp jet cone]\label{cor:observable-jet-cone}
+Define
+\[
+u_1:=\Dil w,\qquad u_2:=\Dil^2w,\qquad u_3:=\Dil^3w.
+\]
+Since
+\[
+\kappa_1=-3(1+w),
+\qquad
+\kappa_n=-3\Dil^{n-1}w\quad(n\ge2),
+\]
+and $\mathfrak m_n=B_n(\kappa_1,\ldots,\kappa_n)$, the five barycentric coordinates of \cref{thm:jet-simplex} can be written directly as observable jet polynomials:
+\begin{align}
+\pi_1=\frac18\Bigl[&27w^4+54w^3+33w^2+6w
+-54w^2u_1-54wu_1+12wu_2\nonumber\\
+&+9u_1^2-11u_1+6u_2-u_3\Bigr],\label{eq:pi1-wjet}\\
+\pi_0=-\frac12\Bigl[&27w^4+63w^3+42w^2+8w
+-54w^2u_1-63wu_1+12wu_2\nonumber\\
+&+9u_1^2-14u_1+7u_2-u_3\Bigr],\\
+\pi_{-1}=\frac34\Bigl[&27w^4+72w^3+57w^2+12w
+-54w^2u_1-72wu_1+12wu_2\nonumber\\
+&+9u_1^2-19u_1+8u_2-u_3\Bigr],\\
+\pi_{-2}=-\frac12\Bigl[&27w^4+81w^3+78w^2+24w
+-54w^2u_1-81wu_1+12wu_2\nonumber\\
+&+9u_1^2-26u_1+9u_2-u_3\Bigr],\\
+\pi_{-3}=\frac18\Bigl[&27w^4+90w^3+105w^2+50w+8
+-54w^2u_1-90wu_1+12wu_2\nonumber\\
+&+9u_1^2-35u_1+10u_2-u_3\Bigr].
+\end{align}
+Therefore the complete positive valuation 4-jet is characterized by the five sharp inequalities
+\begin{equation}
+\boxed{\pi_s(w,u_1,u_2,u_3)\ge0\qquad(s\in S_{\rm val}).}
+\end{equation}
+These inequalities are the exact pullback of the moment-simplex facets under the Bell/cumulant change of coordinates; the admissible region need not itself be a polytope in the nonlinear coordinates $(w,u_1,u_2,u_3)$.  Support faces are obtained by setting the corresponding barycentric coordinates to zero.  In particular, the boundary-local face is the exact third-order observable equation $\pi_1=0$, i.e.
+\begin{equation}
+\boxed{
+\begin{aligned}
+\Dil^3w={}&27w^4+54w^3+33w^2+6w
+-54w^2\Dil w-54w\Dil w\\
+&+12w\Dil^2w+9(\Dil w)^2-11\Dil w+6\Dil^2w.
+\end{aligned}}
+\label{eq:boundary-w-closure}
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+Substitute the Bell-polynomial relations
+\begin{align*}
+\mathfrak m_1&=\kappa_1,\\
+\mathfrak m_2&=\kappa_1^2+\kappa_2,\\
+\mathfrak m_3&=\kappa_1^3+3\kappa_1\kappa_2+\kappa_3,\\
+\mathfrak m_4&=\kappa_1^4+6\kappa_1^2\kappa_2+3\kappa_2^2+4\kappa_1\kappa_3+\kappa_4
+\end{align*}
+into \cref{thm:jet-simplex} and use $\kappa_1=-3(1+w)$, $\kappa_{n\ge2}=-3\Dil^{n-1}w$.  The boundary equation is simply the facet condition $\pi_1=0$ solved for $\Dil^3w$.
+\end{proof}
+
+\begin{corollary}[Sharp boundary 2-jet simplex]\label{cor:boundary-jet-simplex}
+On the positive boundary face
+\[
+S_\partial=\{0,-1,-2,-3\},
+\]
+only the first three normalized moments are needed.  With
+\[
+u_1=\Dil w,
+\qquad
+u_2=\Dil^2w,
+\]
+the four branch fractions are
+\begin{equation}
+\boxed{
+\begin{aligned}
+\pi_0
+&=\frac12\Bigl(9wu_1+3u_1-u_2-9w^3-9w^2-2w\Bigr),\\
+\pi_{-1}
+&=-\frac32\Bigl(9wu_1+4u_1-u_2-9w^3-12w^2-3w\Bigr),\\
+\pi_{-2}
+&=\frac32\Bigl(9wu_1+5u_1-u_2-9w^3-15w^2-6w\Bigr),\\
+\pi_{-3}
+&=-\frac12\Bigl(9wu_1+6u_1-u_2-9w^3-18w^2-11w-2\Bigr).
+\end{aligned}
+}
+\end{equation}
+Therefore a reconstructed boundary profile lies in the positive boundary cone if and only if all four expressions are nonnegative and sum to one.  In particular, the two interior fractions are resolved separately from only $(w,\Dil w,\Dil^2w)$, while \cref{thm:bd-slack} gives their sum from $(w,\Dil w)$ alone.
+\end{corollary}
+
+\begin{proof}
+Set the bulk barycentric coordinate $\pi_1$ in \cref{cor:observable-jet-cone} to zero and use \cref{eq:boundary-w-closure} to eliminate $\Dil^3w$.  Equivalently, apply the degree-three primitive projectors for the support $\{0,-1,-2,-3\}$ directly to the first three normalized moments.
+\end{proof}
+
+\begin{theorem}[Cumulant hierarchy and nonlinear amplitude-free closure]\label{thm:cumulants}
+For a positive valuation mixture, let $x=\ln(A/A_*)$ and define
+\begin{equation}
+\kappa_n:=\Dil^n\ln(\varepsilon/\varepsilon_*),
+\qquad n\ge1.
+\end{equation}
+Then $\kappa_n$ is the $n$th cumulant of the finite spectral probability distribution $\pi_s(A)$.  In particular,
+\begin{equation}
+\kappa_1=\mathbb E_\pi[s],
+\qquad
+\kappa_2=\operatorname{Var}_\pi(s),
+\qquad
+\Dil\kappa_n=\kappa_{n+1}.
+\end{equation}
+The branch fractions obey the exact replicator equation
+\begin{equation}
+\boxed{
+\Dil\pi_s=(s-\kappa_1)\pi_s.
+}
+\end{equation}
+Furthermore, writing $B_n(\kappa_1,\ldots,\kappa_n)$ for the complete exponential Bell polynomial, the full valuation closure is equivalent to the amplitude-free nonlinear identity
+\begin{equation}
+\boxed{
+B_5+5B_4+5B_3-5B_2-6B_1=0.
+}
+\end{equation}
+For the boundary face this reduces to
+\begin{equation}
+\boxed{
+B_4+6B_3+11B_2+6B_1=0,
+}
+\end{equation}
+and for the endpoint class to
+\begin{equation}
+\boxed{
+B_2+3B_1=0.
+}
+\end{equation}
+These identities contain no dimensional amplitude.
+\end{theorem}
+
+\begin{proof}
+With $x=\ln(A/A_*)$,
+\[
+\varepsilon(x)=\sum_s \widehat C_sA_*^s e^{sx}
+\]
+is a finite exponential sum.  After normalization by $\varepsilon$, its logarithm is the cumulant-generating potential of the tilted discrete measure $\pi_s$.  Differentiation therefore generates cumulants and gives $\Dil\pi_s=(s-\kappa_1)\pi_s$.  Finally,
+\[
+\frac{\Dil^n\varepsilon}{\varepsilon}=B_n(\kappa_1,\ldots,\kappa_n).
+\]
+Substitution into $P_{\rm val}(\Dil)\varepsilon=0$, using
+\[
+P_{\rm val}(z)=z^5+5z^4+5z^3-5z^2-6z,
+\]
+gives the full nonlinear closure.  The boundary and endpoint formulas follow from
+\[
+z(z+1)(z+2)(z+3)=z^4+6z^3+11z^2+6z,
+\qquad
+z(z+3)=z^2+3z.
+\]
+\end{proof}
+
+\begin{corollary}[Observable scalar differential closure]\label{cor:w-only-closure}
+Let
+\[
+u_n:=\Dil^n w.
+\]
+The full five-branch valuation annihilator is equivalent, wherever $\varepsilon>0$, to the fourth-order amplitude-free equation
+\begin{equation}
+\boxed{
+\begin{aligned}
+0={}&u_4-10u_3+35u_2-50u_1+90u_1^2-30u_1u_2\\
+&+24w+150w^2+315w^3+270w^4+81w^5\\
+&-315wu_1-540w^2u_1-270w^3u_1\\
+&+120wu_2+90w^2u_2+135wu_1^2-15wu_3.
+\end{aligned}}
+\end{equation}
+The boundary face lowers the order to the third-order relation \cref{eq:boundary-w-closure}, while the endpoint support $\{0,-3\}$ obeys the first-order saturation law
+\begin{equation}
+\boxed{\Dil w=3w(1+w).}
+\end{equation}
+Thus each support reduction appears as an exact order reduction of the observable equation-of-state dynamics.
+\end{corollary}
+
+\begin{proof}
+Substitute $\kappa_1=-3(1+w)$ and $\kappa_{n\ge2}=-3u_{n-1}$ into the Bell-polynomial identities of \cref{thm:cumulants} and expand.  The endpoint equation follows from $B_2+3B_1=0$.
+\end{proof}
+
+\begin{corollary}[Information-geometric form of the equation-of-state flow]
+For a positive mixture,
+\begin{equation}
+\boxed{
+\mathcal I_x
+:=\sum_s\pi_s\bigl(\Dil\ln\pi_s\bigr)^2
+=\operatorname{Var}_\pi(s)
+=\kappa_2
+=-3\Dil w.
+}
+\end{equation}
+Thus the monotone equation-of-state flow is exactly one third of the Fisher information of the one-parameter spectral exponential family, with sign fixed by the work-map convention.
+\end{corollary}
+
+\begin{corollary}[Asymptotic support theorem]
+Assume positive coefficients on an active support $S$ and let
+\[
+s_-:=\min S,
+\qquad
+s_+:=\max S.
+\]
+Then
+\begin{equation}
+\lim_{A\to0^+}\kappa_1=s_-,
+\qquad
+\lim_{A\to\infty}\kappa_1=s_+,
+\end{equation}
+and therefore
+\begin{equation}
+\lim_{A\to0^+}w=-1-\frac{s_-}{3},
+\qquad
+\lim_{A\to\infty}w=-1-\frac{s_+}{3}.
+\end{equation}
+For a positive boundary profile with both endpoint branches active, this gives the exact interpolation
+\begin{equation}
+w:0\longrightarrow -1
+\end{equation}
+as $A$ grows from zero to infinity.  If the positive bulk branch $s=1$ is active, the late-time asymptote instead becomes $w\to-4/3$.
+\end{corollary}
+
+
+\begin{theorem}[Hankel inertia and amplitude-signature certificate]\label{thm:hankel-inertia}
+Under the hypotheses of \cref{thm:hankel-pencil}, let
+\[
+\nu_+(H_0),\qquad \nu_-(H_0),\qquad \nu_0(H_0)
+\]
+denote the positive, negative, and zero inertia indices of the $k\times k$ derivative Hankel matrix.  Then
+\begin{equation}
+\boxed{
+\bigl(\nu_+(H_0),\nu_-(H_0),\nu_0(H_0)\bigr)
+=
+\left(
+\#\{j:C_j>0\},
+\#\{j:C_j<0\},
+0
+\right).
+}
+\end{equation}
+In particular, for a fully active $k$-branch support,
+\begin{equation}
+\boxed{
+H_0\succ0
+\iff
+C_j>0\quad\text{for all }j.
+}
+\end{equation}
+For a larger Hankel truncation $H_r$ with $r+1\ge k$, the same nonzero inertia is supplemented by $r+1-k$ zero eigenvalues.
+\end{theorem}
+
+\begin{proof}
+The factorization in \cref{thm:hankel-pencil} is
+\[
+H_0=VWV^T,
+\qquad
+W=\diag(C_1A^{s_1},\ldots,C_kA^{s_k}).
+\]
+Since $V$ is invertible and $A^{s_j}>0$, Sylvester's law of inertia gives
+\[
+\operatorname{Inertia}(H_0)=\operatorname{Inertia}(W),
+\]
+which is exactly the stated sign count.  For $H_r$ with $r+1>k$, write
+\[
+H_r=V_rWV_r^T,
+\]
+where the rectangular Vandermonde matrix $V_r$ has column rank $k$.  Its image carries the same nonzero quadratic form as $W$, while the orthogonal complement of the image contributes $r+1-k$ zeros.
+\end{proof}
+
+\begin{corollary}[Power-sum spectral checksums]\label{cor:spectral-traces}
+With
+\[
+K:=H_0^{-1}H_1,
+\]
+one has
+\begin{equation}
+K\sim\diag(s_1,\ldots,s_k),
+\end{equation}
+and hence, for every integer $n\ge1$,
+\begin{equation}
+\boxed{
+\operatorname{tr}(K^n)=\sum_{j=1}^k s_j^n.
+}
+\end{equation}
+These traces are local and independent of all amplitudes.  For the full valuation support,
+\begin{equation}
+\bigl(\operatorname{tr}K,\operatorname{tr}K^2,
+\operatorname{tr}K^3,\operatorname{tr}K^4\bigr)
+=(-5,15,-35,99),
+\end{equation}
+while for the boundary support they are
+\begin{equation}
+(-6,14,-36,98).
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+From $H_0=VWV^T$ and $H_1=VWSV^T$, with $S=\diag(s_j)$ and $WS=SW$,
+\[
+H_0^{-1}H_1=(V^T)^{-1}SV^T.
+\]
+Thus $K$ is similar to $S$, and the trace identities follow.
+\end{proof}
+
+\begin{theorem}[Complete scale-pivot quotient invariants on consecutive positive support]\label{thm:crossratio}
+Let a positive active support consist of $k\ge2$ consecutive integer weights
+\[
+S=\{s_{\min},s_{\min}+1,\ldots,s_{\max}\},
+\]
+and write
+\[
+\varepsilon_s(A)=C_sA^s,\qquad C_s>0.
+\]
+Choose arbitrary positive references $A_*$ and $\varepsilon_*$ and define the dimensionless coefficients
+\begin{equation}
+ c_s:=\frac{C_sA_*^s}{\varepsilon_*}>0.
+\end{equation}
+For every interior weight define
+\begin{equation}
+\boxed{
+\mathcal Q_s
+:=
+\frac{\varepsilon_{s+1}\varepsilon_{s-1}}{\varepsilon_s^2}
+=
+\frac{c_{s+1}c_{s-1}}{c_s^2}
+=
+\frac{C_{s+1}C_{s-1}}{C_s^2}.
+}
+\end{equation}
+Then
+\begin{equation}
+\Dil\mathcal Q_s=0.
+\end{equation}
+Moreover, the $k-2$ quantities $\{\mathcal Q_s\}$ form a complete set of invariants under the two-parameter reference action
+\begin{equation}
+ c_s\longmapsto e^{\alpha+\beta s}c_s,
+\end{equation}
+which represents a change of overall normalization and logarithmic scale pivot.  Thus two positive dimensionless coefficient vectors have the same $\{\mathcal Q_s\}$ if and only if they lie on the same reference-change orbit.
+\end{theorem}
+
+\begin{proof}
+The scale independence is immediate from
+\[
+(s+1)+(s-1)-2s=0.
+\]
+Put $u_s=\ln c_s$, which is well defined because $c_s$ is positive and dimensionless.  The two-parameter action is
+\[
+u_s\longmapsto u_s+\alpha+\beta s.
+\]
+The logarithms
+\[
+\ln\mathcal Q_s=u_{s+1}-2u_s+u_{s-1}
+\]
+are the discrete second differences of $u_s$.  They annihilate the two-dimensional affine subspace spanned by $1$ and $s$.  Conversely, equality of all second differences implies that the difference of two coefficient-log vectors is affine in $s$, hence is of the form $\alpha+\beta s$.  Therefore the $k-2$ second differences separate the quotient orbits.
+\end{proof}
+
+\begin{corollary}[Valuation-moduli coordinates]\label{cor:valuation-moduli}
+For the full positive valuation support there are exactly three independent quotient invariants,
+\begin{equation}
+\boxed{
+\mathcal Q_0=\frac{C_1C_{-1}}{C_0^2},
+\qquad
+\mathcal Q_{-1}=\frac{C_0C_{-2}}{C_{-1}^2},
+\qquad
+\mathcal Q_{-2}=\frac{C_{-1}C_{-3}}{C_{-2}^2}.
+}
+\end{equation}
+For the positive boundary support there are exactly two, $\mathcal Q_{-1}$ and $\mathcal Q_{-2}$.  For a two-branch endpoint support there is no nontrivial continuous quotient modulus after normalization and pivot rescaling.
+\end{corollary}
+
+\begin{theorem}[Complete invariant classification on a positive support stratum]\label{thm:invariant-completeness}
+Let
+\[
+S=\{s_1<\cdots<s_k\},\qquad k\ge2,
+\]
+be any fixed active support of distinct real dilation weights, and let
+\[
+\mathcal C_S=(\mathbb R_{>0})^k
+\]
+be the space of positive dimensionless coefficient vectors $c=(c_1,\ldots,c_k)$.  Let $G=\mathbb R^2$ act by
+\begin{equation}
+(\alpha,\beta)\cdot c_i=e^{\alpha+\beta s_i}c_i.
+\end{equation}
+Then the action is free and the quotient $\mathcal C_S/G$ has dimension $k-2$.  In logarithmic coordinates $u_i=\ln c_i$, choose any basis
+\[
+a^{(1)},\ldots,a^{(k-2)}
+\]
+of the kernel of
+\begin{equation}
+B=
+\begin{pmatrix}
+1&\cdots&1\\
+s_1&\cdots&s_k
+\end{pmatrix}.
+\end{equation}
+The $k-2$ positive monomials
+\begin{equation}
+\boxed{
+I_r(c):=\exp\!\bigl(a^{(r)}\!\cdot u\bigr)
+       =\prod_{i=1}^{k}c_i^{a_i^{(r)}},
+\qquad r=1,\ldots,k-2,
+}
+\end{equation}
+separate the $G$-orbits.  Consequently every smooth invariant of positive coefficient data that is independent of the normalization and scale pivot factors through $(I_1,\ldots,I_{k-2})$.
+
+If zero coefficients are admitted, the positive cone is stratified by its active support.  The support itself is a discrete invariant, and the statement above applies on each positive support stratum.  Thus, within the declared finite homogeneous closure, there are no additional independent continuous coefficient moduli beyond $k-2$ quotient coordinates.
+\end{theorem}
+
+\begin{proof}
+In logarithmic coordinates the group action is translation by
+\[
+\alpha\mathbf 1+\beta\mathbf s,
+\qquad
+\mathbf s=(s_1,\ldots,s_k).
+\]
+Because at least two $s_i$ are distinct, the stabilizer is trivial.  Hence the orbit space is the vector quotient
+\[
+\mathbb R^k/\operatorname{span}\{\mathbf 1,\mathbf s\}
+\]
+of dimension $k-2$.  The rows of $B$ span the orbit directions, while $\ker B$ is their Euclidean annihilator.  Therefore the linear functionals $a^{(r)}\cdot u$ form coordinates on the quotient.  Exponentiation gives positive monomial invariants.  If two points have equal values of all $I_r$, their logarithmic difference is orthogonal to $\ker B$, hence lies in $\operatorname{span}\{\mathbf 1,\mathbf s\}$ and the two coefficient vectors differ by a $G$ transformation.  Any smooth invariant constant on $G$-orbits therefore factors through these quotient coordinates.
+\end{proof}
+
+\begin{corollary}[Triple cross-ratios for arbitrary support]\label{cor:triple-crossratio}
+For any $1\le i<j<\ell\le k$, define
+\begin{equation}
+\boxed{
+\mathcal Q_{ij\ell}
+:=
+c_i^{\,s_\ell-s_j}
+ c_j^{\,s_i-s_\ell}
+ c_\ell^{\,s_j-s_i}.
+}
+\end{equation}
+Then $\mathcal Q_{ij\ell}$ is invariant under the reference action.  The anchored set
+\begin{equation}
+\left\{\mathcal Q_{1j k}:j=2,\ldots,k-1\right\}
+\end{equation}
+contains $k-2$ independent invariants and is therefore a complete coordinate system on the positive quotient.  For three consecutive integer weights $(s-1,s,s+1)$ the formula reduces to
+\[
+\mathcal Q_{s-1,s,s+1}=\frac{c_{s-1}c_{s+1}}{c_s^2}=\mathcal Q_s.
+\]
+\end{corollary}
+
+\begin{proof}
+For the exponent vector of $\mathcal Q_{ij\ell}$ one has
+\[
+\sum_r a_r=0,
+\qquad
+\sum_r s_ra_r=0,
+\]
+so it lies in $\ker B$ and the monomial is invariant.  For the anchored family $\mathcal Q_{1jk}$, the component at index $j$ equals the same nonzero number $s_1-s_k$ and is absent from every other anchored exponent vector.  Hence these $k-2$ vectors are linearly independent and, by \cref{thm:invariant-completeness}, complete.
+\end{proof}
+
+\begin{corollary}[Crossover-spacing interpretation of the quotient moduli]\label{cor:crossover-moduli}
+Write the normalized profile as
+\[
+\varepsilon/\varepsilon_*=\sum_i c_i e^{s_ix},
+\qquad x=\ln(A/A_*),
+\]
+and define the pairwise equality location
+\begin{equation}
+ x_{ij}:=\frac{\ln c_i-\ln c_j}{s_j-s_i},
+ \qquad i<j,
+\end{equation}
+so that the $i$th and $j$th branch contributions are equal at $x=x_{ij}$.  Under a pivot change $x_{ij}\mapsto x_{ij}-\beta$, so differences of crossover locations are invariant.  Moreover,
+\begin{equation}
+\boxed{
+\ln\mathcal Q_{ij\ell}
+=(s_j-s_i)(s_\ell-s_j)
+\bigl(x_{ij}-x_{j\ell}\bigr).
+}
+\end{equation}
+Thus the continuous quotient moduli are exactly relative spacings of branch-crossover locations in logarithmic scale.
+\end{corollary}
+
+\begin{proof}
+Direct substitution of
+\[
+x_{ij}=\frac{u_i-u_j}{s_j-s_i}
+\]
+gives
+\[
+(s_j-s_i)(s_\ell-s_j)(x_{ij}-x_{j\ell})
+=(s_\ell-s_j)u_i+(s_i-s_\ell)u_j+(s_j-s_i)u_\ell,
+\]
+which is $\ln\mathcal Q_{ij\ell}$.
+\end{proof}
+
+\begin{remark}[Completeness boundary]
+\Cref{thm:invariant-completeness} exhausts only normalization- and pivot-independent continuous functions of the positive homogeneous coefficient vector on a fixed finite support.  It does not classify invariants introduced by a source action, perturbative degrees of freedom, transfer functions, external dimensional scales, additional observables, or an enlarged functional class.  Observable nulls below can be new and useful without supplying new quotient moduli: on a fixed support they are functions or consequences of the support data and the complete quotient coordinates.
+\end{remark}
+
+\begin{remark}[Local differential realization]
+The quotient invariants are themselves local finite-jet invariants because
+\[
+\varepsilon_s=e_s(\Dil)\varepsilon.
+\]
+Hence
+\begin{equation}
+\boxed{
+\mathcal Q_s[\varepsilon]
+=
+\frac{
+[e_{s+1}(\Dil)\varepsilon]\,[e_{s-1}(\Dil)\varepsilon]
+}{
+[e_s(\Dil)\varepsilon]^2
+},
+\qquad
+\Dil\ln\mathcal Q_s=0.
+}
+\end{equation}
+They therefore test relative branch shape without fixing a dimensional amplitude.
+\end{remark}
+
+\begin{theorem}[Complete monomial first integrals of the replicator flow]\label{thm:replicator-integrals}
+Let a positive $k$-branch mixture obey
+\[
+\Dil\pi_s=(s-\kappa_1)\pi_s.
+\]
+For any real vector $a=(a_s)_{s\in S}$ satisfying
+\begin{equation}
+\sum_s a_s=0,
+\qquad
+\sum_s s\,a_s=0,
+\end{equation}
+the monomial
+\begin{equation}
+\boxed{
+I_a:=\prod_{s\in S}\pi_s^{a_s}
+}
+\end{equation}
+is constant along the dilation flow.  The vector space of exponent vectors $a$ has dimension $k-2$.  For consecutive support, one may choose the adjacent second-difference exponent vectors; the corresponding $I_a$ are precisely the quotient cross-ratios of \cref{thm:crossratio}.
+\end{theorem}
+
+\begin{proof}
+Taking a logarithmic derivative,
+\[
+\Dil\ln I_a
+=
+\sum_s a_s(s-\kappa_1)
+=
+\sum_s s\,a_s-\kappa_1\sum_s a_s=0.
+\]
+The two constraints are independent when at least two distinct spectral weights are active, so their common kernel has dimension $k-2$.
+\end{proof}
+
+\begin{corollary}[Pairwise log-odds rigidity]\label{cor:logodds}
+For any two active branches $s_i\ne s_j$ of a positive mixture,
+\begin{equation}
+\boxed{
+\Dil\ln\frac{\pi_{s_j}}{\pi_{s_i}}=s_j-s_i,
+\qquad
+\Dil^2\ln\frac{\pi_{s_j}}{\pi_{s_i}}=0.
+}
+\end{equation}
+Thus every pairwise branch log-odds is an affine function of logarithmic scale with a slope fixed solely by the spectral gap.  The intercept carries the relative-amplitude information, while differences of its zero crossings reproduce the quotient moduli of \cref{cor:crossover-moduli}.
+\end{corollary}
+
+\begin{proof}
+Subtract the two replicator identities:
+\[
+\Dil\ln\pi_{s_j}-\Dil\ln\pi_{s_i}
+=(s_j-\kappa_1)-(s_i-\kappa_1)=s_j-s_i.
+\]
+A second dilation derivative therefore vanishes.
+\end{proof}
+
+\begin{theorem}[Discrete Koopman--Hankel spectral fingerprint]\label{thm:discrete-hankel}
+Let $x=\ln(A/A_*)$ and choose a nonzero logarithmic step $h$.  For a $k$-branch profile define
+\[
+y_n:=\varepsilon(A_0e^{nh})
+=\sum_{j=1}^k d_j r_j^n,
+\qquad
+d_j:=C_jA_0^{s_j},
+\qquad
+r_j:=e^{s_jh}.
+\]
+Let
+\begin{equation}
+Y_0^{(n)}:=[y_{n+i+j}]_{i,j=0}^{k-1},
+\qquad
+Y_1^{(n)}:=[y_{n+i+j+1}]_{i,j=0}^{k-1}.
+\end{equation}
+Then
+\begin{equation}
+\boxed{
+\frac{\det(\lambda Y_0^{(n)}-Y_1^{(n)})}
+{\det Y_0^{(n)}}
+=
+\prod_{j=1}^k(\lambda-r_j).
+}
+\end{equation}
+Thus the generalized eigenvalues recover the active dilation weights without differentiation:
+\begin{equation}
+\boxed{
+s_j=\frac{\ln r_j}{h}.
+}
+\end{equation}
+In addition,
+\begin{equation}
+\boxed{
+\frac{\det Y_0^{(n+1)}}{\det Y_0^{(n)}}
+=
+\prod_{j=1}^k r_j
+=
+\exp\!\left(h\sum_{j=1}^k s_j\right).
+}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Let $(V_h)_{ij}=r_j^i$, $R=\diag(r_j)$, and
+\[
+W_n=\diag(d_1r_1^n,\ldots,d_kr_k^n).
+\]
+Then
+\[
+Y_0^{(n)}=V_hW_nV_h^T,
+\qquad
+Y_1^{(n)}=V_hW_nRV_h^T.
+\]
+Because $h\neq0$ and the $s_j$ are distinct real numbers, the $r_j$ are distinct and $V_h$ is invertible.  The determinant-pencil identity follows exactly as in \cref{thm:hankel-pencil}.  Since $W_{n+1}=W_nR$,
+\[
+\det Y_0^{(n+1)}/\det Y_0^{(n)}=\det R.
+\]
+\end{proof}
+
+\begin{remark}[Koopman form]
+The logarithmic scale-translation operator
+\[
+(U_hf)(x):=f(x+h)
+\]
+acts on each dilation eigenbranch by
+\[
+U_he^{sx}=e^{sh}e^{sx}.
+\]
+Hence the valuation space is an exact finite-dimensional invariant subspace of the translation/Koopman operator $U_h=e^{h\Dil}$.  \Cref{thm:discrete-hankel} is the sample-space spectral reconstruction of this finite Koopman representation.  This is a standard exponential-sum matrix-pencil structure \cite{HuaSarkar1990,PeterPlonka2013,FischerEtAl2020}; the model-specific content is the restricted valuation spectrum and the resulting exact nulls.
+\end{remark}
+
+\begin{theorem}[Global Fisher-information and cumulant sum rules]\label{thm:fisher-sumrule}
+Let a positive finite mixture have active extreme weights
+\[
+s_-:=\min S,\qquad s_+:=\max S,
+\]
+and let $x=\ln(A/A_*)$.  Then
+\begin{equation}
+\boxed{
+\int_{-\infty}^{+\infty}\mathcal I_x\,\dd x
+=
+\int_{-\infty}^{+\infty}\kappa_2\,\dd x
+=
+s_+-s_-.
+}
+\end{equation}
+Equivalently, using $\mathcal I_x=-3\Dil w$,
+\begin{equation}
+\boxed{
+-3\int_{-\infty}^{+\infty}\Dil w\,\dd\ln A
+=
+s_+-s_-.
+}
+\end{equation}
+More generally,
+\begin{equation}
+\boxed{
+\int_{-\infty}^{+\infty}\kappa_n\,\dd x=0,
+\qquad n\ge3.
+}
+\end{equation}
+All integrals are absolutely convergent for finite positive support.
+\end{theorem}
+
+\begin{proof}
+By \cref{thm:cumulants},
+\[
+\frac{\dd\kappa_n}{\dd x}=\kappa_{n+1}.
+\]
+The asymptotic support theorem gives
+\[
+\kappa_1(-\infty)=s_-,
+\qquad
+\kappa_1(+\infty)=s_+.
+\]
+Therefore
+\[
+\int_{-\infty}^{+\infty}\kappa_2\,\dd x
+=
+\kappa_1(+\infty)-\kappa_1(-\infty)
+=
+s_+-s_-.
+\]
+For every $m\ge2$, the distribution becomes a point mass at each asymptotic endpoint, so $\kappa_m(\pm\infty)=0$.  Hence
+\[
+\int\kappa_n\,\dd x
+=
+\kappa_{n-1}(+\infty)-\kappa_{n-1}(-\infty)=0
+\]
+for $n\ge3$.  Exponential approach to the extreme branch on a finite support gives absolute convergence.
+\end{proof}
+
+\begin{theorem}[Weighted cumulant sum-rule hierarchy]\label{thm:weighted-sumrule}
+Under the hypotheses of \cref{thm:fisher-sumrule}, let \(p\ge0\) and \(n\ge2\) be integers.  If \(n\ge p+2\), then
+\begin{equation}
+\boxed{
+\int_{-\infty}^{+\infty}x^p\,\kappa_n(x)\,\dd x
+=
+(-1)^p\,p!\,(s_+-s_-)\,\delta_{n,p+2}.
+}
+\end{equation}
+These identities are independent of all branch amplitudes.  They are also invariant under a change of logarithmic pivot \(x\mapsto x+\beta\).  In observable form, using \(x=\ln(A/A_*)\) and \(\kappa_{p+2}=-3\Dil^{p+1}w\),
+\begin{equation}
+\boxed{
+\int_{0}^{+\infty}
+\left[\ln\!\left(\frac{A}{A_*}\right)\right]^p
+\Dil^{p+1}w\,\dd\ln A
+=
+\frac{(-1)^{p+1}p!}{3}\,(s_+-s_-).
+}
+\end{equation}
+The hierarchy is infinite but not an infinite set of independent coefficient moduli: for fixed support its nonzero members reduce to the same spectral width \(s_+-s_-\).
+\end{theorem}
+
+\begin{proof}
+Since \(\Dil\kappa_m=\kappa_{m+1}\), integrate by parts \(p\) times:
+\[
+\int x^p\kappa_n\,\dd x
+=
+(-1)^p p!\int\kappa_{n-p}\,\dd x.
+\]
+All intermediate boundary terms vanish because every cumulant \(\kappa_m\) with \(m\ge2\) decays exponentially as \(x\to\pm\infty\) for a finite positive support.  The condition \(n\ge p+2\) ensures that the terminal cumulant has order \(n-p\ge2\).  By \cref{thm:fisher-sumrule}, the terminal integral equals \(s_+-s_-\) when \(n-p=2\) and vanishes when \(n-p\ge3\), proving the Kronecker-delta form.
+
+Under \(x\mapsto x+\beta\), the difference between the shifted and unshifted \(p\)-weighted integrals is a linear combination of lower powers \(\int x^q\kappa_n\,\dd x\) with \(q<p\).  In the present range \(n\ge p+2>q+2\), all such lower weighted integrals vanish by the formula already proved.  Hence the identities are pivot independent.
+\end{proof}
+
+\begin{theorem}[Universal two-branch normal form]\label{thm:two-branch-normal-form}
+Let a positive mixture have exactly two active weights $s_-<s_+$ and put
+\[
+\Delta:=s_+-s_->0,
+\qquad
+\bar s:=\frac{s_-+s_+}{2}.
+\]
+There is a unique crossover location $x_\times$ at which the two branch contributions are equal.  If $p_+(x)$ denotes the fraction of the upper branch, then
+\begin{equation}
+\boxed{
+p_+(x)=\frac{1}{1+e^{-\Delta(x-x_\times)}}
+}
+\end{equation}
+and the complete orbit is
+\begin{equation}
+\boxed{
+\begin{aligned}
+\kappa_1(x)
+&=\bar s+\frac{\Delta}{2}\tanh\!\left[\frac{\Delta}{2}(x-x_\times)\right],\\
+\mathcal I_x=\kappa_2(x)
+&=\frac{\Delta^2}{4}\operatorname{sech}^2\!\left[\frac{\Delta}{2}(x-x_\times)\right],\\
+w(x)
+&=-1-\frac{\bar s}{3}-\frac{\Delta}{6}\tanh\!\left[\frac{\Delta}{2}(x-x_\times)\right].
+\end{aligned}
+}
+\end{equation}
+Thus, after a translation of logarithmic scale, every positive two-branch orbit with fixed support has the same shape; its only remaining parameters are the discrete spectral midpoint and gap.
+\end{theorem}
+
+\begin{proof}
+If the dimensionless branch coefficients are $c_-$ and $c_+$, then
+\[
+\frac{\pi_+}{\pi_-}
+=\frac{c_+}{c_-}e^{\Delta x}
+=e^{\Delta(x-x_\times)},
+\qquad
+x_\times=\frac1{\Delta}\ln\frac{c_-}{c_+}.
+\]
+Hence $p_+=\pi_+$ is logistic.  Since $\kappa_1=s_-+\Delta p_+$ and $\kappa_2=\Delta^2p_+(1-p_+)$, the hyperbolic forms follow, and $w=-1-\kappa_1/3$ gives the last identity.
+\end{proof}
+
+\begin{corollary}[Universal Fisher length of a positive two-branch orbit]\label{cor:fisher-pi}
+For every positive two-branch mixture,
+\begin{equation}
+\boxed{
+L_F:=\int_{-\infty}^{+\infty}\sqrt{\mathcal I_x}\,\dd x=\pi.
+}
+\end{equation}
+The result is independent of the two positive amplitudes, their ratio, the scale pivot, and the spectral gap.  The integrated Fisher information is instead the spectral width,
+\begin{equation}
+\int_{-\infty}^{+\infty}\mathcal I_x\,\dd x=\Delta.
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+By \cref{thm:two-branch-normal-form},
+\[
+\sqrt{\mathcal I_x}
+=\frac{\Delta}{2}\operatorname{sech}\!\left[\frac{\Delta}{2}(x-x_\times)\right].
+\]
+Its integral over the complete real line is $\pi$.  The information integral is the $n=2$ case of \cref{thm:fisher-sumrule}.
+\end{proof}
+
+\begin{corollary}[Schwarzian spectral-gap invariant for two branches]\label{cor:schwarzian-gap}
+Where $\Dil w\ne0$, define the Schwarzian derivative with respect to $x=\ln(A/A_*)$ by
+\begin{equation}
+\{w,x\}:=
+\frac{\Dil^3w}{\Dil w}
+-\frac32\left(\frac{\Dil^2w}{\Dil w}\right)^2.
+\end{equation}
+Every positive two-branch orbit satisfies the local amplitude- and pivot-independent identity
+\begin{equation}
+\boxed{
+\{w,x\}=-\frac{(s_+-s_-)^2}{2}.
+}
+\end{equation}
+Thus the spectral gap can be recovered locally from the projective differential invariant
+\begin{equation}
+\boxed{
+\Delta=\sqrt{-2\{w,x\}}.
+}
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+The equation-of-state profile in \cref{thm:two-branch-normal-form} is an affine function of $\tanh[\Delta(x-x_\times)/2]$.  The Schwarzian is unchanged by an affine transformation of its dependent variable, and direct differentiation gives
+\[
+\{\tanh(ax),x\}=-2a^2.
+\]
+Taking $a=\Delta/2$ proves the result.
+\end{proof}
+
+\begin{corollary}[Exact positive $\Lambda+X$ background normal form]\label{cor:lambda-x-normal-form}
+Consider the positive two-branch dark-sector support
+\[
+S_{\Lambda X}=\{-1,0\},
+\]
+with $s=-1$ identified with $X$ and $s=0$ with vacuum.  Setting $x=\ln a$, the complete homogeneous dark-sector equation of state is
+\begin{equation}
+\boxed{
+w_D(x)=-\frac56-\frac16\tanh\!\left(\frac{x-x_\times}{2}\right).
+}
+\end{equation}
+Equivalently it obeys the first-order amplitude-free null
+\begin{equation}
+\boxed{
+\Dil w_D=(1+w_D)(2+3w_D),
+\qquad -1<w_D<-\frac23.
+}
+\end{equation}
+The information profile and its exact extrema are
+\begin{equation}
+\boxed{
+\mathcal I_x=-3\Dil w_D
+=\frac14\operatorname{sech}^2\!\left(\frac{x-x_\times}{2}\right),
+\qquad
+\max(-\Dil w_D)=\frac1{12}.
+}
+\end{equation}
+Moreover,
+\begin{equation}
+\boxed{
+\int_{-\infty}^{+\infty}\mathcal I_x\,\dd x=1,
+\qquad
+L_F=\pi,
+\qquad
+\{w_D,x\}=-\frac12.
+}
+\end{equation}
+If the present epoch $a=1$ is chosen as the physical amplitude pivot and the dark sector contains only these two branches, then the relative present amplitude is reconstructed from $w_D(a)$ by
+\begin{equation}
+\boxed{
+\frac{\Omega_X}{\Omega_\Lambda}
+=a\,\frac{3(1+w_D)}{-2-3w_D}.
+}
+\label{eq:lambda-x-ratio}
+\end{equation}
+The last identity is pivot-fixed rather than a pivot-free quotient invariant; it therefore does not contradict the amplitude no-go theorem.
+\end{corollary}
+
+\begin{proof}
+Apply \cref{thm:two-branch-normal-form} with $s_-=-1$, $s_+=0$, hence $\Delta=1$ and $\bar s=-1/2$.  Since $\kappa_1=-\pi_X=-3(1+w_D)$, one has
+\[
+\pi_X=3(1+w_D),
+\qquad
+\pi_\Lambda=-2-3w_D.
+\]
+Their ratio is
+\[
+\frac{\pi_X}{\pi_\Lambda}
+=\frac{\Omega_Xa^{-1}}{\Omega_\Lambda},
+\]
+which gives \cref{eq:lambda-x-ratio}.  The remaining identities follow directly from the two-branch normal form.
+\end{proof}
+
+\begin{theorem}[Fisher-length rigidity and exact branch-excess decomposition]\label{thm:fisher-rigidity}
+Let a positive finite mixture have at least two distinct active weights and extreme support values
+\[
+m=s_-<s_+=M.
+\]
+Then the Fisher length of the complete logarithmic-scale orbit satisfies
+\begin{equation}
+\boxed{
+L_F:=\int_{-\infty}^{+\infty}\sqrt{\mathcal I_x}\,\dd x\ge\pi.
+}
+\end{equation}
+Equality holds if and only if the active support is contained in the two endpoints $\{m,M\}$.  Hence every genuinely multi-branch positive orbit obeys
+\begin{equation}
+\boxed{\Delta_F:=L_F-\pi>0.}
+\end{equation}
+More sharply, let $\mu=\kappa_1$ and define
+\[
+B(\mu):=(M-\mu)(\mu-m),
+\qquad
+V(\mu):=\kappa_2,
+\qquad
+\Delta_{mM}(\mu):=B(\mu)-V(\mu).
+\]
+Then
+\begin{equation}
+\boxed{
+\Delta_F
+=
+\int_m^M
+\frac{\Delta_{mM}(\mu)\,\dd\mu}
+{\sqrt{B(\mu)V(\mu)}\,[\sqrt{B(\mu)}+\sqrt{V(\mu)}]}.
+}
+\label{eq:fisher-excess}
+\end{equation}
+The integral is understood as the convergent improper endpoint limit.  Thus the global Fisher excess is exactly the accumulated Bhatia--Davis slack.  For fixed support it is a function of the complete quotient moduli of \cref{thm:invariant-completeness}; it introduces no additional independent coefficient modulus.
+\end{theorem}
+
+\begin{proof}
+For a nontrivial positive finite mixture, $\mu=\kappa_1$ increases strictly from $m$ to $M$ and
+\[
+\frac{\dd\mu}{\dd x}=\kappa_2=V(\mu)>0.
+\]
+Therefore
+\[
+L_F=\int_m^M\frac{\dd\mu}{\sqrt{V(\mu)}}.
+\]
+The Bhatia--Davis bound gives $V(\mu)\le B(\mu)$, so
+\[
+L_F\ge\int_m^M\frac{\dd\mu}{\sqrt{(M-\mu)(\mu-m)}}=\pi.
+\]
+By \cref{thm:bd-slack}, equality in the variance bound at every finite scale occurs if and only if all active probability is carried by $m$ and $M$.  If any interior coefficient is positive, the slack is strictly positive for every finite $x$, hence $L_F>\pi$.  Finally,
+\[
+\frac1{\sqrt V}-\frac1{\sqrt B}
+=\frac{B-V}{\sqrt{BV}(\sqrt B+\sqrt V)},
+\]
+and integration yields \cref{eq:fisher-excess}.
+\end{proof}
+
+\begin{theorem}[Fisher--Rao geodesic curvature and local two-branch certificate]\label{thm:geodesic-curvature}
+Let a positive finite mixture satisfy \(\Dil w\ne0\) on an interval.  Under the standard square-root embedding
+\[
+q_s:=2\sqrt{\pi_s},
+\]
+the probability simplex with the Fisher--Rao metric is embedded isometrically in the positive orthant of the sphere of radius \(2\).  Let \(\mathcal K_{\rm FR}\) denote the geodesic curvature of the spectral orbit on that Fisher--Rao sphere.  Then
+\begin{equation}
+\boxed{
+4\mathcal K_{\rm FR}^2
+=
+\frac{\kappa_2\kappa_4-\kappa_3^2+2\kappa_2^3}{\kappa_2^3}
+=
+2+\frac{(\Dil^2w)^2-(\Dil w)(\Dil^3w)}{3(\Dil w)^3}
+\ge0.
+}
+\label{eq:fisher-geodesic-curvature}
+\end{equation}
+Equivalently,
+\begin{equation}
+\boxed{
+(\Dil^2w)^2-(\Dil w)(\Dil^3w)
+\le -6(\Dil w)^3.
+}
+\label{eq:fisher-geodesic-inequality}
+\end{equation}
+Equality throughout an interval holds if and only if exactly two dilation branches are active there; these are the two endpoints of that active support.  Thus \(\mathcal K_{\rm FR}\) is a local third-order detector of genuinely multi-branch occupation.  It does not, by itself, distinguish which two branches are active or certify ``interior'' occupation relative to a larger externally fixed support.
+
+In terms of the Schwarzian derivative,
+\begin{equation}
+\{w,x\}
+=
+\frac{\Dil^3w}{\Dil w}
+-\frac32\left(\frac{\Dil^2w}{\Dil w}\right)^2,
+\end{equation}
+the same invariant is
+\begin{equation}
+\boxed{
+4\mathcal K_{\rm FR}^2
+=
+2-\frac{\{w,x\}+\tfrac12(\Dil^2w/\Dil w)^2}{3\,\Dil w}.
+}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Let \(u_s=\sqrt{\pi_s}\).  The square-root curve \(u\) lies on the unit sphere and its round-speed is
+\[
+\left\|\frac{\dd u}{\dd x}\right\|^2=\frac{\kappa_2}{4}.
+\]
+If \(\sigma\) is unit-sphere arc length, direct differentiation of
+\[
+\frac{\dd u_s}{\dd x}=\frac12(s-\kappa_1)u_s
+\]
+gives
+\[
+\left\|\frac{\dd^2u}{\dd\sigma^2}\right\|^2
+=
+1+
+\frac{\kappa_2\kappa_4-\kappa_3^2+2\kappa_2^3}{\kappa_2^3}.
+\]
+Hence the second term is the squared geodesic curvature on the unit sphere.  The Fisher--Rao metric is four times the unit-sphere metric, equivalently \(q=2u\) lies on a sphere of radius \(2\); geodesic curvature therefore scales by a factor \(1/2\).  This yields \cref{eq:fisher-geodesic-curvature}.  Substituting
+\[
+\kappa_2=-3\Dil w,\qquad
+\kappa_3=-3\Dil^2w,\qquad
+\kappa_4=-3\Dil^3w
+\]
+gives the observable form and \cref{eq:fisher-geodesic-inequality}.
+
+A zero-geodesic-curvature orbit is a great-circle arc.  The unique great circle connecting the two asymptotic endpoint vertices lies in the two-dimensional coordinate plane spanned by those vertices.  Since every active positive branch has strictly positive fraction at every finite \(x\), the orbit can remain in that plane on an interval only when no additional branch is active.  Conversely, every two-branch orbit is the great-circle arc already described by \cref{thm:two-branch-normal-form,cor:fisher-pi}.
+\end{proof}
+
+\begin{remark}[Prior-art and novelty boundary]\label{rem:novelty-boundary}
+The underlying tools are not claimed as new in isolation.  Hadwiger theory and intrinsic volumes are classical; Minkowski functionals have long been used in cosmology as morphological statistics \cite{SchmalzingKerscherBuchert1996}; \(w=-2/3\) occurs in domain-wall cosmology \cite{BattyeBucherSpergel1999}; quasilocal energy has been studied directly in FLRW spacetimes \cite{Afshar2009,OlteanEtAl2021}; and other cosmological dilation algebras exist, for example the CVH algebra in FLRW/LQC \cite{BenAchourLivine2017}.  Likewise, exponential-family geometry, Prony reconstruction, and matrix-pencil recovery are established structures \cite{HuaSarkar1990,PeterPlonka2013,FischerEtAl2020,Karev2010}.
+
+The model-specific result proved here is the exact chain from the declared Euclidean convex-valuation closure on the round \(B^4/S^3\) family to the five-weight cosmological dilation spectrum, its semisimple projector algebra, complete positive-support quotient moduli, Hankel/inertia fingerprints, observable jet cone, weighted cumulant identities, Fisher-rigidity and local curvature certificates, the boundary expansion quotient, and the resulting finite-power growth obstruction for the declared smooth lift.  A targeted prior-art search found no direct predecessor deriving this complete chain.  Accordingly, any priority statement is scoped to this linked construction; no priority is claimed for Hadwiger theory, \(w=-2/3\), quasilocal energy, Prony/Hankel methods, Fisher geometry, or cosmological dilation operators separately.
+\end{remark}
+
+
+\section{Boundary Face and Expansion Quotient}
+
+The full valuation spectrum contains the bulk branch \(s=1\), coming from \(V_4\).  The boundary curvature-measure terms give the remaining four branches.
+
+\begin{criterion}[Boundary-local valuation class]
+The local boundary class used here consists of filling-relative scalar densities built from the induced boundary measure and the elementary symmetric curvatures \(e_j(K)\), with coefficients independent of \(A\).  It excludes boundary integrals involving the support function \(x\cdot n\), ambient-position data, or other nonlocal information.
+\end{criterion}
+
+\begin{proposition}[Boundary face]
+Inside this declared boundary-local class,
+\begin{equation}
+S_\partial=\{0,-1,-2,-3\}.
+\end{equation}
+Equivalently, a full valuation profile lies in the boundary face if and only if
+\begin{equation}
+\mathsf P_1\varepsilon=0,
+\end{equation}
+or
+\begin{equation}
+\Dil(\Dil+1)(\Dil+2)(\Dil+3)\varepsilon=0.
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+The bulk term has energy scaling \(A^4\) and density scaling \(A\), hence \(s=1\).  The boundary curvature-measure terms have energy powers \(A^3,A^2,A,A^0\), hence density powers \(A^0,A^{-1},A^{-2},A^{-3}\).  The declared boundary-local class excludes the bulk intrinsic volume term.  The projector and annihilator statements are the spectral algebra already proved.
+\end{proof}
+
+\begin{remark}[Conditional nature of the filter]
+The exclusion of the bulk branch is not a topological theorem.  It is conditional on the stated boundary-local class.  For example, the Minkowski formula can express \(V_4\) through a boundary integral involving \(x\cdot n\); that ambient-position datum is deliberately excluded here.
+\end{remark}
+
+Let \(a=A/A_0\).  At the level of the normalized expansion function \(\mathcal H^2(a)=H^2(a)/H_0^2\), the boundary powers are
+\begin{equation}
+1,\quad a^{-1},\quad a^{-2},\quad a^{-3}.
+\end{equation}
+The standard curved-\(\Lambda\)CDM nuisance powers are
+\begin{equation}
+1,\quad a^{-2},\quad a^{-3}.
+\end{equation}
+
+\begin{theorem}[Expansion-rate quotient]
+At the level of \(\mathcal H^2(a)\) alone,
+\begin{equation}
+\mathcal V_\partial/
+\spanop\{1,a^{-2},a^{-3}\}
+\simeq
+\spanop\{[a^{-1}]\}.
+\end{equation}
+The unique nonstandard quotient direction has
+\begin{equation}
+w=-\frac23.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+The functions \(1,a^{-1},a^{-2},a^{-3}\) are linearly independent on every interval \(a>0\).  Quotienting by the span of \(1,a^{-2},a^{-3}\) leaves the single class \([a^{-1}]\).  The equation-of-state map gives \(w=-1-(-1)/3=-2/3\).
+\end{proof}
+
+\section{Geometric Curvature Split}
+
+The quotient theorem is only an expansion-rate statement.  A physical stress component with \(a^{-2}\) scaling is not the same object as geometric spatial curvature.
+
+Let
+\begin{equation}
+\Omega_K^{\rm geom}:=-\frac{c^2}{A_0^2H_0^2}
+\end{equation}
+for the closed FLRW convention.  A physical \(s=-2\) valuation component is denoted \(\Omega_{2,\rm val}\).  The boundary-profile background takes the form
+\begin{equation}
+\mathcal H^2(a)=
+\Omega_ra^{-4}
++\Omega_ma^{-3}
++\bigl(\Omega_K^{\rm geom}+\Omega_{2,\rm val}\bigr)a^{-2}
++\Omega_Xa^{-1}
++\Omega_\Lambda.
+\end{equation}
+The geometric curvature sector, together with the assumed \(S^3\) topology, fixes the curvature scale entering the FLRW distance relation and compact spatial harmonic spectrum.  A physical \(a^{-2}\) stress component affects the expansion history but is not thereby geometric curvature.
+
+Define
+\begin{equation}
+d(z):=\frac{H_0D_M(z)}{c}.
+\end{equation}
+For an FLRW geometry, the Clarkson--Bassett--Lu consistency relation gives
+\begin{equation}
+\Omega_K^{\rm geom}
+=
+\frac{[\mathcal H(z)d'(z)]^2-1}{d(z)^2},
+\end{equation}
+with the value at \(z=0\) understood by the regular limit \cite{ClarksonBassettLu2008}.
+
+The finite cosmological power alphabet admits exact coefficient projectors.
+
+\begin{theorem}[Exact expansion-coefficient projectors]\label{thm:expansion-projectors}
+Let
+\begin{equation}
+S_{\rm cos}:=\{0,-1,-2,-3,-4\},
+\qquad
+F(a)=\sum_{s\in S_{\rm cos}}\Omega_s a^s.
+\end{equation}
+For every \(s\in S_{\rm cos}\), define
+\begin{equation}
+\boxed{
+\mathcal C_s[F](a)
+:=
+a^{-s}
+\prod_{\substack{t\in S_{\rm cos}\\t\ne s}}
+\frac{\Dil-t}{s-t}\,F(a).
+}
+\end{equation}
+Then
+\begin{equation}
+\boxed{\mathcal C_s[F](a)=\Omega_s}
+\end{equation}
+for every \(a>0\).  Hence \(\Dil\mathcal C_s[F]=0\) is an exact coefficient-level null inside this five-power expansion alphabet.
+\end{theorem}
+
+\begin{proof}
+The Lagrange polynomial in \(\Dil\) annihilates every branch \(a^t\) with \(t\ne s\) and acts as the identity on \(a^s\).  Multiplication by \(a^{-s}\) removes the remaining scale factor.
+\end{proof}
+
+The two projectors needed below are
+\begin{align}
+\mathcal C_{-1}[F]
+&=-\frac a6\Dil(\Dil+2)(\Dil+3)(\Dil+4)F,\\
+\mathcal C_{-2}[F]
+&=\frac{a^2}{4}\Dil(\Dil+1)(\Dil+3)(\Dil+4)F.
+\end{align}
+Thus \(\widehat\Omega_X=\mathcal C_{-1}[F]\), while the physical \(s=-2\) coefficient is obtained only after subtracting geometric curvature,
+\begin{equation}
+\boxed{
+\Omega_{2,\rm val}=\mathcal C_{-2}[F]-\Omega_K^{\rm geom}.
+}
+\end{equation}
+
+\begin{corollary}[Physical parameter count]
+Relative to curved \(\Lambda\)CDM, the general boundary-profile extension at background-geometry level is two-parameter:
+\begin{equation}
+(\Omega_X,\Omega_{2,\rm val}).
+\end{equation}
+The one-parameter VDE subclass is the nested restriction
+\begin{equation}
+\Omega_{2,\rm val}=0.
+\end{equation}
+\end{corollary}
+
+
+
+\section{Einstein--Dilation Spectral Closure of the Homogeneous Sector}\label{sec:edsc}
+
+This section adds no microscopic source action.  It records the maximal homogeneous gravitational closure obtained after general relativity, closed FLRW symmetry, a finite physical support, and the dimensional constants \(H_0\) and \(\Omega_K^{\rm geom}\) have already been declared.  Thus EDSC is a background GR closure theorem, not an amplitude selector and not a perturbation theory.
+
+Let
+\begin{equation}
+F(a):=\frac{H^2(a)}{H_0^2},
+\qquad
+\Dil=a\frac{\dd}{\dd a},
+\qquad
+\Omega_K^{\rm geom}:=-\frac{c^2}{A_0^2H_0^2}<0.
+\end{equation}
+Define the dimensionless physical density and pressure represented by the Einstein tensor by
+\begin{equation}
+\boxed{
+E_F(a):=F(a)-\Omega_K^{\rm geom}a^{-2},
+}
+\qquad
+\boxed{
+P_F(a):=-F(a)-\frac13\Dil F(a)+\frac13\Omega_K^{\rm geom}a^{-2}.
+}
+\end{equation}
+Equivalently,
+\begin{equation}
+E_F=\frac{8\pi G}{3H_0^2c^2}\rho_{\rm phys},
+\qquad
+P_F=\frac{8\pi G}{3H_0^2c^2}p_{\rm phys}.
+\end{equation}
+
+\begin{lemma}[Einstein tensor in dilation variables]\label{lem:einstein-dilation-variables}
+For a closed FLRW metric in general relativity, the two scalar homogeneous Einstein equations are exactly
+\begin{equation}
+F=E_F+\Omega_K^{\rm geom}a^{-2},
+\qquad
+P_F=-E_F-\frac13\Dil E_F.
+\end{equation}
+Consequently,
+\begin{equation}
+\boxed{
+\Dil E_F+3(E_F+P_F)=0.
+}
+\end{equation}
+The work-map pressure coincides with the homogeneous Bianchi identity pressure.
+\end{lemma}
+
+\begin{proof}
+The first Friedmann equation for \(A=A_0a\) is
+\[
+H^2=\frac{8\pi G}{3c^2}\rho_{\rm phys}-\frac{c^2}{A^2}.
+\]
+Division by \(H_0^2\) gives \(F=E_F+\Omega_K^{\rm geom}a^{-2}\).  Since
+\[
+E_F=F-\Omega_K^{\rm geom}a^{-2},
+\]
+one has
+\[
+\Dil E_F=\Dil F+2\Omega_K^{\rm geom}a^{-2}.
+\]
+The FLRW conservation law, equivalently the contracted Bianchi identity applied to the homogeneous stress tensor, gives
+\[
+\Dil E_F+3(E_F+P_F)=0.
+\]
+Solving for \(P_F\) yields
+\[
+P_F=-F-\frac13\Dil F+\frac13\Omega_K^{\rm geom}a^{-2}.
+\]
+This is exactly the work-map formula \(p=-\varepsilon-\Dil\varepsilon/3\) applied to \(E_F\).
+\end{proof}
+
+For a declared physical support \(S_{\rm phys}\), put
+\begin{equation}
+P_{S_{\rm phys}}(z):=\prod_{s\in S_{\rm phys}}(z-s).
+\end{equation}
+Let \(H_r^{\rm phys}\) denote the derivative Hankel matrix of \(E_F\),
+\begin{equation}
+H_r^{\rm phys}(a):=\left[\Dil^{i+j}E_F(a)\right]_{i,j=0}^{r}.
+\end{equation}
+
+\begin{theorem}[Invariant homogeneous gravity closure, EDSC]\label{thm:gravity-closure}
+Assume a closed FLRW geometry and general relativity.  Let
+\[
+S_{\rm cos}:=\{0,-1,-2,-3,-4\}
+\]
+be the finite expansion alphabet used for \(F\), and let \(S_{\rm phys}\subseteq S_{\rm cos}\) be the declared physical homogeneous support after the geometric curvature split.  Then the homogeneous gravitational sector is exactly closed by a homogeneous finite-support source if and only if the following invariant conditions hold:
+\begin{enumerate}
+\item finite expansion alphabet:
+\[
+\mathcal C_s[F]=\Omega_s,
+\qquad
+\Dil\mathcal C_s[F]=0,
+\qquad
+s\in S_{\rm cos};
+\]
+\item normalization:
+\[
+F(1)=1;
+\]
+\item geometric curvature split:
+\[
+\Omega_{2,{\rm val}}
+=
+\mathcal C_{-2}[F]-\Omega_K^{\rm geom},
+\]
+with the declared value of \(\Omega_{2,{\rm val}}\), in particular \(\Omega_{2,{\rm val}}=0\) for the nested VDE execution;
+\item physical spectral closure:
+\[
+P_{S_{\rm phys}}(\Dil)E_F=0;
+\]
+\item physical positivity on the declared positive branch class:
+\[
+E_F>0,
+\qquad
+\nu_-\!\left(H_{k-1}^{\rm phys}\right)=0,
+\qquad
+k:=|S_{\rm phys}|.
+\]
+\end{enumerate}
+Under these conditions the Einstein tensor is exactly a homogeneous perfect-fluid stress tensor with active branches satisfying
+\begin{equation}
+w_s=-1-\frac{s}{3}.
+\end{equation}
+Once \(H_0\), \(\Omega_K^{\rm geom}\), the finite support, and the branch coefficients are declared, no further homogeneous GR datum remains free.
+\end{theorem}
+
+\begin{proof}
+Assume first that the five conditions hold.  The coefficient projectors give a finite-power \(F\) normalized by \(F(1)=1\).  The curvature split removes the geometric \(a^{-2}\) coefficient from the physical measure and leaves
+\[
+E_F=\sum_{s\in S_{\rm phys}}\Omega_s^{\rm phys}a^s
+\]
+with the declared \(s=-2\) physical coefficient.  The spectral closure is precisely the annihilator equation for this finite support.  By \cref{lem:einstein-dilation-variables},
+\[
+P_F=-E_F-\frac13\Dil E_F.
+\]
+For a single branch \(E_s\propto a^s\), this gives
+\[
+P_s=-\left(1+\frac{s}{3}\right)E_s,
+\qquad
+w_s=P_s/E_s=-1-\frac{s}{3}.
+\]
+The Hankel inertia condition excludes negative physical branch weights on the declared positive class by \cref{thm:hankel-inertia}.  Thus the homogeneous Einstein tensor is represented by exactly the declared finite-support perfect-fluid source.
+
+Conversely, suppose a closed FLRW GR solution is sourced by a homogeneous finite-support physical sector with the stated support, positivity, normalization, and curvature split.  The first Friedmann equation gives \(F=E_F+\Omega_K^{\rm geom}a^{-2}\), hence \(F\) lies in \(S_{\rm cos}\) and its Lagrange projectors are constant.  The Bianchi identity gives the work-map pressure.  The finite support gives \(P_{S_{\rm phys}}(\Dil)E_F=0\), and positive branch weights give nonnegative Hankel inertia.  Therefore all five invariant conditions follow.
+\end{proof}
+
+\begin{definition}[Operational EDSC residual]\label{def:edsc-residual}
+For an exact finite alphabet profile define
+\begin{equation}
+\boxed{
+\mathfrak R_{\rm grav}[F]
+:=
+\left(
+\begin{array}{c}
+\max_{s\in S_{\rm cos}}\left|\Dil\mathcal C_s[F]\right|\\[1mm]
+|F(1)-1|\\[1mm]
+\left|\mathcal C_{-2}[F]-\Omega_K^{\rm geom}-\Omega_{2,{\rm val}}\right|\\[1mm]
+\left|P_{S_{\rm phys}}(\Dil)E_F\right|\\[1mm]
+\nu_-\!\left(H_{k-1}^{\rm phys}\right)
+\end{array}
+\right).
+}
+\end{equation}
+The homogeneous sector satisfies EDSC exactly if and only if
+\begin{equation}
+\mathfrak R_{\rm grav}[F]=0,
+\end{equation}
+with the last component interpreted as the absence of negative physical Hankel inertia on the declared positive support.
+\end{definition}
+
+\begin{remark}[What EDSC closes, and what it cannot close]
+EDSC closes the homogeneous closed-FLRW metric and the homogeneous Einstein tensor once the constants and branch ledger are supplied.  It fixes \(A_0=c/(H_0\sqrt{-\Omega_K^{\rm geom}})\), reconstructs
+\[
+\tau(a)=\tau_*+\int_{a_*}^{a}\frac{\dd a'}{a'H_0\sqrt{F(a')}},
+\]
+and gives \(E_F\), \(P_F\), branch projectors, curvature split, and branch equations of state.
+
+It does not determine the dimensional amplitudes \(H_0,\Omega_X,\sigma,\mu\) from topology alone.  It does not determine scalar, vector, or tensor perturbations without a declared source lift, sound speed, anisotropic stress, gauge treatment, and perturbative Einstein equations.  It also does not quantize gravity, since no covariant source action, Hilbert space, or Planck-scale completion is produced by the dilation invariants.
+\end{remark}
+
+\begin{remark}[Executed audit as EDSC check]
+In the supplied execution ledger, the exact coefficient projector gives
+\[
+\mathcal C_{-1}[F]=0.174541,
+\qquad
+\mathcal C_{-2}[F]=\Omega_K^{\rm geom}=-0.010000,
+\]
+and hence
+\[
+\Omega_{2,{\rm val}}=0.
+\]
+If the negative closed-FLRW curvature coefficient is left inside the physical moment measure, the Hankel inertia has one negative direction.  After the curvature split, the physical \(\{\Lambda,X,m\}\) sector has positive inertia.  This is precisely the EDSC distinction between geometric curvature and physical branch energy.
+\end{remark}
+
+
+\section{Canonical Source Lifts and Dust Current}
+
+The valuation theorem fixes homogeneous powers.  It does not fix a unique covariant stress tensor.  In this section only we use \(c=\hbar=1\) and \(M_{\rm Pl}^{-2}=8\pi G\).  For a branch \(\rho_s(a)=\rho_{s0}a^s\), define
+\begin{equation}
+\Omega_s:=\frac{\rho_{s0}}{3M_{\rm Pl}^2H_0^2}.
+\end{equation}
+
+\begin{theorem}[Canonical scalar realization for \(s<0\)]
+Let
+\begin{equation}
+\rho_s(a)=\rho_{s0}a^s>0,
+\qquad
+s<0,
+\qquad
+w_s=-1-\frac s3.
+\end{equation}
+A minimally coupled canonical scalar realizes this homogeneous branch through
+\begin{equation}
+\dot\phi_s^2=-\frac{s}{3}\rho_s,
+\qquad
+V_s=\frac{6+s}{6}\rho_s.
+\end{equation}
+Equivalently, with \(M_{\rm Pl}^{-2}=8\pi G\),
+\begin{equation}
+\frac{\dd\phi_s}{\dd\ln a}
+=
+\pm M_{\rm Pl}
+\frac{\sqrt{-s\,\Omega_s a^s}}{\mathcal H(a)}.
+\end{equation}
+The realization has
+\begin{equation}
+c_{s,\rm rest}^2=1,
+\qquad
+\pi_{\mu\nu}=0.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+For a canonical scalar,
+\[
+\rho=\frac12\dot\phi^2+V,
+\qquad
+p=\frac12\dot\phi^2-V.
+\]
+Hence \(\dot\phi^2=(1+w)\rho\) and \(V=(1-w)\rho/2\).  Substituting \(w_s=-1-s/3\) gives the displayed formulas.
+\end{proof}
+
+\begin{theorem}[Canonical scalar mass-flow invariant]
+For the same branch,
+\begin{equation}
+\boxed{
+V_{s,\phi\phi}
+=
+-\frac{6+s}{4}H^2
+\left[
+s+\Dil\ln(\mathcal H^2/\mathcal H_*^2)
+\right],
+}
+\end{equation}
+where \(\mathcal H_*>0\) is an arbitrary normalization.
+\end{theorem}
+
+\begin{proof}
+Write \(F=\mathcal H^2=H^2/H_0^2\) and
+\[
+V_s(a)=\frac{6+s}{2}M_{\rm Pl}^2H_0^2\Omega_sa^s,
+\qquad
+\Dil\phi_s=\pm M_{\rm Pl}\sqrt{\frac{-s\Omega_sa^s}{F}}.
+\]
+Using \(\dd/\dd\phi=(\Dil\phi)^{-1}\Dil\), differentiating twice, and simplifying gives
+\[
+V_{s,\phi\phi}
+=
+-\frac{6+s}{4}H_0^2F
+\left[s+\Dil\ln F\right].
+\]
+This is the stated expression.
+\end{proof}
+
+For the two non-dust boundary branches,
+\begin{align}
+s=-1:\qquad
+m_X^2&=\frac54H^2\left[1-\Dil\ln \mathcal H^2\right],\\
+s=-2:\qquad
+m_2^2&=H^2\left[2-\Dil\ln \mathcal H^2\right].
+\end{align}
+Equivalently,
+\begin{equation}
+m_X^2/H_0^2=\frac54(F-\Dil F),
+\qquad
+m_2^2/H_0^2=2F-\Dil F.
+\end{equation}
+
+The \(s=-3\) branch can be reproduced homogeneously by a canonical scalar, but that scalar has \(c_s^2=1\) and is not a cold-dust completion.  A CDM-like source requires a conserved pressureless current.
+
+\begin{theorem}[Pressureless current realization]
+Let \(J^\mu=nu^\mu\) be a conserved timelike particle-number current,
+\begin{equation}
+\nabla_\mu J^\mu=0,
+\qquad
+u^\mu u_\mu=-1.
+\end{equation}
+The pressureless stress tensor
+\begin{equation}
+T_{\mu\nu}=\rho u_\mu u_\nu,
+\qquad
+\rho=mn,
+\end{equation}
+satisfies
+\begin{equation}
+p=0,
+\qquad
+c_{s,\rm rest}^2=0,
+\qquad
+\pi_{\mu\nu}=0,
+\end{equation}
+and, on a homogeneous FLRW background,
+\begin{equation}
+\rho\propto a^{-3}.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Conservation of \(J^\mu\) gives \(n\propto V_3^{-1}\propto a^{-3}\) in a comoving homogeneous flow.  The standard pressureless perfect-fluid stress tensor has \(p=0\), no rest-frame pressure perturbation, and no anisotropic stress.
+\end{proof}
+
+\begin{remark}[Source layer]
+The scalar and current constructions are existence lifts of selected homogeneous branches.  They are not derived by covariant variation of \(E_4^{\rm val}\).  A different lift with the same background power can have different perturbations.
+\end{remark}
+
+\begin{proposition}[Conditional subhorizon growth consistency for a smooth lift]\label{prop:growth-null}
+Let
+\[
+F(a):=\mathcal H^2(a)=H^2(a)/H_0^2
+\]
+be a background expansion history already fixed independently.  Assume general relativity, pressureless clustering matter, negligible radiation and scale-dependent massive-neutrino corrections over the redshift and wavenumber range of interest, and an additional component whose perturbations are negligible on the considered scales.  Then the linear growing-mode matter contrast $D(a)$ satisfies the standard subhorizon equation
+\begin{equation}
+\boxed{
+\mathcal R_{\rm growth}[D;F]
+:=
+\Dil^2D+
+\left(2+\frac12\Dil\ln F\right)\Dil D
+-\frac32\Omega_m(a)D
+=0,
+}
+\label{eq:growth-residual}
+\end{equation}
+where
+\begin{equation}
+\Omega_m(a)=\frac{\Omega_{m0}a^{-3}}{F(a)}.
+\end{equation}
+For the canonical-scalar lifts above, $c_{s,\rm rest}^2=1$ makes the smooth-component approximation appropriate only on scales well inside the scalar sound horizon and where its perturbations are dynamically negligible.  Equation~\eqref{eq:growth-residual} is therefore a conditional lift-level consistency relation, not an exact consequence of the valuation theorem and not a substitute for a full Boltzmann transfer calculation \cite{Linder2005}.
+
+With
+\[
+f(a):=\Dil\ln D,
+\]
+a pivot-normalized prediction for redshift-space growth is
+\begin{equation}
+f\sigma_8(a)
+ =f(a)\,\sigma_{8,0}\frac{D(a)}{D(1)}.
+\end{equation}
+Thus a declared source lift plus the background projectors closes a reproducible approximate growth null, while disagreement with it falsifies that lift rather than the finite valuation algebra itself.
+\end{proposition}
+
+\begin{proposition}[Self-adjoint growth form and exact Heath obstruction]\label{prop:growth-selfadjoint}
+Under the hypotheses of \cref{prop:growth-null}, assume in addition that the entire \(a^{-3}\) coefficient in \(F(a)\) is the clustering pressureless matter coefficient \(\Omega_{m0}\), and write
+\[
+E(a):=\frac{H(a)}{H_0}=\sqrt{F(a)}.
+\]
+Then the growth equation is equivalent to the self-adjoint balance law
+\begin{equation}
+\boxed{
+\Dil\!\left[a^2E(a)\,\Dil D\right]
+=
+\frac32\,\Omega_{m0}\,a^{-1}E(a)^{-1}D.
+}
+\label{eq:growth-selfadjoint}
+\end{equation}
+Consequently,
+\begin{equation}
+\boxed{
+\left[a^2E\,D\,\Dil D\right]_{a_1}^{a_2}
+=
+\int_{a_1}^{a_2}a^2E(\Dil D)^2\,\dd\ln a
++
+\frac32\Omega_{m0}
+\int_{a_1}^{a_2}a^{-1}E^{-1}D^2\,\dd\ln a.
+}
+\label{eq:growth-energy}
+\end{equation}
+
+Assume a matter-dominated early-time normalization and define the classical Heath candidate \cite{Heath1977}
+\begin{equation}
+D_H(a)
+:=
+\frac{5\Omega_{m0}}{2}\,
+E(a)\int_0^a\frac{\dd a'}{a'^3E(a')^3}.
+\label{eq:heath-candidate}
+\end{equation}
+For any finite distinct-power background
+\begin{equation}
+F(a)=\sum_s\Omega_s a^s
+\end{equation}
+with clustering matter coefficient \(\Omega_{-3}=\Omega_{m0}\), its exact growth-equation residual is
+\begin{equation}
+\boxed{
+\mathcal R_{\rm growth}[D_H;F]
+=
+\frac{D_H(a)}{F(a)}
+\sum_{s\ne-3}\frac{s(s+2)}{2}\,\Omega_s a^s.
+}
+\label{eq:heath-general-obstruction}
+\end{equation}
+Hence \(D_H\) is an exact solution if and only if every non-matter power with nonzero coefficient has \(s\in\{0,-2\}\).  This recovers the classical matter-plus-\(\Lambda\)-plus-curvature case.  For the no-radiation boundary alphabet \(\{0,-1,-2,-3\}\),
+\begin{equation}
+\boxed{
+\mathcal R_{\rm growth}[D_H;F]
+=
+-\frac{\Omega_Xa^{-1}}{2F(a)}\,D_H(a).
+}
+\label{eq:heath-x-obstruction}
+\end{equation}
+Thus, within that restricted alphabet and the smooth-lift assumptions, the \(s=-1\) branch is exactly the obstruction to the Heath integral.  If radiation is restored, an additional term
+\[
++\frac{4\Omega_ra^{-4}}{F(a)}D_H(a)
+\]
+appears.  These statements concern the conditional growth lift, not the valuation theorem itself.
+\end{proposition}
+
+\begin{proof}
+Writing primes for \(\dd/\dd x\), \(x=\ln a\), the growth equation is
+\[
+D''+\left(2+\frac{F'}{2F}\right)D'
+=
+\frac32\Omega_{m0}e^{-3x}F^{-1}D.
+\]
+Multiplication by \(e^{2x}F^{1/2}\) gives \cref{eq:growth-selfadjoint}; multiplying by \(D\) and integrating by parts gives \cref{eq:growth-energy}.
+
+Let
+\[
+c:=\frac{5\Omega_{m0}}{2},
+\qquad
+J(x):=\int_0^{a=e^x}\frac{\dd a'}{a'^3E(a')^3},
+\qquad
+D_H=cF^{1/2}J.
+\]
+Since \(J'=e^{-2x}F^{-3/2}\), direct substitution into \(\mathcal R_{\rm growth}\) yields
+\[
+\mathcal R_{\rm growth}[D_H;F]
+=
+cJF^{-1/2}
+\left[
+\frac12F''+F'-\frac32\Omega_{m0}e^{-3x}
+\right].
+\]
+For \(F=\sum_s\Omega_se^{sx}\),
+\[
+\frac12F''+F'
+=
+\sum_s\frac{s(s+2)}{2}\Omega_sa^s.
+\]
+The \(s=-3\) term is exactly \(+\tfrac32\Omega_{m0}a^{-3}\) and cancels the clustering source term.  Since \(D_H=cF^{1/2}J\), the remaining terms give \cref{eq:heath-general-obstruction}.  Distinct powers are linearly independent on every interval \(a>0\), so the residual vanishes identically if and only if each non-matter coefficient with \(s(s+2)\ne0\) vanishes.  The boundary and radiation specializations follow immediately.
+\end{proof}
+
+\section{Endpoint Normal Form and Amplitude No-Go}
+
+This section records a restricted endpoint normal form.  Its hypotheses are intentionally narrow.
+
+\begin{hypothesis}[Minimal endpoint class]
+On a connected oriented \(\Sigma\simeq\Sthree\), assume:
+\begin{enumerate}
+\item local metric dependence is zeroth order and \({\rm Diff}^+(\Sigma)\)-natural;
+\item there are no local endpoint degrees of freedom;
+\item curvature, derivatives, embedding-position data, background connections, and nonlocal spectral functionals are excluded;
+\item additivity holds on finite disjoint unions;
+\item global internal data enter only through a prescribed finite-rank additive charge vector \(Q\in\mathbb Z^r\), independent of the metric scale.
+\end{enumerate}
+\end{hypothesis}
+
+\begin{theorem}[Conditional endpoint normal form]
+Inside the minimal endpoint class,
+\begin{equation}
+E_{\rm end}
+=
+\sigma\,\vol(\Sigma)
++
+\sum_{A=1}^r\mu_AQ_A.
+\end{equation}
+For a single oriented degree \(Q_U\),
+\begin{equation}
+E_{\rm end}=\sigma V_3+\mu Q_U,
+\end{equation}
+and hence
+\begin{equation}
+\varepsilon(a)=\sigma+\frac{\mu Q_U}{2\pi^2A_0^3}a^{-3},
+\qquad
+p=-\sigma.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Under the stated exclusions, the only local zeroth-order natural metric density is a universal constant multiple of the Riemannian volume density.  The remaining metric-independent charge dependence is an additive homomorphism \(f:\mathbb Z^r\to\R\), hence \(f(Q)=\sum_A\mu_AQ_A\).
+\end{proof}
+
+\begin{nogotheorem}[Scale-covariance no-go for dimensional amplitudes]
+Purely topological or dimensionless data cannot naturally determine a nonzero quantity of nonzero length dimension while remaining covariant under global metric rescalings.  In particular, topology alone cannot determine nonzero values of \(\sigma\), \(\mu\), \(H_0\), branch densities, mass scales, or cutoffs.
+\end{nogotheorem}
+
+\begin{proof}
+Under \(L\mapsto\lambda L\), topological and dimensionless data are unchanged.  A quantity \(X\) with length dimension \(L^k\), \(k\ne0\), must transform as \(X\mapsto\lambda^kX\).  If \(X\) is determined only by the unchanged data, it must also remain unchanged.  Compatibility for all \(\lambda>0\) implies \(X=0\).
+\end{proof}
+
+\begin{remark}[Dimensionless parameters]
+Dimensionless density parameters such as \(\Omega_X\) are not fixed by this dimensional argument alone.  They become meaningful only after a normalization scale, critical density, or amplitude ledger is declared.  They are then constrained by matching or data, not by topology alone.
+\end{remark}
+
+\section{Closure Tests}
+
+At the density-profile level, the exact closure residuals are
+\begin{align}
+\mathcal R_{\rm val}[\varepsilon]
+&:=
+(\Dil-1)\Dil(\Dil+1)(\Dil+2)(\Dil+3)\varepsilon,\\
+\mathcal R_{\partial}[\varepsilon]
+&:=
+\Dil(\Dil+1)(\Dil+2)(\Dil+3)\varepsilon,\\
+\mathcal R_{\rm end}[\varepsilon]
+&:=
+\Dil(\Dil+3)\varepsilon.
+\end{align}
+The full valuation, boundary valuation, and endpoint classes satisfy respectively
+\begin{equation}
+\mathcal R_{\rm val}=0,
+\qquad
+\mathcal R_{\partial}=0,
+\qquad
+\mathcal R_{\rm end}=0.
+\end{equation}
+
+For the nested \(a^{-1}\) expansion-rate direction, use the exact coefficient projector \(\widehat\Omega_X(a):=\mathcal C_{-1}[\mathcal H^2](a)\) of \cref{thm:expansion-projectors}.
+The exact one-parameter VDE background requires \(\widehat\Omega_X(a)\) to be constant.  Curved \(\Lambda\)CDM is the sharper null
+\begin{equation}
+\widehat\Omega_X(a)=0.
+\end{equation}
+
+\begin{criterion}[Practical estimation]
+High-order numerical differentiation is noise-sensitive.  Practical closure tests should use covariance-aware basis fits, direct likelihood parameterizations, Gaussian-process reconstructions with derivative covariance, or discrete Prony recurrences on logarithmically spaced samples.  The analytic differential operators define the invariant nulls; they need not be evaluated by raw finite differences.
+\end{criterion}
+
+\begin{criterion}[Free-spectrum identification protocol]\label{crit:free-spectrum}
+A reconstruction in which the generalized eigenvalues are constrained from the outset to
+\[
+\{e^{h},1,e^{-h},e^{-2h},e^{-3h}\}
+\]
+can test consistency with the valuation closure but cannot independently identify those spectral locations.  For identification, the sample-Hankel or exponential-sum analysis shall first infer the active generalized eigenvalues $r_j$ as free quantities, with the full data covariance and model-order uncertainty propagated, and only afterwards test whether
+\[
+ s_j=\frac{\ln r_j}{h}
+\]
+are statistically compatible with a subset of $S_{\rm val}$.  This free-spectrum step is the operational distinction between a closure null and an independent spectral measurement.
+\end{criterion}
+
+For logarithmically equally spaced samples \(x_n=\ln a_n=x_0+nh\), the discrete counterpart is
+\begin{equation}
+\prod_{s\in S}(L-e^{sh})f_n=0,
+\end{equation}
+where \(Lf_n=f_{n+1}\).  This is the Prony form of the same finite spectral closure.  A stronger derivative-free implementation is the sample Hankel pencil of \cref{thm:discrete-hankel}: its generalized eigenvalues must lie in
+\begin{equation}
+\{e^{h},1,e^{-h},e^{-2h},e^{-3h}\}
+\end{equation}
+for the full valuation class, with the appropriate subset for a lower-dimensional support.  The determinant-step ratio must simultaneously equal \(e^{-5h}\), \(e^{-6h}\), or \(e^{-3h}\) for the fully active valuation, boundary, or endpoint supports, respectively.
+
+
+
+\section{Executed Numerical Invariant Audit}\label{sec:executed-audit}
+
+This section is deliberately downstream of the theorem layer.  It evaluates the exact identities on supplied execution artifacts and separates three logically distinct questions: whether the declared source lift was implemented correctly, whether the invariant identities recover the instantiated background, and whether external data independently identify or significantly prefer the predicted branch.
+
+\subsection{Execution identity and scope}
+
+The transfer evidence uses unmodified CLASS/\texttt{classy} v3.3.4 at source commit
+\begin{equation}
+\texttt{e85808324f51fc694d12e3ed7439552a3c3f9540},
+\end{equation}
+with closed FLRW geometry \(\Omega_K^{\rm geom}=-0.01\).  CLASS is a public Einstein--Boltzmann code \cite{Lesgourgues2011CLASS,BlasLesgourguesTram2011}.  The nested source lift is represented by the CLASS fluid sector with
+\begin{equation}
+\Omega_X\mapsto\texttt{Omega\_fld},
+\qquad
+w_X=-\frac23,
+\qquad
+c_{s,{\rm rest}}^2=1,
+\qquad
+\texttt{use\_ppf=no}.
+\end{equation}
+The evidence bundle contains scalar CMB spectra through \(\ell=1200\), linear \(P(k,z=0)\), and scalar transfer outputs.  The BAO pilot uses Cobaya 3.6.2 \cite{TorradoLewis2021} with the official all-tracer DESI DR2 BAO likelihood \cite{DESIDR2BAO2025}, 13 BAO observables, fixed \(\Omega_K^{\rm geom}=-0.01\) and \(\omega_b=0.02237\), and profiled \(H_0\) and \(\omega_{\rm cdm}\).  No CMB, supernova, lensing, or growth likelihood is included in this pilot.
+
+\subsection{Executed transfer checks}
+
+The latest supplied validation gate reports \(26/26\) checks passed.  The first physical closed scalar mode is expected at
+\begin{equation}
+9.434617347\times10^{-5}\ h\,{\rm Mpc}^{-1}
+\end{equation}
+and the transfer table begins at
+\begin{equation}
+9.43455838046\times10^{-5}\ h\,{\rm Mpc}^{-1},
+\end{equation}
+a relative difference of \(6.25002\times10^{-6}\).  The executed background law \(\rho_X\propto a^{-1}\) has maximum reported residual
+\begin{equation}
+\boxed{1.88064\times10^{-9}}.
+\end{equation}
+The required transfer columns \texttt{d\_fld}, \texttt{t\_fld}, \texttt{phi}, \texttt{psi}, and \texttt{k (h/Mpc)} are present.
+
+A closed-safe default-versus-tight precision comparison gives the 95th-percentile relative differences
+\begin{center}
+\begin{tabular}{@{}lccc@{}}
+\toprule
+ & TT & EE & \(P(k)\) \\
+\midrule
+VDE & \(1.026\times10^{-3}\) & \(1.098\times10^{-3}\) & \(4.865\times10^{-4}\) \\
+control & \(1.003\times10^{-3}\) & \(1.091\times10^{-3}\) & \(4.560\times10^{-4}\) \\
+\bottomrule
+\end{tabular}
+\end{center}
+At \(\Omega_X=10^{-8}\) relative to a \(10^{-12}\) anchor, the latest common-precision null comparison gives
+\begin{equation}
+TT_{\rm p95}=3.18\times10^{-6},\qquad
+EE_{\rm p95}=6.30\times10^{-6},\qquad
+P(k)_{\rm p95}=9.22\times10^{-8}.
+\end{equation}
+For the fiducial \(\Omega_X=0.05\) run,
+\begin{equation}
+\sigma_{8,{\rm control}}=0.831044,
+\qquad
+\sigma_{8,{\rm VDE}}=0.822593,
+\end{equation}
+a \(-1.02\%\) shift.  These are transfer consequences of the declared source lift, not likelihood evidence for the valuation hypothesis.
+
+\subsection{Exact projectors, support recovery, and curvature inertia}
+
+For invariant arithmetic we use the supplied deterministic best-fit ledger
+\begin{equation}
+H_0=66.3703\ {\rm km\,s^{-1}\,Mpc^{-1}},\quad
+\Omega_K^{\rm geom}=-0.01,\quad
+\Omega_X=0.174541,\quad
+\Omega_\Lambda=0.541216,
+\end{equation}
+with matter and radiation completed by the accompanying machine-readable background ledger.  The projectors of \cref{thm:expansion-projectors} return
+\begin{equation}
+\boxed{\mathcal C_{-1}[F]=0.174541},
+\qquad
+\boxed{\mathcal C_{-2}[F]=-0.010000}
+\end{equation}
+throughout the tested scale-factor grid.  Hence
+\begin{equation}
+\boxed{\Omega_{2,{\rm val}}=\mathcal C_{-2}[F]-\Omega_K^{\rm geom}=0},
+\end{equation}
+which is exactly the nested one-parameter restriction used in the execution.
+
+At \(a=1\), the two-state dark-sector derivative pencil for
+\begin{equation}
+\varepsilon_D=\Omega_\Lambda+\Omega_Xa^{-1}
+\end{equation}
+recovers the generalized eigenvalues
+\begin{equation}
+\boxed{\{-1,0\}},
+\end{equation}
+with positive inertia \((2,0,0)\).  After geometric curvature is removed, the nonradiative physical ledger \(\{\Lambda,X,m\}\) has support \(\{-3,-1,0\}\), inertia \((3,0,0)\), and positive Hankel determinant.  If the negative closed-FLRW geometric coefficient is instead inserted into the same physical moment measure, the pencil recovers \(\{-3,-2,-1,0\}\) with
+\begin{equation}
+\bigl(\operatorname{tr}K,\operatorname{tr}K^2,
+\operatorname{tr}K^3,\operatorname{tr}K^4\bigr)
+=(-6,14,-36,98)
+\end{equation}
+and
+\begin{equation}
+\boxed{(\nu_+,\nu_-,\nu_0)=(3,1,0)}.
+\end{equation}
+The unique negative direction is exactly the coefficient \(\Omega_K^{\rm geom}=-0.01\).  This numerically demonstrates why geometric curvature must be removed before Hankel positivity is interpreted as positivity of physical branch energies.
+
+By \cref{crit:identification,crit:free-spectrum}, these projector and pencil results are implementation-consistency tests.  They do not independently discover \(s=-1\), because \(w_X=-2/3\) fixes that exponent before the calculation.
+
+\subsection{Information-geometric invariants of the supplied \texorpdfstring{$\Lambda+X$}{Lambda+X} ledger}
+
+The exact two-branch normal form of \cref{cor:lambda-x-normal-form} gives at \(a=1\)
+\begin{equation}
+\pi_X=0.243855,
+\qquad
+\pi_\Lambda=0.756145,
+\end{equation}
+and therefore
+\begin{equation}
+\boxed{
+w_D=-0.918715,
+\qquad
+\mathcal I_x=0.184390,
+\qquad
+w_a=-\Dil w_D=0.0614633.
+}
+\end{equation}
+The equal-weight point occurs at
+\begin{equation}
+a_\times=0.322498,
+\qquad
+\boxed{z_\times=2.10080},
+\end{equation}
+where \(w_D=-5/6\), \(\mathcal I_x=1/4\), and \(-\Dil w_D=1/12\).  Because the instantiated support is exactly \(\{-1,0\}\), its complete-orbit invariants are
+\begin{equation}
+\boxed{
+L_F=\pi,
+\qquad
+\int_{-\infty}^{+\infty}\mathcal I_x\,\dd x=1,
+\qquad
+\{w_D,x\}=-\frac12.
+}
+\end{equation}
+Relative to the full positive boundary endpoints \(\{-3,0\}\), the local Bhatia--Davis slack at the present epoch is
+\begin{equation}
+\Delta_\partial=2\pi_X\simeq0.487710,
+\end{equation}
+correctly identifying the \(s=-1\) branch as interior to that larger boundary spectrum.  These are derived invariants of the supplied ledger, not independently fitted CPL or Schwarzian observables.
+
+\subsection{Finite \texorpdfstring{$s=0,-1$}{s=0,-1} residual budget}
+
+The finite present-day energy density carried by the two dark slots is
+\begin{equation}
+\rho_{\Lambda X,0}
+=
+\frac{3H_0^2c^2}{8\pi G}(\Omega_\Lambda+\Omega_X)
+=
+\frac{3H_0^2c^2}{8\pi G}
+\left(1-\Omega_K^{\rm geom}-\Omega_{2,{\rm val}}-\Omega_m-\Omega_r\right).
+\end{equation}
+For the supplied deterministic ledger,
+\begin{equation}
+\Omega_\Lambda+\Omega_X=0.715757,
+\end{equation}
+which gives
+\begin{equation}
+\boxed{
+\rho_{\Lambda X,0}=5.322665232877199\times10^{-10}\ {\rm J\,m^{-3}},
+}
+\end{equation}
+and the natural-unit fourth-root scale
+\begin{equation}
+\boxed{
+E_{\Lambda X}
+:=\bigl[\rho_{\Lambda X,0}(\hbar c)^3\bigr]^{1/4}
+=2.247732070576682\ {\rm meV}.
+}
+\end{equation}
+This is deterministic background closure arithmetic.  It is not the bare ultraviolet sum \(\frac12\sum\hbar\omega\), not a topology-only amplitude selector, and not a vacuum-energy cancellation mechanism.
+
+\subsection{DESI DR2 BAO-only amplitude test}
+
+The latest supplied profile-likelihood summary gives
+\begin{center}
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+branch & \(\Omega_X\) & \(H_0\) & \(\omega_{\rm cdm}\) & \(\chi^2\) \\
+\midrule
+alternative & 0.174541 & 66.370288 & 0.107202 & 9.271990 \\
+null & 0 & 69.237631 & 0.121014 & 10.636129 \\
+\bottomrule
+\end{tabular}
+\end{center}
+so that
+\begin{equation}
+q_X=1.364139,
+\qquad
+\sqrt{q_X}=1.167964,
+\qquad
+\boxed{p_{\rm one\text{-}sided}=0.121411}.
+\end{equation}
+With the one-parameter boundary calibration, this is only a \(1.17\sigma\)-level BAO-only fluctuation and therefore not a detection.  The accompanying positive-prior MCMC slice has posterior mean \(\Omega_X\simeq0.1521\), but because the prior enforces \(\Omega_X\ge0\), that posterior by itself is not evidence that the boundary amplitude is nonzero.
+
+The numerical hierarchy is therefore
+\begin{equation}
+\boxed{
+\begin{gathered}
+\text{valuation theorem}\Longrightarrow\text{exact invariant predictions},\\
+\text{fixed }s=-1\text{ source lift}\Longrightarrow\text{executed CLASS consistency},\\
+\text{DESI DR2 BAO-only profile}\Longrightarrow\text{no significant amplitude detection}.
+\end{gathered}}
+\end{equation}
+The next genuinely independent test is the covariance-aware free-spectrum reconstruction of \cref{crit:free-spectrum}, in which the dilation eigenvalues themselves are inferred before comparison with \(S_{\rm val}\).
+
+
+\section{Conclusion}
+
+The universal homogeneous work map is exact but not predictive: its inverse reconstructs a filling representative for any differentiable homogeneous residual profile.  The restriction enters only after the Euclidean convex-valuation hypothesis is imposed.  Under that hypothesis the round homothetic profile is forced into
+\begin{equation}
+\mathcal V_{\rm val}=\spanop\{A,1,A^{-1},A^{-2},A^{-3}\},
+\end{equation}
+with
+\begin{equation}
+P_{\rm val}(\Dil)\varepsilon=0,
+\qquad
+P_{\rm val}(z)=(z-1)z(z+1)(z+2)(z+3),
+\end{equation}
+and the polynomial dilation action is the semisimple algebra
+\begin{equation}
+\mathfrak A_{\Dil}\simeq\R[z]/(P_{\rm val})\simeq\R^5.
+\end{equation}
+
+The finite spectrum supports a complete homogeneous invariant calculus.  Primitive idempotents isolate branches; annihilator ideals and derivative or sampled Hankel pencils recover support; Hankel inertia records amplitude signs; normalized jets give exact barycentric positivity certificates; and on every positive fixed-support stratum the normalization/pivot quotient has exactly \(k-2\) continuous moduli, represented by monomial cross-ratios.  In the positive cone the branch fractions form an exponential family with \(\Dil^2\ln\varepsilon=\operatorname{Var}_\pi(s)\) and \(\Dil w=-\operatorname{Var}_\pi(s)/3\).  The Bhatia--Davis remainder is an exact local interior-branch detector, the observable \((w,\Dil w,\Dil^2w,\Dil^3w)\) jet is characterized by five explicit simplex inequalities, and the complete Fisher orbit satisfies the rigidity bound
+\begin{equation}
+L_F\ge\pi,
+\end{equation}
+with equality exactly for two-branch support.  The cumulant derivative hierarchy further produces an infinite family of pivot-independent weighted integral identities, while the Fisher--Rao geodesic curvature gives a sharp local third-order certificate for departure from two-branch support.  Every positive two-branch orbit has a universal logistic/tanh normal form and constant Schwarzian \(\{w,x\}=-(s_+-s_-)^2/2\).  At the conditional perturbative-lift level, the classical Heath integral is exact only for the matter-plus-\(\{a^0,a^{-2}\}\) background alphabet; in the no-radiation boundary alphabet the \(s=-1\) branch produces the exact residual \cref{eq:heath-x-obstruction}.
+
+Within the declared boundary-local curvature-measure class the bulk \(s=1\) branch is removed, leaving \(\{0,-1,-2,-3\}\).  Quotienting the homogeneous expansion history by the standard vacuum, curvature-degenerate, and dust powers leaves the unique nonstandard background direction \(a^{-1}\), corresponding to \(w=-2/3\).  Exact expansion-coefficient projectors make the separation of geometric curvature from a physical \(s=-2\) stress component operational rather than semantic.
+
+With general relativity declared, these same ingredients give the Einstein--Dilation Spectral Closure of the homogeneous sector.  The Friedmann constraint identifies \(E_F=F-\Omega_K^{\rm geom}a^{-2}\), the Bianchi identity gives \(P_F=-E_F-\Dil E_F/3\), the finite projectors hold the expansion ledger fixed, and Hankel inertia tests physical branch positivity after the curvature split.  This closes the homogeneous closed-FLRW gravitational data once \(H_0\), \(\Omega_K^{\rm geom}\), the support, and the branch coefficients are supplied.  It does not determine those amplitudes, and it does not close perturbations or quantization.
+
+The executed numerical audit adds evidence of a different logical type.  The pinned CLASS implementation satisfies the declared \(a^{-1}\) background law, closed-mode normalization, transfer-column, precision, and null-limit checks.  The exact projectors and Hankel invariants recover the instantiated coefficients and show that retaining the negative closed-FLRW geometric curvature coefficient inside a physical moment measure creates exactly one negative inertia direction; after the curvature split the physical \(\{\Lambda,X,m\}\) sector is positive.  The supplied DESI DR2 BAO-only profile, however, has \(q_X=1.364\) and one-sided \(p=0.121\), so it does not detect a nonzero \(X\) amplitude.
+
+The distinction between consistency and identification is therefore essential.  Because the executed source lift fixes \(w_X=-2/3\), recovering \(s=-1\) from that calculation is not an independent discovery of the dilation spectrum.  A decisive empirical test must first infer spectral locations freely, with covariance and model-order uncertainty propagated, and only then compare them with the valuation roots.  A joint CMB+BAO+SNe+growth+lensing likelihood and the general two-parameter \((\Omega_X,\Omega_{2,{\rm val}})\) transfer implementation remain independent completion problems.
+
+Finally, the finite \(s=0,-1\) density \(\rho_{\Lambda X,0}\) is a reproducible background budget once \(H_0\) and the dimensionless density fractions are supplied.  It is not the bare quantum zero-point sum and does not evade the scale-covariance no-go theorem for topology-only dimensional amplitudes.  The theorem-level result is therefore a finite homogeneous classification and invariant test architecture, not a microscopic derivation of vacuum energy.
+
+
+\section*{Data and Code Availability}
+
+The theorem layer is analytic.  The numerical section analyzes an accompanying execution-evidence package containing pinned CLASS outputs, transfer and matter-power products, validation summaries, DESI DR2 BAO profile/MCMC artifacts, scripts, and machine-readable background ledgers.  The package identifies CLASS/\texttt{classy} v3.3.4 at commit \texttt{e85808324f51fc694d12e3ed7439552a3c3f9540} and Cobaya 3.6.2.  The exact-invariant audit tables and source used for this revision are included with the manuscript package.  The quoted DESI result is a fixed-curvature BAO-only pilot, not a full cosmological model-comparison likelihood.  A persistent public repository identifier should accompany journal submission if the numerical section is retained.
+
+\begin{thebibliography}{99}
+
+\bibitem{Hadwiger1957}
+H. Hadwiger, \emph{Vorlesungen \"uber Inhalt, Oberfl\"ache und Isoperimetrie}, Springer, Berlin, 1957.
+
+\bibitem{Schneider2014}
+R. Schneider, \emph{Convex Bodies: The Brunn-Minkowski Theory}, 2nd expanded ed., Cambridge University Press, Cambridge, 2014.
+
+\bibitem{BhatiaDavis2000}
+R. Bhatia and C. Davis, ``A better bound on the variance,''
+\emph{American Mathematical Monthly} \textbf{107} (2000), 353--357,
+\href{https://doi.org/10.1080/00029890.2000.12005203}{doi:10.1080/00029890.2000.12005203}.
+
+\bibitem{ClarksonBassettLu2008}
+C. Clarkson, B. Bassett, and T. H.-C. Lu, ``A general test of the Copernican Principle,''
+\emph{Physical Review Letters} \textbf{101} (2008), 011301,
+\href{https://doi.org/10.1103/PhysRevLett.101.011301}{doi:10.1103/PhysRevLett.101.011301}.
+
+\bibitem{Karev2010}
+G. P. Karev, ``Replicator equations and the principle of minimal production of information,''
+\emph{Bulletin of Mathematical Biology} \textbf{72} (2010), 1124--1142,
+\href{https://doi.org/10.1007/s11538-009-9484-9}{doi:10.1007/s11538-009-9484-9}.
+
+\bibitem{HuaSarkar1990}
+Y. Hua and T. K. Sarkar, ``Matrix pencil method for estimating parameters of exponentially damped/undamped sinusoids in noise,''
+\emph{IEEE Transactions on Acoustics, Speech, and Signal Processing} \textbf{38} (1990), 814--824,
+\href{https://doi.org/10.1109/29.56027}{doi:10.1109/29.56027}.
+
+\bibitem{PeterPlonka2013}
+T. Peter and G. Plonka, ``A generalized Prony method for reconstruction of sparse sums of eigenfunctions of linear operators,''
+\emph{Inverse Problems} \textbf{29} (2013), 025001,
+\href{https://doi.org/10.1088/0266-5611/29/2/025001}{doi:10.1088/0266-5611/29/2/025001}.
+
+\bibitem{FischerEtAl2020}
+M. Fischer, B. Kostrzewa, J. Ostmeyer, K. Ottnad, M. Ueding, and C. Urbach,
+``On the generalised eigenvalue method and its relation to Prony and generalised pencil of function methods,''
+\emph{European Physical Journal A} \textbf{56} (2020), 206,
+\href{https://doi.org/10.1140/epja/s10050-020-00205-w}{doi:10.1140/epja/s10050-020-00205-w}.
+
+\bibitem{Heath1977}
+D. J. Heath, ``The growth of density perturbations in zero pressure Friedmann--Lema\^itre universes,''
+\emph{Mon. Not. R. Astron. Soc.} \textbf{179}, 351--358 (1977),
+\href{https://doi.org/10.1093/mnras/179.3.351}{doi:10.1093/mnras/179.3.351}.
+
+\bibitem{Linder2005}
+E. V. Linder, ``Cosmic growth history and expansion history,''
+\emph{Physical Review D} \textbf{72} (2005), 043529,
+\href{https://doi.org/10.1103/PhysRevD.72.043529}{doi:10.1103/PhysRevD.72.043529}.
+
+
+
+\bibitem{SchmalzingKerscherBuchert1996}
+J. Schmalzing, M. Kerscher, and T. Buchert,
+``Minkowski functionals in cosmology,'' in \emph{Dark Matter in the Universe},
+Proc. International School of Physics Enrico Fermi, Course CXXXII,
+S. Bonometto, J. R. Primack, and A. Provenzale, eds. (IOS Press, Amsterdam, 1996), pp. 281--291,
+\href{https://arxiv.org/abs/astro-ph/9508154}{arXiv:astro-ph/9508154}.
+
+\bibitem{BattyeBucherSpergel1999}
+R. A. Battye, M. Bucher, and D. N. Spergel,
+``Domain Wall Dominated Universes,''
+\href{https://arxiv.org/abs/astro-ph/9908047}{arXiv:astro-ph/9908047}.
+
+\bibitem{Afshar2009}
+M. M. Afshar,
+``Quasilocal Energy in FRW Cosmology,''
+\emph{Class. Quantum Grav.} \textbf{26}, 225005 (2009),
+\href{https://doi.org/10.1088/0264-9381/26/22/225005}{doi:10.1088/0264-9381/26/22/225005}.
+
+\bibitem{OlteanEtAl2021}
+M. Oltean, H. Bazrafshan Moghaddam, and R. J. Epp,
+``Energy of cosmological spacetimes and perturbations: a quasilocal approach,''
+\emph{Class. Quantum Grav.} \textbf{38}, 085012 (2021),
+\href{https://doi.org/10.1088/1361-6382/abeae3}{doi:10.1088/1361-6382/abeae3}.
+
+\bibitem{BenAchourLivine2017}
+J. Ben Achour and E. R. Livine,
+``The Thiemann Complexifier and the CVH algebra for Classical and Quantum FLRW Cosmology,''
+\emph{Phys. Rev. D} \textbf{96}, 066025 (2017),
+\href{https://doi.org/10.1103/PhysRevD.96.066025}{doi:10.1103/PhysRevD.96.066025}.
+
+\bibitem{Lesgourgues2011CLASS}
+J. Lesgourgues,
+``The Cosmic Linear Anisotropy Solving System (CLASS) I: Overview,''
+\href{https://arxiv.org/abs/1104.2932}{arXiv:1104.2932}.
+
+\bibitem{BlasLesgourguesTram2011}
+D. Blas, J. Lesgourgues, and T. Tram,
+``The Cosmic Linear Anisotropy Solving System (CLASS) II: Approximation schemes,''
+\emph{JCAP} \textbf{07} (2011) 034,
+\href{https://doi.org/10.1088/1475-7516/2011/07/034}{doi:10.1088/1475-7516/2011/07/034}.
+
+\bibitem{TorradoLewis2021}
+J. Torrado and A. Lewis,
+``Cobaya: Code for Bayesian Analysis of hierarchical physical models,''
+\emph{JCAP} \textbf{05} (2021) 057,
+\href{https://doi.org/10.1088/1475-7516/2021/05/057}{doi:10.1088/1475-7516/2021/05/057}.
+
+\bibitem{DESIDR2BAO2025}
+DESI Collaboration, M. Abdul Karim \emph{et al.},
+``DESI DR2 results. II. Measurements of baryon acoustic oscillations and cosmological constraints,''
+\emph{Phys. Rev. D} \textbf{112}, 083515 (2025),
+\href{https://doi.org/10.1103/tr6y-kpc6}{doi:10.1103/tr6y-kpc6}.
+
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,813 @@
+\documentclass[
+  aps,
+  prd,
+  reprint,
+  superscriptaddress,
+  floatfix,
+  nofootinbib,
+  longbibliography
+]{revtex4-2}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsfonts,amsthm,mathtools}
+\usepackage{microtype}
+\usepackage{booktabs}
+\usepackage{bm}
+\usepackage{array}
+\usepackage{hyperref}
+
+\hypersetup{colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{criterion}[theorem]{Criterion}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{protocol}[theorem]{Protocol}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\dd}{\mathrm d}
+\newcommand{\D}{\mathcal D}
+\newcommand{\vis}{\mathrm{vis}}
+\newcommand{\eff}{\mathrm{eff}}
+\newcommand{\crit}{\mathrm{crit}}
+\newcommand{\wind}{\mathrm w}
+\newcommand{\Aq}{\mathcal A_q}
+\newcommand{\Aw}{\mathcal A_{\mathrm w}}
+\newcommand{\Rcl}{\mathcal R}
+\newcommand{\Vol}{\operatorname{Vol}}
+\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\Spec}{\operatorname{Spec}}
+\newcommand{\Cov}{\operatorname{Cov}}
+\newcommand{\diag}{\operatorname{diag}}
+\newcommand{\KL}{\operatorname{KL}}
+\newcommand{\PG}{P_{\Gamma}}
+\newcommand{\Fcal}{\mathfrak F}
+\newcommand{\Ecal}{\mathcal E}
+\newcommand{\LCDM}{\Lambda\mathrm{CDM}}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Tcal}{\mathcal T}
+\newcommand{\Bcal}{\mathcal B}
+\newcommand{\Kcal}{\mathcal K}
+\newcommand{\Ical}{\mathcal I}
+\newcommand{\Mcal}{\mathcal M}
+\newcommand{\Ccal}{\mathcal C}
+\newcommand{\Acal}{\mathcal A}
+\newcommand{\Ocal}{\mathcal O}
+\newcommand{\Lcal}{\mathcal L}
+
+\begin{document}
+\raggedbottom
+
+\title{\texorpdfstring{A Residual-First Standard for Dark-Sector Closure and Compact-Topology Tests}
+{A Residual-First Standard for Dark-Sector Closure and Compact-Topology Tests}}
+
+\author{Andrei~Preece}
+\email{andre.preece@web.de}
+\affiliation{Independent Researcher, Berlin, Germany}
+
+\author{Boris~Batenin}
+\email{batenin@web.de}
+\affiliation{Independent Researcher, Berlin, Germany}
+
+\date{May 17, 2026}
+
+\begin{abstract}
+We formulate a residual-first consistency standard for dark-sector claims in FLRW cosmology.  The primitive object is the convention-audited Einstein residual
+\begin{equation*}
+T^{\D,\lambda}_{\mu\nu}
+=\frac{c^4}{8\pi G}(G_{\mu\nu}+\lambda g_{\mu\nu})
+-T^{\vis}_{\mu\nu},
+\end{equation*}
+rather than an assumed dark source.  For homogeneous residuals, the two scalars
+\begin{equation*}
+\Aq=-p_\D,
+\qquad
+\Aw=a^3(\epsilon_\D+p_\D)
+\end{equation*}
+give a lossless dust--vacuum atlas: constant nonnegative \((\Aq,\Aw)\) is equivalent to an exact pressureless-dust plus fixed-vacuum normal form in the declared residual convention.  We then distinguish this background closure from action-level source realization, amplitude selection, and compact-topology observables.  Brown-current dust requires a conserved current with a linear energy law on a fixed isentropic branch, while a fixed four-form branch realizes \(w=-1\) without fixing the observed vacuum amplitude.  For compact quotients \(\Sigma_\Gamma=S^3/\Gamma\), topology enters linear observables through quotient projection, eigenspace multiplicities, observer-dependent sky maps, and the full harmonic covariance, not through a local equation of state or a dark-sector abundance.  The result is a model-independent audit standard for separating residual reconstruction, source microphysics, amplitude selection, transfer evolution, quotient covariance, and likelihood comparison.
+\end{abstract}
+
+\maketitle
+
+\section{Introduction and claim boundary}
+
+The aim is not to declare a detection of compact topology, a derivation of the dark-matter abundance, or a final solution of the cosmological-constant problem.  The aim is a sharper object: a convention-explicit residual standard that tells when a dark-sector claim is complete enough to be tested without hiding assumptions.  No abundance, flux scale, or topology detection is derived here.  The purpose is to identify which additional inputs are required before such claims become testable.  Recent expansion-history tensions motivate such audits, but they do not alter the logical order of the test~\cite{DESI2025DR2}.
+
+The central principle is
+\begin{equation}
+\boxed{\begin{gathered}
+\text{residual first;}\qquad
+\text{normal form second;}\\
+\text{source action third;}\qquad
+\text{transfer and covariance last.}
+\end{gathered}}
+\label{eq:principle}
+\end{equation}
+This order is not stylistic.  If it is violated, an expansion-history fit can be mistaken for microphysics, or a topological boundary condition can be mistaken for a dark-sector abundance.
+
+The final standard is the tuple
+\begin{equation}
+\boxed{\begin{gathered}
+\Mcal_{\rm RTS}=\bigl(T^{\D,\lambda}_{\mu\nu},\Aq,\Aw,\mathfrak C_I,\\
+S_{\rm src},\Theta_{\rm amp},\Tcal^X_{\ell\beta},
+C^{XY}_{\ell m,\ell'm'},\Lcal_{\rm bench}\bigr).
+\end{gathered}}
+\label{eq:RTS_tuple}
+\end{equation}
+A model that supplies only the first few entries may still be useful, but it has not supplied a completed dark-sector theory.  The negative statement is as important as the positive one:
+\begin{equation}
+\boxed{
+\Gamma,Q,k\not\Rightarrow \Omega_{\wind},\Omega_q,\Lambda_{\eff}
+}
+\label{eq:not_amplitudes}
+\end{equation}
+without independent amplitude selectors.  A compact quotient can select modes; it cannot by itself select dimensionful masses or flux units.
+
+\section{Einstein residual as the primitive object}
+
+Fix a metric, a visible subtraction, and an Einstein-side convention.  Let
+\begin{equation}
+E^{(\lambda)}_{\mu\nu}:=G_{\mu\nu}+\lambda g_{\mu\nu},
+\label{eq:Elambda}
+\end{equation}
+and define the residual
+\begin{equation}
+\boxed{
+T^{\D,\lambda}_{\mu\nu}:=\frac{c^4}{8\pi G}E^{(\lambda)}_{\mu\nu}-T^{\vis}_{\mu\nu}.
+}
+\label{eq:residual}
+\end{equation}
+This is a reconstruction target.  It is not, by definition, dark matter, dark energy, topology, a scalar field, a four-form, or modified gravity.
+
+\begin{lemma}[Convention covariance]
+If \(T^{\vis}_{\mu\nu}\to T^{\vis}_{\mu\nu}+X_{\mu\nu}\), then
+\begin{equation}
+T^{\D,\lambda}_{\mu\nu}\to T^{\D,\lambda}_{\mu\nu}-X_{\mu\nu}.
+\end{equation}
+If \(\lambda\to\lambda+\delta\lambda\), then
+\begin{equation}
+T^{\D,\lambda+\delta\lambda}_{\mu\nu}-T^{\D,\lambda}_{\mu\nu}
+=\frac{c^4}{8\pi G}\delta\lambda\,g_{\mu\nu}.
+\label{eq:lambda_shift}
+\end{equation}
+Thus every residual claim is relative to the declared visible subtraction and the declared Einstein-side convention.
+\end{lemma}
+
+For constant \(\lambda\),
+\begin{equation}
+\nabla_\mu T^{\D,\lambda\mu}{}_{\nu}
+=-\nabla_\mu T^{\vis\mu}{}_{\nu},
+\label{eq:residual_conservation}
+\end{equation}
+because \(\nabla_\mu G^\mu{}_{\nu}=0\) and \(\nabla_\mu(\lambda\delta^\mu{}_{\nu})=0\).  Hence a separately conserved visible sector implies a separately conserved residual in the declared convention.  If the visible subtraction is not separately conserved, the residual is the corresponding exchange tensor, not an autonomous dark sector.
+
+If the action contains a bare term \(\Lambda_{\rm bare}\) while the audit convention uses \(\lambda\), the residual vacuum energy assigned to the right-hand side is
+\begin{equation}
+\boxed{
+\epsilon_{\rm vac}^{\D,\lambda}
+=\frac{c^4}{8\pi G}(\Lambda_{\rm bare}-\lambda)+\epsilon_{\rm other\ vacuum}.
+}
+\label{eq:vac_conv_general}
+\end{equation}
+This line prevents double counting of vacuum terms.
+
+\section{The homogeneous closure atlas}
+
+For a homogeneous FLRW residual, write
+\begin{equation}
+T^{\D,\lambda}_{\mu\nu}
+=\epsilon_\D\frac{U_\mu U_\nu}{c^2}+p_\D h_{\mu\nu},
+\qquad
+h_{\mu\nu}=g_{\mu\nu}+\frac{U_\mu U_\nu}{c^2}.
+\label{eq:perfect_residual}
+\end{equation}
+The convention label is suppressed below; all quantities refer to the convention in Eq.~\eqref{eq:residual}.  Throughout the homogeneous audit, \(a\) is the dimensionless FLRW scale factor normalized by \(a_0=1\).  If a dimensionful curvature radius \(A_0\) is used, it is kept separate from \(a\).  Define
+\begin{equation}
+\boxed{
+\Aq=-p_\D,
+\qquad
+\Aw=a^3(\epsilon_\D+p_\D).
+}
+\label{eq:atlas}
+\end{equation}
+The inverse map is
+\begin{equation}
+p_\D=-\Aq,
+\qquad
+\epsilon_\D=a^{-3}\Aw+\Aq.
+\label{eq:atlas_inverse}
+\end{equation}
+Thus the atlas is lossless at the homogeneous level.
+
+\begin{theorem}[Homogeneous residual closure criterion]
+On a connected scale-factor interval, the homogeneous residual has the exact dust-plus-fixed-vacuum form
+\begin{equation}
+T^{\D}_{\mu\nu}=\epsilon_{\wind,0}a^{-3}\frac{U_\mu U_\nu}{c^2}-\epsilon_q g_{\mu\nu},
+\label{eq:dust_vac}
+\end{equation}
+with \(\epsilon_{\wind,0},\epsilon_q\ge0\), if and only if \(\Aq\) and \(\Aw\) are constant and nonnegative.  In that case
+\begin{equation}
+\epsilon_q=\Aq,
+\qquad
+\epsilon_{\wind,0}=\Aw.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+If Eq.~\eqref{eq:dust_vac} holds, then \(p_\D=-\epsilon_q\), hence \(\Aq=\epsilon_q\).  Also \(\epsilon_\D+p_\D=\epsilon_{\wind,0}a^{-3}\), hence \(\Aw=\epsilon_{\wind,0}\).  Thus both atlas entries are constant and nonnegative.  Conversely, if \(\Aq\) and \(\Aw\) are constant and nonnegative, set \(\epsilon_q:=\Aq\) and \(\epsilon_{\wind,0}:=\Aw\).  Equation~\eqref{eq:atlas_inverse} gives \(p_\D=-\epsilon_q\) and \(\epsilon_\D=\epsilon_{\wind,0}a^{-3}+\epsilon_q\), which is Eq.~\eqref{eq:dust_vac}.  The amplitudes are unique inside the declared residual convention.
+\end{proof}
+
+A useful defect invariant is
+\begin{equation}
+\boxed{
+\mathfrak C_I[\D;\epsilon_{\crit,0}]
+=\sup_{a\in I}
+\frac{(\dd\Aq/\dd\ln a)^2+\bigl(a^{-3}\dd\Aw/\dd\ln a\bigr)^2}{\epsilon_{\crit,0}^{2}}.
+}
+\label{eq:defect}
+\end{equation}
+Here \(\epsilon_{\crit,0}=3c^2H_0^2/(8\pi G)\) fixes the normalization rather than leaving the numerical scale adjustable.  Then \(\mathfrak C_I=0\) is exactly the homogeneous dust-plus-fixed-vacuum closure condition, not merely an approximate fit.
+
+
+\section{Worked homogeneous example: \texorpdfstring{\(\Lambda\)CDM}{LambdaCDM} conventions}
+
+The atlas is useful precisely because it exposes convention choices.  Consider a standard FLRW model with baryons, cold dark matter, radiation, and a constant vacuum term.  Let radiation and baryons be included in \(T^{\vis}_{\mu\nu}\), while cold dark matter and vacuum are left in the residual, and use \(\lambda=0\).  Then
+\begin{equation}
+\epsilon_\D=\epsilon_{c,0}a^{-3}+\epsilon_\Lambda,
+\qquad
+p_\D=-\epsilon_\Lambda,
+\end{equation}
+and therefore
+\begin{equation}
+\boxed{
+\Aq=\epsilon_\Lambda,
+\qquad
+\Aw=\epsilon_{c,0}.
+}
+\end{equation}
+If baryons are also left outside the visible subtraction, the same metric gives instead
+\begin{equation}
+\Aq=\epsilon_\Lambda,
+\qquad
+\Aw=\epsilon_{c,0}+\epsilon_{b,0}.
+\end{equation}
+If the vacuum term is moved to the Einstein side by choosing \(\lambda=\Lambda\), with \(\epsilon_\Lambda=c^4\Lambda/(8\pi G)\), the residual atlas changes again: the vacuum entry is removed from \(\Aq\) in that convention.  These are not contradictory physical models.  They are different residual audits of the same background once the visible subtraction and Einstein-side convention are changed.  The example shows why the residual tensor must be declared before any dark-sector interpretation is made.
+
+\section{Action-level source realization}
+
+The normal-form criterion classifies a residual.  It does not identify its source.  Source identification starts only when an action is supplied.
+
+\subsection{Brown-current realization of dust}
+
+In the source-sector formulas below we use \(c=1\) unless factors of \(c\) are written explicitly; dimensional restoration is immediate by \(\Ecal(n)=\mu c^2n\) for dust.  A Brown-current fluid uses a densitized current \(J^\mu\), entropy per particle \(s\), and Clebsch/Lagrange potentials~\cite{Schutz1970,Brown1993}:
+\begin{equation}
+\begin{aligned}
+S_{\rm B}=\int \dd^4x\Big[&-\sqrt{-g}\,\Ecal(n,s)\\
+&+J^\mu(\partial_\mu\varphi+\theta\partial_\mu s+\alpha_A\partial_\mu\beta^A)\Big],
+\end{aligned}
+\label{eq:brown_action}
+\end{equation}
+where
+\begin{equation}
+n=\frac{\sqrt{-g_{\mu\nu}J^\mu J^\nu}}{\sqrt{-g}},
+\qquad
+u^\mu=\frac{J^\mu}{\sqrt{-g}\,n},
+\qquad
+u^\mu u_\mu=-1.
+\end{equation}
+The equations of motion enforce current conservation.
+
+Metric variation gives
+\begin{equation}
+T^{\rm B}_{\mu\nu}=(\epsilon_{\rm B}+p_{\rm B})u_\mu u_\nu+p_{\rm B}g_{\mu\nu},
+\label{eq:brown_stress}
+\end{equation}
+with
+\begin{equation}
+\epsilon_{\rm B}=\Ecal(n,s),
+\qquad
+p_{\rm B}=n\Ecal_n-\Ecal.
+\label{eq:brown_pressure}
+\end{equation}
+For a fixed isentropic branch with \(s=s_0\),
+\begin{equation}
+\begin{aligned}
+p_{\rm B}=0
+&\quad\Longleftrightarrow\quad
+n\Ecal_n=\Ecal,\\
+&\quad\Longleftrightarrow\quad
+\boxed{\Ecal(n,s_0)=\mu_{\wind}(s_0)c^2 n}.
+\end{aligned}
+\label{eq:dust_law}
+\end{equation}
+up to a separately audited constant vacuum offset.  Therefore pressureless dust is not obtained from compactness; on a fixed isentropic branch it is obtained from conserved current plus a linear energy law.
+
+A sufficient stable barotropic current cone is
+\begin{equation}
+\boxed{
+\Ecal>0,
+\qquad
+\Ecal_n>0,
+\qquad
+0\le \frac{n\Ecal_{nn}}{\Ecal_n}\le1.
+}
+\label{eq:stability_cone}
+\end{equation}
+Equivalently, the enthalpy \(\epsilon+p=n\Ecal_n\) is positive and
+\begin{equation}
+\frac{c_s^2}{c^2}=\frac{\partial p}{\partial\epsilon}=\frac{n\Ecal_{nn}}{\Ecal_n}
+\end{equation}
+is nonnegative and subluminal.  The dust branch has \(c_s^2=0\) and lies on the boundary of this sufficient cone.  More general entropy-dependent or effective-fluid descriptions require their own hyperbolicity and stability audit.
+
+If a topological integer \(Q\) is used, the invariant warning is
+\begin{equation}
+\boxed{\begin{gathered}
+Q\in\Z\ \text{labels a topological sector;}\\
+\text{only an extra branch rule }\mathcal N=|Q|\\
+\text{turns it into Brown-current particle number.}
+\end{gathered}}
+\label{eq:Qwarning}
+\end{equation}
+With that additional postulate,
+\begin{equation}
+\Omega_{\wind}
+=\frac{\mu_{\wind}c^2|Q|}{A_0^3V_\Gamma\epsilon_{\crit,0}},
+\end{equation}
+which is a bookkeeping identity, not a derivation of the observed abundance.
+
+\subsection{Four-form realization of fixed vacuum}
+
+Let \(F_4=\dd A_3\) with
+\begin{equation}
+S_4=-\frac{1}{2\cdot4!}\int\sqrt{-g}\,F_{\mu\nu\rho\sigma}F^{\mu\nu\rho\sigma}\,\dd^4x.
+\label{eq:S4}
+\end{equation}
+The field equation gives \(\dd*F_4=0\), hence on a connected branch
+\begin{equation}
+F_{\mu\nu\rho\sigma}=\Fcal\varepsilon_{\mu\nu\rho\sigma},
+\qquad
+\dd\Fcal=0.
+\label{eq:Fbranch}
+\end{equation}
+With signature \((-+++ )\),
+\begin{equation}
+T^{(4)}_{\mu\nu}=-\frac12\Fcal^2 g_{\mu\nu},
+\qquad
+\epsilon_q=\frac12\Fcal^2.
+\label{eq:four_stress}
+\end{equation}
+Thus a fixed four-form branch realizes \(w=-1\), but not its observed amplitude.  The displayed intermediate signs use signature \((-+++ )\) and the standard positive kinetic sign for a four-form; changing conventions changes intermediate signs, not the vacuum equation-of-state statement.
+
+A compact gauge-sector normalization may introduce
+\begin{equation}
+\boxed{
+\Fcal_k=q\left(k+\frac{\vartheta}{2\pi}\right),
+\qquad
+k\in\Z.
+}
+\label{eq:flux_branch}
+\end{equation}
+This is a gauge-sector branch choice, not a theorem of the spatial quotient \(S^3/\Gamma\).  The minimum branch data are
+\begin{equation}
+\boxed{
+\Theta_{\rm amp}\supset(k,q,\vartheta,\Lambda_{\rm bare},\lambda,
+\text{membrane rule},\text{branch prior}).
+}
+\label{eq:branch_data}
+\end{equation}
+A phenomenological residual-energy matching rule is
+\begin{equation}
+\begin{aligned}
+k_*\in\operatorname*{argmin}_{k\in\Z}
+\Bigg|&\epsilon_{\rm vac,target}^{\D,\lambda}
+-\frac{c^4}{8\pi G}(\Lambda_{\rm bare}-\lambda)\\
+&-\frac12q^2\left(k+\frac{\vartheta}{2\pi}\right)^2\Bigg|.
+\end{aligned}
+\label{eq:branch_match}
+\end{equation}
+It is branch matching, not a prediction, unless the branch dynamics and priors are supplied.  This is the same discipline emphasized by four-form flux constructions~\cite{BrownTeitelboim1987,BoussoPolchinski2000}.
+
+If membranes are present,
+\begin{equation}
+S_{\rm mem}=-T_{\rm mem}\int_{\mathcal W_3}\sqrt{-h}\,\dd^3\xi+q_{\rm mem}\int_{\mathcal W_3}A_3,
+\end{equation}
+then \(k\to k\pm n_{\rm mem}\).  A single FLRW branch requires either no membranes, fixed-branch superselection, or transition suppression on the modeled four-volume.
+
+\section{Compact geometry and quotient projection}
+
+Let
+\begin{equation}
+M=I\times\Sigma_\Gamma,
+\qquad
+\Sigma_\Gamma=S^3/\Gamma,
+\label{eq:geometry}
+\end{equation}
+where \(\Gamma\subset SO(4)\) is finite and acts freely and isometrically.  With unit-curvature quotient metric \(\gamma^{(\Gamma)}_{ij}\),
+\begin{equation}
+\begin{aligned}
+\dd s^2&=-N_L^2c^2\dd t^2
++a^2(t)A_0^2\gamma^{(\Gamma)}_{ij}\dd x^i\dd x^j,\\
+{}^{(3)}R[\gamma^{(\Gamma)}]&=6.
+\end{aligned}
+\end{equation}
+The quotient volume is
+\begin{equation}
+V_\Gamma=\Vol(S^3/\Gamma)=\frac{2\pi^2}{|\Gamma|}.
+\end{equation}
+
+Scalar cover modes obey
+\begin{equation}
+-\Delta_{S^3}Y_{\beta s}=(\beta^2-1)Y_{\beta s},
+\qquad
+\beta=1,2,\ldots.
+\label{eq:scalar_modes}
+\end{equation}
+Physical quotient modes are invariant under deck transformations.  The projector is
+\begin{equation}
+\boxed{
+\PG=\frac1{|\Gamma|}\sum_{\gamma\in\Gamma}U(\gamma),
+}
+\label{eq:projector}
+\end{equation}
+and the multiplicity is
+\begin{equation}
+\boxed{
+m_\beta(\Gamma)=\Tr_{V_\beta}\PG
+=\frac1{|\Gamma|}\sum_{\gamma\in\Gamma}\chi_\beta(\gamma).
+}
+\label{eq:multiplicity}
+\end{equation}
+The same projection logic applies to vector and tensor bundles after the deck-group action and harmonic normalization have been declared.  Spinor sectors, if introduced, require separate spin-structure data.
+
+The lowest scalar modes require the usual closed-FLRW treatment: \(\beta=1\) is the homogeneous background mode and \(\beta=2\) contains pure-gauge or constraint modes depending on convention.  The propagating scalar ledger is therefore applied only after these modes have been separated.
+
+\begin{theorem}[Local-transfer/quotient-projection separation]
+At linear order around a locally FLRW background on \(S^3/\Gamma\), the local Einstein--Boltzmann evolution for a fixed cover eigenvalue is the same closed-FLRW transfer evolution as on the simply connected cover, restricted to \(\PG V_\beta\).  The quotient affects allowed initial data, multiplicities, observer-dependent projection coefficients, and covariance.  It does not change local collision terms, local Einstein equations, or the local equation of state.
+\end{theorem}
+
+\begin{proof}
+The quotient map is a local isometry.  Therefore the local connection, curvature tensors, geodesic equation, linearized Einstein operator, and local collision operators are inherited from the cover.  Physical fields must satisfy \(\phi(\gamma x)=\phi(x)\), which is exactly implemented by \(\PG\).  Because the group acts by isometries, the local differential operators commute with the group action.  Hence transfer evolution and quotient projection separate as stated.
+\end{proof}
+
+\section{Closed-FLRW transfer contract}
+
+In this section \(c=1\), primes denote conformal-time derivatives, and \(\rho\) denotes energy density.  The physical scalar Laplacian eigenvalue is \((\beta^2-1)/A_0^2\); analogous vector and tensor coefficients use the same declared unit-curvature convention and restoration by \(A_0^{-2}\).
+
+For each \(\beta\), collect the scalar, vector, tensor, fluid, photon, neutrino, baryon, Brown-current, and metric variables in a transfer state \(\bm y_\beta\).  The closed-FLRW Einstein--Boltzmann system can be written as
+\begin{equation}
+\boxed{
+\bm y_\beta'=\mathbb A_\beta(\eta;\Theta_{\rm cos})\bm y_\beta+\bm b_\beta(\eta),
+\qquad
+\mathbb C_\beta\bm y_\beta=0.
+}
+\label{eq:transfer_system}
+\end{equation}
+Here \(\mathbb A_\beta\) contains the closed-FLRW Einstein constraints, fluid equations, photon and neutrino Boltzmann hierarchies, Thomson terms, and curvature-shifted streaming recurrences; \(\mathbb C_\beta\) collects the constraints.  This transfer contract follows the non-flat FLRW Boltzmann hierarchy logic of Refs.~\cite{TramLesgourgues2013,LesgourguesTram2014,Pitrou2020}.
+
+For photons, the brightness hierarchy may be written schematically as
+\begin{equation}
+\boxed{
+\frac{\dd}{\dd\eta}\bm\Delta_{\gamma,\beta s}
++\mathsf F_\beta\bm\Delta_{\gamma,\beta s}
+=\bm S_{\rm grav,\beta s}+\bm C_T[\bm\Delta_{\gamma,\beta s},\bm v_b],
+}
+\label{eq:photon_hierarchy}
+\end{equation}
+where \(\mathsf F_\beta\) is the closed-space angular-geodesic streaming operator.  For neutrinos, \(\bm\Delta_{\nu,\beta s}\) denotes the intensity multipole hierarchy, including anisotropic-stress moments, not an \(E/B\) polarization hierarchy:
+\begin{equation}
+\boxed{
+\frac{\dd}{\dd\eta}\bm\Delta_{\nu,\beta s}
++\mathsf F_\beta\bm\Delta_{\nu,\beta s}
+=\bm S_{\rm grav,\beta s}.
+}
+\label{eq:neutrino_hierarchy}
+\end{equation}
+
+Solving Eq.~\eqref{eq:transfer_system} yields line-of-sight transfer functions
+\begin{equation}
+\boxed{
+\Tcal_{\ell\beta}^{X}
+=\int_0^{\eta_0}S_X(\eta,\beta)\mathcal R_\ell^\beta(\eta_0-\eta)\,\dd\eta,
+\qquad X\in\{T,E,B\}.
+}
+\label{eq:los_transfer}
+\end{equation}
+Here \(\mathcal R_\ell^\beta\) is the hyperspherical radial kernel in the declared closed harmonic convention.
+
+\begin{criterion}[Implementation contract]
+A transfer computation satisfies this standard only if it supplies: declared scalar, vector, and tensor harmonic bases; streaming matrices or recurrence coefficients; curvature-shifted Einstein coefficients; species hierarchies for photons, neutrinos, baryons, Brown-current dust, and fixed four-form background; convergence prescriptions for multipoles and \(\beta\)-sums; and validation against a simply connected closed-FLRW benchmark before quotient projection.
+\end{criterion}
+
+\section{Quotient covariance as the topology observable}
+
+Let the projected sky coefficients be
+\begin{equation}
+a_{\ell m}^{X}=\sum_{\beta,s}\Rcl_{\beta s}\Tcal_{\ell\beta}^{X}\xi_{\beta s;\ell m}^{\Gamma,O},
+\qquad X\in\{T,E,B\},
+\label{eq:alm}
+\end{equation}
+where \(O=(x_O,R_O)\) denotes observer position and orientation, and
+\begin{equation}
+\xi_{\beta s;\ell m}^{\Gamma,O}
+=\int_{S^2}\dd\Omega\,Y_{\ell m}^*(\hat n)Y_{\beta s}^{(\Gamma)}(x_O,\hat n).
+\end{equation}
+Assume a Gaussian primordial curvature field with quotient-mode covariance
+\begin{equation}
+\langle\Rcl_{\beta s}\overline{\Rcl_{\beta's'}}\rangle
+=P_{\mathcal R}(\beta)\delta_{\beta\beta'}\delta_{ss'}.
+\label{eq:primcov}
+\end{equation}
+More general primordial covariances are inserted by replacing the right-hand side.
+
+\begin{theorem}[Quotient sky covariance]
+Under Eq.~\eqref{eq:primcov}, the theory-sky covariance is
+\begin{equation}
+\boxed{\begin{aligned}
+C_{{\rm sky},\ell m,\ell' m'}^{XY}
+&=\sum_{\beta,s}P_{\mathcal R}(\beta)
+\Tcal_{\ell\beta}^{X}\Tcal_{\ell'\beta}^{Y}\\
+&\quad\times
+\xi_{\beta s;\ell m}^{\Gamma,O}
+\overline{\xi_{\beta s;\ell' m'}^{\Gamma,O}}.
+\end{aligned}}
+\label{eq:covariance}
+\end{equation}
+For the simply connected statistically isotropic benchmark this reduces to \(C_\ell^{XY}\delta_{\ell\ell'}\delta_{mm'}\).  For nontrivial quotients this diagonal form is generally false; the full covariance is the topology channel.
+\end{theorem}
+
+This is aligned with modern cosmic-topology programs, where eigenmodes and correlation matrices rather than only angular power spectra carry the topological signal~\cite{Levin2002,Aurich2005,Eskilt2024,Samandar2025}.  Circle searches constrain selected families but do not replace full covariance analysis~\cite{Planck2015Topology,Saha2025Lens}.
+
+For non-globally-homogeneous quotients, observer position is a model parameter.  Use
+\begin{equation}
+\dd\pi(O|\Gamma)=\frac{\dd\Vol_{\Sigma_\Gamma}(x_O)}{\Vol(\Sigma_\Gamma)}\frac{\dd R_O}{8\pi^2},
+\label{eq:observer_prior}
+\end{equation}
+quotiented by residual isometries when present.
+
+The processed covariance is
+\begin{equation}
+C_\Theta=BM C_{\rm sky}^{\Gamma,O,\Theta}M^\dagger B^\dagger+N+F_{\rm fg},
+\label{eq:processed_cov}
+\end{equation}
+with beam \(B\), mask/mode coupling \(M\), noise \(N\), and foreground/nuisance covariance \(F_{\rm fg}\).  For a Gaussian approximation,
+\begin{equation}
+-2\ln\Lcal=d^\dagger C_\Theta^{-1}d+\ln\det C_\Theta+\mathrm{const}.
+\label{eq:likelihood}
+\end{equation}
+The fair comparison is
+\begin{equation}
+\boxed{
+\Delta\ln\Lcal=\ln\Lcal_\Gamma-\ln\Lcal_{\rm bench},
+}
+\label{eq:benchmark}
+\end{equation}
+where the benchmark has the same local expansion history, curvature, visible sector, amplitudes, mask, noise, and foreground conventions.  This prevents a topology comparison from becoming a disguised abundance or curvature comparison.
+
+A basis-invariant anisotropy distance is obtained by the Haar projector
+\begin{equation}
+\boxed{
+\Pi_{\rm iso}[C]=\int_{SO(3)}\mathcal D(R)C\mathcal D(R)^\dagger\,\dd R,
+\qquad \int_{SO(3)}\dd R=1.
+}
+\label{eq:Haar}
+\end{equation}
+With \(C_{\rm iso}:=\Pi_{\rm iso}[C]\), define
+\begin{equation}
+\boxed{
+\Ical_{\rm aniso}
+=\left\|C_{\rm iso}^{-1/2}(C-\Pi_{\rm iso}[C])C_{\rm iso}^{-1/2}\right\|_F^2.
+}
+\label{eq:aniso}
+\end{equation}
+The inverse square root is taken on the positive-support subspace, or with \(C_{\rm iso}\to C_{\rm iso}+\varepsilon I\) and reported stability as \(\varepsilon\to0^+\).  The same positive-support or \(\varepsilon I\) regularization applies to KL divergences and determinants.
+
+\section{Residual--transfer separability theorem}
+
+\begin{theorem}[Residual--transfer separability]
+Let \(M=I\times S^3/\Gamma\) be a compact FLRW quotient with declared residual convention \(\lambda\), visible subtraction, Brown-current sector, fixed four-form branch, and closed-FLRW linear transfer.  Then background dark-sector closure and compact-topology observability separate as follows:
+\begin{equation}
+\boxed{
+\text{background closure is classified by }(\Aq,\Aw),
+}
+\end{equation}
+while
+\begin{equation}
+\boxed{\begin{gathered}
+\text{compact topology enters linear observables through}\\
+\PG,\ m_\beta(\Gamma),\ 
+\xi_{\beta s;\ell m}^{\Gamma,O},\ C_{\ell m,\ell'm'}^{XY}.
+\end{gathered}}
+\end{equation}
+Consequently,
+\begin{equation}
+\boxed{
+\Gamma\not\Rightarrow (\epsilon_{\wind,0},\epsilon_q)
+}
+\end{equation}
+without an independent amplitude selector, while
+\begin{equation}
+\boxed{
+\Gamma\Rightarrow C^{XY,\Gamma}_{\ell m,\ell'm'}[\Theta,O]
+}
+\end{equation}
+as a projected-mode covariance prescription.  Detectability is a separate likelihood question; the resulting covariance deformation can be zero or negligible for restricted multipole ranges, special observers, special primordial spectra, or after marginalization.
+\end{theorem}
+
+\begin{proof}
+The normal-form criterion proves that homogeneous dust-plus-vacuum closure is equivalent to constant nonnegative \((\Aq,\Aw)\).  Brown-current and four-form actions then show what source data can realize, respectively, dust and fixed vacuum; the amplitudes still require \(\mu_{\wind}\) and branch data such as \((k,q,\vartheta,\Lambda_{\rm bare},\lambda)\).  The quotient-projection theorem shows that compact topology restricts eigenspaces by \(\PG\) while leaving local transfer equations unchanged.  Inserting the projected line-of-sight coefficients into the two-point function gives Eq.~\eqref{eq:covariance}.  Therefore the residual normal form and the quotient covariance are distinct invariant layers.  The claimed separation follows without asserting that every nontrivial quotient produces a detectable signal.
+\end{proof}
+
+\section{Universal completion vector}
+
+For any proposed dark-sector or compact-cosmology model \(\Mcal\), define the audit vector
+\begin{equation}
+\boxed{
+\Acal(\Mcal)=(A_R,A_H,A_S,A_{\rm amp},A_T,A_C,A_L).
+}
+\label{eq:audit_vector}
+\end{equation}
+The entries are binary or graded scores:
+\begin{align}
+A_R&=1 &&\text{if }T^{\D,\lambda}_{\mu\nu}\text{ is declared},\nonumber\\
+A_H&=1 &&\text{if }\mathfrak C_I=0\text{ or the defect is measured},\nonumber\\
+A_S&=1 &&\text{if source actions are supplied},\nonumber\\
+A_{\rm amp}&=1 &&\text{if amplitude selectors are independent},\nonumber\\
+A_T&=1 &&\text{if transfer functions are implemented},\nonumber\\
+A_C&=1 &&\text{if full covariance is computed},\nonumber\\
+A_L&=1 &&\text{if a matched likelihood benchmark is used}.
+\end{align}
+The logical law is
+\begin{equation}
+\boxed{
+A_H=1\not\Rightarrow A_S=1\not\Rightarrow A_{\rm amp}=1\not\Rightarrow A_L=1.
+}
+\label{eq:audit_nonimplication}
+\end{equation}
+This is the operational form of the gift: no cosmological darkness without residual audit, and no physical claim without transfer and likelihood.
+
+\begin{protocol}[Minimal reproducible test]
+Given data and a proposed model: declare \(\lambda\) and \(T^{\vis}_{\mu\nu}\); reconstruct \(T^{\D,\lambda}_{\mu\nu}\); compute \((\Aq,\Aw,\mathfrak C_I)\); provide the source action and amplitude selector; implement closed-FLRW transfer; apply \(\PG\); compute \(C^{XY}_{\ell m,\ell'm'}\); compare to a matched benchmark likelihood; and run blind injections with matched diagonal spectra.  If any step is absent, the corresponding claim layer is not complete.
+\end{protocol}
+
+\section{Falsifiability and nonclaims}
+
+The framework is falsifiable layer by layer.  Background closure fails if \(\mathfrak C_I\ne0\) in the declared convention.  Brown-current dust fails if no stable \(\Ecal(n)=\mu c^2n\) branch exists for the claimed source.  Fixed four-form vacuum fails as a single-background model if membrane transitions occur on the modeled interval.  Transfer fails if the non-flat implementation does not reproduce closed-FLRW benchmarks.  Topology preference fails if \(\Delta\ln\Lcal\) is unfavorable against the matched benchmark after observer and nuisance marginalization.  Blind topology recovery fails if same-\(C_\ell\) injections cannot be distinguished by covariance structure.
+
+The framework does not claim that compactness derives dark matter, that a four-form solves the observed vacuum amplitude, that present data detect \(S^3/\Gamma\), or that one covariance statistic replaces full likelihood analysis.  It claims something narrower and more durable: the invariant layers that every such claim must pass.
+
+\section{Conclusion}
+
+A dark-sector claim is not complete when it fits the expansion history.  It becomes complete only when its Einstein residual, normal-form atlas, source action, amplitude selector, transfer functions, compact covariance, and likelihood benchmark have all been separately declared and tested.  In compact cosmology the clean implication is not
+\begin{equation}
+S^3/\Gamma\Rightarrow\Omega_{\rm dark},
+\end{equation}
+but
+\begin{equation}
+\boxed{
+S^3/\Gamma\Rightarrow \PG\Rightarrow\Spec_\Gamma\Rightarrow C^{XY}_{\ell m,\ell'm'}\Rightarrow \Lcal_\Gamma.
+}
+\end{equation}
+The proposed residual--transfer separability standard is therefore not a replacement for observation.  It is a way to make observation and theory meet without hidden category errors.
+
+\begin{sloppypar}
+\begin{thebibliography}{99}
+\raggedright
+
+\bibitem{Schutz1970}
+B.~F.~Schutz,
+``Perfect Fluids in General Relativity: Velocity Potentials and a Variational Principle,''
+Phys. Rev. D \textbf{2}, 2762 (1970).
+
+\bibitem{Brown1993}
+J.~D.~Brown,
+``Action functionals for relativistic perfect fluids,''
+Class. Quant. Grav. \textbf{10}, 1579 (1993),
+arXiv:gr-qc/9304026.
+
+\bibitem{BallesterosBellazzini2012}
+G.~Ballesteros and B.~Bellazzini,
+``Effective perfect fluids in cosmology,''
+JCAP \textbf{04}, 001 (2013),
+arXiv:1210.1561.
+
+\bibitem{BrownTeitelboim1987}
+J.~D.~Brown and C.~Teitelboim,
+``Dynamical neutralization of the cosmological constant,''
+Phys. Lett. B \textbf{195}, 177 (1987).
+
+\bibitem{BoussoPolchinski2000}
+R.~Bousso and J.~Polchinski,
+``Quantization of four-form fluxes and dynamical neutralization of the cosmological constant,''
+JHEP \textbf{06}, 006 (2000),
+arXiv:hep-th/0004134.
+
+\bibitem{Bardeen1980}
+J.~M.~Bardeen,
+``Gauge-invariant cosmological perturbations,''
+Phys. Rev. D \textbf{22}, 1882 (1980).
+
+\bibitem{KodamaSasaki1984}
+H.~Kodama and M.~Sasaki,
+``Cosmological Perturbation Theory,''
+Prog. Theor. Phys. Suppl. \textbf{78}, 1 (1984).
+
+\bibitem{MukhanovFeldmanBrandenberger1992}
+V.~F.~Mukhanov, H.~A.~Feldman, and R.~H.~Brandenberger,
+``Theory of cosmological perturbations,''
+Phys. Rept. \textbf{215}, 203 (1992).
+
+\bibitem{TramLesgourgues2013}
+T.~Tram and J.~Lesgourgues,
+``Optimal polarisation equations in FLRW universes,''
+JCAP \textbf{10}, 002 (2013),
+arXiv:1305.3261.
+
+\bibitem{LesgourguesTram2014}
+J.~Lesgourgues and T.~Tram,
+``Fast and accurate CMB computations in non-flat FLRW universes,''
+JCAP \textbf{09}, 032 (2014),
+arXiv:1312.2697.
+
+\bibitem{Pitrou2020}
+C.~Pitrou, T.~S.~Pereira, and J.~Lesgourgues,
+``Optimal Boltzmann hierarchies with non-vanishing spatial curvature,''
+Phys. Rev. D \textbf{102}, 023511 (2020),
+arXiv:2005.12119.
+
+\bibitem{Levin2002}
+J.~Levin,
+``Topology and the cosmic microwave background,''
+Phys. Rept. \textbf{365}, 251 (2002),
+arXiv:gr-qc/0108043.
+
+\bibitem{Luminet2003}
+J.-P.~Luminet, J.~Weeks, A.~Riazuelo, R.~Lehoucq, and J.-P.~Uzan,
+``Dodecahedral space topology as an explanation for weak wide-angle temperature correlations in the cosmic microwave background,''
+Nature \textbf{425}, 593 (2003),
+arXiv:astro-ph/0310253.
+
+\bibitem{Aurich2005}
+R.~Aurich, S.~Lustig, F.~Steiner, and H.~Then,
+``CMB anisotropy of spherical spaces,''
+Class. Quant. Grav. \textbf{22}, 3443 (2005),
+arXiv:astro-ph/0504656.
+
+\bibitem{Planck2015Topology}
+P.~A.~R.~Ade \textit{et al.} [Planck Collaboration],
+``Planck 2015 results. XVIII. Background geometry and topology,''
+Astron. Astrophys. \textbf{594}, A18 (2016),
+arXiv:1502.01593.
+
+\bibitem{Planck2018Params}
+N.~Aghanim \textit{et al.} [Planck Collaboration],
+``Planck 2018 results. VI. Cosmological parameters,''
+Astron. Astrophys. \textbf{641}, A6 (2020),
+arXiv:1807.06209.
+
+\bibitem{DESI2025DR2}
+M.~Abdul Karim \textit{et al.} [DESI Collaboration],
+``DESI DR2 Results. II. Measurements of baryon acoustic oscillations and cosmological constraints,''
+Phys. Rev. D \textbf{112}, 083515 (2025),
+arXiv:2503.14738.
+
+\bibitem{Petersen2023}
+P.~Petersen \textit{et al.} [COMPACT Collaboration],
+``Cosmic topology. Part I. Limits on orientable Euclidean manifolds from circle searches,''
+JCAP \textbf{01}, 030 (2023),
+arXiv:2211.02603.
+
+\bibitem{Eskilt2024}
+J.~R.~Eskilt \textit{et al.} [COMPACT Collaboration],
+``Cosmic topology. Part IIa. Eigenmodes, correlation matrices, and detectability of orientable Euclidean manifolds,''
+JCAP \textbf{03}, 036 (2024),
+arXiv:2306.17112.
+
+\bibitem{Akrami2024}
+Y.~Akrami \textit{et al.} [COMPACT Collaboration],
+``Promise of Future Searches for Cosmic Topology,''
+Phys. Rev. Lett. \textbf{132}, 171501 (2024),
+arXiv:2210.11426.
+
+\bibitem{Saha2025Lens}
+S.~Saha \textit{et al.} [COMPACT Collaboration],
+``Cosmic topology. Part Ic. Limits on lens spaces from circle searches,''
+JCAP \textbf{01}, 004 (2025),
+arXiv:2409.02226.
+
+\bibitem{Samandar2025}
+A.~Samandar \textit{et al.} [COMPACT Collaboration],
+``Cosmic topology. Part IIIb. Eigenmodes and correlation matrices of spin-2 perturbations in orientable Euclidean manifolds,''
+JCAP \textbf{08}, 015 (2025),
+arXiv:2503.08671.
+
+\end{thebibliography}
+\end{sloppypar}
+
+\end{document}

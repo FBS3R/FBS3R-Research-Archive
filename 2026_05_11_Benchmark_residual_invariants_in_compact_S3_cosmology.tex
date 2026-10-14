@@ -1,0 +1,916 @@
+\PassOptionsToPackage{hidelinks}{hyperref}
+\documentclass[
+  aps,
+  prd,
+  reprint,
+  superscriptaddress,
+  nofootinbib,
+  floatfix,
+  longbibliography
+]{revtex4-2}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm,mathtools,bm}
+\usepackage{booktabs,array}
+\usepackage{microtype}
+\IfFileExists{orcidlink.sty}{\usepackage{orcidlink}}{\newcommand{\orcidlink}[1]{}}
+
+\newtheorem{definition}{Definition}
+\newtheorem{proposition}{Proposition}
+\newtheorem{criterion}{Criterion}
+\newtheorem{remark}{Remark}
+
+\newcommand{\Sthree}{S^3}
+\newcommand{\D}{\mathcal D}
+\newcommand{\vis}{\mathrm{vis}}
+\newcommand{\crit}{\mathrm{crit}}
+\newcommand{\eff}{\mathrm{eff}}
+\newcommand{\TT}{\mathrm{TT}}
+\newcommand{\BY}{\mathrm{BY}}
+\newcommand{\MS}{\mathrm{MS}}
+\newcommand{\bigO}{\mathcal O}
+\newcommand{\dd}{\mathrm d}
+\newcommand{\nabl}{\nabla}
+\newcommand{\Inv}{\mathcal I}
+
+\begin{document}
+
+\title{Benchmark residual invariants in compact \texorpdfstring{\(S^3\)}{S3} cosmology}
+
+\author{Andrei~Preece\,\orcidlink{0009-0004-5978-795X}}
+\email{andre.preece@web.de}
+\affiliation{Independent Researcher, Berlin, Germany}
+
+\author{Boris~Batenin\,\orcidlink{0009-0000-7027-8583}}
+\email{batenin@web.de}
+\affiliation{Independent Researcher, Berlin, Germany}
+
+\date{\today}
+
+\begin{abstract}
+We formulate a benchmark-grade, first-principles framework for compact
+\(S^3\) cosmology.  The useful object is not a verbal explanation of the
+dark sector, but a reproducible map from invariant inputs to data
+likelihoods.  Starting from
+\((M,g_{\mu\nu},\Sigma,U^\mu,T^{\rm vis}_{\mu\nu})\), with
+\(M\simeq I\times S^3\), we define the residual stress tensor,
+the proper-time background reconstruction, the \(S^3\) spectral
+covariance kernels, the Noether-II and quasi-local constraints, and the
+data map needed for CMB, BAO, supernova, growth, lensing, and topology
+tests.  We then add the standard that makes the construction useful to
+other groups: a benchmark manifest, units and priors for each invariant
+parameter, a transfer-operator ledger, validation tests, posterior
+predictive residuals, evidence comparisons, and public reference
+outputs.  This submission defines the benchmark-specification version of
+the framework; numerical reference spectra, kernels, and likelihood
+tables are deliberately separated into a subsequent validation release.
+The result is not a microphysical dark-sector model and does not assert
+that topology alone explains cosmic acceleration.  It is a strict
+invariant-to-data benchmark against which compact-curvature and
+residual-stress hypotheses can be tested, reproduced, and falsified.
+\end{abstract}
+
+\maketitle
+
+\section{Introduction}
+\label{sec:introduction}
+
+The problem is not to attach a new name to the dark sector.  The problem
+is to state the object which a successful dark-sector theory must match.
+In a relativistic theory that object must be tensorial, conserved under
+the appropriate hypotheses, and reconstructible from observables without
+choosing a coordinate gauge; the conventions are those of standard general relativity and relativistic cosmology~\cite{Wald1984,HawkingEllis1973,Peebles1993,DodelsonSchmidt2020,Weinberg2008}.
+
+We use the following first-principles data:
+\begin{equation}
+  (M,g_{\mu\nu},\Sigma,U^\mu,T^{\vis}_{\mu\nu}),
+  \qquad
+  M\simeq I\times S^3,
+  \qquad
+  U^\mu U_\mu=-c^2 .
+  \label{eq:first_data}
+\end{equation}
+Here \(g_{\mu\nu}\) is the spacetime metric, \(\Sigma\) is a compact
+Cauchy slice diffeomorphic to \(S^3\), \(U^\mu\) is the comoving
+timelike congruence, and \(T^{\vis}_{\mu\nu}\) is the specified visible
+stress tensor, including baryons, photons, neutrinos, and any other
+sector one chooses to count as visible.
+
+The central definition is
+\begin{equation}
+  T^\D_{\mu\nu}:=\frac{c^4}{8\pi G}G_{\mu\nu}
+  -T^{\vis}_{\mu\nu}.
+  \label{eq:residual_tensor}
+\end{equation}
+It is a residual target tensor, not a microscopic model.  It is
+``complete'' only in this restricted sense: once \(g_{\mu\nu}\) and
+\(T^{\vis}_{\mu\nu}\) are specified, Eq.~\eqref{eq:residual_tensor}
+determines the dark-sector target.  It does not determine whether the
+target is produced by particles, fields, modified gravity written in
+Einstein form, interactions, or effective coarse graining.
+
+The present version adds the part that makes the framework predictive.
+It gives a network of invariants, specifies which of them lead to
+observables, and states the likelihood structure needed for CMB, BAO,
+supernova, lensing, growth, topology, and quasi-local tests.  We keep
+three rules throughout.  First, no quantity is called invariant merely
+because it is useful.  Scalars, spectra, topological numbers,
+covariants, and gauge-redundant objects are separated.  Second, any
+claim that depends on a bridge assumption is marked conditional.  Third,
+numerical claims are not promoted to predictions until a transfer
+function, likelihood, and data covariance have been specified.
+
+\section{Geometry and proper time}
+\label{sec:geometry_time}
+
+Let
+\begin{equation}
+  \dd s^2=-N^2(t)c^2\dd t^2+a^2(t)R_0^2\dd\Omega_3^2 ,
+  \label{eq:metric_lapse}
+\end{equation}
+where \(\dd\Omega_3^2\) is the unit three-sphere metric.  The physical
+curvature radius is
+\begin{equation}
+  A(t):=a(t)R_0 .
+  \label{eq:curvature_radius}
+\end{equation}
+The coordinate \(t\) has no invariant meaning unless \(N\) is fixed.
+Therefore we use
+\begin{equation}
+  f' := U^\mu\nabla_\mu f=\frac1N\frac{\dd f}{\dd t},
+  \qquad
+  H:=\frac{a'}a=\frac{\dot a}{Na}.
+  \label{eq:proper_time}
+\end{equation}
+A dot denotes \(\dd/\dd t\); a prime denotes differentiation with
+respect to proper time \(\tau\).\footnote{The dot is used only for
+coordinate-time differentiation before lapse fixing; all dynamical
+background equations below use the prime/proper-time convention.}
+
+For \(S^3_A\),
+\begin{equation}
+  V=2\pi^2A^3,\qquad
+  {\cal R}^{(3)}=\frac{6}{A^2},\qquad
+  \operatorname{diam}(S^3_A)=\pi A .
+  \label{eq:s3_geometry}
+\end{equation}
+The curvature parameter is
+\begin{equation}
+  \Omega_K=-\frac{c^2}{A_0^2H_0^2},
+  \qquad
+  A_0=\frac{c}{H_0\sqrt{-\Omega_K}}
+  \quad(\Omega_K<0).
+  \label{eq:omegaK_radius}
+\end{equation}
+Thus the flat limit is not a topological limit inside \(S^3\); it is
+the geometric limit \(A_0H_0/c\to\infty\).
+
+\section{Residual stress-energy}
+\label{sec:residual}
+
+\begin{proposition}[Covariance and conservation]
+The tensor \(T^\D_{\mu\nu}\) defined in Eq.~\eqref{eq:residual_tensor}
+is a symmetric rank-two tensor.  If the visible stress tensor is
+separately conserved,
+\begin{equation}
+  \nabla_\mu T^{\vis\,\mu\nu}=0,
+  \label{eq:visible_conserved}
+\end{equation}
+then
+\begin{equation}
+  \nabla_\mu T^{\D\,\mu\nu}=0 .
+  \label{eq:dark_conserved}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+The Einstein tensor and \(T^{\vis}_{\mu\nu}\) are tensors, so their
+linear combination is a tensor.  Taking a divergence of
+Eq.~\eqref{eq:residual_tensor} gives
+\begin{equation}
+  \nabla_\mu T^{\D\,\mu\nu}
+  =\frac{c^4}{8\pi G}\nabla_\mu G^{\mu\nu}
+  -\nabla_\mu T^{\vis\,\mu\nu}.
+\end{equation}
+The first term vanishes by the contracted Bianchi identity; the second
+vanishes by assumption.
+\end{proof}
+
+If visible and dark sectors exchange energy-momentum, the correct
+statement is instead
+\begin{equation}
+  \nabla_\mu T^{\vis\,\mu\nu}=J^\nu,\qquad
+  \nabla_\mu T^{\D\,\mu\nu}=-J^\nu ,
+  \label{eq:interaction_current}
+\end{equation}
+so that the sum is conserved.  A reconstructed nonzero divergence is
+therefore not a falsification of \(S^3\) topology.  It is evidence for
+an inconsistent reconstruction, a nonconserved visible sector, or a
+missing interaction current.
+
+For the FLRW background define
+\begin{equation}
+  \epsilon_{\crit}:=\frac{3c^2H_0^2}{8\pi G},
+  \qquad
+  E(a):=\frac{H(a)}{H_0}.
+\end{equation}
+The Friedmann equations give
+\begin{equation}
+  \frac{\epsilon_{\rm tot}}{\epsilon_{\crit}}
+  =
+  E^2-\Omega_Ka^{-2},
+  \label{eq:eps_total}
+\end{equation}
+and
+\begin{equation}
+  \frac{p_{\rm tot}}{\epsilon_{\crit}}
+  =
+  -\frac13
+  \left[
+  \frac{\dd E^2}{\dd\ln a}
+  +3E^2-\Omega_Ka^{-2}
+  \right].
+  \label{eq:p_total}
+\end{equation}
+The proper-time acceleration equation and deceleration parameter are
+\begin{equation}
+  \frac{a''}{a}
+  =
+  -\frac{4\pi G}{3c^2}(\epsilon_{\rm tot}+3p_{\rm tot}),
+  \qquad
+  q=-\frac{aa''}{(a')^2}.
+  \label{eq:acceleration_q}
+\end{equation}
+
+Let
+\begin{equation}
+  \Omega_{\vis}(a)=
+  \Omega_ba^{-3}+\Omega_\gamma a^{-4}+\Omega_\nu(a).
+\end{equation}
+Then
+\begin{equation}
+  \frac{\epsilon_\D}{\epsilon_{\crit}}
+  =
+  E^2-\Omega_Ka^{-2}-\Omega_{\vis}(a),
+  \label{eq:epsD}
+\end{equation}
+and
+\begin{equation}
+  \frac{p_\D}{\epsilon_{\crit}}
+  =
+  -\frac13
+  \left[
+  \frac{\dd E^2}{\dd\ln a}
+  +3E^2-\Omega_Ka^{-2}
+  \right]
+  -\frac13\Omega_\gamma a^{-4}
+  -P_\nu(a),
+  \label{eq:pD}
+\end{equation}
+where \(P_\nu(a)=p_\nu(a)/\epsilon_{\crit}\).  These formulae are
+background targets.  They do not split \(T^\D_{\mu\nu}\) uniquely into
+clustering dark matter and smooth dark energy; that split requires
+perturbative observables.
+
+\section{\texorpdfstring{\(S^3\)}{S3} spectra and covariance kernels}
+\label{sec:spectra}
+
+The scalar Laplacian on \(S^3_A\) has eigenvalues
+\begin{equation}
+  -\Delta Y_{n\ell m}
+  =
+  \frac{n(n+2)}{A^2}Y_{n\ell m},
+  \qquad
+  n=0,1,2,\ldots ,
+  \label{eq:scalar_spectrum}
+\end{equation}
+with degeneracy \((n+1)^2\) in the standard scalar-harmonic
+normalization on three-spheres~\cite{RubinOrdonez1984,AbbottSchaefer1986,Jantzen1978,Higuchi1987,LindblomTaylorZhang2017}.  The first nonzero scalar gap is
+\begin{equation}
+  \lambda_1=\frac{3}{A^2}.
+  \label{eq:spectral_gap}
+\end{equation}
+The addition kernel is
+\begin{equation}
+\begin{split}
+  \Xi_{n,A}(x,y)
+  &=
+  \sum_{\ell,m}Y_{n\ell m}(x)Y^*_{n\ell m}(y),
+  \\
+  \Xi_{n,A}(0)&=\frac{(n+1)^2}{2\pi^2A^3}.
+\end{split}
+  \label{eq:addition_kernel}
+\end{equation}
+For a statistically isotropic scalar Gaussian field,
+\begin{equation}
+  C(x,y)=
+  \sum_{n=0}^{\infty}A_n\,\Xi_{n,A}(x,y)
+  \label{eq:covariance}
+\end{equation}
+is a covariance only if
+\begin{equation}
+  A_n\ge0,
+  \qquad
+  \sum_{n=0}^{\infty}A_n\,\Xi_{n,A}(0)<\infty .
+  \label{eq:covariance_conditions}
+\end{equation}
+Stronger decay controls differentiability.  Equation
+\eqref{eq:covariance_conditions} is a sharp admissibility condition:
+without it the coefficients are not a covariance spectrum.
+
+CMB and large-scale-structure observables enter through transfer
+functions, as in the standard Boltzmann-code approach~\cite{CLASS2011,CLASSNonFlat2014,CAMB2000}.  Schematically, for CMB fields \(X,Y\in\{T,E,B,\phi\}\),
+\begin{equation}
+  C_\ell^{XY}(\theta)
+  =
+  \sum_{n\in{\cal N}_\ell}
+  A_n(\theta)\,
+  \Delta_{\ell n}^{X}(\theta)\,
+  \Delta_{\ell n}^{Y}(\theta),
+  \label{eq:closed_cl}
+\end{equation}
+where \({\cal N}_\ell\) is the allowed discrete mode set and
+\(\Delta_{\ell n}^{X}\) are the closed-FLRW transfer functions with the
+chosen normalization.  Equation \eqref{eq:closed_cl} is the predictive
+replacement for any verbal statement about low-\(\ell\) anomalies.
+Closed-FLRW hyperspherical transfer functions are already implemented in
+non-flat Boltzmann technology; the compact benchmark adds the discrete
+sum over allowed \(n\) and the covariance-admissibility condition in
+Eq.~\eqref{eq:covariance_conditions}.  A deficit, oscillation,
+alignment, or parity statistic is a derived likelihood statement, not a
+prior conclusion.
+
+Vector and tensor perturbations require their own operator ledger.
+Scalar eigenvalues cannot be re-used for transverse vectors or
+transverse-traceless tensors without the correct curvature shifts,
+constraints, and gauge conditions.
+
+\section{Noether-II, quasi-local, and gauge constraints}
+\label{sec:noether}
+
+Diffeomorphism invariance is governed by Noether's second theorem and the covariant phase-space identities, not
+by ordinary global Noether-I charges~\cite{IyerWald1994,Wald1984}.
+The quasi-local examples below use the Brown--York and Misner--Sharp constructions~\cite{BrownYork1993,MisnerSharp1964}; the quantum-clock caution uses the Page--Wootters benchmark~\cite{PageWootters1983}.  On a compact Cauchy slice without
+boundary,
+\begin{equation}
+  \partial\Sigma=\varnothing ,
+\end{equation}
+the diffeomorphism Hamiltonian is a constraint for pure gauge
+deformations.  Physical energy diagnostics arise from subregions
+\(D\subset\Sigma\) with \(\partial D\ne\varnothing\), from matter
+clocks, or from asymptotic/boundary structures when such structures
+exist.
+
+For a geodesic two-sphere of areal radius \(R_A\) in a time-symmetric
+round \(S^3\) slice, the Brown--York energy with flat reference
+subtraction is~\cite{BrownYork1993,York1972}
+\begin{equation}
+  E_{\BY}(R_A)
+  =
+  \frac{c^4R_A}{G}
+  \left[
+  1-\sqrt{1-\frac{R_A^2}{A^2}}
+  \right],
+  \qquad 0\le R_A\le A .
+  \label{eq:by_energy}
+\end{equation}
+For \(R_A\ll A\),
+\begin{equation}
+  E_{\BY}(R_A)
+  =
+  \frac{c^4R_A^3}{2GA^2}
+  +\bigO(R_A^5/A^4).
+  \label{eq:by_small}
+\end{equation}
+The leading term has volume scaling.  A Newtonian interpretation
+requires the constraint equations and a specified reference subtraction;
+it is not automatic.
+
+The Misner--Sharp energy in FLRW is
+\begin{equation}
+  E_{\MS}(R_A)=\frac{4\pi}{3}R_A^3\epsilon_{\rm tot}.
+  \label{eq:ms_energy}
+\end{equation}
+Equations \eqref{eq:by_energy} and \eqref{eq:ms_energy} are different
+quasi-local diagnostics: \(E_{\BY}\) uses an embedding/reference
+subtraction, while \(E_{\MS}\) is the local spherical FLRW mass
+function.  They should not be identified unless the geometric setting
+and subtraction convention justify it.
+
+For a gauge field on a compact slice, the Poisson equation has a
+zero-mode constraint:
+\begin{equation}
+  \int_\Sigma \rho\,\dd V=0 .
+  \label{eq:gauss_zero}
+\end{equation}
+Equivalently, the Green function must be zero-mode subtracted:
+\begin{equation}
+  -\Delta G_0(x,y)=\delta_y(x)-\frac1{V(\Sigma)} .
+  \label{eq:zero_subtracted_green}
+\end{equation}
+This is a global solvability condition, not a claim that every local
+flux integral vanishes.
+
+\section{Predictive invariant-to-data pipeline}
+\label{sec:pipeline}
+
+A model becomes experimentally useful only after it supplies a map
+\begin{equation}
+  \theta\longmapsto m(\theta)
+  \label{eq:model_map}
+\end{equation}
+from invariant parameters to a data vector.  A minimal data vector is
+\begin{equation}
+\begin{split}
+  d=&\{C_\ell^{TT},C_\ell^{TE},C_\ell^{EE},C_\ell^{\phi\phi},
+  D_M(z_i)/r_d,D_H(z_i)/r_d,\\
+  &\mu_{\rm SN}(z_j),H(z_k),f\sigma_8(z_l),
+  \xi_\pm(\vartheta_m),{\cal T}_{\rm top}\}.
+\end{split}
+\label{eq:data_vector}
+\end{equation}
+Here \({\cal T}_{\rm top}\) denotes any topology statistic, such as a
+circle-search statistic for a multiply connected quotient
+\(S^3/\Gamma\) or a geodesic-wrap statistic for simply connected
+\(S^3\), in the sense of compact-topology searches, if the horizon
+scale is large enough.
+
+A corresponding parameter vector may be written
+\begin{equation}
+\begin{split}
+  \theta=&\{A_0,H_0,\Omega_bh^2,\Omega_\gamma h^2,
+  \Omega_\nu h^2,\\
+  &A_n\ \text{or}\ P_{\cal R}(n),
+  \alpha_{\D},\eta_{\rm int},\nu_{\rm nuis}\}.
+\end{split}
+\label{eq:parameter_vector}
+\end{equation}
+The symbols \(\alpha_\D\) parameterize the residual background or
+perturbations, \(\eta_{\rm int}\) parameterizes possible interaction
+currents \(J^\mu\), and \(\nu_{\rm nuis}\) denotes nuisance parameters
+for foregrounds, calibration, galaxy bias, intrinsic alignments, and
+selection functions.
+
+The likelihood is
+\begin{equation}
+  -2\ln{\cal L}(\theta)
+  =
+  [d-m(\theta)]^T{\cal C}^{-1}
+  [d-m(\theta)]
+  +\ln\det{\cal C}
+  +\mathrm{const.},
+  \label{eq:likelihood}
+\end{equation}
+with a non-Gaussian replacement where the experiment requires it.  This
+is the correct form of falsifiability.  One does not declare a fixed
+curvature radius to be excluded in the abstract.  One reports a posterior
+or Bayes factor after specifying data, priors, transfer functions, and
+covariance.
+
+\begin{criterion}[Transfer-grade predictive closure]
+A compact \(S^3\) residual model is transfer-grade only if it supplies:
+\begin{enumerate}
+\item the metric and proper-time convention;
+\item the visible stress tensor and any interaction current;
+\item the scalar, vector, and tensor operator ledger;
+\item admissible covariance spectra satisfying
+      Eq.~\eqref{eq:covariance_conditions};
+\item transfer functions for the data vector \eqref{eq:data_vector};
+\item a likelihood and reproducible numerical implementation;
+\item a falsification statement in posterior, Bayes-factor, or
+      predictive-residual form.
+\end{enumerate}
+\end{criterion}
+
+The practical implementation is a closed-FLRW Boltzmann pipeline with
+discrete compact mode sums.  Existing non-flat Boltzmann solvers provide
+the hyperspherical transfer-function technology.  Compact topology adds
+the finite-volume mode ledger, possible quotient selection rules,
+admissible covariance coefficients, and topology likelihoods, with compact-topology searches providing one reference implementation of the latter step~\cite{SahaCompact2025}.  A code should
+therefore not be advertised as predicting an anomaly until it returns
+the objects in Eq.~\eqref{eq:data_vector} with the covariance in
+Eq.~\eqref{eq:likelihood}.
+
+
+\section{Benchmark standard for scientific utility}
+\label{sec:benchmark}
+
+A framework is useful to physics only when another group can reproduce
+its numerical claims without guessing conventions.  The benchmark object
+is therefore
+\begin{equation}
+  {\mathfrak B}
+  =
+  ({\cal I},\Theta,\pi,{\cal T},{\cal N},{\cal V},{\cal R}),
+  \label{eq:benchmark_object}
+\end{equation}
+where \({\cal I}\) is the invariant ledger, \(\Theta\) is the parameter
+space with units, \(\pi\) is the prior measure, \({\cal T}\) is the
+transfer map from invariants to observables, \({\cal N}\) is the noise
+and covariance model, \({\cal V}\) is the validation suite, and
+\({\cal R}\) is the public release manifest.  Omitting any one of these
+entries turns a prediction into an interpretation.
+
+\begin{definition}[Registered prediction]
+A registered prediction is a tuple
+\begin{equation}
+  P=(\theta,\pi,{\cal T},d_{\rm blind},{\cal C},{\cal L},{\cal F})
+  \label{eq:registered_prediction}
+\end{equation}
+fixed before the target data \(d_{\rm blind}\) are used.  The final
+entry \({\cal F}\) is the failure criterion: posterior exclusion,
+Bayes-factor loss, or posterior-predictive inconsistency.  A fit made
+after seeing the data is not a prediction; it is a consistency test.
+\end{definition}
+
+\begin{proposition}[Coordinate-free reproducibility]
+If the entries in Eq.~\eqref{eq:benchmark_object} are expressed through
+scalar invariants, tensorial projections, spectra, or quasi-local
+surface integrals, then the benchmark predictions are independent of
+coordinate charts on \(M\) and on \(\Sigma\).
+\end{proposition}
+
+\begin{proof}
+The data map \(m(\theta)\) uses only the invariant ledger and the
+experiment's projection operators.  A coordinate change alters component
+representations of \(g_{\mu\nu}\), \(T^{\cal D}_{\mu\nu}\), harmonic
+bases, and surface embeddings, but not eigenvalues, multiplicities,
+addition kernels, contractions with \(U^\mu\), likelihood scalars, or
+surface integrals with the induced measure.  Hence the numerical output
+is a function of geometric objects, not of labels.
+\end{proof}
+
+
+The minimal benchmark products are the following.
+\begin{enumerate}
+\item \emph{Invariant manifest}: definitions, units, domains, priors, and
+exact/conditional status of all entries \(\Inv_i\).  This prevents hidden
+convention changes and non-comparable analyses.
+\item \emph{Transfer ledger}: the map from
+\(\{\lambda_n,d_n,\Xi_{n,A},T^{\cal D}_{\mu\nu}\}\) to \(C_\ell\), BAO
+distances, growth, lensing, and topology statistics.  This prevents
+claims of prediction without a computable observable.
+\item \emph{Validation suite}: analytic limits, including the flat
+limit, large-radius limit, covariance positivity, \(\Lambda\)CDM
+residual check, and small-sphere Brown--York expansion.  This prevents
+numerical agreement that is only accidental.
+\item \emph{Likelihood package}: data vector, covariance, masks,
+nuisance parameters, priors, and posterior-predictive residuals.  This
+prevents unfalsifiable comparison with selected plots.
+\item \emph{Reference outputs}: versioned tables for spectra, kernels,
+background residuals, and benchmark likelihood values.  This prevents
+irreproducible code-dependent numbers.
+\item \emph{Release manifest}: version hashes, exact datasets,
+compilation/runtime environment, and license.  This prevents results
+that cannot be audited or reused.
+\end{enumerate}
+
+
+The first numerical target is not a full explanation of CMB anomalies or
+cosmological tensions.  The first target is more severe and more useful:
+given a closed-FLRW background and a compact spectral ledger, reproduce
+standard non-flat transfer-function limits, replace continuous long-mode
+integrals by the correct \(S^3\) sums, and report the likelihood change
+relative to the flat and simply-connected baselines.  Only after this
+test is passed may one discuss low-\(\ell\) anomalies, matched circles,
+or residual-stress interpretations.
+
+Quasi-local observables obey the same rule.  A Brown--York or
+Misner--Sharp map inferred from lensing is not evidence for topology by
+itself.  It becomes useful only if the surface, subtraction convention,
+mass definition, data projection, and covariance are fixed in the
+manifest.  The output is then a geometric diagnostic that can agree with,
+or fail against, the residual target.
+
+\section{Observational uses}
+\label{sec:observational}
+
+The invariant framework produces several test classes.
+
+First, background data constrain
+\begin{equation}
+  \epsilon_\D(a),\qquad p_\D(a),\qquad
+  w_\D(a)=p_\D(a)/\epsilon_\D(a)
+\end{equation}
+through Eqs.~\eqref{eq:epsD}--\eqref{eq:pD}.  BAO, supernovae,
+cosmic-chronometer, BBN, and CMB priors enter here through \(E(a)\)~\cite{Planck2018VI,Planck2018VII,PlanckPR4CamSpec,DESIDR2BAO2025,DESIDR2Lya2025,DESIDR2DE2025,PantheonPlus2022,Moresco2022,ACTDR62024},
+\(r_d\), and the visible-sector densities.
+
+Second, perturbations test the split between a clustering and a smooth
+residual.  Distances alone cannot identify dark matter.  Lensing,
+redshift-space distortions, CMB peaks, cluster abundance, and velocity
+fields are needed.
+
+Third, the discrete \(S^3\) spectra generate covariance predictions for
+low multipoles, parity statistics, alignments, and cross-correlations.
+These are not automatic explanations of anomalies.  They are likelihood
+tests of Eq.~\eqref{eq:closed_cl} with admissible \(A_n\).
+
+Fourth, compact topology can be tested by geodesic wrap-around
+statistics on \(S^3\) and by matched-circle statistics on quotients
+\(S^3/\Gamma\).  The absence of a circle signal constrains the quotient,
+radius, orientation, and noise model used in that search; it is not by
+itself a universal exclusion of closed positive curvature.
+
+Fifth, quasi-local diagnostics such as \(E_{\BY}\) and \(E_{\MS}\) can
+be compared with lensing mass maps and cluster observables only after
+specifying the slicing, reference subtraction, mass definition, and
+selection function.  This is a difficult but well-posed extension.
+
+\section{Conditional extensions}
+\label{sec:conditional}
+
+Some useful mathematics is conditional rather than first-principles
+physics.  If a hierarchy is defined by
+\begin{equation}
+  F_{n+2}=F_{n+1}+F_n ,
+\end{equation}
+then
+\begin{equation}
+  \frac{F_{n+1}}{F_n}\to
+  \varphi=\frac{1+\sqrt5}{2}.
+\end{equation}
+This is a Perron--Frobenius fact about a recursion.  It is not a
+spacetime prediction unless a separate bridge connects the recursion to
+spectral or geometric data.
+
+Similarly, graph spectra, Zeckendorf decompositions,
+Born--Oppenheimer parameters, and quantum-cosmological phases are useful
+only after their Hilbert spaces, operators, gauge fixing, and
+observables are stated.  They may be compared with the residual target
+\eqref{eq:residual_tensor}; they do not replace it.
+
+\section{Discussion}
+\label{sec:discussion}
+
+The rigid content of the construction is
+\begin{equation}
+\begin{gathered}
+  \text{compact }S^3
+  +T^\D_{\mu\nu}
+  +\text{ proper-time FLRW geometry}
+  \\
+  +\text{ discrete spectra}
+  +\text{ Noether-II constraints}
+  \\
+  +\text{ compact gauge zero modes}
+  +\text{ quasi-local diagnostics}.
+\end{gathered}
+\label{eq:core}
+\end{equation}
+This is enough to define a useful research programme.  It is not enough
+to claim a dark-sector mechanism, an explanation of the Hubble tension,
+or a proof of any famous conjecture.  The scientific value lies in the
+opposite discipline: every extension must pass through invariant
+definitions, transfer functions, and data likelihoods.
+
+The natural journal standard for the cosmology part is Physical Review D:
+the content is gravitation, cosmology, field theory, and data-facing
+cosmological inference.  A Physical Review A version would have to be a
+different paper, centered on quantum information, quantum measurement, or
+atomic/optical analogues.  The present manuscript should therefore be
+judged primarily as a PRD-style theory-and-phenomenology paper.
+
+
+The standard for the next version is therefore not a larger list of
+claims but a smaller set of benchmark numbers: reference spectra,
+reference residual histories, reference covariance kernels, and
+reference likelihood values.  These are the objects that let another
+group reproduce, refute, or improve the construction.
+
+\appendix
+
+\section{Predictive invariant ledger}
+\label{app:ledger}
+
+This appendix records eighty-four entries.  A scalar invariant is a
+number or scalar field.  A spectral invariant is an eigenvalue,
+multiplicity, trace, or zeta quantity.  A natural covariant is tensorial
+or geometric but not scalar.  A conditional entry requires an additional
+bridge assumption.
+
+\begin{enumerate}
+\item \(\Inv_1=M\simeq I\times S^3\): spacetime product topology.
+\item \(\Inv_2=\partial\Sigma=\varnothing\): absence of spatial boundary.
+\item \(\Inv_3=\pi_1(S^3)=0\): simple connectivity.
+\item \(\Inv_4=H_0(S^3)=\mathbb Z\): connectedness.
+\item \(\Inv_5=H_1(S^3)=0\): no one-cycle homology.
+\item \(\Inv_6=H_2(S^3)=0\): no two-cycle homology.
+\item \(\Inv_7=H_3(S^3)=\mathbb Z\): orientation volume class.
+\item \(\Inv_8=\chi(S^3)=0\): Euler characteristic.
+\item \(\Inv_9=A(t)=a(t)R_0\): physical curvature radius.
+\item \(\Inv_{10}=V=2\pi^2A^3\): spatial volume.
+\item \(\Inv_{11}=\operatorname{diam}S^3_A=\pi A\): diameter.
+\item \(\Inv_{12}={\cal R}^{(3)}=6/A^2\): scalar curvature.
+\item \(\Inv_{13}=R^{(3)}_{ij}=2h_{ij}/A^2\): Ricci tensor.
+\item \(\Inv_{14}=K=+1/A^2\): sectional curvature.
+\item \(\Inv_{15}=\Omega_K=-c^2/(A_0^2H_0^2)\): dimensionless curvature.
+\item \(\Inv_{16}=A_0H_0/c=1/\sqrt{-\Omega_K}\): curvature radius in Hubble units.
+\item \(\Inv_{17}=U^\mu U_\mu=-c^2\): normalized congruence.
+\item \(\Inv_{18}=f'=U^\mu\nabla_\mu f\): proper-time derivative.
+\item \(\Inv_{19}=H=a'/a\): expansion rate.
+\item \(\Inv_{20}=\Theta=\nabla_\mu U^\mu=3H\): expansion scalar.
+\item \(\Inv_{21}=q=-aa''/(a')^2\): deceleration scalar.
+\item \(\Inv_{22}=1+z=a_0/a\): redshift in FLRW.
+\item \(\Inv_{23}=E(z)=H(z)/H_0\): dimensionless expansion.
+\item \(\Inv_{24}=\chi(z)=\int_0^z c\,\dd z'/H(z')\): radial comoving distance.
+\item \(\Inv_{25}=D_M(z)=A_0\sin[\chi(z)/A_0]\): transverse distance for \(S^3\).
+\item \(\Inv_{26}=D_H(z)=c/H(z)\): Hubble distance.
+\item \(\Inv_{27}=r_d\): drag-epoch sound horizon.
+\item \(\Inv_{28}=D_M/r_d\): BAO transverse observable.
+\item \(\Inv_{29}=D_H/r_d\): BAO radial observable.
+\item \(\Inv_{30}=G_{\mu\nu}\): Einstein tensor natural covariant.
+\item \(\Inv_{31}=\nabla_\mu G^{\mu\nu}=0\): contracted Bianchi identity.
+\item \(\Inv_{32}=T^{\vis}_{\mu\nu}\): specified visible stress tensor.
+\item \(\Inv_{33}=T^\D_{\mu\nu}\): residual stress tensor.
+\item \(\Inv_{34}=\epsilon_\D=T^\D_{\mu\nu}U^\mu U^\nu/c^2\): residual energy density.
+\item \(\Inv_{35}=p_\D=h^{\mu\nu}T^\D_{\mu\nu}/3\): residual isotropic pressure.
+\item \(\Inv_{36}=w_\D=p_\D/\epsilon_\D\): residual background equation-of-state ratio.
+\item \(\Inv_{37}=h^\alpha{}_\mu T^\D_{\alpha\beta}U^\beta\): residual momentum flux.
+\item \(\Inv_{38}=\pi^\D_{\mu\nu}\): residual anisotropic stress.
+\item \(\Inv_{39}=T^\D=g^{\mu\nu}T^\D_{\mu\nu}\): residual trace.
+\item \(\Inv_{40}=\nabla_\mu T^{\D\,\mu\nu}\): residual divergence diagnostic.
+\item \(\Inv_{41}=J^\nu\): interaction current if sectors exchange energy-momentum.
+\item \(\Inv_{42}=-\Delta\): scalar Laplacian on \(S^3_A\).
+\item \(\Inv_{43}=\lambda_n=n(n+2)/A^2\): scalar eigenvalues.
+\item \(\Inv_{44}=g_n=(n+1)^2\): scalar degeneracy.
+\item \(\Inv_{45}=\lambda_1=3/A^2\): scalar spectral gap.
+\item \(\Inv_{46}=\Xi_{n,A}(x,y)\): scalar addition kernel.
+\item \(\Inv_{47}=\Xi_{n,A}(0)=(n+1)^2/(2\pi^2A^3)\): diagonal kernel.
+\item \(\Inv_{48}=A_n\ge0\): covariance positivity.
+\item \(\Inv_{49}=\sum_nA_n\Xi_{n,A}(0)<\infty\): finite point variance.
+\item \(\Inv_{50}=K(s)=\operatorname{Tr}e^{-s\Delta}\): heat trace.
+\item \(\Inv_{51}=\zeta_\Delta(s)=\sum_{\lambda>0}\lambda^{-s}\): spectral zeta function.
+\item \(\Inv_{52}=\Delta^{X}_{\ell n}\): closed-FLRW transfer function.
+\item \(\Inv_{53}=C_\ell^{XY}\): angular power spectrum prediction.
+\item \(\Inv_{54}=P_\D(k,z)\) or its discrete analogue: residual clustering spectrum.
+\item \(\Inv_{55}=f\sigma_8(z)\): growth observable.
+\item \(\Inv_{56}=C_\ell^{\phi\phi}\): CMB lensing spectrum.
+\item \(\Inv_{57}=\xi_\pm(\vartheta)\): weak-lensing correlation functions.
+\item \(\Inv_{58}={\cal T}_{\rm top}\): topology statistic.
+\item \(\Inv_{59}=H_\xi\approx0\): diffeomorphism Hamiltonian constraint on closed slices.
+\item \(\Inv_{60}=E_{\BY}(R_A)\): Brown--York quasi-local energy.
+\item \(\Inv_{61}=E_{\MS}(R_A)\): Misner--Sharp energy.
+\item \(\Inv_{62}=\int_\Sigma\rho\,\dd V=0\): compact Gauss zero-mode condition.
+\item \(\Inv_{63}=G_0(x,y)\): zero-subtracted Green function.
+\item \(\Inv_{64}=Q_{\partial D}\): quasi-local surface charge on a subregion.
+\item \(\Inv_{65}={\cal C}\): data covariance matrix in the likelihood.
+\item \(\Inv_{66}=\ln{\cal L}\): predictive likelihood scalar.
+\item \(\Inv_{67}=Z_{\cal M}=\int{\cal L}\pi\,\dd\theta\): Bayesian evidence.
+\item \(\Inv_{68}=K_{12}=Z_1/Z_2\): Bayes factor between models.
+\item \(\Inv_{69}=r_i=d_i-m_i(\theta)\): posterior predictive residual.
+
+\smallskip
+\noindent\emph{Conditional mathematical extensions, not required for
+the core benchmark.}
+\smallskip
+
+\item \(\Inv_{70}=\varphi\): conditional Fibonacci hierarchy eigenvalue.
+\item \(\Inv_{71}\): conditional graph adjacency spectrum.
+\item \(\Inv_{72}\): conditional quantum phase or Born--Oppenheimer parameter.
+
+\item \(\Inv_{73}=({\cal I},\Theta,\pi,{\cal T},{\cal N},{\cal V},{\cal R})\):
+benchmark manifest.
+\item \(\Inv_{74}={\cal T}\): invariant-to-observable transfer operator.
+\item \(\Inv_{75}={\cal N}\): experimental noise and nuisance model.
+\item \(\Inv_{76}={\cal V}\): validation-test vector.
+\item \(\Inv_{77}=p(d_{\rm blind}\mid{\cal M})\): blind predictive density.
+\item \(\Inv_{78}=r_i^{\rm pp}\): posterior-predictive residual.
+\item \(\Inv_{79}=\Delta\chi^2_{\rm pp}\): posterior-predictive discrepancy.
+\item \(\Inv_{80}\): versioned reference spectrum table.
+\item \(\Inv_{81}\): versioned covariance-kernel table.
+\item \(\Inv_{82}\): versioned residual-history table.
+\item \(\Inv_{83}\): code-and-data release hash.
+\item \(\Inv_{84}\): failure criterion attached to a registered prediction.
+\end{enumerate}
+
+
+\section{Benchmark manifest}
+\label{app:manifest}
+
+The following is the minimal manifest for a public benchmark release.
+It is deliberately mechanical.
+\begin{enumerate}
+\item State the geometry: \(A\), \(\Omega_K\), \(a_0\), lapse convention,
+      and proper-time derivative.
+\item State the visible sector: baryons, photons, neutrinos, and any
+      interaction current.  If an interaction current is absent, state
+      \(\nabla_\mu T^{\vis\,\mu\nu}=0\).
+\item State the residual target: \(T^{\cal D}_{\mu\nu}\),
+      \(\epsilon_{\cal D}(a)\), \(p_{\cal D}(a)\), and perturbative
+      closure if used.
+\item State the spectral sector: scalar, transverse-vector, or TT;
+      operator, eigenvalues, degeneracies, and covariance coefficients.
+\item State the data vector and covariance exactly as used in the
+      likelihood.
+\item Publish validation outputs for the analytic limits listed in
+      Sec.~\ref{sec:benchmark}.
+\item Publish posterior samples, posterior-predictive residuals,
+      evidence estimates, and the failure criterion.
+\end{enumerate}
+This manifest is stricter than a narrative conclusion.  It is also more
+valuable: it converts the framework into a reusable standard.
+
+\section{Quarantine rule}
+\label{app:quarantine}
+
+The framework excludes unsupported global claims from the PRD/PRA-level
+core.  In particular, it does not contain a proof of the Riemann
+hypothesis, the Collatz conjecture, Fermat's last theorem, local
+connectivity of the Mandelbrot set, or the Poincaré conjecture.  It also
+does not use consciousness, reincarnation, or metaphysical claims as
+physical assumptions.  Such material may be studied elsewhere as
+mathematics, philosophy, or speculation, but it is not part of the
+transfer-grade invariant programme unless it supplies definitions,
+theorems, observables, and falsifiable likelihoods.
+
+\begin{thebibliography}{99}
+
+\bibitem{Wald1984}
+R. M. Wald, \textit{General Relativity} (University of Chicago Press, Chicago, 1984).
+
+\bibitem{HawkingEllis1973}
+S. W. Hawking and G. F. R. Ellis, \textit{The Large Scale Structure of Space-Time} (Cambridge University Press, Cambridge, 1973).
+
+\bibitem{Peebles1993}
+P. J. E. Peebles, \textit{Principles of Physical Cosmology} (Princeton University Press, Princeton, 1993).
+
+\bibitem{DodelsonSchmidt2020}
+S. Dodelson and F. Schmidt, \textit{Modern Cosmology}, 2nd ed. (Academic Press, London, 2020).
+
+\bibitem{Weinberg2008}
+S. Weinberg, \textit{Cosmology} (Oxford University Press, Oxford, 2008).
+
+\bibitem{RubinOrdonez1984}
+M. A. Rubin and C. R. Ord\'{o}\~nez, Symmetric tensor eigenspectrum of the Laplacian on \(n\)-spheres, J. Math. Phys. \textbf{25}, 2888 (1984).
+
+\bibitem{AbbottSchaefer1986}
+L. F. Abbott and R. K. Schaefer, A general, gauge-invariant analysis of the cosmic microwave anisotropy, Astrophys. J. \textbf{308}, 546 (1986).
+
+\bibitem{Jantzen1978}
+R. T. Jantzen, Tensor harmonics on the 3-sphere, J. Math. Phys. \textbf{19}, 1163 (1978).
+
+\bibitem{Higuchi1987}
+A. Higuchi, Symmetric tensor spherical harmonics on the \(N\)-sphere and their application to the de Sitter group \(SO(N,1)\), J. Math. Phys. \textbf{28}, 1553 (1987); Erratum, J. Math. Phys. \textbf{43}, 6385 (2002).
+
+\bibitem{LindblomTaylorZhang2017}
+L. Lindblom, N. W. Taylor, and F. Zhang, Scalar, vector and tensor harmonics on the three-sphere, Gen. Relativ. Gravit. \textbf{49}, 139 (2017), arXiv:1709.08020.
+
+\bibitem{IyerWald1994}
+V. Iyer and R. M. Wald, Some properties of Noether charge and a proposal for dynamical black hole entropy, Phys. Rev. D \textbf{50}, 846 (1994), arXiv:gr-qc/9403028.
+
+\bibitem{BrownYork1993}
+J. D. Brown and J. W. York, Jr., Quasilocal energy and conserved charges derived from the gravitational action, Phys. Rev. D \textbf{47}, 1407 (1993), arXiv:gr-qc/9209012.
+
+\bibitem{MisnerSharp1964}
+C. W. Misner and D. H. Sharp, Relativistic equations for adiabatic, spherically symmetric gravitational collapse, Phys. Rev. \textbf{136}, B571 (1964).
+
+\bibitem{York1972}
+J. W. York, Jr., Role of conformal three-geometry in the dynamics of gravitation, Phys. Rev. Lett. \textbf{28}, 1082 (1972).
+
+\bibitem{PageWootters1983}
+D. N. Page and W. K. Wootters, Evolution without evolution: Dynamics described by stationary observables, Phys. Rev. D \textbf{27}, 2885 (1983).
+
+\bibitem{Planck2018VI}
+N. Aghanim \textit{et al.} (Planck Collaboration), Planck 2018 results. VI. Cosmological parameters, Astron. Astrophys. \textbf{641}, A6 (2020), arXiv:1807.06209.
+
+\bibitem{Planck2018VII}
+N. Aghanim \textit{et al.} (Planck Collaboration), Planck 2018 results. VIII. Gravitational lensing, Astron. Astrophys. \textbf{641}, A8 (2020), arXiv:1807.06210.
+
+\bibitem{PlanckPR4CamSpec}
+E. Rosenberg, S. Gratton, and G. Efstathiou, CMB power spectra and cosmological parameters from Planck PR4 with CamSpec, Mon. Not. R. Astron. Soc. \textbf{517}, 4620 (2022), arXiv:2205.10869.
+
+\bibitem{DESIDR2BAO2025}
+M. Abdul Karim \textit{et al.} (DESI Collaboration), DESI DR2 results II: Measurements of baryon acoustic oscillations and cosmological constraints, arXiv:2503.14738.
+
+\bibitem{DESIDR2Lya2025}
+M. Abdul Karim \textit{et al.} (DESI Collaboration), DESI DR2 results I: Baryon acoustic oscillations from the Lyman-alpha forest, arXiv:2503.14739.
+
+\bibitem{DESIDR2DE2025}
+K. Lodha \textit{et al.} (DESI Collaboration), Extended dark energy analysis using DESI DR2 BAO measurements, Phys. Rev. D \textbf{112}, 083511 (2025), arXiv:2503.14743.
+
+\bibitem{PantheonPlus2022}
+D. Brout \textit{et al.}, The Pantheon+ analysis: Cosmological constraints, Astrophys. J. \textbf{938}, 110 (2022), arXiv:2202.04077.
+
+\bibitem{Moresco2022}
+M. Moresco \textit{et al.}, Unveiling the Universe with emerging cosmological probes, Living Rev. Relativ. \textbf{25}, 6 (2022), arXiv:2201.07241.
+
+\bibitem{ACTDR62024}
+M. S. Madhavacheril \textit{et al.} (ACT Collaboration), The Atacama Cosmology Telescope: DR6 gravitational lensing map and cosmological parameters, Astrophys. J. \textbf{962}, 113 (2024), arXiv:2304.05203.
+
+\bibitem{CLASS2011}
+J. Lesgourgues, The Cosmic Linear Anisotropy Solving System (CLASS) I: Overview, arXiv:1104.2932.
+
+\bibitem{CLASSNonFlat2014}
+J. Lesgourgues and T. Tram, Fast and accurate CMB computations in non-flat FLRW universes, JCAP \textbf{09}, 032 (2014), arXiv:1312.2697.
+
+\bibitem{CAMB2000}
+A. Lewis, A. Challinor, and A. Lasenby, Efficient computation of cosmic microwave background anisotropies in closed Friedmann-Robertson-Walker models, Astrophys. J. \textbf{538}, 473 (2000), arXiv:astro-ph/9911177.
+
+\bibitem{SahaCompact2025}
+S. Saha \textit{et al.} (COMPACT Collaboration), Cosmic topology. Part Ic. Limits on lens spaces from circle searches, JCAP \textbf{01}, 004 (2025), arXiv:2409.02226.
+
+\end{thebibliography}
+
+\end{document}

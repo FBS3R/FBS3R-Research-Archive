@@ -1,0 +1,1744 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{xcolor}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{amscd}
+\usepackage{mathtools}
+\usepackage[expansion=false]{microtype}
+\setlength{\emergencystretch}{2em}
+\usepackage{geometry}
+\geometry{margin=2.4cm}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{ragged2e}
+\newcolumntype{Y}{>{\RaggedRight\arraybackslash}X}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!60!black,
+  citecolor=blue!60!black,
+  urlcolor=blue!60!black
+}
+
+% theorem environments
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{postulate}{Postulate}
+\newtheorem{hypothesis}{Hypothesis}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{anchor}[theorem]{Physical anchor}
+
+% shortcuts
+\newcommand{\Sn}[1]{S^{#1}}
+\newcommand{\Szero}{S^{0}}
+\newcommand{\Sone}{S^{1}}
+\newcommand{\Stwo}{S^{2}}
+\newcommand{\Sthree}{S^{3}}
+\newcommand{\Sfour}{S^{4}}
+\newcommand{\Sseven}{S^{7}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Hbb}{\mathbb{H}}
+\newcommand{\CP}{\mathbb{C}P}
+\newcommand{\SU}{\mathrm{SU}}
+\newcommand{\U}{\mathrm{U}}
+\newcommand{\lP}{\ell_{P}}
+\newcommand{\tP}{t_{P}}
+\newcommand{\rH}{\widetilde H}
+\newcommand{\Dd}{\mathsf{D}}
+\newcommand{\Dsharp}{\mathsf{D}^{\sharp}}
+\newcommand{\Dtop}{\mathsf{D}^{\sharp}_{\mathrm{top}}}
+\newcommand{\Dop}{\mathsf{D}^{\sharp}_{\mathrm{op}}}
+\newcommand{\Dchar}{\mathsf{D}^{\sharp}_{\mathrm{char}}}
+\newcommand{\Dspec}{\mathsf{D}^{\sharp}_{\mathrm{spec}}}
+\newcommand{\Car}{\mathbf{Car}}
+\newcommand{\Str}{\mathbf{Str}}
+\newcommand{\Forg}{\mathbf{Forg}}
+\newcommand{\Ho}{\mathrm{Ho}}
+\newcommand{\golden}{\varphi}
+\newcommand{\PIR}{\mathrm{PIR}}
+\newcommand{\BCR}{\mathrm{BCR}}
+\newcommand{\nkin}{n_{\mathrm{kin}}}
+\newcommand{\ncausal}{n_{\mathrm{causal}}}
+\newcommand{\Bphys}{B_{\mathrm{phys}}}
+\newcommand{\Bcausal}{B_{\mathrm{causal}}}
+\newcommand{\Bmode}{b_{\mathrm{mode}}}
+\newcommand{\tcoh}{t_{\mathrm{coh}}}
+\newcommand{\Rm}{\mathrm{Rm}}
+
+\title{\bfseries Dependently Reconstructible Distinguishability (DRD):\\
+A Functorial Theory of Information Carriers,\\
+Graded Spectral Capacities, and Causal Integration\\
+on Compact \texorpdfstring{$\Sthree$}{S3} Geometry}
+
+\author{%
+\texorpdfstring{$^{1}$}{1}Andrei Preece\thanks{\texttt{andre.preece@web.de}; ORCID: 0009-0004-5978-795X}
+\quad and \quad
+\texorpdfstring{$^{1}$}{1}Boris Batenin\thanks{\texttt{batenin@web.de}; ORCID: 0009-0000-7027-8583}\\[0.35em]
+\small \texorpdfstring{$^{1}$}{1}Independent Researchers
+}
+
+\date{Berlin, 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Existing quantitative theories of information are measure theories over presupposed alphabets:
+Shannon's theory presupposes a symbol set, algorithmic complexity a machine model, quantum
+information a Hilbert space.  This paper develops a definition-first framework---\emph{dependently
+reconstructible distinguishability} (DRD)---for the layer beneath those theories: what a
+distinction is, what carries it, which operations preserve it, which destroy it and at what
+price, and how much of it a physical domain can carry and causally integrate.
+
+The framework is organized in three strictly separated layers.  (I)~A \emph{mathematical layer}:
+the correct object is not one flat functor but a fibrewise profile over a category of structures,
+$\Car_*^{\mathrm{fib}}=\int_{\mathfrak s\in\Str}\Car_{\mathfrak s}$, with
+$\Dsharp_{\mathfrak s}:\Car_{\mathfrak s}\to\mathbf{Prof}_{\mathfrak s}$.  Homology,
+cohomology, characteristic classes, spin data and spectra are preserved only inside the
+structural fibre whose morphisms preserve the relevant structure.  (II)~An \emph{erasure and
+capacity layer}: non-invertible change is measured by a cone-defect package
+$\mathbb E(f)$, sector erasure has the safe Landauer component $k_BT\ln N$ plus
+platform-dependent geometric cost, and the graded scalar, TT and Dirac capacities on round
+$\Sthree_R$ are counted with explicit dimension and cutoff conventions.  Heat-trace capacity
+$\mathcal N_P(s,\tau)=\operatorname{Tr}(e^{-sP_\tau})$ replaces discontinuous sharp counts
+when a reconstruction flow varies the metric.  (III)~A \emph{physical-selection layer}: causal
+integration is exact for shell-complete homogeneous spectral projectors, while the only central
+remaining physical node is the gravitational selector.  It is not a ratio between unlike
+quantities: the raw spectral count $N_P$ is a mode number, while the selected physical object is
+$\log_2\dim\mathcal H_{\mathrm{code}}$ in bits.  The selector is therefore defined only after
+an operational finite-alphabet or energy/occupation cutoff has converted accessible modes into
+accessible code bits.  It then chooses the area-compatible, gauge-invariant,
+backreaction-stable code subspace from the volume-scaling kinematic alphabet.  The framework does not replace Shannon, Holevo, or Landauer; it supplies
+the pre-statistical object---the physically realizable alphabet of distinguishable states---that
+those theories presuppose.
+\medskip
+
+\noindent\textbf{Keywords:} theory of information; distinguishability; carriers; functorial
+invariants; suspension; $\Sthree$; Hopf holonomy; spectral capacity; causal integration;
+Landauer principle; covariant entropy bounds; boundary admissibility.
+\end{abstract}
+
+\tableofcontents
+
+\section{Introduction}
+
+\subsection{The problem: information named before it is defined}
+
+The word ``information'' now carries load in thermodynamics, quantum theory, cosmology, and the
+foundations of computation.  Yet the standard quantitative theories are measure theories over
+\emph{presupposed} alphabets.  Shannon's theory~\cite{Shannon1948} quantifies the statistics of
+a source once a set of distinguishable symbols is given; Kolmogorov
+complexity~\cite{Kolmogorov1965} quantifies description length once a machine model and a
+symbol set are given; quantum information theory quantifies state distinguishability once a
+Hilbert space is given, with the Holevo bound~\cite{Holevo1973} governing accessible classical
+information.  None of them answers the prior questions: what is a distinction, what does it
+take for a distinction to be physically realized, what operations preserve it, what operations
+destroy it and at what price, and how much distinguishability a given physical domain can carry
+at a given resolution---and causally integrate in a given time.
+
+Foundational slogans have tried to close the gap from the other side.  Wheeler's ``it from
+bit''~\cite{Wheeler1990} makes the bit primitive and matter derivative; Landauer's
+``information is physical''~\cite{Landauer1991} makes the carrier primitive.  Both intuitions
+are correct in part, and both are incomplete without a formal object that says what a ``bit''
+is before any physics, and what physics must add before that object becomes operational.
+
+This paper supplies such an object and develops it as a research framework with an explicit
+claim-status discipline.  In its strict form, DRD is best understood not as ``a theory of
+information in general'' but as a \textbf{theory of invariants of reconstructible
+distinguishability on categories of carriers}.  Information is not identified with statistics,
+with entropy, or with a quantum state; it is defined as \emph{structure-preserved
+distinguishability}, which acquires physical realization only after metric, causal order, spin
+structure, a resolution scale, and a class of admissible morphisms are added.  This contradicts
+neither Shannon, nor Holevo, nor Landauer; it places them on different floors of one tower.
+
+The paper proceeds in three layers:
+
+\begin{enumerate}[label=(\Roman*)]
+\item a \textbf{mathematical layer} (Secs.~\ref{sec:profile}--\ref{sec:theorems}): the
+fibred carrier category $\Car_*^{\mathrm{fib}}$, the fibrewise profiles
+$\Dsharp_{\mathfrak s}$, and the conservation, attributed-erasure, and transport theorems;
+\item an \textbf{operational layer} (Secs.~\ref{sec:physical}--\ref{sec:pir}): two explicit
+postulates, exact graded capacities for scalar, tensor, and spinor alphabets on
+$\Sthree_{R}$, and the causal-integration formula $\PIR(T)$;
+\item an \textbf{interpretive and programmatic layer}
+(Secs.~\ref{sec:qk}--\ref{sec:interpretation}), explicitly labelled: erasure-cost hypotheses
+$Q_{k}$, carrier-resolved quantum resources, the volume--area problem, related definition-first
+programmes, and the ontological reading.
+\end{enumerate}
+
+The companion papers of this programme supply geometric infrastructure: the suspension-chain
+analysis of $\Sthree$ as minimal spin/Hopf carrier~\cite{PB2026susp}, the Ricci-type
+reconstruction flow with its no-go theorems and Planck-barrier invariant
+region~\cite{BP2026ricci}, and the compact causal accessibility structure of light on
+$\Sthree_{R}$~\cite{PB2026light}.  The present paper is the information-theoretic keystone of
+that line: it states what the other papers' carriers carry.
+
+\subsection{Claim-status convention}
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{@{}lY@{}}
+\toprule
+\textbf{Label} & \textbf{Meaning} \\
+\midrule
+Theorem / Proposition / Lemma & Proved under stated mathematical assumptions.\\
+Physical anchor & Established physics cited for contact, not re-derived here.\\
+Postulate & An operational assumption of the physical layer, explicitly adjustable.\\
+Hypothesis & A proposed law-like statement with specified test platforms; not a theorem.\\
+Ansatz & A proposed quantitative form, not derived from dynamics.\\
+Interpretation & Philosophy-of-physics reading; proves no physics.\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\subsection{What this paper does not claim}
+
+\begin{tcolorbox}[colback=gray!4,colframe=gray!50,title=Boundary of the paper]
+This paper does not replace or amend Shannon's theory, Kolmogorov complexity, the Holevo bound,
+or Landauer's principle; it supplies the pre-statistical object those theories presuppose.  It
+does not derive physical law from topology; does not derive the value of $\lP$; does not prove
+that the observed universe is globally $\Sthree$; does not derive gravitational entropy bounds;
+does not resolve the volume--area tension (it states it as the central open problem); and does
+not assert any ontological statement as a theorem.  Every formula in the operational layer is
+conditional on the stated postulates.  Statements of the form ``information is neither created
+nor destroyed'' are made only in the precise form: \emph{within a fixed category of invertible
+structure-preserving morphisms, the corresponding invariant package is neither created nor
+erased}.  The remaining physical problem is explicitly localized in the selector
+$\Sigma_{\mathrm{grav}}$, not hidden inside topological language.
+\end{tcolorbox}
+
+\begin{theorem}[The DRD closure map]
+\label{thm:main-pipeline}
+Under the structural and operational assumptions stated in this paper, the usable information
+capacity of a sector is not a primitive number but the output of four separated maps:
+\[
+\Dsharp_{q,\Lambda}(\mathcal X)
+\;\rightsquigarrow\;
+\nkin^{(P)}
+\;\xrightarrow{\ \PIR_P(T)\ }\;
+\ncausal^{(P)}
+\;\xrightarrow{\ \Bmode^{(P)}\ }\;
+\Bcausal^{(P)}
+\;\xrightarrow{\ \Sigma_{\mathrm{grav}}^{(P)}\ }\;
+\Bphys^{(P)}.
+\]
+The first object is the fibrewise distinguishability profile; $\nkin^{(P)}$ and
+$\ncausal^{(P)}$ are mode numbers; $\Bcausal^{(P)}$ and $\Bphys^{(P)}$ are bit counts after a
+finite alphabet, energy cutoff or code-space cutoff has been specified.  The mathematical and
+spectral parts of the map are computable inside their declared fibres.  The only irreducible
+physical selector left open is $\Sigma_{\mathrm{grav}}^{(P)}$, the map from accessible code bits
+to gauge-invariant, gravitationally dressed, entropy-admissible, backreaction-stable code bits.
+\end{theorem}
+
+\begin{remark}[What the closure theorem forbids]
+Equation~\eqref{thm:main-pipeline} is a bookkeeping discipline.  It forbids three common
+mistakes: treating a vector-space dimension as a bit count, treating a boundary entropy bound as
+a replacement of the bulk carrier, and treating a suspension isomorphism in reduced homology as
+an isomorphism of the entire unstable profile.
+\end{remark}
+
+
+\section{The Full Distinguishability Profile \texorpdfstring{$\Dsharp$}{D-sharp}}
+\label{sec:profile}
+
+\subsection{Elementary distinction}
+
+\begin{definition}[Elementary distinction]
+An \emph{elementary distinction} is the two-point space $\Szero=\{-1,+1\}$ with its discrete
+topology.  No metric, phase, direction, or causal structure is assumed at this level.  The two
+points are not two objects located somewhere; they are the two poles of a single relational
+structure, \emph{this / not-this}.  Neither point carries the structure alone: removing either
+yields a one-point space, which is no longer a distinction.
+\end{definition}
+
+\subsection{Why a single rank profile is not enough}
+
+A first-pass invariant is the rank profile
+$\Dd_{k}(X)=\operatorname{rank}\rH_{k}(X;\Z)$: $\Dd_{0}$ counts independent elementary
+distinctions, $\Dd_{1}$ cyclic (phase-type) distinctions, $\Dd_{2}$ enclosure-type
+distinctions, and so on; for spheres $\Dd_{k}(\Sn n)=\delta_{k,n}$.  The rank profile already
+supports invariance and transport theorems, but it conflates levels of structure: it cannot see
+torsion, ring structure, unstable homotopy data, bundle topology, or resolution-dependent
+spectral content.  A publishable theory must therefore carry a \emph{two-level functorial
+package}, not one number.
+
+\begin{definition}[Topological profile]
+\label{def:dtop}
+For a pointed space $X$ of the homotopy type of a finite CW complex,
+\begin{equation}
+\Dtop(X)\;:=\;
+\Big(
+\{\rH_{k}(X;\Z)\}_{k\ge0},\;
+H^{\ast}(X;\Z)\ \text{with}\ \smile,\;
+\{\pi_{k}(X)\}_{k\ge1}\ \text{with Whitehead products}
+\Big),
+\end{equation}
+where $\rH_{k}(X;\Z)\cong\Z^{\beta_{k}}\oplus\mathrm{Tor}_{k}$ retains torsion.  The rank
+shadow is $\Dd_{k}(X)=\beta_{k}$.
+\end{definition}
+
+\begin{definition}[Structured carrier and operational profile]
+\label{def:dop}
+A \emph{structured carrier} is a tuple
+\begin{equation}
+\mathcal X=(X,g,\mathfrak s,\mathcal E,\varepsilon),
+\end{equation}
+where $g$ is a Riemannian metric, $\mathfrak s$ a spin structure (when required),
+$\mathcal E$ a finite set of distinguished vector bundles/fields, and $\varepsilon>0$ a
+resolution scale.  Its \emph{operational profile} is
+\begin{equation}
+\Dop(\mathcal X)\;:=\;
+\Big(
+\Dtop(X),\;
+\mathcal C(\mathcal X),\;
+\mathrm{Spec}(\mathcal X)
+\Big),
+\end{equation}
+where $\mathcal C(\mathcal X)$ is the package of characteristic classes
+($w_{i},c_{i},p_{i},e,\hat A$) of the bundles in $\mathcal E$, and
+$\mathrm{Spec}(\mathcal X)=(\mathrm{Spec}_{0},\mathrm{Spec}_{TT},\mathrm{Spec}(D_{\mathfrak s}))$
+collects the spectra (with multiplicities) of the scalar Laplacian, the rough (Bochner)
+Laplacian on transverse-traceless tensors, and the Dirac operator, truncated at the resolution $\varepsilon$ where
+an operational alphabet is required.
+\end{definition}
+
+\subsection{Functoriality}
+
+\begin{theorem}[Functoriality of the topological profile]
+\label{thm:functorial}
+A continuous map $f:X\to Y$ induces
+$f_{\ast}:\rH_{k}(X;\Z)\to\rH_{k}(Y;\Z)$ (covariant),
+$f^{\ast}:H^{\ast}(Y;\Z)\to H^{\ast}(X;\Z)$ (contravariant) with
+$f^{\ast}(\alpha\smile\beta)=f^{\ast}\alpha\smile f^{\ast}\beta$, and
+$\pi_{k}(f):\pi_{k}(X)\to\pi_{k}(Y)$ compatible with Whitehead products.  Characteristic
+classes are natural under pullback: $x(f^{\ast}E)=f^{\ast}x(E)$.  Hence $\Dtop$, and the class
+package $\mathcal C$, are functorial with respect to (admissible) continuous maps.
+\end{theorem}
+
+\begin{proof}
+Standard algebraic topology and the theory of characteristic
+classes~\cite{Hatcher2002,MilnorStasheff}.
+\end{proof}
+
+\begin{proposition}[Spectral invariance under (spin-)isometry]
+\label{prop:spec}
+If $f:(X,g)\to(Y,h)$ is an isometry, the scalar and TT-tensor Laplace-type operators are unitarily
+conjugate, so $\mathrm{Spec}_{0}$ and $\mathrm{Spec}_{TT}$ coincide with multiplicities; if $f$
+is in addition a spin-isometry, $\mathrm{Spec}(D_{\mathfrak s})$ coincides as well.  Thus
+$\mathrm{Spec}$ is functorial on the subcategory of (spin-)isometric morphisms, not on all
+continuous maps.
+\end{proposition}
+
+\begin{proof}
+Pullback by an isometry intertwines the Laplace-type operators; a spin-isometry lifts to a
+unitary on spinor fields intertwining the Dirac operators~\cite{Baer1996}.
+\end{proof}
+
+\begin{remark}[The point of the two-level structure]
+With Definitions~\ref{def:dtop}--\ref{def:dop}, DRD is \emph{not one number but a functorial
+package of distinguishability}, whose components live at different structural levels and
+degrade differently under different forgetting operations.  This removes the ambiguity of
+identifying ``information'' sometimes with a homology rank and sometimes with a spectral
+capacity: after the split into $\Dtop$ and $\Dop$ these are not in conflict but form a
+hierarchy of levels.
+\end{remark}
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{@{}lYYY@{}}
+\toprule
+\textbf{Layer} & \textbf{Object} & \textbf{Functoriality} & \textbf{What it registers}\\
+\midrule
+Homological & $\rH_{k}(X;\Z)\cong\Z^{\beta_k}\!\oplus\mathrm{Tor}_k$ & covariant ($f_{\ast}$) &
+components, cycles, enclosures, torsion distinctions\\
+Cohomological & $H^{\ast}(X;\Z)$, $\smile$ & contravariant ($f^{\ast}$) &
+intersection/ring structure, obstruction data\\
+Homotopical & $\pi_{k}(X)$, Whitehead products & covariant ($\pi_{k}(f)$) &
+unstable distinctions invisible to homology\\
+Bundle & $w_{i},c_{i},p_{i},e,\hat A$ of $\mathcal E$ & contravariant (pullback) &
+orientation, spin, complex/real field topology\\
+Spectral & $\mathrm{Spec}_{0},\mathrm{Spec}_{TT},\mathrm{Spec}(D)$ &
+invariant under (spin-)isometries & operationally resolvable capacity\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\subsection{Strengthened formulation: the structure fibration}
+\label{subsec:structure-fibration}
+
+The most robust way to close the object $\Dsharp$ is not to force all invariants into one
+flat category.  Homology, characteristic classes, spin data and spectra have different
+admissible morphisms.  The correct ambient object is therefore a small category of structural
+packages together with its Grothendieck construction.
+
+\begin{definition}[Structure fibration]
+Let $\mathbf{Str}$ be the category whose objects are packages
+\[
+\mathfrak s=(\mathrm{Top},\mathrm{CW},\mathrm{Smooth},\mathrm{Orient},
+\mathrm{Spin/Pin},\mathrm{Bundle},\mathrm{Metric},\mathrm{Operator},\varepsilon,
+\Lambda,q),
+\]
+and whose morphisms forget or weaken structure.  For each $\mathfrak s$ let
+$\Car_{\mathfrak s}$ be the category of carriers preserving exactly the structure listed in
+$\mathfrak s$.  The full carrier category is the Grothendieck construction
+\[
+\Car_{*}^{\mathrm{fib}}:=\int_{\mathfrak s\in\mathbf{Str}}\Car_{\mathfrak s}.
+\]
+A profile is then a family of functors
+\[
+\Dsharp_{\mathfrak s}:\Car_{\mathfrak s}\longrightarrow \mathbf{Prof}_{\mathfrak s},
+\]
+compatible with weakening of structure whenever a forgetting morphism is declared.  Concretely,
+for a weakening $\alpha:\mathfrak s\to\mathfrak t$ the square
+\[
+\begin{CD}
+\Car_{\mathfrak s} @>{\Dsharp_{\mathfrak s}}>> \mathbf{Prof}_{\mathfrak s}\\
+@V{U_\alpha}VV @VV{V_\alpha}V\\
+\Car_{\mathfrak t} @>{\Dsharp_{\mathfrak t}}>> \mathbf{Prof}_{\mathfrak t}
+\end{CD}
+\]
+commutes up to the declared comparison isomorphism.  Here $U_\alpha$ forgets carrier structure
+and $V_\alpha$ forgets the corresponding profile components.
+\end{definition}
+
+\begin{proposition}[Layer-compatibility]
+Inside a fixed fibre $\Car_{\mathfrak s}$, isomorphisms preserve every component of
+$\Dsharp_{\mathfrak s}$.  Across fibres, a change of profile is not a paradox but an exhibited
+weakening of structure.  Thus the full invariant is best written operationally as
+\[
+\Dsharp_{q,\Lambda}(\mathcal X)=
+\big(\mathsf{D}^{\sharp}_{\mathrm{top},\le q}(X),\ \mathcal C(\mathcal X),\
+\mathrm{Spec}_{\le\Lambda}(\mathcal X)\big),
+\]
+with $q$ a homotopy/Postnikov cutoff and $\Lambda\sim\varepsilon^{-1}$ a spectral cutoff.
+\end{proposition}
+
+\begin{remark}[Status of the closure]
+This closes OP1 as a mathematical construction.  The formal object is the fibrewise profile
+$\Dsharp_{\mathfrak s}$; the publishable and computable object is the truncated profile
+$\Dsharp_{q,\Lambda}$; and the physical object is the same profile after causal and
+gravitational admissibility have been applied.
+\end{remark}
+
+\section{Carrier Categories, Forgetting Morphisms, and the Suspension Functor}
+\label{sec:categories}
+
+\subsection{Two categories of carriers}
+
+\begin{definition}[Carrier categories]
+\label{def:categories}
+$\Car^{\mathrm{top}}_{\ast}$ is the category of pointed carriers of finite CW type with
+basepoint-preserving continuous maps.  $\Car^{\mathrm{op}}$ is the category of structured
+carriers $\mathcal X=(X,g,\mathfrak s,\mathcal E,\varepsilon)$
+(Definition~\ref{def:dop}); its morphisms preserve exactly those structures needed to define
+the corresponding operators and spectra (isometries for $\mathrm{Spec}_{0},\mathrm{Spec}_{TT}$;
+spin-isometries for $\mathrm{Spec}(D)$; bundle maps covering the base map for $\mathcal C$).
+\end{definition}
+
+\begin{definition}[Forgetting morphisms]
+\label{def:forg}
+$\Forg\subset\mathrm{Mor}(\Car)$ is the class generated by four operation types:
+\begin{enumerate}[label=(\roman*)]
+\item \emph{quotient / collapse} (identification of points or subspaces);
+\item \emph{deletion / restriction} (removal of points, subspaces, or components);
+\item \emph{change of coefficients / change of category} (e.g.\ passing to a homotopy-coarser
+category, discarding torsion, forgetting a bundle or the spin structure);
+\item \emph{metric--spectral coarse graining} (increasing the resolution scale
+$\varepsilon\mapsto\varepsilon'>\varepsilon$).
+\end{enumerate}
+\end{definition}
+
+\begin{lemma}[Coarse graining is monotone on capacity]
+\label{lem:coarse}
+For fixed $(X,g)$ and $\varepsilon'\ge\varepsilon$, the band-limited spaces nest,
+$\mathcal A_{\varepsilon'}\subseteq\mathcal A_{\varepsilon}$, so every spectral capacity
+satisfies $N_{\varepsilon'}\le N_{\varepsilon}$.
+\end{lemma}
+
+\begin{proof}
+The eigenvalue condition $\sqrt\lambda\le1/\varepsilon'$ implies $\sqrt\lambda\le1/\varepsilon$.
+\end{proof}
+
+\subsection{Suspension as an endofunctor}
+
+\begin{theorem}[Transport; degree-shift conservation]
+\label{thm:transport}
+The reduced suspension $\Sigma X=\Sone\wedge X$ is an endofunctor
+$\Sigma:\Car^{\mathrm{top}}_{\ast}\to\Car^{\mathrm{top}}_{\ast}$, and there is a natural
+isomorphism of functors
+\begin{equation}
+\sigma_{k}:\ \rH_{k}\;\Longrightarrow\;\rH_{k+1}\circ\Sigma,
+\qquad
+\rH_{k+1}(\Sigma X)\cong\rH_{k}(X)\quad\text{for all }k\ge0 .
+\end{equation}
+Hence the reduced homological profile is shifted by one degree without loss:
+$\Dd_{k+1}(\Sigma X)=\Dd_{k}(X)$, torsion included.  Suspension changes the carrier and the
+degree of every homological distinction; it need not preserve the full unstable homotopy profile
+outside the stability range specified below.
+\end{theorem}
+
+\begin{proof}
+Mayer--Vietoris on the two cones covering $\Sigma X$, both contractible, with intersection
+homotopy equivalent to $X$; naturality is standard~\cite{Hatcher2002}.
+\end{proof}
+
+\begin{theorem}[Freudenthal stabilization of homotopy data]
+\label{thm:freudenthal}
+If $X$ is an $(n{-}1)$-connected CW complex, the suspension homomorphism
+$\pi_{i}(X)\to\pi_{i+1}(\Sigma X)$ is an isomorphism for $i<2n-1$ and surjective for
+$i=2n-1$~\cite{Hatcher2002}.  Thus suspension transports not only homological content but also
+homotopy-level distinguishability in the stable range, stabilizing the unstable part of
+$\Dtop$.
+\end{theorem}
+
+\begin{remark}[Stability discipline]
+Suspension is used here as a transport of reduced homology and, by
+Theorem~\ref{thm:freudenthal}, as a stable-range transport of homotopy.  It is not asserted to
+be fully faithful on all pointed homotopy types.  Thus no conclusion of the paper depends on
+the false statement that $\Sigma X$ preserves every unstable invariant of $X$.
+\end{remark}
+
+
+\begin{corollary}[The fundamental class of $\Sthree$ is a suspended distinction]
+\label{cor:s3class}
+Along $\Szero\xrightarrow{\Sigma}\Sone\xrightarrow{\Sigma}\Stwo\xrightarrow{\Sigma}\Sthree$,
+\begin{equation}
+\rH_{0}(\Szero)\simeq\rH_{1}(\Sone)\simeq\rH_{2}(\Stwo)\simeq\rH_{3}(\Sthree)\simeq\Z ,
+\end{equation}
+carrying the distinction class of $\Szero$ to a generator of $H_{3}(\Sthree;\Z)$
+\cite{PB2026susp}.  The elementary distinction, the phase cycle, the directional enclosure, and
+the compact volume class are one invariant on four carriers.
+\end{corollary}
+
+\begin{remark}[Enrichment: what higher carriers add]
+Suspension preserves content but changes what the carrier can \emph{do} with it.  On $\Sone$
+the distinction acquires phase ($\U(1)$); on $\Stwo$, direction ($\CP^{1}$, the Bloch sphere);
+on $\Sthree$, simultaneously: compactness, simple connectivity, the non-Abelian group
+$\SU(2)$, spin structure, parallelizability, and the nontrivial Hopf bundle
+$\Sone\hookrightarrow\Sthree\to\Stwo$ with $c_{1}=1$.  Within the axiomatics of the companion
+paper, $\Sthree$ is the \emph{minimal joint carrier of this stated package of
+structures}~\cite{PB2026susp}---a minimality claim relative to the suspension chain and the
+listed conditions, not an absolute fundamentality claim.
+\end{remark}
+
+\section{Conservation and Attributed Erasure}
+\label{sec:theorems}
+
+\begin{theorem}[Fibrewise conservation]
+\label{thm:conservation}
+Fix a structural package $\mathfrak s$ and let
+$f:\mathcal X\to\mathcal Y$ be an isomorphism in the fibre $\Car_{\mathfrak s}$.  Then
+$\Dsharp_{\mathfrak s}(f)$ is an isomorphism in $\mathbf{Prof}_{\mathfrak s}$.  In particular:
+\begin{enumerate}[label=(\roman*)]
+\item a homotopy equivalence in the topological fibre preserves $\Dtop$ but need not preserve a
+metric, a spectrum, a chosen field package or a chosen spin lift;
+\item a bundle isomorphism over the base preserves the declared characteristic-class package;
+\item an isometry preserves scalar and TT spectra with multiplicities, and a spin-isometry
+preserves the Dirac spectrum as well.
+\end{enumerate}
+Thus conservation is not a global slogan: it is always conservation inside the fixed structural
+category whose morphisms have been declared admissible.
+\end{theorem}
+
+\begin{proof}
+Homology, cohomology and homotopy data are natural in the topological fibre; characteristic
+classes are natural under pullback in the bundle fibre; and the relevant elliptic operators are
+unitarily conjugate in the metric or spin-metric fibre.  The theorem is the fibrewise assembly
+of these standard invariance statements.  Dropping any part of the structure moves to a
+different fibre and is therefore a forgetting operation, not a counterexample to conservation.
+\end{proof}
+
+\begin{theorem}[Attributed erasure]
+\label{thm:erasure}
+Let $e:\mathcal X\to\mathcal Y$ be a morphism in $\Car$.  If at least one component of
+$\Dsharp(e)$ fails to be an isomorphism---a reduced homology group changes, the cup-product
+structure collapses, a characteristic class is lost, a stable homotopy class dies, or part of a
+spectrum is truncated---then $e$ is not invertible in the corresponding structural category.
+Consequently every change of the profile is \emph{attributed}: it identifies a concrete
+forgetting morphism in $\Forg$ (Definition~\ref{def:forg}), and the lost package components
+quantify what was erased.
+\end{theorem}
+
+\begin{proof}
+Functors preserve isomorphisms; if $e$ had an inverse in the structural category, every induced
+map on the profile would be an isomorphism, contradicting the hypothesis.  The generation
+statement is Definition~\ref{def:forg}.
+
+\end{proof}
+
+\begin{definition}[Mapping-cone loss invariant]
+\label{def:cone-loss}
+For a map $f:X\to Y$, define its cone defect by the mapping cone
+\[
+C_f:=Y\cup_f CX.
+\]
+The degree-$k$ homological loss and torsion loss are
+\[
+E_k^{H}(f):=\operatorname{rank}\,\widetilde H_k(C_f;\Z),\qquad
+E_k^{\mathrm{Tor}}(f):=\operatorname{Tor}\,\widetilde H_k(C_f;\Z).
+\]
+The exact topological erasure package is
+\[
+\mathbb E(f):=\big([C_*(C_f)],\ \widetilde H_*(C_f),\
+\tau_W(f)\ \text{when the simple-homotopy torsion is defined}\big).
+\]
+Here $\tau_W$ records simple-homotopy loss invisible to ordinary homology in acyclic cases.
+\end{definition}
+
+\begin{proposition}[Cone criterion for zero loss]
+\label{prop:cone-zero}
+For maps of finite CW type: if $f:X\to Y$ is a homotopy equivalence, then $C_f$ is
+contractible, so contractibility of the cone is a necessary condition for zero topological
+erasure.  Conversely, if $C_f$ is contractible then $f$ is an integral homology equivalence;
+if in addition $X$ and $Y$ are simply connected, $f$ is a homotopy equivalence.  The
+simple-connectivity hypothesis cannot be dropped: for an acyclic complex $A$ with
+$\pi_1(A)\neq0$, the map $A\to\{*\}$ has contractible cone (the suspension $\Sigma A$ is
+simply connected and acyclic, hence contractible) without being an equivalence.  If
+$C_f$ is acyclic but not contractible, rank-level and torsion-level losses vanish while a
+simple-homotopy defect may remain.
+\end{proposition}
+
+\begin{proof}
+The first statement is standard.  For the converse, the cofiber long exact sequence gives that
+$\widetilde H_*(C_f)=0$ iff $f_*$ is an isomorphism on integral homology; in the simply
+connected case Whitehead's theorem upgrades a homology equivalence to a homotopy equivalence.
+The counterexample follows from Hurewicz and Whitehead applied to $\Sigma A$.  The final
+statement follows from the distinction between acyclicity and contractibility, with Whitehead
+torsion recording the residual simple-homotopy obstruction where applicable.
+\end{proof}
+
+\begin{proposition}[Generator formulae for forgetting morphisms]
+\label{prop:forg-generators}
+For the four generator types of $\Forg$ the cone-defect package has the following concrete
+forms.
+\begin{enumerate}[label=(\roman*)]
+\item If $q:X\to X/A$ collapses a cofibration subspace $A\subset X$, then
+\[
+C_q\simeq \Sigma A,
+\qquad
+\widetilde H_k(C_q)\cong \widetilde H_{k-1}(A).
+\]
+The collapse cost is read from the shifted homology of the collapsed subcarrier.
+\item If $j:X\setminus A\hookrightarrow X$ is deletion or restriction, then
+\[
+\widetilde H_k(C_j)\cong H_k(X,X\setminus A),
+\]
+and for good subspaces of oriented manifolds this relative group may be evaluated by Alexander
+or Poincare-Lefschetz duality.
+\item If coefficients change by a ring map $R\to S$, the safe defect is computed by derived change
+of coefficients,
+\[
+C_*(X;R)\longrightarrow C_*(X;R)\otimes_R^{\mathbf L}S,
+\]
+and its mapping cone.  This prevents torsion from being silently discarded by a non-flat
+coefficient change.
+\item If spectral coarse-graining changes a cutoff $\Lambda$ to $\Lambda'<\Lambda$, then for a
+sector $P$
+\[
+E^{P}_{\mathrm{spec}}(\Lambda,\Lambda')
+=\dim\operatorname{im}(\Pi^{P}_{\le\Lambda}-\Pi^{P}_{\le\Lambda'}),
+\]
+with a smoothed version obtained by replacing sharp projectors by a test function
+$\chi(P/\Lambda^2)$.
+\end{enumerate}
+Consequently OP2 is not a request for one scalar loss number but for the morphism-resolved
+profile defect $\mathbb E(f)$.
+\end{proposition}
+
+\begin{proposition}[Sector Landauer bound]
+\label{prop:sector-landauer}
+If a reset operation at temperature $T$ sends $N$ mutually distinguishable logical sectors to
+one standard sector, then its average work satisfies
+\[
+\langle W\rangle\ge k_B T\ln N.
+\]
+For a non-uniform prior this becomes $\langle W\rangle\ge k_BT\,\Delta H$, with $\Delta H$ the
+Shannon entropy decrease of the sector distribution.  Higher-degree costs therefore have the
+safe decomposition
+\[
+Q_T(f)\ge k_BT\,H(\text{identified sectors})+\Gamma_{\mathrm{geom}}(f),
+\]
+or, for $N_k$ equiprobable sectors,
+\[
+Q_k\ge k_BT\ln N_k+\Gamma_k^{\mathrm{geom}},
+\]
+where only the entropy term is a direct Landauer consequence and $\Gamma_k^{\mathrm{geom}}$ is
+a protocol- and platform-dependent structural cost.
+\end{proposition}
+
+\begin{proposition}[The minimal example]
+\label{prop:s0}
+The identification $q:\Szero\to\{*\}$ kills $\rH_{0}$ ($\Z\to0$) and admits no homotopy
+inverse; deleting a point destroys the structure; and no map exists from the nonempty
+$\Szero$ to $\varnothing$.  The minimal distinction is erased only by an exhibited operator of
+type (i)--(iii), never by continuous deformation.
+\end{proposition}
+
+\begin{proposition}[Non-monotonicity: identifications are not pure erasure]
+\label{prop:nonmonotone}
+Forgetting morphisms need not decrease total content: the contractible interval $[0,1]$ has
+$\Dd\equiv0$, yet $[0,1]/(0\!\sim\!1)\simeq\Sone$ has $\Dd_{1}=1$.  ``Erasure'' and
+``creation'' are therefore per-operation bookkeeping on the full profile, not global
+monotonicity statements; every change must be computed, not assumed.
+\end{proposition}
+
+\begin{remark}[The precise slogan]
+Theorems~\ref{thm:conservation}--\ref{thm:erasure} do \emph{not} say ``nothing in the world
+ever disappears.''  They say something sharper and defensible: \emph{within a fixed category of
+structure-preserving morphisms, the disappearance of an invariant is impossible; outside it,
+the disappearance is attributable to a specific non-invertible operator with a computable
+loss}.
+\end{remark}
+
+\begin{anchor}[Landauer's principle as the thermodynamic face of attributed erasure]
+\label{anchor:landauer}
+The logically irreversible erasure of one elementary distinction (one bit) in an environment at
+temperature $T$ dissipates at least $k_{B}T\ln2$~\cite{Landauer1961,Bennett1982}; the bound has
+been approached experimentally in colloidal and nanomagnetic
+systems~\cite{Berut2012,Jun2014,Hong2016}.  The topological statement (erasure requires a
+non-invertible operator) and the thermodynamic statement (logical irreversibility has a minimum
+dissipation) are two faces of one discipline: nothing erases a distinction for free.  We cite
+this as contact with established physics; the constant $k_{B}T\ln2$ is not derived from
+topology, and extensions to higher-degree erasures are hypotheses (Sec.~\ref{sec:qk}).
+\end{anchor}
+
+\section{The Operational Layer: Postulates}
+\label{sec:physical}
+
+\begin{postulate}[Carrier realization]
+\label{post:carrier}
+A distinction is physically realized only when represented on a carrier equipped with metric
+and causal structure.  Without scale there is no distance; without time there is no causal
+relation; without causal relation there is no physically unfolded information; without
+distinguishability there is no observable phenomenon:
+\begin{equation}
+\text{distinction}\;\to\;\text{carrier}\;\to\;\text{order/phase}\;\to\;\text{causal relation}
+\;\to\;\text{reconstructible information}.
+\label{eq:chain}
+\end{equation}
+\end{postulate}
+
+\begin{postulate}[Resolution grain]
+\label{post:grain}
+Within the effective model, $\lP$ (and $\tP=\lP/c$) is treated as the lower boundary of
+operationally reconstructible states: effective physical reconstruction assigns distinguishable
+causal-geometric states only at spatial scales $\ge\lP$ and temporal scales $\ge\tP$.  Below
+the grain the model assigns no operationally verifiable state---a boundary of the
+reconstruction language within the effective theory, not a derived microscopic wall.
+\end{postulate}
+
+\begin{anchor}[Geometric support for Postulate~\ref{post:grain}]
+In the companion Ricci-type flow analysis~\cite{BP2026ricci}, a reflecting barrier at $a=\lP$
+defines a forward-invariant region with $|\Rm|^{2}\le C/\lP^{4}$, mirroring a self-adjoint
+Wheeler--DeWitt endpoint on $a\in[\lP,\infty)$ with zero probability flux through $a=\lP$; the
+same work proves that natural internal forcings cannot control the singular round mode, so the
+grain enters as a \emph{boundary of the effective state space}, not as a smooth regulator.
+Postulate~\ref{post:grain} adopts exactly this reading and inherits its falsifier: any
+operationally confirmed sub-grain distinguishability refutes the postulate as stated
+(Sec.~\ref{sec:falsifiability}).
+\end{anchor}
+
+\section{Graded Spectral Capacities on \texorpdfstring{$\Sthree_{R}$}{S3}}
+\label{sec:capacity}
+
+\subsection*{Counting conventions}
+All capacities in this section are dimension counts of band-limited eigenspaces over the field
+appropriate to the sector.  The scalar count is the complex eigenspace dimension; for real
+fields it counts the corresponding real mode coordinates after the usual reality condition.
+The Dirac count includes both positive and negative Dirac branches and counts complex spinor
+components.  The TT count uses the transverse-traceless symmetric tensor harmonics of the positive rough
+(Bochner) Laplacian $-\nabla^{2}$ in the convention of~\cite{RubinOrdonez1984}, as stated in
+Theorem~\ref{thm:tt}; on the Einstein background $\Sthree_{R}$ the Lichnerowicz operator
+differs from $-\nabla^{2}$ by a fixed curvature-proportional shift, which reindexes the cutoff
+$M_{TT}$ by an $O(1)$ constant but leaves the multiplicities and the leading Weyl coefficient
+unchanged.  These conventions are
+part of the definition of $N_P$ and prevent the capacity formulae from being attacked as
+notation-dependent claims.
+
+\begin{definition}[Operational alphabet at grain $\varepsilon$]
+For a closed Riemannian (spin) manifold and an elliptic operator $P$ of Laplace or Dirac type,
+the band-limited space at grain $\varepsilon$ is spanned by the eigenmodes with
+$\sqrt{|\lambda|}\le1/\varepsilon$ (Laplace type) or $|\mu|\le1/\varepsilon$ (Dirac type); the
+\emph{mode capacity} $N^{(P)}_{\varepsilon}$ is its vector-space dimension: the number of independently
+specifiable field modes of type $P$ resolvable at scale $\varepsilon$.  It is not yet a bit
+capacity.  A bit capacity is obtained only after specifying a finite operational alphabet per
+mode, or an energy/occupation cutoff for the associated Fock or code space.
+\end{definition}
+
+Write $x=R/\varepsilon$ throughout.
+
+\begin{theorem}[Scalar capacity]
+\label{thm:scalar}
+On $\Sthree_{R}$ the scalar Laplacian has eigenvalues $\lambda^{(0)}_{n}=n(n+2)/R^{2}$ with
+multiplicities $(n+1)^{2}$, $n\ge0$~\cite{PB2026susp}.  With
+$M_{0}=\big\lfloor\sqrt{1+x^{2}}\big\rfloor$,
+\begin{equation}
+N_{0}(\varepsilon)=\sum_{n=0}^{M_{0}-1}(n+1)^{2}
+=\frac{M_{0}(M_{0}+1)(2M_{0}+1)}{6}
+\;\sim\;\frac{x^{3}}{3}.
+\label{eq:N0}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+$n(n+2)\le x^{2}\iff(n+1)^{2}\le1+x^{2}\iff n+1\le M_{0}$; sum the multiplicities.
+\end{proof}
+
+\begin{theorem}[Transverse-traceless tensor capacity]
+\label{thm:tt}
+TT symmetric tensor harmonics on $\Sthree_{R}$ have rough-Laplacian eigenvalues
+$\lambda^{(TT)}_{k}=\big(k(k+2)-2\big)/R^{2}$ with total multiplicity $2(k-1)(k+3)$ at each
+$k\ge2$~\cite{RubinOrdonez1984,Sandberg1978}; in the labeling $n=k+1\ge3$
+of~\cite{RubinOrdonez1984} these read $(n^{2}-3)/R^{2}$ with degeneracy $2(n^{2}-4)$.  With
+$M_{TT}=\big\lfloor\sqrt{x^{2}+3}-1\big\rfloor$ (and $N_{TT}=0$ if $M_{TT}<2$),
+\begin{equation}
+N_{TT}(\varepsilon)=\sum_{k=2}^{M_{TT}}2(k-1)(k+3)
+=\frac{M_{TT}(M_{TT}-1)(2M_{TT}+11)}{3}
+\;\sim\;\frac{2x^{3}}{3}.
+\label{eq:NTT}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+$k(k+2)-2\le x^{2}\iff(k+1)^{2}\le x^{2}+3\iff k\le\sqrt{x^{2}+3}-1$.  The closed form follows
+by summing $2(k^{2}+2k-3)$ from $k=2$ to $M_{TT}$ and is verified by direct evaluation at
+$M_{TT}=2,4,9,99$.
+\end{proof}
+
+\begin{theorem}[Dirac capacity]
+\label{thm:dirac}
+The Dirac operator on round $\Sthree_{R}$ has eigenvalues $\mu^{(D)}_{n}=\pm(n+\tfrac32)/R$
+with multiplicity $(n+1)(n+2)$ for each sign, $n\ge0$~\cite{Baer1996,PB2026susp}.  With
+$M_{D}=\big\lfloor x-\tfrac32\big\rfloor$ (and $N_{D}=0$ if $M_{D}<0$),
+\begin{equation}
+N_{D}(\varepsilon)=2\sum_{n=0}^{M_{D}}(n+1)(n+2)
+=\frac{2(M_{D}+1)(M_{D}+2)(M_{D}+3)}{3}
+\;\sim\;\frac{2x^{3}}{3}.
+\label{eq:ND}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+$(n+\tfrac32)/R\le1/\varepsilon\iff n\le x-\tfrac32$; and
+$\sum_{n=0}^{M}(n+1)(n+2)=(M+1)(M+2)(M+3)/3$.
+\end{proof}
+
+\begin{remark}[Weyl consistency and graded structure]
+\label{rem:weyl}
+The \emph{leading asymptotic terms} of \eqref{eq:N0}--\eqref{eq:ND} agree exactly with the
+Weyl law for elliptic operators on closed $3$-manifolds and on vector bundles: for the scalar,
+$N\sim\operatorname{Vol}\cdot\lambda^{3/2}/(6\pi^{2})$ with
+$\operatorname{Vol}(\Sthree_{R})=2\pi^{2}R^{3}$ gives $x^{3}/3$; the TT and Dirac coefficients
+are exactly twice the scalar one, matching the rank of the local field degrees of freedom (two
+polarizations; the two signs of the Dirac spectrum counted as spinorial sectors).  The finite $N$'s themselves come from the explicit
+$\Sthree$ spectra, not from the asymptotics.  Two consequences deserve emphasis: capacity is
+naturally \emph{graded by field type} rather than a single number, and the thresholds differ
+(Dirac and TT modes switch on later than scalar), which matters at moderate $x$.
+\end{remark}
+
+\begin{table}[ht]
+\centering
+\small
+\begin{tabular}{r r r r}
+\toprule
+$x=R/\varepsilon$ & $N_{0}(x)$ scalar & $N_{TT}(x)$ TT tensor & $N_{D}(x)$ Dirac\\
+\midrule
+1   & 1        & 0        & 0\\
+2   & 5        & 0        & 4\\
+3   & 14       & 10       & 16\\
+5   & 55       & 76       & 80\\
+10  & 385      & 696      & 660\\
+50  & 42\,925  & 85\,456  & 83\,300\\
+100 & 338\,350 & 675\,906 & 666\,600\\
+\bottomrule
+\end{tabular}
+\caption{Exact graded capacities on $\Sthree_{R}$ from
+\eqref{eq:N0}--\eqref{eq:ND}.  The scalar count is one sector of the full graded capacity; the
+TT and Dirac sectors activate at higher $x$ and dominate asymptotically with coefficient
+$2/3$.}
+\label{tab:capacity}
+\end{table}
+
+\begin{corollary}[Planck-grain capacity]
+\label{cor:planck}
+Under Postulate~\ref{post:grain} ($\varepsilon=\lP$), a quasi-local domain reconstructed as
+$\Sthree_{R}$ carries the finite graded capacity
+$\big(N_{0},N_{TT},N_{D}\big)$ of Theorems~\ref{thm:scalar}--\ref{thm:dirac} with $x=R/\lP$.
+Finiteness is a theorem given the postulates; the identification $\varepsilon=\lP$ is the
+postulate, not the theorem.  Whether this kinematic count is also the \emph{physical} count in
+a gravitating domain is the open problem of Sec.~\ref{sec:tension}.
+\end{corollary}
+
+\section{Capacity Along Reconstruction Flow}
+\label{sec:flow-capacity}
+
+Sharp spectral counts jump when an eigenvalue crosses the cutoff.  A differentiable flow theory
+therefore uses the heat-trace or smooth spectral-action capacity.
+
+\begin{definition}[Heat-trace capacity]
+For a smooth family of positive elliptic operators $P_\tau$ on a fixed carrier, define
+\[
+\mathcal N_P(s,\tau):=\operatorname{Tr}(e^{-sP_\tau}),
+\qquad s=\varepsilon^2.
+\]
+Equivalently, with a smooth cutoff $\chi$, one may use
+$S_\chi(\tau)=\operatorname{Tr}\chi(P_\tau/\Lambda^2)$.
+\end{definition}
+
+\begin{proposition}[Flow derivative]
+\label{prop:heat-flow}
+Under standard smoothness and trace-class hypotheses,
+\[
+\partial_\tau \mathcal N_P(s,\tau)
+=-s\operatorname{Tr}\big((\partial_\tau P_\tau)e^{-sP_\tau}\big),
+\]
+where the formula follows from Duhamel's identity and cyclicity of the trace, so no commutation
+of $P_\tau$ with $\partial_\tau P_\tau$ is assumed; and
+\[
+\frac{dS_\chi}{d\tau}
+=\frac{1}{\Lambda^2}\operatorname{Tr}\big[\chi'(P_\tau/\Lambda^2)\partial_\tau P_\tau\big].
+\]
+For a round $\Sthree_{a(\tau)}$ with $x=a/\varepsilon$, the leading sharp-count asymptotics give
+\[
+\dot N_0\sim \frac{a^2\dot a}{\varepsilon^3},\qquad
+\dot N_{TT}\sim \frac{2a^2\dot a}{\varepsilon^3},\qquad
+\dot N_D\sim \frac{2a^2\dot a}{\varepsilon^3}.
+\]
+For the unnormalised round Ricci flow $\dot a=-2/a$, these become
+\[
+\dot N_0\sim -\frac{2a}{\varepsilon^3},\qquad
+\dot N_{TT}\sim -\frac{4a}{\varepsilon^3},\qquad
+\dot N_D\sim -\frac{4a}{\varepsilon^3}.
+\]
+Thus reconstruction flow erases operational distinguishability sector by sector; a Planck
+barrier $a\ge\ell_P$ becomes a lower spectral latch rather than a verbal cutoff.
+\end{proposition}
+
+\section{Causal Integration: The Physical Integration Ratio}
+\label{sec:pir}
+
+Capacity is a property of the domain; \emph{integrated} information is bounded by causal
+accessibility.  On the compact causal spacetime
+$(\Sthree_{R}\times\R,\ g_{R}-c^{2}dt^{2})$ the causal diameter is $D_{c}=\pi R$ and full
+causal coherence is reached at
+\begin{equation}
+\tcoh=\frac{\pi R}{c}
+\end{equation}
+\cite{PB2026light}.
+
+\begin{lemma}[Geodesic ball volume on $\Sthree_{R}$]
+\label{lem:ball}
+The geodesic ball of radius $s\in[0,\pi R]$ has volume
+\begin{equation}
+V_{B}(s)=\int_{0}^{s}4\pi R^{2}\sin^{2}\!\frac{\rho}{R}\,d\rho
+=2\pi R^{2}s-\pi R^{3}\sin\frac{2s}{R},
+\qquad V_{B}(\pi R)=2\pi^{2}R^{3}=\operatorname{Vol}(\Sthree_{R}).
+\end{equation}
+\end{lemma}
+
+\begin{definition}[Accessible fraction and PIR]
+\label{def:pir}
+The causally accessible volume fraction at time $T$ is
+\begin{equation}
+F(T)=
+\begin{cases}
+\dfrac{1}{\pi}\left(\dfrac{cT}{R}-\dfrac12\sin\dfrac{2cT}{R}\right), & 0\le T\le\tcoh,\\[1.4ex]
+1, & T\ge\tcoh .
+\end{cases}
+\label{eq:F}
+\end{equation}
+For an operational alphabet of capacity $N_{\varepsilon}$, the \emph{Physical Integration
+Ratio} is
+\begin{equation}
+\PIR(T):=\frac{N^{\mathrm{int}}_{\varepsilon}(T)}{N_{\varepsilon}},
+\end{equation}
+the fraction of the capacity causally integrable by an observer by time $T$.
+\end{definition}
+
+\begin{proposition}[PIR in the uniform-support model]
+\label{prop:pir}
+In the homogeneous saturation model---modes uniformly supported over the domain, integration
+limited only by the light cone---$\PIR(T)=F(T)$.  Then:
+\begin{enumerate}[label=(\alph*)]
+\item \emph{cubic onset:}\quad
+$\PIR(T)\sim\dfrac{2\pi^{2}}{3}\Big(\dfrac{T}{\tcoh}\Big)^{3}$ as $T\to0$
+(locally Euclidean growth);
+\item \emph{exact half-time symmetry:}\quad
+$\PIR(\tcoh-T)=1-\PIR(T)$, in particular $\PIR(\tcoh/2)=\tfrac12$;
+\item \emph{no early shortcut:}\quad no internal observer or computation integrates the full
+Planck-grain capacity of Corollary~\ref{cor:planck} before $\tcoh$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(a) Expand \eqref{eq:F}: with $u=cT/R$, $\sin2u=2u-\tfrac43u^{3}+O(u^{5})$ gives
+$F=\tfrac{2}{3\pi}u^{3}+O(u^{5})$; substitute $u=\pi T/\tcoh$.
+(b) With $u'=\pi-u$: $F(u')=\tfrac1\pi(\pi-u+\tfrac12\sin2u)=1-F(u)$.
+(c) $F(T)<1$ for $T<\tcoh$.
+
+\end{proof}
+
+\begin{proposition}[Shell-complete projector form of PIR]
+\label{prop:shell-pir}
+Let $P$ be a homogeneous elliptic operator on the round $\Sthree_R$, and let
+$\Pi_{\Lambda}^{P}$ be the spectral projector onto a complete set of eigenshells below the
+cutoff.  Then for every geodesic ball $B_s\subset \Sthree_R$,
+\[
+\frac{\operatorname{Tr}(1_{B_s}\Pi_{\Lambda}^{P}1_{B_s})}
+{\operatorname{Tr}\Pi_{\Lambda}^{P}}
+=
+\frac{\operatorname{Vol}(B_s)}{\operatorname{Vol}(\Sthree_R)}.
+\]
+Thus, in the homogeneous shell-complete case, the volume formula for $\PIR$ is not merely a
+uniform-support ansatz; it is the diagonal constancy of a symmetry-invariant spectral
+projector.
+\end{proposition}
+
+\begin{proof}
+The kernel of a shell-complete projector is invariant under the transitive isometry action of
+$\Sthree_R$.  Therefore its diagonal value is constant.  Integrating this constant over
+$B_s$ and over all of $\Sthree_R$ gives the stated ratio.
+\end{proof}
+
+\begin{remark}[Inhomogeneous extension]
+For a general compact carrier or non-homogeneous domain the exact definition becomes
+\[
+\PIR_{P,\Lambda}(B)=
+\frac{\int_B K_{\Lambda}^{P}(x,x)\,dV}{\int_M K_{\Lambda}^{P}(x,x)\,dV},
+\]
+where $K_{\Lambda}^{P}$ is the spectral-projector kernel.  Local Weyl asymptotics then give a
+controlled high-cutoff approximation.  This closes the homogeneous part of OP5 and turns the
+non-homogeneous part into a kernel-estimation problem.
+\end{remark}
+
+\begin{remark}[Mode-selected scalar correction]
+For the unit round $\Sthree$ scalar zonal harmonic of degree $n$,
+\[
+\phi_n(\chi)=\frac{1}{\sqrt 2\pi}\frac{\sin((n+1)\chi)}{\sin\chi},
+\]
+the mass inside the geodesic ball of angular radius $\chi$ is
+\[
+w_n(\chi)=\int_{B_\chi}|\phi_n|^2dV
+=\frac{\chi}{\pi}-\frac{\sin(2(n+1)\chi)}{2\pi(n+1)}.
+\]
+For $n=0$ this reduces to the volume fraction $F(\chi)$; for incomplete or mode-selected
+alphabets the oscillatory term is the first explicit correction to shell-complete PIR.
+\end{remark}
+
+\begin{table}[ht]
+\centering
+\small
+\begin{tabular}{r r}
+\toprule
+$\tau=T/\tcoh$ & $\PIR(\tau)$\\
+\midrule
+0.00 & 0.000000\\
+0.10 & 0.006451\\
+0.25 & 0.090845\\
+0.50 & 0.500000\\
+0.75 & 0.909155\\
+0.90 & 0.993549\\
+1.00 & 1.000000\\
+\bottomrule
+\end{tabular}
+\caption{Causal integration on $\Sthree_{R}$ in the uniform-support model.  The onset is
+cubic; the curve is exactly antisymmetric about the half-coherence time.}
+\label{tab:pir}
+\end{table}
+
+\begin{definition}[Reconstructible information of a quasi-local domain]
+\label{def:reconstructible}
+The \emph{reconstructible information} of a quasi-local domain at time $T$ is the
+distinguishability realized in the graded operational alphabet of
+Sec.~\ref{sec:capacity}, restricted to the causally accessible region at $T$
+(Definition~\ref{def:pir}), above the grain of Postulate~\ref{post:grain}.  This defines the
+\emph{object}; given a source distribution on the alphabet, its \emph{quantity} is measured by
+the standard Shannon functional.  The framework supplies the alphabet; Shannon's theory then
+applies unchanged.
+\end{definition}
+
+\begin{remark}[Two limits of reconstructible information]
+Extraction is locked between two boundaries.  \emph{Microscopic:} the grain excludes infinite
+information densities; the sub-grain interval carries no weight in the reconstruction measure.
+\emph{Macroscopic:} horizon formation, dilution, and expansion degrade the operational alphabet
+and lengthen effective coherence, limiting the causally synchronizable fraction.  Within the
+companion reconstruction-flow reading~\cite{BP2026ricci}, the past limit is the grain boundary
+of smooth geometry and the future limit is loss of recoverable quasi-local
+structure---\emph{insufficient distinguishability}, not contraction.
+\end{remark}
+
+\section{Higher Erasure Costs: The \texorpdfstring{$Q_{k}$}{Qk} Hypotheses}
+\label{sec:qk}
+
+Landauer's bound prices the erasure of a degree-$0$ distinction.  The graded profile of
+Sec.~\ref{sec:profile} invites---but does not prove---a hierarchy of prices for erasing
+higher-degree distinguishability.  Status discipline is essential here: the following are
+\emph{hypotheses defining a research programme}, not theorems.
+
+\begin{hypothesis}[$Q_{k}$ family]
+\label{hyp:qk}
+Let a physical system encode $\mathcal N_{k}$ distinguishable degree-$k$ sectors (components,
+cycles, membranes/domains, or topological/fusion sectors) at temperature $T$.  Then the minimal
+free-energy cost of a logically irreversible reset of the degree-$k$ distinction obeys
+\begin{equation}
+\Delta F_{k}\;\ge\;k_{B}T\ln\mathcal N_{k}\;+\;\Gamma_{k},
+\end{equation}
+where $\Gamma_{k}\ge0$ is the structural cost of destroying the corresponding carrier (loop
+tension, surface energy, topological gap, defect energy, braiding/fusion reset work).  For
+$k=0$, $\Gamma_{0}=0$ and $\mathcal N_{0}=2$ recover the Landauer bound.
+\end{hypothesis}
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{@{}lYYYl@{}}
+\toprule
+\textbf{Hyp.} & \textbf{What is erased} & \textbf{Minimal structural form} &
+\textbf{Test platform} & \textbf{Status}\\
+\midrule
+$Q_{0}$ & binary distinction & $\Delta F_{0}\ge k_{B}T\ln2$ &
+colloidal traps, nanomagnets~\cite{Berut2012,Jun2014,Hong2016} & established\\
+$Q_{1}$ & cycle / phase loop & $\Delta F_{1}\gtrsim k_{B}T\ln\mathcal N_{1}+\tau_{\ell}L$ &
+superconducting vortices, persistent-current rings & hypothesis\\
+$Q_{2}$ & membrane / domain & $\Delta F_{2}\gtrsim k_{B}T\ln\mathcal N_{2}+\sigma A$ &
+domain walls, interface reset & hypothesis\\
+$Q_{\mathrm{top}}$ & anyon / fusion sector &
+$\Delta F_{\mathrm{top}}\gtrsim k_{B}T\ln\mathcal D_{\mathrm{fus}}+n\Delta_{\mathrm{gap}}$ &
+toric-code / surface-code, FQH, Majorana platforms~\cite{Kitaev2003} & hypothesis\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\begin{remark}[How to test]
+Surface-code and toric-code architectures encode logical information in homology classes of a
+surface~\cite{Kitaev2003}; a forced reset of a nontrivial class to the trivial one is almost
+literally the attributed-erasure operator of Theorem~\ref{thm:erasure} made measurable.  The
+decisive experiments are calorimetric, not only logical: compare minimal dissipation of a
+fusion-sector reset with single-bit erasure at matched temperature and cycle time; for vortex
+and domain carriers, compare annihilation work with defect length/area.  In this form the
+programme becomes a \emph{topological thermodynamics of erasure} rather than a philosophy of
+information.
+\end{remark}
+
+\section{Quantum Information: Carrier-Resolved Resources}
+\label{sec:quantum}
+
+Normalized qubit states form $\Sthree\subset\C^{2}$; ray states form $\CP^{1}\simeq\Stwo$; the
+projection is the Hopf map, whose nontriviality ($c_{1}=1$) is the exact topological reason why
+global phase and Bloch direction do not factorize~\cite{PB2026susp}.  DRD does not replace
+quantum capacities; it \emph{decomposes the carrier of quantum distinguishability}.  For a
+$d$-level pure system the same carrier tower is
+\[
+\S^{2d-1}\longrightarrow \CP^{d-1},
+\qquad H^*(\CP^{d-1};\Z)=\Z[\alpha]/(\alpha^d),
+\qquad c_1(\mathcal O(-1))=-\alpha.
+\]
+For mixed states, the carrier is stratified by the spectrum of the density matrix; generic
+coadjoint orbits are flag manifolds, while degeneracies give lower-dimensional strata.  Thus
+\[
+\Dsharp_Q(d)=\big(H^*(\CP^{d-1}),c_1(\mathcal O(-1)),[\omega_{FS}],
+\Omega_{\mathrm{Berry}},\text{reference-frame data},\text{POVM alphabet}\big)
+\]
+is the safe quantum profile: topological obstruction plus operational measurement data, not a
+replacement for quantum mechanics.
+
+\begin{definition}[Carrier-resolved qubit resources]
+\label{def:qubit}
+For the qubit carrier we distinguish the triple
+\begin{equation}
+C^{\mathrm{DRD}}_{\mathrm{qubit}}
+=\big(C_{\mathrm{proj}},\,C_{\mathrm{phase\text{-}ref}},\,C_{\mathrm{hol}}\big):
+\end{equation}
+$C_{\mathrm{proj}}$, distinguishability realized on the ray space $\Stwo$ (projective
+measurements, no phase reference); $C_{\mathrm{phase\text{-}ref}}$, fibre-sensitive
+distinguishability operational only relative to an external phase reference (interferometry);
+$C_{\mathrm{hol}}$, the global holonomy/obstruction datum of the carrier ($c_{1}=1$), a
+carrier-level obstruction rather than a per-state resource: it prices the impossibility of a
+global phase convention.  In particular $C_{\mathrm{hol}}$ is not hidden per-state information
+in an absolute phase; only relative phase with respect to an operational reference frame can
+enter an accessible alphabet.
+\end{definition}
+
+\begin{remark}[Carrier-resolved reading of the Holevo bound (Interpretation)]
+The Holevo bound $I_{\mathrm{acc}}\le\chi$~\cite{Holevo1973} is left unchanged.  What DRD adds
+is an interpretation of \emph{which part} of $\chi$ is accessible in a given operational
+setting: if the $\Sone$ fibre is quotiented by absolute phase equivalence, only
+$C_{\mathrm{proj}}$-type distinguishability is operational; a shared phase reference promotes
+part of the fibre information to the operational alphabet.  This is a conceptual refinement of
+the alphabet, not a new theorem about channel capacity, and is labelled accordingly.
+\end{remark}
+
+\begin{remark}[Reference-frame discipline]
+The phase-sensitive part of the quantum profile is operational only relative to a reference
+frame.  For a symmetry group $G$, the no-reference-frame description is represented by
+twirling,
+\[
+\Delta_G(\rho)=\int_G U_g\rho U_g^\dagger\,dg,
+\]
+and the accessible ensemble distinguishability is reduced from the usual Holevo quantity to the
+corresponding twirled quantity.  Current quantum-reference-frame work makes this relational
+reading explicit for general symmetries and for gauge systems, including general relativity
+where coordinate frames themselves are gauge-dependent~\cite{Vanrietvelde2023,Thiemann2026}.
+Crossed-product/QRF constructions further show how observer clocks and entropy definitions are
+linked in semiclassical gravity~\cite{DeVuyst2025}.  DRD uses these results only to specify the
+operational alphabet; it does not modify the Holevo theorem.
+\end{remark}
+
+
+\begin{remark}[Topological entanglement as carrier-level distinguishability (related work)]
+Topological entanglement entropy~\cite{KitaevPreskill2006,LevinWen2006} isolates a universal,
+deformation-insensitive constant in many-body entanglement---distinguishability stored at the
+carrier level rather than in local data, in the spirit of the bundle layer of $\Dop$.
+Multi-boundary entanglement in Chern--Simons theory on link complements in
+$\Sthree$~\cite{Balasubramanian2017} ties such carrier-level entanglement to link topology.
+We record these as adjacent results supporting the carrier viewpoint; no claim of derivation is
+made in either direction.
+\end{remark}
+
+\section{Volume--Area Selection and Holonomy-Compatible Boundary Admissibility}
+\label{sec:tension}
+
+This point must not be talked away; it is made central.  The graded capacities of
+Sec.~\ref{sec:capacity} count \emph{kinematically resolvable} band-limited modes and scale
+with volume, $N\sim(R/\varepsilon)^{3}$.  Covariant entropy bounds scale with area,
+$S\lesssim A/4\lP^{2}$~\cite{Bousso1999}; holographic entropy formulae and their quantum
+extensions replace naive bulk counting by extremal or quantum-extremal generalized entropy
+data~\cite{RyuTakayanagi2006,EngelhardtWall2015}.  The companion suspension paper adopts area
+counting for its entropy hierarchy for exactly this reason~\cite{PB2026susp}.  DRD does not
+take any boundary-projection ontology as primitive.  The internal geometry of the programme remains
+Hopf/holonomy-based: the nontrivial phase--direction carrier is the Hopf fibration and its
+obstruction/holonomy data, not a claim that the bulk is ontologically projected from a
+boundary.  The fork is therefore principled but modest: either $N_{\varepsilon}$ counts all
+kinematic modes while gravity selects a physically realizable subspace, or the operational
+alphabet itself must be redefined in the presence of gravitational constraints.
+
+\begin{tcolorbox}[colback=gray!4,colframe=gray!50,title=Holonomy discipline]
+The word ``boundary'' in this section means an admissibility constraint or code-subspace
+selection rule.  It is not an ontological replacement of the carrier by a boundary screen.
+The native DRD structure remains holonomic/Hopf-theoretic: phase, spin, $c_1$, Berry/Hopf
+holonomy and the carrier profile $\Dsharp$ are primary; area bounds only constrain which
+parts of the kinematic alphabet can be physically realized.
+\end{tcolorbox}
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{@{}lYY@{}}
+\toprule
+\textbf{Model} & \textbf{Idea} & \textbf{What counts as physical}\\
+\midrule
+Gravitational dressing & local modes are not gauge-invariant without gravitational anchoring &
+only relationally dressed observables\\
+Boundary-code compression & kinematic alphabet restricted by boundary/area admissibility &
+a selected code subspace of dimension $\lesssim A/\lP^{2}$\\
+Mode decoupling / backreaction & part of the modes does not survive self-gravity &
+dynamically stable modes below a collapse threshold\\
+\bottomrule
+\end{tabularx}
+
+\end{center}
+
+\begin{definition}[Mode counts, bit capacities, and gravitational selector]
+For a field sector \(P\), define the raw mode count and its causally accessible part by
+\begin{align}
+\nkin^{(P)}(\varepsilon)&:=N_P(\varepsilon),\\
+\ncausal^{(P)}(T)&:=\PIR_P(T)\,\nkin^{(P)}(\varepsilon).
+\end{align}
+These are numbers of accessible modes, not bits.  To convert modes into a bit capacity one must
+specify an operational finite alphabet per mode.  Under a working normalization with
+\(\Bmode^{(P)}\) bits per accessible mode,
+\begin{equation}
+\Bcausal^{(P)}(T;\Bmode):=\Bmode^{(P)}\,\ncausal^{(P)}(T).
+\end{equation}
+For a binary truncation \(\Bmode=1\); for a finite \(q\)-level alphabet
+\(\Bmode=\log_2 q\).  For an untruncated bosonic Fock space no finite bit capacity is defined
+by a finite mode count alone; an energy or occupation cutoff is part of the data.
+
+The physical code-bit capacity is
+\begin{equation}
+\Bphys^{(P)}(R,\varepsilon,T)
+=\sup_{\mathcal H_{\mathrm{code}}\subseteq \mathcal H_{\mathrm{op}}^{(P)}(\le\Lambda,T)}
+\log_2\dim\mathcal H_{\mathrm{code}},
+\end{equation}
+where \(\mathcal H_{\mathrm{op}}^{(P)}(\le\Lambda,T)\) is the finite operational Hilbert/code
+space obtained after spectral cutoff, causal restriction and the chosen finite-alphabet or
+energy cutoff.  The maximisation is constrained by gauge invariance, gravitational dressing,
+generalized entropy or area bounds, and a backreaction/collapse threshold.
+
+The gravitational selector is therefore the bit-ratio
+\begin{equation}
+\Sigma_{\mathrm{grav}}^{(P)}:=
+\frac{\Bphys^{(P)}}{\Bcausal^{(P)}}\quad
+(0\le\Sigma_{\mathrm{grav}}^{(P)}\le1),
+\end{equation}
+not a ratio between a bit count and a raw vector-space dimension.  A safe upper-bound form is
+\begin{equation}
+\Bphys^{(P)}\le
+\min\left\{
+\Bcausal^{(P)},\ \frac{2\pi E R}{\hbar c\ln2},\ \frac{A}{4\ell_P^2\ln2}
+\right\},
+\label{eq:bit-safe-bound}
+\end{equation}
+where the second term is the energy--radius bound~\cite{Bekenstein1981} and the third is the
+area/covariant-entropy admissibility cap~\cite{Bousso1999,RyuTakayanagi2006,EngelhardtWall2015}.  At the collapse threshold
+\(E\sim Rc^4/(2G)\) these two external bounds have the same leading order,
+\begin{equation}
+\frac{2\pi E R}{\hbar c}\sim\frac{\pi R^2}{\ell_P^2}\sim \frac{A}{4\ell_P^2},
+\end{equation}
+so a Planck-grain volume mode count is not itself the physical bit count.
+
+The boundary-compression ratio is correspondingly a bit-normalized quantity,
+\begin{equation}
+\BCR^{(P)}:=\frac{A/(4\ell_P^2\ln2)}{\Bcausal^{(P)}}.
+\end{equation}
+In the one-bit-per-mode working normalization and at \(\varepsilon=\ell_P\), \(\BCR^{(P)}\)
+is of order \(\ell_P/R\) for large \(R\).  Thus the volume--area tension becomes a variational
+selector problem rather than a verbal contradiction.
+\end{definition}
+
+\begin{proposition}[Bit-safe selector bound]
+\label{prop:selector-bound}
+Let $\mathcal A_{\mathrm{grav}}^{(P)}$ be the class of code subspaces satisfying: finite
+operational alphabet or energy cutoff; the gauge/diffeomorphism constraints; gravitational or
+relational dressing; the applicable generalized-entropy or area admissibility condition; and a
+backreaction/collapse threshold.  Then every admissible code obeys
+\[
+\log_2\dim\mathcal H_{\mathrm{code}}\le
+\min\left\{\Bcausal^{(P)},\frac{2\pi ER}{\hbar c\ln2},
+\frac{A}{4\ell_P^2\ln2}\right\},
+\]
+and therefore the selector is a contraction on bit capacity:
+\[
+0\le \Sigma_{\mathrm{grav}}^{(P)}\le 1.
+\]
+\end{proposition}
+
+\begin{proof}
+The first inequality is containment of the code in the causally accessible operational
+Hilbert/code space.  The second and third are the imposed energy--radius and area/generalized
+entropy admissibility constraints.  Taking the supremum over
+$\mathcal A_{\mathrm{grav}}^{(P)}$ gives the stated bound and the ratio definition of
+$\Sigma_{\mathrm{grav}}^{(P)}$ gives the contraction property.
+\end{proof}
+
+\begin{remark}[No double counting of gauge charges]
+In gauge theories with matter, a rigid matter symmetry, a constant asymptotic gauge
+transformation, a bulk current expression and a boundary flux expression can describe the same
+physical charge.  DRD therefore counts such a charge once.  It must be labelled as a bulk
+Noether charge, a constraint expression, a Noether identity, or a surface charge, and two
+expressions are identified when the field equations and boundary conditions make them equal on
+shell.
+\end{remark}
+
+\begin{remark}[Algorithmic front end for the boundary-code branch]
+If the boundary-code branch of $\Sigma_{\mathrm{grav}}$ is used, the relevant optimization is
+not a slogan about screens but an entropy-cone constrained code-subspace problem.  Modern
+holographic-entropy methods translate linear inequalities into contraction maps and partial
+cubes, and recent reinforcement-learning searches use graph min-cuts to probe extreme rays of
+the holographic entropy cone~\cite{Bao2025,Bao2025Complete,HeLeeOoguri2026}.  In DRD this
+machinery supplies candidate admissibility constraints for $\mathcal H_{\mathrm{code}}$; it
+does not replace the carrier profile $\Dsharp$.
+\end{remark}
+
+\begin{remark}[Observable-algebra reading]
+The dressing requirement is not optional bookkeeping.  Compactly supported operators coupled
+to gravity require gravitational dressing, and local commuting subalgebras cease to be the
+right primitive notion of subsystem~\cite{DonnellyGiddings2016}.  Recent algebraic approaches
+therefore study relationally dressed observables, gravitational splittings and type-II
+operator-algebra structures as candidates for the quantum-gravity notion of localized
+information~\cite{Giddings2025,AhmadJefferson2024,Faulkner2024}.  This is precisely the
+mathematical habitat of $\Sigma_{\mathrm{grav}}$.
+\end{remark}
+
+
+\begin{tcolorbox}[colback=blue!3,colframe=blue!40!black,title=Central remaining physical node]
+The strict mathematical and operational programme can be closed up to the selector
+$\Sigma_{\mathrm{grav}}=\Bphys/\Bcausal$.  The open physical question is not whether the
+kinematic spectral alphabet can be counted; it can.  The question is which finite-alphabet or
+energy-cutoff code bits inside that alphabet remain gauge-invariant, holonomy-compatible,
+backreaction-stable, and compatible with covariant entropy bounds.
+\end{tcolorbox}
+
+\begin{remark}[Status]
+The three models are competitors, not conclusions.  This is the place where the framework can
+fail or deepen: if all realistic realizations of capacity are gravitationally truncated to area
+scaling and the volume count is never physically attained, the interpretation of
+$N_{\varepsilon}$ as physical (rather than kinematic) capacity must be revised
+(Sec.~\ref{sec:falsifiability}).
+\end{remark}
+
+\section{Related Definition-First Programmes and Conjectural Bridges}
+\label{sec:related}
+
+\paragraph{Information cohomology (adjacent, complementary).}
+Baudot and Bennequin proved that Shannon entropy is, up to a multiplicative constant, the
+unique nontrivial $1$-cocycle of an information cohomology built on categories of observables,
+with the chain rule as the cocycle condition; deformed coefficients yield Tsallis
+entropy~\cite{BaudotBennequin2015}.  This is a definition-first algebraicization of the
+information \emph{measure}.  DRD is a definition-first algebraicization of the information
+\emph{alphabet and carrier}.  The two programmes are complementary floors of the same tower:
+information cohomology derives the functional that DRD's operational alphabets are measured by.
+The bridge is the functor
+\[
+\Dsharp(\mathcal X)\longmapsto \mathbf{Obs}_{\varepsilon,T,\Sigma}(\mathcal X)
+\longmapsto H^1(\mathbf{Obs}_{\varepsilon,T,\Sigma};\mathcal F),
+\]
+where objects of $\mathbf{Obs}_{\varepsilon,T,\Sigma}$ are finite spectral partitions, POVM
+partitions or causal/dressed subalgebras after resolution, causal and selector restrictions, and
+morphisms are coarse-grainings.  A carrier map $f:X\to Y$ induces a
+pullback of observable categories whenever the structure permits it; entropy is then a
+cocycle on the downstream observable category, not the primitive definition of information.
+
+\paragraph{Reconstruction-flow thermodynamics (conjectural bridge).}
+Perelman's entropy functional makes Ricci flow gradient-like~\cite{Perelman2002}; proposed
+correspondences relate that functional to Fisher information and, further, to the Bohm quantum
+potential~\cite{Carroll2006}.  If such a correspondence holds in a controlled setting, the
+reconstruction flow of~\cite{BP2026ricci} would acquire a direct statistical-distinguishability
+meaning, and OP3 of Sec.~\ref{sec:open} (capacity under reconstruction flow) would gain a
+thermodynamic potential.  We record this strictly as a \emph{conjectural bridge}: no claim is
+made here that quantum mechanics is derived from geometric flow.
+
+\section{Interpretive Layer}
+\label{sec:interpretation}
+
+Everything in this section is labelled \emph{Interpretation}: a reading discipline, not
+physics.
+
+\begin{remark}[Non-emergence]
+The theory does not assert the absolute emergence of information, space, or geometry.
+$\Szero$ gives minimal distinguishability; suspension changes its carriers
+(Theorem~\ref{thm:transport}); $\Sthree$ gives the minimal joint spin/Hopf carrier of the
+stated package; the grain gives the lower metric-causal boundary of physical reconstruction
+(Postulate~\ref{post:grain}).  Within the fixed category of invertible morphisms the invariant
+package is neither created nor erased; across categories, every change is attributed to an
+exhibited operator.  Cessation of a conditioned representation is not annihilation of the
+invariant; it is release from a conditioned carrier.
+\end{remark}
+
+\begin{remark}[Two protections]
+First, against self-being: no element of the chain---distinction, carrier, alphabet,
+observer---is posited as self-existing; each is given by a construction (cf.\ the tetralemma
+discipline~\cite{Garfield1995}).  Second, against substantializing dependence itself: having
+refuted self-being, one may not erect ``Interdependence'' as a new substance.  In mathematical
+register: empty of own-nature, not empty of dependent functioning.
+\end{remark}
+
+\begin{remark}[The axis]
+Within the effective model, the Planck grain is the lower boundary of operationally
+reconstructible states; in the programme's fixed formula: \emph{the Planck boundary is not the
+beginning of the universe; it is the universal lower boundary of quasi-local geometric
+reconstruction}~\cite{BP2026ricci}.  In informational terms: not a first bit, but the grain
+below which the very notion of an operational bit is not assigned.
+\end{remark}
+
+\begin{tcolorbox}[colback=gray!4,colframe=gray!50,title=Core principle (Interpretation)]
+Information is dependently reconstructible distinguishability: a functorial package of
+invariants of relational structure (Definitions~\ref{def:dtop}--\ref{def:dop}), preserved
+under structure-preserving re-description (Theorem~\ref{thm:conservation}), transported
+without loss across carriers (Theorem~\ref{thm:transport}), destroyed only by exhibited
+non-invertible operators at a computable and thermodynamically priced cost
+(Theorem~\ref{thm:erasure}, Anchor~\ref{anchor:landauer}), physically realized only through
+carrier, grain, and causal order (Postulates~\ref{post:carrier}--\ref{post:grain}), graded and
+finite on compact domains (Theorems~\ref{thm:scalar}--\ref{thm:dirac}), and causally
+integrable no faster than $\PIR(T)$ permits (Proposition~\ref{prop:pir}).  Not self-being, not
+nothing: dependently reconstructible distinguishability passing through a chain of carriers.
+\end{tcolorbox}
+
+\section{Falsifiability}
+\label{sec:falsifiability}
+
+The mathematical layer is proved, not testable.  The operational and programmatic layers have
+explicit failure modes.
+
+\begin{enumerate}[label=(\arabic*)]
+\item \emph{Mathematical failure modes.}  If any fibrewise functor
+$\Dsharp_{\mathfrak s}$ fails on its declared morphism class; if the cone criterion or any
+formula of Proposition~\ref{prop:forg-generators} fails on a standard counterexample; if the
+spectral conventions of Sec.~\ref{sec:capacity} yield a wrong count; or if
+Proposition~\ref{prop:shell-pir} fails for a shell-complete homogeneous sector---the strict
+theory does not stand.  These are good risks: checkable and taste-independent.
+\item \emph{Compact-topology searches.}  The framework does not predict that the universe is
+$\Sthree$; it says that \emph{if} a quasi-local domain is effectively reconstructed as a
+compact $\Sthree$ carrier, the graded spectral and causal consequences of
+Secs.~\ref{sec:capacity}--\ref{sec:pir} follow.  Matched-circle and correlation searches
+constrain compact topologies~\cite{Cornish1998,Planck2018}; null results bound the radius
+without falsifying the mathematical core; future CMB experiments extend sensitivity.
+\item \emph{Grain falsifier.}  Any stable, operationally confirmed distinguishability
+\emph{below} the effective grain boundary refutes Postulate~\ref{post:grain} as stated, and
+with it Corollary~\ref{cor:planck}.
+\item \emph{Capacity-interpretation falsifier.}  If all realistic capacity realizations are
+gravitationally truncated to area scaling (Sec.~\ref{sec:tension}), the interpretation of
+$N_{\varepsilon}$ as physical capacity must be revised to kinematic capacity plus a selection
+rule.
+\item \emph{$Q_{k}$ tests.}  Calorimetric comparisons of topological-sector resets against
+single-bit erasure (Sec.~\ref{sec:qk}) can confirm, bound, or refute each $Q_{k}$
+independently.
+\item \emph{Legacy ansatz, retired.}  The golden-ratio log-periodicity
+$\omega=2\pi/\ln\golden$ of the wider programme was directly tested by us against DESI~DR2 BAO
+and Pantheon$+$ with null results~\cite{BP2026null}; no statement in this paper depends on it,
+and its current status is recorded as unsupported.  A companion null-status note records the
+algebraic co-scaling condition $R_{N}=\lP\golden^{N}$, $t_{N}=\tP\golden^{N}$,
+$R_{N}/t_{N}=c$.  Since $\tP=\lP/c$, this is a causal-admissibility identity, not a derivation
+of the numerical speed of light.  DRD does not depend on this identity.
+\end{enumerate}
+
+\section{Conclusion, Publication Roadmap, and Open Problems}
+\label{sec:open}
+
+The paper set out to define information before using it.  The result is a three-layer
+framework: a proved mathematical core (functorial profile, categorical conservation, attributed
+erasure, suspension transport with Freudenthal stabilization), an operational layer with exact
+graded capacities and an exact causal-integration law conditional on two explicit postulates,
+and a programmatic/interpretive layer strictly quarantined from both.  The claimed contribution
+is exactly this: a definition-first, theorem-based, falsifiability-aware account of what a
+physically realizable alphabet of distinguishable states is, what preserves it, what destroys
+it and at what price, and how much of it a compact quasi-local domain can carry and causally
+integrate.
+
+\paragraph{Publication roadmap.}
+For refereed publication the framework separates naturally into a bundle of three papers, each
+with one strong thesis: (1)~the mathematical core---carrier categories, $\Dsharp$,
+conservation and attributed erasure; (2)~the spectral-causal core---graded capacities
+$N_{0},N_{TT},N_{D}$, Weyl consistency, and $\PIR$; (3)~the physical
+programme---carrier-resolved quantum resources, $Q_{k}$ hypotheses with experimental schemes,
+and the volume--area/holonomy-compatible boundary-admissibility problem.  The present master document holds all three with a
+uniform status discipline.
+
+\paragraph{Status of the open nodes.}
+OP1 is closed at the categorical level as the fibrewise family $\Dsharp_{\mathfrak s}$ with computable truncation
+$\Dsharp_{q,\Lambda}$; remaining work concerns fibre-by-fibre examples, computations, and extensions; OP2 is closed at the topological level by the cone-defect package and
+its generator formulae, and reduced at the physical level to sector Landauer plus
+$\Gamma_{\mathrm{geom}}$; OP3 is made differentiable by heat-trace capacity; OP5 is closed in
+the homogeneous shell-complete case by Proposition~\ref{prop:shell-pir} and reduced generally
+to spectral-projector kernel estimates; OP6 and OP7 have precise carrier-to-observable
+formulations.  OP4 is the unique remaining physical node: derive, compute or experimentally constrain
+$\Sigma_{\mathrm{grav}}$ beyond the upper-bound discipline of Proposition~\ref{prop:selector-bound}.
+
+\begin{enumerate}[label=\textbf{OP\arabic*.},leftmargin=2.2em]
+\item \textbf{Fibrewise profile validation.}  Audit $\Dsharp_{\mathfrak s}$ fibre by fibre:
+continuous maps, smooth maps, bundle maps, isometries and spin-isometries must never be mixed
+without explicitly changing fibres.
+\item \textbf{Computable cone defects.}  Implement $\mathbb E(f)$ for the four generators of
+$\Forg$, including torsion and coefficient-change defects, and connect each nonzero component
+to a candidate protocol cost $\Gamma_{\mathrm{geom}}$.
+\item \textbf{Heat-trace flow capacity.}  Replace sharp $N_P(\Lambda,\tau)$ by
+$\mathcal N_P(s,\tau)$ for reconstruction flows; for Berger $\Sthree$, compute the branch
+crossings by $SU(2)$ representation theory and compare with the round asymptotics of
+Proposition~\ref{prop:heat-flow}.
+\item \textbf{Gravitational selector.}  Define the bit-safe selector
+$\Sigma_{\mathrm{grav}}=\Bphys/\Bcausal$ through gauge-invariant dressed observables,
+boundary-code compression subspaces, generalized entropy, the energy--radius bound and
+backreaction thresholds.  This is the central physical
+problem of the programme.
+\item \textbf{Mode-resolved PIR.}  Extend the shell-complete theorem to incomplete scalar, TT
+and Dirac alphabets by explicit projector kernels, beginning with the zonal scalar formula.
+\item \textbf{Quantum carrier profile.}  Develop the Hopf/flag/reference-frame profile
+$\Dsharp_Q$ for pure and mixed states and make its relation to the Holevo quantity quantitative
+without claiming a new capacity bound.
+\item \textbf{Information-cohomology interface.}  Build the functor
+$\Dsharp(\mathcal X)\to\mathbf{Obs}_{\varepsilon,T}(\mathcal X)$ and evaluate entropy cocycles
+only after the operational alphabet has been reconstructed.
+\end{enumerate}
+
+The framework may fail; but if it fails, it fails by calculation---at a functoriality check,
+at a capacity formula, at a calorimetric bound, at an observational anchor---not by taste.
+
+\begin{thebibliography}{99}
+
+\bibitem{Shannon1948}
+C.~E.~Shannon, \emph{A mathematical theory of communication},
+Bell Syst.\ Tech.\ J.\ \textbf{27}, 379--423, 623--656 (1948).
+
+\bibitem{Kolmogorov1965}
+A.~N.~Kolmogorov, \emph{Three approaches to the quantitative definition of information},
+Problems Inform.\ Transmission \textbf{1}, 1--7 (1965).
+
+\bibitem{Holevo1973}
+A.~S.~Holevo, \emph{Bounds for the quantity of information transmitted by a quantum
+communication channel}, Probl.\ Peredachi Inf.\ \textbf{9}, 3--11 (1973).
+
+\bibitem{Landauer1961}
+R.~Landauer, \emph{Irreversibility and heat generation in the computing process},
+IBM J.\ Res.\ Dev.\ \textbf{5}, 183--191 (1961).
+
+\bibitem{Landauer1991}
+R.~Landauer, \emph{Information is physical}, Phys.\ Today \textbf{44}(5), 23--29 (1991).
+
+\bibitem{Bennett1982}
+C.~H.~Bennett, \emph{The thermodynamics of computation---a review},
+Int.\ J.\ Theor.\ Phys.\ \textbf{21}, 905--940 (1982).
+
+\bibitem{Berut2012}
+A.~B\'erut, A.~Arakelyan, A.~Petrosyan, S.~Ciliberto, R.~Dillenschneider, and E.~Lutz,
+\emph{Experimental verification of Landauer's principle linking information and thermodynamics},
+Nature \textbf{483}, 187--189 (2012).
+
+\bibitem{Jun2014}
+Y.~Jun, M.~Gavrilov, and J.~Bechhoefer,
+\emph{High-precision test of Landauer's principle in a feedback trap},
+Phys.\ Rev.\ Lett.\ \textbf{113}, 190601 (2014).
+
+\bibitem{Hong2016}
+J.~Hong, B.~Lambson, S.~Dhuey, and J.~Bokor,
+\emph{Experimental test of Landauer's principle in single-bit operations on nanomagnetic
+memory bits}, Sci.\ Adv.\ \textbf{2}, e1501492 (2016).
+
+\bibitem{Wheeler1990}
+J.~A.~Wheeler, \emph{Information, physics, quantum: the search for links}, in
+\emph{Complexity, Entropy, and the Physics of Information}, ed.\ W.~H.~Zurek
+(Addison-Wesley, 1990).
+
+\bibitem{Hatcher2002}
+A.~Hatcher, \emph{Algebraic Topology} (Cambridge University Press, 2002).
+
+\bibitem{MilnorStasheff}
+J.~Milnor and J.~Stasheff, \emph{Characteristic Classes}
+(Princeton University Press, 1974).
+
+\bibitem{Baer1996}
+C.~B\"ar, \emph{The Dirac operator on space forms of positive curvature},
+J.\ Math.\ Soc.\ Japan \textbf{48}, 69--83 (1996).
+
+\bibitem{RubinOrdonez1984}
+M.~A.~Rubin and C.~R.~Ord\'o\~nez,
+\emph{Eigenvalues and degeneracies for $n$-dimensional tensor spherical harmonics},
+J.\ Math.\ Phys.\ \textbf{25}, 2888--2894 (1984).
+
+\bibitem{Sandberg1978}
+V.~D.~Sandberg, \emph{Tensor spherical harmonics on $S^{2}$ and $S^{3}$ as eigenvalue
+problems}, J.\ Math.\ Phys.\ \textbf{19}, 2441--2446 (1978).
+
+\bibitem{Kitaev2003}
+A.~Yu.~Kitaev, \emph{Fault-tolerant quantum computation by anyons},
+Ann.\ Phys.\ \textbf{303}, 2--30 (2003).
+
+\bibitem{KitaevPreskill2006}
+A.~Kitaev and J.~Preskill, \emph{Topological entanglement entropy},
+Phys.\ Rev.\ Lett.\ \textbf{96}, 110404 (2006).
+
+\bibitem{LevinWen2006}
+M.~Levin and X.-G.~Wen, \emph{Detecting topological order in a ground state wave function},
+Phys.\ Rev.\ Lett.\ \textbf{96}, 110405 (2006).
+
+
+\bibitem{Balasubramanian2017}
+V.~Balasubramanian, J.~R.~Fliss, R.~G.~Leigh, and O.~Parrikar,
+\emph{Multi-boundary entanglement in Chern--Simons theory and link invariants},
+JHEP \textbf{04}, 061 (2017).
+
+\bibitem{Bekenstein1981}
+J.~D.~Bekenstein, \emph{Universal upper bound on the entropy-to-energy ratio for bounded systems},
+Phys.\ Rev.\ D \textbf{23}, 287--298 (1981).
+
+\bibitem{Bousso1999}
+R.~Bousso, \emph{A covariant entropy conjecture}, JHEP \textbf{07}, 004 (1999).
+
+\bibitem{BaudotBennequin2015}
+P.~Baudot and D.~Bennequin, \emph{The homological nature of entropy},
+Entropy \textbf{17}, 3253--3318 (2015).
+
+\bibitem{Perelman2002}
+G.~Perelman, \emph{The entropy formula for the Ricci flow and its geometric applications},
+arXiv:math/0211159 (2002).
+
+\bibitem{Carroll2006}
+R.~W.~Carroll, \emph{Fluctuations, Information, Gravity and the Quantum Potential}
+(Springer, 2006).
+
+\bibitem{Cornish1998}
+N.~J.~Cornish, D.~N.~Spergel, and G.~D.~Starkman,
+\emph{Circles in the sky: finding topology with the microwave background radiation},
+Class.\ Quantum Grav.\ \textbf{15}, 2657--2670 (1998).
+
+\bibitem{Planck2018}
+Planck Collaboration, \emph{Planck 2018 results.\ VI.\ Cosmological parameters},
+Astron.\ Astrophys.\ \textbf{641}, A6 (2020).
+
+
+\bibitem{RyuTakayanagi2006}
+S.~Ryu and T.~Takayanagi, \emph{Holographic derivation of entanglement entropy from AdS/CFT},
+Phys.\ Rev.\ Lett.\ \textbf{96}, 181602 (2006).
+
+\bibitem{EngelhardtWall2015}
+N.~Engelhardt and A.~C.~Wall, \emph{Quantum extremal surfaces: holographic entanglement
+entropy beyond the classical regime}, JHEP \textbf{01}, 073 (2015).
+
+\bibitem{DonnellyGiddings2016}
+W.~Donnelly and S.~B.~Giddings, \emph{Observables, gravitational dressing, and obstructions to
+locality and subsystems}, Phys.\ Rev.\ D \textbf{94}, 104038 (2016).
+
+\bibitem{Giddings2025}
+S.~B.~Giddings, \emph{Quantum gravity observables: observation, algebras, and mathematical
+structure}, arXiv:2505.22708 (2025).
+
+\bibitem{AhmadJefferson2024}
+S.~Ali~Ahmad and R.~Jefferson, \emph{Crossed product algebras and generalized entropy for
+subregions}, SciPost Phys.\ Core \textbf{7}, 020 (2024).
+
+\bibitem{Faulkner2024}
+T.~Faulkner and A.~J.~Speranza, \emph{Gravitational algebras and the generalized second law},
+JHEP \textbf{11}, 099 (2024).
+
+\bibitem{Bao2025}
+N.~Bao, N.~Cheng, S.~Hernandez-Cuenca, and V.~P.~Su, \emph{Towards a complete classification
+of holographic entropy inequalities}, JHEP \textbf{03}, 117 (2025).
+
+\bibitem{Bao2025Complete}
+N.~Bao, N.~Cheng, S.~Hernandez-Cuenca, and V.~P.~Su, \emph{On the completeness of contraction
+map proof method for holographic entropy inequalities}, JHEP \textbf{12}, 140 (2025).
+
+\bibitem{HeLeeOoguri2026}
+T.~He, J.~Lee, and H.~Ooguri, \emph{Exploring the holographic entropy cone via reinforcement
+learning}, arXiv:2601.19979 (2026).
+
+\bibitem{Vanrietvelde2023}
+A.~Vanrietvelde, P.~A.~Hoehn, F.~Giacomini, and E.~Castro-Ruiz, \emph{Switching quantum
+reference frames in the $N$-body problem and the absence of global relational perspectives},
+Quantum \textbf{7}, 1088 (2023).
+
+\bibitem{Thiemann2026}
+T.~Thiemann, \emph{(Quantum) reference frames, relational observables, gauge reduction and
+physical interpretation}, arXiv:2603.04072 (2026).
+
+\bibitem{DeVuyst2025}
+J.~De Vuyst, S.~Eccles, P.~A.~H\"ohn, and J.~Kirklin, \emph{Crossed products and
+quantum reference frames: on the observer-dependence of gravitational entropy}, JHEP
+\textbf{07}, 063 (2025).
+
+
+\bibitem{PB2026susp}
+A.~Preece and B.~Batenin, \emph{Suspension of Spheres and the Minimal Role of $\Sthree$ in
+Spin, Hopf Geometry, and Irreversible Hierarchy}, research manuscript (2026).
+
+\bibitem{BP2026ricci}
+B.~Batenin and A.~Preece, \emph{Hopf-Lifted Ricci-Type Flow on $\Sthree$: A No-Go for Bounded
+and Engineered Forcing, and a Planck-Barrier Invariant Region}, research manuscript (2026).
+
+\bibitem{PB2026light}
+A.~Preece and B.~Batenin, \emph{Light as Causal Coherence Structure in Compact $\Sthree$
+Geometry}, research manuscript (2026).
+
+\bibitem{BP2026null}
+B.~Batenin and A.~Preece, \emph{A Null Test of Golden-Ratio Log-Periodicity
+($\omega=2\pi/\ln\varphi$) against DESI DR2 BAO and Pantheon$+$}, research manuscript (2026).
+
+\bibitem{Garfield1995}
+N\=ag\=arjuna, \emph{M\=ulamadhyamakak\=arik\=a}; English translation and commentary:
+J.~L.~Garfield, \emph{The Fundamental Wisdom of the Middle Way} (Oxford University Press,
+1995).
+
+\end{thebibliography}
+
+\end{document}

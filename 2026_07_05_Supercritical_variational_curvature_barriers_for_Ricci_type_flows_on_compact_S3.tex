@@ -1,0 +1,2801 @@
+
+\documentclass[11pt]{amsart}
+
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{bm}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newtheorem{conjecture}{Conjecture}
+\newtheorem{definition}{Definition}
+\newtheorem{remark}{Remark}
+\newtheorem{openproblem}{Open Problem}
+
+\newcommand{\Rm}{\mathrm{Rm}}
+\newcommand{\Ric}{\mathrm{Ric}}
+\newcommand{\Ricci}{\mathrm{Ric}}
+\newcommand{\R}{\mathrm{R}}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\grad}{\operatorname{grad}}
+\newcommand{\dmu}{\,d\mu_g}
+\newcommand{\dt}{\partial_\tau}
+\newcommand{\lP}{\ell_P}
+\newcommand{\KP}{K_{\!P}}
+\newcommand{\F}{\mathcal F}
+\newcommand{\B}{\mathcal B}
+\newcommand{\U}{\mathcal U}
+\newcommand{\Wcal}{\mathcal W}
+\newcommand{\Ncal}{\mathcal N}
+\newcommand{\Mcal}{\mathcal M}
+\newcommand{\Vol}{\operatorname{Vol}}
+\newcommand{\inj}{\operatorname{inj}}
+\newcommand{\Grad}{\operatorname{Grad}}
+
+
+
+\title[Supercritical Variational Curvature Barriers]{Supercritical Variational Curvature Barriers for Ricci-Type Flows on Compact \(S^3\)}
+\author{B.~Batenin}
+\address{Independent researcher, Berlin, Germany}
+\author{A.~Preece}
+\address{Independent researcher, Berlin, Germany}
+\date{}
+\subjclass[2020]{53E20, 53C44, 58J35}
+\keywords{Ricci-type flow, curvature barrier, Berger spheres, Perelman entropy, noncollapse}
+
+\begin{document}
+\raggedbottom
+
+\begin{abstract}
+
+This paper is not a revision of the operational Planck-boundary interpretation
+used in the compact \(S^3\) programme.  In that setting, \(\ell_P\) marks the
+limit of physical distinguishability, not a dynamical forcing term in the Ricci
+flow.  The present note asks a separate mathematical question: if Ricci-type
+flows are treated as autonomous geometric dynamics on compact \(S^3\), which
+variational curvature barriers can suppress supercritical curvature growth
+before a prescribed curvature scale is reached?
+
+A Hopf--Berger analysis of Ricci-type flows on compact \(S^3\)
+shows that bounded traceless forcing, fibre-restoring forcing, and a constant
+cosmological-constant term do not supply the negative cubic damping needed to
+control the round-collapse direction.  The homogeneous term
+\(h=2\lambda |\Rm|g\) has the desired sign in a finite-dimensional reduction,
+but fails as a PDE mechanism because the discarded Laplacian source
+\(-4\lambda \Delta |\Rm|\) is of the same scale as the intended damping near a
+curvature concentration.
+
+This paper isolates the corresponding variational replacement.  The local
+high-curvature regulator is the negative \(L^2\)-gradient of a curvature
+energy
+\[
+        \F_\Phi[g]=\int_{S^3}\Phi(K)\,d\mu_g,\qquad K=|\Rm|^2,
+\]
+and, in the singular wall version,
+\[
+        \B_{p,q}[g]
+        =
+        \int_{S^3}
+        \frac{(K+\delta)^q}{(\KP-K)^p}\,d\mu_g,
+        \qquad
+        \KP=\ell_P^{-4}.
+\]
+The algebraic high-curvature test is passed.  In dimension three
+\[
+        K=|\Rm|^2=4|\Ric_0|^2+\frac13R^2,
+\]
+so \(K\) detects both round and anisotropic curvature, and the conformal
+variation gives the decisive factor
+\[
+        4K\Phi'(K)-3\Phi(K).
+\]
+For \(\Phi(K)=K^q\) this is \((4q-3)K^q\), so the sharp scale threshold in
+dimension three is \(q>3/4\).  For the Planck wall the same factor diverges
+with the correct sign as \(K\nearrow\KP\).  On the full Berger family the wall
+has an exact two-dimensional reduction and the anisotropy ratio \(u=z/x\)
+satisfies
+\[
+        \dot u
+        =
+        \frac{8u(1-u)}{x}
+        \left(1+\frac{2\varepsilon\Phi'(K)}{x}(11u-4)\right),
+\]
+which yields an invariant cone \(u\ge4/11\) and identifies the lower Hopf
+sector where the wall may accelerate fibre collapse.  The same reduction gives
+closed formulas for volume, scalar curvature, traceless Ricci size, and the
+signs of the Planck-wall Euler tensor on Berger sectors.  A simple zero-mode
+heat-kernel lower bound also shows that the scale detector
+\(\sup_{0<t\le r^2}t^{3/2}H_g(t,x,x)\) diverges along fixed-base Hopf
+collapse.  A wall gap gives an explicit Ricci lower bound and hence controlled
+heat-kernel comparison constants, although no propagation theorem for this
+detector is claimed.
+
+The paper also records the exact obstruction to turning this wall into a
+noncollapse theorem by an additive Perelman-potential repair.  On the
+homogeneous Berger sector the candidate
+\(\lambda_\Phi=\lambda_1(-4\Delta+R+\varepsilon\Phi(K))\) reduces exactly to
+\(R+\varepsilon\Phi(K)\).  For \(\Phi(K)=K\), at the round point,
+\[
+        \dot\lambda_\Phi
+        =
+        \frac{12(2x-\varepsilon)(x+4\varepsilon)}{x^4},
+\]
+so monotonicity fails for every fixed \(\varepsilon>0\) once
+\(x<\varepsilon/2\).  More generally, additive matching \(K\)-potential repairs
+of the form
+\[
+        \Wcal_{\mathrm{Perelman}}+\sigma\varepsilon\tau^\alpha K
+\]
+fail the same Berger test for every sign \(\sigma\) and every exponent
+\(\alpha\).  For the singular Planck wall
+\(\Phi(K)=(K+\delta)^q(\KP-K)^{-p}\), the corresponding additive repair
+also fails analytically at the wall: its Berger derivative has a negative
+leading term of order
+\[
+        -\varepsilon^2(\KP-K)^{-2p-2}.
+\]
+Thus the curvature wall is a valid local high-curvature metric regulator, but
+it is not itself a noncollapse entropy.  By contrast, the unmodified Perelman
+entropy passes the protected positive-scalar Berger cone test: on
+\(4/11\le u<4\) its reduced derivative along the wall flow is nonnegative.
+This gives the first positive non-additive two-mechanism result in the paper.
+A complete internal replacement for surgery would still require a corresponding
+propagation or monotonicity theorem for the unmodified entropy along the full
+inhomogeneous DeTurck-gauged wall flow.
+\end{abstract}
+
+\maketitle
+
+\section{Purpose}
+
+The status of this paper is deliberately mathematical.  It does not claim that
+the operational Planck-boundary interpretation requires a curvature-wall
+correction, nor does it replace that interpretation.  In the compact \(S^3\)
+Planck-boundary programme, \(\ell_P\) marks a limit of physical
+distinguishability.  Here we ask a different question: once modified
+Ricci-type flows are studied as autonomous geometric systems, can one construct
+intrinsic variational forcing terms that prevent supercritical curvature growth
+before a prescribed curvature scale is reached?
+
+The object is a Ricci-type flow on a compact closed three-sphere
+\[
+        \dt g=-2\Ric+h[g].
+\]
+The problem is not to imitate Ricci-flow surgery.  Surgery is an external
+topological intervention.  The question here is narrower: can an internal,
+geometrically natural forcing term prevent a high-curvature collapse inside a
+fixed closed slice?
+
+The useful test is the curvature reaction estimate
+\[
+        (\dt-\Delta)|\Rm|^2
+        =
+        -2|\nabla\Rm|^2+C_{\mathrm{RF}}(\Rm),
+        \qquad
+        |C_{\mathrm{RF}}(\Rm)|\le C_3|\Rm|^3 .
+\]
+A local forcing can dominate the singular regime only if, at large curvature,
+its curvature contribution contains a negative term of order strictly stronger
+than, or at least cubic with coefficient exceeding, the Ricci reaction:
+\[
+        2\langle C_h(\Rm),\Rm\rangle
+        \le
+        -\gamma |\Rm|^3+A|\Rm|^2+B,
+        \qquad
+        \gamma>C_3.
+\]
+A constant cosmological term does not pass this test.  If \(h=2\Lambda g\),
+then its contribution is
+\[
+        -4\Lambda |\Rm|^2,
+\]
+which is quadratic.  It cannot dominate \(C_3|\Rm|^3\) as
+\(|\Rm|\to\infty\).
+
+The preceding Hopf--Berger calculation also gives a geometric warning.  For
+\[
+        g_{a,c}=a^2(\sigma_1^2+\sigma_2^2)+c^2\sigma_3^2
+        \quad \text{on } SU(2)\simeq S^3,
+\]
+one has
+\[
+        |\Rm|^2
+        =
+        \frac{4(16a^4-24a^2c^2+11c^4)}{a^8}.
+\]
+Equivalently, with \(x=a^2\), \(z=c^2\), and \(u=z/x\),
+\[
+        K:=|\Rm|^2
+        =
+        \frac{4(16-24u+11u^2)}{x^2}.
+\]
+Thus \(c\to0\) at fixed \(a\) is a bounded-curvature fibre collapse, while
+\(a\to0\) at fixed \(u\) is the genuine curvature singularity.  Any universal
+regularizer must see the round/base collapse.  Traceless-only or fibre-only
+invariants do not suffice.
+
+\section{Operational meaning of universality}
+
+The word ``universal'' must be made finite.  We use it in the following
+operational sense.
+
+\begin{definition}[local high-curvature regularizer]
+A forcing \(h[g]\) is called a local high-curvature regularizer on compact
+three-manifolds if it satisfies four tests.
+
+\begin{enumerate}[label=(\roman*)]
+\item It is natural: \(h[\phi^*g]=\phi^*h[g]\) for diffeomorphisms \(\phi\).
+\item It is local: it is built from \(g\), curvature, and finitely many
+covariant derivatives.
+\item Its scalar detector does not vanish on a non-flat three-dimensional
+curvature tensor.
+\item In a high-curvature concentration it supplies negative leading-order
+curvature drift strong enough to dominate \(C_3|\Rm|^3\), without discarding
+spatial derivative terms of the same order.
+\end{enumerate}
+\end{definition}
+
+This definition deliberately excludes a common false success.  A term such as
+\(2f(|\Rm|)g\) may look good in a homogeneous reduction, but its scalar
+curvature variation includes Laplacians of \(f(|\Rm|)\).  For
+\(f=\lambda |\Rm|\),
+\[
+        \delta R=-2fR-4\Delta f
+\]
+in dimension three.  The homogeneous model keeps \(-2\lambda |\Rm|R\) and
+drops \(-4\lambda\Delta |\Rm|\).  Near a neck concentration of width \(L\) and
+peak \(|\Rm|_{\mathrm{pk}}\sim L^{-2}\), the dropped term scales like
+\[
+        \lambda \frac{|\Rm|_{\mathrm{pk}}}{L^2}
+        \sim
+        \lambda |\Rm|_{\mathrm{pk}}^2,
+\]
+the same order as the intended damping.  It is therefore not a stable PDE
+mechanism.
+
+The replacement is to keep the derivative terms by making the forcing
+variational.
+
+\section{The detector: \texorpdfstring{\(K=|\Rm|^2\)}{K=|Rm|2}}
+
+In dimension three the Weyl tensor vanishes, and the full curvature tensor is
+determined by \(\Ric\).  The norm identity is
+\[
+        |\Rm|^2
+        =
+        4|\Ric|^2-R^2
+        =
+        4|\Ric_0|^2+\frac13R^2 .
+\]
+Here
+\[
+        \Ric_0=\Ric-\frac13Rg
+\]
+is the traceless Ricci tensor.
+
+\begin{lemma}[minimal scalar detector]
+In dimension three, \(K=|\Rm|^2\) is the minimal positive scalar curvature
+detector for the present problem: it detects both the round direction
+\((\Ric_0=0,\ R\ne0)\) and anisotropic curvature
+\((\Ric_0\ne0)\).  A traceless-only detector misses the round collapse; scalar
+curvature alone does not give a positive definite norm of the whole curvature
+tensor; derivative detectors such as \(|\nabla\Rm|^2\) miss homogeneous
+round collapse.
+\end{lemma}
+
+\begin{proof}
+The identity above is pointwise.  The term \(R^2/3\) is precisely the round
+component, while \(4|\Ric_0|^2\) is the anisotropic component.  Removing either
+term loses one of the two curvature channels.  A derivative-only detector
+vanishes on homogeneous Berger metrics, including the round shrinking mode,
+even while \(K\to\infty\).
+\end{proof}
+
+Thus the basic invariant must be a function of
+\[
+        K=|\Rm|^2.
+\]
+
+\section{Variational forcing}
+
+Let
+\[
+        \F_\Phi[g]=\int_M \Phi(K)\dmu,
+        \qquad K=|\Rm|^2,
+\]
+where \(\Phi\) is smooth on the relevant interval.  Define \(E_\Phi(g)\) by
+\[
+        D\F_\Phi[g](v)
+        =
+        \int_M \langle E_\Phi(g),v\rangle_g\,d\mu_g .
+\]
+The proposed forced flow is
+\[
+        \boxed{\dt g=-2\Ric-\varepsilon E_\Phi(g)}
+\]
+with \(\varepsilon>0\).
+
+This is a fourth-order geometric flow, because \(K\) depends on two
+derivatives of the metric and \(E_\Phi\) contains the Euler--Lagrange terms
+coming from varying curvature.  That is not a defect.  The defect of
+\(f(K)g\) was precisely that the fourth-order derivative structure was hidden
+and then lost in the homogeneous reduction.
+
+\begin{proposition}[scale derivative]
+Let \(M\) have dimension \(n=3\).  Under the constant conformal scaling
+\(g_s=e^{2s}g\),
+\[
+        K_s=e^{-4s}K,
+        \qquad
+        d\mu_{g_s}=e^{3s}d\mu_g .
+\]
+Hence
+\[
+        \frac{d}{ds}\bigg|_{s=0}\F_\Phi[g_s]
+        =
+        \int_M\left(3\Phi(K)-4K\Phi'(K)\right)d\mu_g .
+\]
+Consequently the negative \(L^2\)-gradient has the correct high-curvature
+conformal sign whenever
+\[
+        4K\Phi'(K)-3\Phi(K)>0.
+\]
+\end{proposition}
+
+\begin{proof}
+Substitution gives
+\[
+        \F_\Phi[g_s]
+        =
+        \int_M e^{3s}\Phi(e^{-4s}K)d\mu_g .
+\]
+Differentiating at \(s=0\) gives the displayed identity.  If \(E_\Phi\) is the
+\(L^2\)-gradient and \(v=2g\), then
+\[
+        \int_M \langle E_\Phi,2g\rangle\,d\mu
+        =
+        \int_M(3\Phi-4K\Phi')\,d\mu .
+\]
+Thus the negative gradient expands the metric in the high-curvature conformal
+mode precisely when \(4K\Phi'-3\Phi\) is positive.
+\end{proof}
+
+\section{Power-law regularizers}
+
+Take
+\[
+        \Phi(K)=K^q .
+\]
+Then
+\[
+        4K\Phi'(K)-3\Phi(K)
+        =
+        (4q-3)K^q .
+\]
+Thus the conformal sign is correct exactly when
+\[
+        q>\frac34 .
+\]
+
+The same exponent is the scale threshold.  Under a length scale
+\(L\),
+\[
+        |\Rm|\sim L^{-2},
+        \qquad
+        K=|\Rm|^2\sim L^{-4},
+        \qquad
+        d\mu\sim L^3,
+\]
+and therefore
+\[
+        \int K^q\,d\mu
+        \sim
+        L^{3-4q}.
+\]
+The functional is scale-critical at \(q=3/4\) and blows up on shrinking
+curvature concentrations when \(q>3/4\).
+
+\begin{remark}[correction of the exponent]
+The exponent \(q>3/2\) is stronger than necessary for the scale and conformal
+tests in dimension three.  The critical exponent for
+\(\int |\Rm|^{2q}d\mu=\int K^q d\mu\) is \(q=3/4\).  The condition
+\(q>3/2\) may be retained as a deliberately aggressive, non-minimal choice,
+but it should not be called the minimal scale threshold.
+\end{remark}
+
+In a round high-curvature mode the contribution to \(K\) has the leading
+form
+\[
+        \dt K\big|_{\mathrm{var}}
+        =
+        -\frac{\varepsilon}{3}(4q-3)K^{q+1}
+        +\text{derivative and lower-order terms}.
+\]
+The Ricci-flow reaction has order \(K^{3/2}\).  Thus every
+\[
+        q>\frac12
+\]
+beats the cubic Ricci reaction by degree, and every \(q>3/4\) both beats it
+and passes the scale/conformal test.
+
+The power-law candidate is therefore
+\[
+        \boxed{
+        \dt g
+        =
+        -2\Ric
+        -
+        \varepsilon\,\grad_{L^2}\int_{S^3} (|\Rm|^2+\delta)^q\,d\mu_g,
+        \qquad
+        q>\frac34,\quad \delta>0.
+        }
+\]
+The parameter \(\delta>0\) makes the integrand smooth at \(K=0\) when \(q\)
+is not an integer.
+
+\section{Planck barrier}
+
+The power-law energy punishes concentration, but it does not by itself encode
+a finite ceiling.  A genuine curvature wall is obtained by restricting to
+\[
+        \U_P=\{g:\sup_M K<\KP\},
+        \qquad
+        \KP=\lP^{-4},
+\]
+and using
+\[
+        \B_{p,q}[g]
+        =
+        \int_M
+        \frac{(K+\delta)^q}{(\KP-K)^p}\dmu,
+        \qquad
+        p>0,\quad q>\frac34,\quad \delta>0.
+\]
+The proposed Planck-barrier flow is
+\[
+        \boxed{
+        \dt g
+        =
+        -2\Ric
+        -
+        \varepsilon\,\grad_{L^2}\B_{p,q}[g].
+        }
+\]
+
+\begin{proposition}[barrier sign]
+For
+\[
+        \Phi(K)=\frac{(K+\delta)^q}{(\KP-K)^p},
+        \qquad 0\le K<\KP,
+\]
+one has
+\[
+        4K\Phi'(K)-3\Phi(K)
+        =
+        \Phi(K)
+        \left(
+             \frac{4qK}{K+\delta}
+             +
+             \frac{4pK}{\KP-K}
+             -
+             3
+        \right).
+\]
+In particular, for large \(K\) and especially as \(K\nearrow\KP\), the
+negative gradient gives an inward high-curvature drift, with leading blow-up
+\[
+        4K\Phi'(K)-3\Phi(K)
+        \sim
+        \frac{4pK(K+\delta)^q}{(\KP-K)^{p+1}}.
+\]
+Consequently the conformal contribution to \(K\) has leading sign
+\[
+        \dt K\big|_{\mathrm{bar}}
+        \sim
+        -
+        \frac{4\varepsilon p}{3}
+        \frac{K^2(K+\delta)^q}{(\KP-K)^{p+1}}
+        \quad
+        \text{as } K\nearrow\KP .
+\]
+\end{proposition}
+
+\begin{proof}
+Differentiate logarithmically:
+\[
+        \frac{\Phi'(K)}{\Phi(K)}
+        =
+        \frac{q}{K+\delta}
+        +
+        \frac{p}{\KP-K}.
+\]
+Multiplication by \(4K\) and subtraction of \(3\) give the formula.  The final
+asymptotic follows from the pole at \(K=\KP\).  The factor \(K/3\) in the
+drift of \(K\) is the conformal scaling relation in dimension three.
+\end{proof}
+
+\begin{remark}[choice of \(p\)]
+For the pointwise wall, \(p>0\) already creates a singular barrier.  Taking
+\(p>1\) or \(p>3/2\) is a stronger modelling choice.  It may be useful when one
+wants the variational force to become extremely stiff before \(K\) reaches
+\(\KP\), but it is not required by the elementary scale test.
+\end{remark}
+
+\section{Berger verification}
+
+For the Berger family,
+\[
+        K=\frac{4(16-24u+11u^2)}{x^2},
+        \qquad x=a^2,\quad u=\frac{c^2}{a^2}.
+\]
+The round point is \(u=1\), where
+\[
+        K=\frac{12}{x^2}.
+\]
+The unforced Berger calculation gives
+\[
+        \left.\frac{\dt K}{K^{3/2}}\right|_{u=1}
+        =
+        \frac{4}{\sqrt3}.
+\]
+Thus the Ricci reaction is positive cubic in \(|\Rm|\), equivalently
+positive \(K^{3/2}\).
+
+For the power-law variational forcing, the leading conformal high-curvature
+term is
+\[
+        -\frac{\varepsilon}{3}(4q-3)K^{q+1}.
+\]
+For \(q>3/4\),
+\[
+        K^{q+1}\gg K^{3/2}
+        \qquad (K\to\infty),
+\]
+so the proposed forcing passes the Berger round-collapse degree test.
+
+For the Planck barrier,
+\[
+        \dt K\big|_{\mathrm{bar}}
+        \sim
+        -
+        \frac{4\varepsilon p}{3}
+        \frac{K^2(K+\delta)^q}{(\KP-K)^{p+1}},
+        \qquad K\nearrow\KP,
+\]
+so the leading formal drift points away from the forbidden boundary
+\(K=\KP\).
+
+This calculation also explains why the Hopf fibre is not the missing
+regularizing channel.  At \(c\to0\) with \(a\) fixed,
+\[
+        K\to \frac{64}{a^4}<\infty.
+\]
+The singular variable is \(a\), not \(c\).  The invariant \(K\) sees this
+without imposing a preferred fibre direction.
+
+\section{Why this is not another scalar multiplier}
+
+It is tempting to replace the variational term by
+\[
+        h=2\lambda K^\alpha g.
+\]
+This is not the same mechanism.  It preserves only the zeroth-order conformal
+part and hides the spatial derivative terms.  Once \(K\) is inhomogeneous,
+the evolution of curvature includes Laplacians and Hessians of \(K^\alpha\).
+Those terms are of the same scale as the zeroth-order damping at a neck.  The
+homogeneous success is therefore not stable.
+
+The variational construction is different.  The tensor
+\[
+        E_\Phi=\grad_{L^2}\int \Phi(|\Rm|^2)d\mu
+\]
+contains the derivative terms forced by the variation of curvature.  After
+DeTurck gauge fixing, this belongs to the same general class as higher-order
+curvature flows.  The model therefore pays the price necessary for PDE
+honesty: fourth-order terms are present explicitly, not suppressed.
+
+\section{Relation to second-order uniqueness}
+
+One should not expect a universal second-order natural tensor to do this job.
+Second-order divergence-free natural symmetric tensors are severely restricted
+by Lovelock-type classification results.  In low dimensions this leaves only
+metric and Einstein-type structures, not a new high-curvature damping channel.
+This supports, but does not by itself prove, the conclusion that a genuine
+local regularizer must leave the second-order class.
+
+The present proposal leaves it by using a curvature-energy gradient.
+
+\section{What is proved algebraically}
+
+The construction gives an algebraically verified high-curvature regulator.
+It does not, by itself, give global regularity or noncollapse.
+
+\begin{theorem}[algebraic high-curvature verification]\label{thm:algebraic-verification}
+Let \(M^3\) be compact and let \(K=|\Rm|^2\).  For the functional
+\[
+        \F_q[g]=\int_M (K+\delta)^q\,d\mu_g
+\]
+with \(q>3/4\), the negative \(L^2(d\mu)\)-gradient has the correct conformal
+high-curvature sign and produces a leading round-mode drift of order
+\(-K^{q+1}\), which dominates the Ricci reaction \(+K^{3/2}\).  For the
+barrier functional
+\[
+        \B_{p,q}[g]
+        =
+        \int_M
+        \frac{(K+\delta)^q}{(\KP-K)^p}\,d\mu_g
+\]
+with \(p>0\), the same sign becomes singular as \(K\nearrow\KP\).
+\end{theorem}
+
+\begin{proof}
+The first assertion is the scale derivative computation with
+\(\Phi(K)=(K+\delta)^q\).  For \(K\gg\delta\),
+\[
+        4K\Phi'-3\Phi
+        =
+        (4q-3)K^q+o(K^q),
+\]
+which is positive for \(q>3/4\).  The induced conformal drift in \(K\) has an
+additional factor \(-\varepsilon K/3\), giving order \(-K^{q+1}\).  Since
+\(q+1>3/2\), this dominates \(K^{3/2}\).  The barrier assertion follows from
+\[
+        4K\Phi'(K)-3\Phi(K)
+        =
+        \Phi(K)
+        \left(
+        \frac{4qK}{K+\delta}
+        +
+        \frac{4pK}{\KP-K}
+        -3
+        \right),
+\]
+whose second term diverges to \(+\infty\) as \(K\nearrow\KP\).
+\end{proof}
+
+\section{Why noncollapse is a different problem}
+
+The curvature wall prevents a high-curvature channel.  It cannot, by itself,
+prevent bounded-curvature collapse.  The same Hopf--Berger calculation already
+shows the obstruction.
+
+\begin{lemma}[bounded-curvature collapse is invisible to \(K\)-walls]\label{lem:hopf-collapse-obstruction}
+Let
+\[
+        g_{1,c}=\sigma_1^2+\sigma_2^2+c^2\sigma_3^2
+\]
+be the Berger family on \(S^3\).  As \(c\downarrow0\),
+\[
+        \Vol(g_{1,c})\to0,\qquad \inj(g_{1,c})\to0,
+\]
+but
+\[
+        \sup_{S^3}|\Rm(g_{1,c})|^2
+\]
+remains bounded.  Hence no barrier depending only on the condition
+\(K\nearrow\KP\) can be a complete noncollapse mechanism.
+\end{lemma}
+
+\begin{proof}
+This is the \(u=z/x\to0\), \(x=1\) case of the curvature dictionary
+\[
+        |\Rm|^2
+        =
+        \frac{4(16-24u+11u^2)}{x^2}.
+\]
+With \(x=1\), the right-hand side remains bounded and tends to \(64\).
+But the Hopf fibre length is proportional to \(c\), hence the injectivity
+radius and volume collapse to zero.  Thus bounded-curvature collapse is a
+separate channel.
+\end{proof}
+
+\begin{remark}[geometric and spectral meaning of the Hopf collapse]\label{rem:hopf-quotient-spectrum}
+The limit \(c\downarrow0\) is a Cheeger--Gromov collapse along the free Hopf
+\(S^1\)-action.  The limiting metric tensor has vertical kernel and descends
+to the \(S^2\) base of the Hopf fibration; it is not a high-curvature limit.
+This also explains why the first Laplace eigenvalue alone is not a reliable
+collapse detector.  Fibre-invariant test functions have Rayleigh quotients
+controlled by the base geometry, while vertical modes become expensive as
+\(c^{-2}\).  Thus a useful spectral detector must be normalized or replaced by
+a heat-kernel, Sobolev, systolic, or injectivity-radius quantity.
+\end{remark}
+
+
+\begin{proposition}[a heat-kernel detector sees fixed-base Hopf collapse]\label{prop:heat-kernel-hopf}
+For \(r>0\), define
+\[
+        \mathcal H_r(g)
+        =
+        \sup_{x\in M,\;0<t\le r^2} t^{3/2}H_g(t,x,x),
+\]
+where \(H_g\) is the scalar heat kernel.  Along the fixed-base Hopf collapse
+\[
+        g_{a,c}=a^2(\sigma_1^2+\sigma_2^2)+c^2\sigma_3^2,
+        \qquad a>0,\qquad c\downarrow0,
+\]
+one has
+\[
+        \mathcal H_r(g_{a,c})\to+\infty .
+\]
+More precisely,
+\[
+        \mathcal H_r(g_{a,c})
+        \ge
+        \frac{r^3}{\Vol(g_{a,c})}
+        =
+        \frac{r^3}{2\pi^2a^2c}.
+\]
+\end{proposition}
+
+\begin{proof}
+For any compact Riemannian manifold, the zero eigenfunction gives the
+pointwise lower bound
+\[
+        H_g(t,x,x)\ge \frac{1}{\Vol(g)}
+\]
+for every \(t>0\).  Taking \(t=r^2\) in the definition of \(\mathcal H_r\)
+therefore gives
+\[
+        \mathcal H_r(g)\ge \frac{r^3}{\Vol(g)}.
+\]
+For the Berger family used here,
+\[
+        \Vol(g_{a,c})=2\pi^2a^2c.
+\]
+Thus
+\[
+        \mathcal H_r(g_{a,c})
+        \ge
+        \frac{r^3}{2\pi^2a^2c}\to+\infty
+        \qquad(c\downarrow0).
+\]
+\end{proof}
+
+\begin{remark}[scope of the heat-kernel observation]\label{rem:heat-kernel-scope}
+Proposition~\ref{prop:heat-kernel-hopf} is deliberately modest.  It proves
+that a heat-kernel scale detector sees the fixed-base Hopf collapse, whereas
+\(\lambda_1(-\Delta)\) alone does not.  It does not prove NC2 monotonicity for
+\(\mathcal H_r\), and it does not replace the sharper adiabatic asymptotic
+\[
+        H_{g_{a,c}}(t,x,x)
+        \sim
+        \frac{1}{4\pi t}\frac{1}{2\pi c}
+        \qquad(c^2\ll t\ll a^2),
+\]
+whose rigorous proof requires either the exact Berger spectrum or a quoted
+adiabatic heat-kernel theorem.  Thus the heat kernel is a natural
+non-additive collapse detector, not yet the missing noncollapse entropy.
+\end{remark}
+
+
+\begin{proposition}[Ricci lower bound from a wall gap]\label{prop:ricci-lower-from-wall-gap}
+Let \(M^3\) be a Riemannian three-manifold.  If
+\[
+        K=|\Rm|^2\le K_0,
+\]
+then
+\[
+        \Ric
+        \ge
+        -\left(\frac12+\frac1{\sqrt3}\right)\sqrt{K_0}\,g .
+\]
+In particular, a wall gap
+\[
+        K\le \KP-\eta
+\]
+implies
+\[
+        \Ric
+        \ge
+        -\kappa_0 g,
+        \qquad
+        \kappa_0
+        =
+        \left(\frac12+\frac1{\sqrt3}\right)\sqrt{\KP-\eta}.
+\]
+\end{proposition}
+
+\begin{proof}
+In dimension three,
+\[
+        K=4|\Ric_0|^2+\frac13R^2.
+\]
+Thus
+\[
+        |\Ric_0|\le\frac{\sqrt K}{2},
+        \qquad
+        |R|\le \sqrt{3K}.
+\]
+Every eigenvalue of the traceless symmetric tensor \(\Ric_0\) is bounded below
+by \(-|\Ric_0|\), while
+\[
+        \Ric=\Ric_0+\frac R3g.
+\]
+Therefore
+\[
+        \lambda_{\min}(\Ric)
+        \ge
+        -|\Ric_0|-\frac{|R|}{3}
+        \ge
+        -\left(\frac12+\frac1{\sqrt3}\right)\sqrt K.
+\]
+The stated wall-gap estimate follows by inserting \(K\le \KP-\eta\).
+\end{proof}
+
+\begin{corollary}[heat-kernel coercivity under a wall gap]\label{cor:heat-kernel-coercivity}
+Assume on a three-manifold that
+\[
+        K\le\KP-\eta .
+\]
+Then the constants in the local on-diagonal heat-kernel comparison estimates
+may be taken to depend only on \(\KP,\eta\) and the chosen scale.  In
+particular, for \(0<\rho\le r\), standard Li--Yau/Davies type comparison under
+the Ricci lower bound of Proposition~\ref{prop:ricci-lower-from-wall-gap}
+gives a constant \(c=c(\KP,\eta,r)>0\) such that
+\[
+        H_g(\rho^2,x,x)
+        \ge
+        \frac{c}{\Vol B(x,\rho)}.
+\]
+Consequently, if
+\[
+        \mathcal H_r(g)\le A,
+\]
+then
+\[
+        \Vol B(x,\rho)
+        \ge
+        c\,A^{-1}\rho^3
+        \qquad
+        (0<\rho\le r).
+\]
+\end{corollary}
+
+\begin{proof}
+By Proposition~\ref{prop:ricci-lower-from-wall-gap}, the wall gap gives a
+uniform lower Ricci bound
+\[
+        \Ric\ge-\kappa_0g,
+        \qquad
+        \kappa_0
+        =
+        \left(\frac12+\frac1{\sqrt3}\right)\sqrt{\KP-\eta}.
+\]
+The local Li--Yau/Davies heat-kernel comparison theory under this lower Ricci
+bound gives the displayed on-diagonal lower estimate, with constants depending
+only on dimension, \(\kappa_0\), and the scale \(r\).  On the other hand,
+\(\mathcal H_r(g)\le A\) gives
+\[
+        H_g(\rho^2,x,x)\le A\rho^{-3}.
+\]
+Combining the two inequalities yields
+\[
+        \frac{c}{\Vol B(x,\rho)}
+        \le
+        A\rho^{-3},
+\]
+hence
+\[
+        \Vol B(x,\rho)\ge c\,A^{-1}\rho^3 .
+\]
+\end{proof}
+
+\begin{remark}[meaning of the heat-kernel direction]\label{rem:heat-kernel-direction}
+Corollary~\ref{cor:heat-kernel-coercivity} supplies an NC3-type coercivity
+direction for the heat-kernel scale detector, provided a wall gap is already
+known.  It does not prove NC2 propagation of \(\mathcal H_r\) along the
+curvature-wall flow.  The remaining noncollapse problem is therefore the
+propagation estimate, or a replacement for it:
+\[
+        \mathcal H_r(g(t))
+        \le
+        C(T,\KP,\eta,r)\,\mathcal H_r(g(0)).
+\]
+The known spectra of Berger spheres make this propagation question directly
+testable in the homogeneous sector, but such spectral probes are numerical
+evidence unless the normalization and the running supremum in \(\mathcal H_r\)
+are treated as part of a separate argument.
+\end{remark}
+
+
+Therefore a complete replacement for surgery cannot be only a local
+high-curvature wall.  It must also contain a noncollapse principle.
+
+\section{NC1--NC3: the required noncollapse package}
+
+The noncollapse closure is encoded by three properties.  These are stated here
+explicitly because they are not consequences of the local curvature-wall
+calculation.
+
+\begin{definition}[NC1--NC3]\label{def:NC}
+Let
+\[
+        \Phi(K)=\frac{(K+\delta)^q}{(\KP-K)^p},
+        \qquad q>3/4,\quad p>0,\quad \delta>0,
+\]
+on
+\[
+        \U_P=\{g:\sup_MK<\KP\}.
+\]
+A Perelman-type noncollapse functional for the barrier problem is a family
+\(\Ncal(g,f,\tau)\), with \(f\in C^\infty(M)\), \(\tau>0\), satisfying:
+
+\begin{enumerate}[label=\textbf{NC\arabic*.}]
+\item \emph{Correct scale weight.}  Under
+\(g\mapsto\theta^2g\), \(\tau\mapsto\theta^2\tau\), the barrier-coupling term
+has the unique power \(\tau^{2q}\) in the pure model \(\Phi(K)=K^q\).
+
+\item \emph{Monotonicity.}  Along the relevant coupled flow of
+\((g,f,\tau)\), the minimized entropy is monotone in the Perelman direction.
+
+\item \emph{Coercivity implies noncollapse.}  If the entropy is bounded below
+and \(K\le r^{-4}\) on \(B(x,r)\), with \(r^{-4}<\KP\), then
+\[
+        \Vol B(x,r)\ge \kappa(A,r)\,r^3 .
+\]
+The constant is allowed to depend on the fixed scale \(r\), because \(\KP\)
+breaks exact scale invariance.
+\end{enumerate}
+\end{definition}
+
+The first scale-correct candidate is
+\[
+        \Wcal_\Phi(g,f,\tau)
+        =
+        \int_M
+        \left[
+        \tau(R+|\nabla f|^2)
+        +
+        \varepsilon\tau^{2q}\Phi(K)
+        +
+        f-3
+        \right]
+        (4\pi\tau)^{-3/2}e^{-f}\,d\mu .
+\]
+It is important to call this only a \emph{candidate}.  The power
+\(\tau^{2q}\) is forced by scaling, but scaling does not imply monotonicity.
+For \(\Phi=K^q\), NC1 is exact:
+\[
+        (\theta^2\tau)^{2q}\Phi(\theta^{-4}K)
+        =
+        \theta^{4q}\tau^{2q}\theta^{-4q}K^q
+        =
+        \tau^{2q}K^q .
+\]
+NC3 is soft once NC2 is known: the usual collapsed-ball test function gives
+\(\Wcal(g,f^\ast,\tau)\le\log\kappa_0+C\), and the extra term is bounded on
+\(K\le r^{-4}<\KP\).  Thus \(\mu_\Phi\to-\infty\) as \(\kappa_0\to0\),
+contradicting an entropy lower bound.  The entire hard content is NC2.  The
+Berger calculation below shows that the natural eigenvalue version of this
+candidate does not satisfy NC2.
+
+\section{The NC2 obstruction for the unweighted barrier flow}
+
+Write
+\[
+        \mathcal P_\Phi[g]=\int_M\Phi(K)\,d\mu_g,
+        \qquad K=|\Rm|^2,
+\]
+and define \(E_\Phi\) by
+\[
+        D\mathcal P_\Phi[g](h)
+        =
+        \int_M \langle E_\Phi,h\rangle\,d\mu .
+\]
+With the curvature-variation conventions used here, the formal first-variation
+tensor has the Streets-type structure
+\[
+        (E_\Phi)_{ij}
+        =
+        \frac12\Phi g_{ij}
+        -
+        2\Phi'(K)R_i{}^{abc}R_{jabc}
+        +
+        4\nabla^a\nabla^b\bigl(\Phi'(K)R_{iabj}\bigr).
+\]
+For \(\Phi(K)=K\) this is the usual \(L^2\)-curvature-gradient structure,
+up to the sign and index conventions of the chosen curvature tensor.  In this
+paper the theorem-level consequences that use this tensor are checked on the
+homogeneous Berger family by symmetric criticality and by direct differentiation
+of the reduced functional.  The full tensorial expression is recorded to explain
+the analytic structure of the flow; a complete PDE theorem would require an
+independent convention-by-convention comparison with the standard
+\(L^2\)-curvature-flow formula.
+
+The bare barrier flow is
+\[
+        \dt g=-2\Ric-\varepsilon E_\Phi .
+\]
+
+Perelman's entropy mechanism, however, is not naturally expressed in the
+unweighted inner product.  It uses the weighted measure
+\[
+        \rho\,d\mu=(4\pi\tau)^{-3/2}e^{-f}\,d\mu .
+\]
+Define the \(f\)-weighted Euler tensor \(E_\Phi^f\) by
+\[
+        D\int_M\Phi(K)\rho\,d\mu
+        =
+        \int_M\langle E_\Phi^f,h\rangle\,\rho\,d\mu
+\]
+with \(f\) and \(\tau\) fixed during the metric variation.  With the same convention, the corresponding weighted expression is
+\[
+        (E_\Phi^f)_{ij}
+        =
+        \frac12\Phi g_{ij}
+        -
+        2\Phi'(K)R_i{}^{abc}R_{jabc}
+        +
+        4e^f\nabla^a\nabla^b
+        \left(e^{-f}\Phi'(K)R_{iabj}\right).
+\]
+Let
+\[
+        Q_{iabj}=\Phi'(K)R_{iabj}.
+\]
+The discrepancy between the two expressions is the weighted-divergence
+correction
+\[
+        (E_\Phi^f-E_\Phi)_{ij}
+        =
+        4\left[
+        e^f\nabla^a\nabla^b(e^{-f}Q_{iabj})
+        -
+        \nabla^a\nabla^bQ_{iabj}
+        \right].
+\]
+Expanding the weighted derivatives gives
+\[
+\begin{aligned}
+        (E_\Phi^f-E_\Phi)_{ij}
+        =
+        4\big[
+        &-(\nabla^a f)\nabla^bQ_{iabj}
+        -(\nabla^b f)\nabla^aQ_{iabj}  \\
+        &+
+        \big((\nabla^a f)(\nabla^b f)-\nabla^a\nabla^b f\big)Q_{iabj}
+        \big].
+\end{aligned}
+\]
+
+\begin{lemma}[no pointwise sign for the discrepancy]\label{lem:no-sign}
+The tensor \(E_\Phi^f-E_\Phi\) has no intrinsic pointwise sign.
+\end{lemma}
+
+\begin{proof}
+At a point where \(Q\ne0\), choose normal coordinates and choose \(f\) so that
+\(\nabla f=0\) at that point while \(\nabla^2f\) is arbitrary.  Then
+\[
+        (E_\Phi^f-E_\Phi)_{ij}
+        =
+        -4(\nabla^a\nabla^b f)Q_{iabj}.
+\]
+Contracting with a symmetric tensor \(S^{ij}\) gives
+\[
+        S^{ij}(E_\Phi^f-E_\Phi)_{ij}
+        =
+        -4S^{ij}(\nabla^a\nabla^b f)Q_{iabj}.
+\]
+The Hessian of \(f\) may be chosen with either sign in any nonzero contraction
+direction.  Thus the expression can be positive or negative.
+\end{proof}
+
+Consequently the original unweighted barrier flow has no automatic
+Perelman-type NC2 theorem.  One must either prove a separate absorption
+estimate for this discrepancy or change the flow.
+
+
+\section{Berger falsification of the naive eigenvalue candidate}
+
+The preceding obstruction \(E_\Phi^f-E_\Phi\) is not the only problem.  The
+most natural eigenvalue candidate fails even in the homogeneous sector where
+that obstruction disappears.
+
+Define
+\[
+        \lambda_\Phi(g)
+        =
+        \lambda_1\!\left(-4\Delta_g+R+\varepsilon\Phi(K)\right).
+\]
+On a homogeneous Berger metric, \(R\) and \(K\) are spatially constant.  Hence
+the ground state of \(-4\Delta_g+R+\varepsilon\Phi(K)\) is the constant
+function and
+\[
+        \lambda_\Phi(g)=R+\varepsilon\Phi(K)
+\]
+exactly.  Thus \(f\) is constant, \(\nabla f=0\), and the weighted-gradient
+ambiguity is absent.  This is the most favourable sector for a Perelman-type
+NC2 candidate.
+
+Let
+\[
+        g_{a,c}=a^2(\sigma_1^2+\sigma_2^2)+c^2\sigma_3^2,\qquad
+        x=a^2,\quad z=c^2,\quad u=z/x .
+\]
+The Berger curvature dictionary is
+\[
+        K=\frac{4(16x^2-24xz+11z^2)}{x^4},\qquad
+        R=\frac8x-\frac{2z}{x^2},
+\]
+and the unforced Ricci-flow ODE is
+\[
+        \dot x_0=-8+\frac{4z}{x},\qquad
+        \dot z_0=-\frac{4z^2}{x^2}.
+\]
+At \(u=1\), \(R=6/x\), \(K=12/x^2\), and
+\[
+        C_3^{\mathrm B}
+        =
+        \frac{\dot K}{K^{3/2}}
+        =
+        \frac4{\sqrt3}.
+\]
+
+
+\begin{proposition}[explicit Berger form of \(E_\Phi\)]\label{prop:Ephi}
+For any smooth \(\Phi\), on the Berger family
+\[
+        g_{a,c}=a^2(\sigma_1^2+\sigma_2^2)+c^2\sigma_3^2,
+        \qquad x=a^2,\quad z=c^2,
+\]
+with
+\[
+        K=\frac{4(16x^2-24xz+11z^2)}{x^4},
+\]
+the symmetric-criticality reduction of \(E_\Phi=\grad_{L^2}\int\Phi(K)d\mu\)
+is
+\[
+\boxed{
+        (E_\Phi)_{11}
+        =
+        -\frac{8\Phi'(K)(8x^2-18xz+11z^2)}{x^3}
+        +
+        \frac{x}{2}\Phi(K),
+}
+\]
+and
+\[
+\boxed{
+        (E_\Phi)_{33}
+        =
+        -\frac{8z^2\Phi'(K)(12x-11z)}{x^4}
+        +
+        \frac{z}{2}\Phi(K).
+}
+\]
+At the round point \(z=x\), both components reduce to
+\[
+        (E_\Phi)_{11}=(E_\Phi)_{33}
+        =
+        -\frac{8\Phi'(K)}{x}
+        +
+        \frac{x}{2}\Phi(K),
+\]
+as required by the enhanced isotropy of the round metric.
+\end{proposition}
+
+\begin{proof}
+The reduced functional is
+\[
+        \mathcal P_\Phi(x,z)=\Phi(K(x,z))\Vol(x,z).
+\]
+By symmetric criticality,
+\[
+        (E_\Phi)_{11}
+        =
+        \frac{x^2}{2\Vol}\partial_x\mathcal P_\Phi,
+        \qquad
+        (E_\Phi)_{33}
+        =
+        \frac{z^2}{\Vol}\partial_z\mathcal P_\Phi .
+\]
+Since
+\[
+        K_x=
+        -\frac{16(8x^2-18xz+11z^2)}{x^5},
+        \qquad
+        K_z=
+        -\frac{8(12x-11z)}{x^4},
+\]
+and
+\[
+        \frac{\partial_x\Vol}{\Vol}=\frac1x,\qquad
+        \frac{\partial_z\Vol}{\Vol}=\frac1{2z},
+\]
+the displayed formulas follow immediately.  For \(\Phi(K)=K\) they reduce to
+the components used below.
+\end{proof}
+
+\begin{corollary}[Planck-wall components and their signs]\label{cor:planck-component-signs}
+For the physical wall
+\[
+        \Phi(K)=\frac{(K+\delta)^q}{(\KP-K)^p},
+        \qquad p>0,\quad q>0,\quad \delta>0,
+\]
+put
+\[
+        A(K)=\frac{\Phi'(K)}{\Phi(K)}
+        =
+        \frac{q}{K+\delta}
+        +
+        \frac{p}{\KP-K}.
+\]
+Then Proposition~\ref{prop:Ephi} becomes
+\[
+\boxed{
+        (E_\Phi)_{11}
+        =
+        \Phi(K)
+        \left[
+        \frac{x}{2}
+        -
+        \frac{8}{x}(11u^2-18u+8)A(K)
+        \right],
+}
+\]
+and
+\[
+\boxed{
+        (E_\Phi)_{33}
+        =
+        \Phi(K)
+        \left[
+        \frac{ux}{2}
+        -
+        \frac{8u^2}{x}(12-11u)A(K)
+        \right].
+}
+\]
+Since
+\[
+        11u^2-18u+8>0
+\]
+for all real \(u\), the horizontal component is negative whenever
+\[
+        x^2<16(11u^2-18u+8)A(K).
+\]
+In particular, as \(K\nearrow\KP\), one has \(A(K)\to+\infty\), and therefore
+\[
+        (E_\Phi)_{11}<0
+\]
+near the wall.
+
+For the vertical component, if \(u>12/11\), then \(12-11u<0\), and hence
+\[
+        (E_\Phi)_{33}>0.
+\]
+If \(0<u<12/11\), then
+\[
+        (E_\Phi)_{33}<0
+        \quad\Longleftrightarrow\quad
+        x^2<16u(12-11u)A(K).
+\]
+Consequently, near the wall,
+\[
+        (E_\Phi)_{33}<0\quad (0<u<12/11),
+        \qquad
+        (E_\Phi)_{33}>0\quad (u>12/11).
+\]
+Thus the wall has a definite leading sign structure on the Berger sectors:
+it expands horizontal directions near the wall, while the vertical reaction
+changes sign at \(u=12/11\).
+\end{corollary}
+
+
+\begin{proposition}[reduced Berger dynamics for a general wall]\label{prop:berger-general-wall-ode}
+On the Berger family, the curvature-wall equation
+\[
+        \dot g=-2\Ric-\varepsilon E_\Phi
+\]
+reduces to
+\[
+\boxed{
+        \dot x
+        =
+        -8+4u
+        +
+        \frac{8\varepsilon\Phi'(K)}{x}(8-18u+11u^2)
+        -
+        \frac{\varepsilon x}{2}\Phi(K),
+}
+\]
+and
+\[
+\boxed{
+        \dot z
+        =
+        -4u^2
+        +
+        \frac{8\varepsilon u^2\Phi'(K)}{x}(12-11u)
+        -
+        \frac{\varepsilon ux}{2}\Phi(K).
+}
+\]
+Consequently, for \(u=z/x\),
+\[
+\boxed{
+        \dot u
+        =
+        \frac{8u(1-u)}{x}
+        \left(
+        1+\frac{2\varepsilon\Phi'(K)}{x}(11u-4)
+        \right).
+}
+\]
+In the anisotropy equation the zeroth-order \(\Phi(K)\)-terms cancel; only the
+slope \(\Phi'(K)\) of the wall affects the fibre ratio.
+\end{proposition}
+
+\begin{proof}
+The \(x,z\)-system is obtained by substituting Proposition~\ref{prop:Ephi} into
+\[
+        \dot x=\dot x_0-\varepsilon(E_\Phi)_{11},\qquad
+        \dot z=\dot z_0-\varepsilon(E_\Phi)_{33}.
+\]
+Since \(z=ux\), one has
+\[
+        \dot u=\frac{\dot z-u\dot x}{x}.
+\]
+Substitution gives the displayed formula.  The cancellation of the
+\(\Phi(K)\)-terms follows from their pure scaling character:
+\[
+        -\frac{\varepsilon ux}{2}\Phi(K)
+        -
+        u\left(-\frac{\varepsilon x}{2}\Phi(K)\right)=0 .
+\]
+\end{proof}
+
+\begin{corollary}[Berger cone and Hopf-sector warning]\label{cor:berger-cone}
+Assume \(\varepsilon>0\) and \(\Phi'(K)>0\).  Then, on the Berger sector,
+\[
+        \frac4{11}\le u\le M,\qquad M>1,
+\]
+is forward invariant.  More precisely, \(u=1\) is invariant; for
+\(\frac4{11}\le u<1\) one has \(\dot u>0\), and for \(u>1\) one has
+\(\dot u<0\).  In the lower Hopf sector \(0<u<4/11\), the wall can instead
+push \(u\) downward whenever
+\[
+\boxed{
+        \frac{2\varepsilon\Phi'(K)}{x}(4-11u)>1 .
+}
+\]
+Thus a \(K\)-wall controls high curvature but need not oppose every
+bounded-curvature fibre-collapse direction.
+\end{corollary}
+
+\begin{proof}
+The sign of \(\dot u\) is the sign of
+\[
+        u(1-u)
+        \left(
+        1+\frac{2\varepsilon\Phi'(K)}{x}(11u-4)
+        \right).
+\]
+If \(u\ge4/11\), the parenthesis is at least \(1\).  The stated signs follow.
+If \(0<u<4/11\), the parenthesis is negative precisely under the displayed
+inequality.
+\end{proof}
+
+\begin{corollary}[curvature, scale, and volume consequences]\label{cor:berger-scale-volume}
+Along the Berger family,
+\[
+        K=\frac{4(16-24u+11u^2)}{x^2}.
+\]
+Hence a lower bound \(x\ge x_0>0\) gives a curvature bound only together with
+an upper bound for \(u\).  In particular an \(a\)-barrier \(a^2=x\ge x_0\) is
+not equivalent to the invariant curvature wall \(K<\KP\), since \(u\to\infty\)
+at fixed \(x\) makes \(K\to\infty\).
+
+The volume satisfies
+\[
+        \Vol(g_{a,c})=2\pi^2x\sqrt z
+\]
+and
+\[
+\boxed{
+        \frac{d}{dt}\log\Vol
+        =
+        \frac{-8+2u}{x}
+        +
+        \frac{4\varepsilon\Phi'(K)}{x^2}(16-24u+11u^2)
+        -
+        \frac{3\varepsilon}{4}\Phi(K).
+}
+\]
+On the round locus \(u=1\), this becomes
+\[
+\boxed{
+        \frac{d}{dt}\log\Vol
+        =
+        -\frac6x
+        +
+        \frac{12\varepsilon\Phi'(K)}{x^2}
+        -
+        \frac{3\varepsilon}{4}\Phi(K).
+}
+\]
+Volume normalization therefore does not by itself remove Hopf-fibre collapse:
+at fixed volume \(x\sqrt z=\mathrm{const}\), the limit \(z\downarrow0\) is still
+a fibre collapse, with \(x\to\infty\).
+\end{corollary}
+
+\begin{proof}
+The curvature formula is the Berger dictionary.  The statement about \(x\) and
+\(u\) is immediate from the displayed expression for \(K\).  For the volume,
+\[
+        \frac{d}{dt}\log\Vol
+        =
+        \frac{\dot x}{x}
+        +
+        \frac12\frac{\dot z}{z}.
+\]
+Substituting Proposition~\ref{prop:berger-general-wall-ode} gives the displayed
+formula.
+\end{proof}
+
+\begin{corollary}[normalization, scalar curvature, and traceless anisotropy]\label{cor:berger-scalar-anisotropy}
+Volume normalization changes only the common scale in the Berger reduction.
+Indeed, replacing a velocity \(v\) by
+\[
+        v^{\mathrm{norm}}
+        =
+        v-\frac13\overline{\tr_g v}\,g
+\]
+changes
+\[
+        \dot x\mapsto \dot x-\rho x,\qquad
+        \dot z\mapsto \dot z-\rho z
+\]
+for a scalar \(\rho(t)\), and therefore leaves
+\[
+        u=\frac{z}{x}
+\]
+unchanged:
+\[
+\boxed{
+        \dot u_{\mathrm{norm}}=\dot u_{\mathrm{unnorm}}.
+}
+\]
+Thus volume normalization cannot by itself remove Hopf-fibre collapse; it
+changes the common scale but not the anisotropy equation.
+
+The scalar curvature and traceless Ricci size are
+\[
+        R=\frac{8-2u}{x},
+        \qquad
+\boxed{
+        |\Ric_0|^2=\frac{32(1-u)^2}{3x^2}.
+}
+\]
+Along the general Berger wall-flow,
+\[
+\boxed{
+        \dot R
+        =
+        \frac{
+        \varepsilon\Phi(K)x^2(4-u)
+        +
+        16\varepsilon\Phi'(K)(3u-4)(11u^2-16u+8)
+        +
+        8x(3u^2-8u+8)
+        }{x^3}.
+}
+\]
+At \(u=1\), this reduces to
+\[
+\boxed{
+        \dot R
+        =
+        \frac{24}{x^2}
+        +
+        \frac{3\varepsilon\Phi(K)}{x}
+        -
+        \frac{48\varepsilon\Phi'(K)}{x^3}.
+}
+\]
+The dimensionless shape anisotropy decreases in the protected cone:
+if \(u\ge4/11\), \(u\ne1\), \(\varepsilon>0\), and \(\Phi'(K)>0\), then
+\[
+\boxed{
+        \frac{d}{dt}(1-u)^2<0.
+}
+\]
+The absolute quantity \(|\Ric_0|^2\), however, can still grow if the scale
+\(x\) decreases fast enough.  Thus the Berger dynamics separates shape
+rounding from absolute curvature growth.
+\end{corollary}
+
+\begin{proof}
+The normalization statement follows because subtracting a scalar multiple of
+the metric subtracts the same logarithmic rate from \(x\) and \(z\).  The
+formula for \(R\) is the Berger curvature dictionary, and the identity
+\[
+        K=4|\Ric_0|^2+\frac13R^2
+\]
+gives the displayed expression for \(|\Ric_0|^2\).  Differentiating
+\(R=(8-2u)/x\) using Proposition~\ref{prop:berger-general-wall-ode} gives the
+formula for \(\dot R\).  Finally,
+\[
+        \frac{d}{dt}(1-u)^2
+        =
+        -\frac{16u(1-u)^2}{x}
+        \left(
+        1+\frac{2\varepsilon\Phi'(K)}{x}(11u-4)
+        \right),
+\]
+whose sign is negative in the stated cone.
+\end{proof}
+
+
+
+\begin{proposition}[exact Berger falsification for \(\Phi(K)=K\)]
+For the pure quartic coupling \(\Phi(K)=K\), the reduced Euler tensor gives
+\[
+        (E_\Phi)_{11}
+        =
+        \frac{2(-16x^2+48xz-33z^2)}{x^3},
+        \qquad
+        (E_\Phi)_{33}
+        =
+        \frac{2z(16x^2-72xz+55z^2)}{x^4}.
+\]
+Along the forced Berger system
+\[
+        \dot x=\dot x_0-\varepsilon(E_\Phi)_{11},\qquad
+        \dot z=\dot z_0-\varepsilon(E_\Phi)_{33},
+\]
+one has
+\[
+\boxed{
+        \dot\lambda_\Phi(x,u,\varepsilon)
+        =
+        \frac{8c_0(u)}{x^2}
+        -
+        \frac{4c_1(u)}{x^3}\varepsilon
+        -
+        \frac{16c_2(u)}{x^4}\varepsilon^2,
+}
+\]
+where
+\[
+        c_0(u)=3u^2-8u+8,
+\]
+\[
+        c_1(u)=143u^3-436u^2+464u-192,
+\]
+\[
+        c_2(u)=1331u^4-3696u^3+3648u^2-1536u+256 .
+\]
+At the round point \(u=1\),
+\[
+\boxed{
+        \dot\lambda_\Phi\big|_{u=1}
+        =
+        \frac{12(2x-\varepsilon)(x+4\varepsilon)}{x^4}.
+}
+\]
+\end{proposition}
+
+\begin{proof}
+The reduced functional is
+\[
+        \mathcal P_\Phi(x,z)=\Phi(K(x,z))\,\Vol(x,z).
+\]
+By symmetric criticality,
+\[
+        (E_\Phi)_{11}
+        =
+        \frac{x^2}{2\Vol}\,\partial_x\mathcal P_\Phi,
+        \qquad
+        (E_\Phi)_{33}
+        =
+        \frac{z^2}{\Vol}\,\partial_z\mathcal P_\Phi .
+\]
+For \(\Phi=K\), direct differentiation gives the displayed components of
+\(E_\Phi\).  Substituting them into the forced ODE and differentiating
+\[
+        \lambda_\Phi=R+\varepsilon K
+\]
+gives the stated formula.  The round specialization \(z=x\) simplifies to
+\[
+        \dot\lambda_\Phi
+        =
+        \frac{24x^2+84x\varepsilon-48\varepsilon^2}{x^4}
+        =
+        \frac{12(2x-\varepsilon)(x+4\varepsilon)}{x^4}.
+\]
+\end{proof}
+
+\begin{corollary}[the naive NC2 candidate is false]
+For every fixed \(\varepsilon>0\),
+\[
+        \dot\lambda_\Phi\big|_{u=1}<0
+        \qquad\text{whenever}\qquad
+        x<\frac{\varepsilon}{2}.
+\]
+Thus \(\lambda_\Phi=R+\varepsilon K\) is not monotone along the barrier flow.
+This is not a failure of an estimate; it is an exact sign reversal.
+\end{corollary}
+
+\begin{remark}[the sign reversal is not only round]
+The polynomial \(c_0(u)=3u^2-8u+8\) is positive for all \(u>0\), since its
+discriminant is negative.  The polynomial \(c_2(u)\) has no positive root by
+Sturm's test and \(c_2(0)=256>0\).  Hence the negative
+\(-16c_2(u)\varepsilon^2/x^4\) term eventually dominates for every fixed fibre
+ratio \(u>0\).  The round calculation is only the simplest visible instance.
+\end{remark}
+
+\begin{proposition}[the Planck wall worsens the sign]
+Let
+\[
+        \Phi(K)=\frac{(K+\delta)^q}{(\KP-K)^p},
+        \qquad p>0,\quad q>0,\quad \delta>0 .
+\]
+At the round point, along the same unweighted barrier flow,
+\[
+        \dot\lambda_\Phi\longrightarrow -\infty
+        \qquad\text{as}\qquad K\nearrow\KP
+\]
+for every fixed \(\varepsilon>0\).
+\end{proposition}
+
+\begin{proof}
+At the round point,
+\[
+        R=\frac6x,\qquad K=\frac{12}{x^2}.
+\]
+For a pure scaling variation,
+\[
+        \dot x
+        =
+        -4
+        +
+        \frac{\varepsilon x}{6}
+        \bigl(4K\Phi'(K)-3\Phi(K)\bigr).
+\]
+Since
+\[
+        \dot R=-\frac{R}{x}\dot x,\qquad
+        \dot K=-\frac{2K}{x}\dot x,
+\]
+we get
+\[
+\begin{aligned}
+        \dot\lambda_\Phi
+        &=
+        \dot R+\varepsilon\Phi'(K)\dot K                                      \\
+        &=
+        \frac{4R}{x}
+        +
+        \frac{8\varepsilon K\Phi'(K)}{x}
+        -
+        \varepsilon
+        \left(
+        \frac{R}{6}
+        +
+        \frac{\varepsilon K\Phi'(K)}{3}
+        \right)
+        \bigl(4K\Phi'(K)-3\Phi(K)\bigr).
+\end{aligned}
+\]
+Write \(s=\KP-K\).  As \(s\downarrow0\),
+\[
+        \Phi(K)\sim C s^{-p},\qquad
+        \Phi'(K)\sim pC s^{-p-1},
+\]
+with \(C=(\KP+\delta)^q>0\).  Therefore
+\[
+        4K\Phi'(K)-3\Phi(K)\sim 4pKC\,s^{-p-1},
+\]
+and the leading term in \(\dot\lambda_\Phi\) is
+\[
+        -\frac{\varepsilon^2K\Phi'(K)}{3}
+        \bigl(4K\Phi'(K)-3\Phi(K)\bigr)
+        \sim
+        -\frac{4\varepsilon^2p^2K^2C^2}{3}\,s^{-2p-2}.
+\]
+All positive terms have lower order \(s^{-p-1}\).  Hence
+\(\dot\lambda_\Phi\to-\infty\).
+\end{proof}
+
+The conclusion is sharp:
+\[
+        \boxed{\lambda_\Phi=R+\varepsilon\Phi(K)\ \text{is not an NC2 functional}.}
+\]
+The curvature wall still functions as a local metric damping term, but the
+eigenvalue/entropy route \(R+\varepsilon\Phi(K)\) is closed.  Any future
+noncollapse functional must be structurally different and must first pass this
+Berger test.
+
+
+\section{No-go for additive matching \texorpdfstring{\(K\)}{K}-potential repairs}
+
+The preceding Berger falsification closes the most direct eigenvalue route.
+A broader additive class also fails.  The following result is deliberately
+stated only for the class that is actually tested: an additive \(K\)-potential
+is inserted into the Perelman functional, and the reduced metric forcing is
+generated by the same added scalar through symmetric criticality.  It does not
+claim a no-go theorem for arbitrary smooth functions \(H(\tau,K)\).
+
+On the round Berger locus \(g_x=xg_{\mathrm{round}}\),
+\[
+        R=\frac6x,\qquad K=\frac{12}{x^2}.
+\]
+Let
+\[
+        \Ncal_F
+        =
+        \Wcal_{\mathrm{Perelman}}
+        +
+        \sigma\varepsilon\tau^\alpha K,
+        \qquad
+        \sigma\in\{\pm1\},\quad \alpha\in\mathbb R .
+\]
+At the Berger level, the Ricci part is still the Ricci-flow part; only the
+added \(K\)-term contributes its matching gradient forcing.  This avoids
+confusing the tensor inside Perelman's monotonicity square,
+\[
+        \Ric+\nabla^2 f-\frac1{2\tau}g,
+\]
+with the actual Ricci-flow velocity \(-2\Ric\).
+
+\begin{theorem}[Berger no-go for additive matching \(K\)-potentials]
+For the pure representative \(\Phi(K)=K\), at the round point and with
+\(\tau=1\),
+\[
+        \frac{d}{dt}\Ncal_F
+        =
+        \frac{3N(x)}{2x^4},
+\]
+where
+\[
+        N(x)
+        =
+        x^2(x-4)^2
+        +
+        \sigma\varepsilon(2-8\alpha)x^2
+        +
+        56\sigma\varepsilon x
+        -
+        32\varepsilon^2 .
+\]
+Consequently, for every \(\varepsilon>0\), every sign \(\sigma\), and every
+exponent \(\alpha\), the derivative of \(\Ncal_F\) is negative for some smooth
+round Berger initial data.  In particular,
+\[
+        N(0)=-32\varepsilon^2<0 .
+\]
+Thus no member of this additive matching \(K\)-potential class satisfies NC2.
+\end{theorem}
+
+\begin{proof}
+The first term \(x^2(x-4)^2\) is the classical Perelman square in the round
+reduction.  The remaining terms are obtained by differentiating the added
+scalar \(\sigma\varepsilon\tau^\alpha K\) along the reduced matching-gradient
+forcing and then setting \(z=x\), \(\tau=1\).
+
+The displayed formula gives
+\[
+        N(0)=-32\varepsilon^2,
+\]
+which is independent of \(\sigma\) and \(\alpha\).  By continuity there exists
+\(x_0>0\) such that \(N(x)<0\) for \(0<x<x_0\).  Choosing a smooth round
+initial metric with such an \(x\) gives
+\[
+        \left.\frac{d}{dt}\Ncal_F\right|_{t=0}<0 .
+\]
+Monotonicity of an NC2 functional must hold for all smooth initial data in the
+tested class.  Hence the additive matching \(K\)-potential class fails the
+Berger test.
+\end{proof}
+
+\begin{theorem}[analytic near-wall no-go for Planck-barrier additive repairs]
+Let
+\[
+        \Phi(K)=\frac{(K+\delta)^q}{(\KP-K)^p},
+        \qquad
+        p>0,\quad q>0,\quad \delta>0 .
+\]
+Consider the additive matching-potential class
+\[
+        \Ncal_{\Phi,\alpha}
+        =
+        \Wcal_{\mathrm{Perelman}}
+        +
+        \sigma\varepsilon\tau^\alpha \Phi(K),
+        \qquad
+        \sigma\in\{\pm1\},\quad \alpha\in\mathbb R,
+\]
+with the reduced metric forcing generated by the same added scalar.  At the
+round Berger point, with \(\tau=1\), write
+\[
+        s=\KP-K,\qquad x_P=\sqrt{\frac{12}{\KP}} .
+\]
+Then, as \(s\downarrow0\),
+\[
+\boxed{
+        \frac{d}{dt}\Ncal_{\Phi,\alpha}
+        =
+        -\frac{192\,p^2(\KP+\delta)^{2q}}{x_P^4}
+        \,\varepsilon^2\,s^{-2p-2}
+        +
+        O_{\varepsilon,\sigma,\alpha}(s^{-p-1}) .
+}
+\]
+In particular,
+\[
+        \frac{d}{dt}\Ncal_{\Phi,\alpha}\longrightarrow -\infty
+        \qquad\text{as}\qquad K\nearrow\KP
+\]
+for every fixed \(\varepsilon\ne0\), independent of the sign \(\sigma\) and of
+the exponent \(\alpha\).
+\end{theorem}
+
+\begin{proof}
+On the round Berger locus, the classical part of Perelman's functional gives
+the usual square.  Differentiating the additive potential along the
+matching-gradient reduced forcing and organizing the result by powers of
+\(\varepsilon\) gives
+\[
+        \frac{d}{dt}\Ncal_{\Phi,\alpha}
+        =
+        \frac{3(x-4)^2}{2x^2}
+        +
+        \sigma\varepsilon A_{\Phi,\alpha}(x)
+        +
+        \varepsilon^2
+        \frac{12\Phi'(K)\bigl(\Phi(K)x^2-16\Phi'(K)\bigr)}{x^4},
+\]
+where \(A_{\Phi,\alpha}(x)=O(s^{-p-1})\) as \(s=\KP-K\downarrow0\).  The exact
+form of \(A_{\Phi,\alpha}\) depends on the sign and \(\tau\)-weight, but it is
+linear in the coupling and lower order at the wall.
+
+Now
+\[
+        \Phi(K)\sim(\KP+\delta)^q s^{-p},
+\]
+and
+\[
+        \Phi'(K)
+        =
+        q(K+\delta)^{q-1}s^{-p}
+        +
+        p(K+\delta)^q s^{-p-1}
+        \sim
+        p(\KP+\delta)^q s^{-p-1}.
+\]
+Hence
+\[
+        \Phi(K)\Phi'(K)=O(s^{-2p-1}),
+        \qquad
+        \Phi'(K)^2
+        \sim
+        p^2(\KP+\delta)^{2q}s^{-2p-2}.
+\]
+Therefore the quadratic term has leading part
+\[
+        \varepsilon^2
+        \frac{12\Phi'(K)(\Phi(K)x^2-16\Phi'(K))}{x^4}
+        \sim
+        -\frac{192p^2(\KP+\delta)^{2q}}{x_P^4}
+        \varepsilon^2s^{-2p-2}.
+\]
+This dominates both the classical square and the linear coupling term.  The
+leading coefficient is strictly negative and contains \(\varepsilon^2\), so it
+is independent of the sign of the additive coupling.  The theorem follows.
+\end{proof}
+
+\begin{remark}[scope of the no-go theorems]
+The preceding two results close the matching additive class
+\[
+        \Wcal_{\mathrm{Perelman}}
+        +
+        \sigma\varepsilon\tau^\alpha K
+\]
+in the bulk round-collapse limit, and the corresponding matching Planck-wall
+additive class at \(K=\KP\).  They do not close arbitrary smooth additive terms
+\(H(\tau,K)\); for such a term independent \(H_\tau\) and \(H_K\) contributions
+enter the Berger derivative and require a separate admissibility hypothesis or
+a separate no-go theorem.  Nor do they rule out genuinely non-additive
+noncollapse mechanisms.
+\end{remark}
+
+
+
+
+
+\section{The unmodified Perelman entropy passes the protected Berger cone}
+
+The no-go theorems above concern additive repairs of Perelman's entropy by a
+matching \(K\)-potential.  They do not test the unmodified Perelman entropy
+itself as an independent noncollapse detector.  On the Berger sector the
+unmodified entropy passes the natural two-mechanism test.
+
+Let
+\[
+        \nu_{\mathrm B}(g)
+        =
+        \inf_{\tau>0}\,
+        \Wcal_{\mathrm{Perelman}}(g,f,\tau)
+\]
+with \(f\) restricted to the invariant density.  On a homogeneous Berger
+metric this density is constant.  In the positive-scalar region
+\[
+        R=\frac{8-2u}{x}>0
+        \quad\Longleftrightarrow\quad
+        u<4,
+\]
+the minimising scale is
+\[
+        \tau=\frac{3}{2R}.
+\]
+Using
+\[
+        \Vol(g_{a,c})=2\pi^2x^{3/2}\sqrt u,
+        \qquad
+        R=\frac{8-2u}{x},
+\]
+one obtains, up to an additive universal constant,
+\[
+        \nu_{\mathrm B}(x,u)
+        =
+        \log\Vol(g_{a,c})+\frac32\log R+C
+        =
+        \frac12\log u+\frac32\log(8-2u)+C .
+\]
+
+\begin{theorem}[Berger two-mechanism test]
+Assume \(\varepsilon>0\) and \(\Phi'(K)>0\).  On the protected
+positive-scalar Berger cone
+\[
+        \frac4{11}\le u<4,
+\]
+the unmodified Perelman entropy reduction \(\nu_{\mathrm B}\) is monotone along
+the curvature-wall Berger flow.  More precisely,
+\[
+        \frac{d}{dt}\nu_{\mathrm B}
+        =
+        \frac{32(1-u)^2}{x(8-2u)}
+        \left(
+        1+\frac{2\varepsilon\Phi'(K)}{x}(11u-4)
+        \right)
+        \ge0,
+\]
+with equality only at the round point \(u=1\).
+\end{theorem}
+
+\begin{proof}
+Differentiating the reduced entropy gives
+\[
+        \frac{\partial \nu_{\mathrm B}}{\partial u}
+        =
+        \frac{1}{2u}-\frac{3}{8-2u}
+        =
+        \frac{4(1-u)}{u(8-2u)}.
+\]
+The exact Berger anisotropy equation for the wall flow is
+\[
+        \dot u
+        =
+        \frac{8u(1-u)}{x}
+        \left(
+        1+\frac{2\varepsilon\Phi'(K)}{x}(11u-4)
+        \right).
+\]
+Multiplying these two expressions gives the stated derivative formula.  In the
+cone \(u\ge4/11\), the bracket is at least one.  Since \(u<4\), the denominator
+\(8-2u\) is positive.  Hence \(d\nu_{\mathrm B}/dt\ge0\), and equality occurs
+only when \(u=1\).
+
+For the pure quartic wall \(\Phi(K)=K\), this reduces to the fully factored
+form
+\[
+        \frac{d}{dt}\nu_{\mathrm B}
+        =
+        \frac{16(u-1)^2\bigl[x+2\varepsilon(11u-4)\bigr]}
+        {x^2(4-u)} .
+\]
+For the physical Planck wall
+\[
+        \Phi(K)=\frac{(K+\delta)^q}{(\KP-K)^p},
+\]
+one has \(\Phi'(K)>0\) on \(K<\KP\).  Therefore the same monotonicity conclusion
+holds throughout the protected positive-scalar cone.
+\end{proof}
+
+\begin{corollary}[Berger noncollapse implication under a wall gap]
+On the protected positive-scalar Berger cone, suppose in addition that a wall
+gap holds:
+\[
+        K\le \KP-\eta.
+\]
+Then
+\[
+        |R|\le \sqrt{3(\KP-\eta)}.
+\]
+Consequently, on every scale
+\[
+        0<r\le 3^{-1/4}(\KP-\eta)^{-1/4},
+\]
+one has \(R\le r^{-2}\).  Since \(\nu_{\mathrm B}(g(t))\ge\nu_{\mathrm B}(g(0))\),
+Perelman's static noncollapse implication gives
+\[
+        \Vol B(x,r)\ge \kappa(\nu_{\mathrm B}(g(0)))\,r^3
+\]
+on those scales.
+\end{corollary}
+
+\begin{remark}[scope]
+This is the first positive non-additive Berger result in the present
+programme.  It says that the curvature wall and the unmodified Perelman
+entropy pass the homogeneous two-mechanism test:
+\[
+        \text{curvature wall controls high curvature,}
+        \qquad
+        \nu_{\mathrm B}\text{ controls collapse in the Berger reduction.}
+\]
+It is not yet a full PDE monotonicity theorem for Perelman's \(\nu\) along the
+inhomogeneous DeTurck-gauged wall flow.  The missing analytic statement is a
+propagation estimate, or monotonicity formula, for the unmodified Perelman
+entropy under the actual fourth-order forced flow.
+\end{remark}
+
+\begin{remark}[no PDE envelope identity is used here]
+The Berger theorem above is not derived from a formal full-PDE identity for
+\(D\nu[g]\).  It uses only the explicit homogeneous minimisation over the
+constant density and over \(\tau\), followed by direct differentiation of the
+reduced invariant along the verified Berger ODE.
+
+This distinction is important.  A naive formula of the form
+\[
+        D\nu_g[h]=-\int_M\left\langle
+        \Ric+\nabla^2 f-\frac1{2\tau}g,\ h\right\rangle\,d\nu
+\]
+is not used in this paper.  If \(f\) and \(\tau\) are frozen during the metric
+variation, trace and scale terms appear, and a full envelope-theorem derivation
+must account for the Euler--Lagrange equations in \(f\) and \(\tau\) with the
+chosen normalization.  The inhomogeneous PDE monotonicity problem for the
+unmodified entropy is therefore left as a separate analytic problem.
+\end{remark}
+
+
+
+\section{A PDE programme for the unmodified Perelman entropy}
+
+The Berger theorem proves that the unmodified Perelman entropy is monotone on
+the protected positive-scalar Berger cone.  The full inhomogeneous PDE
+statement remains open.  This section records the precise analytic and
+algebraic problems that must be solved in order to pass from the homogeneous
+theorem to a genuine PDE monotonicity or lower-bound propagation theorem.
+
+Let \(M^3\) be closed, and let \(g(t)\) solve the DeTurck-gauged wall flow
+\begin{equation}\label{eq:PDE-wall}
+\partial_t g = -2\Ric - \varepsilon E_\Phi + \mathcal{L}_W g,
+\end{equation}
+where
+\[
+E_\Phi = \Grad_{L^2}\int_M\Phi(|\Rm|^2)\,d\mu,
+\qquad
+\Phi(K)=\frac{(K+\delta)^q}{(\KP-K)^p}.
+\]
+Assume on the time interval under consideration that the wall gap holds,
+\[
+K=|\Rm|^2\le \KP-\eta,
+\]
+and that the scalar curvature is positive.  Let \((f,\tau)\) be a minimising
+pair for Perelman's \(\nu\)-functional at \(g(t)\), and write
+\[
+d\nu=(4\pi\tau)^{-3/2}e^{-f}\,d\mu,
+\qquad
+T_{ij}= \Ric_{ij}+\nabla_i\nabla_j f-\frac1{2\tau}g_{ij}.
+\]
+
+At a differentiability point of \(\nu\), and for a smooth minimising branch
+\((f,\tau)\), the exact first variation is
+\[
+D\nu_g[h] = -\tau\int_M\langle h,T\rangle\,d\nu .
+\]
+The DeTurck term contributes nothing, since \(\nu\) is
+diffeomorphism-invariant.  Therefore the geometric part of the wall flow gives
+the exact identity
+\begin{equation}\label{eq:nu-derivative}
+\boxed{ \frac{d}{dt}\nu(g(t)) = 2\tau\int_M |T|^2\,d\nu
++ \varepsilon\tau\int_M\langle E_\Phi,T\rangle\,d\nu . }
+\end{equation}
+Thus the whole PDE monotonicity problem is concentrated in the wall cross term
+\[
+\mathfrak C_\Phi(g,f,\tau) = \int_M\langle E_\Phi,T\rangle\,d\nu .
+\]
+
+The minimiser identities give the weighted divergence relation
+\[
+\operatorname{div}_f T = 0,\qquad
+(\operatorname{div}_f T)_i = \nabla^j T_{ij} - T_{ij}\nabla^j f,
+\]
+and the averaged trace identity
+\[
+\int_M\operatorname{tr}T\,d\nu = 0 .
+\]
+These are weighted identities.  They do not imply that \(T\) is pointwise
+trace-free, and they do not imply ordinary divergence-freeness.
+
+The first open task is to compute \(\mathfrak C_\Phi\) exactly from the
+unweighted wall tensor
+\[
+(E_\Phi)_{ij}= \frac12\Phi g_{ij}
+-2\Phi'(K)R_i{}^{abc}R_{jabc}
++ 4\nabla^a\nabla^b\bigl(\Phi'(K)R_{iabj}\bigr),
+\]
+with the convention caveat already stated in the paper.  Since the integral is
+weighted by \(d\nu\), the double-divergence term must be integrated by parts
+using the weighted adjoint.  This produces terms involving
+\[
+\nabla f,\qquad \nabla^2 f,\qquad \nabla\Phi'(K),\qquad \nabla^2\Phi'(K),
+\]
+and curvature commutators.  Under the wall gap, the singular coefficients
+\(\Phi'\), \(\Phi''\), and \(\Phi'''\) are bounded by constants depending on
+\(\eta\), but the corresponding derivative terms still have to be estimated.
+
+The second open task is algebraic.  One must find a tensorial pinching
+condition replacing the Berger condition
+\[
+u\ge \frac4{11}.
+\]
+A naive condition such as
+\[
+|\Ric_0|\le cR,\qquad R>0,
+\]
+does not automatically reproduce the full protected Berger cone.  The constant
+\(c\) must be checked against the Berger model, and the resulting condition
+must then be tested for preservation under the fourth-order wall flow.
+
+The desired estimate is either the monotonicity estimate
+\[
+\mathfrak C_\Phi(g,f,\tau) \ge 0,
+\]
+or the weaker absorbable bound
+\[
+\mathfrak C_\Phi(g,f,\tau) \ge -\theta\int_M|T|^2\,d\nu,\qquad
+\varepsilon\theta < 2 .
+\]
+The first estimate would give
+\[
+\frac{d}{dt}\nu(g(t)) \ge 0 .
+\]
+The second would still give monotonicity after absorption:
+\[
+\frac{d}{dt}\nu(g(t)) \ge (2-\varepsilon\theta)\tau\int_M|T|^2\,d\nu \ge 0 .
+\]
+A still weaker but useful target is an integrated negative-part estimate,
+\[
+\int_0^T \bigl(\mathfrak C_\Phi(g(t),f_t,\tau_t)\bigr)_- \,dt \le C(T),
+\]
+which would imply
+\[
+\nu(g(t)) \ge \nu(g(0)) - C(T).
+\]
+This lower-bound propagation is sufficient for finite-time noncollapse, even
+without strict monotonicity.
+
+The zeroth-order contribution
+\[
+\frac12\int_M\Phi(K)\operatorname{tr}T\,d\nu
+\]
+does not vanish automatically, since only \(\int_M\operatorname{tr}T\,d\nu =0\)
+is known.  The factor \(\Phi(K)\) prevents immediate cancellation.  This term
+must be kept in the cross-term calculation.
+
+Likewise, the curvature term
+\[
+-2\int_M\Phi'(K)\,T^{ij}R_i{}^{abc}R_{jabc}\,d\nu
+\]
+has no sign \emph{a priori}.  Its sign or absorbability must be proved from
+the same pinching condition that replaces the Berger inequality.
+
+Finally, any PDE monotonicity theorem must be coupled to the analytic theory
+of the wall flow: DeTurck parabolicity, short-time existence, preservation of
+the wall gap, regularity estimates, and preservation of the required pinching
+condition.
+
+Once monotonicity or lower-bound propagation of \(\nu\) is established,
+noncollapse follows by Perelman's static theorem.  Indeed, the wall gap
+implies
+\[
+|R|\le \sqrt{3(\KP-\eta)}.
+\]
+Thus the scalar-curvature hypothesis in the static noncollapse theorem is
+satisfied on sufficiently small scales depending only on \(\KP\) and \(\eta\).
+A uniform lower bound for \(\nu(g(t))\) then yields
+\[
+\operatorname{Vol}B(x,r)\ge \kappa\, r^3
+\]
+on those scales.
+
+The status is therefore:
+\[
+\boxed{\text{Berger two-mechanism theorem: proved;}}
+\]
+\[
+\boxed{\text{full PDE monotonicity of unmodified \(\nu\): open;}}
+\]
+\[
+\boxed{\text{finite-time noncollapse follows from any propagated lower bound for \(\nu\).}}
+\]
+
+Any solution of the full PDE problem must first reproduce the Berger
+factorisation in the homogeneous limit.  The Berger theorem is therefore not
+merely evidence; it is the consistency test for every proposed inhomogeneous
+identity.
+
+
+
+\section{Analytic roadmap for the DeTurck-gauged Planck-wall flow}
+
+We record the analytic structure of the curvature-wall flow.  This section is
+not a full PDE continuation theorem.  It explains what a future PDE closure
+would have to prove.
+
+The ungauged flow is
+\[
+\partial_t g
+=
+-2\Ric
+-
+\varepsilon E_\Phi,
+\qquad
+E_\Phi
+=
+\Grad_{L^2}\int_M\Phi(K)\,d\mu,
+\qquad
+K=|\Rm|^2,
+\]
+where
+\[
+\Phi(K)
+=
+\frac{(K+\delta)^q}{(\KP-K)^p},
+\qquad
+p>0,\quad q>0,\quad \delta>0 .
+\]
+With the conventions of this paper, the formal first-variation tensor has
+the Streets-type structure
+\[
+(E_\Phi)_{ij}
+=
+\frac12\Phi g_{ij}
+-
+2\Phi'(K)R_i{}^{abc}R_{jabc}
++
+4\nabla^a\nabla^b\bigl(\Phi'(K)R_{iabj}\bigr).
+\]
+The roadmap below uses only its schematic fourth-order part,
+\[
+4\nabla^a\nabla^b\bigl(\Phi'(K)R_{iabj}\bigr).
+\]
+The Berger theorems above are independent of a full PDE closure: they use the
+explicit homogeneous reduction.  A complete DeTurck theorem would require a
+separate convention-by-convention comparison with the standard
+\(L^2\)-curvature-flow formula.
+
+After a fourth-order DeTurck gauge, in the sense used for \(L^2\)-curvature
+type flows, the metric equation has the schematic leading form
+\[
+\partial_t g
+=
+-4\varepsilon\Phi'(K)\Delta^2 g
++
+\text{lower-order quasilinear terms},
+\]
+provided the solution stays in a region
+\[
+K\le \KP-\eta .
+\]
+In such a region the coefficients of the equation are smooth.  A full
+short-time existence theorem requires the corresponding DeTurck principal
+symbol and strong parabolicity verification.  Positivity of \(\Phi'(K)\) is
+the expected elliptic sign, but by itself it is not a substitute for the symbol
+calculation, since the linearisation also contains terms involving
+\(\Phi''(K)\) and the background curvature.
+
+For a metric variation \(v=\partial_tg\), the Riemann tensor satisfies
+schematically
+\[
+\partial_t\Rm
+=
+\nabla^2v
++
+\Rm*v .
+\]
+Hence the wall part gives
+\[
+\partial_t\Rm
+=
+-4\varepsilon\Phi'(K)\Delta^2\Rm
++
+\text{terms involving }\nabla\Phi',\nabla^2\Phi',\nabla^j\Rm,
+\]
+up to the index structure fixed by the Bianchi identities and by the DeTurck
+gauge.
+
+Consequently
+\[
+\partial_tK
+=
+2\langle\Rm,\partial_t\Rm\rangle
++
+\text{metric contraction terms}.
+\]
+Thus the leading fourth-order contribution is not simply a scalar
+maximum-principle term
+\[
+-4\varepsilon\Phi'(K)\Delta^2K .
+\]
+Rather, it contains
+\[
+-8\varepsilon\Phi'(K)
+\langle\Rm,\Delta^2\Rm\rangle
+\]
+plus derivative terms coming from \(\Phi'(K)\).  After integration by parts
+these terms are expected to produce coercive fourth-order curvature
+dissipation, but pointwise they do not yield a classical maximum principle for
+\(K\).
+
+This distinction is essential.  The fourth-order heat operator does not
+preserve positivity, and therefore no pointwise comparison argument of the
+form
+\[
+\partial_tK\le F(K)
+\]
+is available merely from the leading bi-Laplacian structure.
+
+The singular energy nevertheless has a robust variational sign.  Let
+\[
+\mathcal E(t)=\int_M\Phi(K)\,d\mu .
+\]
+Along the ungauged flow,
+\[
+\frac d{dt}\mathcal E
+=
+\int_M
+\langle E_\Phi,-2\Ric-\varepsilon E_\Phi\rangle
+\,d\mu.
+\]
+Hence
+\[
+\frac d{dt}\mathcal E
+=
+-\varepsilon\|E_\Phi\|_{L^2}^2
+-
+2\int_M\langle E_\Phi,\Ric\rangle\,d\mu .
+\]
+By Cauchy--Schwarz,
+\[
+-2\int_M\langle E_\Phi,\Ric\rangle\,d\mu
+\le
+\frac{\varepsilon}{2}\|E_\Phi\|_{L^2}^2
++
+\frac{2}{\varepsilon}\|\Ric\|_{L^2}^2 .
+\]
+Therefore
+\[
+\boxed{
+\frac d{dt}\mathcal E
+\le
+-\frac{\varepsilon}{2}\|E_\Phi\|_{L^2}^2
++
+\frac{2}{\varepsilon}\|\Ric\|_{L^2}^2 .
+}
+\]
+This is the correct energy-dissipation inequality.  It shows that the wall
+term dissipates the singular energy up to the Ricci-flow error.  It does not
+by itself prove pointwise wall separation.
+
+A precise wall-separation statement requires more than the singular
+energy.  It also requires spatial regularity and a lower local volume ratio.
+For example, suppose that on a time interval one has
+\[
+\mathcal E(t)\le E_0,
+\qquad
+[K(\cdot,t)]_{C^\alpha}\le L,
+\]
+and, for all sufficiently small \(r\),
+\[
+\Vol B(x,r)\ge v_0 r^3 .
+\]
+If
+\[
+p>\frac3\alpha,
+\]
+then the singular energy bound forces a positive gap
+\[
+\sup_MK(\cdot,t)\le \KP-\eta(E_0,L,v_0,p,\alpha).
+\]
+
+Indeed, set
+\[
+m=\KP-\sup_MK .
+\]
+Choose \(x_0\) with \(K(x_0)\ge \sup_MK-m/2\).  Then
+\[
+\KP-K(x_0)\le \frac{3m}{2}.
+\]
+By Hölder control,
+\[
+K(x)\ge K(x_0)-L\,d(x,x_0)^\alpha .
+\]
+Taking \(r\asymp (m/L)^{1/\alpha}\), we have
+\[
+\KP-K(x)\lesssim m
+\]
+on \(B(x_0,r)\).  Therefore
+\[
+\mathcal E(t)
+\ge
+\int_{B(x_0,r)}(\KP-K)^{-p}\,d\mu
+\gtrsim
+m^{-p}\Vol B(x_0,r)
+\gtrsim
+v_0 L^{-3/\alpha}m^{3/\alpha-p}.
+\]
+When \(p>3/\alpha\), this lower bound diverges as \(m\downarrow0\), contradicting
+\(\mathcal E(t)\le E_0\).  Hence \(m\) is bounded below by a positive quantity
+depending only on \(E_0,L,v_0,p,\alpha\).
+
+Thus the singular wall gives a plausible substitute for a maximum principle
+only in combination with spatial regularity and noncollapse-type local volume
+control.  The missing analytic step is therefore clear:
+\[
+\boxed{
+\begin{gathered}
+\text{energy dissipation }+\text{ regularity/Sobolev control}\\
++\text{ local volume noncollapse }
+\Longrightarrow
+\text{ pointwise wall separation}.
+\end{gathered}
+}
+\]
+This correction is important: the wall energy alone cannot prove noncollapse.
+It can help prevent contact with \(K=\KP\) only after enough local volume
+control has already been obtained by some independent mechanism.
+
+In the homogeneous Berger reduction no such difficulty appears: all derivative
+terms vanish, and the wall reduces to the algebraic inward drift already
+computed.  In the full PDE, however, the absence of a fourth-order maximum
+principle means that the Berger algebra must be supplemented by DeTurck
+parabolicity and a genuine energy-regularity argument.
+
+
+\section{Remaining noncollapse problem}
+
+The results above have a narrow conclusion.  They identify a local
+high-curvature wall, rule out the natural additive Perelman-potential repairs
+tested on the Berger sector, and show that the unmodified Perelman entropy
+passes the protected positive-scalar Berger cone.  They do not yet produce a
+full noncollapse functional for the inhomogeneous PDE.
+
+A complete internal replacement for surgery would require a functional
+\(\Ncal\) with the following properties:
+\begin{enumerate}[label=(\roman*)]
+\item a scale law compatible with the absolute curvature scale
+\(\KP=\ell_P^{-4}\);
+\item monotonicity along the actual forced DeTurck system;
+\item a coercive implication from a lower bound for \(\Ncal\) to local volume
+noncollapse under a curvature bound;
+\item compatibility with bounded-curvature Hopf-fibre collapse, which is
+invisible to the wall \(K\nearrow\KP\).
+\end{enumerate}
+
+The preceding results indicate that such an \(\Ncal\), if it exists for the
+full PDE, cannot be obtained merely by adding a \(K\)-potential to Perelman's
+entropy and using the same \(K\)-gradient to force the metric.  The Berger
+calculation points instead to a two-mechanism design: the curvature wall
+controls high curvature, while an independent non-additive detector, beginning
+with the unmodified Perelman entropy in the homogeneous sector, supplies
+noncollapse information.  Other structurally different candidates include
+modified reduced volume, Harnack-type quantities for the coupled system,
+spacetime action functionals, and heat-kernel detectors.
+
+\begin{openproblem}[PDE propagation of the non-additive detector]
+The protected Berger cone is passed by the unmodified Perelman entropy.  The
+open problem is to prove an analogue for the full inhomogeneous wall flow:
+either a monotonicity formula or a controlled propagation estimate for the
+unmodified entropy, sufficient to retain fixed-scale volume noncollapse under
+\(K\le r^{-4}<\KP\), and compatible with a DeTurck continuation theorem.
+\end{openproblem}
+
+\section{Conclusion}
+
+This paper should be read as a mathematical side branch of the compact \(S^3\)
+programme, not as a required physical extension of the operational
+Planck-boundary interpretation.  It studies modified Ricci-type flows as
+autonomous geometric dynamics and asks which variational curvature barriers
+suppress supercritical curvature growth.  The parameter \(\KP=\ell_P^{-4}\)
+serves here as a prescribed curvature-wall scale; it is not being promoted to a
+new physical forcing law.
+
+A constant cosmological term fails the high-curvature test because its
+curvature contribution is quadratic in \(|\Rm|\), while the Ricci reaction is
+cubic.  The variational wall
+\[
+        -\varepsilon\,\grad_{L^2(d\mu)}
+        \int_M
+        \frac{(|\Rm|^2+\delta)^q}{(\KP-|\Rm|^2)^p}\,d\mu
+\]
+is the corresponding local high-curvature replacement.  In dimension three it
+acts on the full curvature invariant
+\[
+        K=|\Rm|^2=4|\Ric_0|^2+\frac13R^2,
+\]
+and its leading conformal drift has the correct sign and degree.
+
+This is not a noncollapse theorem.  The Hopf-fibre degeneration in the Berger
+family gives bounded-curvature collapse, so a \(K\)-wall alone cannot replace
+surgery.  The exact Berger anisotropy equation shows the same point
+dynamically: in the cone \(u\ge4/11\) the round ratio \(u=1\) is attracting,
+whereas in the lower Hopf sector the wall can push \(u\) downward when
+\[
+        \frac{2\varepsilon\Phi'(K)}{x}(4-11u)>1 .
+\]
+Volume normalization does not alter this anisotropy equation, and the Hopf
+limit is an \(S^2\)-quotient collapse rather than a high-curvature limit.
+The heat-kernel scale detector \(\mathcal H_r\) diverges along fixed-base Hopf
+collapse by the zero-mode lower bound, which identifies a genuinely
+non-additive direction for future noncollapse tests.
+The natural attempt to turn the wall into an additive Perelman-type
+noncollapse entropy fails: \(R+\varepsilon\Phi(K)\) is not monotone even in the
+homogeneous Berger sector, and additive matching \(K\)-potential repairs fail
+for every sign and every \(\tau\)-weight in the pure quartic test.  The
+unmodified Perelman entropy behaves differently: on the protected
+positive-scalar Berger cone \(4/11\le u<4\), its reduced derivative along the
+wall flow is nonnegative.  This gives a positive non-additive two-mechanism
+Berger result, not a full PDE theorem.
+
+The final conclusion is therefore precise:
+\[
+        \boxed{\text{the curvature wall is a valid local high-curvature regulator;}}
+\]
+\[
+        \boxed{\text{matching additive \(K\)- and Planck-wall potentials do not supply noncollapse;}}
+\]
+\[
+        \boxed{\text{the unmodified Perelman entropy supplies a positive Berger two-mechanism test;}}
+\]
+\[
+        \boxed{\text{a complete surgery replacement still requires PDE propagation of this detector.}}
+\]
+Thus the contribution of this paper is a mathematical one.  It develops a
+curvature-wall mechanism for modified Ricci-type flows and tests it against
+Berger collapse, additive entropy repairs, heat-kernel noncollapse indicators,
+and the unmodified Perelman entropy.  It should be read as an optional
+mathematical refinement, not as a required physical extension of the
+operational Planck-boundary interpretation.
+
+Any future candidate, including the unmodified entropy, must pass from the
+Berger reduction to an inhomogeneous DeTurck continuation theorem.
+
+\appendix
+
+\section{Algebraic checks}
+
+\subsection{Berger curvature}
+
+With \(x=a^2\), \(z=c^2\), and \(u=z/x\),
+\[
+        |\Rm|^2
+        =
+        \frac{4(16a^4-24a^2c^2+11c^4)}{a^8}
+        =
+        \frac{4(16x^2-24xz+11z^2)}{x^4}
+        =
+        \frac{4(16-24u+11u^2)}{x^2}.
+\]
+At \(u=1\),
+\[
+        |\Rm|^2=\frac{12}{x^2}.
+\]
+At fibre collapse \(u\to0\) with \(x\) fixed,
+\[
+        |\Rm|^2\to \frac{64}{x^2}=\frac{64}{a^4}.
+\]
+At base collapse \(x\to0\) with \(u\) fixed,
+\[
+        |\Rm|^2\to\infty
+\]
+because
+\[
+        11u^2-24u+16>0
+\]
+for all real \(u\), its discriminant being
+\[
+        (-24)^2-4\cdot 11\cdot 16=-128<0.
+\]
+
+\subsection{Scale exponent}
+
+For a length scale \(L\),
+\[
+        \int K^q\,d\mu
+        \sim
+        L^{-4q}L^3
+        =
+        L^{3-4q}.
+\]
+The critical exponent is therefore
+\[
+        3-4q=0
+        \quad\Longleftrightarrow\quad
+        q=\frac34.
+\]
+
+\subsection{Power law}
+
+For \(\Phi(K)=K^q\),
+\[
+        \Phi'(K)=qK^{q-1},
+\]
+and hence
+\[
+        4K\Phi'(K)-3\Phi(K)
+        =
+        4qK^q-3K^q
+        =
+        (4q-3)K^q.
+\]
+
+\subsection{Barrier law}
+
+For
+\[
+        \Phi(K)=\frac{(K+\delta)^q}{(\KP-K)^p},
+\]
+one has
+\[
+        \frac{\Phi'(K)}{\Phi(K)}
+        =
+        \frac{q}{K+\delta}
+        +
+        \frac{p}{\KP-K}.
+\]
+Thus
+\[
+        4K\Phi'(K)-3\Phi(K)
+        =
+        \Phi(K)
+        \left(
+        \frac{4qK}{K+\delta}
+        +
+        \frac{4pK}{\KP-K}
+        -3
+        \right).
+\]
+
+\subsection{Sturm check for the Berger falsification}
+
+The polynomial
+\[
+        c_2(u)=1331u^4-3696u^3+3648u^2-1536u+256
+\]
+has no positive root.  One Sturm sequence begins with
+\[
+        c_2,\quad
+        c_2'=5324u^3-11088u^2+7296u-1536,
+\]
+and continues, up to positive scalar multiples, by
+\[
+        1104u^2-1256u+116,\qquad
+        48384-48661u,\qquad
+        217220096 .
+\]
+The sign variation count at \(u=0^+\) equals the sign variation count at
+\(u=+\infty\), so the number of positive roots is zero.  Since
+\(c_2(0)=256>0\), one has \(c_2(u)>0\) for all \(u>0\).
+
+
+\section{Reference facts used}
+
+The use of \(L^2\)-curvature-gradient flows as fourth-order degenerate
+geometric flows with DeTurck gauge fixing follows the standard theory of the
+gradient flow of \(\int_M |\Rm|^2\), especially Streets' DeTurck treatment of
+the \(L^2\)-curvature flow.  The heat-kernel coercivity discussion uses the
+standard local comparison theory under a Ricci lower bound, in the spirit of
+Cheeger--Yau, Li--Yau, and Davies.  The tensorial formulas in the analytic roadmap are
+used only at the schematic principal-structure level; a complete PDE theorem
+would require a separate convention-by-convention verification against that
+standard \(L^2\)-flow formula.  The restriction on second-order natural
+divergence-free tensors is the Lovelock-type obstruction: second-order
+metric-natural tensors have very limited algebraic freedom, and in low
+dimension do not provide a new high-curvature damping mechanism.
+
+\begin{thebibliography}{99}
+
+\bibitem{Hamilton1982}
+R.~S. Hamilton,
+\emph{Three-manifolds with positive Ricci curvature},
+J. Differential Geom. 17 (1982), 255--306.
+
+\bibitem{DeTurck1983}
+D.~M. DeTurck,
+\emph{Deforming metrics in the direction of their Ricci tensors},
+J. Differential Geom. 18 (1983), 157--162.
+
+\bibitem{Perelman2002}
+G.~Perelman,
+\emph{The entropy formula for the Ricci flow and its geometric applications},
+arXiv:math/0211159 (2002).
+
+\bibitem{KleinerLott2008}
+B.~Kleiner and J.~Lott,
+\emph{Notes on Perelman's papers},
+Geom. Topol. 12 (2008), 2587--2855.
+
+\bibitem{ChowLuNi2006}
+B.~Chow, P.~Lu, and L.~Ni,
+\emph{Hamilton's Ricci Flow},
+Graduate Studies in Mathematics 77, AMS, 2006.
+
+\bibitem{BakryEmery1985}
+D.~Bakry and M.~Emery,
+\emph{Diffusions hypercontractives},
+Seminaire de probabilites XIX, Lecture Notes in Math. 1123, Springer, 1985, 177--206.
+
+\bibitem{AngenentKnopf2004}
+S.~Angenent and D.~Knopf,
+\emph{An example of neckpinching for Ricci flow on \(S^{n+1}\)},
+Math. Res. Lett. 11 (2004), 493--518.
+
+\bibitem{Streets2008}
+J.~D. Streets,
+\emph{The gradient flow of \(\int_M |\Rm|^2\)},
+J. Geom. Anal. 18 (2008), 249--271.
+
+\bibitem{Streets2012}
+J.~D. Streets,
+\emph{Collapsing in the \(L^2\) curvature flow},
+Comm. Partial Differential Equations 38 (2013), 985--1014.
+
+\bibitem{CheegerYau1981}
+J.~Cheeger and S.-T.~Yau,
+\emph{A lower bound for the heat kernel},
+Comm. Pure Appl. Math. 34 (1981), 465--480.
+
+\bibitem{LiYau1986}
+P.~Li and S.-T.~Yau,
+\emph{On the parabolic kernel of the Schrödinger operator},
+Acta Math. 156 (1986), 153--201.
+
+\bibitem{Davies1989}
+E.~B. Davies,
+\emph{Heat Kernels and Spectral Theory},
+Cambridge Tracts in Mathematics 92, Cambridge University Press, 1989.
+
+\bibitem{Lauret2018}
+E.~A. Lauret,
+\emph{The smallest Laplace eigenvalue of homogeneous 3-spheres},
+arXiv:1801.04259.
+
+
+\bibitem{Lovelock1971}
+D.~Lovelock,
+\emph{The Einstein tensor and its generalizations},
+J. Math. Phys. 12 (1971), 498--501.
+
+\bibitem{NavarroNavarro2011}
+A.~Navarro and J.~Navarro,
+\emph{Lovelock's theorem revisited},
+J. Geom. Phys. 61 (2011), 1950--1956.
+
+
+\bibitem{BergerFalsification2026}
+B.~Batenin and A.~Preece,
+\emph{The Berger Sector Exactly Falsifies the Naive Noncollapse Candidate
+\(\lambda_\Phi=R+\varepsilon\Phi(K)\)},
+companion note (2026).
+
+\end{thebibliography}
+
+\end{document}

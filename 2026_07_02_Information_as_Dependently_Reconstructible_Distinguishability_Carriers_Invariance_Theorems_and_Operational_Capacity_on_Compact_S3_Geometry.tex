@@ -1,0 +1,762 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{xcolor}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{geometry}
+\geometry{margin=2.4cm}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!60!black,
+  citecolor=blue!60!black,
+  urlcolor=blue!60!black
+}
+
+% theorem environments
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{postulate}{Postulate}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{anchor}[theorem]{Physical anchor}
+
+% shortcuts
+\newcommand{\Sn}[1]{S^{#1}}
+\newcommand{\Szero}{S^{0}}
+\newcommand{\Sone}{S^{1}}
+\newcommand{\Stwo}{S^{2}}
+\newcommand{\Sthree}{S^{3}}
+\newcommand{\Sfour}{S^{4}}
+\newcommand{\Sseven}{S^{7}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Hbb}{\mathbb{H}}
+\newcommand{\CP}{\mathbb{C}P}
+\newcommand{\SU}{\mathrm{SU}}
+\newcommand{\U}{\mathrm{U}}
+\newcommand{\lP}{\ell_{P}}
+\newcommand{\tP}{t_{P}}
+\newcommand{\rH}{\widetilde H}
+\newcommand{\Dd}{\mathsf{D}}
+\newcommand{\golden}{\varphi}
+
+\title{\bfseries Information as Dependently Reconstructible Distinguishability:\\
+Carriers, Invariance Theorems, and Operational Capacity\\
+on Compact \texorpdfstring{$\Sthree$}{S3} Geometry}
+
+\author{%
+\texorpdfstring{$^{1}$}{1}Andrei Preece\thanks{\texttt{andre.preece@web.de}; ORCID: 0009-0004-5978-795X}
+\quad and \quad
+\texorpdfstring{$^{1}$}{1}Boris Batenin\thanks{\texttt{batenin@web.de}; ORCID: 0009-0000-7027-8583}\\[0.35em]
+\small \texorpdfstring{$^{1}$}{1}Independent Researchers
+}
+
+\date{Berlin, 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Most physical accounts of information use the word before defining the object: information is
+said to ``emerge,'' to be ``conserved,'' or to be ``fundamental,'' while the primitive it
+quantifies is left implicit.  This paper proposes a definition-first framework.  The primitive is
+\emph{distinguishability}, formalized on topological carriers; the minimal carrier of an
+elementary distinction is $\Szero$.  We prove three structural theorems.  (i)~\emph{Invariance}:
+the distinguishability profile $\Dd_{k}(X)=\operatorname{rank}\rH_{k}(X)$ is preserved by every
+structure-preserving re-description (homotopy equivalence); elementary distinctions can be
+neither created nor erased invertibly.  (ii)~\emph{Attributed erasure}: any change of the profile
+requires an explicit non-invertible operation (deletion, identification, change of category),
+whose logical irreversibility is the topological counterpart of Landauer's thermodynamic erasure
+cost.  (iii)~\emph{Carrier transport}: the suspension functor shifts the profile by one degree
+without loss, $\Dd_{k+1}(\Sigma X)=\Dd_{k}(X)$; along
+$\Szero\to\Sone\to\Stwo\to\Sthree$ the elementary distinction becomes the fundamental class of
+$\Sthree$, the minimal joint carrier of phase, direction, spin, and Hopf structure.  A physical
+layer is then added by two postulates---carrier realization and a Planck resolution
+grain---yielding an exact, closed-form distinguishability capacity for a compact domain: the
+band-limited harmonic space on $\Sthree_{R}$ at grain $\varepsilon$ has dimension
+$N=\tfrac16 M(M+1)(2M+1)$ with $M=\lfloor\sqrt{1+R^{2}/\varepsilon^{2}}\rfloor$, asymptotically
+$\tfrac13(R/\varepsilon)^{3}$, in exact agreement with the Weyl law.  Causal integration of this
+capacity is bounded below by the global accessibility time $t_{\mathrm{coh}}=\pi R/c$.  The
+framework does not replace Shannon's theory; it supplies the alphabet that Shannon's theory
+presupposes.  All interpretive statements---dependent designation, non-emergence, the Planck
+boundary as the lower limit of reconstruction rather than a beginning---are labelled as
+interpretation and separated from the theorems.
+\medskip
+
+\noindent\textbf{Keywords:} theory of information; distinguishability; carriers; suspension;
+$\Sthree$; Planck grain; Landauer principle; compact topology; spectral capacity.
+\end{abstract}
+
+\tableofcontents
+
+\section{Introduction}
+
+\subsection{The problem: information named before it is defined}
+
+The word ``information'' now carries load in thermodynamics, quantum theory, cosmology, and the
+foundations of computation.  Yet the standard quantitative theories are measure theories over
+\emph{presupposed} alphabets.  Shannon's theory~\cite{Shannon1948} quantifies the statistics of a
+source once a set of distinguishable symbols is given; Kolmogorov
+complexity~\cite{Kolmogorov1965} quantifies description length once a machine model and a symbol
+set are given; quantum information theory quantifies state distinguishability once a Hilbert
+space is given.  None of them answers the prior questions: what is a distinction, what does it
+take for a distinction to be physically realized, what operations preserve it, what operations
+destroy it and at what price, and how much distinguishability a given physical domain can carry
+at a given resolution.
+
+Foundational slogans have tried to close the gap from the other side.  Wheeler's ``it from
+bit''~\cite{Wheeler1990} makes the bit primitive and matter derivative; Landauer's ``information
+is physical''~\cite{Landauer1991} makes the carrier primitive.  Both intuitions are correct in
+part, and both are incomplete without a formal object that says what a ``bit'' is before any
+physics, and what physics must add before that object becomes operational.
+
+This paper supplies such an object and develops its consequences with an explicit claim-status
+discipline.  The primitive is \emph{distinguishability}, carried by topological spaces; the
+minimal carrier of one elementary distinction is the zero-sphere $\Szero=\{-1,+1\}$.  The
+framework then proceeds in three layers:
+
+\begin{enumerate}[label=(\Roman*)]
+\item a \textbf{mathematical layer} (Secs.~\ref{sec:distinguishability}--\ref{sec:carriers}),
+in which invariance, attributed-erasure, and carrier-transport theorems are proved;
+\item an \textbf{operational layer} (Secs.~\ref{sec:physical}--\ref{sec:capacity}), in which two
+postulates---carrier realization and a resolution grain---turn the mathematics into exact
+capacity and accessibility statements on compact $\Sthree$ geometry;
+\item an \textbf{interpretive layer} (Sec.~\ref{sec:interpretation}), explicitly labelled, in
+which the ontological reading (dependent designation, non-emergence, the Planck boundary as a
+limit of reconstruction) is stated without being promoted to theorem.
+\end{enumerate}
+
+The companion papers of this programme supply the geometric infrastructure: the suspension-chain
+analysis of $\Sthree$ as minimal spin/Hopf carrier~\cite{PB2026susp}, the Ricci-type
+reconstruction flow with its no-go theorems and Planck-barrier invariant
+region~\cite{BP2026ricci}, and the compact causal accessibility structure of light on
+$\Sthree_{R}$~\cite{PB2026light}.  The present paper is the information-theoretic keystone of
+that line: it states what the other papers' carriers carry.
+
+\subsection{Claim-status convention}
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{@{}lX@{}}
+\toprule
+\textbf{Label} & \textbf{Meaning} \\
+\midrule
+Theorem / Proposition & Proved under stated mathematical assumptions.\\
+Physical anchor & Established physics cited for contact, not re-derived here.\\
+Postulate & An operational assumption of the physical layer, explicitly adjustable.\\
+Ansatz & A proposed quantitative form, not derived from dynamics.\\
+Interpretation & Philosophy-of-physics reading; proves no physics.\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\subsection{What this paper does not claim}
+
+\begin{tcolorbox}[colback=gray!4,colframe=gray!50,title=Boundary of the paper]
+This paper does not replace or amend Shannon's theory, Kolmogorov complexity, or quantum
+information theory; it supplies the pre-statistical object those theories presuppose.  It does
+not derive physical law from topology; does not derive the value of $\lP$; does not prove that
+the observed universe is globally $\Sthree$; does not derive gravitational entropy bounds; and
+does not assert any ontological statement as a theorem.  Every formula in the operational layer
+is conditional on the stated postulates.
+\end{tcolorbox}
+
+\section{The Primitive: Distinguishability Structures}
+\label{sec:distinguishability}
+
+\subsection{Elementary distinction}
+
+\begin{definition}[Elementary distinction]
+An \emph{elementary distinction} is the two-point space $\Szero=\{-1,+1\}$ with its discrete
+topology.  No metric, phase, direction, or causal structure is assumed at this level.  The two
+points are not two objects located somewhere; they are the two poles of a single relational
+structure, \emph{this / not-this}.  Neither point carries the structure alone: removing either
+yields a one-point space, which is no longer a distinction.
+\end{definition}
+
+\begin{definition}[Distinguishability profile]
+\label{def:profile}
+For a nonempty topological space $X$ of the homotopy type of a finite CW complex, the
+\emph{distinguishability profile} is
+\begin{equation}
+\Dd_{k}(X)\;:=\;\operatorname{rank}\rH_{k}(X;\Z),\qquad k\ge0,
+\end{equation}
+where $\rH_{*}$ denotes reduced singular homology.  $\Dd_{0}(X)$ counts independent elementary
+distinctions (one less than the number of path components); $\Dd_{1}$ counts independent cyclic
+(phase-type) distinctions; $\Dd_{2}$ directional (enclosure-type) distinctions; and so on.  The
+\emph{total content} is $\Dd(X)=\sum_{k\ge0}\Dd_{k}(X)$.
+\end{definition}
+
+For the spheres of the suspension chain,
+\begin{equation}
+\Dd_{k}(\Sn{n})=\delta_{k,n},\qquad \Dd(\Sn{n})=1 :
+\label{eq:sphere-profile}
+\end{equation}
+each sphere carries exactly one unit of distinguishability, concentrated in degree $n$.  In
+particular $\Dd_{0}(\Szero)=1$ is the formal trace of the minimal distinction, and
+$\Dd_{3}(\Sthree)=1$ is the fundamental class of the compact carrier.
+
+\begin{remark}[Why homology]
+The profile could be built from other invariants.  Reduced homology is chosen because it is
+(a)~homotopy invariant, so it cannot see mere re-description; (b)~computable; (c)~graded, so it
+separates \emph{kinds} of distinction (component / cycle / enclosure) rather than collapsing
+them into one number; and (d)~equipped with the suspension isomorphism, which is exactly the
+carrier-transport operation the programme needs.  Nothing in the definitions forbids refining
+the profile by torsion subgroups or by homotopy groups; rank homology is the minimal choice
+sufficient for the theorems below.
+\end{remark}
+
+\subsection{Invariance under re-description}
+
+\begin{theorem}[Invariance of distinguishability]
+\label{thm:invariance}
+If $f:X\to Y$ is a homotopy equivalence, then $\Dd_{k}(X)=\Dd_{k}(Y)$ for all $k$, and $f$
+induces a bijection between the path components of $X$ and $Y$.  Consequently no
+structure-preserving re-description creates or erases any distinction, elementary or higher.
+\end{theorem}
+
+\begin{proof}
+A homotopy equivalence induces isomorphisms on all reduced homology groups and a bijection on
+$\pi_{0}$~\cite{Hatcher2002}.  Ranks and component counts are therefore equal.
+\end{proof}
+
+\begin{corollary}[No invertible erasure, no invertible creation]
+\label{cor:no-invertible}
+Let $f:X\to Y$ be continuous.  If $f$ merges two path components of $X$ (or if $Y$ has more
+path components than $X$ admits under any bijection with $\pi_{0}(X)$), then $f$ is not a
+homotopy equivalence: elementary distinctions cannot be removed, and cannot be introduced, by
+any invertible operation.
+\end{corollary}
+
+\begin{proof}
+Merging components makes $\pi_{0}(f)$ non-injective; a component surplus makes it
+non-surjective.  Either contradicts the bijectivity required by Theorem~\ref{thm:invariance}.
+\end{proof}
+
+\subsection{Attributed erasure: every change of profile has an exhibited operator}
+
+Distinctions can of course be destroyed---but only by operations that leave the
+structure-preserving category.
+
+\begin{proposition}[The price of erasing the minimal distinction]
+\label{prop:erasure}
+The identification map $q:\Szero\to\{*\}$ satisfies $\Dd_{0}:1\mapsto0$ and admits no homotopy
+inverse.  Deleting a point likewise destroys the structure ($\Szero$ minus a point is not
+$\Szero$), and there is no map at all from the nonempty $\Szero$ to $\varnothing$.  Hence the
+minimal distinction can be erased only by an explicit non-invertible operation---identification,
+deletion, or exit from the category---never by continuous deformation.
+\end{proposition}
+
+\begin{proof}
+$\{*\}$ has $\rH_{0}=0$ while $\rH_{0}(\Szero)\simeq\Z$; homotopy equivalences preserve reduced
+homology, so $q$ has no homotopy inverse.  The remaining statements are immediate.
+\end{proof}
+
+\begin{proposition}[Non-monotonicity: identifications are not pure erasure]
+\label{prop:nonmonotone}
+Quotient operations need not decrease total content.  Example: the interval $[0,1]$ is
+contractible, $\Dd([0,1])=0$, yet the identification $0\sim1$ produces $\Sone$ with
+$\Dd_{1}=1$.  Therefore ``erasure'' and ``creation'' are not global monotonicity statements;
+they are \emph{per-operation bookkeeping}.  Every change of the profile must be attributed to an
+exhibited operator, and the operator's effect must be computed, not assumed.
+\end{proposition}
+
+\begin{proof}
+$\rH_{1}([0,1])=0$ and $\rH_{1}(\Sone)\simeq\Z$; the quotient map realizes the change.
+\end{proof}
+
+\begin{remark}[Interpretation: interdependence cannot be contracted, only failed to be preserved]
+Proposition~\ref{prop:erasure} is the formal content of a claim the programme states
+ontologically: minimal interdependent distinction is indestructible \emph{within} operations
+required to preserve structure.  If a description asserts that a distinction ``has
+disappeared,'' the description owes an operator---a quotient, a deletion, a change of
+category---and the operator's price is the loss of invertibility.  Nothing in the
+structure-preserving language derives the disappearance; it can only be imposed as an act of
+forgetting.
+\end{remark}
+
+\begin{anchor}[Landauer's principle as the thermodynamic face of attributed erasure]
+\label{anchor:landauer}
+In physics, the logically irreversible erasure of one elementary distinction (one bit) in an
+environment at temperature $T$ dissipates at least $k_{B}T\ln2$ of
+heat~\cite{Landauer1961,Bennett1982}.  The topological statement (erasure requires a
+non-invertible operator) and the thermodynamic statement (logical irreversibility has a minimum
+dissipation) are two faces of one discipline: \emph{nothing erases a distinction for free}.  We
+cite this as contact with established physics; we do not claim to derive the constant
+$k_{B}T\ln2$ from topology.
+\end{anchor}
+
+\section{Carriers and Carrier Transport}
+\label{sec:carriers}
+
+\subsection{Carriers}
+
+\begin{definition}[Carrier]
+A \emph{carrier} is a space on which a stated package of structures exists naturally and
+compatibly.  A carrier is not, by that fact alone, a derivation of dynamics or matter content
+(the restricted usage of~\cite{PB2026susp}).
+\end{definition}
+
+\subsection{The transport theorem}
+
+\begin{theorem}[Carrier transport; degree-shift conservation]
+\label{thm:transport}
+The suspension $\Sigma X=(X\times[0,1])/(X\times\{0\},\,X\times\{1\})$ induces natural
+isomorphisms
+\begin{equation}
+\rH_{k}(X)\;\simeq\;\rH_{k+1}(\Sigma X)\qquad\text{for all }k\ge0,
+\end{equation}
+hence $\Dd_{k+1}(\Sigma X)=\Dd_{k}(X)$ and the total content is preserved:
+$\Dd(\Sigma X)=\Dd(X)$.  Suspension changes the carrier and the degree of every distinction;
+it neither creates nor destroys any.
+\end{theorem}
+
+\begin{proof}
+Mayer--Vietoris applied to the two cones covering $\Sigma X$, both contractible, with
+intersection homotopy equivalent to $X$~\cite{Hatcher2002}.  Naturality is standard.
+\end{proof}
+
+\begin{corollary}[The fundamental class of $\Sthree$ is a suspended distinction]
+\label{cor:s3class}
+Along $\Szero\xrightarrow{\Sigma}\Sone\xrightarrow{\Sigma}\Stwo\xrightarrow{\Sigma}\Sthree$,
+\begin{equation}
+\rH_{0}(\Szero)\simeq\rH_{1}(\Sone)\simeq\rH_{2}(\Stwo)\simeq\rH_{3}(\Sthree)\simeq\Z ,
+\end{equation}
+carrying the distinction class of $\Szero$ to a generator of $H_{3}(\Sthree;\Z)$
+\cite{PB2026susp}.  The elementary distinction, the phase cycle, the directional enclosure, and
+the compact volume class are one invariant on four carriers.
+\end{corollary}
+
+\begin{remark}[Interpretation: carrier changes; generative relation persists]
+Theorem~\ref{thm:transport} is the exact form of the programme's central ontological formula:
+\emph{information is not produced from non-being; it is transformed through carriers of
+distinguishability}.  The invariant is neither simply the same (its degree, its available
+structures, its phenomenal unfolding all change) nor simply different (it is the image of one
+class under canonical isomorphisms).  A new state of comprehension does not entail a new state
+of the invariant content.
+\end{remark}
+
+\subsection{Enrichment: what higher carriers add}
+
+Suspension preserves content but changes what the carrier can \emph{do} with it.  On $\Sone$ the
+distinction acquires phase ($\U(1)$); on $\Stwo$, direction ($\CP^{1}$, the Bloch sphere); on
+$\Sthree$, simultaneously: compactness, simple connectivity, the non-Abelian group $\SU(2)$,
+spin structure, parallelizability, and the nontrivial Hopf bundle
+$\Sone\hookrightarrow\Sthree\to\Stwo$ with $c_{1}=1$.  The minimality of $\Sthree$ for this
+joint package is a theorem of the companion paper~\cite{PB2026susp} and is used here as
+infrastructure: $\Sthree$ is the first carrier on which a distinction can be phase-directed,
+spin-carried, and globally framed at once, while remaining \emph{loop-trivial but
+carrier-nontrivial} ($\pi_{1}=0$, $H_{3}\simeq\Z$).
+
+\begin{remark}[Qubit contact]
+Normalized two-level quantum states live on $\Sthree\subset\C^{2}$; physical ray states on
+$\CP^{1}\simeq\Stwo$; the projection is the Hopf map, and its nontriviality ($c_{1}=1$) is the
+precise sense in which phase and direction do not factorize
+globally~\cite{PB2026susp}.  Quantum information theory thus already operates on the minimal
+joint carrier identified by the suspension chain.  This is contact, not derivation: probability
+rules and measurement maps are additional inputs.
+\end{remark}
+
+\section{The Operational Layer: Physical Realization of Distinguishability}
+\label{sec:physical}
+
+The mathematical layer says what distinguishability is and how it moves between carriers.  The
+physical layer says what it takes for a distinction to be \emph{operational}---measurable,
+communicable, thermodynamically accountable.  Two postulates suffice.
+
+\begin{postulate}[Carrier realization]
+\label{post:carrier}
+A distinction is physically realized only when represented on a carrier equipped with metric and
+causal structure.  Without scale there is no distance; without time there is no causal relation;
+without causal relation there is no physically unfolded information; without distinguishability
+there is no observable phenomenon.  Schematically:
+\begin{equation}
+\text{distinction}\;\to\;\text{carrier}\;\to\;\text{order/phase}\;\to\;\text{causal relation}
+\;\to\;\text{reconstructible information}.
+\label{eq:chain}
+\end{equation}
+\end{postulate}
+
+\begin{postulate}[Resolution grain]
+\label{post:grain}
+Effective physical reconstruction assigns distinguishable causal-geometric states only at
+spatial scales $\ge\lP$ and temporal scales $\ge\tP=\lP/c$.  $\Szero$ is the formal carrier of
+minimal distinction; $\lP$ and $\tP$ are its lower metric-causal realization in effective
+physics.  Below the grain the model assigns no operationally verifiable state---a boundary of
+the reconstruction language, not an ontological wall.
+\end{postulate}
+
+\begin{anchor}[Geometric support for Postulate~\ref{post:grain}]
+In the companion Ricci-type flow analysis~\cite{BP2026ricci}, a reflecting barrier at
+$a=\lP$ defines a forward-invariant region with $|\mathrm{Rm}|^{2}\le C/\lP^{4}$, mirroring a
+self-adjoint Wheeler--DeWitt endpoint on $a\in[\lP,\infty)$ with zero probability flux through
+$a=\lP$.  The same work proves that natural internal forcings cannot control the singular round
+mode, so the grain enters as a \emph{boundary of the effective state space}, not as a smooth
+regulator.  Postulate~\ref{post:grain} adopts exactly this reading; it does not claim a
+microscopic quantum-gravity derivation of $\lP$.
+\end{anchor}
+
+\begin{remark}[Interpretation: probability one, not probability zero]
+Under Postulate~\ref{post:grain} the effective physical domain has support on $a\ge\lP$.  The
+sub-Planck interval is not another physical branch of probability one; it lies outside the
+assigned operational measure.  The question of a ``transition'' from $a<\lP$ into physical
+reality does not arise inside the model, because $a<\lP$ is not a state of the model.  Reality
+is not reconstructed from probability zero; the effective domain of reconstruction already has
+probability-one support on distinguishable causal geometry, bounded below by the Planck grain.
+\end{remark}
+
+\section{Capacity Theorems on Compact Carriers}
+\label{sec:capacity}
+
+The postulates convert the profile into countable operational alphabets.  On a compact carrier
+the count is exact.
+
+\begin{definition}[Operational alphabet at grain $\varepsilon$]
+Let $(M,g)$ be a closed Riemannian manifold with Laplace--Beltrami operator $\Delta_{g}$.  The
+\emph{band-limited space at grain $\varepsilon$} is
+\begin{equation}
+\mathcal A_{\varepsilon}(M,g)\;=\;\operatorname{span}\{\,\text{eigenmodes }Y:\;
+-\Delta_{g}Y=\lambda Y,\ \sqrt{\lambda}\le1/\varepsilon\,\},
+\end{equation}
+and the \emph{distinguishability capacity} is
+$N_{\varepsilon}(M,g)=\dim\mathcal A_{\varepsilon}(M,g)$: the number of independently
+specifiable field degrees of freedom resolvable at scale $\varepsilon$.
+\end{definition}
+
+\begin{theorem}[Exact capacity of the round three-sphere]
+\label{thm:capacity}
+On $\Sthree_{R}$ the scalar Laplacian has eigenvalues $\lambda_{n}=n(n+2)/R^{2}$ with
+multiplicities $(n+1)^{2}$, $n=0,1,2,\dots$~\cite{PB2026susp}.  Hence, with
+\begin{equation}
+M\;=\;\Big\lfloor\sqrt{1+R^{2}/\varepsilon^{2}}\Big\rfloor ,
+\end{equation}
+the capacity at grain $\varepsilon$ is exactly
+\begin{equation}
+N_{\varepsilon}(\Sthree_{R})\;=\;\sum_{n=0}^{M-1}(n+1)^{2}
+\;=\;\frac{M(M+1)(2M+1)}{6}
+\;\sim\;\frac13\left(\frac{R}{\varepsilon}\right)^{3}
+\quad(R/\varepsilon\to\infty).
+\label{eq:capacity}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+The condition $\sqrt{\lambda_{n}}\le1/\varepsilon$ reads $n(n+2)\le R^{2}/\varepsilon^{2}$,
+i.e.\ $(n+1)^{2}\le1+R^{2}/\varepsilon^{2}$, i.e.\ $n+1\le M$.  Summing the multiplicities gives
+$\sum_{j=1}^{M}j^{2}=M(M+1)(2M+1)/6$.  The asymptotic follows from $M\sim R/\varepsilon$.
+\end{proof}
+
+\begin{remark}[Weyl consistency check]
+The Weyl law for a closed $3$-manifold gives
+$N(\lambda)\sim\operatorname{Vol}(M)\,\lambda^{3/2}/(6\pi^{2})$.  With
+$\operatorname{Vol}(\Sthree_{R})=2\pi^{2}R^{3}$ and $\lambda=1/\varepsilon^{2}$ this yields
+$N\sim\tfrac13(R/\varepsilon)^{3}$, in exact agreement with \eqref{eq:capacity}.  Two elementary
+sanity checks: $R/\varepsilon=1$ gives $M=1$, $N=1$ (only the constant mode); $R/\varepsilon=2$
+gives $M=2$, $N=5$ (constant plus the four $n=1$ modes).
+\end{remark}
+
+\begin{corollary}[Planck capacity of a quasi-local $\Sthree$ domain]
+\label{cor:planck-capacity}
+Under Postulate~\ref{post:grain} ($\varepsilon=\lP$), a quasi-local domain reconstructed as
+$\Sthree_{R}$ carries the finite scalar-field capacity
+\begin{equation}
+N_{\lP}(\Sthree_{R})\;=\;\frac{M(M+1)(2M+1)}{6},\qquad
+M=\Big\lfloor\sqrt{1+R^{2}/\lP^{2}}\Big\rfloor
+\;\sim\;\frac{R}{\lP},
+\end{equation}
+so $N_{\lP}\sim\tfrac13(R/\lP)^{3}$.  For a binary source on this alphabet the classical
+capacity is $N_{\lP}$ bits; for an alphabet of $q$ resolvable amplitudes per mode it is
+$N_{\lP}\log_{2}q$ bits.  Finiteness is a theorem given the postulates; the identification of
+$\varepsilon$ with $\lP$ is the postulate, not the theorem.
+\end{corollary}
+
+\begin{remark}[Volume scaling versus area scaling: an honest tension]
+\label{rem:holography}
+Equation \eqref{eq:capacity} is a \emph{mode count of band-limited fields} and scales with
+volume, $(R/\lP)^{3}$.  Gravitational entropy bounds suggest area scaling,
+$(R/\lP)^{2}$~\cite{Bousso1999}; the companion suspension paper adopts area counting for its
+entropy hierarchy for exactly that reason~\cite{PB2026susp}.  The two counts answer different
+questions---``how many field degrees of freedom fit at resolution $\varepsilon$'' versus ``how
+much entropy can gravitate before collapse''---and their reconciliation (which degrees of
+freedom are physical in a gravitating domain) is a genuine open problem of the framework, listed
+in Sec.~\ref{sec:open}.  We flag the tension rather than hide it.
+\end{remark}
+
+\begin{proposition}[Causal integration bound]
+\label{prop:coh}
+On the compact causal spacetime $(\Sthree_{R}\times\R,\;g_{R}-c^{2}dt^{2})$, the causal
+diameter is $D_{c}=\pi R$ and every event becomes causally accessible to every observer only
+after the global accessibility time
+\begin{equation}
+t_{\mathrm{coh}}=\frac{\pi R}{c}
+\end{equation}
+\cite{PB2026light}.  Hence no observer can have integrated the full capacity of
+Corollary~\ref{cor:planck-capacity} before $t_{\mathrm{coh}}$: capacity is a property of the
+domain; \emph{integrated} information is bounded by causal accessibility.
+\end{proposition}
+
+\begin{definition}[Reconstructible information of a quasi-local domain]
+\label{def:reconstructible}
+The \emph{reconstructible information} of a quasi-local domain at time $T$ is the
+distinguishability realized in the operational alphabet $\mathcal A_{\varepsilon}$, restricted
+to the causally accessible region at $T$, above the grain of Postulate~\ref{post:grain}.  This
+is a definition of the \emph{object}; given a source distribution on the alphabet, its
+\emph{quantity} is measured by the standard Shannon functional.  The framework supplies the
+alphabet; Shannon's theory then applies unchanged.
+\end{definition}
+
+\section{Dynamics of Carriers: Reconstruction Flows}
+\label{sec:dynamics}
+
+A theory of information must say not only how much a carrier holds but what happens to
+distinguishability when the carrier itself is deformed.  The companion Ricci-type analysis
+\cite{BP2026ricci} supplies the controlled laboratory:
+
+\begin{enumerate}[label=(\alph*)]
+\item \emph{Smoothing erases shape distinctions first.}  On the Berger family the flow drives
+the anisotropy ratio $u\to1$: shape/fibre-squashing distinctions are the first casualties of
+reconstruction.
+\item \emph{Then the scale mode fails.}  After rounding, the unnormalized flow collapses the
+remaining round mode; in reconstruction language, the variable has exhausted the distinguishable
+structure of the domain.
+\item \emph{The topological class survives where the metric fails.}  Throughout the smooth
+regime the carrier remains $\Sthree$; $H_{3}(\Sthree)\simeq\Z$ is untouched by metric
+degeneration until the description itself leaves the smooth category.  Metric erasure and
+topological erasure are different operators with different prices
+(Proposition~\ref{prop:erasure} versus curvature blow-up).
+\item \emph{The grain closes the domain from below.}  The Planck barrier makes
+$\{a\ge\lP\}$ forward-invariant with $|\mathrm{Rm}|^{2}\le C/\lP^{4}$: reconstruction never
+assigns states below the grain, so the informational chain \eqref{eq:chain} never evaluates on
+sub-grain configurations.
+\end{enumerate}
+
+\begin{remark}[Interpretation: two different limits of reconstructible information]
+Backward, reconstruction meets the grain: excessive curvature, $a\in[\lP,\infty)$.  Forward, it
+meets not contraction but \emph{insufficient distinguishability}: expansion, dilution, horizon
+formation degrade the operational alphabet accessible to any observer
+(Proposition~\ref{prop:coh} tightening against a growing domain).  Past limit: the $\lP$-boundary
+of smooth geometry.  Future limit: loss of recoverable quasi-local structure.  Neither says
+``reality ends''; each says this language of quasi-local informational reconstruction ceases to
+have full meaning there~\cite{BP2026ricci}.
+\end{remark}
+
+\section{Relation to Existing Theories}
+\label{sec:relation}
+
+\paragraph{Shannon.}  Shannon's theory is untouched and presupposed downstream: it measures
+sources on alphabets.  The present framework answers the prior question of where physical
+alphabets come from (carrier + grain + causal access, Definition~\ref{def:reconstructible}) and
+what operations on carriers preserve or destroy the distinctions the alphabet encodes.
+
+\paragraph{Kolmogorov.}  Algorithmic information presupposes a symbol set and a machine; both
+are carriers in the present sense, and Corollary~\ref{cor:no-invertible} applies to their
+states.
+
+\paragraph{Landauer--Bennett thermodynamics of computation.}  Anchor~\ref{anchor:landauer}: the
+erasure discipline proved topologically in Sec.~\ref{sec:distinguishability} is realized
+thermodynamically as the $k_{B}T\ln2$ bound.  The two statements are logically independent and
+mutually reinforcing; neither is derived from the other here.
+
+\paragraph{Quantum information.}  The qubit's phase--direction geometry is exactly the
+$\Sthree\to\Stwo$ Hopf structure of the carrier chain (Sec.~\ref{sec:carriers}); the framework
+locates quantum information's state space inside the same carrier hierarchy without re-deriving
+quantum mechanics.
+
+\paragraph{Wheeler.}  ``It from bit''~\cite{Wheeler1990} makes the bit primitive.  The present
+framework inverts the emphasis without discarding the insight: \emph{no bit without carrier; no
+carrier without distinguishability}---and neither pole is a self-standing substance
+(Sec.~\ref{sec:interpretation}).  Information is not the ground of being here; it is the
+invariant of a relational structure that becomes physical only through
+\eqref{eq:chain}.
+
+\section{Interpretive Layer}
+\label{sec:interpretation}
+
+Everything in this section is labelled \emph{Interpretation}: a reading discipline, not physics.
+
+\begin{remark}[Non-emergence]
+The theory does not assert the absolute emergence of information, space, or geometry.
+$\Szero$ gives minimal distinguishability; suspension changes its carriers
+(Theorem~\ref{thm:transport}); $\Sthree$ gives the special compact spin/Hopf carrier; the Planck
+scale gives the lower metric-causal boundary of physical reconstruction
+(Postulate~\ref{post:grain}).  Information is not produced from non-being and is not destroyed
+inside admissible structural transformations; it changes its carrier of distinguishability.
+Cessation of a conditioned representation is not annihilation of the invariant; it is release
+from a conditioned carrier.
+\end{remark}
+
+\begin{remark}[Two protections]
+First, against self-being: no phenomenon in the chain---distinction, carrier, alphabet,
+observer---is posited as self-existing; each is given by a construction
+(cf.\ the tetralemma discipline~\cite{Garfield1995}).  Second, against substantializing
+dependence itself: having refuted self-being, one may not erect ``Interdependence'' as a new
+substance.  The first part cuts off the self-being of the phenomenon; the second cuts off the
+self-being of dependence itself.  In mathematical register: empty of own-nature, not empty of
+dependent functioning.
+\end{remark}
+
+\begin{remark}[The axis]
+\emph{The Planck boundary is not the beginning of the universe; it is the universal lower
+boundary of quasi-local geometric reconstruction}~\cite{BP2026ricci}.  In informational terms:
+not a first bit, but the grain below which the very notion of an operational bit is not
+assigned.
+\end{remark}
+
+\begin{tcolorbox}[colback=gray!4,colframe=gray!50,title=Core principle (Interpretation)]
+Information is dependently reconstructible distinguishability: an invariant of relational
+structure (Definition~\ref{def:profile}), preserved under structure-preserving re-description
+(Theorem~\ref{thm:invariance}), transported without loss across carriers
+(Theorem~\ref{thm:transport}), destroyed only by exhibited non-invertible operators at a price
+(Proposition~\ref{prop:erasure}, Anchor~\ref{anchor:landauer}), physically realized only
+through carrier, grain, and causal order (Postulates~\ref{post:carrier}--\ref{post:grain}), and
+operationally finite on compact domains (Theorem~\ref{thm:capacity}).  Not self-being, not
+nothing: dependently reconstructible distinguishability passing through a chain of carriers.
+\end{tcolorbox}
+
+\section{Falsifiability and Observational Contact}
+\label{sec:falsifiability}
+
+The mathematical layer is proved, not testable.  The operational layer is testable at its
+postulates and at the geometric infrastructure it borrows.
+
+\begin{enumerate}[label=(\arabic*)]
+\item \emph{Compact-topology searches.}  If the quasi-local domain admits compact
+$\Sthree$-type reconstruction, the mode basis is \eqref{eq:capacity}'s hyperspherical basis;
+matched-circle and correlation searches in the CMB constrain the admissible
+radii~\cite{Cornish1998,Planck2018}.  A confirmed detection would fix the alphabet; continued
+nulls push $R$ upward without falsifying the framework's mathematical core.
+\item \emph{Log-periodic modulation.}  The golden-ratio log-periodic ansatz
+$\omega=2\pi/\ln\golden$ associated with the $\golden$-hierarchy of the wider programme has been
+directly tested by us against DESI~DR2 BAO and Pantheon$+$ data with null results
+\cite{BP2026null}; accordingly, no statement in the present paper depends on that ansatz, and we
+record its current status as unsupported.  A theory of information that inherits a disfavored
+ansatz silently would violate its own erasure discipline.
+\item \emph{Thermodynamic contact.}  Single-bit Landauer dissipation has been verified
+experimentally~\cite{Berut2012}; this anchors the erasure discipline of
+Sec.~\ref{sec:distinguishability} at the laboratory scale.
+\item \emph{Grain postulate.}  Postulate~\ref{post:grain} is presently anchored geometrically
+\cite{BP2026ricci}, not verified experimentally; any operational sub-Planck distinguishability
+would falsify it and with it Corollary~\ref{cor:planck-capacity}.
+\end{enumerate}
+
+\section{Conclusion and Open Problems}
+\label{sec:open}
+
+The paper set out to define information before using it.  The result is a three-layer theory:
+a proved mathematical core (invariance, attributed erasure, carrier transport), an operational
+layer with exact capacity and accessibility formulas conditional on two explicit postulates, and
+an interpretive layer strictly quarantined from both.  The contribution claimed is exactly
+this: a definition-first, theorem-based, falsifiability-aware account of what physical
+information is, where its alphabets come from, what preserves it, what destroys it and at what
+price, and how much of it a compact quasi-local domain can carry and causally integrate.
+
+\begin{enumerate}[label=\textbf{OP\arabic*.},leftmargin=2.2em]
+\item \textbf{Categorical formulation.}  Formalize carriers and operations as a category with a
+distinguished class of forgetting morphisms; the profile $\Dd$ as a functor; erasure prices as a
+cost structure on non-invertible morphisms.
+\item \textbf{Quantum profile.}  Replace components by orthogonality: develop the
+distinguishability profile for state spaces (flag manifolds, $\CP^{n}$), with the Hopf class as
+the obstruction datum, and compare with Holevo capacity.
+\item \textbf{Capacity under reconstruction flow.}  Couple Theorem~\ref{thm:capacity} to the
+Ricci-type flow of~\cite{BP2026ricci}: derive $dN_{\varepsilon}/d\tau$ along Berger and warped
+trajectories and identify the informational signature of the Planck barrier.
+\item \textbf{Volume--area reconciliation.}  Resolve the tension of
+Remark~\ref{rem:holography}: determine which band-limited degrees of freedom remain physical in
+a gravitating domain, and whether the operational count degrades to area scaling dynamically.
+\item \textbf{Higher-degree erasure costs.}  Landauer's bound prices degree-$0$ erasure.  Is
+there a thermodynamic price hierarchy for erasing degree-$k$ distinctions (cycles, enclosures),
+e.g.\ in topological memories and topologically ordered media?
+\item \textbf{Tensor and spinor alphabets.}  Extend \eqref{eq:capacity} to transverse-traceless
+tensor and Dirac spectra on $\Sthree_{R}$ (the Dirac spectrum is
+$\pm(n+3/2)/R$~\cite{PB2026susp}) and give the full graded capacity of the carrier.
+\item \textbf{Integrated information dynamics.}  Combine Proposition~\ref{prop:coh} with
+realistic source models to bound how fast any internal observer can integrate the domain's
+capacity, and compare with horizon-entropy production rates.
+\end{enumerate}
+
+The theory may fail; but if it fails, it fails by calculation---at a postulate, at a capacity
+formula, at an observational anchor---not by taste.
+
+\begin{thebibliography}{99}
+
+\bibitem{Shannon1948}
+C.~E.~Shannon, \emph{A mathematical theory of communication},
+Bell Syst.\ Tech.\ J.\ \textbf{27}, 379--423, 623--656 (1948).
+
+\bibitem{Kolmogorov1965}
+A.~N.~Kolmogorov, \emph{Three approaches to the quantitative definition of information},
+Problems Inform.\ Transmission \textbf{1}, 1--7 (1965).
+
+\bibitem{Landauer1961}
+R.~Landauer, \emph{Irreversibility and heat generation in the computing process},
+IBM J.\ Res.\ Dev.\ \textbf{5}, 183--191 (1961).
+
+\bibitem{Landauer1991}
+R.~Landauer, \emph{Information is physical}, Phys.\ Today \textbf{44}(5), 23--29 (1991).
+
+\bibitem{Bennett1982}
+C.~H.~Bennett, \emph{The thermodynamics of computation---a review},
+Int.\ J.\ Theor.\ Phys.\ \textbf{21}, 905--940 (1982).
+
+\bibitem{Berut2012}
+A.~B\'erut, A.~Arakelyan, A.~Petrosyan, S.~Ciliberto, R.~Dillenschneider, and E.~Lutz,
+\emph{Experimental verification of Landauer's principle linking information and thermodynamics},
+Nature \textbf{483}, 187--189 (2012).
+
+\bibitem{Wheeler1990}
+J.~A.~Wheeler, \emph{Information, physics, quantum: the search for links}, in
+\emph{Complexity, Entropy, and the Physics of Information}, ed.\ W.~H.~Zurek
+(Addison-Wesley, 1990).
+
+\bibitem{Hatcher2002}
+A.~Hatcher, \emph{Algebraic Topology} (Cambridge University Press, 2002).
+
+\bibitem{Bousso1999}
+R.~Bousso, \emph{A covariant entropy conjecture}, JHEP \textbf{07}, 004 (1999).
+
+\bibitem{Cornish1998}
+N.~J.~Cornish, D.~N.~Spergel, and G.~D.~Starkman,
+\emph{Circles in the sky: finding topology with the microwave background radiation},
+Class.\ Quantum Grav.\ \textbf{15}, 2657--2670 (1998).
+
+\bibitem{Planck2018}
+Planck Collaboration, \emph{Planck 2018 results.\ VI.\ Cosmological parameters},
+Astron.\ Astrophys.\ \textbf{641}, A6 (2020).
+
+\bibitem{PB2026susp}
+A.~Preece and B.~Batenin, \emph{Suspension of Spheres and the Minimal Role of $\Sthree$ in
+Spin, Hopf Geometry, and Irreversible Hierarchy}, research manuscript (2026).
+
+\bibitem{BP2026ricci}
+B.~Batenin and A.~Preece, \emph{Hopf-Lifted Ricci-Type Flow on $\Sthree$: A No-Go for Bounded
+and Engineered Forcing, and a Planck-Barrier Invariant Region}, research manuscript (2026).
+
+\bibitem{PB2026light}
+A.~Preece and B.~Batenin, \emph{Light as Causal Coherence Structure in Compact $\Sthree$
+Geometry}, research manuscript (2026).
+
+\bibitem{BP2026null}
+B.~Batenin and A.~Preece, \emph{A Null Test of Golden-Ratio Log-Periodicity
+($\omega=2\pi/\ln\varphi$) against DESI DR2 BAO and Pantheon$+$}, research manuscript (2026).
+
+\bibitem{Garfield1995}
+N\=ag\=arjuna, \emph{M\=ulamadhyamakak\=arik\=a}; English translation and commentary:
+J.~L.~Garfield, \emph{The Fundamental Wisdom of the Middle Way} (Oxford University Press, 1995).
+
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,4514 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage[a4paper,margin=2.45cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools,bm}
+\usepackage[expansion=false]{microtype}
+\usepackage{booktabs,longtable,array}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue!55!black,citecolor=blue!55!black,urlcolor=blue!55!black}
+\setlength{\emergencystretch}{3em}
+\setlist[itemize]{noitemsep,topsep=3pt,leftmargin=1.5em}
+\setlist[enumerate]{noitemsep,topsep=3pt,leftmargin=1.5em}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{assumption}[theorem]{Assumption}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{template}[theorem]{Template}
+
+\newcommand{\Sthree}{S^3_{R_{\rm curv}}}
+\newcommand{\DRD}{\mathsf D^{\sharp}}
+\newcommand{\Vol}{\operatorname{Vol}}
+\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\Spec}{\operatorname{Spec}}
+\newcommand{\PIR}{\operatorname{PIR}}
+\newcommand{\Ric}{\operatorname{Ric}}
+\newcommand{\RR}{\mathbb R}
+\newcommand{\Rm}{\operatorname{Rm}}
+\newcommand{\Boxop}{\Box}
+\newcommand{\ellP}{\ell_{\rm P}}
+
+\title{Causal--Spectral Distinguishability Selection on a Conditional Round $S^3$ Carrier}
+\author{%
+\begin{tabular}{c}
+Andrei Preece\\[-0.15em]
+\small Independent Researcher, Berlin, Germany\\[-0.15em]
+\small \href{mailto:andre.preece@web.de}{\texttt{andre.preece@web.de}}\\[-0.15em]
+\small ORCID: \href{https://orcid.org/0009-0004-5978-795X}{0009-0004-5978-795X}
+\end{tabular}
+\and
+\begin{tabular}{c}
+Boris Batenin\\[-0.15em]
+\small Independent Researcher, Berlin, Germany\\[-0.15em]
+\small \href{mailto:batenin@web.de}{\texttt{batenin@web.de}}\\[-0.15em]
+\small ORCID: \href{https://orcid.org/0009-0000-7027-8583}{0009-0000-7027-8583}
+\end{tabular}
+}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This manuscript develops a causal--spectral distinguishability selector on a conditional round $S^3$ carrier.  It separates four layers: carrier distinguishability, spectral mode capacity, causal accessibility, and physically admissible code-bit capacity.  On a round $S^3$ carrier the causal-accessibility fraction is exact, and shell-complete homogeneous spectral projectors reduce causal spectral accessibility to that same volume fraction.  Finite alphabets convert mode counts into bit capacities.  Physical ceilings---gauge admissibility, gravitational dressing, energy bounds, entropy bounds, and stability constraints---then contract the raw causal capacity to an admissible code capacity.  The resulting selector is a dimensionless ratio in $[0,1]$.
+
+The manuscript deliberately does not claim that arbitrary physical objects are three-spheres, that Hopf fibers are automatically materialized as physical rings, that classicality follows from the selector without dynamics, that cosmic topology has been measured, or that quantum gravity, the Standard Model, or any external open problem has been solved.  A positive length may always be inserted into the round-$S^3$ formulas as a screen transform; this is a computable comparison language, not a topology theorem.
+\end{abstract}
+
+
+\paragraph{Overview.}
+This manuscript develops a conditional comparison calculus for causal--spectral distinguishability on a round compact carrier \(S^3_R\).  Its central object is the selector
+\[
+\Sigma_{\rm grav}^{(P)}
+=
+\frac{B_{\rm phys}^{(P)}}{B_{\rm causal}^{(P)}}\in[0,1],
+\]
+where \(B_{\rm causal}^{(P)}=b_P\Gamma_R(T)N_P(\varepsilon)\) combines a finite operational alphabet, a causal volume fraction, and a spectral cutoff capacity.  Physical ceilings such as Bekenstein and holographic bounds then contract the raw causal--spectral count.
+
+The central claim is not that physical space is a round three-sphere.  Rather, \(S^3_R\) is used as a conditional compact carrier on which volume fractions, spectral capacities, shell bands, and threshold laws can be computed exactly.  The resulting framework gives a disciplined language for comparing raw distinguishability with physically admissible coding capacity.
+
+The main exact result is the causal--spectral trace fraction identity for homogeneous shell-complete projectors: local trace fraction over a geodesic ball equals the corresponding volume fraction.  This links spectral distinguishability to causal accessibility without imposing a physical topology on the world.  The selector formalism then yields threshold equations, Weyl-regime scaling laws, resolution-halving behavior, and diagnostic screen-density identities.
+
+The manuscript explicitly separates theorem-core results, diagnostic templates, and stated non-claims.  In particular, it does not claim to derive dark energy, QCD confinement, classicality, particle masses, Hawking radiation, or solutions to open problems.  Its contribution is a mathematically controlled capacity-filtering framework with reproducible algebraic and numerical diagnostics.
+
+\section{Status discipline and notation}
+
+A central convention is the separation of two radii that must not be confused.
+
+\begin{definition}[Curvature radius and domain radius]
+The symbol $R_{\rm curv}$ denotes the radius of the conditional round $S^3$ carrier.  The symbol $r_{\mathcal D}$ denotes the circumscribing radius of a bounded physical domain $\mathcal D$ to which an energy or entropy bound is applied.  These are distinct objects unless an explicit hypothesis identifies them.
+\end{definition}
+
+\begin{definition}[Admission rule]
+A statement is admitted to the body of this article only if it is one of the following:
+\begin{enumerate}
+\item a definition;
+\item a theorem, lemma, proposition, or corollary proved from stated assumptions;
+\item an established external theorem used with citation;
+\item a reproducible numerical evaluation of a formula already stated in the manuscript.
+\end{enumerate}
+A conjectural bridge, analogy, observational programme, research route, or open proof obligation is not promoted into a theorem.
+\end{definition}
+
+\begin{proposition}[No promotion by enumeration]
+Let $L$ be any finite or countable list of candidate statements.  The operation of enumerating $L$ does not change the proof status of any element of $L$.
+\end{proposition}
+\begin{proof}
+Proof status depends on derivation from definitions, hypotheses, and accepted external theorems.  Enumeration supplies an index and metadata, but no inference rule.  Therefore an unproved candidate remains unproved after enumeration, and a proved statement remains proved independently of whether it appears in a list.
+\end{proof}
+
+\begin{remark}[Core non-claim]
+The implication
+\[
+r>0\quad\Longrightarrow\quad \mathcal T(r)\ \text{is computable}
+\]
+is valid.  The implication
+\[
+\mathcal T(r)\ \text{is computable}\quad\Longrightarrow\quad
+\text{the physical object of scale }r\text{ is }S^3
+\]
+is invalid without an independent topology theorem.
+\end{remark}
+
+
+\section{Core contributions of the theorem-core}
+\label{sec:core-contributions}
+
+The theorem-core of this work contains eight concrete contributions.  They are stated here to separate the rigorous spine from observational templates, conjecture registries, and diagnostic extensions.
+
+\paragraph{1. Exact causal--spectral integration formula.}
+For a homogeneous elliptic sector \(P\) on the round carrier \(S^3_{R_{\rm curv}}\), and for a cutoff projector \(\Pi_\Lambda\) formed from complete representation shells, the normalized local trace over a geodesic ball equals the volume fraction:
+\[
+\frac{\operatorname{Tr}(1_B\Pi_\Lambda 1_B)}
+{\operatorname{Tr}\Pi_\Lambda}
+=
+\frac{\operatorname{Vol}(B)}
+{\operatorname{Vol}(S^3_{R_{\rm curv}})}.
+\]
+This is the exact bridge between homogeneous spectral counting and causal volume accessibility used by the selector.
+
+\paragraph{2. Gravitational selector and selector threshold.}
+The manuscript defines a dimensionless gravitational selector
+\[
+\Sigma_{\rm grav}^{(P)}
+=
+\frac{B_{\rm phys}^{(P)}}{B_{\rm causal}^{(P)}}
+\in[0,1],
+\]
+and its min-law diagnostic form
+\[
+\Sigma_{\rm min}^{(P)}
+=
+\min\left\{
+1,\frac{B_{\rm ceil}}{B_{\rm causal}^{(P)}}
+\right\}.
+\]
+Here
+\[
+B_{\rm causal}^{(P)}=b_P\Gamma_R(T)N_P(\varepsilon),
+\qquad
+B_{\rm ceil}=\min(B_{\rm Bek},B_{\rm holo}).
+\]
+When
+\[
+0<\eta_P(\chi):=\frac{B_{\rm ceil}}{b_PN_P(\chi)}<1,
+\]
+there is a unique selector threshold \(\tau_*\) satisfying
+\[
+\Gamma(\tau_*)=\eta_P(\chi).
+\]
+This separates the non-filtered diagnostic regime from the filtered diagnostic regime.  It is a selector threshold, not a thermodynamic phase transition.
+
+\paragraph{3. Double-asymptotic self-similarity.}
+With
+\[
+\tau=\frac{cT}{R_{\rm curv}}\ll1,
+\qquad
+\chi=\frac{\varepsilon}{R_{\rm curv}}\ll1,
+\]
+one obtains
+\[
+D_P
+=
+b_P\Gamma(\tau)N_P(\chi)
+\sim
+\frac{2b_PC_P}{3\pi}
+\left(\frac{cT}{\varepsilon}\right)^3,
+\]
+and, in the filtered regime,
+\[
+\Sigma_{\rm grav}^{(P)}
+\sim
+\frac{3\pi B_{\rm ceil}}{2b_PC_P}
+\left(\frac{\varepsilon}{cT}\right)^3.
+\]
+The curvature radius cancels.  The relevant asymptotic control variable is \(cT/\varepsilon\).  If the active ceiling is holographic and \(r_{\mathcal D}=cT\), then
+\[
+\varepsilon_{\min}
+=
+\ell_P^{2/3}(cT)^{1/3}
+\left(
+\frac{2b_PC_P\ln2}{3\pi^2}
+\right)^{1/3}.
+\]
+For the scalar binary sector, \(C_0=1/3\) and \(b_P=1\), hence
+\[
+\varepsilon_{\min}
+=
+\ell_P^{2/3}(cT)^{1/3}
+\left(
+\frac{2\ln2}{9\pi^2}
+\right)^{1/3}.
+\]
+This is a selector-resolution threshold, not a modified uncertainty principle.
+
+\paragraph{4. Exact scalar shell bands.}
+If
+\[
+N_\chi=\left\lfloor\sqrt{1+\chi^{-2}}-1\right\rfloor,
+\]
+then \(N_\chi=n\) precisely when
+\[
+\frac{1}{(n+2)^2-1}
+<
+\chi^2
+\le
+\frac{1}{(n+1)^2-1},
+\]
+with the \(n=0\) endpoint understood separately.  This gives an exact shell-entry diagnostic for compact round-screen spectra.
+
+\paragraph{5. Resolution-halving law.}
+In the filtered scalar Weyl regime,
+\[
+\frac{\Sigma_{\rm grav}^{\rm sc}(\varepsilon/2)}
+{\Sigma_{\rm grav}^{\rm sc}(\varepsilon)}
+\to
+\frac18.
+\]
+This is the cubic distinguishability scaling of the selector in that asymptotic regime.
+
+\paragraph{6. Horizon-scale screen-density comparison.}
+For any infrared length \(L\),
+\[
+\rho_{\rm scr}^{m}(L)
+=
+\frac{c^2}{4\pi^2G L^2}.
+\]
+For \(L=c/H_0\),
+\[
+\Omega_{\rm scr}
+=
+\frac{\rho_{\rm scr}^{m}(c/H_0)}
+{\rho_{\rm crit}^{m}}
+=
+\frac{2}{3\pi}
+\approx0.212.
+\]
+This is an order-of-magnitude screen-density comparison with the same \(H_0^2\) scaling as the critical density.  It is not a derivation of dark energy.
+
+\paragraph{7. Ricci-flow information loss with conditional Landauer bookkeeping.}
+Under unnormalised Ricci flow of a round carrier,
+\[
+\dot a=-\frac2a,
+\]
+the Weyl-regime spectral capacities decrease.  For the scalar sector,
+\[
+\dot N_0\sim-\frac{2a}{\varepsilon^3}.
+\]
+If the lost distinctions are finite logical sectors reset into a thermal bath, Landauer's principle gives the conditional bound
+\[
+\dot Q_{\min}
+\ge
+k_BT_{\rm bath}\ln2\,b_P|\dot N_P|.
+\]
+This is conditional thermodynamic bookkeeping for geometric capacity loss, not a derivation of Hawking radiation.
+
+\paragraph{8. Density--curvature invariant.}
+The screen-density diagnostic and scalar curvature obey the scale-independent identity
+\[
+\frac{\rho_{\rm scr}^{E}(r)}{\mathcal R_3(r)}
+=
+\frac{c^4}{24\pi^2G}.
+\]
+This is an exact algebraic invariant of the screen transform.
+
+These eight results form the rigorous mathematical core of the manuscript.  Observational templates, Hopf-field conjectures, horizon-density comparisons, and the scale atlas are applications or diagnostic extensions.  They do not modify the theorem-core selector construction.
+
+\section{Carrier and finite distinguishability}
+
+\begin{definition}[Structured carrier]
+A structured carrier is a tuple
+\[
+\mathcal X=(X,g,\mathfrak s,\mathcal E,\varepsilon),
+\]
+where $X$ is the underlying space, $g$ is the geometric structure when present, $\mathfrak s$ denotes auxiliary structure such as orientation, spin, bundle, or gauge data, $\mathcal E$ denotes operational or energy restrictions, and $\varepsilon>0$ is a resolution scale.
+\end{definition}
+
+\begin{definition}[Operational profile]
+For a chosen structural fibre one writes a truncated operational profile as
+\[
+\DRD_{q,\Lambda}(\mathcal X)=
+\bigl(\DRD_{{\rm top},\le q}(X),\mathcal C(\mathcal X),\Spec_{\le\Lambda}(\mathcal X)\bigr).
+\]
+The notation records topological, causal, and spectral data after the relevant truncations have been specified.
+\end{definition}
+
+\begin{proposition}[Carrier-first bit accounting]
+Bit counts are meaningful only after a carrier, a finite alphabet, and an operational cutoff have been fixed.
+\end{proposition}
+\begin{proof}
+A spectral multiplicity, a homology rank, a dimension of a vector space, and a Shannon bit count are different kinds of data.  A bit count requires distinguishable alternatives in a finite alphabet.  Hence a raw structural multiplicity becomes a bit capacity only after a map from carrier distinctions to alphabet states has been specified.
+\end{proof}
+
+\begin{definition}[Mapping-cone erasure invariant]
+For a map $f:X\to Y$ define its mapping cone
+\[
+C_f=Y\cup_f CX.
+\]
+The homological erasure profile is
+\[
+E_k^H(f)=\operatorname{rank}\,\widetilde H_k(C_f;\mathbb Z),
+\qquad
+E_k^{\rm Tor}(f)=\operatorname{Tor}\,\widetilde H_k(C_f;\mathbb Z).
+\]
+\end{definition}
+
+\begin{proposition}[Attributed erasure]
+If a morphism changes the topological, spectral, spin, or gauge profile of a carrier, the loss is attributed to that morphism and to the selected forgetting operation, not to an unqualified scalar called ``information loss.''
+\end{proposition}
+\begin{proof}
+The profiles are functorial only after the carrier category and the forgetting map have been selected.  A defect is therefore assigned to a morphism and a profile.  It is not an absolute number independent of structure.
+\end{proof}
+
+\section[Conditional round S3 carrier]{Conditional round $S^3$ carrier}
+\label{sec:conditional-carrier}
+
+The geometry below is conditional.  It gives exact formulae on a round $S^3$ carrier.  It is not a proof that physical space has global $S^3$ topology.
+
+\begin{definition}[Closed FLRW sign convention]
+The curvature parameter is
+\[
+\Omega_K=-\frac{k c^2}{a_0^2H_0^2}.
+\]
+Closed positive spatial curvature corresponds to $k=+1$ and therefore to $\Omega_K<0$.  If a curvature modulus $|\Omega_K|$ is adopted, the corresponding curvature radius is
+\[
+R_{\rm curv}=\frac{c}{H_0\sqrt{|\Omega_K|}}.
+\]
+\end{definition}
+
+\begin{remark}[Curvature status ledger]
+\label{rem:curvature-status}
+The value $|\Omega_K|=0.0007$ is an illustrative input, not a settled measurement, and it is retained only so that downstream formulae have one fixed worked calibration.  This ledger is a time-sensitive snapshot of the cited literature, not a latest global constraint table.  Published curvature constraints depend strongly on which datasets are combined, and both sign and magnitude remain model-dependent:
+\begin{center}
+\small
+\begin{tabular}{p{0.42\linewidth}rr}
+\toprule
+Dataset combination & $\Omega_K$ & implied $R_{\rm curv}$ [Gly]\\
+\midrule
+Planck 2018, CMB alone (TT,TE,EE+lowE)~\cite{Planck2018VI,DiValentino2019} & $-0.044^{+0.018}_{-0.015}$ & $\approx69$\\
+Planck 2018, +lensing~\cite{Planck2018VI} & $-0.011\pm0.007$ & $\approx141$\\
+Planck 2018, +lensing+BAO~\cite{Planck2018VI} & $+0.0007\pm0.0019$ & $\approx548$ (open sign)\\
+Planck PR4, final reprocessing (2023)~\cite{TristramPR4} & $-0.012\pm0.010$ & $\approx132$\\
+DESI 2024 BAO+CMB, free curvature~\cite{DESI2024VI} & $+0.065^{+0.068}_{-0.078}$ & $\approx57$ (open sign)\\
+DESI+SNe+chronometers+lensing time delay~\cite{Zhai2024} & $+0.108\pm0.056$ & $\approx44$ (open sign)\\
+\bottomrule
+\end{tabular}
+\end{center}
+Three consequences follow. First, the CMB-alone preference for $\Omega_K<0$ is commonly discussed together with the excess lensing-smoothing amplitude in the Planck TT spectrum, not as a standalone proof of spatial closure~\cite{EfstathiouGratton2020,Handley2021}.  Second, the specific calibration $R_{\rm curv}=548.324513026856039$ Gly used below corresponds to the modulus of a combination whose central sign is open, not closed; it must not be read as a measured spherical radius.  Third, no curvature row in this ledger proves global topology.  Topology requires additional information such as compactness, quotient structure, and injectivity scale.
+\end{remark}
+
+\begin{theorem}[Round $S^3$ invariants]
+For a round three-sphere $S^3_{R_{\rm curv}}$,
+\[
+D_{\rm embed}=2R_{\rm curv},\qquad
+D_{\rm geo}=\pi R_{\rm curv},\qquad
+C=2\pi R_{\rm curv},
+\]
+\[
+\Vol(S^3_{R_{\rm curv}})=2\pi^2R_{\rm curv}^3,\qquad
+K=R_{\rm curv}^{-2},\qquad
+{}^{(3)}R=6R_{\rm curv}^{-2}.
+\]
+\end{theorem}
+\begin{proof}
+Use the round metric
+\[
+ds^2=R_{\rm curv}^2(d\chi^2+\sin^2\chi\,d\Omega_2^2),
+\qquad 0\le\chi\le\pi.
+\]
+The geodesic radial coordinate is $s=R_{\rm curv}\chi$, the longest geodesic distance is $\pi R_{\rm curv}$, and a great geodesic loop has length $2\pi R_{\rm curv}$.  The volume element is $R_{\rm curv}^3\sin^2\chi\sin\theta\,d\chi d\theta d\phi$, whose integral is $2\pi^2R_{\rm curv}^3$.  The round sectional curvature is $R_{\rm curv}^{-2}$, and in dimension three the scalar curvature is $3(3-1)R_{\rm curv}^{-2}$.
+\end{proof}
+
+\begin{theorem}[Poincare--Perelman anchor; external theorem]
+Let $M^3$ be a closed, connected, simply connected topological three-manifold.  Then $M^3$ is homeomorphic to $S^3$.
+\end{theorem}
+\begin{proof}[Status]
+This is the solved Poincare conjecture, proved through Perelman's Ricci-flow work following Hamilton's programme~\cite{Perelman2002,Perelman2003}.  It is used here only as a topological anchor under its exact hypotheses.  It does not prove that the physical universe has global $S^3$ topology.
+\end{proof}
+
+\section{Causal accessibility}
+\label{sec:causal-accessibility}
+
+\begin{definition}[Coherence time]
+The antipodal causal distance on $S^3_{R_{\rm curv}}$ is $\pi R_{\rm curv}$.  The corresponding light time is
+\[
+t_{\rm coh}=\frac{\pi R_{\rm curv}}{c}.
+\]
+\end{definition}
+
+\begin{theorem}[Geodesic-ball volume and accessibility fraction]
+Let $B_s\subset S^3_{R_{\rm curv}}$ be a geodesic ball of radius $s\le\pi R_{\rm curv}$.  Then
+\[
+\Vol(B_s)
+=
+2\pi R_{\rm curv}^3
+\left(
+\frac{s}{R_{\rm curv}}
+-\frac12\sin\frac{2s}{R_{\rm curv}}
+\right).
+\]
+Consequently, for $0\le T\le t_{\rm coh}$,
+\[
+\Gamma_{R_{\rm curv}}(T)
+=
+\frac{\Vol(B_{cT})}{\Vol(S^3_{R_{\rm curv}})}
+=
+\frac{1}{\pi}
+\left(
+\frac{cT}{R_{\rm curv}}
+-\frac12\sin\frac{2cT}{R_{\rm curv}}
+\right).
+\]
+For $T\ge t_{\rm coh}$, $\Gamma_{R_{\rm curv}}(T)=1$.
+\end{theorem}
+\begin{proof}
+The area of a radius-$\rho$ geodesic two-sphere is
+\[
+4\pi R_{\rm curv}^2\sin^2(\rho/R_{\rm curv}).
+\]
+Integrating from $0$ to $s$ gives
+\[
+\Vol(B_s)=\int_0^s4\pi R_{\rm curv}^2\sin^2(\rho/R_{\rm curv})\,d\rho
+=
+2\pi R_{\rm curv}^2s-\pi R_{\rm curv}^3\sin(2s/R_{\rm curv}).
+\]
+Division by $2\pi^2R_{\rm curv}^3$ and substitution $s=cT$ give the claimed fraction.
+\end{proof}
+
+\begin{proposition}[Monotonicity, midpoint, and complement]
+For $\tau=cT/R_{\rm curv}\in[0,\pi]$, define
+\[
+\Gamma(\tau)=\frac{\tau-\frac12\sin(2\tau)}{\pi}.
+\]
+Then
+\[
+\Gamma'(\tau)=\frac{2}{\pi}\sin^2\tau\ge0,
+\qquad
+\Gamma(\tau)+\Gamma(\pi-\tau)=1,
+\qquad
+\Gamma(\pi/2)=1/2.
+\]
+\end{proposition}
+\begin{proof}
+Differentiate directly.  The complement identity follows from $\sin(2\pi-2\tau)=-\sin(2\tau)$, and the midpoint follows by substitution.
+\end{proof}
+
+\begin{proposition}[Early- and late-time cubic laws]
+As $\tau\to0$,
+\[
+\Gamma(\tau)=\frac{2}{3\pi}\tau^3-\frac{2}{15\pi}\tau^5+O(\tau^7).
+\]
+As $\delta=\pi-\tau\to0$,
+\[
+1-\Gamma(\tau)=\frac{2}{3\pi}\delta^3-\frac{2}{15\pi}\delta^5+O(\delta^7).
+\]
+\end{proposition}
+\begin{proof}
+Use the Taylor expansion of $\sin(2\tau)$.  The late-time expansion follows from the complement identity.
+\end{proof}
+
+\section{Spectral capacities}
+\label{sec:spectral-capacities}
+
+Let
+\[
+x=\frac{R_{\rm curv}}{\varepsilon}.
+\]
+The scalar and spinor formulae are standard round-$S^3$ spectral formulae~\cite{Rosenberg1997,LawsonMichelsohn1989}.  The transverse-traceless tensor formula below is stated as a counting convention for the specified operator; a different tensor operator may shift the eigenvalues.
+
+\begin{theorem}[Scalar capacity]
+The scalar Laplacian on round $S^3_{R_{\rm curv}}$ has eigenvalues and multiplicities
+\[
+-\Delta Y_{n\ell m}=\frac{n(n+2)}{R_{\rm curv}^2}Y_{n\ell m},
+\qquad
+d_n^{(0)}=(n+1)^2.
+\]
+If the cutoff is $\sqrt{n(n+2)}\le x$ and
+\[
+M_0=\left\lfloor\sqrt{1+x^2}\right\rfloor,
+\]
+then
+\[
+N_0(\varepsilon)
+=
+\sum_{n=0}^{M_0-1}(n+1)^2
+=
+\frac{M_0(M_0+1)(2M_0+1)}{6}
+\sim\frac{x^3}{3}.
+\]
+\end{theorem}
+\begin{proof}
+The cutoff condition $n(n+2)\le x^2$ is equivalent to $(n+1)^2\le1+x^2$, hence $n\le M_0-1$.  The finite sum of squares gives the closed form, and the leading term is $M_0^3/3\sim x^3/3$.
+\end{proof}
+
+\begin{assumption}[TT operator convention]
+The transverse-traceless tensor count in this manuscript uses the rough tensor Laplacian convention whose TT eigenvalue labels are
+\[
+\lambda_k^{\rm TT}=\frac{k(k+2)-2}{R_{\rm curv}^2},
+\qquad
+m_k^{\rm TT}=2(k-1)(k+3),
+\qquad k\ge2.
+\]
+If the Lichnerowicz operator or a gravitational-wave operator with a different curvature shift is used, the eigenvalue formula must be changed accordingly.
+\end{assumption}
+
+\begin{proposition}[TT capacity in the stated convention]
+With
+\[
+M_{\rm TT}=\left\lfloor\sqrt{x^2+3}-1\right\rfloor,
+\]
+define
+\[
+N_{\rm TT}(\varepsilon)=
+\begin{cases}
+0, & M_{\rm TT}<2,\\[0.4em]
+\displaystyle\sum_{k=2}^{M_{\rm TT}}2(k-1)(k+3), & M_{\rm TT}\ge2.
+\end{cases}
+\]
+For $M_{\rm TT}\ge2$,
+\[
+N_{\rm TT}(\varepsilon)
+=
+\frac{M_{\rm TT}(M_{\rm TT}-1)(2M_{\rm TT}+11)}{3}
+\sim\frac{2x^3}{3}.
+\]
+\end{proposition}
+\begin{proof}
+The cutoff is $k(k+2)-2\le x^2$, equivalently $(k+1)^2\le x^2+3$.  This gives the displayed upper label.  Summing $2(k^2+2k-3)$ from $k=2$ to $M_{\rm TT}$ gives the polynomial.  The zero case records the empty cutoff.
+\end{proof}
+
+\begin{theorem}[Dirac capacity]
+The Dirac eigenvalues on round $S^3_{R_{\rm curv}}$ are
+\[
+\mu_n^{(D)}=\pm\frac{n+3/2}{R_{\rm curv}},
+\qquad
+m_n^{(D)}=(n+1)(n+2).
+\]
+Let
+\[
+M_D=\left\lfloor x-\frac32\right\rfloor.
+\]
+Then
+\[
+N_D(\varepsilon)=
+\begin{cases}
+0, & M_D<0,\\[0.4em]
+\displaystyle
+2\sum_{n=0}^{M_D}(n+1)(n+2)
+=
+\frac{2(M_D+1)(M_D+2)(M_D+3)}{3},
+& M_D\ge0.
+\end{cases}
+\]
+In the fine-cutoff regime, $N_D(\varepsilon)\sim2x^3/3$.
+\end{theorem}
+\begin{proof}
+The factor two counts the two signs of the Dirac spectrum.  If $x<3/2$ no eigenvalue passes the cutoff.  For $M_D\ge0$, summing $(n+1)(n+2)$ gives $(M_D+1)(M_D+2)(M_D+3)/3$ and multiplication by two gives the displayed expression.
+\end{proof}
+
+\begin{corollary}[Weyl recovery]
+For the scalar, TT-convention, and Dirac sectors one obtains cubic Weyl scaling~\cite{Weyl1911}
+\[
+N_P(\varepsilon)\sim C_P\left(\frac{R_{\rm curv}}{\varepsilon}\right)^3,
+\]
+with $C_0=1/3$ and, in the conventions above, $C_{\rm TT}=C_D=2/3$.
+\end{corollary}
+
+
+
+
+\begin{proposition}[Exact scalar shell bands]
+\label{prop:exact-scalar-shell-bands}
+Let
+\[
+N_\chi=\left\lfloor\sqrt{1+\chi^{-2}}-1\right\rfloor,
+\qquad
+\chi=\frac{\varepsilon}{R_{\rm curv}}.
+\]
+Then
+\[
+N_\chi=n\quad\Longleftrightarrow\quad
+\frac{1}{(n+2)^2-1}<\chi^2\le\frac{1}{(n+1)^2-1}.
+\]
+\end{proposition}
+\begin{proof}
+The condition $N_\chi=n$ is equivalent to
+\[
+n\le\sqrt{1+\chi^{-2}}-1<n+1.
+\]
+Adding one, squaring, and solving for $\chi^2$ gives the stated interval.
+\end{proof}
+
+\section{Heat trace and flow identities}
+
+\begin{definition}[Heat trace capacity]
+For a positive elliptic operator $P_\tau$ define
+\[
+\mathcal N_P(s,\tau)=\Tr(e^{-sP_\tau}),
+\qquad s=\varepsilon^2.
+\]
+This is a smoothed alternative to the sharp cutoff count $N_P(\varepsilon)$.
+\end{definition}
+
+\begin{proposition}[Duhamel heat-trace derivative]
+If $P_\tau$ is differentiable as a family of elliptic operators and the heat kernels are trace class, then
+\[
+\partial_\tau\mathcal N_P(s,\tau)
+=
+-s\,\Tr\bigl((\partial_\tau P_\tau)e^{-sP_\tau}\bigr).
+\]
+\end{proposition}
+\begin{proof}
+Duhamel's formula gives
+\[
+\partial_\tau e^{-sP_\tau}
+=
+-\int_0^s e^{-(s-u)P_\tau}(\partial_\tau P_\tau)e^{-uP_\tau}\,du.
+\]
+Taking the trace and using cyclicity under the trace-class hypotheses makes the integrand independent of $u$ inside the trace.  Integration over $u\in[0,s]$ gives the factor $s$.
+\end{proof}
+
+\begin{corollary}[Capacity decay under round unnormalised Ricci shrinkage]
+For a round radius $a(\tau)$ under unnormalised Ricci flow,
+\[
+\dot a=-\frac{2}{a}.
+\]
+In the Weyl regime,
+\[
+N_0\sim\frac{a^3}{3\varepsilon^3},
+\qquad
+N_{\rm TT}\sim N_D\sim\frac{2a^3}{3\varepsilon^3},
+\]
+so
+\[
+\dot N_0\sim-\frac{2a}{\varepsilon^3},
+\qquad
+\dot N_{\rm TT}\sim\dot N_D\sim-\frac{4a}{\varepsilon^3}.
+\]
+\end{corollary}
+
+\begin{remark}[Status of flow identities]
+These identities are retained because they give a controlled way to vary capacities under geometric deformation.  They are not used to derive cosmological dynamics.
+\end{remark}
+
+
+\section{Homogeneous projectors and causal integration}
+\label{sec:projectors}
+
+\begin{theorem}[Shell-complete projector fraction]
+Let $P$ be a homogeneous elliptic operator acting on a homogeneous vector bundle $E\to S^3_{R_{\rm curv}}$, and let $\Pi^P_\Lambda$ be a complete spectral projector onto full representation shells.  If the isometry group acts transitively and intertwines $P$, then
+\[
+\frac{\Tr(1_B\Pi^P_\Lambda1_B)}{\Tr \Pi^P_\Lambda}
+=
+\frac{\Vol(B)}{\Vol(S^3_{R_{\rm curv}})}
+\]
+for every geodesic ball $B$.
+\end{theorem}
+\begin{proof}
+The operator trace localizes as
+\[
+\Tr(1_B\Pi^P_\Lambda1_B)
+=
+\int_B\operatorname{tr}_{E_x}K_\Lambda^P(x,x)\,dV_x.
+\]
+Shell-completeness and homogeneity imply that the fiber trace
+\[
+\operatorname{tr}_{E_x}K_\Lambda^P(x,x)
+\]
+is constant on $S^3_{R_{\rm curv}}$.  The numerator is this constant times $\Vol(B)$, and the denominator is the same constant times $\Vol(S^3_{R_{\rm curv}})$.
+\end{proof}
+
+\begin{corollary}[Causal spectral integration]
+In the shell-complete homogeneous case,
+\[
+\PIR_{P,\Lambda}(B_{cT})=\Gamma_{R_{\rm curv}}(T).
+\]
+\end{corollary}
+
+\begin{definition}[General inhomogeneous PIR kernel]
+Without shell-completeness or homogeneity define
+\[
+\PIR_{P,\Lambda}(B)=
+\frac{\int_B\operatorname{tr}_{E_x}K^P_\Lambda(x,x)\,dV_x}
+{\int_M\operatorname{tr}_{E_x}K^P_\Lambda(x,x)\,dV_x}.
+\]
+This equals a volume fraction only under the hypotheses of the preceding theorem.
+\end{definition}
+
+\begin{proposition}[PIR inhomogeneity defect]
+Let
+\[
+\rho_{P,\Lambda}(x)=
+\frac{\operatorname{tr}_{E_x}K^P_\Lambda(x,x)}
+{\Vol(M)^{-1}\int_M\operatorname{tr}_{E_y}K^P_\Lambda(y,y)\,dV_y},
+\]
+so that $\Vol(M)^{-1}\int_M\rho_{P,\Lambda}\,dV=1$.  Let $v(B)=\Vol(B)/\Vol(M)$.  Then
+\[
+\Delta_{\rm PIR}(B):=\PIR_{P,\Lambda}(B)-v(B)
+=
+\frac{1}{\Vol(M)}\int_B(\rho_{P,\Lambda}-1)\,dV,
+\]
+and
+\[
+|\Delta_{\rm PIR}(B)|
+\le
+v(B)\,\|\rho_{P,\Lambda}-1\|_{L^\infty(B)}.
+\]
+\end{proposition}
+\begin{proof}
+The first identity is direct substitution.  The estimate follows by bounding the integrand by its essential supremum on $B$.
+\end{proof}
+
+\section{Finite alphabets and code spaces}
+
+\begin{definition}[Finite per-mode alphabet]
+Let the sector-$P$ finite alphabet have size $q_P<\infty$ and
+\[
+b_P=\log_2q_P.
+\]
+A binary truncation has $q_P=2$ and $b_P=1$.
+\end{definition}
+
+\begin{definition}[Ideal causal operational Hilbert space]
+In the shell-complete finite-alphabet model, the accessible sector-$P$ operational space is idealized as
+\[
+\dim\mathcal H_{\rm op}^{(P)}(\varepsilon,T)
+=
+q_P^{\,\Gamma_{R_{\rm curv}}(T)N_P(\varepsilon)}.
+\]
+Therefore
+\[
+B_{\rm causal}^{(P)}(\varepsilon,T)
+=
+\log_2\dim\mathcal H_{\rm op}^{(P)}
+=
+b_P\,\Gamma_{R_{\rm curv}}(T)N_P(\varepsilon).
+\]
+\end{definition}
+
+\begin{proposition}[Finite-alphabet necessity]
+The product $\Gamma_{R_{\rm curv}}(T)N_P(\varepsilon)$ is a causal mode count, not a bit count.  It becomes a bit count only after multiplication by $b_P$.
+\end{proposition}
+\begin{proof}
+Mode counts record multiplicities.  Bits count alternatives in a finite alphabet.  The factor $b_P=\log_2q_P$ is the conversion.
+\end{proof}
+
+\section{Physical ceilings and the selector}
+\label{sec:selector-bounds}
+
+\begin{definition}[Physical domain data]
+Let $\mathcal D$ be a bounded physical domain with energy $E_{\mathcal D}$, circumscribing radius $r_{\mathcal D}$, and boundary area $A_{\mathcal D}$.  Define the two standard ceiling candidates
+\[
+B_{\rm Bek}(\mathcal D)=
+\frac{2\pi E_{\mathcal D}r_{\mathcal D}}{\hbar c\ln2},
+\qquad
+B_{\rm holo}(\mathcal D)=
+\frac{A_{\mathcal D}}{4\ellP^2\ln2}.
+\]
+These domain data are not automatically equal to the global curvature data of the carrier.
+\end{definition}
+
+\begin{definition}[Physical code capacity]
+Let $\mathcal H_{\rm code}\subseteq \mathcal H_{\rm op}^{(P)}(\varepsilon,T)$ range over code subspaces satisfying the imposed gauge, gravitational dressing, energy, entropy, and stability constraints inside $\mathcal D$.  Define
+\[
+B_{\rm phys}^{(P)}(\mathcal D)
+=
+\sup_{\mathcal H_{\rm code}}
+\log_2\dim\mathcal H_{\rm code}.
+\]
+\end{definition}
+
+\begin{proposition}[Safe selector bound]
+Assume the Bekenstein and holographic ceilings apply to the chosen domain $\mathcal D$~\cite{Bekenstein1973,Bekenstein1981,Bousso2002}.  Then
+\[
+B_{\rm phys}^{(P)}(\mathcal D)
+\le
+\min\left\{
+B_{\rm causal}^{(P)}(\varepsilon,T),
+B_{\rm Bek}(\mathcal D),
+B_{\rm holo}(\mathcal D)
+\right\}.
+\]
+\end{proposition}
+\begin{proof}
+The code subspace is a subspace of the causally accessible finite-alphabet operational space, so its bit dimension cannot exceed $B_{\rm causal}^{(P)}$.  By assumption it must also satisfy the domain's Bekenstein and holographic ceilings.  Taking the minimum gives the bound.
+\end{proof}
+
+\begin{definition}[Selector ratio]
+When $B_{\rm causal}^{(P)}(\varepsilon,T)>0$, define
+\[
+\Sigma_{\rm grav}^{(P)}(\mathcal D;\varepsilon,T)
+=
+\frac{B_{\rm phys}^{(P)}(\mathcal D)}
+{B_{\rm causal}^{(P)}(\varepsilon,T)}.
+\]
+\end{definition}
+
+\begin{corollary}[Selector contraction]
+\[
+0\le
+\Sigma_{\rm grav}^{(P)}(\mathcal D;\varepsilon,T)
+\le1.
+\]
+\end{corollary}
+\begin{proof}
+Non-negativity follows from non-negativity of dimensions.  The upper bound follows from
+$B_{\rm phys}^{(P)}\le B_{\rm causal}^{(P)}$.
+\end{proof}
+
+\begin{definition}[Min-law saturation model]
+Set
+\[
+B_{\rm ceil}(\mathcal D)=
+\min\{B_{\rm Bek}(\mathcal D),B_{\rm holo}(\mathcal D)\}.
+\]
+The min-law saturation model is the algebraic model
+\[
+B_{\rm phys}^{(P)}(\mathcal D)
+=
+\min\{
+B_{\rm causal}^{(P)}(\varepsilon,T),
+B_{\rm ceil}(\mathcal D)
+\}.
+\]
+It is not a claim that all physical systems saturate the ceilings.
+\end{definition}
+
+\begin{proposition}[Min-law selector normal form]
+Under the min-law saturation model,
+\[
+\Sigma_{\rm grav}^{(P)}
+=
+\min\left\{
+1,
+\frac{B_{\rm ceil}(\mathcal D)}
+{b_P\,\Gamma_{R_{\rm curv}}(T)\,N_P(\varepsilon)}
+\right\}.
+\]
+\end{proposition}
+\begin{proof}
+Divide the min-law expression for $B_{\rm phys}^{(P)}$ by
+$B_{\rm causal}^{(P)}=b_P\Gamma_{R_{\rm curv}}(T)N_P(\varepsilon)$.
+\end{proof}
+
+
+\begin{corollary}[Saturation--filtering dichotomy]
+Let
+\[
+D_P=b_P\Gamma_{R_{\rm curv}}(T)N_P(\varepsilon).
+\]
+If $D_P\le B_{\rm ceil}(\mathcal D)$, then $\Sigma_{\rm grav}^{(P)}=1$ in the min-law model.  If $D_P>B_{\rm ceil}(\mathcal D)$, then
+\[
+\Sigma_{\rm grav}^{(P)}
+=
+\frac{B_{\rm ceil}(\mathcal D)}{D_P}<1.
+\]
+\end{corollary}
+
+\begin{proposition}[Phase threshold]
+\label{prop:phase-threshold}
+For fixed $\varepsilon$ and $B_{\rm ceil}(\mathcal D)$, define the threshold load ratio
+\[
+\eta_P(\chi)=
+\frac{B_{\rm ceil}(\mathcal D)}{b_PN_P(\chi)}.
+\]
+A causal threshold $\tau_*\in(0,\pi)$ exists uniquely whenever
+\[
+0<\eta_P(\chi)<1.
+\]
+It is defined by
+\[
+\Gamma(\tau_*)=\eta_P(\chi).
+\]
+\end{proposition}
+\begin{proof}
+$\Gamma$ is continuous and nondecreasing on $[0,\pi]$, with $\Gamma(0)=0$ and $\Gamma(\pi)=1$, and it is strictly increasing on the interior away from the endpoint degeneracies.  The intermediate value theorem gives existence, and monotonicity gives uniqueness.
+\end{proof}
+
+\begin{proposition}[Cutoff monotonicity in the filtered regime]
+Assume $B_{\rm ceil}(\mathcal D)$, $b_P$, and $T$ are fixed, and that $N_P(\varepsilon)$ increases as $\varepsilon$ decreases.  In the filtered regime,
+\[
+\Sigma_{\rm grav}^{(P)}(\varepsilon)
+=
+\frac{B_{\rm ceil}(\mathcal D)}
+{b_P\Gamma_{R_{\rm curv}}(T)N_P(\varepsilon)}.
+\]
+Therefore refining the cutoff cannot increase $\Sigma_{\rm grav}^{(P)}$.
+\end{proposition}
+\begin{proof}
+The numerator is fixed and the denominator is nondecreasing under refinement.
+\end{proof}
+
+\begin{corollary}[Filtered scalar asymptotic]
+For scalar modes in the filtered Weyl regime,
+\[
+\Sigma_{\rm grav}^{\rm sc}(\varepsilon)
+\sim
+\frac{3B_{\rm ceil}(\mathcal D)}
+{b_{\rm sc}\Gamma_{R_{\rm curv}}(T)}
+\left(\frac{\varepsilon}{R_{\rm curv}}\right)^3.
+\]
+\end{corollary}
+
+\begin{corollary}[Resolution-halving law]
+In the scalar filtered Weyl regime,
+\[
+\frac{\Sigma_{\rm grav}^{\rm sc}(\varepsilon/2)}
+{\Sigma_{\rm grav}^{\rm sc}(\varepsilon)}
+\to
+\frac18.
+\]
+\end{corollary}
+
+\begin{corollary}[Early-time fine-resolution self-similarity]
+\label{cor:double-asymptotic}
+If both the causal window is early,
+\[
+\tau=\frac{cT}{R_{\rm curv}}\ll1,
+\]
+and the cutoff is fine, $\varepsilon\ll R_{\rm curv}$, then substituting
+\[
+\Gamma(\tau)\sim\frac{2}{3\pi}\tau^3,
+\qquad
+N_P(\varepsilon)\sim C_P\left(\frac{R_{\rm curv}}{\varepsilon}\right)^3
+\]
+into
+\[
+D_P=b_P\Gamma_{R_{\rm curv}}(T)N_P(\varepsilon)
+\]
+gives
+\[
+D_P\sim
+\frac{2b_PC_P}{3\pi}
+\left(\frac{cT}{\varepsilon}\right)^3,
+\qquad
+\Sigma_{\rm grav}^{(P)}
+\sim
+\frac{3\pi B_{\rm ceil}(\mathcal D)}
+{2b_PC_P}
+\left(\frac{\varepsilon}{cT}\right)^3
+\]
+in the filtered min-law regime.  The curvature radius cancels exactly in this joint corner.  The corresponding critical ratio at $D_P=B_{\rm ceil}(\mathcal D)$ is
+\[
+\frac{cT_*}{\varepsilon_*}
+=
+\left(
+\frac{3\pi B_{\rm ceil}(\mathcal D)}
+{2b_PC_P}
+\right)^{1/3}.
+\]
+\end{corollary}
+\begin{proof}
+This is direct substitution.  The powers of $R_{\rm curv}$ from the causal fraction and the Weyl count cancel.  Setting $D_P=B_{\rm ceil}(\mathcal D)$ gives the displayed cubic equation.
+\end{proof}
+
+\begin{proposition}[Ceiling stability]
+For fixed positive
+\[
+D_P=b_P\Gamma_{R_{\rm curv}}(T)N_P(\varepsilon),
+\]
+the map
+\[
+B\mapsto \min\{1,B/D_P\}
+\]
+is $D_P^{-1}$-Lipschitz:
+\[
+|\Sigma(B_1)-\Sigma(B_2)|
+\le
+\frac{|B_1-B_2|}{D_P}.
+\]
+\end{proposition}
+\begin{proof}
+The function $B\mapsto B/D_P$ has Lipschitz constant $D_P^{-1}$, and truncation by $\min\{1,\cdot\}$ cannot increase Lipschitz constants.
+\end{proof}
+
+\begin{remark}[What the selector does not prove]
+The condition $\Sigma_{\rm grav}\ll1$ is an information-capacity statement.  It does not by itself prove decoherence, classicality, pointer-state selection, or loss of quantum interference.  Those are dynamical claims and require a dynamical model.
+\end{remark}
+
+
+
+\section{Sector aggregation and common ceilings}
+
+\begin{proposition}[Convex sector aggregation]
+For independent sectors with causal bit capacities $B_i>0$ and selector ratios $\Sigma_i$, define
+\[
+\Sigma_{\rm tot}=\frac{\sum_i\Sigma_iB_i}{\sum_iB_i}.
+\]
+Then
+\[
+\min_i\Sigma_i\le\Sigma_{\rm tot}\le\max_i\Sigma_i.
+\]
+\end{proposition}
+\begin{proof}
+The total selector is a weighted average of the $\Sigma_i$ with nonnegative weights $B_i/\sum_jB_j$.
+\end{proof}
+
+\begin{proposition}[Common-ceiling non-additivity]
+If several sectors share one physical domain $\mathcal D$ and hence one active global ceiling $B_{\rm ceil}(\mathcal D)$, then
+\[
+B_{\rm phys}^{\rm total}
+\le
+\min\left\{\sum_iB_{\rm causal}^{(i)},B_{\rm ceil}(\mathcal D)\right\}.
+\]
+Assigning the same domain ceiling independently to each sector overcounts whenever the sum of independent assignments exceeds $B_{\rm ceil}(\mathcal D)$.
+\end{proposition}
+\begin{proof}
+The total code subspace still lies in the same bounded physical domain.  It cannot exceed the product operational alphabet, and it cannot exceed the common domain ceiling.
+\end{proof}
+
+\begin{proposition}[Ceiling meet]
+For multiple independent ceilings $B_1,\dots,B_m$ applied sequentially,
+\[
+\min\{\cdots\min\{\min\{D,B_1\},B_2\}\cdots,B_m\}
+=
+\min\{D,B_1,\dots,B_m\}.
+\]
+\end{proposition}
+\begin{proof}
+This is associativity, commutativity, and idempotence of the minimum operation on real numbers.
+\end{proof}
+
+
+\section{Energy--area comparison}
+\label{sec:energy-area}
+
+\begin{proposition}[Bekenstein--holographic ratio]
+For a spherical domain $\mathcal D$ of radius $r_{\mathcal D}$ and area $A_{\mathcal D}=4\pi r_{\mathcal D}^2$,
+\[
+\frac{B_{\rm Bek}}{B_{\rm holo}}
+=
+\frac{\frac{2\pi E_{\mathcal D}r_{\mathcal D}}{\hbar c\ln2}}
+{\frac{A_{\mathcal D}}{4\ellP^2\ln2}}
+=
+\frac{2GE_{\mathcal D}}{c^4r_{\mathcal D}}.
+\]
+\end{proposition}
+\begin{proof}
+Substitute $A_{\mathcal D}=4\pi r_{\mathcal D}^2$ and $\ellP^2=\hbar G/c^3$ into the ratio and cancel common factors.
+\end{proof}
+
+\begin{corollary}[Critical collapse equality]
+At
+\[
+E_{\mathcal D}=\frac{r_{\mathcal D}c^4}{2G},
+\]
+one has
+\[
+B_{\rm Bek}=B_{\rm holo}.
+\]
+\end{corollary}
+
+\begin{corollary}[Ceiling-phase trichotomy]
+With
+\[
+\mathcal C_E(\mathcal D)=
+\frac{2GE_{\mathcal D}}{c^4r_{\mathcal D}},
+\]
+\[
+\mathcal C_E<1\Rightarrow B_{\rm Bek}<B_{\rm holo},
+\qquad
+\mathcal C_E>1\Rightarrow B_{\rm holo}<B_{\rm Bek},
+\qquad
+\mathcal C_E=1\Rightarrow B_{\rm Bek}=B_{\rm holo}.
+\]
+\end{corollary}
+
+\begin{proposition}[Black-hole criticality]
+For a Schwarzschild black hole evaluated at its horizon radius
+\[
+r_s=\frac{2GM}{c^2},
+\qquad
+E=Mc^2,
+\]
+one has
+\[
+\mathcal C_E=\frac{2G\,Mc^2}{c^4r_s}=1,
+\]
+and therefore
+\[
+B_{\rm Bek}=B_{\rm holo}
+=
+\frac{4\pi GM^2}{\hbar c\ln2}
+=
+\frac{S_{\rm BH}}{\ln2}.
+\]
+\end{proposition}
+\begin{proof}
+Substitute $r_s=2GM/c^2$.  Equality of the ceilings follows from the critical case of the trichotomy.  Substitution into either ceiling gives the displayed Bekenstein--Hawking entropy in bits~\cite{Bekenstein1973,Bekenstein1981}.
+\end{proof}
+
+\begin{proposition}[Screen-density diagnostic at critical compactness]
+At critical compactness for a domain with areal radius $r_{\mathcal D}$,
+\[
+E_{\rm crit}=\frac{c^4r_{\mathcal D}}{2G}.
+\]
+If this energy is divided by the formal round-$S^3$ screen volume
+\[
+V_{\rm scr}(r_{\mathcal D})=2\pi^2r_{\mathcal D}^3,
+\]
+one obtains the screen-density diagnostic
+\[
+\rho_{\rm scr}(r_{\mathcal D})
+=
+\frac{E_{\rm crit}}{V_{\rm scr}(r_{\mathcal D})}
+=
+\frac{c^4}{4\pi^2G\,r_{\mathcal D}^2}.
+\]
+Equivalently, writing $V=2\pi^2r_{\mathcal D}^3$,
+\[
+\rho_{\rm scr}(V)
+=
+\frac{c^4}{4\pi^2G}
+\left(\frac{2\pi^2}{V}\right)^{2/3}.
+\]
+\end{proposition}
+\begin{proof}
+The first equality is the critical case of the compactness parameter
+$\mathcal C_E=2GE/(c^4r_{\mathcal D})$.  The density formula is obtained by division by $2\pi^2r_{\mathcal D}^3$.  Solving $V=2\pi^2r_{\mathcal D}^3$ for $r_{\mathcal D}$ gives the final expression.
+\end{proof}
+
+\begin{remark}[Not an equation of state]
+The quantity $\rho_{\rm scr}$ is a formal screen diagnostic.  It is not an equation of state for matter and it is not an invariant statement about the interior volume of a black hole.  The Schwarzschild radius is an areal radius; the use of $2\pi^2r_{\mathcal D}^3$ here is a deliberately declared round-screen comparison, not a claim about the physical interior geometry.
+\end{remark}
+
+\begin{corollary}[Formal cosmological-constant scaling]
+If, only as a dimensional screen comparison, one sets an energy density $\rho_\Lambda$ equal to $\rho_{\rm scr}$ and uses
+\[
+\Lambda=\frac{8\pi G}{c^4}\rho_\Lambda,
+\]
+then
+\[
+\Lambda_{\rm scr}(r_{\mathcal D})
+=
+\frac{2}{\pi r_{\mathcal D}^2}.
+\]
+This is an $r^{-2}$ scaling diagnostic, not a derivation of dark energy.
+\end{corollary}
+\begin{proof}
+Substitute $\rho_{\rm scr}=c^4/(4\pi^2G r_{\mathcal D}^2)$ into $\Lambda=8\pi G\rho_\Lambda/c^4$ and cancel.
+\end{proof}
+
+
+
+\section{Worked physical calibrations of the ceiling structure}
+\label{sec:worked-calibrations}
+
+The following calibrations are included because they are useful.  Their status is limited: they locate familiar systems inside the energy--area comparison, but they do not identify those systems with the global $S^3$ carrier.
+
+\begin{proposition}[Hydrogen fine-structure identity]
+For the hydrogen ground state, taking $E=m_ec^2$ and $r_{\mathcal D}=a_0=\hbar/(m_ec\,\alpha)$,
+\[
+B_{\rm Bek}
+=
+\frac{2\pi E r_{\mathcal D}}{\hbar c\ln2}
+=
+\frac{2\pi}{\alpha\ln2}.
+\]
+\end{proposition}
+\begin{proof}
+The product $E r_{\mathcal D}=m_ec^2\cdot \hbar/(m_ec\alpha)=\hbar c/\alpha$.  Substitution gives the displayed identity.
+\end{proof}
+
+\begin{remark}[Reading the hydrogen identity]
+The identity uses the rest energy, as required in the Bekenstein expression.  It is not a derivation of atomic spectra from the selector, and it is not a claim that the hydrogen atom is a spatial three-sphere.
+\end{remark}
+
+\begin{proposition}[Black-hole criticality]
+For a Schwarzschild black hole evaluated at its own horizon radius
+\[
+r_{\mathcal D}=r_s=\frac{2GM}{c^2},
+\qquad
+E_{\mathcal D}=Mc^2,
+\]
+the compactness parameter satisfies
+\[
+\mathcal C_E=
+\frac{2GE_{\mathcal D}}{c^4r_{\mathcal D}}=1.
+\]
+Consequently
+\[
+B_{\rm Bek}=B_{\rm holo}
+=
+\frac{4\pi GM^2}{\hbar c\ln2}.
+\]
+\end{proposition}
+\begin{proof}
+Substitute $E_{\mathcal D}=Mc^2$ and $r_{\mathcal D}=2GM/c^2$ into $\mathcal C_E$.  Equality of the ceilings is the critical case of the ceiling trichotomy.  Substituting $r_s$ into either ceiling gives the displayed expression.
+\end{proof}
+
+\begin{center}
+\small
+\begin{tabular}{p{0.34\linewidth}rrlr}
+\toprule
+System & $r_{\mathcal D}$ [m] & $\mathcal C_E$ & Active ceiling & $\log_{10}B_{\rm active}$ [bits]\\
+\midrule
+Hydrogen $(m_ec^2,a_0)$ & $5.29\times10^{-11}$ & $2.6\times10^{-47}$ & Bekenstein & $3.09$\\
+Proton $(m_pc^2,0.84\,{\rm fm})$ & $8.41\times10^{-16}$ & $3.0\times10^{-39}$ & Bekenstein & $1.56$\\
+Earth & $6.37\times10^{6}$ & $1.4\times10^{-9}$ & Bekenstein & $74.99$\\
+Sun & $6.96\times10^{8}$ & $4.2\times10^{-6}$ & Bekenstein & $82.55$\\
+Neutron star $(1.4M_\odot,12\,{\rm km})$ & $1.20\times10^{4}$ & $0.34$ & Bekenstein & $77.94$\\
+Black hole $(10M_\odot,r_s)$ & $2.95\times10^{4}$ & $1$ & both & $79.18$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{remark}[Status of the calibration table]
+The table is a dimensional and algebraic calibration of the two standard ceilings.  The entries are not evidence for $S^3$ topology and must not be read as such.
+\end{remark}
+
+
+\section{Holographic Planck-resolution screen fraction}
+\label{sec:holographic-screen}
+
+\begin{corollary}[Volume-to-area dimensional reduction]
+Assume the active ceiling is holographic,
+\[
+B_{\rm ceil}=B_{\rm holo}=\frac{\pi r_{\mathcal D}^2}{\ellP^2\ln2},
+\]
+causal accessibility is complete, and
+\[
+N_P(\varepsilon)\sim C_P\left(\frac{r_{\mathcal D}}{\varepsilon}\right)^3
+\]
+is used as a local screen count.  Then
+\[
+\Sigma_{\rm grav}^{(P)}
+\sim
+\frac{\pi}{b_PC_P\ln2}\,
+\frac{\varepsilon^3}{\ellP^2r_{\mathcal D}}.
+\]
+At Planck-scale resolution $\varepsilon=\ellP$,
+\[
+\Sigma_{\rm grav}^{(P)}
+\sim
+\frac{\pi}{b_PC_P\ln2}\frac{\ellP}{r_{\mathcal D}}.
+\]
+\end{corollary}
+\begin{proof}
+Substitute the holographic ceiling and Weyl count into the min-law filtered expression.  The area ceiling scales as $r_{\mathcal D}^2$, while the Weyl count scales as $r_{\mathcal D}^3$, leaving the factor $r_{\mathcal D}^{-1}$.
+\end{proof}
+
+\begin{corollary}[Scalar Planck-resolution coefficient]
+For the scalar sector with $C_0=1/3$ and $b_0=1$,
+\[
+\Sigma_{\rm holo}^{\rm sc}
+\sim
+\frac{3\pi}{\ln2}\frac{\ellP}{r_{\mathcal D}}
+\approx
+13.60\,\frac{\ellP}{r_{\mathcal D}},
+\]
+before applying the selector truncation by $\min\{1,\cdot\}$.  The formula is a holographic Planck-resolution screen estimate.  It is not restricted to Compton radii, and it does not assert that the object of radius $r_{\mathcal D}$ is a three-sphere.
+\end{corollary}
+
+\begin{remark}[Hydrogen uses the Bekenstein ceiling]
+For hydrogen with $r_{\mathcal D}=a_0$ and $E=m_ec^2$, the Bekenstein ceiling gives
+\[
+B_{\rm Bek}
+=
+\frac{2\pi m_ec^2a_0}{\hbar c\ln2}
+=
+\frac{2\pi}{\alpha\ln2}
+\approx1242\ {\rm bits}.
+\]
+This ceiling is not the same as the holographic Planck-resolution screen fraction.  Mixing these two estimates produces incorrect selector values.
+\end{remark}
+
+
+
+
+\begin{corollary}[Compton-screen evaluation]
+\label{cor:compton-screen}
+Evaluating the preceding holographic screen fraction for the scalar sector ($C_0=1/3$, $b=1$) at the reduced Compton radius
+\[
+R_{\rm scr}=\frac{\hbar}{mc}
+\]
+of a particle of mass $m$ gives the Weyl-regime form
+\[
+\Sigma_{\rm grav}^{\rm sc}
+\sim
+\frac{3\pi}{\ln2}\frac{\ellP}{R_{\rm scr}}
+=
+\frac{3\pi}{\ln2}\frac{m}{m_P}
+\approx 13.60\,\frac{m}{m_P}.
+\]
+Numerically, electron $\Sigma\approx5.7\times10^{-22}$, proton $\Sigma\approx1.0\times10^{-18}$, and top quark $\Sigma\approx1.9\times10^{-16}$.
+\end{corollary}
+\begin{proof}
+$\ellP mc/\hbar=m\sqrt{G/(\hbar c)}=m/m_P$ by the definitions of $\ellP$ and $m_P$.  Substitute into the scalar Planck-resolution holographic fraction with $bC_0=1/3$.
+\end{proof}
+\begin{remark}
+This assigns a screen value to the radius $R_{\rm scr}=\hbar/(mc)$.  It does not assert that the particle is a spatial three-sphere.  The Weyl approximation also fails near the Planck mass before the selector can be treated literally beyond the min-law cap.
+\end{remark}
+
+\section{Numerical calibration of the closed formulae}
+
+For the illustrative curvature radius
+\[
+R_{\rm curv}=548.324513026856039\ {\rm Gly},
+\]
+the following evaluations test the formulas and their units.  They are conditional calibrations, not measured topology.
+
+\begin{center}
+\small
+\begin{tabular}{lrr}
+\toprule
+Quantity & Value & Unit/status\\
+\midrule
+$R_{\rm curv}$ & $548.324513026856039$ & Gly\\
+$t_{\rm coh}=\pi R_{\rm curv}/c$ & $1722.612261908371693$ & Gyr\\
+$\Gamma_{R_{\rm curv}}(t_0)$ & $3.373402908291\times10^{-6}$ & dimensionless\\
+$\Gamma_{R_{\rm curv}}(D_{\rm particle}/c)$ & $1.261377743888\times10^{-4}$ & dimensionless\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\paragraph{Hubble-radius reference row.}
+For the local Hubble-radius atlas row we take
+\[
+r_H=\frac{c}{H_0},\qquad
+H_0=67.4\ {\rm km\,s^{-1}\,Mpc^{-1}},\qquad
+T=t_0=13.79\ {\rm Gyr},\qquad
+\varepsilon=\ellP,\qquad b_P=1,
+\]
+and use the scalar binary sector with the holographic ceiling.  Then
+\[
+\tau_H=\frac{ct_0}{r_H}\approx0.951,\qquad
+\Gamma(\tau_H)\approx0.152.
+\]
+The exact scalar count at Planck resolution gives
+\[
+B_{\rm causal}^{(0)}
+=
+\Gamma(\tau_H)N_0(r_H,\ellP)
+\approx
+3.10\times10^{181}\ {\rm bits}.
+\]
+The holographic ceiling is
+\[
+B_{\rm holo}(r_H)
+=
+\frac{\pi r_H^2}{\ellP^2\ln2}
+\approx
+3.27\times10^{122}\ {\rm bits}.
+\]
+Thus, in the filtered min-law row,
+\[
+B_{\rm phys}=B_{\rm holo},\qquad
+\Sigma_{\rm grav}^{(0)}
+=
+\frac{B_{\rm holo}}{B_{\rm causal}^{(0)}}
+\approx
+1.05\times10^{-59}.
+\]
+This row uses the local Hubble radius \(r_H=c/H_0\).  It is distinct from the illustrative global-curvature calibration using \(R_{\rm curv}=548.3245\ {\rm Gly}\), for which the causal fraction is much smaller because the carrier radius is different.
+
+\section{Observable templates with theorem-status boundary}
+\label{sec:observable-templates}
+
+The templates below are falsifiable templates.  They are not used in the proof of the selector theorem.
+
+\begin{definition}[Golden-ratio scale ansatz]
+Let $\varphi=(1+\sqrt5)/2$.  A structural scale-ladder ansatz sets
+\[
+R_n=\ellP\varphi^n.
+\]
+This is a convention for a possible logarithmic scale template, not a derived law.
+\end{definition}
+
+\begin{proposition}[Log-periodic large-scale-structure template]
+If matter-power oscillations are periodic in $\ln k$ with period set by the golden-ratio scale ladder, the template is
+\[
+P(k)=P_{\rm smooth}(k)\bigl[1+A\cos(\omega_\varphi\ln k+\phi_0)\bigr],
+\qquad
+\omega_\varphi=\frac{2\pi}{\ln\varphi}\approx13.057.
+\]
+This test is independent of the closed selector theorem.  The frequency
+\[
+\omega_\varphi=2\pi/\ln\varphi
+\]
+is fixed before looking at the data.  The amplitude $A$, phase $\phi_0$, smooth broadband shape, tracer sample, $k$-range, and covariance treatment are nuisance-analysis choices and must be preregistered.  A null result constrains only this log-periodic observational template; it does not falsify the causal-spectral selector theorem.
+
+When Astropy's Lomb--Scargle implementation is used, the scanned frequency is
+\[
+f=\omega/(2\pi),
+\]
+since the package uses cycles per unit argument rather than angular frequency.
+\end{proposition}
+
+\begin{proposition}[Compact gravitational-wave comb template]
+On a compact round carrier of radius $R_0$, a discrete frequency template is
+\[
+f_n=\frac{nc}{2\pi R_0},
+\qquad n=1,2,3,\dots.
+\]
+Absence of such a comb at the sensitivity of a given detector is a null test of that template for that $R_0$, not a disproof of the algebraic selector.
+\end{proposition}
+
+\begin{proposition}[Projected chord and spectral-gap templates]
+Projected chord scales on a round carrier of effective radius $R_{\rm eff}$ follow
+\[
+d_\ell^{\rm th}=2R_{\rm eff}\sin\!\left(\frac{\pi}{\ell+1}\right),
+\qquad
+\lambda_\ell=\frac{\ell(\ell+2)}{R_{\rm eff}^2}.
+\]
+A finite-volume threshold $\Delta=\sqrt3/R_{\rm eff}$ is a compact spectral template only.  It is not an infinite-volume Yang--Mills mass-gap statement.
+\end{proposition}
+
+\begin{proposition}[Fibonacci correlation scalings]
+For $F_{n+1}=F_n+F_{n-1}$ and $R_n=\ellP\varphi^n$,
+\[
+\frac{F_{n-1}}{F_n}\to\varphi^{-1},
+\qquad
+I_n:=F_nF_{n-1}\sim\varphi^{2n},
+\qquad
+V_n\sim R_n^3\sim\varphi^{3n},
+\qquad
+\frac{I_n}{V_n}\sim\varphi^{-n}\to0.
+\]
+\end{proposition}
+\begin{proof}
+The asymptotic $F_n\sim\varphi^n/\sqrt5$ gives the displayed orders by direct substitution.
+\end{proof}
+
+\begin{remark}[Template failure modes]
+Each observational template fails independently.  None is an assumption of the closed selector theorem.
+\end{remark}
+
+
+
+
+\section{Preregistered observational pipelines}
+\label{sec:preregistered-pipelines}
+
+The observational programme below is not a test of the closed selector theorem itself.  It is a set of independent null tests for screen-induced templates.  Each test must fix its carrier model, observable, nuisance model, data range, and covariance treatment before looking at the data.  A positive result supports only the corresponding template; a null result constrains only that template.
+
+\subsection{Class I: admissible immediate tests}
+
+\paragraph{Log-periodicity in large-scale structure.}
+The admissible template is
+\[
+P(k)=P_{\rm smooth}(k)
+\bigl[
+1+A\cos(\omega_\varphi\ln k+\phi_0)
+\bigr],
+\qquad
+\omega_\varphi=\frac{2\pi}{\ln\varphi}.
+\]
+The frequency $\omega_\varphi$ is fixed before the analysis.  The amplitude $A$, phase $\phi_0$, broadband shape, tracer sample, $k$-range, and covariance treatment are nuisance-analysis choices and must be preregistered.  The test should be run on large-scale-structure power-spectrum products with covariance matrices or mocks.  A null result constrains $A$; it does not affect the closed selector theorem.
+
+When Astropy's Lomb--Scargle implementation is used, the scanned frequency is
+\[
+f=\frac{\omega}{2\pi},
+\]
+since the package uses cycles per unit argument rather than angular frequency.  Thus the golden-ratio target is
+\[
+f_\varphi=\frac{1}{\ln\varphi}.
+\]
+
+\paragraph{Compact spherical modes in the low-$\ell$ CMB.}
+The admissible test is a likelihood comparison between a flat $\Lambda$CDM baseline and a compact-carrier template using the discrete spectral structure of a round $S^3$.  The relevant domain is the low-multipole regime, especially $\ell\lesssim10$, where compact-mode effects would be least suppressed.  The result must be reported as a likelihood ratio, Bayes factor, or posterior constraint on an effective radius $R_{\rm eff}$.  It must not be promoted to a proof of global $S^3$ topology.
+
+\paragraph{Gravitational-wave comb as a null test.}
+For a compact carrier of preregistered radius $R_0$, the comb template is
+\[
+f_n=\frac{nc}{2\pi R_0},
+\qquad n=1,2,3,\ldots .
+\]
+The value of $R_0$, the frequency band, the line-identification procedure, and all instrumental vetoes must be fixed before the search.  The test is a null test for that particular compact-carrier template.  It is not a licence to search residual detector noise for arbitrary periodicities.
+
+\paragraph{Hopfion surveys in measured field systems.}
+A physical Hopf link is admissible only when a measured field or order parameter defines a map
+\[
+\Phi:M^3\to S^2
+\]
+with a computable Hopf invariant.  Suitable systems include spinor Bose--Einstein condensates, magnetic textures, liquid crystals, and superfluid media where the full three-dimensional field configuration can be reconstructed.  The search statistic is the Hopf invariant or an equivalent linking number of regular fibers.  The result does not generalize to all matter.
+
+\subsection{Class II: tests requiring corrected hypotheses}
+
+\paragraph{Gauge-invariant linked observables in lattice QCD.}
+It is not admitted to assert that baryons possess a Hopf invariant of the gluon field without defining a gauge-invariant observable.  A possible corrected programme is to define linked-flux or Wilson-loop observables under explicit compact boundary conditions and test them in lattice QCD.  The operator, boundary conditions, ensemble, lattice spacing, continuum extrapolation, and statistical significance criterion must be specified before the test can be run.
+
+\paragraph{Topology of cosmic filaments.}
+It is not admitted to predict Hopf-linked galaxy filaments without a physical map $\Phi:M^3\to S^2$.  A corrected test may use persistent homology or filament-network statistics to compare observed galaxy catalogues with $\Lambda$CDM mocks.  Such a test can report deviations from the mock distribution, but it is not a Hopf-link prediction unless a field map and Hopf invariant are defined.
+
+\paragraph{Particle mass--radius relations.}
+If the radius is chosen to be the reduced Compton length,
+\[
+r=\frac{\hbar}{mc},
+\]
+then $m\propto1/r$ is an identity, not a prediction.  If another radius is used, such as a charge radius, confinement radius, or nuclear radius, no universal inverse law follows from the selector theorem.  Such comparisons may be used only as diagnostic plots, not as evidence that particles are three-spheres.
+
+\subsection{Class III: scope boundaries}
+
+The following statements are outside the scope of the observational programme unless supplied with independent dynamics and evidence:
+\begin{enumerate}
+\item the claim that the screen-density diagnostic exactly equals the observed dark-energy density;
+\item the claim that decoherence times are bounded by $t_{\rm coh}=\pi r/c$;
+\item the claim that ordinary bodies possess an entropy correction proportional to their area;
+\item the claim that a modified Heisenberg relation follows from treating particles as three-spheres;
+\item the claim that all physical traces of the trisphere screen are already present in archival data.
+\end{enumerate}
+
+The corrected statement is weaker and testable: some $S^3$-screen templates define independent falsifiable statistical searches.  Their outcomes constrain those templates, not the closed theorem that physically admissible distinguishability is a contraction of causally accessible finite-alphabet distinguishability.
+
+
+
+\section{Derived selector phase diagrams and admissible research questions}
+\label{sec:derived-selector-programme}
+
+This section records consequences that follow algebraically from the selector theorem and separates them from dynamical or external open-problem claims.  Its role is diagnostic: it gives computable phase diagrams and admissible research questions without promoting them into new physical laws.
+
+\subsection{Selector phase taxonomy}
+
+In the min-law model let
+\[
+D_P(\tau,\chi)=b_P\Gamma(\tau)N_P(\chi),
+\qquad
+\chi=\varepsilon/R_{\rm curv}.
+\]
+Then the selector has only two algebraic phases:
+\[
+D_P\le B_{\rm ceil}\quad\Longrightarrow\quad \Sigma_{\rm grav}^{(P)}=1,
+\]
+and
+\[
+D_P>B_{\rm ceil}\quad\Longrightarrow\quad
+\Sigma_{\rm grav}^{(P)}=\frac{B_{\rm ceil}}{D_P}<1.
+\]
+For fixed $\chi$, $b_P$, and $B_{\rm ceil}$, a unique causal threshold $\tau_*\in(0,\pi)$ exists whenever
+\[
+0<\frac{B_{\rm ceil}}{b_PN_P(\chi)}<1,
+\]
+and it is defined by
+\[
+\Gamma(\tau_*)=\frac{B_{\rm ceil}}{b_PN_P(\chi)}.
+\]
+Thus the curves
+\[
+b_P\Gamma(\tau)N_P(\chi)=B_{\rm ceil}
+\]
+give a selector phase portrait in the $(\tau,\chi)$-plane.  This is a computational consequence of the min-law model, not a dynamical cosmology.
+
+\begin{remark}[Calibration warning for phase thresholds]
+A numerical threshold is meaningful only after $B_{\rm ceil}$, $b_P$, $P$, $N_P$, $\varepsilon$, and the causal domain have been fixed.  For the Hubble-radius reference row above,
+\[
+B_{\rm causal}^{(0)}\approx3.10\times10^{181},\qquad
+B_{\rm phys}=B_{\rm holo}\approx3.27\times10^{122},\qquad
+\Gamma(t_0)\approx0.152.
+\]
+Hence
+\[
+\Sigma(t_0)\approx1.05\times10^{-59},
+\qquad
+\Gamma_*=\Sigma(t_0)\Gamma(t_0)\approx1.60\times10^{-60}.
+\]
+Using the early-time cubic law
+\[
+\Gamma(\tau)\sim\frac{2}{3\pi}\tau^3
+\]
+gives
+\[
+\tau_*\approx
+\left(\frac{3\pi}{2}\Gamma_*\right)^{1/3}
+\approx1.96\times10^{-20}.
+\]
+For the local Hubble-radius row, $T=(\tau r_H)/c$, and this corresponds to
+\[
+T_*\approx9.0\times10^{-3}\ {\rm s}.
+\]
+The number is a diagnostic of the chosen Planck-resolution calibration; it must not be read as a universal transition time.
+\end{remark}
+
+\subsection{Early-time fine-resolution similarity}
+
+In the joint asymptotic regime
+\[
+\tau\ll1,\qquad \chi\ll1,
+\]
+one has
+\[
+\Gamma(\tau)\sim\frac{2}{3\pi}\tau^3,
+\qquad
+N_P(\varepsilon)\sim C_P\left(\frac{R_{\rm curv}}{\varepsilon}\right)^3.
+\]
+Therefore
+\[
+D_P\sim
+\frac{2b_PC_P}{3\pi}
+\left(\frac{cT}{\varepsilon}\right)^3,
+\]
+and in the filtered regime
+\[
+\Sigma_{\rm grav}^{(P)}
+\sim
+\frac{3\pi B_{\rm ceil}}{2b_PC_P}
+\left(\frac{\varepsilon}{cT}\right)^3.
+\]
+The curvature radius cancels in this double asymptotic corner.  The critical ratio at $D_P=B_{\rm ceil}$ is
+\[
+\frac{cT_*}{\varepsilon_*}
+=
+\left(
+\frac{3\pi B_{\rm ceil}}{2b_PC_P}
+\right)^{1/3}.
+\]
+For the scalar binary sector, $C_0=1/3$ and $b_P=1$, so
+\[
+\frac{cT_*}{\varepsilon_*}
+=
+\left(
+\frac{9\pi B_{\rm ceil}}{2}
+\right)^{1/3}.
+\]
+
+\subsection{Landauer interpretation of geometric capacity loss}
+
+The Ricci-flow capacity decay formulas give changes in formal spectral mode counts.  They do not by themselves imply heat production.  A Landauer lower bound applies only when the lost distinctions are finite logical sectors physically reset into a bath.  Under that additional hypothesis,
+\[
+\Delta Q\ge k_BT_{\rm bath}\ln2\,|\Delta B|
+\]
+for a loss of $|\Delta B|$ logical bits.  Thus Ricci-flow capacity loss may be used as conditional thermodynamic bookkeeping, but it is not a derivation of Hawking radiation or of any physical collapse temperature.
+
+\subsection{Cosmological phase diagrams}
+
+A cosmological selector profile
+\[
+\Sigma_{\rm grav}^{(P)}(a)
+\]
+is computable only after specifying the background dynamics and the domain prescription:
+\[
+a(t),\quad r_{\mathcal D}(t),\quad E_{\mathcal D}(t),
+\quad A_{\mathcal D}(t),\quad \varepsilon(t),\quad b_P.
+\]
+With these inputs fixed, the exact spectral counts, causal fraction, and ceiling functions determine a phase diagram.  Without these inputs, no claim about inflation, reheating, or dark-energy domination follows from the selector theorem alone.
+
+\subsection{Admissible external-problem questions}
+
+The finite-volume compact-carrier framework may be used to pose auxiliary questions about external problems.  It does not solve them.
+
+For Yang--Mills theory, an admissible question is whether any compact-carrier lower spectral threshold admits a lower bound uniform in $R$ as $R\to\infty$.  A threshold proportional to $1/R$ vanishes in this limit and therefore cannot prove an infinite-volume mass gap.
+
+For computational complexity, the selector gives physical resource bounds on finite physical codes.  This is not a reformulation of $P$ versus $NP$, which is a formal asymptotic question about computational models.
+
+For the Hodge conjecture, the round real three-sphere is not the relevant object.  The Hodge conjecture concerns smooth projective complex varieties.  No Hodge-theoretic claim is made here.
+
+
+
+\section{Algebraic invariant network}
+\label{sec:algebraic-invariant-network}
+
+This section records algebraic consequences of the round-screen formulas and the selector theorem.  It does not promote the screen transform to a topology theorem and does not claim a derivation of new local physics.
+
+\subsection{Curvature, area, and screen-density identities}
+
+For a round screen radius \(r\),
+\[
+V_3(r)=2\pi^2r^3,
+\qquad
+\mathcal R_3(r)=\frac6{r^2}.
+\]
+At black-hole compactness, using the areal-radius critical energy
+\[
+E_{\rm crit}(r)=\frac{c^4r}{2G},
+\]
+division by the formal round-\(S^3\) screen volume gives the screen energy-density diagnostic
+\[
+\rho_{\rm scr}^{E}(r)
+=
+\frac{E_{\rm crit}(r)}{2\pi^2r^3}
+=
+\frac{c^4}{4\pi^2G r^2}.
+\]
+This quantity is a diagnostic attached to the screen transform.  It is not an invariant statement about the interior volume of a black hole and is not an equation of state for matter.
+
+The corresponding dimensional curvature comparison is
+\[
+\Lambda_{\rm scr}(r)
+=
+\frac{8\pi G}{c^4}\rho_{\rm scr}^{E}(r)
+=
+\frac{2}{\pi r^2}.
+\]
+This is a scale law of the screen diagnostic, not a derivation of the observed cosmological constant.
+
+The holographic bit ceiling can be written either as an area law or as a curvature inverse:
+\[
+B_{\rm holo}(r)
+=
+\frac{\pi r^2}{\ell_P^2\ln2}
+=
+\frac{6\pi}{\ell_P^2\ln2}\frac1{\mathcal R_3(r)}.
+\]
+Thus, for the round screen, the area ceiling is inversely proportional to the scalar curvature.
+
+Finally,
+\[
+\frac{\rho_{\rm scr}^{E}(r)}{\mathcal R_3(r)}
+=
+\frac{c^4}{24\pi^2G}
+\]
+is independent of \(r\).  This is an algebraic invariant of the screen-density diagnostic.  It should not be read as a derivation of quantum gravity or cosmology.
+
+\subsection{Selector similarity and resolution threshold}
+
+In the joint asymptotic regime
+\[
+\tau=\frac{cT}{R_{\rm curv}}\ll1,
+\qquad
+\chi=\frac{\varepsilon}{R_{\rm curv}}\ll1,
+\]
+the causal fraction and spectral count obey
+\[
+\Gamma(\tau)\sim\frac{2}{3\pi}\tau^3,
+\qquad
+N_P(\varepsilon)\sim C_P\left(\frac{R_{\rm curv}}{\varepsilon}\right)^3.
+\]
+Hence
+\[
+D_P=b_P\Gamma(\tau)N_P(\varepsilon)
+\sim
+\frac{2b_PC_P}{3\pi}
+\left(\frac{cT}{\varepsilon}\right)^3.
+\]
+The curvature radius cancels in this double-asymptotic corner.
+
+The non-filtered condition \(D_P\le B_{\rm ceil}\) gives the operational resolution threshold
+\[
+\varepsilon
+\ge
+cT
+\left(
+\frac{2b_PC_P}{3\pi B_{\rm ceil}}
+\right)^{1/3}.
+\]
+Equivalently, in dimensionless form,
+\[
+\chi
+\ge
+\tau
+\left(
+\frac{2b_PC_P}{3\pi B_{\rm ceil}}
+\right)^{1/3}.
+\]
+
+If the active ceiling is holographic,
+\[
+B_{\rm ceil}
+=
+\frac{\pi r_{\mathcal D}^2}{\ell_P^2\ln2},
+\]
+then
+\[
+\varepsilon_{\min}
+=
+cT
+\left(
+\frac{2b_PC_P\ell_P^2\ln2}
+{3\pi^2r_{\mathcal D}^2}
+\right)^{1/3}.
+\]
+For the special diagnostic choice \(r_{\mathcal D}=cT\),
+\[
+\varepsilon_{\min}
+=
+(cT)^{1/3}\ell_P^{2/3}
+\left(
+\frac{2b_PC_P\ln2}{3\pi^2}
+\right)^{1/3}.
+\]
+This is a selector-resolution bound.  It is not a modified Heisenberg uncertainty principle.
+
+\subsection{Topological structures and admissible Hopf claims}
+
+The Hopf fibration
+\[
+S^1\hookrightarrow S^3\to S^2
+\]
+supplies a canonical topological structure on the model carrier.  Distinct Hopf fibers are linked once.  A physical Hopf invariant is admitted only when a physical field or order parameter defines a map
+\[
+\Phi:M^3\to S^2.
+\]
+For such a field, a Hopf invariant may be written, with convention-dependent normalization, as an integral of the form
+\[
+Q_H \propto \int A\wedge dA.
+\]
+The proportionality constant depends on the normalization of \(A\) and of the target-space area form.  Thus the manuscript does not fix a universal numerical prefactor for \(Q_H\).
+
+The existence of Hopf fibers on the model carrier does not imply that every physical object contains material Hopf rings.  Nor does it imply that particle spin, confinement, or hierarchical topology is determined by \(Q_H\).  Such statements require additional field equations, observables, and boundary conditions.
+
+A possible coding question is the following: if a finite topological alphabet of distinguishable sectors is defined, and if each sector is physically realizable inside a domain \(\mathcal D\), then the number of distinguishable topological code states is bounded by the same active code ceiling used by the selector.  Without such a finite alphabet and admissibility condition, no inequality of the form \(Q_H\le B_{\rm holo}/b_{\rm top}\) is asserted.
+
+\subsection{Admitted cross-domain appearances}
+
+The following appearances of \(S^3\) structure are admitted with their proper carriers:
+\begin{enumerate}
+\item the Fock \(SO(4)\) symmetry of the hydrogen atom, where the \(S^3\) lives in momentum space at fixed bound-state energy;
+\item the pure-state carrier of a qubit, where \(S^3\subset\mathbb C^2\) is reduced to the Bloch sphere by quotienting the global phase;
+\item hopfions in field systems, where \(S^3\)-type topology appears in the configuration space of a measured field or order parameter.
+\end{enumerate}
+These examples demonstrate recurrence of the same mathematics across distinct carriers.  They do not prove a common spatial topology.
+
+\subsection{External problems}
+
+For Yang--Mills theory, the admissible compact-carrier question is whether a finite-volume lower threshold can be bounded uniformly as \(R\to\infty\).  Any threshold proportional to \(1/R\) vanishes in that limit and cannot by itself prove an infinite-volume mass gap.
+
+For computational complexity, selector bounds are physical resource bounds on finite code systems.  They are not a reformulation of \(P\) versus \(NP\).
+
+For the Hodge conjecture, the round real three-sphere is not the appropriate object.  The Hodge conjecture concerns smooth projective complex varieties.  No Hodge-theoretic claim is made here.
+
+
+\section{Screen transform and topology firewall}
+\label{sec:screen-transform}
+
+\begin{definition}[Trisphere-screen transform]
+For any positive length $r$, define the round-screen transform
+\[
+\mathcal T(r)=
+\left(
+D_{\rm geo},C,V_3,K,R_3,t_{\rm coh},n_\varphi
+\right),
+\]
+where
+\[
+D_{\rm geo}=\pi r,\qquad
+C=2\pi r,\qquad
+V_3=2\pi^2r^3,
+\]
+\[
+K=r^{-2},\qquad
+R_3=6r^{-2},\qquad
+t_{\rm coh}=\frac{\pi r}{c},
+\qquad
+n_\varphi(r)=\frac{\ln(r/\ellP)}{\ln\varphi}.
+\]
+\end{definition}
+
+\begin{proposition}[No topological promotion from a scale]
+For every positive length $r$, the round-screen transform $\mathcal T(r)$ is computable.  The converse-style inference
+\[
+\mathcal T(r)\ \text{is computable}
+\quad\Longrightarrow\quad
+\text{a physical object of characteristic scale }r\text{ has topology }S^3
+\]
+is invalid without an independent identification theorem.
+\end{proposition}
+\begin{proof}
+The left side asserts only that one has evaluated a function on the positive real number $r$.  Topology is not determined by a single length.  A topological conclusion requires hypotheses about the carrier, boundary conditions, compactification, or field order parameter; none of these is supplied by $r$ alone.
+\end{proof}
+
+\begin{remark}[Correct interpretation of the screen transform]
+The transform is a common computational language for comparing scales, causal fractions, spectral counts, and admissible bit ceilings.  Its status is diagnostic and model-theoretic unless supplemented by an independent theorem identifying the physical carrier with the model carrier.
+\end{remark}
+
+\begin{proposition}[What the transform proves]
+The map $r\mapsto\mathcal T(r)$ proves algebraic identities and unit-invariant comparisons obtained by substituting $r$ into round-$S^3$ formulae.  It does not prove that a physical object of characteristic scale $r$ has global $S^3$ topology.
+\end{proposition}
+\begin{proof}
+The transform is a function from positive lengths to a list of round-screen invariants.  A topological identification of a physical object requires an additional theorem relating the object's actual space, boundary conditions, and field content to $S^3$.  The transform supplies no such theorem.
+\end{proof}
+
+\begin{center}
+\scriptsize
+\begin{tabular}{p{0.34\linewidth}rrrr}
+\toprule
+Scale & $r$ [m] & $t_{\rm coh}$ [s] & $n_\varphi(r)$ & scalar $\Sigma_{\rm holo}$ at $\varepsilon=\ellP$\\
+\midrule
+Planck length & $1.616\times10^{-35}$ & $1.694\times10^{-43}$ & $0$ & $13.6\to1$\\
+Proton reduced Compton radius & $2.103\times10^{-16}$ & $2.204\times10^{-24}$ & $91.46$ & $1.04\times10^{-18}$\\
+Electron reduced Compton radius & $3.862\times10^{-13}$ & $4.047\times10^{-21}$ & $107.08$ & $5.69\times10^{-22}$\\
+Bohr radius & $5.292\times10^{-11}$ & $5.545\times10^{-19}$ & $117.30$ & $4.15\times10^{-24}$\\
+Magnetic hopfion scale, $90$ nm & $9.0\times10^{-8}$ & $9.431\times10^{-16}$ & $132.76$ & $2.44\times10^{-27}$\\
+Centimetre laboratory scale & $1.0\times10^{-2}$ & $1.048\times10^{-10}$ & $156.91$ & $2.20\times10^{-32}$\\
+$10M_\odot$ Schwarzschild radius & $2.953\times10^4$ & $3.095\times10^{-4}$ & $187.87$ & $7.44\times10^{-39}$\\
+Milky Way disk scale, illustrative & $5.0\times10^{20}$ & $5.240\times10^{12}$ & $265.52$ & $4.40\times10^{-55}$\\
+Observable-universe scale, illustrative & $4.4\times10^{26}$ & $4.611\times10^{18}$ & $293.96$ & $4.99\times10^{-61}$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{remark}[Reading the table]
+The table is a consistency check for the screen transform.  It is not a list of objects proved to be three-spheres.  The final column uses the holographic Planck-resolution scalar screen estimate and is therefore illustrative unless the holographic ceiling, the Weyl regime, the scalar sector, and the local screen model are all explicitly adopted.
+\end{remark}
+
+
+
+
+\section{Multiscale screen atlas with explicit status boundary}
+\label{sec:multiscale-trisphere-atlas}
+
+This atlas is retained because it is useful for comparison across scales.  The operation is only the substitution $r\mapsto\mathcal T(r)$ in round-$S^3$ formulae.  It does not assert that the listed systems have spatial $S^3$ topology.
+
+\begin{proposition}[What the atlas can and cannot prove]
+The atlas proves algebraic identities, unit-invariant ratios, and exact consequences of assigning a radius $r$ to $\mathcal T(r)$.  It cannot by itself prove that a physical object has global $S^3$ topology; a topological claim requires an independent map from observation to topology, which the transform does not supply.
+\end{proposition}
+\begin{proof}
+$r\mapsto\mathcal T(r)$ is a map from a length to a list of round-$S^3$ invariants, evaluated by substitution into formulae already proved.  A topological identification additionally requires a theorem relating the physical object's actual boundary conditions, field structure, or carrier topology to those hypotheses.  This is not part of the transform.
+\end{proof}
+
+\subsection*{Global causal atlas}
+
+The following table restores the original global-atlas calibration.  It uses astronomical units because the point is not local microphysics but the relative size of each screen compared with the conditional global carrier.
+
+\begin{center}
+\scriptsize
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{p{0.29\linewidth}rrrrrr}
+\toprule
+Screen radius $r$ & $r$ [ly or Gly] & $t_{\rm coh}$ [yr] & $V_3$ [ly$^3$] & $K$ [ly$^{-2}$] & $n_\varphi$ & $\Gamma_{\rm global}(r)$\\
+\midrule
+Oort inner edge, 2000 AU & $0.03163$ & $0.0994$ & $6.24\times10^{-4}$ & $1.00\times10^{3}$ & $235.74$ & $4.07\times10^{-41}$\\
+Oort outer edge, $10^5$ AU & $1.581$ & $4.968$ & $7.80\times10^{1}$ & $4.00\times10^{-1}$ & $243.87$ & $5.09\times10^{-36}$\\
+Milky Way, $r=5\times10^4$ ly & $5\times10^4$ & $1.571\times10^{5}$ & $2.47\times10^{15}$ & $4.00\times10^{-10}$ & $265.41$ & $1.61\times10^{-22}$\\
+Hubble radius & $14.51$~Gly & $4.558\times10^{10}$ & $6.03\times10^{31}$ & $4.75\times10^{-21}$ & $291.54$ & $3.93\times10^{-6}$\\
+Particle horizon & $46.13$~Gly & $1.449\times10^{11}$ & $1.94\times10^{33}$ & $4.70\times10^{-22}$ & $293.95$ & $1.26\times10^{-4}$\\
+Global curvature radius $R_{\rm curv}$ & $548.3$~Gly & $1.723\times10^{12}$ & $3.25\times10^{36}$ & $3.33\times10^{-24}$ & $299.09$ & $1.74\times10^{-1}$\\
+\bottomrule
+\end{tabular}%
+}
+\end{center}
+
+\begin{remark}[Reading the global atlas honestly]
+$\Gamma_{\rm global}(R_{\rm curv})=\Gamma(1)$ is a tautology of the definition, not evidence about nature.  The Hubble-radius and particle-horizon rows reproduce values fixed earlier by direct calibration.  The quantity $\Gamma_{R_{\rm curv}}(t_0)$ for the illustrative global curvature radius and the quantity $\Gamma_{c/H_0}(t_0)$ for the Hubble-radius row are different diagnostics because their carrier radii differ.  Local, gravitationally bound structures have coherence times short compared with many orbital or evolutionary scales; the cosmological screens do not.  This is a light-crossing-time comparison, not a discovery of shared topology across scales.
+\end{remark}
+
+\subsection*{Local screen and holographic-fraction atlas}
+
+The following SI table is a corrected local screen table.  It records $n_\varphi$ and the scalar Planck-resolution holographic fraction
+\[
+\Sigma_{\rm holo}^{\rm sc}\sim\frac{3\pi}{\ln2}\frac{\ellP}{r},
+\]
+with the min-law cap understood when the raw expression exceeds unity.
+
+\begin{center}
+\scriptsize
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{p{0.29\linewidth}rrrrrr}
+\toprule
+Screen radius $r$ & $r$ [m] & $t_{\rm coh}$ [s] & $V_3$ [m$^3$] & $K$ [m$^{-2}$] & $n_\varphi$ & $\Sigma_{\rm holo}^{\rm sc}$\\
+\midrule
+Planck scale $\ellP$ & $1.616\times10^{-35}$ & $1.69\times10^{-43}$ & $8.43\times10^{-104}$ & $3.83\times10^{69}$ & $0$ & $13.60\to1$\\
+Proton reduced Compton scale & $2.103\times10^{-16}$ & $2.20\times10^{-24}$ & $1.84\times10^{-46}$ & $2.26\times10^{31}$ & $91.46$ & $1.04\times10^{-18}$\\
+Electron reduced Compton scale & $3.862\times10^{-13}$ & $4.05\times10^{-21}$ & $1.14\times10^{-36}$ & $6.71\times10^{24}$ & $107.08$ & $5.69\times10^{-22}$\\
+Bohr radius & $5.292\times10^{-11}$ & $5.55\times10^{-19}$ & $2.91\times10^{-30}$ & $3.57\times10^{20}$ & $117.30$ & $4.15\times10^{-24}$\\
+Magnetic hopfion scale, 90 nm & $9.0\times10^{-8}$ & $9.43\times10^{-16}$ & $1.44\times10^{-20}$ & $1.23\times10^{14}$ & $132.76$ & $2.44\times10^{-27}$\\
+Centimetre screen & $10^{-2}$ & $1.05\times10^{-10}$ & $1.97\times10^{-5}$ & $10^4$ & $156.91$ & $2.20\times10^{-32}$\\
+$10M_\odot$ Schwarzschild radius & $2.953\times10^4$ & $3.09\times10^{-4}$ & $5.08\times10^{14}$ & $1.15\times10^{-9}$ & $187.87$ & $7.44\times10^{-39}$\\
+Observable-universe scale & $4.4\times10^{26}$ & $4.61\times10^{18}$ & $1.68\times10^{81}$ & $5.16\times10^{-54}$ & $295.00$ & $5.00\times10^{-61}$\\
+\bottomrule
+\end{tabular}%
+}
+\end{center}
+
+\begin{proposition}[Parameters computable for any future object]
+For any system with a defensible characteristic radius $r$, the following are computable from the theorems above without adding a topology hypothesis: the round-screen invariants $D_{\rm geo},C,V_3,K,R_3$; the light and coherence times $r/c$ and $\pi r/c$; the local and global causal fractions $\Gamma(cT/r)$ and $\Gamma(r/R_{\rm curv})$; the scale index $n_\varphi(r)$; the Bekenstein--holographic critical mass $M_{\rm crit}(r)=rc^2/(2G)$ and holographic bit ceiling $B_{\rm holo}(r)=\pi r^2/(\ellP^2\ln2)$; and, once a sector and cutoff are specified, the spectral capacities $N_P(\varepsilon)$.  Any such computation must satisfy $0\le\Gamma\le1$ and $0\le\Sigma_{\rm grav}\le1$, and must not be promoted from a radius transform into a topology theorem.
+\end{proposition}
+
+\section{Hopf structures: exact statement and physical firewall}
+\label{sec:hopf-firewall}
+
+\begin{theorem}[Hopf fibration]
+The standard Hopf fibration is
+\[
+S^1\hookrightarrow S^3\to S^2.
+\]
+The fibers over two distinct points of the base $S^2$ form a Hopf link in $S^3$, with linking number one.
+\end{theorem}
+\begin{proof}
+This is the standard Hopf fibration.  Under the usual identification $S^3\subset\mathbb C^2$, the quotient by the free $S^1$ phase action gives $\mathbb{CP}^1\cong S^2$.  Distinct fibers are linked once.
+\end{proof}
+
+\begin{definition}[Physical Hopf field]
+A physical Hopf structure on a compactified spatial domain is a field map
+\[
+\Phi:M^3\to S^2
+\]
+with Hopf invariant
+\[
+Q_H(\Phi)\ne0.
+\]
+When $M^3$ is compactified to $S^3$ and regular values are chosen, preimages of distinct regular values give linked curves whose linking number is $Q_H$.
+\end{definition}
+
+\begin{proposition}[No automatic materialization of Hopf fibers]
+Assigning a radius $r$ to a physical object and evaluating $\mathcal T(r)$ does not imply the existence of physical linked rings inside that object.
+\end{proposition}
+\begin{proof}
+The screen transform supplies a model $S^3_r$ and its mathematical Hopf fibration.  Physical rings require a physical field $\Phi:M^3\to S^2$ or an equivalent order parameter whose level sets are material structures.  A radius alone supplies neither the field nor a nonzero Hopf invariant.
+\end{proof}
+
+\begin{proposition}[Established physical appearances of Hopf structure]
+Hopf geometry appears in several established physical settings:
+\begin{enumerate}
+\item Normalized pure qubit state vectors form $S^3\subset\mathbb C^2$, and projective pure states form $\mathbb{CP}^1\cong S^2$; the quotient map is the Hopf fibration~\cite{Urbantke2003}.
+\item Knot solitons exhibiting Hopf-fibration structure have been created and detected in the order parameter of a spinor Bose--Einstein condensate~\cite{Hall2016}.
+\item Magnetic hopfions have been created or observed in magnetic multilayers and cubic chiral magnets~\cite{Kent2021,Zheng2023}.
+\end{enumerate}
+These are appearances of Hopf structure in state space or field-configuration space.  They are not evidence that arbitrary physical objects have global $S^3$ topology.
+\end{proposition}
+
+\begin{remark}[Cosmological caution]
+Even if a cosmological spatial slice were globally $S^3$, cosmic strings or linked topological defects would not follow automatically.  Such defects require additional field-theoretic symmetry breaking or order-parameter structure.  Their existence is an observational and model-dependent question, not a consequence of the round carrier alone.
+\end{remark}
+
+
+
+\section[Independently established appearances of S3 structure in physics]{Independently established appearances of $S^3$ structure in physics}
+\label{sec:established-s3}
+
+This section records genuine uses of $S^3$ in established physics.  Its purpose is also to prevent a false inference: recurrence of the same manifold in different state spaces, momentum spaces, and field spaces is not evidence that physical space itself has global $S^3$ topology.
+
+\begin{proposition}[Fock $SO(4)$ symmetry of the hydrogen atom]
+The bound-state nonrelativistic Coulomb problem has a hidden $SO(4)$ symmetry.  In Fock's momentum-space treatment, the fixed-energy bound-state problem is mapped to harmonics on a round $S^3$, and the $n^2$ degeneracy of the $n$-th hydrogen level matches the scalar harmonic multiplicity with the appropriate index shift~\cite{Fock1935}.
+\end{proposition}
+
+\begin{remark}
+This is an exact appearance of $S^3$ in momentum/state geometry.  It is not a statement that the atom occupies a spatial three-sphere.
+\end{remark}
+
+\begin{proposition}[Qubit state space and Hopf fibration]
+The normalized pure state vectors of a two-level complex quantum system form
+\[
+\{(z_0,z_1)\in\mathbb C^2:\ |z_0|^2+|z_1|^2=1\}\cong S^3.
+\]
+Projectivizing by the global phase gives
+\[
+\mathbb{CP}^1\cong S^2,
+\]
+and the quotient map is the Hopf fibration.
+\end{proposition}
+\begin{proof}
+The normalized vectors form the unit sphere in $\mathbb R^4$.  The free $U(1)$ phase action identifies vectors differing by global phase.  The quotient is $\mathbb{CP}^1$, diffeomorphic to $S^2$.
+\end{proof}
+
+\begin{proposition}[Hopfions as physical field configurations]
+Hopfions in condensed matter and field theory are configurations of a field map $\Phi:M^3\to S^2$ with nonzero Hopf invariant.  In such systems the linked preimages of regular values are physical structures of the field, not merely abstract fibers of an auxiliary screen.
+\end{proposition}
+
+\begin{remark}[Why recurrence is not cosmology]
+The qubit $S^3$ lives in Hilbert-state normalization, the Fock $S^3$ lives in momentum-space treatment of the Coulomb problem, and hopfions live in field-configuration topology.  These are distinct carriers.  Their common use of $S^3$ is mathematically important but does not measure cosmic topology.
+\end{remark}
+
+\section{Topological closed-core consequences retained from DRD}
+
+\begin{theorem}[Suspension transport of reduced homology]
+For every based CW-complex $X$ and every integer $k$,
+\[
+\widetilde H_{k+1}(\Sigma X;\mathbb Z)\cong \widetilde H_k(X;\mathbb Z).
+\]
+Consequently, the nontrivial reduced class of $S^0$ transports by three suspensions to the fundamental reduced homology class of $S^3$.
+\end{theorem}
+\begin{proof}
+This is the standard suspension isomorphism in reduced homology.  Iterating it three times gives
+\[
+\widetilde H_3(S^3;\mathbb Z)
+\cong
+\widetilde H_2(S^2;\mathbb Z)
+\cong
+\widetilde H_1(S^1;\mathbb Z)
+\cong
+\widetilde H_0(S^0;\mathbb Z).
+\]
+\end{proof}
+
+\begin{corollary}[Structure enrichment without homological loss]
+The chain
+\[
+S^0\longrightarrow S^1\longrightarrow S^2\longrightarrow S^3
+\]
+can add phase, direction, spinorial, group, and Hopf-fibration structure without destroying the transported reduced homology class.
+\end{corollary}
+
+\begin{theorem}[Cone criterion in the simply connected finite CW case]
+Let $f:X\to Y$ be a map of simply connected finite CW-complexes.  If the mapping cone $C_f$ is contractible, then $f$ is a homotopy equivalence.  Conversely, if $f$ is a homotopy equivalence, then $C_f$ is contractible.
+\end{theorem}
+\begin{proof}
+If $f$ is a homotopy equivalence, its cofiber is contractible.  Conversely, contractibility of the cofiber implies that $f$ induces isomorphisms on homotopy groups through the long exact homotopy sequence.  Since the spaces are simply connected CW-complexes, Whitehead's theorem gives a homotopy equivalence.
+\end{proof}
+
+\begin{remark}[Information status]
+The cone criterion is a homotopy-level certificate for zero topological erasure.  It is not a metric, spectral, spin, gauge, or thermodynamic conservation law.
+\end{remark}
+
+\section{Carrier-preserving symmetry statements}
+
+\begin{proposition}[Spectral invariance under isometry]
+Let $(M,g)$ and $(M',g')$ be compact Riemannian manifolds and let $\phi:M\to M'$ be an isometry.  Then the scalar Laplacians are unitarily conjugate and have identical spectra with multiplicities.
+\end{proposition}
+\begin{proof}
+Pullback by $\phi$ defines a unitary map between the $L^2$ spaces.  An isometry preserves the Levi-Civita connection and volume form, hence intertwines the scalar Laplacians.  Unitarily conjugate self-adjoint operators have the same spectrum with multiplicities.
+\end{proof}
+
+\begin{proposition}[Spin-isometry and Dirac spectrum]
+If an isometry lifts to an isomorphism of spin structures, then the corresponding Dirac operators are unitarily conjugate and the Dirac spectra agree with multiplicities.
+\end{proposition}
+\begin{proof}
+A spin lift identifies the spinor bundles, Clifford multiplication, and spin connection.  The Dirac operators are therefore intertwined by a unitary bundle map.
+\end{proof}
+
+\begin{corollary}[Mode counts are carrier invariants]
+The scalar, TT, and Dirac capacities used above depend on the relevant isometry or spin-isometry class of the round carrier and on the cutoff convention.
+\end{corollary}
+
+\section{Sector erasure and finite alphabets}
+
+\begin{proposition}[Sector Landauer bound]
+Resetting one of $N$ equiprobable distinguishable logical sectors to a fixed sector at temperature $T_{\rm bath}$ requires average work at least
+\[
+\langle W\rangle\ge k_BT_{\rm bath}\ln N.
+\]
+For a non-uniform distribution with Shannon entropy loss $\Delta H$ in nats,
+\[
+\langle W\rangle\ge k_BT_{\rm bath}\Delta H.
+\]
+\end{proposition}
+\begin{proof}
+This is Landauer's principle applied to a finite logical alphabet~\cite{Landauer1961}.  In the equiprobable case the entropy loss is $\ln N$.  In the non-uniform case it is the Shannon entropy decrease in nats.
+\end{proof}
+
+\begin{corollary}[Why the selector requires $b_P$]
+A raw spectral multiplicity $N_P(\varepsilon)$ cannot be inserted into a thermodynamic erasure bound until it has been converted to a finite logical alphabet.  This is exactly the role of
+\[
+B_{\rm causal}^{(P)}=b_P\Gamma_{R_{\rm curv}}(T)N_P(\varepsilon).
+\]
+\end{corollary}
+
+
+\section{External-object firewall}
+\label{sec:threshold-firewall}
+
+\begin{proposition}[Finite-volume threshold is not an infinite-volume mass gap]
+Any threshold of the form
+\[
+\Delta_R=\frac{\alpha}{R},\qquad \alpha>0,
+\]
+on a compact radius-$R$ carrier satisfies
+\[
+\lim_{R\to\infty}\Delta_R=0.
+\]
+Therefore such a finite-volume threshold alone cannot prove an infinite-volume positive mass gap.
+\end{proposition}
+\begin{proof}
+The limit is immediate.  A positive infinite-volume mass gap requires a lower bound that remains positive as $R\to\infty$.
+\end{proof}
+
+\begin{theorem}[Exact-object firewall]
+A result about a compact analogue, finite-volume regulator, physical resource bound, or selector-normalized formulation does not solve an external mathematical problem unless a theorem proves equivalence to the exact object and hypotheses of that problem.  In particular, finite-volume selector statements do not solve the Clay Yang--Mills mass-gap problem or the Navier--Stokes existence-and-smoothness problem~\cite{ClayMillennium,ClayYM,ClayNS}.
+\end{theorem}
+\begin{proof}
+Let $P$ be an external problem with object $O_P$ and hypotheses $H_P$.  Let $Q$ be a result about an object $O_Q$ or hypotheses $H_Q$.  A proof of $Q$ proves $P$ only if a valid implication or equivalence theorem carries $(O_Q,H_Q)$ to $(O_P,H_P)$.  Without that theorem, the inference is invalid.
+\end{proof}
+
+\section{Noether identities and closed boundary charges}
+\label{sec:noether-boundary}
+
+\begin{proposition}[Noether-II conservation form]
+For a diffeomorphism-invariant action
+\[
+S[g,\psi]=\int_M d^4x\sqrt{-g}\,\mathcal L(g,\psi,\nabla\psi,\ldots),
+\]
+with Euler--Lagrange tensors
+\[
+E^{\mu\nu}=\frac{1}{\sqrt{-g}}\frac{\delta S}{\delta g_{\mu\nu}},
+\qquad
+E_\psi=\frac{1}{\sqrt{-g}}\frac{\delta S}{\delta\psi},
+\]
+diffeomorphism invariance gives an identity of the form
+\[
+\nabla_\mu E^{\mu\nu}+\mathcal K^\nu(E_\psi,\nabla E_\psi,\ldots)\equiv0.
+\]
+On matter shell this yields covariant conservation of stress energy.
+\end{proposition}
+\begin{proof}
+Vary the action under the infinitesimal diffeomorphism generated by an arbitrary vector field $\xi$.  After integration by parts, the coefficient of $\xi$ must vanish identically.  This is Noether's second theorem.  When the matter Euler--Lagrange equations hold, the terms proportional to $E_\psi$ vanish.
+\end{proof}
+
+\begin{proposition}[Closed-slice boundary-charge vanishing]
+For a Hamiltonian boundary charge of the form
+\[
+H_\xi=\int_{\partial\Sigma}(Q_\xi-\xi\cdot B),
+\]
+a closed spatial slice has $\partial\Sigma=\varnothing$, hence
+\[
+H_\xi=0.
+\]
+\end{proposition}
+\begin{proof}
+The integral is over the boundary of $\Sigma$.  If the boundary is empty, the integral over it is zero.
+\end{proof}
+
+\begin{remark}
+This does not say that no energy exists.  It says that a global boundary Hamiltonian charge is not supported by a boundary in a closed slice.  The same conclusion holds for any closed three-manifold, not specifically for $S^3$.
+\end{remark}
+
+
+\begin{remark}[Not a topological signature]
+The hypothesis used above is only that $\Sigma$ is closed, i.e. compact without boundary; $S^3$ enters merely because it is the carrier adopted in this manuscript.  The identical conclusion $H_\xi=0$ holds for a closed flat torus $T^3$, a closed hyperbolic three-manifold, or any other closed three-manifold, since the proof only uses $\partial\Sigma=\varnothing$ and never uses the value of the curvature.  Consequently $H_\xi=0$ cannot be used as evidence for $S^3$ specifically: inferring the carrier's topology from this vanishing would affirm the consequent.
+\end{remark}
+
+
+
+
+\section{Closed FLRW equations and local flatness diagnostics}
+
+The equations below are retained as background identities for the conditional carrier.  They are not used to prove the selector theorem and do not by themselves establish cosmic topology.
+
+\begin{proposition}[Closed FLRW background equations]
+For a $k=+1$ FLRW model with curvature radius $R_{\rm curv}$,
+\[
+H^2=\frac{8\pi G}{3}\rho_{\rm tot}
+-\frac{c^2}{a^2R_{\rm curv}^2}
++\frac{\Lambda c^2}{3},
+\]
+\[
+\frac{\ddot a}{a}
+=
+-\frac{4\pi G}{3}
+\left(\rho_{\rm tot}+\frac{3p_{\rm tot}}{c^2}\right)
++\frac{\Lambda c^2}{3},
+\]
+\[
+\dot\rho_{\rm tot}
++
+3H\left(\rho_{\rm tot}+\frac{p_{\rm tot}}{c^2}\right)=0.
+\]
+\end{proposition}
+\begin{proof}
+These are the standard Friedmann and continuity equations specialized to positive spatial curvature under the sign convention stated earlier.
+\end{proof}
+
+\begin{corollary}[Dust dilution]
+For pressureless matter, $p_m=0$, the continuity equation gives
+\[
+\dot\rho_m+3H\rho_m=0,
+\qquad
+\rho_m\propto a^{-3}.
+\]
+\end{corollary}
+
+\begin{proposition}[Chord sagitta for a large round sphere]
+For a chord of length $L$ in a circle of radius $R$,
+\[
+s(L)=R-\sqrt{R^2-(L/2)^2}.
+\]
+For $L/R\ll1$,
+\[
+s(L)=\frac{L^2}{8R}+O\left(\frac{L^4}{R^3}\right).
+\]
+\end{proposition}
+\begin{proof}
+The first formula is the Euclidean right-triangle relation.  Expanding
+\[
+R\sqrt{1-\frac{L^2}{4R^2}}
+\]
+in powers of $L/R$ gives the asymptotic expression.
+\end{proof}
+
+\begin{corollary}[Observable smallness over short arcs]
+When $L\ll R_{\rm curv}$, curvature visibility grows quadratically as $L^2/(8R_{\rm curv})$.  A large conditional curvature radius can therefore be locally almost flat while retaining compact global formulas.
+\end{corollary}
+
+
+\section{Algebraic null tests}
+
+\begin{definition}[Selector row schema]
+A reproducible selector computation should record
+\[
+R_{\rm curv},\ T,\ \tau=cT/R_{\rm curv},\ \Gamma_{R_{\rm curv}}(T),\ \varepsilon,\ P,\ N_P(\varepsilon),\ b_P,
+\]
+\[
+B_{\rm causal}^{(P)},\ \mathcal D,\ E_{\mathcal D},\ r_{\mathcal D},\ A_{\mathcal D},
+\ B_{\rm Bek},\ B_{\rm holo},\ B_{\rm phys}^{(P)},\ \Sigma_{\rm grav}^{(P)}.
+\]
+\end{definition}
+
+\begin{theorem}[Algebraic null-test suite]
+A selector computation is internally inconsistent if any declared active quantity violates
+\[
+\Gamma_{R_{\rm curv}}(T)\notin[0,1],\qquad
+N_P(\varepsilon)<0,
+\]
+\[
+B_{\rm phys}^{(P)}>B_{\rm causal}^{(P)},\qquad
+B_{\rm phys}^{(P)}>B_{\rm Bek},\qquad
+B_{\rm phys}^{(P)}>B_{\rm holo},
+\]
+or
+\[
+\Sigma_{\rm grav}^{(P)}\notin[0,1].
+\]
+\end{theorem}
+\begin{proof}
+The first condition follows from the volume-fraction theorem.  Mode counts are nonnegative by definition.  The bounds on $B_{\rm phys}^{(P)}$ are the selector bound under declared ceilings.  The selector range follows by division by a positive causal capacity.
+\end{proof}
+
+\begin{proposition}[Unit-rescaling invariance]
+Under a consistent change of length unit,
+\[
+R_{\rm curv}\mapsto \lambda R_{\rm curv},
+\qquad
+\varepsilon\mapsto \lambda\varepsilon,
+\qquad
+cT\mapsto \lambda cT,
+\]
+the dimensionless ratios
+\[
+\tau=\frac{cT}{R_{\rm curv}},
+\qquad
+\chi=\frac{\varepsilon}{R_{\rm curv}}
+\]
+are unchanged.  Therefore $\Gamma(\tau)$, exact counts written as functions of $\chi$, and selector ratios are unit-invariant.
+\end{proposition}
+\begin{proof}
+The ratios are unchanged by common scaling.  The listed functions depend on dimensional data only through those ratios or through pure physical bit ceilings.
+\end{proof}
+
+\section{Closed selector theorem}
+
+\begin{theorem}[Closed selector theorem]
+On a conditional round $S^3_{R_{\rm curv}}$ carrier, fix a sector $P$, cutoff $\varepsilon$, finite alphabet size $q_P$, and causal time $T$.  Let
+\[
+b_P=\log_2q_P,
+\qquad
+B_{\rm causal}^{(P)}(\varepsilon,T)
+=
+b_P\,\Gamma_{R_{\rm curv}}(T)\,N_P(\varepsilon).
+\]
+Let $\mathcal D$ be a bounded physical domain with data
+\[
+(E_{\mathcal D},r_{\mathcal D},A_{\mathcal D}).
+\]
+If admissible code subspaces are required to satisfy the imposed gauge, dressing, stability, Bekenstein, and holographic constraints, then
+\[
+0\le
+B_{\rm phys}^{(P)}(\mathcal D)
+\le
+\min\left\{
+B_{\rm causal}^{(P)}(\varepsilon,T),
+\frac{2\pi E_{\mathcal D}r_{\mathcal D}}{\hbar c\ln2},
+\frac{A_{\mathcal D}}{4\ellP^2\ln2}
+\right\}.
+\]
+Whenever $B_{\rm causal}^{(P)}(\varepsilon,T)>0$,
+\[
+0\le
+\Sigma_{\rm grav}^{(P)}(\mathcal D;\varepsilon,T)
+\le1.
+\]
+In the min-law saturation model,
+\[
+\Sigma_{\rm grav}^{(P)}
+=
+\min\left\{
+1,
+\frac{B_{\rm ceil}(\mathcal D)}
+{b_P\,\Gamma_{R_{\rm curv}}(T)\,N_P(\varepsilon)}
+\right\}.
+\]
+\end{theorem}
+\begin{proof}
+The causal bit count is the finite-alphabet conversion of the causally accessible spectral mode count.  The physical code subspace is a subspace of the operational space and is further restricted by the declared physical ceilings.  This gives the displayed upper bound.  Division by the positive causal bit count gives the selector contraction.  The last expression is the min-law normal form.
+\end{proof}
+
+
+
+\section{Status-preservation map}
+
+Each component is assigned to its proper status class so that exact theorems, diagnostic templates, calibrations, and scope boundaries are not conflated.
+
+{\small
+\begin{longtable}{p{0.30\linewidth}p{0.24\linewidth}p{0.36\linewidth}}
+\toprule
+Component & Status & Admissible reading\\
+\midrule
+Round $S^3$ geometry & theorem-level & exact conditional geometry of the carrier\\
+Causal accessibility fraction & theorem-level & exact volume fraction on the round carrier\\
+Scalar, TT, Dirac counts & theorem-level, operator-dependent & exact or asymptotic mode capacities after sector convention\\
+Finite alphabets & definitional & conversion from multiplicity to bits\\
+Bekenstein and holographic ceilings & imported physical bounds & domain ceilings, not carrier identities\\
+Selector contraction & theorem-level & $0\le\Sigma_{\rm grav}\le1$\\
+Core contributions & theorem-core summary & eight rigorous results; no promotion of templates or conjectures\\
+Screen transform $\mathcal T(r)$ & computable comparison map & radius substitution, not topology proof\\
+Hopf fibration & theorem-level topology & abstract linked fibers inside $S^3$\\
+Physical hopfions & established field configurations & require a map $\Phi:M^3\to S^2$ with $Q_H\ne0$\\
+Golden-ratio and comb templates & observational templates & falsifiable ansatzes, not assumptions of the theorem\\
+Preregistered pipelines & observational protocols & null tests for screen templates, not tests of the selector theorem\\
+Algebraic invariant network & algebraic consequences & identities and conditional bounds, not derivations of new local physics\\
+Appendix screen-invariant derivations & algebraic appendix & corrected derivations with status qualifiers; no new ontology\\
+Horizon-scale screen-density comparison & dimensional comparison & $H_0^2$ scaling check, not a dark-energy mechanism\\
+Scale-atlas computational protocol & diagnostic implementation & requires explicit \(P,\varepsilon,T,b_P,B_{\rm ceil}\); not a radius-to-ontology map\\
+Verified auxiliary identities & screening appendix & exact identities, cited external facts, diagnostic templates, and stated non-claims\\
+Expanded auxiliary identity register & screening appendix & corrected auxiliary-identity register with theorem-core identities, cited facts, templates, and stated non-claims\\
+Additional exact invariants & auxiliary lemma appendix & direct algebraic identities only; no new physical interpretation\\
+Curated auxiliary identities & audited auxiliary appendix & selected corrected identities from a screened large candidate register; no bulk enumeration\\
+Compact verified additions & audited auxiliary appendix & corrected new identities from a screened candidate register; no bulk enumeration or physical promotion\\
+Post-register calibration corrections & audited auxiliary appendix & corrected dimensionless and numerical fragments from a later 200-item candidate list; no bulk enumeration, no Hawking comparison\\
+Hubble-time holographic resolution diagnostic & Weyl-threshold diagnostic identity & inverse-length scale from \(H_0,\ell_P,c,\hbar\); exact within the normal form, not a floor-counted spectral theorem or confinement derivation\\
+Mass form of threshold diagnostic & diagnostic algebraic identity & rewrites the threshold resolution as a mass scale; not a particle-mass derivation\\
+Universal threshold shape & diagnostic normal form & \(\Sigma(u)=\min(1,u^3)\) in filtered Weyl asymptotics; not classicality or quantumness\\
+Variational-gravity programmes & corrected research-programme status & the selector may constrain future nonlocal or regulated effective models, but no local action, modified Einstein equation, dark-energy term, Hawking law, or millennium-problem result follows from it alone\\
+Optional dynamics & research skeletons & possible future backgrounds, not used in proofs\\
+\bottomrule
+\end{longtable}
+}
+
+\begin{proposition}[Scope without promotion]
+Including a section does not promote its claims beyond their stated status.  In particular, an observational template remains a template, an optional dynamical skeleton remains optional, and a screen transform remains a transform.
+\end{proposition}
+\begin{proof}
+Status is fixed by the admission rule and by the presence or absence of a proof from stated hypotheses.  Re-insertion into the manuscript changes presentation, not logical force.
+\end{proof}
+
+\begin{remark}[Why this matters]
+The framework may be broad in scope provided its logic is stratified.  Scope is retained only where the exact-object firewall and the theorem--diagnostic distinction remain explicit.
+\end{remark}
+
+\section{Curvature-input ledger}
+
+The conditional carrier may be calibrated by a chosen curvature modulus, but the selector theorem does not depend on the numerical choice.  The following ledger records how such an input is to be handled.  It is a snapshot of the cited analyses, not a claim to be the latest global curvature constraint table.
+
+\begin{definition}[Curvature-input row]
+A curvature-input row consists of
+\[
+(\Omega_K,\ H_0,\ R_{\rm curv},\ {\rm data\ class},\ {\rm status}),
+\]
+where $R_{\rm curv}=c/(H_0\sqrt{|\Omega_K|})$ when $\Omega_K<0$ is adopted as a closed-curvature input.  The status field must distinguish illustrative input, posterior mean, upper bound, and model-dependent inference.
+\end{definition}
+
+\begin{proposition}[No topology from a curvature row]
+No curvature-input row proves global $S^3$ topology unless it is accompanied by an independent theorem or observation fixing compactness and simple connectivity.
+\end{proposition}
+\begin{proof}
+The radius formula uses only the FLRW curvature parameter and sign convention.  It does not determine the global quotient, injectivity radius, or topology of the spatial slice.  A topology claim therefore requires additional hypotheses.
+\end{proof}
+
+\begin{remark}[Safe use of the illustrative value]
+The value $R_{\rm curv}=548.324513026856039$ Gly is retained only because it makes every downstream formula reproducible.  Any future curvature input can be substituted without changing the algebraic structure of $\Gamma$, $N_P$, $B_{\rm causal}$, or $\Sigma_{\rm grav}$.
+\end{remark}
+
+\section{Observational-route registry}
+
+The manuscript may contain proposed searches, but each search must be written as a registry entry rather than a theorem.
+
+\begin{definition}[Template registry entry]
+An observational route is specified by a tuple
+\[
+\mathcal O=
+({\rm carrier\ hypothesis},\ {\rm observable},\ {\rm template},\ {\rm nuisance\ parameters},\ {\rm null\ criterion}).
+\]
+It is admissible only if the null criterion is stated before data fitting.
+\end{definition}
+
+\begin{proposition}[Independent failure of routes]
+Let $\mathcal O_1,\dots,\mathcal O_m$ be registry entries none of which is used as a premise of the closed selector theorem.  Failure of any subset of these routes does not invalidate the theorem.
+\end{proposition}
+\begin{proof}
+The closed selector theorem depends only on the carrier geometry, spectral cutoff, finite alphabet, causal fraction, and domain ceilings.  If an observational route is not a premise in that chain, its failure removes only that route.
+\end{proof}
+
+\begin{remark}[Examples of admissible null criteria]
+A log-periodic route is null when its fitted amplitude is consistent with zero under the declared likelihood.  A comb route is null when no line family $f_n=nc/(2\pi R_0)$ is present above forecast sensitivity.  A Hopf-field route is null when no nonzero Hopf invariant can be reconstructed from the measured field map.  These are different failures.
+\end{remark}
+
+
+\section{Conclusion}
+
+The durable result is not that every object is a three-sphere and not that Hopf links are automatically materialized at every scale.  The durable result is the following separation:
+\[
+\begin{aligned}
+\text{carrier}
+&\to \text{spectral modes}
+ \to \text{causal accessibility}\\
+&\to \text{finite alphabet}
+ \to \text{physical code ceiling}.
+\end{aligned}
+\]
+On a conditional round $S^3$ carrier the causal and spectral factors are computable.  Physical admissibility then contracts raw distinguishability by domain-specific constraints.  The resulting selector is a controlled ratio:
+\[
+\boxed{
+0\le\Sigma_{\rm grav}\le1.
+}
+\]
+The screen transform $r\mapsto\mathcal T(r)$ supplies a useful common language across scales, but a topology claim always requires an additional topology theorem or a measured nonzero Hopf invariant of a physical field.
+
+The core contributions isolated in Section~\ref{sec:core-contributions} are therefore the exact causal--spectral integration formula, the selector and its threshold, the double-asymptotic self-similarity law, scalar shell bands, the resolution-halving law, the horizon-scale screen-density comparison, conditional Landauer bookkeeping for geometric capacity loss, and the density--curvature invariant.  These results are the mathematical content of the construction; observational templates and conjectures remain external applications.
+
+
+\appendix
+
+
+\section{Finite sums}
+
+\subsection{Scalar sum}
+The scalar capacity uses
+\[
+\sum_{n=0}^{M-1}(n+1)^2=\sum_{j=1}^{M}j^2.
+\]
+The elementary polynomial identity is
+\[
+\sum_{j=1}^{M}j^2=\frac{M(M+1)(2M+1)}{6}.
+\]
+This is the exact finite expression used in the scalar mode theorem; the Weyl term is obtained by expanding
+\[
+\frac{M(M+1)(2M+1)}{6}
+=
+\frac13M^3+\frac12M^2+\frac16M.
+\]
+Since $M\sim R_{\rm curv}/\varepsilon$, the leading term is cubic.
+
+\subsection{TT tensor sum}
+The tensor multiplicity sum is
+\[
+\sum_{k=2}^{M}2(k-1)(k+3)
+=
+\sum_{k=2}^{M}(2k^2+4k-6).
+\]
+Using
+\[
+\sum_{k=1}^{M}k=\frac{M(M+1)}2,
+\qquad
+\sum_{k=1}^{M}k^2=\frac{M(M+1)(2M+1)}6,
+\]
+and subtracting the $k=1$ contribution gives
+\[
+\sum_{k=2}^{M}2(k-1)(k+3)
+=
+\frac{M(M-1)(2M+11)}3.
+\]
+The leading term is $2M^3/3$.
+
+\subsection{Dirac sum}
+The Dirac count uses
+\[
+2\sum_{n=0}^{M}(n+1)(n+2)
+=
+2\sum_{j=1}^{M+1}j(j+1).
+\]
+Since
+\[
+\sum_{j=1}^{M+1}j(j+1)
+=
+\sum_{j=1}^{M+1}(j^2+j)
+=
+\frac{(M+1)(M+2)(M+3)}3,
+\]
+one obtains
+\[
+N_D=
+\frac{2(M+1)(M+2)(M+3)}3.
+\]
+Again the leading Weyl term is $2M^3/3$.
+
+
+\section{Derivations and status of screen-invariant identities}
+\label{app:screen-invariant-derivations}
+
+This appendix collects algebraic consequences of the round-screen identities and of the selector theorem.  It does not promote the screen transform to a topology theorem and does not claim that new local physics has been derived.
+
+\subsection{Screen energy-density diagnostic}
+
+For a positive screen radius \(r\), define the critical compactness energy by
+\[
+E_{\rm crit}(r)=\frac{c^4r}{2G}.
+\]
+Dividing this energy by the formal round-\(S^3\) screen volume
+\[
+V_3(r)=2\pi^2r^3
+\]
+gives the screen energy-density diagnostic
+\[
+\rho_{\rm scr}^{E}(r)
+=
+\frac{E_{\rm crit}(r)}{V_3(r)}
+=
+\frac{c^4}{4\pi^2G r^2}.
+\]
+This is a diagnostic attached to the screen transform.  It is not an equation of state and is not a statement about the invariant interior volume of a black hole.
+
+Since the scalar curvature of the round screen is
+\[
+\mathcal R_3(r)=\frac6{r^2},
+\]
+one obtains the scale-independent ratio
+\[
+\frac{\rho_{\rm scr}^{E}(r)}{\mathcal R_3(r)}
+=
+\frac{c^4}{24\pi^2G}.
+\]
+This is an algebraic invariant of the screen diagnostic.
+
+The corresponding dimensional curvature comparison is
+\[
+\Lambda_{\rm scr}(r)
+=
+\frac{8\pi G}{c^4}\rho_{\rm scr}^{E}(r)
+=
+\frac{2}{\pi r^2}.
+\]
+This expression fixes an \(r^{-2}\) scale law.  It is not a derivation of the observed cosmological constant.
+
+\subsection{Horizon-scale screen-density comparison}
+\label{subsec:horizon-screen-density-comparison}
+
+For any positive infrared length \(L\), the screen-density diagnostic gives
+\[
+\rho_{\rm scr}^{E}(L)
+=
+\frac{c^4}{4\pi^2G L^2}.
+\]
+Equivalently, the mass-density form is
+\[
+\rho_{\rm scr}^{m}(L)
+=
+\frac{\rho_{\rm scr}^{E}(L)}{c^2}
+=
+\frac{c^2}{4\pi^2G L^2}.
+\]
+This is a screen comparison, not an equation of state.
+
+If the infrared length is chosen to be the Hubble radius,
+\[
+L=R_H=\frac{c}{H_0},
+\]
+then
+\[
+\rho_{\rm scr}^{m}(R_H)
+=
+\frac{H_0^2}{4\pi^2G}.
+\]
+Relative to the usual critical mass density
+\[
+\rho_{\rm crit}^{m}
+=
+\frac{3H_0^2}{8\pi G},
+\]
+one obtains the fixed dimensionless ratio
+\[
+\Omega_{\rm scr}(R_H)
+=
+\frac{\rho_{\rm scr}^{m}(R_H)}{\rho_{\rm crit}^{m}}
+=
+\frac{2}{3\pi}
+\approx0.212.
+\]
+
+Thus the Hubble-radius screen diagnostic has the same \(H_0^2\) scaling as the critical density.  With the Planck 2018 parameter scale recorded in the curvature ledger, it lies within one order of magnitude of the observed dark-energy density, but it is not equal to the observed value \(\Omega_\Lambda\simeq0.685\).  The difference is a factor of about \(3.2\).  This numerical comparison is order-of-magnitude only; it is not a derivation of dark energy.
+
+For a general infrared length \(L\),
+\[
+\Omega_{\rm scr}(L)
+=
+\frac{2}{3\pi}
+\left(
+\frac{c/H_0}{L}
+\right)^2.
+\]
+Matching the observed \(\Omega_\Lambda\) would require
+\[
+L
+=
+\frac{c}{H_0}
+\sqrt{
+\frac{2}{3\pi\Omega_\Lambda}
+},
+\]
+which is an additional infrared-cutoff prescription.  The selector theorem does not supply this prescription.
+
+Consequently, this subsection records an order-of-magnitude horizon-scale comparison.  It does not derive dark energy, does not derive an equation of state \(p=-\rho\), and does not assert that the cosmological horizon saturates the compactness bound.
+
+\subsection{Holographic ceiling as curvature inverse}
+
+The holographic bit ceiling for a spherical domain of areal radius \(r\) is
+\[
+B_{\rm holo}(r)
+=
+\frac{\pi r^2}{\ell_P^2\ln2}.
+\]
+Using \(r^2=6/\mathcal R_3(r)\), this can be written as
+\[
+B_{\rm holo}(r)
+=
+\frac{6\pi}{\ell_P^2\ln2}
+\frac1{\mathcal R_3(r)}.
+\]
+Thus, for the round screen, the area ceiling is inversely proportional to scalar curvature.
+
+The area density of holographic bits is
+\[
+\frac{B_{\rm holo}}{A}
+=
+\frac{1}{4\ell_P^2\ln2},
+\qquad
+A=4\pi r^2.
+\]
+This is the standard area law written in selector variables.
+
+\subsection{Selector similarity and resolution threshold}
+
+In the joint asymptotic regime
+\[
+\tau=\frac{cT}{R_{\rm curv}}\ll1,
+\qquad
+\chi=\frac{\varepsilon}{R_{\rm curv}}\ll1,
+\]
+the causal fraction and sector-\(P\) spectral count obey
+\[
+\Gamma(\tau)\sim\frac{2}{3\pi}\tau^3,
+\qquad
+N_P(\varepsilon)\sim C_P\left(\frac{R_{\rm curv}}{\varepsilon}\right)^3.
+\]
+Therefore
+\[
+D_P=b_P\Gamma(\tau)N_P(\varepsilon)
+\sim
+\frac{2b_PC_P}{3\pi}
+\left(\frac{cT}{\varepsilon}\right)^3.
+\]
+The curvature radius cancels in this double-asymptotic corner.
+
+The non-filtered condition \(D_P\le B_{\rm ceil}\) gives
+\[
+\varepsilon
+\ge
+cT
+\left(
+\frac{2b_PC_P}{3\pi B_{\rm ceil}}
+\right)^{1/3}.
+\]
+Equivalently,
+\[
+\chi
+\ge
+\tau
+\left(
+\frac{2b_PC_P}{3\pi B_{\rm ceil}}
+\right)^{1/3}.
+\]
+
+If the active ceiling is holographic,
+\[
+B_{\rm ceil}
+=
+\frac{\pi r_{\mathcal D}^2}{\ell_P^2\ln2},
+\]
+then
+\[
+\varepsilon_{\min}
+=
+cT
+\left(
+\frac{2b_PC_P\ell_P^2\ln2}
+{3\pi^2r_{\mathcal D}^2}
+\right)^{1/3}.
+\]
+For the special diagnostic choice \(r_{\mathcal D}=cT\),
+\[
+\varepsilon_{\min}
+=
+(cT)^{1/3}\ell_P^{2/3}
+\left(
+\frac{2b_PC_P\ln2}{3\pi^2}
+\right)^{1/3}.
+\]
+This is a selector-resolution threshold.  It is not a modified Heisenberg uncertainty principle.
+
+\subsection{Causal spectral ladder}
+
+For a fixed sector \(P\), cutoff \(\varepsilon\), finite alphabet \(b_P\), and causal time \(T\), the causally accessible finite-alphabet capacity is
+\[
+B_{\rm causal}^{(P)}(T,\varepsilon)
+=
+b_P\Gamma_R(T)N_P(\varepsilon).
+\]
+The factor \(\Gamma_R(T)N_P(\varepsilon)\) is a causal mode count.  It becomes a bit count only after the finite per-mode alphabet \(b_P\) has been fixed.
+
+For scalar modes,
+\[
+N_0(\varepsilon)
+=
+\sum_{n=0}^{M_0-1}(n+1)^2
+=
+\frac{M_0(M_0+1)(2M_0+1)}6,
+\]
+with the cutoff convention stated in the spectral section.  The tensor and Dirac sectors use their corresponding finite sums.  Multiplication by \(\Gamma_R(T)\) gives the causally accessible portion of the shell-complete homogeneous spectrum.
+
+\subsection{Hopf structures and physical admissibility}
+
+The Hopf fibration
+\[
+S^1\hookrightarrow S^3\to S^2
+\]
+is a canonical structure on the model carrier.  Distinct Hopf fibers are linked once.  Under the round radius-\(r\) metric, the standard fiber circles have length \(2\pi r\).
+
+A physical Hopf invariant is admitted only when a physical field or order parameter defines a map
+\[
+\Phi:M^3\to S^2.
+\]
+For such a field, with a specified normalization of the target two-form and a corresponding connection one-form \(A\), the Hopf invariant may be written in the schematic form
+\[
+Q_H\propto\int A\wedge dA.
+\]
+The numerical prefactor is convention-dependent and is not fixed here.
+
+The existence of Hopf fibers on the model carrier does not imply that every physical object contains material Hopf rings.  Nor does it imply that particle spin, confinement, or hierarchical topology is determined by \(Q_H\).  Those statements require additional field equations, observables, and boundary conditions.
+
+\subsection{Conditional Landauer bookkeeping for geometric capacity loss}
+
+Under unnormalised Ricci flow, a round radius \(a\) satisfies
+\[
+\dot a=-\frac2a,
+\]
+and in the Weyl regime the formal spectral capacities obey
+\[
+\dot N_0\sim-\frac{2a}{\varepsilon^3},
+\qquad
+\dot N_{\rm TT}\sim\dot N_D\sim-\frac{4a}{\varepsilon^3}.
+\]
+These are geometric capacity-decay identities.  They do not by themselves imply heat production.
+
+If, in addition, the lost distinctions are finite logical sectors that are physically reset into a bath at temperature \(T_{\rm bath}\), then Landauer's principle gives
+\[
+\Delta Q\ge k_BT_{\rm bath}\ln2\,|\Delta B|.
+\]
+For a binary sector with \(B=b_P\Gamma N_P\), this yields the conditional estimate
+\[
+\dot Q_{\min}
+\ge
+k_BT_{\rm bath}\ln2\,b_P\Gamma\,|\dot N_P|,
+\]
+when \(\Gamma\) is held fixed.  If \(\Gamma\) also varies, the derivative must be applied to \(b_P\Gamma N_P\).  This is thermodynamic bookkeeping, not a derivation of Hawking radiation.
+
+\subsection{External-problem status}
+
+For Yang--Mills theory, the admissible compact-carrier question is whether a finite-volume lower threshold can be bounded uniformly as \(R\to\infty\).  Any threshold proportional to \(1/R\) vanishes in that limit and cannot by itself prove an infinite-volume mass gap.
+
+For computational complexity, selector bounds are physical resource bounds on finite code systems.  They are not a reformulation of \(P\) versus \(NP\).
+
+For the Hodge conjecture, the round real three-sphere is not the relevant object.  The Hodge conjecture concerns smooth projective complex varieties.  No Hodge-theoretic claim is made here.
+
+\subsection{Conclusion of the appendix}
+
+The identities in this appendix form an algebraic network of screen invariants.  They are strict as algebraic consequences of the adopted carrier, cutoff, alphabet, causal fraction, and ceiling assumptions.  Physical interpretation requires the additional carrier, field, boundary, and observational hypotheses stated explicitly in the main text.
+
+
+
+\section{Scale-atlas computational protocol}
+\label{app:scale-atlas-protocol}
+
+The scale atlas is a diagnostic calculator for the screen transform \(\mathcal T(r)\).  It assigns round-screen invariants, entropy ceilings, causal capacities, and selector ratios to an input length \(r\), after the user specifies the sector \(P\), cutoff \(\varepsilon\), observation time \(T\), finite alphabet \(b_P\), and physical ceiling prescription.
+
+The atlas is not a map from radius to ontology.  It does not assert that a particle, atom, galaxy, or horizon is a physical three-sphere.  It computes the consequences of assigning that radius to the round-screen formulas.
+
+For a radius \(r\), the geometric entries are
+\[
+V_3=2\pi^2r^3,\qquad
+\mathcal R_3=\frac6{r^2},
+\qquad
+K=\frac1{r^2},
+\qquad
+t_{\rm coh}=\frac{\pi r}{c}.
+\]
+The compactness energy and screen-density diagnostic are
+\[
+E_{\rm crit}(r)=\frac{c^4r}{2G},
+\qquad
+\rho_{\rm scr}^{E}(r)=\frac{c^4}{4\pi^2G r^2}.
+\]
+For a spherical areal domain of radius \(r\), the holographic ceiling is
+\[
+B_{\rm holo}(r)=\frac{\pi r^2}{\ell_P^2\ln2}.
+\]
+If the same critical energy is used in the Bekenstein bound, then
+\[
+B_{\rm Bek}(E_{\rm crit},r)=B_{\rm holo}(r).
+\]
+For scalar modes,
+\[
+N_0(\varepsilon)
+=
+\frac{M_0(M_0+1)(2M_0+1)}6,
+\qquad
+M_0=\left\lfloor \sqrt{1+(r/\varepsilon)^2}\right\rfloor .
+\]
+The causal finite-alphabet capacity is
+\[
+B_{\rm causal}^{(0)}(T,\varepsilon)
+=
+b_0\Gamma(cT/r)N_0(\varepsilon),
+\]
+with \(\Gamma=1\) when \(cT\ge\pi r\).  The min-law diagnostic selector is then
+\[
+\Sigma_{\rm atlas}^{(0)}
+=
+\min\left\{
+1,
+\frac{B_{\rm ceil}}{B_{\rm causal}^{(0)}}
+\right\}.
+\]
+Every atlas row must state \(T\), \(\varepsilon\), \(b_P\), \(P\), and \(B_{\rm ceil}\).  Without those inputs, the selector value is undefined.
+
+\subsection{Reference implementation}
+
+The following code is a reference implementation for scalar-sector atlas rows.  It is intentionally explicit about \(T\), \(\varepsilon\), the alphabet, and the active ceiling, so that selector values cannot be quoted without their operational assumptions.
+
+\begin{verbatim}
+import numpy as np
+
+c = 2.99792458e8
+G = 6.67430e-11
+hbar = 1.054571817e-34
+
+lP = np.sqrt(hbar * G / c**3)
+mP = np.sqrt(hbar * c / G)
+phi = (1 + np.sqrt(5)) / 2
+
+def gamma_round(tau):
+    if tau <= 0:
+        return 0.0
+    if tau >= np.pi:
+        return 1.0
+    return (tau - 0.5 * np.sin(2 * tau)) / np.pi
+
+def scalar_capacity(r, eps):
+    if r <= 0 or eps <= 0:
+        raise ValueError("r and eps must be positive")
+    x = r / eps
+    M0 = int(np.floor(np.sqrt(1 + x*x)))
+    return M0 * (M0 + 1) * (2*M0 + 1) // 6
+
+def atlas_row(r, T, eps, b=1.0, ceiling="holographic"):
+    if r <= 0 or T < 0 or eps <= 0:
+        raise ValueError("Require r > 0, T >= 0, eps > 0")
+
+    V3 = 2 * np.pi**2 * r**3
+    R3 = 6 / r**2
+    K = 1 / r**2
+    t_coh = np.pi * r / c
+
+    Ecrit = c**4 * r / (2 * G)
+    Mcrit = Ecrit / c**2
+
+    rho_scr_E = c**4 / (4 * np.pi**2 * G * r**2)
+    rho_scr_m = rho_scr_E / c**2
+
+    B_holo = np.pi * r**2 / (lP**2 * np.log(2))
+    B_bek_crit = 2 * np.pi * Ecrit * r / (hbar * c * np.log(2))
+
+    if ceiling == "holographic":
+        B_ceil = B_holo
+    elif ceiling == "bekenstein-critical":
+        B_ceil = B_bek_crit
+    elif ceiling == "min-critical":
+        B_ceil = min(B_holo, B_bek_crit)
+    else:
+        raise ValueError("Unknown ceiling")
+
+    tau = c * T / r
+    Gamma = gamma_round(tau)
+    N0 = scalar_capacity(r, eps)
+
+    B_causal = b * Gamma * N0
+    Sigma = min(1.0, B_ceil / B_causal) if B_causal > 0 else np.nan
+
+    return {
+        "r_m": r,
+        "T_s": T,
+        "eps_m": eps,
+        "V3_m3": V3,
+        "R3_m_minus2": R3,
+        "K_m_minus2": K,
+        "t_coh_s": t_coh,
+        "Mcrit_kg": Mcrit,
+        "rho_scr_E_J_m3": rho_scr_E,
+        "rho_scr_m_kg_m3": rho_scr_m,
+        "B_holo_bits": B_holo,
+        "B_bek_crit_bits": B_bek_crit,
+        "Gamma": Gamma,
+        "N0_scalar": N0,
+        "B_causal_bits": B_causal,
+        "B_ceil_bits": B_ceil,
+        "Sigma_atlas": Sigma,
+        "n_phi": np.log(r / lP) / np.log(phi),
+    }
+\end{verbatim}
+
+\begin{remark}[Atlas interpretation firewall]
+An atlas output is a row of diagnostic screen quantities.  It is not a measurement, not a proof of topology, not a derivation of a particle property, and not a statement that one radius determines all physics.  It becomes physically meaningful only after the carrier, domain, cutoff, sector, alphabet, and ceiling have been independently justified.
+\end{remark}
+
+
+
+\section{Verified auxiliary identities and scope boundaries}
+\label{app:verified-auxiliary-identities}
+
+This appendix records the result of screening a long list of candidate auxiliary statements.  It does not add a second theorem-core.  It separates exact identities from external mathematical facts, diagnostic templates, and stated non-claims.
+
+\subsection{Admitted exact identities}
+
+The following identities are admitted as direct consequences of the round carrier, the causal fraction, the spectral counts, or the selector definition.
+
+\begin{center}
+\small
+\begin{tabular}{p{0.30\linewidth}p{0.60\linewidth}}
+\toprule
+Identity & Admissible statement\\
+\midrule
+Geodesic scale & A geodesic angular separation \(\alpha\) has distance \(R\alpha\).  The boundary area of a geodesic ball is \(4\pi R^2\sin^2\alpha\).\\
+Constant curvature & The round carrier has sectional curvature \(K=R^{-2}\), scalar curvature \(\mathcal R_3=6R^{-2}\), and diameter \(\pi R\).\\
+Scalar generating function & \(\sum_{n\ge0}(n+1)^2q^n=(1+q)/(1-q)^3\) for \(|q|<1\).\\
+Causal density & \(\Gamma(\tau)=\int_0^\tau(2/\pi)\sin^2u\,du\); hence \(\Gamma'(\tau)=(2/\pi)\sin^2\tau\).\\
+Complementarity & \(\Gamma(\tau)+\Gamma(\pi-\tau)=1\).\\
+Early expansion & \(\Gamma(\tau)=\frac{2}{3\pi}\tau^3-\frac{2}{15\pi}\tau^5+O(\tau^7)\).\\
+Late expansion & \(1-\Gamma(\pi-\delta)=\frac{2}{3\pi}\delta^3-\frac{2}{15\pi}\delta^5+O(\delta^7)\).\\
+Selector monotonicity & In the filtered regime, \(\Sigma\) is non-decreasing with coarser \(\varepsilon\) and non-increasing with larger \(T\), provided the active ceiling is fixed.\\
+Holographic bit density & \(B_{\rm holo}/A=(4\ell_P^2\ln2)^{-1}\).\\
+Planck criticality & \(M_{\rm crit}(\ell_P)=m_P/2\).\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+These identities may be used without changing the logical status of the manuscript.  They are algebraic or calculus consequences of the definitions.
+
+\subsection{External facts requiring precise citation}
+
+The following statements are not proved in the manuscript.  They may be cited as standard external mathematics only when the exact operator, bundle, normalization, and hypotheses are stated.
+
+\begin{center}
+\small
+\begin{tabular}{p{0.30\linewidth}p{0.60\linewidth}}
+\toprule
+External fact & Required qualification\\
+\midrule
+Isoperimetric inequality on \(S^3\) & Geodesic balls minimize boundary area for fixed volume; this is an external geometric theorem, not a selector theorem.\\
+Form, vector, spinor, and tensor spectra & Each spectrum depends on the chosen operator convention and bundle.  Capacities may be added only after those choices are fixed.\\
+Heat trace and zeta functions & Heat-kernel and zeta identities are operator-specific and require a stated normalization.\\
+Hopf invariant & For a physical claim, one must specify a field \(\Phi:M^3\to S^2\), normalization of the target two-form, and boundary conditions.\\
+Mapping cone criteria & Homotopical erasure statements require stated CW-complex hypotheses and the relevant homotopy-equivalence criterion.\\
+Quantum-channel bounds & Holevo or channel-capacity bounds require a specified Hilbert space, channel, ensemble, and operational task.\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+These facts can extend the calculus of examples, but they do not enlarge the closed selector theorem.
+
+\subsection{Diagnostic templates}
+
+The following items are admissible as templates or null tests, not as theorem-core consequences.
+
+\begin{center}
+\small
+\begin{tabular}{p{0.30\linewidth}p{0.60\linewidth}}
+\toprule
+Template & Status\\
+\midrule
+Golden-ratio log-periodicity & A preregistered oscillatory template in \(\ln k\); a null result constrains the template, not the selector theorem.\\
+CMB low-\(\ell\) compact comparison & A likelihood comparison requiring closed-universe transfer functions and foreground/systematic treatment.\\
+Gravitational-wave comb & A compact-carrier toy template requiring an independently chosen \(R_0\) and a noise-line veto.\\
+Hopfion surveys & Physical only when a measured three-dimensional field or order parameter defines \(\Phi:M^3\to S^2\).\\
+Horizon-density comparison & \(\Omega_{\rm scr}(c/H_0)=2/(3\pi)\) is a dimensional screen comparison, not a dark-energy derivation.\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Non-claims}
+
+The following statements are not admitted as conclusions of the manuscript.  They should not be used elsewhere as established results.
+
+\begin{center}
+\small
+\begin{tabular}{p{0.34\linewidth}p{0.56\linewidth}}
+\toprule
+Non-claim & Reason\\
+\midrule
+\(\Sigma\ll1\) proves classicality & \(\Sigma\) measures code-capacity filtering.  Classicality requires decoherence, a pointer basis, environment, and coarse-graining.\\
+Eigenfunctions are causally supported in a ball & Shell-complete projectors give a volume fraction of spectral weight, not compact support of eigenfunctions.\\
+Landauer plus Ricci flow derives Hawking radiation & Landauer gives conditional reset bookkeeping.  Hawking radiation requires horizon quantum-field structure or an equivalent derivation.\\
+Hopf invariant gives spin \(1/2\) & For \(\Phi:S^3\to S^2\), \(Q_H\in\mathbb Z\).  Spinors require a different representation-theoretic structure.\\
+Hopf charge implies Wilson-loop area law & Confinement requires a gauge group, action, measure, observable, and continuum or lattice limit.\\
+\(S^3\) shell multiplicities derive nuclear magic numbers & A nuclear Hamiltonian, spin-orbit term, degeneracy rules, and filling rule are absent.\\
+The Hubble screen density derives dark energy & The coefficient differs from \(\Omega_\Lambda\); saturation and equation of state are additional dynamics.\\
+The scale atlas gives all physics from one length & The atlas needs \(P,\varepsilon,T,b_P,B_{\rm ceil}\) and is a diagnostic calculator, not ontology.\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Corrected reference atlas rows}
+
+For reproducibility, the following scalar binary rows use
+\[
+T=t_0=13.79\,{\rm Gyr},\qquad
+\varepsilon=\ell_P,\qquad
+b=1,\qquad
+B_{\rm ceil}=B_{\rm holo}.
+\]
+The table reports rounded values; the code in Appendix~\ref{app:scale-atlas-protocol} is authoritative.
+
+\begin{center}
+\small
+\begin{tabular}{lrrrr}
+\toprule
+Scale & \(\Gamma\) & \(B_{\rm causal}\) & \(B_{\rm holo}\) & \(\Sigma_{\rm atlas}\)\\
+\midrule
+\(\ell_P\) & \(1\) & \(1.00\) & \(4.53\) & \(1\)\\
+Proton Compton & \(1\) & \(7.34\times10^{56}\) & \(7.67\times10^{38}\) & \(1.05\times10^{-18}\)\\
+Electron Compton & \(1\) & \(4.55\times10^{66}\) & \(2.59\times10^{45}\) & \(5.69\times10^{-22}\)\\
+Bohr radius & \(1\) & \(1.17\times10^{73}\) & \(4.86\times10^{49}\) & \(4.15\times10^{-24}\)\\
+\(10M_\odot\) black hole & \(1\) & \(2.04\times10^{117}\) & \(1.51\times10^{79}\) & \(7.44\times10^{-39}\)\\
+Hubble radius \(c/H_0\) & \(0.152\) & \(3.10\times10^{181}\) & \(3.27\times10^{122}\) & \(1.05\times10^{-59}\)\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+For the Hubble row,
+\[
+\tau=\frac{ct_0}{c/H_0}\approx0.951,
+\qquad
+\Gamma(\tau)\approx0.152,
+\]
+not \(1\).  This distinction matters for causal capacity, though not for the horizon-density comparison.  It must also be kept separate from the much smaller $\Gamma_{R_{\rm curv}}(t_0)$ obtained when the illustrative global curvature radius $R_{\rm curv}=548.324513026856039$ Gly is used.
+
+\subsection{Conclusion of the screening appendix}
+
+A long candidate list of auxiliary statements does not become theorem-core by enumeration.  The admitted output of the screening is narrower and stronger:
+\[
+\begin{aligned}
+&\text{exact identities}
++\text{external facts with hypotheses}\\
+&\qquad
++\text{diagnostic templates}
++\text{stated non-claims}.
+\end{aligned}
+\]
+This preserves the theorem-core while making the boundary of admissible extension visible.
+
+
+
+\section{Expanded auxiliary identity register}
+\label{app:expanded-auxiliary-register}
+
+This appendix records a corrected screening of the larger auxiliary list.  It is not a list of new theorem-core results.  Its purpose is narrower: to say which candidate identities may be used directly, which require external citations or operator conventions, which are diagnostic templates, and which must be corrected or excluded.
+
+\subsection{Admission rule for the register}
+
+A candidate statement is admitted into the theorem-core only when it follows from the definitions and proved propositions of the manuscript.  A standard mathematical fact may be used only as an external fact with its hypotheses and normalization stated.  A physical or observational statement remains a template unless the carrier, field, observable, and likelihood or measurement rule are supplied.
+
+\[
+\text{enumeration}\ne\text{proof}.
+\]
+
+\subsection{Mandatory corrections to the candidate list}
+
+The following corrections are required before any expanded list can be cited.
+
+\begin{center}
+\small
+\begin{tabular}{p{0.32\linewidth}p{0.58\linewidth}}
+\toprule
+Candidate item & Corrected statement\\
+\midrule
+Threshold monotonicity & If \(\Gamma(\tau_*)=B_{\rm ceil}/(b_PN_P)\), then \(\tau_*\) increases with \(B_{\rm ceil}\) and decreases with \(b_PN_P\), while \(0<B_{\rm ceil}/(b_PN_P)<1\).\\
+Scalar capacity number & \(N_0(M)=\sum_{j=1}^M j^2=M(M+1)(2M+1)/6\) is a square-pyramidal number, not a tetrahedral number.\\
+Asymptotic expansion of counts & Exact cubic polynomials are valid in the integer cutoff \(M\).  As functions of \(R/\varepsilon\), floor effects allow only \(N_0=(R/\varepsilon)^3/3+O((R/\varepsilon)^2)\) without further smoothing.\\
+Selector correction terms & In the early-time expansion, the causal correction begins at \(O((cT/R)^2)\), not necessarily linearly.  A safe form is
+\[
+\Sigma=
+\frac{3\pi B_{\rm ceil}}{2b_PC_P}
+\left(\frac{\varepsilon}{cT}\right)^3
+\left[1+O(\varepsilon/R)+O((cT/R)^2)\right].
+\]\\
+Planck row & For \(r=\ell_P\), \(T=t_{\rm coh}/2\), \(\varepsilon=\ell_P\), scalar binary counting gives \(\Gamma=1/2\), \(N_0=1\), \(B_{\rm causal}=B_{\rm phys}=0.5\) bit in the min-law model, and \(\Sigma=1\).\\
+Boson--fermion comparison & Since \(N_0\sim x^3/3\), \(N_{\rm TT}\sim2x^3/3\), and \(N_D\sim2x^3/3\), one has \(N_0+N_{\rm TT}\sim x^3\ne N_D\).  No supersymmetric degeneracy follows.\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Theorem-core identities admitted without external physics}
+
+The following candidate ranges are admitted as direct identities of the round carrier, the causal fraction, the exact spectral cutoffs, or the selector definition.  Their use does not assert that a physical system is a three-sphere.
+
+\begin{center}
+\small
+\begin{tabular}{p{0.25\linewidth}p{0.65\linewidth}}
+\toprule
+Range or item & Admitted content\\
+\midrule
+Round geometry & Geodesic ball volume \(V(s)=2\pi R^3(s/R-\frac12\sin(2s/R))\), boundary area \(4\pi R^2\sin^2(s/R)\), \(dV/ds=A\), total volume \(2\pi^2R^3\), diameter and injectivity radius \(\pi R\), constant sectional, Ricci, and scalar curvature.\\
+Scalar spectrum and capacity & \(\lambda_n=n(n+2)/R^2\), multiplicity \((n+1)^2\), cutoff \(M_0=\lfloor\sqrt{1+(R/\varepsilon)^2}\rfloor\), and \(N_0=M_0(M_0+1)(2M_0+1)/6\).\\
+Causal fraction & \(\Gamma(\tau)=(\tau-\frac12\sin2\tau)/\pi\), \(\Gamma'=(2/\pi)\sin^2\tau\), complement identity, midpoint, small-time and late-time cubic expansions, and the angular-distance density \(p(\theta)=(2/\pi)\sin^2\theta\).\\
+Projector fraction & In the homogeneous shell-complete case, the normalized local trace over a geodesic ball equals its volume fraction, hence the PIR equals \(\Gamma_R(T)\).\\
+Selector normal form & \(B_{\rm causal}=b_P\Gamma N_P\), \(B_{\rm phys}\le\min(B_{\rm causal},B_{\rm Bek},B_{\rm holo})\), \(\Sigma=B_{\rm phys}/B_{\rm causal}\in[0,1]\), and the min-law diagnostic form \(\Sigma_{\rm min}=\min\{1,B_{\rm ceil}/(b_P\Gamma N_P)\}\).\\
+Selector threshold & When \(0<B_{\rm ceil}/(b_PN_P)<1\), strict monotonicity of \(\Gamma\) gives a unique threshold \(\tau_*\).\\
+Double asymptotic & For \(\tau,\chi\ll1\), \(B_{\rm causal}\sim(2b_PC_P/3\pi)(cT/\varepsilon)^3\), and the filtered selector scales cubically in \(\varepsilon/(cT)\).\\
+Screen-density identities & \(E_{\rm crit}=c^4r/(2G)\), \(\rho_{\rm scr}^E=c^4/(4\pi^2Gr^2)\), \(\rho_{\rm scr}^E/\mathcal R_3=c^4/(24\pi^2G)\), \(\Lambda_{\rm scr}=2/(\pi r^2)\), \(B_{\rm holo}=\pi r^2/(\ell_P^2\ln2)\), and \(B_{\rm Bek}(E_{\rm crit},r)=B_{\rm holo}\).\\
+Complement identities & \(\operatorname{Vol}(S^3\setminus B_s)=2\pi^2R^3-V(s)\), \(\Gamma(\pi-\tau)=1-\Gamma(\tau)\), and, in the shell-complete case, \(\operatorname{PIR}(M\setminus B)=1-\operatorname{PIR}(B)\).\\
+Capacity ratios & In the Weyl regime, \(N_{\rm TT}/N_0\to2\) and \(N_D/N_0\to2\), using the operator conventions of the manuscript.\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{External facts allowed only with hypotheses and citations}
+
+The following items may be useful, but they are not proved by the selector construction itself.
+
+\begin{center}
+\small
+\begin{tabular}{p{0.28\linewidth}p{0.62\linewidth}}
+\toprule
+External item & Required qualification\\
+\midrule
+Form, vector, TT, Dirac, and Rarita--Schwinger spectra & State the operator, bundle, sign convention, gauge removal, zero-mode convention, and multiplicity formula.\\
+Heat trace, zeta, and determinant formulae & State the operator and regularization.  Heat traces are admissible as smoothed counts, not replacements for sharp finite alphabets unless that change is declared.\\
+Isoperimetric inequality & Use only as a cited theorem about round \(S^3\), not as a selector theorem.\\
+Hopf invariant & Specify \(\Phi:M^3\to S^2\), target two-form normalization, connection convention, and boundary conditions.\\
+Chern--Simons relation & Use only after distinguishing the \(U(1)\) Hopf invariant on \(S^3\) from four-dimensional Yang--Mills instanton number.\\
+Mapping cone and erasure criteria & State the CW-complex and simply connected hypotheses before invoking homotopy-equivalence criteria.\\
+Quantum-channel and Holevo bounds & State the Hilbert space, channel, ensemble, and operational task.\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Diagnostic templates, not theorem-core}
+
+The following are permitted as test templates or diagnostic applications.
+
+\begin{center}
+\small
+\begin{tabular}{p{0.30\linewidth}p{0.60\linewidth}}
+\toprule
+Template & Status\\
+\midrule
+Golden-ratio ladder & \(r_n=\ell_P\varphi^n\) is an ansatz.  The frequency \(f_\varphi=1/\ln\varphi\) is the correct cycles-per-unit-\(\ln k\) frequency when such an ansatz is tested.\\
+Log-periodic power-spectrum template & \(P(k)=P_{\rm smooth}(k)[1+A\cos(\omega_\varphi\ln k+\phi_0)]\) is a preregistered template.  A positive result would require systematics and mock-catalogue control; a null result does not affect the selector theorem.\\
+CMB compact comparison & Requires closed-universe transfer functions and likelihood comparison; not a direct consequence of shell bands alone.\\
+Gravitational-wave comb & \(f_n=nc/(2\pi R_0)\) is a toy compact-carrier comb template unless an independently motivated \(R_0\), TT operator, and source model are supplied.\\
+Horizon-density comparison & \(\Omega_{\rm scr}(c/H_0)=2/(3\pi)\) is a parameter-free screen comparison with \(H_0^2\) scaling, not a dark-energy derivation.\\
+Scale atlas & The atlas is a diagnostic calculator requiring \(P,\varepsilon,T,b_P,B_{\rm ceil}\); it is not a one-radius theory of all physical properties.\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Corrected admissible consequences from promotion candidates}
+
+The earlier candidate list mixed true structural insights with inadmissible promotions.
+The admissible content is retained below in corrected form.  The right column is the statement used by the manuscript; no excluded stronger claim is needed.
+
+\begin{center}
+\small
+\begin{tabular}{p{0.30\linewidth}p{0.60\linewidth}}
+\toprule
+Theme & Corrected admissible statement\\
+\midrule
+Selector and classicality &
+\(\Sigma\) is a normalized capacity-filtering diagnostic.  A small value of \(\Sigma\) signals strong compression of the causal spectral code by physical ceilings; classicality requires an additional decoherence or coarse-graining model.\\
+Causal spectral access &
+For a shell-complete homogeneous projector, the local trace fraction over a geodesic ball equals the volume fraction.  This is a trace-weight identity, not compact support of eigenfunctions.\\
+Landauer and changing capacity &
+If a physically realized code is reset into a thermal bath, the erased-bit lower bound is \( \dot Q_{\min}\ge k_BT_{\rm bath}\ln2\,|\dot B_{\rm erased}| \).  Ricci-flow capacity loss can enter only after an erasure model is specified.\\
+Hopf structure &
+The Hopf fibration supplies exact linking and integer Hopf-charge data for maps \(S^3\to S^2\).  Spin, fermions, and gauge charges require separate representation-theoretic or gauge-field data.\\
+Gauge and confinement templates &
+Hopf or Wilson-loop language may provide diagnostic templates only after a gauge group, action, measure, observable, and infinite-volume or continuum limit are supplied.\\
+Compact spectral shells &
+The scalar, TT, and Dirac shell counts are exact for the conditional \(S^3_R\) carrier.  They may be used as null templates or diagnostic atlases, not as nuclear or particle-spectrum derivations.\\
+Sector Weyl ratios &
+The asymptotic ratios \(N_{\rm TT}/N_0\to2\) and \(N_D/N_0\to2\) record sector-dependent Weyl coefficients.  They are not supersymmetry statements.\\
+Auxiliary registers &
+A register may collect exact identities, cited external facts, and diagnostic normal forms.  Enumeration preserves status; it does not create new theorems.\\
+\bottomrule
+\end{tabular}
+\end{center}
+\subsection{Conclusion of the expanded register}
+
+The expanded list is valuable only after screening.  The admissible conclusion is
+\[
+\begin{aligned}
+\text{the framework supports a large register of exact identities,}\\
+\text{cited external facts, and diagnostic templates,}
+\end{aligned}
+\]
+not
+\[
+\text{the framework proves all physical laws from one scale}.
+\]
+This appendix records that separation explicitly.
+
+
+
+
+\section{Additional exact invariants}
+\label{app:additional-exact-invariants}
+
+This appendix records auxiliary identities that follow directly from the round-screen definitions and the selector normal form.  No physical interpretation is added.
+
+\begin{lemma}[Boundary-area derivative of the causal fraction]
+Let \(S^3_R\) be the round three-sphere and let
+\[
+\Gamma(\tau)=\frac{1}{\pi}\left(\tau-\frac12\sin2\tau\right),
+\qquad
+\tau=\frac{cT}{R}.
+\]
+If \(A(s)=4\pi R^2\sin^2(s/R)\) is the area of the geodesic-sphere boundary of the ball of radius \(s\), then
+\[
+\frac{d\Gamma}{d\tau}
+=
+\frac{R\,A(R\tau)}{2\pi^2R^3}
+=
+\frac{A(R\tau)}{2\pi^2R^2}
+=
+\frac{2}{\pi}\sin^2\tau.
+\]
+\end{lemma}
+
+\begin{lemma}[Curvature--volume invariant]
+For the round screen,
+\[
+\mathcal R_3 V_3^{2/3}
+=
+6(2\pi^2)^{2/3}
+\approx 43.79.
+\]
+\end{lemma}
+
+\begin{lemma}[Holographic bits per squared Planck radius]
+The holographic ceiling satisfies
+\[
+\frac{B_{\rm holo}(r)}{(r/\ell_P)^2}
+=
+\frac{\pi}{\ln2}
+\approx4.53236.
+\]
+\end{lemma}
+
+\begin{lemma}[Exact scalar capacity polynomial]
+Let
+\[
+M=\left\lfloor\sqrt{1+(r/\varepsilon)^2}\right\rfloor .
+\]
+Then
+\[
+N_0(\varepsilon)
+=
+\frac{M(M+1)(2M+1)}6
+=
+\frac13M^3+\frac12M^2+\frac16M.
+\]
+Consequently,
+\[
+N_0(\varepsilon)
+=
+\frac13(r/\varepsilon)^3
++
+O((r/\varepsilon)^2),
+\]
+with the \(O((r/\varepsilon)^2)\) term absorbing the floor effect.
+\end{lemma}
+
+\begin{lemma}[Square-pyramidal scalar count]
+The scalar capacity is the square-pyramidal sum
+\[
+\sum_{n=0}^{M-1}(n+1)^2
+=
+\sum_{j=1}^{M}j^2
+=
+\frac{M(M+1)(2M+1)}6.
+\]
+\end{lemma}
+
+\begin{lemma}[Weyl ratios among sectors]
+For the sector conventions used in the manuscript,
+\[
+\lim_{\varepsilon\to0}
+\frac{N_{\rm TT}(\varepsilon)}{N_0(\varepsilon)}
+=
+2,
+\qquad
+\lim_{\varepsilon\to0}
+\frac{N_D(\varepsilon)}{N_0(\varepsilon)}
+=
+2.
+\]
+\end{lemma}
+
+\begin{lemma}[Logarithmic selector slopes in the filtered double-asymptotic regime]
+In the filtered regime, with \(B_{\rm ceil}\) and \(b_P\) fixed, and with
+\[
+\tau\ll1,
+\qquad
+\chi\ll1,
+\]
+one has
+\[
+\Sigma_{\rm grav}^{(P)}
+\sim
+\frac{3\pi B_{\rm ceil}}{2b_PC_P}
+\left(\frac{\varepsilon}{cT}\right)^3.
+\]
+Therefore
+\[
+\frac{\partial\ln\Sigma}{\partial\ln\varepsilon}=3,
+\qquad
+\frac{\partial\ln\Sigma}{\partial\ln T}=-3
+\]
+within this asymptotic regime.
+\end{lemma}
+
+\begin{lemma}[Dimensionless phase-control ratio]
+In the double-asymptotic regime,
+\[
+D_P
+\sim
+\frac{2b_PC_P}{3\pi}
+\left(\frac{cT}{\varepsilon}\right)^3.
+\]
+Thus the min-law selector phase is controlled by the dimensionless ratio
+\[
+\frac{D_P}{B_{\rm ceil}}
+\sim
+\frac{2b_PC_P}{3\pi B_{\rm ceil}}
+\left(\frac{cT}{\varepsilon}\right)^3,
+\]
+which contains no \(R_{\rm curv}\).
+\end{lemma}
+
+\begin{lemma}[Conditional Landauer bound for spectral-capacity loss]
+If, during a prescribed geometric flow, lost spectral distinctions correspond to finite logical sectors reset into a thermal bath, then Landauer's principle gives
+\[
+\dot Q_{\min}
+\ge
+k_BT_{\rm bath}\ln2\,
+\left|\dot B_{\rm erased}\right|.
+\]
+If only spectral mode loss is counted and \(\Gamma\) is held fixed, this becomes
+\[
+\dot Q_{\min}
+\ge
+k_BT_{\rm bath}\ln2\, b_P\Gamma|\dot N_P|.
+\]
+This is conditional thermodynamic bookkeeping; it is not a derivation of Hawking radiation.
+\end{lemma}
+
+\begin{lemma}[Reduced action-scale invariant]
+The density--curvature invariant satisfies
+\[
+\frac{\rho_{\rm scr}^E}{\mathcal R_3}
+=
+\frac{c^4}{24\pi^2G}.
+\]
+Multiplication by the Planck area gives
+\[
+\frac{\rho_{\rm scr}^E}{\mathcal R_3}\ell_P^2
+=
+\frac{\hbar c}{24\pi^2}
+\approx
+1.33\times10^{-28}\ {\rm J\,m}.
+\]
+\end{lemma}
+
+\begin{lemma}[Holographic ceiling and critical Planck mass count]
+For
+\[
+M_{\rm crit}(r)=\frac{rc^2}{2G},
+\qquad
+m_P=\sqrt{\frac{\hbar c}{G}},
+\]
+one has
+\[
+\frac{B_{\rm holo}(r)}
+{(M_{\rm crit}/m_P)^2}
+=
+\frac{4\pi}{\ln2}
+\approx18.13.
+\]
+\end{lemma}
+
+\begin{lemma}[Integral identities for the causal fraction]
+The causal fraction obeys
+\[
+\int_0^\pi \Gamma(\tau)\,d\tau
+=
+\frac{\pi}{2}.
+\]
+Moreover, for the angular-distance density
+\[
+p(\tau)=\Gamma'(\tau)=\frac{2}{\pi}\sin^2\tau,
+\]
+the mean angular distance is
+\[
+\mathbb E[\tau]
+=
+\int_0^\pi \tau\,p(\tau)\,d\tau
+=
+\frac{\pi}{2}.
+\]
+\end{lemma}
+
+\begin{lemma}[Exact characteristic values of the causal fraction]
+The causal fraction has the exact values
+\[
+\Gamma\!\left(\frac{\pi}{2}\right)=\frac12,
+\qquad
+\Gamma\!\left(\frac{\pi}{4}\right)=\frac14-\frac{1}{2\pi},
+\qquad
+\Gamma\!\left(\frac{3\pi}{4}\right)=\frac34+\frac{1}{2\pi}.
+\]
+\end{lemma}
+
+\begin{remark}[Status of the additional invariants]
+These lemmas add no new ontology.  They are algebraic consequences of the same round-screen geometry, spectral counts, and filtered-selector asymptotics already used in the theorem core.
+\end{remark}
+
+
+\section{Curated auxiliary identities from the expanded register}
+\label{app:curated-auxiliary-identities}
+
+The identities below collect corrected, non-redundant auxiliary consequences that are useful for checking normalizations and numerical scales.  They add no physical interpretation.
+
+\begin{lemma}[Geodesic ball volume--area ratio]
+For \(0<s=R\tau<\pi R\), the geodesic ball volume and boundary area obey
+\[
+\frac{V(s)}{A(s)}
+=
+\frac{R}{2}
+\frac{\tau-\sin\tau\cos\tau}{\sin^2\tau}
+=
+\frac{R}{2}\left(\tau\csc^2\tau-\cot\tau\right).
+\]
+\end{lemma}
+\begin{proof}
+Insert
+\[
+V(R\tau)=2\pi R^3(\tau-\sin\tau\cos\tau),
+\qquad
+A(R\tau)=4\pi R^2\sin^2\tau,
+\]
+and divide.
+\end{proof}
+
+\begin{lemma}[Variance of the round \(S^3\) distance]
+Let \(\theta=d/R\) be the angular distance between two uniformly chosen points of \(S^3_R\).  Then
+\[
+p(\theta)=\frac{2}{\pi}\sin^2\theta,
+\qquad
+0\le\theta\le\pi,
+\]
+and
+\[
+\operatorname{Var}(d)
+=
+R^2\left(\frac{\pi^2}{12}-\frac12\right).
+\]
+\end{lemma}
+\begin{proof}
+The density gives \(\mathbb E[\theta]=\pi/2\).  A direct integration gives
+\[
+\mathbb E[\theta^2]
+=
+\frac{2}{\pi}\int_0^\pi \theta^2\sin^2\theta\,d\theta
+=
+\frac{\pi^2}{3}-\frac12.
+\]
+Subtracting \((\pi/2)^2\) gives the stated variance.
+\end{proof}
+
+\begin{lemma}[Spatial Einstein tensor of the round carrier]
+For the round three-sphere,
+\[
+\operatorname{Ric}_{ij}=\frac{2}{R^2}g_{ij},
+\qquad
+\mathcal R_3=\frac{6}{R^2}.
+\]
+Hence the three-dimensional Einstein tensor is
+\[
+G_{ij}
+=
+\operatorname{Ric}_{ij}-\frac12\mathcal R_3g_{ij}
+=
+-\frac1{R^2}g_{ij}.
+\]
+\end{lemma}
+
+\begin{lemma}[Holographic ceiling written by scalar curvature]
+For a round screen of radius \(r\),
+\[
+\mathcal R_3=\frac6{r^2}.
+\]
+Therefore
+\[
+B_{\rm holo}(r)
+=
+\frac{\pi r^2}{\ell_P^2\ln2}
+=
+\frac{6\pi}{\ell_P^2\ln2}\frac1{\mathcal R_3}.
+\]
+\end{lemma}
+
+\begin{lemma}[Screen cosmological scale ratio]
+For
+\[
+\Lambda_{\rm scr}(r)=\frac{2}{\pi r^2},
+\qquad
+\mathcal R_3(r)=\frac6{r^2},
+\]
+one has the scale-free ratio
+\[
+\frac{\Lambda_{\rm scr}}{\mathcal R_3}
+=
+\frac1{3\pi}.
+\]
+This is a screen diagnostic identity, not a cosmological-constant derivation.
+\end{lemma}
+
+\begin{lemma}[Screen energy ratio]
+Let
+\[
+\rho_{\rm scr}^E(r)=\frac{c^4}{4\pi^2G r^2},
+\qquad
+E_{\rm crit}(r)=\frac{c^4r}{2G}.
+\]
+Then
+\[
+\frac{\rho_{\rm scr}^E(r)\,r^3}{E_{\rm crit}(r)}
+=
+\frac1{2\pi^2}.
+\]
+\end{lemma}
+
+\begin{lemma}[Smoothed TT capacity loss under unnormalised Ricci flow]
+For a round carrier \(g(t)=a(t)^2g_{\rm unit}\) under unnormalised Ricci flow,
+\[
+\dot a=-\frac2a.
+\]
+In the smoothed Weyl regime,
+\[
+N_{\rm TT}(a,\varepsilon)\sim\frac23\left(\frac{a}{\varepsilon}\right)^3.
+\]
+Consequently
+\[
+\dot N_{\rm TT}
+\sim
+-\frac{4a}{\varepsilon^3}.
+\]
+\end{lemma}
+
+\begin{lemma}[Hopf volume factor under standard normalization]
+For the standard Hopf fibration
+\[
+S^1\hookrightarrow S^3_R\to S^2_{R/2},
+\]
+the fiber length is \(2\pi R\) and the base area is
+\[
+\operatorname{Area}(S^2_{R/2})=\pi R^2.
+\]
+Thus
+\[
+\operatorname{Vol}(S^3_R)
+=
+(2\pi R)\operatorname{Area}(S^2_{R/2})
+=
+2\pi^2R^3.
+\]
+\end{lemma}
+
+\begin{lemma}[Selector lower bound in the filtered regime]
+In the filtered min-law regime,
+\[
+\Sigma_{\rm grav}^{(P)}
+=
+\frac{B_{\rm ceil}}{b_P\Gamma N_P},
+\qquad
+0<\Gamma\le1.
+\]
+Therefore
+\[
+\Sigma_{\rm grav}^{(P)}
+\ge
+\frac{B_{\rm ceil}}{b_PN_P}.
+\]
+\end{lemma}
+
+\begin{lemma}[Sector mass--time invariant]
+In the double-asymptotic holographic threshold model with \(r_{\mathcal D}=cT\),
+\[
+\varepsilon_*^{(P)}
+=
+(cT)^{1/3}\ell_P^{2/3}
+\left(
+\frac{2b_PC_P\ln2}{3\pi^2}
+\right)^{1/3}.
+\]
+With
+\[
+m_*^{(P)}=\frac{\hbar}{c\,\varepsilon_*^{(P)}},
+\]
+one has
+\[
+\bigl(m_*^{(P)}\bigr)^3T
+=
+m_P^3\frac{\ell_P}{c}
+\left(
+\frac{2b_PC_P\ln2}{3\pi^2}
+\right)^{-1}.
+\]
+Thus \(m_*^3T\) is fixed by the sector coefficient and alphabet choice.  It is a threshold identity, not a particle-mass prediction.
+\end{lemma}
+
+\begin{remark}[No bulk enumeration]
+The two-hundred-item candidate register is not reproduced.  Many entries were repetitions, external facts, or required corrected numerical scales.  The admitted list above is intentionally short: correct formula, correct scale, correct status.
+\end{remark}
+
+
+
+
+
+\section{Compact verified additions from the 120-item candidate list}
+\label{app:compact-verified-additions}
+
+A later one-hundred-twenty-item candidate register was checked against the theorem-core.  The bulk list is not reproduced.  The identities below are the corrected new fragments that were not already absorbed by the preceding auxiliary registers.  They are algebraic consequences only.
+
+\begin{lemma}[Small-radius expansion of the round geodesic ball]
+For \(s\ll R\), the round \(S^3_R\) geodesic ball satisfies
+\[
+V(s)
+=
+\frac{4\pi}{3}s^3
+\left(
+1-\frac{s^2}{5R^2}+O(s^4/R^4)
+\right)
+=
+\frac{4\pi}{3}s^3
+\left(
+1-\frac{\mathcal R_3s^2}{30}+O(s^4/R^4)
+\right).
+\]
+Its boundary area satisfies
+\[
+A(s)
+=
+4\pi s^2
+\left(
+1-\frac{s^2}{3R^2}+O(s^4/R^4)
+\right)
+=
+4\pi s^2
+\left(
+1-\frac{\mathcal R_3s^2}{18}+O(s^4/R^4)
+\right).
+\]
+\end{lemma}
+\begin{proof}
+Expand
+\[
+V(s)=2\pi R^3\left(\frac{s}{R}-\frac12\sin\frac{2s}{R}\right),
+\qquad
+A(s)=4\pi R^2\sin^2(s/R),
+\]
+and use \(\mathcal R_3=6/R^2\).
+\end{proof}
+
+\begin{lemma}[Small-\(y\) inverse of the causal fraction]
+Let \(y=\Gamma(\tau)\) and let \(y\downarrow0\).  With
+\[
+a=\left(\frac{3\pi y}{2}\right)^{1/3},
+\]
+one has
+\[
+\Gamma^{-1}(y)
+=
+a\left(1+\frac{a^2}{15}+O(a^4)\right).
+\]
+\end{lemma}
+\begin{proof}
+The causal fraction has the expansion
+\[
+\Gamma(\tau)
+=
+\frac{2}{3\pi}\tau^3
+\left(1-\frac{\tau^2}{5}+O(\tau^4)\right).
+\]
+Series inversion gives the stated expression.
+\end{proof}
+
+\begin{lemma}[Holographic bit-volume identities]
+For the round screen volume
+\[
+V(r)=2\pi^2r^3
+\]
+and the holographic ceiling
+\[
+B_{\rm holo}(r)=\frac{\pi r^2}{\ell_P^2\ln2},
+\]
+one has
+\[
+\frac{B_{\rm holo}(r)}{V(r)}
+=
+\frac{1}{2\pi r\,\ell_P^2\ln2},
+\qquad
+\frac{V(r)}{B_{\rm holo}(r)}
+=
+2\pi r\,\ell_P^2\ln2.
+\]
+Consequently,
+\[
+\left(\frac{B_{\rm holo}}{V}\right)r
+=
+\frac{1}{2\pi\ell_P^2\ln2}.
+\]
+\end{lemma}
+
+\begin{lemma}[Screen density scaling constants]
+The screen densities obey
+\[
+\rho_{\rm scr}^E(r)r^2
+=
+\frac{c^4}{4\pi^2G},
+\qquad
+\rho_{\rm scr}^m(r)r^2
+=
+\frac{c^2}{4\pi^2G}.
+\]
+The related expression
+\[
+\rho_{\rm scr}^E(r)r^3
+=
+\frac{c^4}{4\pi^2G}\,r
+\]
+is not scale-free.
+\end{lemma}
+
+\begin{lemma}[Two radial asymptotic regimes of the filtered selector]
+Fix \(T,\varepsilon,b_P,C_P\) and use the holographic ceiling in the filtered Weyl approximation.  If the carrier radius \(r\) is small enough relative to \(cT\) that the causal fraction is saturated, \(\Gamma\simeq1\), then
+\[
+D_P(r)\sim b_PC_P\left(\frac{r}{\varepsilon}\right)^3,
+\qquad
+\Sigma(r)\sim
+\frac{\pi r^2}{\ell_P^2\ln2}\,
+\frac{1}{b_PC_P(r/\varepsilon)^3}
+\propto r^{-1}.
+\]
+If \(r\gg cT\), then
+\[
+\Gamma(cT/r)
+\sim
+\frac{2}{3\pi}\left(\frac{cT}{r}\right)^3
+\]
+and hence
+\[
+D_P(r)
+\sim
+\frac{2b_PC_P}{3\pi}
+\left(\frac{cT}{\varepsilon}\right)^3,
+\qquad
+\Sigma(r)\propto r^2
+\]
+until the min-law saturates at \(\Sigma=1\).  These two asymptotic laws indicate a transition scale of order \(cT\); they do not assert an exact universal minimizer.
+\end{lemma}
+
+
+\begin{lemma}[Surface-to-volume normalization for holographic bit density]
+Let
+\[
+A(r)=4\pi r^2,
+\qquad
+V(r)=2\pi^2r^3,
+\qquad
+B_{\rm holo}(r)=\frac{\pi r^2}{\ell_P^2\ln2}.
+\]
+Then
+\[
+\frac{A(r)}{V(r)}=\frac{2}{\pi r},
+\qquad
+\frac{B_{\rm holo}}{V}
+=
+\frac{2}{\pi r}\,
+\frac{B_{\rm holo}}{A}.
+\]
+Since
+\[
+\frac{B_{\rm holo}}{A}
+=
+\frac{1}{4\ell_P^2\ln2},
+\]
+this gives
+\[
+\frac{B_{\rm holo}}{V}
+=
+\frac{1}{2\pi r\,\ell_P^2\ln2},
+\qquad
+\left(\frac{B_{\rm holo}}{V}\right)r
+=
+\frac{1}{2\pi\ell_P^2\ln2}.
+\]
+\end{lemma}
+\begin{proof}
+The only point is the round \(S^3\) volume-to-boundary-area ratio:
+\[
+\frac{A(r)}{V(r)}
+=
+\frac{4\pi r^2}{2\pi^2r^3}
+=
+\frac{2}{\pi r}.
+\]
+Multiplying by \(B_{\rm holo}/A\) gives the stated identities.
+\end{proof}
+
+\begin{lemma}[Dimensionless density--curvature invariant]
+The dimensional invariant
+\[
+\frac{\rho_{\rm scr}^E}{\mathcal R_3}
+=
+\frac{c^4}{24\pi^2G}
+\]
+has the dimensionless Planck-normalized form
+\[
+\frac{\rho_{\rm scr}^E}{\mathcal R_3}
+\frac{\ell_P^2}{\hbar c}
+=
+\frac{1}{24\pi^2}.
+\]
+\end{lemma}
+\begin{proof}
+Use \(\ell_P^2=\hbar G/c^3\) and cancel \(G,\hbar,c\).
+\end{proof}
+
+\begin{lemma}[Additional exact values of the causal fraction]
+The causal fraction satisfies
+\[
+\Gamma\!\left(\frac{\pi}{3}\right)
+=
+\frac13-\frac{\sqrt3}{4\pi}
+\approx0.19550,
+\]
+and
+\[
+\Gamma\!\left(\frac{2\pi}{3}\right)
+=
+\frac23+\frac{\sqrt3}{4\pi}
+\approx0.80450.
+\]
+\end{lemma}
+\begin{proof}
+Substitute \(\tau=\pi/3\) and \(\tau=2\pi/3\) into
+\[
+\Gamma(\tau)=\frac{1}{\pi}\left(\tau-\frac12\sin2\tau\right),
+\]
+using \(\sin(2\pi/3)=\sqrt3/2\) and \(\sin(4\pi/3)=-\sqrt3/2\).
+\end{proof}
+
+\begin{lemma}[Meter-scale scalar cutoff calibrations]
+For \(R=1\,{\rm m}\) and scalar cutoff
+\[
+M_0=\left\lfloor\sqrt{1+(R/\varepsilon)^2}\right\rfloor,
+\qquad
+N_0=\frac{M_0(M_0+1)(2M_0+1)}6,
+\]
+one has
+\[
+\varepsilon=1\,{\rm mm}:\qquad
+M_0=1000,
+\qquad
+N_0=333\,833\,500
+\approx3.34\times10^8,
+\]
+and
+\[
+\varepsilon=1\,{\rm nm}:\qquad
+M_0=999\,999\,999,
+\qquad
+N_0=333\,333\,332\,833\,333\,333\,500\,000\,000
+\approx3.33\times10^{26}.
+\]
+\end{lemma}
+
+\begin{lemma}[One-year scalar binary threshold calibration]
+In the scalar binary holographic threshold model with \(r_{\mathcal D}=cT\),
+\[
+\varepsilon_*(T)
+=
+\ell_P^{2/3}(cT)^{1/3}
+\left(\frac{2\ln2}{9\pi^2}\right)^{1/3}.
+\]
+Thus
+\[
+\varepsilon_*(1\,{\rm s})\approx1.07\times10^{-21}\ {\rm m},
+\]
+and, for one Julian year \(T=365.25\) days,
+\[
+\varepsilon_*(1\,{\rm yr})\approx3.38\times10^{-19}\ {\rm m}.
+\]
+These are threshold-model calibrations, not floor-counted spectral equalities.
+\end{lemma}
+
+
+\begin{remark}[No bulk promotion]
+Neither the screened 120-item register nor the later 200-item register is appended.  The section above keeps only corrected new identities with explicit hypotheses and status restrictions; erroneous factor normalizations, Hawking-comparison comments, and qualitative interpretations are excluded.
+\end{remark}
+
+
+
+
+\section{Hubble-time holographic resolution diagnostic}
+\label{app:hubble-time-resolution-diagnostic}
+
+The double-asymptotic selector threshold gives an algebraic relation, exact within the Weyl double-asymptotic threshold model, among an infrared time scale, the Planck length, and an operational resolution.  In the scalar binary sector,
+\[
+b_P=1,
+\qquad
+C_0=\frac13,
+\]
+the holographic threshold with \(r_{\mathcal D}=cT\) is
+\[
+\varepsilon_*(T)
+=
+\ell_P^{2/3}(cT)^{1/3}
+\left(\frac{2\ln2}{9\pi^2}\right)^{1/3}.
+\]
+For the Hubble-time choice \(T=H_0^{-1}\),
+\[
+\varepsilon_H
+=
+\ell_P^{2/3}
+\left(\frac{c}{H_0}\right)^{1/3}
+\left(\frac{2\ln2}{9\pi^2}\right)^{1/3}.
+\]
+Using
+\[
+H_0=67.4\ {\rm km\,s^{-1}\,Mpc^{-1}},
+\]
+this gives
+\[
+\varepsilon_H\approx8.24\times10^{-16}\ {\rm m}.
+\]
+The associated inverse-length energy scale is
+\[
+E_H=\frac{\hbar c}{\varepsilon_H}
+\approx0.239\ {\rm GeV}.
+\]
+
+Equivalently,
+\[
+\frac{H_0\ell_P}{c}
+=
+\frac{2\ln2}{9\pi^2}
+\left(\frac{\ell_P}{\varepsilon_H}\right)^3.
+\]
+This is an algebraic UV/IR identity inside the scalar binary Weyl-threshold normal form.  It is not an exact statement about the full floor-counted spectral capacity.
+
+\begin{remark}[Status]
+The relation above is diagnostic.  It is not a derivation of QCD confinement, hadron masses, chiral symmetry breaking, or the running of the strong coupling.  It records only that the Hubble-time holographic threshold produces a length of hadronic order without inserting a hadronic scale.
+\end{remark}
+
+\subsection{Mass form of the threshold diagnostic}
+\label{app:mass-form-threshold-diagnostic}
+
+The Hubble-time resolution diagnostic can be written equivalently as a mass-scale diagnostic.  In the scalar binary sector,
+\[
+b_P=1,
+\qquad
+C_0=\frac13,
+\]
+the threshold resolution is
+\[
+\varepsilon_*(T)
+=
+\ell_P^{2/3}(cT)^{1/3}
+\left(\frac{2\ln2}{9\pi^2}\right)^{1/3}.
+\]
+Define
+\[
+m_*(T)=\frac{\hbar}{c\,\varepsilon_*(T)}.
+\]
+Using
+\[
+\frac{\hbar}{c}=m_P\ell_P,
+\]
+one obtains
+\[
+m_*(T)
+=
+m_P
+\left(\frac{\ell_P}{cT}\right)^{1/3}
+\left(\frac{2\ln2}{9\pi^2}\right)^{-1/3}.
+\]
+Equivalently, with \(H=1/T\),
+\[
+\frac{H}{c/\ell_P}
+=
+\frac{2\ln2}{9\pi^2}
+\left(\frac{m_*}{m_P}\right)^3.
+\]
+Thus the dimensionless combination
+\[
+\mathcal I_H^{(0)}
+:=
+\frac{H/(c/\ell_P)}
+{(m_*/m_P)^3}
+\]
+is fixed in the scalar binary sector:
+\[
+\mathcal I_H^{(0)}
+=
+\frac{2\ln2}{9\pi^2}
+\approx1.5607\times10^{-2}.
+\]
+
+For \(T=H_0^{-1}\), with
+\[
+H_0=67.4\ {\rm km\,s^{-1}\,Mpc^{-1}},
+\]
+this gives
+\[
+\varepsilon_H\approx8.24\times10^{-16}\ {\rm m},
+\qquad
+m_Hc^2\approx0.239\ {\rm GeV}.
+\]
+This is a diagnostic mass scale associated with the threshold equation.  It is not a derivation of a particle mass, QCD confinement, chiral symmetry breaking, or the running of the strong coupling.
+
+\subsection{Sector-dependent mass form}
+\label{app:sector-dependent-mass-form}
+
+For a general sector \(P\) in the same double-asymptotic regime, with binary alphabet \(b_P=1\), the threshold resolution is
+\[
+\varepsilon_*^{(P)}(T)
+=
+(cT)^{1/3}\ell_P^{2/3}
+\left(
+\frac{2C_P\ln2}{3\pi^2}
+\right)^{1/3}.
+\]
+With
+\[
+m_*^{(P)}(T)
+=
+\frac{\hbar}{c\,\varepsilon_*^{(P)}(T)},
+\]
+one obtains
+\[
+\frac{H}{c/\ell_P}
+=
+\frac{2C_P\ln2}{3\pi^2}
+\left(
+\frac{m_*^{(P)}}{m_P}
+\right)^3.
+\]
+The cubic power is universal in the Weyl double-asymptotic regime; only the sector coefficient \(C_P\) changes.
+
+For sectors with \(C_P=2/3\), compared with the scalar value \(C_0=1/3\),
+\[
+m_*^{(C_P=2/3)}
+=
+2^{-1/3}m_*^{(C_0=1/3)}.
+\]
+This is a sector-normalization effect, not a prediction of a particle multiplet.
+
+\section{Universal threshold shape in the filtered Weyl regime}
+\label{app:universal-threshold-shape}
+
+Let \(\varepsilon_*\) be defined by the threshold equation
+\[
+D_P(\varepsilon_*)=B_{\rm ceil}.
+\]
+In the filtered Weyl regime with \(B_{\rm ceil}\) fixed,
+\[
+D_P(\varepsilon)\propto\varepsilon^{-3}.
+\]
+Thus, with
+\[
+u=\frac{\varepsilon}{\varepsilon_*},
+\]
+the min-law selector has the universal asymptotic form
+\[
+\Sigma(u)=\min(1,u^3).
+\]
+The filtered regime is \(u<1\), i.e. resolution finer than the threshold.  The saturated regime is \(u\ge1\).
+
+\begin{remark}[Status]
+This is a diagnostic normal form of the selector.  It is not a criterion for classicality, quantumness, or a physical phase transition unless additional dynamics are supplied.
+\end{remark}
+
+\section{Dimensionless normal form}
+\label{sec:dimensionless-normal-form}
+
+Introduce
+\[
+\tau=\frac{cT}{R_{\rm curv}},
+\qquad
+\chi=\frac{\varepsilon}{R_{\rm curv}},
+\qquad
+\mathcal C_E=\frac{2GE_{\mathcal D}}{c^4r_{\mathcal D}}.
+\]
+Then
+\[
+\Gamma(\tau)=\frac{\tau-\frac12\sin2\tau}{\pi},
+\qquad
+0\le\tau\le\pi,
+\]
+and the scalar exact cutoff can be written as
+\[
+N_{\rm sc}^{\rm exact}(\chi)=
+\frac{(N_\chi+1)(N_\chi+2)(2N_\chi+3)}{6},
+\qquad
+N_\chi=\left\lfloor\sqrt{1+\chi^{-2}}-1\right\rfloor.
+\]
+The selector in the min-law model is
+\[
+\Sigma_{\rm grav}^{(P)}(\tau,\chi)
+=
+\min\left\{1,\frac{B_{\rm ceil}(\mathcal D)}
+{b_P\Gamma(\tau)N_P(\chi)}\right\}.
+\]
+
+\begin{proposition}[Unit-rescaling invariance]
+Under a simultaneous change of length unit
+\[
+R_{\rm curv}\mapsto\lambda R_{\rm curv},
+\qquad
+\varepsilon\mapsto\lambda\varepsilon,
+\qquad
+cT\mapsto\lambda cT,
+\]
+the ratios $\tau$ and $\chi$ are unchanged.  Therefore $\Gamma(\tau)$, $N_P(\chi)$, and the normalized selector are invariant functions of the same physical ratios.
+\end{proposition}
+\begin{proof}
+The displayed quantities depend on lengths only through ratios.
+\end{proof}
+
+\section{Numerical causal table}
+\label{sec:numerical-causal-table}
+
+\begin{center}
+\small
+\begin{tabular}{lrrr}
+\toprule
+Time window & $T$ [Gyr] & angular radius [deg] & $\Gamma_{R_{\rm curv}}(T)$\\
+\midrule
+Manifest age $t_0$ & $13.7877187856$ & $1.44071271074$ & $3.373402908291\times10^{-6}$\\
+Hubble time & $14.5073029916$ & $1.51590383757$ & $3.929570879706\times10^{-6}$\\
+Particle horizon light time & $46.1251697652$ & $4.81973264752$ & $1.261377743888\times10^{-4}$\\
+Half coherence & $861.306130954$ & $90$ & $0.5$\\
+Coherence & $1722.61226191$ & $180$ & $1$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+
+\section{Symbol glossary}
+
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+Symbol & Meaning\\
+\midrule
+$R_{\rm curv}$ & radius of the conditional round $S^3$ carrier\\
+$r_{\mathcal D}$ & circumscribing radius of the bounded physical domain $\mathcal D$\\
+$A_{\mathcal D}$ & boundary area assigned to $\mathcal D$\\
+$E_{\mathcal D}$ & energy assigned to $\mathcal D$\\
+$\varepsilon$ & operational resolution or grain\\
+$\chi=\varepsilon/R_{\rm curv}$ & dimensionless cutoff ratio\\
+$T$ & causal integration time\\
+$\tau=cT/R_{\rm curv}$ & dimensionless causal time\\
+$\Gamma_{R_{\rm curv}}(T)$ & accessible volume fraction on the round carrier\\
+$N_P(\varepsilon)$ & sector-$P$ spectral mode count\\
+$b_P$ & finite alphabet bits per mode\\
+$B_{\rm causal}^{(P)}$ & causally accessible finite-alphabet bit capacity\\
+$B_{\rm phys}^{(P)}$ & physically admissible code-bit capacity\\
+$B_{\rm ceil}(\mathcal D)$ & active energy/area ceiling in the min-law model\\
+$\eta_P(\chi)$ & threshold load ratio \(B_{\rm ceil}/(b_PN_P(\chi))\)\\
+$\Sigma_{\rm grav}^{(P)}$ & gravitational selector ratio\\
+$\mathcal T(r)$ & round-screen transform assigned to a positive scale $r$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Main theorem dependency chain}
+\label{sec:main-dependency-chain}
+
+The closed proof chain is
+\[
+\begin{aligned}
+\text{carrier definition}
+&\Rightarrow \text{finite spectral alphabet}
+ \Rightarrow \text{compact causal fraction}\\
+&\Rightarrow \text{finite causal bit capacity}
+ \Rightarrow \text{domain ceiling}
+ \Rightarrow 0\le\Sigma\le1.
+\end{aligned}
+\]
+Each arrow is either definitional or proved in the body.
+
+
+\section{Optional dynamical extensions, not used in the proof}
+\label{app:optional-dynamics}
+
+The closed selector theorem and the dependency chain above do not assume any of the dynamical skeletons in this appendix.  They are recorded only as candidate sources for a conditional carrier's background evolution, and each is explicitly flagged as non-essential.
+
+\begin{template}[Phase-decomposition skeleton]
+For a scalar carrier obeying $(\Boxop+m^2)\Psi=0$ with two-phase decomposition
+\[
+\Psi=A(t)e^{i\varphi(t)}
+\]
+and phase-law ansatz
+\[
+\dot\varphi=\omega_m-\omega_v=H,
+\]
+a matched post-recombination mode may be written
+\[
+\psi_{\rm post}(t)
+=
+B\exp\!\left[-\frac{3H}{2}(t-t_{\rm rec})\right]e^{iHt},
+\qquad
+R(t)=R_{\rm rec}e^{H(t-t_{\rm rec})}.
+\]
+A later phase-law ansatz may be recorded as
+\[
+H(t)=\frac13\dot{\Delta\theta}(t)+O(\epsilon_{\rm BO}^2).
+\]
+This is not used to prove acceleration; it is an optional background source.
+\end{template}
+
+\begin{template}[Minisuperspace and focusing skeleton]
+A minisuperspace Wheeler--DeWitt template for scale factor $a$ is
+\[
+\left[
+-\frac{\hbar^2}{2\mathcal M(a)}\partial_a^2
++
+U_g(a)
+\right]\Psi
++
+\hat H_m(a,\hat q,\hat p)\Psi
+=0,
+\]
+with
+\[
+V(a)=2\pi^2a^3
+\]
+on a round $S^3_a$ slice.  Null focusing obeys Raychaudhuri's equation
+\[
+\dot\theta=-\frac12\theta^2-\sigma^2+\omega^2-R_{\mu\nu}k^\mu k^\nu.
+\]
+A matter-dilution template may be recorded as $R_{\mu\nu}k^\mu k^\nu\propto a^{-3}\to0$.  A Planck-scale latch
+\[
+a\ge\ellP,\qquad |\Rm|^2\le C/\ellP^4
+\]
+is a stability condition on admissible carriers, not a singularity-resolution proof.
+\end{template}
+
+\begin{template}[Ricci-flow capacity-decay skeleton]
+Under unnormalised Ricci flow
+\[
+\partial_tg_{ij}=-2\Ric_{ij},
+\]
+a round shell of radius $a$ shrinks as
+\[
+\dot a=-2/a,
+\]
+giving capacity decay in the Weyl regime
+\[
+\dot N_0\sim-\frac{2a}{\varepsilon^3},
+\qquad
+\dot N_{\rm TT}\sim\dot N_D\sim-\frac{4a}{\varepsilon^3}.
+\]
+The normalised flow
+\[
+\partial_tg_{ij}=-2\Ric_{ij}+\frac23 r\,g_{ij}
+\]
+has the round metric as a fixed point inside its conformal class.
+\end{template}
+
+\begin{template}[Nonlocal gravity skeleton]
+A ghost-free nonlocal action template may be written
+\[
+S_{\rm NL}
+=
+\frac{1}{16\pi G}
+\int d^4x\sqrt{-g}
+\left[
+-R-\frac12G^{\mu\nu}
+\frac{e^{-s\Boxop}-1}{\Boxop}G_{\mu\nu}
+\right].
+\]
+The corresponding spin-2 propagator modification may be recorded as
+\[
+\Pi^{(2)}(p^2)
+=
+\frac{e^{-sp^2}P^{(2)}}{-p^2},
+\]
+giving ultraviolet damping
+\[
+\Pi^{(2)}\sim \frac{e^{-sp^2}}{p^2}
+\]
+and an infrared limit that recovers the local Einstein equation.  An effective Friedmann skeleton
+\[
+3H^2=8\pi G_N(\rho_m+\rho_r+\rho_{\rm eff})
+\]
+with $w_{\rm eff}\to-1$ is retained only as an optional late-time background source.
+\end{template}
+
+\begin{remark}
+None of the four skeletons above is used in the proof of the selector theorem, the causal-accessibility theorem, the spectral-capacity theorems, the numerical calibration, or the algebraic null tests.
+\end{remark}
+
+
+\section{Corrected status of variational-gravity programmes}
+\label{sec:corrected-variational-gravity-status}
+
+The selector can be scientifically useful without being a local gravitational action.
+The following is the precise status.
+
+The manuscript does not admit a term
+\[
+S_{\Sigma}
+=
+\frac{1}{16\pi G}
+\int d^4x\sqrt{-g}\,\alpha\,\Sigma^{-1}
+\]
+as a theorem.  The obstruction is not philosophical but structural.  In the present framework
+\[
+\Sigma_{\rm grav}^{(P)}
+=
+\frac{B_{\rm phys}^{(P)}}{B_{\rm causal}^{(P)}}
+\]
+depends on the carrier, sector \(P\), cutoff \(\varepsilon\), causal time \(T\), finite alphabet, boundary data, and physical ceiling.  It is therefore a regulated diagnostic ratio, generally nonlocal, not a local scalar field on spacetime.
+
+What survives is a corrected research programme.  A covariant effective model would first have to define a functional
+\[
+\Sigma_{\mathcal U}^{(P)}[g,\psi;\varepsilon,T,B_{\rm ceil}]
+\]
+for a specified spacetime region \(\mathcal U\), matter content \(\psi\), regulator, boundary prescription, and ceiling.  Only after proving covariance, differentiability, and a controlled continuum or cutoff limit would an effective term be meaningful.  Its dimensionally consistent skeleton would have the form
+\[
+S_{\rm eff}[g,\psi]
+=
+\frac{1}{16\pi G}
+\int d^4x\sqrt{-g}\,
+\left(
+R-2\Lambda+L_{\Sigma}^{-2}F(\Sigma_{\mathcal U}^{(P)})
+\right)
++
+S_{\rm matter},
+\]
+where \(L_{\Sigma}\) is a length scale and \(F\) is chosen so that the ordinary Einstein equation is recovered in the appropriate limit.  A singular choice \(F(\Sigma)=\Sigma^{-1}\) does not have that property by itself.
+
+Thus the selector supplies constraints and diagnostics for future information-geometric gravity models: dimensional consistency, cutoff dependence, boundary dependence, and ceiling dependence must all be explicit.  It does not by itself derive modified Friedmann equations, dark energy, inflation, Hawking radiation, Yang--Mills confinement, particle masses, or any millennium-problem result.
+\section{Publication-safe non-claims}
+\label{sec:non-claims}
+
+The manuscript deliberately does not claim:
+\begin{enumerate}
+\item global topology of physical space has been proved;
+\item arbitrary physical objects are three-spheres;
+\item Hopf fibers are automatically materialized as physical rings;
+\item the selector alone explains decoherence or classicality;
+\item local standard physics is replaced;
+\item quantum gravity is solved;
+\item the Standard Model is derived;
+\item a finite-volume spectral threshold proves an infinite-volume mass gap;
+\item an external open problem is solved without an exact-object equivalence theorem.
+\end{enumerate}
+
+\section{References}
+\begin{thebibliography}{99}
+\bibitem{Shannon1948} C. E. Shannon, ``A Mathematical Theory of Communication,'' Bell System Technical Journal 27, 379--423 and 623--656 (1948).
+\bibitem{Landauer1961} R. Landauer, ``Irreversibility and Heat Generation in the Computing Process,'' IBM Journal of Research and Development 5, 183--191 (1961).
+\bibitem{Holevo1973} A. S. Holevo, ``Bounds for the quantity of information transmitted by a quantum communication channel,'' Problems of Information Transmission 9, 177--183 (1973).
+\bibitem{Bekenstein1981} J. D. Bekenstein, ``Universal upper bound on the entropy-to-energy ratio for bounded systems,'' Physical Review D 23, 287 (1981).
+\bibitem{Bekenstein1973} J. D. Bekenstein, ``Black holes and entropy,'' Physical Review D 7, 2333 (1973).
+\bibitem{Bousso2002} R. Bousso, ``The holographic principle,'' Reviews of Modern Physics 74, 825 (2002).
+\bibitem{Weyl1911} H. Weyl, ``Ueber die asymptotische Verteilung der Eigenwerte,'' Nachrichten der Koeniglichen Gesellschaft der Wissenschaften zu Goettingen (1911).
+\bibitem{Rosenberg1997} S. Rosenberg, The Laplacian on a Riemannian Manifold, Cambridge University Press (1997).
+\bibitem{LawsonMichelsohn1989} H. B. Lawson and M.-L. Michelsohn, Spin Geometry, Princeton University Press (1989).
+\bibitem{Perelman2002} G. Perelman, ``The entropy formula for the Ricci flow and its geometric applications,'' arXiv:math/0211159 (2002).
+\bibitem{Perelman2003} G. Perelman, ``Ricci flow with surgery on three-manifolds,'' arXiv:math/0303109 (2003).
+\bibitem{ClayMillennium} Clay Mathematics Institute, ``The Millennium Prize Problems,'' official problem pages, accessed 2026.
+\bibitem{ClayYM} A. Jaffe and E. Witten, ``Quantum Yang--Mills Theory,'' Clay Mathematics Institute official problem description.
+\bibitem{ClayNS} C. L. Fefferman, ``Existence and Smoothness of the Navier--Stokes Equation,'' Clay Mathematics Institute official problem description.
+\bibitem{FBS3RStart} FBS3R Group Start Here v3, canonical activation file, 2026.
+\bibitem{FBS3RQuasi} FBS3R Quasilocal $S^3$ Reconstruction, canonical integration v0.2, 2026.
+\bibitem{FBS3RCosmic} FBS3R Cosmic Parameters from Observed Curvature, canonical node, 2026.
+\bibitem{DRD} A. Preece and B. Batenin, Dependently Reconstructible Distinguishability (DRD), canonical manuscript, 2026.
+\bibitem{PhaseIIAtlas} A. Preece and B. Batenin, FBS3R--DRD Phase II Computational Atlas, 2026.
+\bibitem{EquationCore} A. Preece and B. Batenin, FBS3R--DRD Gravity--Information Equation Core, 2026.
+\bibitem{Planck2018VI} Planck Collaboration (N. Aghanim et al.), ``Planck 2018 results. VI. Cosmological parameters,'' Astron. Astrophys. 641, A6 (2020), arXiv:1807.06209.
+\bibitem{DiValentino2019} E. Di Valentino, A. Melchiorri, and J. Silk, ``Planck evidence for a closed Universe and a possible crisis for cosmology,'' Nature Astronomy 4, 196 (2020), arXiv:1911.02087.
+\bibitem{Handley2021} W. Handley, ``Curvature tension: evidence for a closed universe,'' Physical Review D 103, L041301 (2021), arXiv:1908.09139.
+\bibitem{EfstathiouGratton2020} G. Efstathiou and S. Gratton, ``The evidence for a spatially flat Universe,'' Mon. Not. Roy. Astron. Soc. 496, L91 (2020), arXiv:2002.06892.
+\bibitem{TristramPR4} M. Tristram et al., ``Cosmological parameters derived from the final Planck data release (PR4),'' Astron. Astrophys. 682, A37 (2024), arXiv:2309.10034.
+\bibitem{DESI2024VI} DESI Collaboration, ``DESI 2024 VI: Cosmological Constraints from the Measurements of Baryon Acoustic Oscillations,'' arXiv:2404.03002 (2024).
+\bibitem{Zhai2024} Non-CMB curvature constraint combining DESI BAO, DES supernovae, cosmic chronometers, and strong-lensing time delays, arXiv:2411.06356 (2024).
+\bibitem{Fock1935} V. Fock, ``Zur Theorie des Wasserstoffatoms,'' Zeitschrift f\"ur Physik 98, 145 (1935).
+\bibitem{Urbantke2003} H. K. Urbantke, ``The Hopf fibration --- seven times in physics,'' Journal of Geometry and Physics 46, 125 (2003).
+\bibitem{FaddeevNiemi1997} L. Faddeev and A. J. Niemi, ``Stable knot-like structures in classical field theory,'' Nature 387, 58 (1997).
+\bibitem{Hall2016}
+D. S. Hall, M. W. Ray, and M. M\"ottonen,
+``Tying quantum knots,''
+\emph{Nature Physics} 12, 478--483 (2016).
+\bibitem{Kent2021} N. Kent et al., ``Creation and observation of Hopfions in magnetic multilayer systems,'' Nature Communications 12, 1562 (2021).
+\bibitem{Zheng2023} F. Zheng et al., ``Hopfion rings in a cubic chiral magnet,'' Nature 623, 718 (2023).
+\end{thebibliography}
+
+\end{document}

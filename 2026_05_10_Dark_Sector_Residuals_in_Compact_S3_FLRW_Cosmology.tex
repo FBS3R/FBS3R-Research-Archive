@@ -1,0 +1,1601 @@
+\PassOptionsToPackage{hidelinks}{hyperref}
+\documentclass[
+  aps,
+  prd,
+  reprint,
+  superscriptaddress,
+  nofootinbib,
+  floatfix,
+  longbibliography
+]{revtex4-2}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm,mathtools,bm}
+\usepackage{booktabs,array,tabularx}
+\usepackage{graphicx}
+\usepackage{microtype}
+\IfFileExists{orcidlink.sty}{\usepackage{orcidlink}}{\newcommand{\orcidlink}[1]{}}
+\usepackage{hyperref}
+
+\hypersetup{
+  pdftitle={Dark-sector residuals in compact S3 FLRW cosmology},
+  pdfauthor={Andrei Preece and Boris Batenin}
+}
+
+\emergencystretch=3em
+\allowdisplaybreaks
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{nonclaim}[theorem]{Nonclaim}
+
+\newcommand{\dd}{\mathrm d}
+\newcommand{\RR}{\mathbb R}
+\newcommand{\M}{\mathcal M}
+\newcommand{\D}{\mathcal D}
+\newcommand{\X}{\mathcal X}
+\newcommand{\Rphys}{R_{\mathrm{phys}}}
+\newcommand{\crit}{\epsilon_{\mathrm{crit},0}}
+\newcommand{\Omk}{\Omega_K}
+\newcommand{\LCDM}{\Lambda\mathrm{CDM}}
+\newcommand{\Sthree}{S^3}
+\newcommand{\Vol}{\operatorname{Vol}}
+\newcommand{\diam}{\operatorname{diam}}
+\newcommand{\Ob}{\Omega_{\rm b}}
+\newcommand{\Oc}{\Omega_{\rm c}}
+\newcommand{\Og}{\Omega_\gamma}
+\newcommand{\Onu}{\Omega_\nu}
+\newcommand{\OD}{\Omega_{\D}}
+\newcommand{\OX}{\Omega_X}
+\newcommand{\PX}{P_X}
+\newcommand{\PD}{P_{\D}}
+\newcommand{\Aacc}{\mathfrak A}
+\newcommand{\Dacc}{\mathfrak D_X}
+\newcommand{\Thetaexp}{\Theta}
+
+\begin{document}
+
+\title{Dark-sector residuals in compact \texorpdfstring{$S^3$}{S3} FLRW cosmology}
+
+\author{Andrei~Preece\,\orcidlink{0009-0004-5978-795X}}
+\email{andre.preece@web.de}
+\affiliation{Independent Researcher, Berlin, Germany}
+
+\author{Boris~Batenin\,\orcidlink{0009-0000-7027-8583}}
+\email{batenin@web.de}
+\affiliation{Independent Researcher, Berlin, Germany}
+
+\date{May 2026}
+
+\begin{abstract}
+We formulate compact closed-FLRW cosmology on $\M=\RR\times S^3$ as a
+conditional reconstruction problem for the gravitational dark residual.  The
+assumptions are deliberately limited: general relativity, a closed homogeneous
+and isotropic metric, an independently specified visible sector, and a specified
+or reconstructed expansion history $E(a)=H(a)/H_0$.  Compact $S^3$ geometry
+supplies finite volume, finite diameter, positive spatial curvature, causal
+accessibility bounds, compact covariance kernels, and a discrete
+scalar--vector--tensor harmonic bookkeeping system.  It does not by itself
+imply dark matter, accelerated expansion, $w=-1$, or a cosmological constant.
+The dark sector is instead defined by the covariant tensor residual
+$T^\D_{\mu\nu}=c^4G_{\mu\nu}/(8\pi G)-T^{\rm vis}_{\mu\nu}$.  For a visible
+baryon--photon--neutrino sector, the closed-FLRW background fixes
+$\epsilon_\D(a)$ and $p_\D(a)$ uniquely from $E(a)$, $\Omega_K<0$, and the
+visible densities.  Homogeneous distances therefore determine only the total
+background residual; a pressureless clustering component and a smooth
+accelerating component require perturbative observables and a specified closure
+for perturbations.  We give the reconstruction theorem, invariant-closure
+conditions, closed-distance formulae, compact $S^3$ spectral kernels, an
+effective-Einstein interpretation for modified gravity, and a falsification
+protocol using CMB, BAO, supernovae, cosmic chronometers, lensing, growth,
+clusters, and galaxy dynamics.  Compact $S^3$ geometry supplies the finite
+closed stage; the dark sector is the invariant residual target to be
+reconstructed covariantly, closed invariantly, and tested observationally.
+\end{abstract}
+
+\maketitle
+
+\section{Scope and central statement}
+
+The model class is the compact closed-FLRW spacetime
+\begin{equation}
+\M=\RR\times S^3,\qquad
+\dd s^2=-N^2(t)c^2\dd t^2+a^2(t)R_0^2\dd\Omega_3^2 ,
+\label{eq:metric}
+\end{equation}
+with $a_0=1$ and $R_0$ the present curvature radius.  The dark residual is
+defined by
+\begin{equation}
+T^{\D}_{\mu\nu}:=\frac{c^4}{8\pi G}G_{\mu\nu}-T^{\rm vis}_{\mu\nu}.
+\label{eq:residual_tensor}
+\end{equation}
+This is a tensor definition inside general relativity.  It is not a gauge
+choice, a particle model, a proof of a microscopic substance, or a topology-only
+explanation.
+
+\begin{nonclaim}[No topology-only dark sector]
+The implications
+\[
+S^3\Longrightarrow \text{dark matter},\qquad
+S^3\Longrightarrow \text{dark energy}
+\]
+are false.  Compactness fixes global spatial geometry and infrared spectral
+structure.  It does not by itself imply clustering mass, $\ddot a>0$, $w=-1$,
+or constant vacuum energy.
+\end{nonclaim}
+
+\begin{nonclaim}[No observationally large curvature assumption]
+The assumption $\Sigma\simeq S^3$ does not require a curvature radius near the
+present horizon.  The radius $R_0$ may be much larger than current cosmological
+distance scales, and the reconstruction must be tested against the tight
+CMB+BAO posterior on $\Omega_K$, which is consistent with flatness in standard
+analyses \cite{Planck2018VI}.
+\end{nonclaim}
+
+\begin{nonclaim}[No tensor-vacuum mechanism]
+No transverse-traceless vacuum source is used in the present construction.  A
+future tensor source belongs in this framework only after an action or operator,
+state, renormalization prescription, conserved stress tensor, perturbation
+equations, and likelihood map are specified.
+\end{nonclaim}
+
+The strict implication proved here is
+\begin{equation}
+\begin{gathered}
+S^3+\text{closed FLRW}+\text{GR}\\
++\text{visible sector}
++\text{specified or reconstructed }E(a)\\
+\Longrightarrow
+T^\D_{\mu\nu}\ \text{as a covariantly conserved residual}.
+\end{gathered}
+\label{eq:main_result}
+\end{equation}
+The physical interpretation of this residual is then tested by distances,
+lensing, growth, cluster abundance, and galaxy dynamics.
+
+The novelty is not the algebraic existence of Eq.~\eqref{eq:residual_tensor},
+which follows once the Einstein equation is assumed.  The novelty is the
+closed-geometry bookkeeping: the same compact background, visible-sector
+closure, curvature convention, distance map, perturbation basis, and
+falsification ledger are used to define the common target that particle dark
+matter, dark energy, interacting sectors, or effective modified gravity must
+reproduce.
+
+\begin{remark}[Target residual]
+The object reconstructed here is not a new substance and not a
+topology-induced source.  It is the covariant target residual that any
+dark-sector model, interacting sector, or effective modified-gravity model must
+reproduce once the visible sector, closed geometry, and expansion history are
+fixed.
+\end{remark}
+
+\section{Invariant kinematics and assumptions}
+
+The metric signature is $(-,+,+,+)$.  The symbol $\epsilon$ denotes energy
+density and $p$ denotes pressure, with the same dimensions.  Let $U^\mu$ be the
+comoving four-velocity normalized by $U_\mu U^\mu=-c^2$.  In the coordinates of
+Eq.~\eqref{eq:metric}, $U^\mu=(1/N,0,0,0)$.  The expansion scalar is defined
+with this dimensional congruence,
+\begin{equation}
+\Thetaexp:=\nabla_\mu U^\mu ,
+\label{eq:Theta}
+\end{equation}
+so that
+\begin{equation}
+H=\frac13\Thetaexp=\frac{\dot a}{Na}, \qquad E(a)=\frac{H(a)}{H_0}.
+\label{eq:H_scalar}
+\end{equation}
+The present critical energy density and curvature parameter are
+\begin{align}
+\crit&=\frac{3c^2H_0^2}{8\pi G},&
+\Rphys(a)&=aR_0,
+\nonumber\\
+\Omk&=-\frac{c^2}{H_0^2R_0^2}<0 .
+\label{eq:ecrit_E}
+\end{align}
+
+The sufficient assumptions are:
+\begin{enumerate}
+\item $\Sigma\simeq S^3$ with the round constant-curvature metric in the
+homogeneous background.
+\item General relativity for the total stress tensor:
+$G_{\mu\nu}=8\pi G T_{\mu\nu}/c^4$.
+\item The visible stress tensor is specified independently and is covariantly
+conserved unless an explicit interaction term is introduced.
+\item The visible sector consists of baryons, photons, and neutrinos with
+standard thermodynamic and kinetic closure.  Baryon density, neutrino masses,
+and calibration parameters are sampled consistently in the same inference so that no
+constraint is counted twice.
+\item Distances, covariance kernels, lensing, growth, clusters, and galaxy
+dynamics are evaluated in the same geometry and under the same priors.
+\end{enumerate}
+No claim of logical minimality is made.
+
+\begin{proposition}[Invariant expansion function]
+In the closed-FLRW class, $E(a)=H(a)/H_0$ is invariant under time
+reparametrizations once the normalization $a_0=1$ is fixed.
+\end{proposition}
+
+\begin{proof}
+The proper time of a comoving observer is $\dd\tau=N(t)\dd t$.  Hence
+\[
+H=\frac{1}{a}\frac{\dd a}{\dd\tau}
+\]
+is unchanged when $t$ is replaced by another time coordinate and the lapse is
+transformed accordingly.  Division by the measured present value $H_0$ gives
+$E(a)$.
+\end{proof}
+
+\section{Compact \texorpdfstring{$S^3$}{S3} geometry}
+
+For the round three-sphere of radius $R$ \cite{Wald1984,HawkingEllis1973,doCarmo1992},
+\begin{equation}
+\Vol(S^3_R)=2\pi^2R^3,\qquad
+{}^{(3)}\mathcal R=\frac{6}{R^2},\qquad
+\diam(S^3_R)=\pi R .
+\label{eq:s3_invariants}
+\end{equation}
+A geodesic ball of angular radius $\chi\in[0,\pi]$ has
+\begin{equation}
+V(\chi)=2\pi R^3\left(\chi-\frac12\sin2\chi\right),\qquad
+A(\chi)=4\pi R^2\sin^2\chi .
+\label{eq:ball}
+\end{equation}
+
+\begin{lemma}[Compact closure]
+$S^3_R$ is compact, orientable, simply connected, boundaryless, and
+geodesically complete.  Its maximum geodesic distance is $\pi R$.
+\end{lemma}
+
+\begin{proof}
+The round three-sphere is the embedded set
+$\{x\in\RR^4:|x|=R\}$ with the induced metric.  The distance is
+$d(p,q)=R\arccos[(p\cdot q)/R^2]$.  Its maximum occurs at antipodal points.
+Compact Riemannian manifolds are complete by Hopf--Rinow.
+\end{proof}
+
+For the ultrastatic metric, radial null propagation obeys $R\dd\chi=c\dd t$.
+The accessible volume fraction after a time interval $T$ is therefore
+\begin{equation}
+\Gamma(T)=\frac{\theta-\frac12\sin2\theta}{\pi},\qquad
+\theta=\min\left(\frac{cT}{R},\pi\right).
+\label{eq:access}
+\end{equation}
+For the expanding metric, antipodal causal accessibility between $t_i$ and
+$t_f$ is
+\begin{equation}
+\int_{t_i}^{t_f}\frac{c\,N(t)\dd t}{a(t)R_0}
+=\int_{\tau_i}^{\tau_f}\frac{c\,\dd\tau}{a(\tau)R_0}\ge\pi .
+\label{eq:conformal_access}
+\end{equation}
+This is causal reach, not a recurrence or topological echo.  In unquotiented
+$S^3$ there are no nontrivial deck transformations.
+
+\section{Compact spectral covariance and perturbative bookkeeping}
+\label{sec:compact_spectral_covariance}
+
+The compact spectral statement is independent of dark-sector microphysics.  On
+a compact boundaryless Riemannian manifold, self-adjoint elliptic Laplace-type
+operators have compact resolvent, real discrete spectrum, finite-dimensional
+eigenspaces, and complete $L^2$ eigensections.  For the round three-sphere this
+gives exact infrared discreteness while leaving the ultraviolet tower unbounded.
+
+We label scalar harmonics by the principal $S^3$ level $n$,
+\[
+Y_{n\ell m},\qquad 0\leq \ell\leq n,\qquad -\ell\leq m\leq \ell.
+\]
+Here $n$ is the hyperspherical level and $\ell$ is an internal angular label; it
+must not be confused with the observed sky multipole in a CMB map.  The scalar
+Laplacian satisfies \cite{RubinOrdonez1984}
+\begin{align}
+-\nabla^2Y_{n\ell m}
+&=\frac{n(n+2)}{R^2}Y_{n\ell m},
+\nonumber\\
+g_n^S&=(n+1)^2,\qquad n=0,1,2,\ldots .
+\label{eq:scalar_spectrum}
+\end{align}
+For unit radius the isotropic scalar addition kernel is
+\begin{equation}
+\Xi_n(\gamma)=\frac{n+1}{2\pi^2}
+\frac{\sin[(n+1)\gamma]}{\sin\gamma},\qquad
+\gamma=d(x,x')/R .
+\label{eq:addition_kernel}
+\end{equation}
+With the radius restored, the dimensionful kernel carries the factor $R^{-3}$.
+An isotropic scalar covariance is therefore
+\begin{equation}
+C(\gamma)=\sum_{n=0}^{\infty} A_n\,\Xi_n(\gamma).
+\label{eq:covariance}
+\end{equation}
+Compactness discretizes the infrared spectrum.  It does not impose an
+ultraviolet cutoff, since $n$ is unbounded.
+
+Linear perturbations on $\RR\times S^3$ require an $SO(4)$-adapted
+scalar--vector--tensor basis rather than a continuum Fourier basis
+\cite{RubinOrdonez1984,Higuchi1987,AbbottSchaefer1986,Jantzen1978,LindblomTaylorZhang2017}.
+The eigenvalues below use the rough covariant Laplacian $-\nabla^a\nabla_a$ on
+the round three-sphere.  A physical perturbation operator may contain additional
+gauge, constraint, mass, or curvature-potential terms; such terms must be
+specified by the model.
+
+A scalar-derived longitudinal vector obeys, for $n\geq1$,
+\begin{equation}
+-\nabla^2(\nabla_aY_{n\ell m})
+=\frac{n(n+2)-2}{R^2}\nabla_aY_{n\ell m}.
+\label{eq:long_vector_eigen}
+\end{equation}
+The independent transverse vector harmonics satisfy
+\begin{align}
+\nabla^aY^{V,\sigma}_{n\ell m a}&=0,
+\nonumber\\
+-\nabla^2Y^{V,\sigma}_{n\ell m a}
+&=\frac{n(n+2)-1}{R^2}Y^{V,\sigma}_{n\ell m a},
+\qquad \sigma=1,2.
+\label{eq:trans_vector_eigen}
+\end{align}
+with total transverse-vector degeneracy
+\begin{equation}
+g_n^{V_T}=2n(n+2),\qquad n\geq1.
+\label{eq:vector_degeneracy}
+\end{equation}
+For $n=1$ these are the six Killing fields of the round three-sphere.
+
+Symmetric rank-two perturbations decompose into scalar-derived, vector-derived,
+and transverse-traceless parts.  The TT harmonics are defined by
+\begin{equation}
+\nabla^aY^{T,\sigma}_{n\ell m ab}=0,\qquad
+g^{ab}Y^{T,\sigma}_{n\ell m ab}=0,\qquad \sigma=1,2.
+\label{eq:tt_conditions}
+\end{equation}
+With the same rough-Laplacian convention,
+\begin{equation}
+-\nabla^2Y^{T,\sigma}_{n\ell m ab}
+=\frac{n(n+2)-2}{R^2}Y^{T,\sigma}_{n\ell m ab},\qquad n\geq2,
+\label{eq:tt_rough_eigen}
+\end{equation}
+and the total TT degeneracy is
+\begin{equation}
+g_n^{TT}=2(n-1)(n+3),\qquad n\geq2.
+\label{eq:tt_degeneracy}
+\end{equation}
+Equivalently, with $j=n+1$, the rough eigenvalue is $(j^2-3)/R^2$ and the TT
+degeneracy is $2(j^2-4)$ for $j\geq3$.
+
+\begin{remark}[No scalar-spectrum substitution]
+It is incorrect to assign the scalar eigenvalue $n(n+2)/R^2$ to all
+perturbation sectors.  Vector and tensor harmonics carry curvature shifts, and
+physical operators may carry further model-dependent terms.  A perturbative
+dark-sector or modified-gravity model must therefore specify its actual
+operator before claiming predictions for low-$n$ modes.
+\end{remark}
+
+The compact replacement rule for perturbative bookkeeping is
+\begin{equation}
+\int \frac{\dd^3 k}{(2\pi)^3}\,\mathcal F(k)
+\quad\longrightarrow\quad
+\frac{1}{\Vol(S^3_R)}
+\sum_{n\in\mathcal N}\sum_{\alpha=1}^{g_n}\mathcal F_{n\alpha}.
+\label{eq:compact_replacement_rule}
+\end{equation}
+The degeneracy index $\alpha$ belongs to the relevant scalar, vector, or tensor
+sector, and $\mathcal N$ excludes homogeneous and gauge subspaces according to
+the perturbation variable.  This is mode bookkeeping, not a claim that
+compactness removes every infrared subtlety.  Gauge zero modes, state-dependent
+long-wavelength effects, and de Sitter-like infrared questions remain
+operator- and state-dependent.
+
+For CMB temperature anisotropies, a scalar harmonic restricted to the
+last-scattering sphere has the separated form
+\begin{equation}
+Y_{n\ell m}(\chi_*,\theta,\phi)=H_{n\ell}(\chi_*)Y_{\ell m}(\theta,\phi),
+\label{eq:last_scattering_projection}
+\end{equation}
+so a closed-universe line-of-sight calculation replaces the flat Fourier
+integral by a hyperspherical sum,
+\begin{equation}
+C_\ell^{TT}=\sum_{n\in\mathcal N_S,\,n\geq\ell}
+\mathcal W_{n\ell}\,\mathcal P_{\mathcal R}(n)
+\left|\Delta^T_{\ell n}\right|^2 .
+\label{eq:closed_cmb_sum}
+\end{equation}
+This schematic expression is written up to the normalization convention used
+for the hyperspherical harmonics, degeneracy weights, primordial spectrum, and
+transfer functions.  Here $\ell$ is the observed sky multipole.  The transfer functions
+$\Delta^T_{\ell n}$ must be computed in the same closed geometry and with the
+same visible-sector and residual-sector parameters used in the background
+likelihood; public Boltzmann codes such as CAMB or CLASS implement this when
+$\Omega_K\neq0$ is specified \cite{Lewis2011,Lesgourgues2011}.
+Equation~\eqref{eq:closed_cmb_sum} is deliberately conservative:
+compactness supplies a discrete infrared spectrum, but the sign and size of any
+low-$\ell$ change depend on the primordial spectrum, transfer functions, ISW
+terms, reionization, foreground treatment, estimator, mask, and likelihood
+\cite{Efstathiou2003,Planck2018VII}.
+
+\section{Closed-FLRW background reconstruction}
+
+With curvature kept on the geometric side, the Friedmann equation is
+\cite{Wald1984,Peebles1993,DodelsonSchmidt2020,Weinberg2008}
+\begin{equation}
+H^2=\frac{8\pi G}{3c^2}\epsilon_{\rm tot}
+-\frac{c^2}{a^2R_0^2}.
+\label{eq:friedmann}
+\end{equation}
+Equivalently,
+\begin{equation}
+\frac{\epsilon_{\rm tot}(a)}{\crit}=E^2(a)-\Omk a^{-2}.
+\label{eq:etot}
+\end{equation}
+Conservation gives
+\begin{equation}
+\dot\epsilon_{\rm tot}+3H(\epsilon_{\rm tot}+p_{\rm tot})=0,
+\label{eq:conservation}
+\end{equation}
+and hence
+\begin{equation}
+\frac{p_{\rm tot}(a)}{\crit}
+=-\frac13\left[\frac{\dd E^2}{\dd\ln a}+3E^2(a)-\Omk a^{-2}\right].
+\label{eq:ptot}
+\end{equation}
+The deceleration scalar is
+\begin{equation}
+q(a):=-\frac{\ddot a\,a}{\dot a^2}
+=-1-\frac12\frac{\dd\ln E^2}{\dd\ln a}.
+\label{eq:q}
+\end{equation}
+The acceleration equation is
+\begin{equation}
+\frac{\ddot a}{a}=-\frac{4\pi G}{3c^2}
+\left(\epsilon_{\rm tot}+3p_{\rm tot}\right).
+\label{eq:accel}
+\end{equation}
+Thus accelerated expansion is the scalar inequality
+\begin{equation}
+\epsilon_{\rm tot}+3p_{\rm tot}<0.
+\label{eq:accel_condition}
+\end{equation}
+Define
+\begin{equation}
+\Aacc(a):=-\frac{1}{2}\frac{\epsilon_{\rm tot}+3p_{\rm tot}}{\crit}
+=-q(a)E^2(a).
+\label{eq:Aacc}
+\end{equation}
+Acceleration is equivalent to $\Aacc(a)>0$.
+
+\section{Visible-sector closure}
+
+The visible tensor is
+\begin{equation}
+T^{\rm vis}_{\mu\nu}=T^b_{\mu\nu}+T^\gamma_{\mu\nu}+T^\nu_{\mu\nu}.
+\label{eq:visible}
+\end{equation}
+On the homogeneous background,
+\begin{align}
+\frac{\epsilon_{\rm vis}(a)}{\crit}
+&=\Ob a^{-3}+\Og a^{-4}+\Onu(a),
+\nonumber\\
+\frac{p_{\rm vis}(a)}{\crit}
+&=\frac13\Og a^{-4}+P_\nu(a).
+\label{eq:visible_background}
+\end{align}
+
+The thermodynamic photon and neutrino densities are evaluated in the standard
+local kinetic description used by cosmological Boltzmann solvers.  Exact
+finite-volume mode discreteness of quantum fields on a compact $S^3$ would be a
+separate state- and operator-dependent correction to the visible stress tensor;
+it is not part of the dark residual unless it is explicitly added to
+$T^{\rm vis}_{\mu\nu}$.
+
+The baryon term is the rest-energy density of conserved nonrelativistic baryon
+number,
+\begin{equation}
+\epsilon_b(a)=\crit\,\Ob a^{-3}.
+\label{eq:baryon_closure}
+\end{equation}
+The photon term is fixed by the observed CMB temperature \cite{Fixsen2009},
+\begin{align}
+\epsilon_\gamma(a)
+&=\frac{\pi^2}{15}
+\frac{(k_{\rm B}T_{\gamma0})^4}{\hbar^3c^3}\,a^{-4}
+=\crit\,\Og a^{-4},
+\nonumber\\
+p_\gamma(a)&=\frac13\epsilon_\gamma(a).
+\label{eq:photon_closure}
+\end{align}
+
+\subsection{Massive-neutrino functions}
+
+The neutrino temperature and phase-space form follow from standard weak
+decoupling, entropy conservation, and collisionless propagation
+\cite{DodelsonSchmidt2020,Mukhanov2005,LesgourguesPastor2006,LesgourguesPastor2012}.
+The absolute neutrino mass scale is not fixed by thermodynamics alone; it is an
+input or nuisance parameter constrained by laboratory and cosmological priors.
+
+At temperatures below the $W$-boson mass, the interaction rate scales as
+\begin{equation}
+\Gamma_\nu(T)\simeq C_\nu G_F^2T^5,\qquad C_\nu=\mathcal O(1),
+\label{eq:nu_rate}
+\end{equation}
+while during radiation domination
+\begin{equation}
+H(T)=1.66\,g_*^{1/2}\frac{T^2}{M_{\rm Pl}}.
+\label{eq:radiation_H}
+\end{equation}
+Freeze-out occurs when $\Gamma_\nu\simeq H$, giving
+\begin{equation}
+T_{\rm dec}\simeq
+\left(\frac{1.66\,g_*^{1/2}}{C_\nu G_F^2M_{\rm Pl}}\right)^{1/3}
+=\mathcal O(1)\ {\rm MeV}
+\label{eq:Tdec}
+\end{equation}
+for $g_*=10.75$ near the MeV epoch.  Neutrinos therefore decouple while
+ultrarelativistic.
+
+After decoupling, entropy transfer from $e^\pm$ annihilation heats photons
+relative to neutrinos.  In the instantaneous-decoupling approximation,
+\begin{equation}
+g_{*s,{\rm before}}^{\rm em}=2+\frac{7}{8}\times 4=\frac{11}{2},\qquad
+g_{*s,{\rm after}}^{\rm em}=2,
+\end{equation}
+and
+\begin{equation}
+T_{\nu0}=\left(\frac{4}{11}\right)^{1/3}T_{\gamma0}\simeq1.95\ {\rm K}.
+\label{eq:Tnu0}
+\end{equation}
+Non-instantaneous decoupling, finite-temperature QED corrections, and flavor
+oscillations are commonly summarized by the Standard-Model value
+$N_{\rm eff}\simeq3.044$ \cite{Mangano2005,deSalasPastor2016,Froustey2020}.
+The analytic formulae below use the instantaneous-decoupling Fermi--Dirac form.
+In numerical likelihoods this ideal distribution should be replaced by
+Boltzmann-solver neutrino transfer functions or tabulated distorted spectra
+consistent with the adopted $N_{\rm eff}$.  The tensor residual formulae below
+are unchanged.
+
+In Eqs.~\eqref{eq:eps_nui}--\eqref{eq:p_nui} we use natural units
+$\hbar=c=k_{\rm B}=1$.  For each mass eigenstate $m_i$, let
+\begin{equation}
+f_0(q)=\frac{1}{\exp(q/T_{\nu0})+1}
+\label{eq:f0_nu}
+\end{equation}
+be the frozen occupation number as a function of comoving momentum $q=ap$,
+with vanishing chemical potential.  With degeneracy $g_i=2$ for the neutrino
+plus antineutrino helicity states of one mass eigenstate,
+\begin{align}
+\epsilon_{\nu i}(a)&=
+\frac{g_i}{2\pi^2a^4}
+\int_0^\infty \dd q\,q^2
+\sqrt{q^2+a^2m_i^2}\, f_0(q),
+\label{eq:eps_nui}\\
+p_{\nu i}(a)&=
+\frac{g_i}{6\pi^2a^4}
+\int_0^\infty \dd q\,
+\frac{q^4}{\sqrt{q^2+a^2m_i^2}}\, f_0(q).
+\label{eq:p_nui}
+\end{align}
+The total neutrino contribution is
+\begin{equation}
+\epsilon_\nu(a)=\sum_{i=1}^{3}\epsilon_{\nu i}(a),\qquad
+p_\nu(a)=\sum_{i=1}^{3}p_{\nu i}(a),
+\end{equation}
+and
+\begin{equation}
+\Omega_\nu(a)=\frac{\epsilon_\nu(a)}{\crit},\qquad
+P_\nu(a)=\frac{p_\nu(a)}{\crit}.
+\label{eq:Onu_Pnu}
+\end{equation}
+The limiting checks are
+\begin{align}
+a m_i\ll q:\quad&
+\epsilon_{\nu i}\propto a^{-4},\qquad
+p_{\nu i}=\frac13\epsilon_{\nu i},
+\label{eq:nu_rel_limit}\\
+a m_i\gg q:\quad&
+\epsilon_{\nu i}\simeq m_i n_{\nu i}\propto a^{-3},\qquad
+p_{\nu i}\ll\epsilon_{\nu i}.
+\label{eq:nu_nonrel_limit}
+\end{align}
+At late times, for nonrelativistic neutrinos,
+\begin{equation}
+\Omega_{\nu0}h^2\simeq
+\frac{\sum_i m_i}{93.14\ {\rm eV}} .
+\label{eq:Onu_mass_sum}
+\end{equation}
+Since the post-decoupling distribution is collisionless,
+\begin{equation}
+\dot\epsilon_\nu+3H(\epsilon_\nu+p_\nu)=0.
+\label{eq:nu_conservation}
+\end{equation}
+
+\section{GR dark residual}
+
+\begin{theorem}[GR residual theorem]
+Within general relativity, assume the total stress tensor obeys the Einstein
+equation and the visible stress tensor is covariantly conserved,
+$\nabla_\mu T^{{\rm vis}\,\mu\nu}=0$.  Then the tensor
+$T^\D_{\mu\nu}$ defined by Eq.~\eqref{eq:residual_tensor} is symmetric and
+covariantly conserved.  On the closed-FLRW background it has the perfect-fluid
+form
+\[
+T^{\D}_{\hat\mu\hat\nu}
+=\operatorname{diag}(\epsilon_{\D},p_{\D},p_{\D},p_{\D})
+\]
+in the comoving orthonormal frame, with
+\begin{align}
+\frac{\epsilon_{\D}(a)}{\crit}
+&=E^2(a)-\Omk a^{-2}
+-\Ob a^{-3}-\Og a^{-4}-\Onu(a),
+\label{eq:dark_energy_residual}\\
+\frac{p_{\D}(a)}{\crit}
+&=-\frac13\left[\frac{\dd E^2}{\dd\ln a}
++3E^2(a)-\Omk a^{-2}\right]
+\nonumber\\
+&\quad -\frac13\Og a^{-4}-P_\nu(a).
+\label{eq:dark_pressure_residual}
+\end{align}
+\end{theorem}
+
+\begin{proof}
+Both $G_{\mu\nu}$ and $T^{\rm vis}_{\mu\nu}$ are symmetric rank-two tensors;
+their linear combination is therefore a symmetric rank-two tensor.  The
+twice-contracted Bianchi identity gives $\nabla_\mu G^{\mu\nu}=0$, hence
+\[
+\nabla_\mu T^{\D\,\mu\nu}
+=\frac{c^4}{8\pi G}\nabla_\mu G^{\mu\nu}
+-\nabla_\mu T^{{\rm vis}\,\mu\nu}=0 .
+\]
+Homogeneity and isotropy force the background part of any covariantly defined
+symmetric tensor to be a linear combination of $U_\mu U_\nu$ and the spatial
+projector $h_{\mu\nu}:=g_{\mu\nu}+c^{-2}U_\mu U_\nu$, by Schur's lemma applied
+to the isotropy group $\mathrm{SO}(3)$; it is therefore a perfect fluid.  The
+$00$ Einstein equation gives Eq.~\eqref{eq:etot}.  Subtracting
+Eq.~\eqref{eq:visible_background} gives Eq.~\eqref{eq:dark_energy_residual}.
+For pressure, Eq.~\eqref{eq:conservation} gives
+$p_{\rm tot}=-\epsilon_{\rm tot}
+-\frac13\dd\epsilon_{\rm tot}/\dd\ln a$, which is Eq.~\eqref{eq:ptot}.
+Subtracting the visible pressure gives Eq.~\eqref{eq:dark_pressure_residual}.
+\end{proof}
+
+\begin{remark}[Curvature is not relabeled as a dark fluid]
+The curvature term is kept as geometry through $\Omega_K$ and is not counted as
+dark matter or dark energy.  A curvature-only explanation would require the
+residual reconstructed by Eqs.~\eqref{eq:dark_energy_residual} and
+\eqref{eq:dark_pressure_residual} to vanish or become observationally
+unnecessary in a global likelihood analysis.
+\end{remark}
+
+The residual equation of state, where defined, is
+\begin{equation}
+w_{\D}(a)=\frac{p_{\D}(a)}{\epsilon_{\D}(a)}
+=\frac{\PD(a)}{\OD(a)} .
+\label{eq:wD}
+\end{equation}
+
+\begin{remark}[Residual is not a microphysical explanation]
+Equation~\eqref{eq:residual_tensor} reconstructs what is missing from the
+specified visible sector within GR.  It does not distinguish particle dark
+matter, vacuum energy, modified gravity written as an effective tensor, or an
+interacting dark sector.  That distinction requires perturbations and model
+comparison.
+\end{remark}
+
+\section{Clustering residual and smooth residual}
+
+The homogeneous background cannot uniquely split the residual into dark matter
+and dark energy.
+
+\begin{theorem}[Background degeneracy]
+On an FLRW background, any residual density $\epsilon_\D(a)$ can be decomposed
+as $\epsilon_\D(a)=\epsilon_c(a)+\epsilon_X(a)$ in infinitely many ways unless
+additional information fixes clustering, equation of state, sound speed,
+anisotropic stress, or interactions.  Homogeneous distances alone do not
+identify dark matter.
+\end{theorem}
+
+\begin{proof}
+Choose any differentiable function $\epsilon_c(a)$ and define
+$\epsilon_X=\epsilon_\D-\epsilon_c$.  The same total homogeneous residual is
+obtained.  Distances see only the total background expansion.  Perturbative
+observables are required to separate components.
+\end{proof}
+
+The phenomenological split used for comparison with standard cosmological
+likelihoods is
+\begin{align}
+\Omega_c(a)&=\Omega_{c0}a^{-3},\qquad p_c=0,
+\label{eq:cold_dm}\\
+\Omega_X(a)&=E^2(a)-\Omk a^{-2}
+-\Ob a^{-3}-\Og a^{-4}-\Onu(a)
+\nonumber\\
+&\quad -\Omega_{c0}a^{-3},
+\label{eq:OmegaX}\\
+P_X(a)&=-\frac13\left[\frac{\dd E^2}{\dd\ln a}
++3E^2(a)-\Omk a^{-2}\right]
+\nonumber\\
+&\quad -\frac13\Og a^{-4}-P_\nu(a),
+\label{eq:PX}\\
+w_X(a)&=\frac{P_X(a)}{\Omega_X(a)}.
+\label{eq:wX}
+\end{align}
+Here $\Omega_{c0}$ is not determined by the background alone.  Within GR and a
+specified perturbation closure it is constrained by CMB peak structure, CMB
+lensing, large-scale-structure growth, weak lensing, cluster abundance, and
+galaxy-scale dynamical mass diagnostics
+\cite{Planck2018VI,ACTDR62024,DESY32022,BulletCluster2006,SPARC2016}.
+
+For the smooth residual define
+\begin{equation}
+\Dacc(a):=\Omega_X(a)+3P_X(a).
+\label{eq:DX}
+\end{equation}
+The smooth component carries a negative contribution to the total
+$\epsilon_{\rm tot}+3p_{\rm tot}$ when $\Dacc(a)<0$; the sign of
+the total acceleration is fixed only after matter and radiation are included in
+Eq.~\eqref{eq:accel}.
+
+A cosmological constant is the special case
+\begin{align}
+T^X_{\mu\nu}&=-\epsilon_\Lambda g_{\mu\nu},
+&
+\Omega_X(a)&=\Omega_\Lambda,
+\nonumber\\
+P_X&=-\Omega_\Lambda,
+&
+w_X&=-1,
+&
+\Dacc&=-2\Omega_\Lambda .
+\label{eq:Lambda_case}
+\end{align}
+A dynamical dark-energy reconstruction requires a statistically significant
+failure of Eq.~\eqref{eq:Lambda_case} after curvature, neutrino masses,
+calibration, and selection effects are marginalized
+\cite{Linder2003,DESIDR2DE2025}.  Current DESI DR2 combinations motivate such
+tests, but they do not by themselves establish a physical departure from
+$\Lambda$CDM \cite{DESIDR2BAO2025,DESIDR2DE2025}.
+
+\section{Observable distances and perturbative invariants}
+
+For $z=a^{-1}-1$,
+\begin{equation}
+D_C(z)=c\int_0^z\frac{\dd z'}{H(z')},\qquad
+\chi(z)=\frac{D_C(z)}{R_0}.
+\label{eq:DC_chi}
+\end{equation}
+The closed transverse comoving distance and the standard angular and luminosity
+distances are
+\begin{align}
+D_M(z)&=R_0\sin\chi(z),
+\nonumber\\
+D_A(z)&=\frac{D_M(z)}{1+z},
+&
+D_L(z)&=(1+z)D_M(z).
+\label{eq:closed_distances}
+\end{align}
+BAO, supernovae, and CMB distances constrain $E(a)$ and $\Omega_K$ through
+these scalar distances
+\cite{Planck2018VI,DESIDR2BAO2025,DESIDR2Lya2025,
+PantheonPlus2022,PantheonPlusData2022}.  Common BAO
+combinations are
+\begin{align}
+D_H(z)&=\frac{c}{H(z)},
+&
+D_V(z)&=\left[zD_M^2(z)D_H(z)\right]^{1/3},
+\nonumber\\
+F_{\rm AP}(z)&=\frac{D_M(z)H(z)}{c}.
+\label{eq:bao_invariants}
+\end{align}
+Etherington reciprocity gives
+\begin{equation}
+D_L(z)=(1+z)^2D_A(z)
+\label{eq:etherington}
+\end{equation}
+when photons travel on null geodesics and photon number is conserved
+\cite{Etherington1933}.
+
+The linear growth observables are
+\begin{equation}
+f(a)=\frac{\dd\ln D_+(a)}{\dd\ln a},\qquad f\sigma_8(z),
+\label{eq:growth}
+\end{equation}
+as measured by redshift-space distortions.  Weak lensing and CMB lensing
+measure projected Weyl-potential combinations along null geodesics
+\cite{ACTDR62024,DESY32022}.  Merging clusters supply a complementary
+diagnostic: offsets between lensing mass and the dominant X-ray plasma are
+evidence for a gravitating component displaced from the main baryonic gas, not
+by themselves a proof of a particular particle model \cite{BulletCluster2006}.
+
+
+\section{Complete invariant closure of the dark-sector target}
+\label{sec:complete_invariant_closure}
+
+The phrase ``closing the dark sector'' has two logically different meanings.
+The first is an exact reconstruction of the stress tensor required by the metric
+and visible sector.  The second is a microphysical explanation of that tensor in
+terms of particles, fields, vacuum energy, interactions, or modified gravity.
+Only the first is model-independent.  The second requires extra dynamical
+structure and cannot be obtained from topology or background geometry alone.
+
+\begin{definition}[Invariant residual closure]
+Fix the closed-FLRW background, the visible stress tensor, and a perturbative
+order.  The dark residual is invariantly closed at that order if, for every
+scalar, vector, and tensor harmonic coefficient retained in the calculation,
+\begin{equation}
+T^{\D}_{(r)\mu\nu}
+=\frac{c^4}{8\pi G}G_{(r)\mu\nu}-T^{{\rm vis}}_{(r)\mu\nu},
+\qquad r=0,1,\ldots,N ,
+\label{eq:order_by_order_residual}
+\end{equation}
+is specified in a gauge-invariant representation, and the same variables are
+used in the distance, lensing, growth, CMB, cluster, and galaxy likelihoods.
+Here $r=0$ denotes the homogeneous background and $r\geq1$ denotes perturbative
+orders.
+\end{definition}
+
+At linear scalar order one may choose the Bardeen potentials, matter velocity
+potentials, density contrasts, and anisotropic stresses.  In the closed model
+each of these is expanded in hyperspherical harmonics rather than Fourier
+modes.  Let $\mathcal T^\D_{n\ell m}$ denote the scalar coefficient tuple
+$\{\delta\epsilon^\D_{n\ell m},\delta p^\D_{n\ell m},
+(\epsilon_\D+p_\D)V^\D_{n\ell m},\Pi^\D_{n\ell m}\}$, and let
+$\mathcal G_{n\ell m}$ and $\mathcal T^{\rm vis}_{n\ell m}$ denote the
+corresponding Einstein and visible-sector tuples.  Then
+\begin{equation}
+\mathcal T^\D_{n\ell m}
+=\frac{c^4}{8\pi G}\mathcal G_{n\ell m}
+-\mathcal T^{\rm vis}_{n\ell m}.
+\label{eq:scalar_residual_coefficients}
+\end{equation}
+Equation~\eqref{eq:scalar_residual_coefficients} is not a new field equation.
+It is the harmonic version of the tensor identity
+Eq.~\eqref{eq:residual_tensor}.  Vector and tensor coefficients are obtained in
+the corresponding transverse-vector and transverse-traceless bases of
+Sec.~\ref{sec:compact_spectral_covariance}.
+
+\begin{theorem}[No purely geometric closure of the dark sector]
+No collection of invariants constructed only from the topology of $S^3$, the
+round spatial curvature radius, the compact Laplace spectra, the homogeneous
+distance map, or their algebraic combinations can determine a unique physical
+split of $T^\D_{\mu\nu}$ into dark matter and dark energy.
+\end{theorem}
+
+\begin{proof}
+Those invariants determine the stage on which the metric and perturbations are
+expanded.  They do not determine an equation of state, sound speed, anisotropic
+stress, interaction current, rest frame, or clustering law for an unknown
+component.  On the homogeneous background the degeneracy theorem already gives
+infinitely many decompositions
+$\epsilon_\D=\epsilon_c+\epsilon_X$.  At perturbative order the same residual
+metric response can be represented by different combinations of density
+contrast, pressure perturbation, anisotropic stress, and modified-gravity
+response functions unless a dynamical closure is imposed.  Therefore geometry
+alone cannot supply the missing microphysics.
+\end{proof}
+
+\begin{theorem}[Complete covariant target closure]
+Within GR, given the metric to the chosen perturbative order and a separately
+specified visible sector, Eq.~\eqref{eq:order_by_order_residual} uniquely
+closes the dark residual as a tensor.  This is the maximal model-independent
+closure: every particle dark-sector model, interacting-sector model, vacuum
+model, or effective modified-gravity model must reproduce these residual
+coefficients in the same closed geometry.
+\end{theorem}
+
+\begin{proof}
+The Einstein tensor is determined by the metric order by order.  The visible
+stress tensor is specified independently.  Their difference is a unique tensor
+coefficient in each scalar, vector, and tensor harmonic sector.  Gauge-invariant
+variables give the same tensor coefficients in any coordinate representation.
+Any model producing the same metric and visible sector must therefore produce
+the same residual tensor, or the same effective tensor if it is written in
+Einstein form.
+\end{proof}
+
+A compact way to display the complete invariant target is
+\begin{equation}
+\mathcal C_{\rm inv}=
+\left[
+\Omega_K,\ E(a),\ T^{\rm vis}_{\mu\nu};
+\ T^\D_{\mu\nu};
+\ \{\delta T^\D_{n\alpha}\}_{S,V,T};
+\ \mathcal R_{\rm dyn}
+\right].
+\label{eq:complete_invariant_target}
+\end{equation}
+The first entries fix the closed background and visible sector.  The middle
+entries are the exact background and perturbative residuals.  The final entry
+$\mathcal R_{\rm dyn}$ is not determined by geometry; it denotes the dynamical
+response required to interpret the residual as dust, a smooth component,
+vacuum energy, an interacting sector, or modified gravity.  In a likelihood
+analysis the corresponding posterior has the schematic invariant factorization
+\begin{multline}
+\mathcal P(\mathcal C_{\rm inv}\mid\mathcal D)
+\propto
+\pi(\mathcal C_{\rm inv})\,
+\mathcal L_{\rm CMB}\mathcal L_{\rm BAO}\mathcal L_{\rm SN}\\
+{}\times
+\mathcal L_{H(z)}\mathcal L_{\rm lens}
+\mathcal L_{\rm growth}\mathcal L_{\rm cl}\mathcal L_{\rm gal}.
+\label{eq:closure_posterior}
+\end{multline}
+where all likelihoods use the same curvature, visible-sector priors, and
+closed-harmonic perturbation convention.  Observational closure means that the
+same posterior samples pass all of these tests without moving curvature,
+neutrino mass, calibration, or selection effects between inconsistent priors.
+
+The invariant closure filters that have physical content are the following.
+
+\begin{enumerate}
+\item \textit{Pressureless clustering filter.}  A component $c$ qualifies as
+cold clustering matter only if
+\begin{align}
+T^c_{\mu\nu}
+&=\frac{\epsilon_c}{c^2}u^c_\mu u^c_\nu,
+&
+u^c_\mu u_c^\mu&=-c^2,
+\nonumber\\
+p_c&=0,\qquad
+\Pi^c_{\mu\nu}=0,
+\nonumber\\
+\nabla_\mu T^{c\,\mu\nu}&=Q_c^\nu .
+\label{eq:dust_filter}
+\end{align}
+with a stated interaction current $Q_c^\nu$ and with $Q_c^\nu=0$ in the
+separately conserved case.  In the noninteracting limit the flow is geodesic
+where $\epsilon_c\ne0$.  This filter is tested by CMB peak structure, lensing,
+growth, cluster abundance, and galaxy dynamics.
+
+\item \textit{Smooth accelerating filter.}  The residual left after the
+clustering component is
+$T^X_{\mu\nu}=T^\D_{\mu\nu}-T^c_{\mu\nu}$.  It contributes negatively to the
+Raychaudhuri source when
+\begin{equation}
+\Dacc(a)=\Omega_X(a)+3P_X(a)<0 .
+\label{eq:smooth_acceleration_filter}
+\end{equation}
+Calling it smooth is an observational and dynamical statement: the perturbation
+closure must specify its rest-frame sound speed, anisotropic stress, and any
+interaction current, or show that its clustering is negligible in the relevant
+likelihood.
+
+\item \textit{Cosmological-constant filter.}  The smooth component is exactly a
+cosmological constant if and only if
+\begin{equation}
+T^X_{\mu\nu}=-\epsilon_\Lambda g_{\mu\nu},\qquad
+\nabla_\alpha\epsilon_\Lambda=0,
+\label{eq:lambda_filter}
+\end{equation}
+so that all gauge-invariant perturbations of this component vanish.  In the
+background language this is the joint condition
+$\Omega_X=\Omega_\Lambda$, $P_X=-\Omega_\Lambda$, and $w_X=-1$ at all $a$.
+
+\item \textit{Modified-gravity filter.}  If the residual is moved to the
+right-hand side of an effective Einstein equation, the background conditions
+above are necessary but insufficient.  The model must also provide invariant
+metric-response functions, or their closed-harmonic equivalents, that reproduce
+both the dynamical potential and the Weyl potential probed by growth and
+lensing.  In phenomenological notation these are often represented by functions
+such as $\mu(a,n)$, $\Sigma(a,n)$, and a gravitational-slip variable.
+\end{enumerate}
+
+Thus the exhaustive invariant answer is narrow but precise.  Topology and
+compact spectra close the geometry.  The Einstein residual closes the required
+stress tensor.  A physical dark-sector explanation is closed only after one of
+the dynamical filters above supplies the missing perturbative response and
+passes the joint likelihood.
+
+\section{Diagnostic ledger}
+
+The following quantities form a compact diagnostic ledger.  They are not
+independent axioms; they are invariant or operational quantities used to
+reconstruct and test the residual.
+
+\begin{enumerate}
+\item $\Sigma\simeq S^3$: compact closed spatial topology.
+\item $\partial S^3=\varnothing$: no spatial boundary source in the unquotiented model.
+\item $\pi_1(S^3)=0$: no holonomy images or deck transformations.
+\item $V_3=2\pi^2R^3$: finite spatial volume at fixed scale factor.
+\item $\diam(S^3_R)=\pi R$: finite diameter.
+\item ${}^{(3)}\mathcal R=6/R^2$: positive spatial curvature scalar.
+\item $\Omk=-c^2/(H_0^2R_0^2)$: closed curvature parameter.
+\item $\Thetaexp=\nabla_\mu U^\mu$: invariant expansion scalar.
+\item $E(a)=H/H_0$: dimensionless expansion history.
+\item $q(a)$ and $\Aacc(a)$: acceleration diagnostics.
+\item $\epsilon_{\rm tot}/\crit=E^2-\Omk a^{-2}$: total density reconstruction.
+\item $p_{\rm tot}/\crit$: total pressure reconstruction.
+\item $T^\D_{\mu\nu}$: covariant dark residual.
+\item $\epsilon_\D(a),p_\D(a)$: homogeneous residual scalars.
+\item $\nabla_\mu T^{\D\,\mu\nu}=0$: Bianchi consistency under visible conservation.
+\item $\Omega_bh^2$: baryon density constrained by CMB and BBN.
+\item $T_{\gamma0}$: photon temperature fixing $\Omega_\gamma$.
+\item $T_{\nu0}$ and $f_0(q)$: neutrino thermal closure.
+\item $\sum_i m_i$: neutrino mass-sum control parameter.
+\item $\Omega_c a^{-3},p_c=0$: pressureless clustering ansatz.
+\item CMB peak structure: matter loading and equality diagnostics.
+\item $C_L^{\phi\phi}$: CMB lensing mass map.
+\item Weak shear $\xi_\pm$: projected late-time mass correlations.
+\item $f\sigma_8(z)$: growth-rate observable.
+\item Cluster abundance: mass-function test.
+\item Galaxy dynamics: small-scale mass-discrepancy diagnostic.
+\item $\Omega_X(a),P_X(a)$: smooth residual after clustering matter.
+\item $w_X(a)$: smooth equation-of-state reconstruction.
+\item $\Dacc=\Omega_X+3P_X$: smooth acceleration factor.
+\item $D_M,D_A,D_L,D_H,D_V,F_{\rm AP}$: closed-distance and BAO observables.
+\item $\theta_*=r_s(z_*)/D_M(z_*)$: CMB acoustic-angle constraint.
+\item $\lambda_n=n(n+2)/R^2$: compact scalar spectrum.
+\item $g_n^S=(n+1)^2$: scalar mode count.
+\item $\Xi_n(\gamma)$: addition-kernel invariant.
+\item $C(\gamma)=\sum_n A_n\Xi_n$: compact scalar covariance.
+\item $g_n^{V_T}=2n(n+2)$: transverse-vector mode count.
+\item $g_n^{TT}=2(n-1)(n+3)$: transverse-traceless tensor mode count.
+\item Eq.~\eqref{eq:compact_replacement_rule}: compact perturbation replacement rule.
+\item Eq.~\eqref{eq:closed_cmb_sum}: closed-geometry CMB transfer-sum interface.
+\item Eq.~\eqref{eq:complete_invariant_target}: minimal complete invariant target.
+\item Eq.~\eqref{eq:order_by_order_residual}: order-by-order invariant residual closure.
+\item Eq.~\eqref{eq:closure_posterior}: joint posterior closure criterion.
+\item Eqs.~\eqref{eq:dust_filter}--\eqref{eq:lambda_filter}: clustering, acceleration, and cosmological-constant filters.
+\item Posterior predictive residuals: falsification beyond best fit.
+\item Flat metric limit $R_0\to\infty$: local reduction to standard FLRW distances.
+\end{enumerate}
+
+\section{Data-facing reconstruction protocol}
+
+\paragraph*{Invariant reconstruction protocol.}
+\begin{enumerate}
+\item Choose the geometry, field equation, priors, and $E(a)$ basis.
+\item Reconstruct $E(a)$ and $\Omega_K$ from CMB, BAO, supernovae, and
+chronometers \cite{Moresco2022}.
+\item Fix $\Omega_bh^2$, $\Omega_\gamma$, and the neutrino functions
+$\Omega_\nu(a),P_\nu(a)$ conditional on the chosen mass spectrum, BBN/CMB
+constraints, laboratory priors, and jointly sampled cosmological nuisance priors
+\cite{Cooke2018,SchrammTurner1998}.
+\item Compute $\epsilon_\D(a)$ and $p_\D(a)$ from
+Eqs.~\eqref{eq:dark_energy_residual} and \eqref{eq:dark_pressure_residual}.
+\item Apply the invariant closure filters of
+Sec.~\ref{sec:complete_invariant_closure}: residual-only closure, dust-like
+clustering closure, smooth-acceleration closure, cosmological-constant closure,
+or effective modified-gravity closure.
+\item Infer $\Omega_{c0}$ from perturbative observables: CMB peaks, CMB lensing,
+weak lensing, $f\sigma_8$, clusters, and galaxy dynamics.
+\item Compute $\Omega_X(a)$, $P_X(a)$, $w_X(a)$, and $\Dacc(a)$ from
+Eqs.~\eqref{eq:OmegaX}--\eqref{eq:DX}.
+\item Compare $\Omega_X=\mathrm{const}$, $w_X=-1$, evolving $w(z)$, interacting
+dark sectors, modified-gravity effective tensors, and curvature-only
+explanations under the same likelihoods.
+\item Build compact $S^3$ scalar, vector, and tensor mode expansions using
+Eq.~\eqref{eq:compact_replacement_rule}; compare low-multipole CMB covariance
+with the same curvature posterior.
+\item Report posterior predictive checks, evidence or information criteria, and
+the local flat-metric limit $R_0\to\infty$.
+\end{enumerate}
+
+Finite noisy data reconstruct a posterior over $E(a)$, not a unique curve.  The
+uniqueness statements are conditional on a specified geometry, visible sector,
+and exact or posterior-sampled expansion history.
+
+\section{Formal consequences}
+
+\begin{theorem}[Invariant reconstruction theorem]
+Given a closed-FLRW geometry, the GR field equation, a covariantly conserved
+visible stress tensor, and an expansion history $E(a)$ with curvature
+$\Omega_K$, the residual $T^\D_{\mu\nu}$ is uniquely determined as a tensor by
+Eq.~\eqref{eq:residual_tensor}.  Its background energy density and pressure are
+the scalars in Eqs.~\eqref{eq:dark_energy_residual} and
+\eqref{eq:dark_pressure_residual}.
+\end{theorem}
+
+\begin{proof}
+The metric determines the Einstein tensor.  The visible tensor is specified
+independently.  Their difference is a unique tensor.  FLRW symmetry reduces its
+background part to two scalar functions, computed above.
+\end{proof}
+
+\begin{theorem}[Perturbative separation theorem]
+Within GR and a specified perturbation closure, a pressureless clustering
+component and a smooth accelerating component cannot be distinguished by
+homogeneous distances alone.  They can be separated only by perturbative
+observables such as CMB peak structure, lensing, growth, cluster abundance, and
+galaxy-scale dynamical mass diagnostics.
+\end{theorem}
+
+\begin{proof}
+Homogeneous distances constrain $E(a)$ and therefore only the total homogeneous
+density and pressure.  Perturbations depend on clustering, sound speed,
+anisotropic stress, and gravitational potentials.  These quantities affect
+lensing and growth differently from a smooth cosmological-constant-like
+component.  Hence the split is observationally meaningful only after
+perturbative data and a perturbation model are specified.
+\end{proof}
+
+\section{Effective interpretation in modified gravity}
+
+The residual construction is not tied to a particle interpretation.  It also
+gives the target effective tensor for any metric modified-gravity model that can
+be written in Einstein form with separately conserved visible matter.
+
+\begin{proposition}[Effective Einstein form]
+Suppose a diffeomorphism-covariant metric theory has field equations that can be
+rearranged as
+\begin{equation}
+G_{\mu\nu}
+=\frac{8\pi G}{c^4}\left(T^{\rm vis}_{\mu\nu}
++T^{\rm eff}_{\mu\nu}\right),
+\label{eq:effective_einstein_form}
+\end{equation}
+with $\nabla_\mu T^{{\rm vis}\,\mu\nu}=0$.  Then the effective stress tensor
+required by the modified theory is exactly the covariant residual,
+\begin{equation}
+T^{\rm eff}_{\mu\nu}=T^\D_{\mu\nu}.
+\label{eq:Teff_equals_TD}
+\end{equation}
+Consequently its homogeneous energy density and pressure must equal
+Eqs.~\eqref{eq:dark_energy_residual} and \eqref{eq:dark_pressure_residual}.
+\end{proposition}
+
+\begin{proof}
+Equation~\eqref{eq:effective_einstein_form} gives
+\[
+T^{\rm eff}_{\mu\nu}
+=\frac{c^4}{8\pi G}G_{\mu\nu}-T^{\rm vis}_{\mu\nu},
+\]
+which is precisely Eq.~\eqref{eq:residual_tensor}.  Conservation follows from
+the Bianchi identity and visible-sector conservation exactly as in the GR
+residual theorem.
+\end{proof}
+
+The proposition is an identity, not a new dynamical model.  For example, an
+$f(R)$ model can be moved into effective Einstein form by placing the extra
+curvature terms on the right-hand side \cite{HuSawicki2007}.  The homogeneous
+target is then fixed:
+\[
+\epsilon_{\rm eff}(a)=\epsilon_\D(a),\qquad
+p_{\rm eff}(a)=p_\D(a).
+\]
+A model that cannot reproduce these functions for the reconstructed $E(a)$ and
+$\Omega_K$ fails at the homogeneous level.
+
+The equivalence is conditional.  If visible matter is nonminimally coupled so
+that $\nabla_\mu T^{{\rm vis}\,\mu\nu}\ne0$, or if photons do not follow the
+metric null geodesics used in Eq.~\eqref{eq:closed_distances}, then the present
+reconstruction theorem must be modified.  The interaction current, altered
+distance law, and perturbation equations must then be stated explicitly.
+
+At the perturbative level, matching the background residual is insufficient.  A
+viable modified-gravity explanation must also reproduce the gravitational
+potentials probed by CMB lensing, weak lensing, redshift-space distortions,
+clusters, and galaxy dynamics.  In phenomenological language, the model must
+provide the analogues of the effective Newton response and lensing response,
+often denoted $\mu(a,k)$ and $\Sigma(a,k)$, together with any anisotropic stress,
+sound speed, or extra-field propagation law.  These perturbative functions are
+not determined by Eqs.~\eqref{eq:dark_energy_residual}--\eqref{eq:dark_pressure_residual};
+they are additional model predictions.
+
+Compactness adds a global consistency requirement.  Perturbations on the
+unquotiented round $S^3$ use the discrete eigenvalues and kernels above, not a
+continuous $\RR^3$ Fourier basis.  Nonlocal kernels, infrared prescriptions, and
+vacuum choices in a modified-gravity model must therefore be defined on the
+compact spectrum and must reduce continuously to the local flat-space
+expressions as $R_0\to\infty$.
+
+\section{Falsification criteria}
+
+The compact reconstruction program fails, or becomes less useful than a simpler
+parametrization, if any of the following occur:
+\begin{enumerate}
+\item Closed-FLRW distances are disfavored relative to flat or curved $\LCDM$
+after equal-prior comparison.
+\item The reconstructed $T^\D_{\mu\nu}$ violates conservation without an
+explicit interaction term.
+\item Perturbative data do not admit a stable pressureless clustering component
+within the stated model class.
+\item The inferred smooth component is inconsistent across CMB, BAO,
+supernovae, lensing, and growth.
+\item Compact $S^3$ covariance worsens posterior predictive tests.
+\item Apparent dark-energy evolution disappears after curvature, neutrino mass,
+calibration, and selection-function marginalization.
+\item Visible-sector closure is inconsistent with BBN, CMB thermodynamics, or
+neutrino priors.
+\item A modified-gravity interpretation cannot supply an effective tensor and
+perturbation sector matching the reconstructed residual, lensing, and growth
+observables.
+\item The local large-radius limit does not reduce continuously to the standard
+FLRW expressions.
+\end{enumerate}
+
+\section{Conclusion}
+
+The strict compact-geometric result is
+\begin{equation}
+\RR\times S^3
+\Longrightarrow
+\begin{gathered}
+\text{finite closed geometry}\\
+\text{and compact spectral covariance}.
+\end{gathered}
+\end{equation}
+The strict GR residual result is
+\begin{equation}
+G_{\mu\nu}-\frac{8\pi G}{c^4}T^{\rm vis}_{\mu\nu}
+\Longrightarrow
+\begin{gathered}
+T^\D_{\mu\nu}\ \text{as a covariantly}\\
+\text{conserved residual}.
+\end{gathered}
+\end{equation}
+The split into clustering matter and smooth acceleration is not a consequence
+of topology.  It is obtained, within GR, only by combining homogeneous
+distances with perturbative gravitational observables.  Compact topology is
+therefore kept as exact geometry, while the dark sector is reconstructed as an
+invariant residual and tested against public likelihoods.  The strongest
+model-independent closure is the residual tensor itself; any further closure is
+a dynamical model choice constrained by perturbative observables.
+
+\begin{acknowledgments}
+No external funding is declared.  The construction uses public cosmological
+literature and standard differential geometry, general relativity, and
+observational-cosmology methods.
+\end{acknowledgments}
+
+\section*{Data and code availability}
+No proprietary data are used.  The paper defines an analytic and statistical
+reconstruction pipeline.  A numerical implementation should use public CMB,
+BAO, supernova, lensing, growth, cluster, and galaxy-dynamics likelihoods or
+data products with stated priors.
+
+\section*{Author contributions}
+Andrei Preece and Boris Batenin contributed to the conceptual formulation,
+invariant reconstruction framework, proof structure, and manuscript preparation.
+
+\appendix
+
+\section{Pressure reconstruction}
+
+From Eq.~\eqref{eq:etot},
+\[
+\epsilon_{\rm tot}=\crit\left(E^2-\Omk a^{-2}\right).
+\]
+Therefore
+\[
+\frac{1}{\crit}\frac{\dd\epsilon_{\rm tot}}{\dd\ln a}
+=\frac{\dd E^2}{\dd\ln a}+2\Omk a^{-2}.
+\]
+Using
+\[
+p_{\rm tot}=-\epsilon_{\rm tot}
+-\frac13\frac{\dd\epsilon_{\rm tot}}{\dd\ln a}
+\]
+gives Eq.~\eqref{eq:ptot}.
+
+\section{Closed distances and the local flat-metric limit}
+
+The closed transverse comoving distance is
+\[
+D_M=R_0\sin(D_C/R_0).
+\]
+Since $\sin x=x-x^3/6+O(x^5)$, the large-radius limit $R_0\to\infty$ gives
+$D_M\to D_C$ with corrections of order $(D_C/R_0)^2\sim|\Omega_K|$.  This is a
+local geometric limit of the distance formula, not a topological identification
+of compact $S^3$ with $\RR^3$.
+
+
+\section{Flat-space limit of the invariant closure}
+\label{app:flat_limit}
+
+The large-radius limit used in this paper is local.  One sends
+\[
+R_0\to\infty,\qquad \Omega_K=-\frac{c^2}{H_0^2R_0^2}\to0,
+\]
+while holding fixed physical distances such as
+$r=R_0\chi$, the line-of-sight comoving distance $D_C(z)$, and the continuum
+wavenumber
+\[
+k=\frac{n+1}{R_0}.
+\]
+This is not a topological identification of $S^3$ with $\RR^3$; it is the
+local geometric and spectral limit on scales much smaller than $R_0$.
+
+The global geometric invariants behave as
+\begin{align}
+\Vol(S^3_{R_0})&=2\pi^2R_0^3\to\infty,
+\nonumber\\
+{}^{(3)}\mathcal R&=\frac{6}{R_0^2}\to0,
+&
+\diam(S^3_{R_0})&=\pi R_0\to\infty .
+\end{align}
+For a ball of fixed physical radius $r=R_0\chi$,
+\[
+V(\chi)=\frac{4\pi}{3}r^3+O(r^5/R_0^2),\qquad
+A(\chi)=4\pi r^2+O(r^4/R_0^2).
+\]
+The causal-accessibility fraction in Eq.~\eqref{eq:access} has a subtle but
+important limit.  For finite propagation time $T$,
+\[
+\Gamma(T)=\frac{\theta-\frac12\sin2\theta}{\pi}
+=\frac{2}{3\pi}\left(\frac{cT}{R_0}\right)^3
++O(R_0^{-5})\to0,
+\]
+because the total spatial volume diverges.  The local accessible volume itself,
+however, tends to the Euclidean value $4\pi(cT)^3/3$.  Similarly, the antipodal
+condition in Eq.~\eqref{eq:conformal_access} is not automatically satisfied in
+the flat limit; rather, the antipode recedes to infinite distance and the
+condition ceases to be a finite-distance observable.
+
+The distance map reduces continuously to the flat-FLRW one:
+\begin{align}
+D_M(z)&=R_0\sin\!\left(\frac{D_C(z)}{R_0}\right) \nonumber\\
+&=D_C(z)\left[
+1-\frac16\left(\frac{D_C(z)}{R_0}\right)^2
++O\!\left(\frac{D_C^4}{R_0^4}\right)\right],
+\label{eq:flat_distance_expansion_full}
+\end{align}
+so that
+\[
+D_M\to D_C,\qquad
+D_A\to\frac{D_C}{1+z},\qquad
+D_L\to(1+z)D_C ,
+\]
+with relative corrections
+\[
+\left(\frac{D_C}{R_0}\right)^2
+=(-\Omega_K)\left(\frac{H_0D_C}{c}\right)^2 .
+\]
+The BAO combinations therefore become
+\[
+D_V\to\left[zD_C^2D_H\right]^{1/3},\qquad
+F_{\rm AP}\to\frac{D_CH}{c},
+\]
+while Etherington reciprocity is unchanged.
+
+The background reconstruction reduces to the standard flat residual:
+\begin{align}
+\frac{\epsilon_{\rm tot}}{\crit}
+&=E^2-\Omega_K a^{-2}\to E^2,\\
+\frac{p_{\rm tot}}{\crit}
+&=-\frac13\left[
+\frac{\dd E^2}{\dd\ln a}+3E^2-\Omega_Ka^{-2}\right]
+\nonumber\\
+&\quad\to
+-\frac13\left[
+\frac{\dd E^2}{\dd\ln a}+3E^2\right],
+\end{align}
+and therefore
+\[
+\frac{\epsilon_{\D}}{\crit}
+\to
+E^2-\Ob a^{-3}-\Og a^{-4}-\Onu(a),
+\]
+with the corresponding flat expression for $p_{\D}$ obtained by subtracting
+the visible pressure.  The acceleration scalar, the cold-clustering split, the
+smooth residual, and the filters of Sec.~\ref{sec:complete_invariant_closure} reduce
+with the same substitution $\Omega_K\to0$.
+
+The scalar, vector, and tensor spectra also have a continuous local limit.  With
+$k=(n+1)/R_0$,
+\begin{align}
+\frac{n(n+2)}{R_0^2}
+&=k^2-\frac{1}{R_0^2}\to k^2,\\
+\frac{n(n+2)-1}{R_0^2}
+&=k^2-\frac{2}{R_0^2}\to k^2,\\
+\frac{n(n+2)-2}{R_0^2}
+&=k^2-\frac{3}{R_0^2}\to k^2 .
+\end{align}
+For scalar modes the compact replacement rule becomes
+\begin{align}
+&\frac{1}{\Vol(S^3_{R_0})}
+\sum_{n=0}^\infty (n+1)^2
+F\!\left(\frac{n+1}{R_0}\right)
+\nonumber\\
+&\quad\longrightarrow
+\frac{1}{2\pi^2}\int_0^\infty k^2F(k)\,\dd k
+=
+\int\frac{\dd^3k}{(2\pi)^3}F(k).
+\label{eq:flat_replacement_limit}
+\end{align}
+with the vector and tensor sectors giving the corresponding continuum
+polarization sums.  Equivalently, the compact spectral covariance tends to the
+flat Fourier covariance after the sum over hyperspherical shells is converted
+to the integral over $k$; the familiar angular kernel $\sin(kr)/(kr)$ appears
+inside the limiting integral,
+\[
+C(r)\to
+\frac{1}{2\pi^2}\int_0^\infty
+k^2 P(k)\frac{\sin(kr)}{kr}\,\dd k .
+\]
+Thus Eq.~\eqref{eq:closed_cmb_sum} becomes the usual flat line-of-sight
+expression, up to the same normalization convention for transfer functions and
+primordial spectra used in the closed calculation.
+
+Finally, the invariant closure itself is continuous.  The order-by-order tensor
+identity, the complete target $\mathcal C_{\rm inv}$, the posterior
+factorization, and the dynamical filters do not acquire singular terms as
+$\Omega_K\to0$.  Compact $S^3$ therefore supplies a finite closed infrared
+bookkeeping system whose local observables and residual identities reduce
+smoothly to the standard spatially flat FLRW framework.
+
+\section{Requirements for a physical explanation}
+
+A proposed physical origin for the residual is not part of this formalism until
+it supplies:
+\begin{enumerate}
+\item an action, modified field equation, or stress tensor;
+\item conservation laws or an explicit interaction term;
+\item background functions $\epsilon(a)$ and $p(a)$;
+\item perturbation equations, sound speed, and anisotropic stress;
+\item lensing and growth predictions;
+\item consistency with BBN, CMB, BAO, supernovae, clusters, and galaxies;
+\item a local flat-metric and closed-geometry comparison;
+\item public likelihood results against $\Lambda$CDM, curved $\Lambda$CDM,
+$w$CDM, modified gravity, and nonparametric dark-energy reconstructions.
+\end{enumerate}
+
+\sloppy
+\begin{thebibliography}{99}
+
+\bibitem{Wald1984}
+R. M. Wald, \textit{General Relativity} (University of Chicago Press, Chicago, 1984).
+
+\bibitem{HawkingEllis1973}
+S. W. Hawking and G. F. R. Ellis, \textit{The Large Scale Structure of Space-Time}
+(Cambridge University Press, Cambridge, 1973).
+
+\bibitem{doCarmo1992}
+M. P. do Carmo, \textit{Riemannian Geometry} (Birkh\"auser, Boston, 1992).
+
+\bibitem{Peebles1993}
+P. J. E. Peebles, \textit{Principles of Physical Cosmology} (Princeton University Press,
+Princeton, 1993).
+
+\bibitem{DodelsonSchmidt2020}
+S. Dodelson and F. Schmidt, \textit{Modern Cosmology}, 2nd ed. (Academic Press, London, 2020).
+
+\bibitem{Mukhanov2005}
+V. Mukhanov, \textit{Physical Foundations of Cosmology} (Cambridge University Press,
+Cambridge, 2005).
+
+\bibitem{Weinberg2008}
+S. Weinberg, \textit{Cosmology} (Oxford University Press, Oxford, 2008).
+
+\bibitem{RubinOrdonez1984}
+M. A. Rubin and C. R. Ordonez, Symmetric tensor eigenspectrum of the Laplacian on
+$n$-spheres, J. Math. Phys. \textbf{25}, 2888 (1984).
+
+
+\bibitem{Higuchi1987}
+A. Higuchi, Symmetric tensor spherical harmonics on the $N$-sphere and their application
+to the de Sitter group SO($N,1$), J. Math. Phys. \textbf{28}, 1553 (1987);
+Erratum J. Math. Phys. \textbf{43}, 6385 (2002).
+
+\bibitem{AbbottSchaefer1986}
+L. F. Abbott and R. K. Schaefer, A general, gauge-invariant analysis of the cosmic
+microwave anisotropy, Astrophys. J. \textbf{308}, 546 (1986).
+
+\bibitem{Jantzen1978}
+R. T. Jantzen, Tensor harmonics on the 3-sphere, J. Math. Phys. \textbf{19}, 1163 (1978).
+
+\bibitem{LindblomTaylorZhang2017}
+L. Lindblom, N. W. Taylor, and F. Zhang, Scalar, vector and tensor harmonics on the
+three-sphere, Gen. Relativ. Gravit. \textbf{49}, 139 (2017), arXiv:1709.08020.
+
+\bibitem{Efstathiou2003}
+G. Efstathiou, Is the low cosmic microwave background quadrupole a signature of spatial
+curvature?, Mon. Not. R. Astron. Soc. \textbf{343}, L95 (2003), arXiv:astro-ph/0303127.
+
+\bibitem{Planck2018VI}
+N. Aghanim \textit{et al.} (Planck Collaboration), Planck 2018 results. VI. Cosmological
+parameters, Astron. Astrophys. \textbf{641}, A6 (2020), arXiv:1807.06209.
+
+\bibitem{Planck2018VII}
+Y. Akrami \textit{et al.} (Planck Collaboration), Planck 2018 results. VII. Isotropy and
+statistics of the CMB, Astron. Astrophys. \textbf{641}, A7 (2020), arXiv:1906.02552.
+
+\bibitem{DESIDR2Lya2025}
+M. Abdul-Karim \textit{et al.} (DESI Collaboration), DESI DR2 results. I. Baryon acoustic
+oscillations from the Lyman alpha forest, Phys. Rev. D \textbf{112}, 083514 (2025),
+arXiv:2503.14739.
+
+\bibitem{DESIDR2BAO2025}
+M. Abdul-Karim \textit{et al.} (DESI Collaboration), DESI DR2 results. II. Measurements of
+baryon acoustic oscillations and cosmological constraints, Phys. Rev. D \textbf{112},
+083515 (2025), arXiv:2503.14738.
+
+\bibitem{DESIDR2DE2025}
+K. Lodha \textit{et al.} (DESI Collaboration), Extended dark energy analysis using DESI
+DR2 BAO measurements, Phys. Rev. D \textbf{112}, 083511 (2025), arXiv:2503.14743.
+
+\bibitem{PantheonPlus2022}
+D. Brout \textit{et al.}, The Pantheon+ analysis: Cosmological constraints,
+Astrophys. J. \textbf{938}, 110 (2022), arXiv:2202.04077.
+
+\bibitem{PantheonPlusData2022}
+D. Scolnic \textit{et al.}, The Pantheon+ analysis: The full data set and light-curve
+release, Astrophys. J. \textbf{938}, 113 (2022), arXiv:2112.03863.
+
+\bibitem{Moresco2022}
+M. Moresco \textit{et al.}, Unveiling the Universe with emerging cosmological probes,
+Living Rev. Relativ. \textbf{25}, 6 (2022), arXiv:2201.07241.
+
+\bibitem{ACTDR62024}
+M. S. Madhavacheril \textit{et al.} (ACT Collaboration), The Atacama Cosmology Telescope:
+DR6 gravitational lensing map and cosmological parameters, Astrophys. J. \textbf{962},
+113 (2024), arXiv:2304.05203.
+
+\bibitem{DESY32022}
+T. M. C. Abbott \textit{et al.} (DES Collaboration), Dark Energy Survey Year 3 results:
+Cosmological constraints from galaxy clustering and weak lensing, Phys. Rev. D
+\textbf{105}, 023520 (2022), arXiv:2105.13549.
+
+\bibitem{BulletCluster2006}
+D. Clowe, M. Brada\v{c}, A. H. Gonzalez, M. Markevitch, S. W. Randall, C. Jones, and
+D. Zaritsky, A direct empirical proof of the existence of dark matter, Astrophys. J. Lett.
+\textbf{648}, L109 (2006), arXiv:astro-ph/0608407.
+
+\bibitem{SPARC2016}
+F. Lelli, S. S. McGaugh, and J. M. Schombert, SPARC: Mass models for 175 disk galaxies
+with Spitzer photometry and accurate rotation curves, Astron. J. \textbf{152}, 157
+(2016), arXiv:1606.09251.
+
+\bibitem{Cooke2018}
+R. J. Cooke, M. Pettini, and C. C. Steidel, One percent determination of the primordial
+deuterium abundance, Astrophys. J. \textbf{855}, 102 (2018), arXiv:1710.11129.
+
+\bibitem{SchrammTurner1998}
+D. N. Schramm and M. S. Turner, Big-bang nucleosynthesis enters the precision era,
+Rev. Mod. Phys. \textbf{70}, 303 (1998), arXiv:astro-ph/9706069.
+
+\bibitem{Etherington1933}
+I. M. H. Etherington, On the definition of distance in general relativity,
+Philos. Mag. \textbf{15}, 761 (1933).
+
+\bibitem{Fixsen2009}
+D. J. Fixsen, The temperature of the cosmic microwave background, Astrophys. J.
+\textbf{707}, 916 (2009), arXiv:0911.1955.
+
+\bibitem{Mangano2005}
+G. Mangano, G. Miele, S. Pastor, T. Pinto, O. Pisanti, and P. D. Serpico,
+Relic neutrino decoupling including flavor oscillations, Nucl. Phys. B \textbf{729},
+221 (2005), arXiv:hep-ph/0506164.
+
+\bibitem{deSalasPastor2016}
+P. F. de Salas and S. Pastor, Relic neutrino decoupling with flavor oscillations
+revisited, JCAP \textbf{07}, 051 (2016), arXiv:1606.06986.
+
+\bibitem{Froustey2020}
+J. Froustey, C. Pitrou, and M. C. Volpe, Neutrino decoupling including flavor
+oscillations and primordial nucleosynthesis, JCAP \textbf{12}, 015 (2020),
+arXiv:2008.01074.
+
+\bibitem{LesgourguesPastor2006}
+J. Lesgourgues and S. Pastor, Massive neutrinos and cosmology, Phys. Rep. \textbf{429},
+307 (2006), arXiv:astro-ph/0603494.
+
+\bibitem{LesgourguesPastor2012}
+J. Lesgourgues and S. Pastor, Neutrino mass from cosmology, Adv. High Energy Phys.
+\textbf{2012}, 608515 (2012), arXiv:1212.6154.
+
+\bibitem{HuSawicki2007}
+W. Hu and I. Sawicki, Models of $f(R)$ cosmic acceleration that evade solar-system tests,
+Phys. Rev. D \textbf{76}, 104043 (2007), arXiv:0708.1190.
+
+\bibitem{Linder2003}
+E. V. Linder, Exploring the expansion history of the Universe, Phys. Rev. Lett.
+\textbf{90}, 091301 (2003), arXiv:astro-ph/0208512.
+
+\bibitem{Lewis2011}
+A. Lewis, A. Challinor, and A. Lasenby, Efficient computation of CMB anisotropies in
+closed FRW models, Astrophys. J. \textbf{538}, 473 (2000),
+arXiv:astro-ph/9911177.
+
+\bibitem{Lesgourgues2011}
+J. Lesgourgues, The Cosmic Linear Anisotropy Solving System (CLASS) I:
+Overview, arXiv:1104.2932 (2011); D. Blas, J. Lesgourgues, and T. Tram,
+The Cosmic Linear Anisotropy Solving System (CLASS) II: Approximation schemes,
+JCAP \textbf{07}, 034 (2011), arXiv:1104.2933.
+
+\end{thebibliography}
+
+\end{document}

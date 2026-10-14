@@ -1,0 +1,581 @@
+\documentclass[11pt,a4paper]{article}
+
+% ── Packages ──────────────────────────────────────────────────────────────────
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{palatino}
+\usepackage{microtype}
+\usepackage{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{physics}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{parskip}
+\usepackage{enumitem}
+
+% ── Page layout ───────────────────────────────────────────────────────────────
+\geometry{
+  a4paper,
+  top=2.8cm, bottom=3.2cm,
+  left=2.8cm, right=2.8cm,
+  headheight=14pt
+}
+
+% ── Colours ───────────────────────────────────────────────────────────────────
+\definecolor{deepblue}{HTML}{1a1a2e}
+\definecolor{midblue}{HTML}{2d3a7a}
+\definecolor{lightblue}{HTML}{eef2ff}
+\definecolor{ruleblue}{HTML}{9999bb}
+\definecolor{boxframe}{HTML}{2d3a7a}
+\definecolor{notegrey}{HTML}{555566}
+\definecolor{accentgold}{HTML}{7a5c00}
+
+% ── Hyperref ──────────────────────────────────────────────────────────────────
+\hypersetup{
+  colorlinks=true,
+  linkcolor=midblue,
+  urlcolor=midblue,
+  citecolor=midblue,
+  pdftitle={Causal Self-Consistency of the Speed of Light in Fractal S3 Geometry},
+  pdfauthor={Andrei Preece, Boris Batenin},
+  pdfsubject={Conceptual consistency framework, fractal S3, causal boundary}
+}
+
+% ── Section formatting ────────────────────────────────────────────────────────
+\titleformat{\section}
+  {\large\bfseries\color{deepblue}}
+  {\thesection.}{0.6em}{}
+  [\vspace{1pt}{\color{ruleblue}\hrule height 0.6pt}\vspace{2pt}]
+
+\titleformat{\subsection}
+  {\normalsize\bfseries\color{midblue}}
+  {\thesubsection}{0.6em}{}
+
+\titlespacing{\section}{0pt}{18pt}{8pt}
+\titlespacing{\subsection}{0pt}{11pt}{4pt}
+
+% ── Header / footer ───────────────────────────────────────────────────────────
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\color{midblue}\textit{Causal Self-Consistency — Fractal $S^3$ Geometry}}
+\fancyhead[R]{\small\color{midblue}Preece \& Batenin, 2026}
+\fancyfoot[C]{\small\color{notegrey}\thepage}
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\headrule}{\hbox to\headwidth{%
+  \color{ruleblue}\leaders\hrule height \headrulewidth\hfill}}
+
+% ── tcolorbox styles ──────────────────────────────────────────────────────────
+\tcbuselibrary{skins, breakable}
+
+\newtcolorbox{closurebox}{
+  enhanced, breakable,
+  colback=lightblue,
+  colframe=boxframe,
+  boxrule=0.9pt, arc=4pt,
+  left=10pt, right=10pt, top=8pt, bottom=8pt,
+}
+
+\newtcolorbox{principlebox}[1][]{
+  enhanced, breakable,
+  colback=deepblue!5,
+  colframe=deepblue,
+  boxrule=1pt, arc=4pt,
+  left=10pt, right=10pt, top=8pt, bottom=8pt,
+  title={\small\bfseries Causal Self-Consistency Principle},
+  fonttitle=\bfseries\color{white},
+  coltitle=white,
+  attach boxed title to top left={yshift=-2.5mm, xshift=7mm},
+  boxed title style={colback=deepblue, arc=3pt, boxrule=0pt, left=4pt, right=4pt},
+  #1
+}
+
+\newtcolorbox{notebox}{
+  enhanced, breakable,
+  colback=accentgold!6,
+  colframe=accentgold!60,
+  boxrule=0.6pt, arc=3pt,
+  left=9pt, right=9pt, top=6pt, bottom=6pt,
+  fontupper=\small\color{notegrey},
+}
+
+% ── Macros ────────────────────────────────────────────────────────────────────
+\newcommand{\lP}{l_{\mathrm{P}}}
+\newcommand{\Rzero}{R_0}
+\newcommand{\Mzero}{M_0}
+\newcommand{\ph}{\varphi}
+\newcommand{\Vg}{V_{S^3}}
+
+% ─────────────────────────────────────────────────────────────────────────────
+\begin{document}
+\thispagestyle{empty}
+% ─────────────────────────────────────────────────────────────────────────────
+
+% ── Title block ───────────────────────────────────────────────────────────────
+\begin{center}
+  {\LARGE\bfseries\color{deepblue}
+    Causal Self-Consistency of the Speed of Light\\[5pt]
+    in Fractal $S^3$ Geometry}\\[18pt]
+  {\large Andrei Preece \quad \& \quad Boris Batenin}\\[7pt]
+  {\small
+    \href{mailto:andre.preece@web.de}{andre.preece@web.de}\quad
+    ORCID: \href{https://orcid.org/0009-0004-5978-795X}{0009-0004-5978-795X}\\[2pt]
+    \href{mailto:batenin@web.de}{batenin@web.de}\quad
+    ORCID: \href{https://orcid.org/0009-0000-7027-8583}{0009-0000-7027-8583}\\[7pt]
+    Berlin, 2026
+  }
+\end{center}
+
+\vspace{5pt}
+{\color{midblue}\hrule height 1.4pt}
+\vspace{14pt}
+
+% ── Abstract ──────────────────────────────────────────────────────────────────
+\begin{center}
+\begin{minipage}{0.93\linewidth}
+\textbf{Abstract.}\;
+This work does not derive the numerical value of the speed of light from independent
+first principles. Instead, it formulates a \emph{causal self-consistency test} for
+fractal $S^3$ volume--density evolution. The speed of light $c$ is taken as the
+empirically observed invariant causal speed, and the question posed is whether the
+proposed $S^3$ hierarchy admits a closed, self-consistent volume--density transition
+under that invariant boundary condition. A golden-ratio scaling $R_n = R_0\ph^n$ is
+used as a structural hierarchy, while any Planck-scale normalisation is treated only
+as an illustrative calibration, not as a derivation. The resulting identity $c = c$
+is interpreted as a \emph{closure condition}: it shows that the assumed geometric and
+dynamical relations remain internally consistent under the empirical causal speed,
+rather than providing an independent prediction of $c$.
+
+\smallskip
+\noindent\textbf{Keywords:} empirical invariant $c$;\;causal boundary;\;
+self-consistency test;\;closure condition;\;fractal $S^3$ hierarchy;\;
+structural ansatz;\;conceptual consistency framework.
+\end{minipage}
+\end{center}
+
+\vspace{10pt}
+{\color{ruleblue}\hrule}
+\vspace{14pt}
+
+% ─────────────────────────────────────────────────────────────────────────────
+\section{Introduction}
+% ─────────────────────────────────────────────────────────────────────────────
+
+In standard physics the speed of light
+\[
+  c = 299\,792\,458\ \mathrm{m\,s^{-1}}
+\]
+is an empirically measured invariant, enshrined in the SI definition of the metre.
+Its invariance is a postulate of special relativity, established through measurement
+and not derived from a more primitive geometric principle.
+
+The present work adopts a different, more modest aim. We \textbf{do not} claim to
+derive $c$ from deeper constants or abstract first principles. Instead, we
+\textbf{test whether the proposed fractal $S^3$ hierarchy is internally consistent
+with the empirically observed invariant causal speed $c$}. Specifically:
+\begin{enumerate}[leftmargin=2em, itemsep=3pt]
+  \item $c$ is accepted as the empirically measured invariant causal speed. No
+    attempt is made to predict its numerical value independently.
+  \item The model examines whether the fractal $S^3$ volume--density transition
+    admits a self-consistent \emph{fixed-point condition} when the causal boundary
+    propagates at $c$.
+  \item The closure identity $c = c$ that arises from substitution is interpreted
+    as a fixed-point / closure condition, confirming internal geometric coherence
+    rather than constituting a derivation.
+\end{enumerate}
+
+Because an observer inside a single causal universe cannot measure light from
+``outside'' the universe, $c$ is operationally accessed only through internal
+empirical procedures. The present model therefore treats $c$ as \emph{empirical
+input} and tests whether the proposed $S^3$ structure closes consistently under
+this input.
+
+% ─────────────────────────────────────────────────────────────────────────────
+\section{Fractal $S^3$ Hierarchy}
+% ─────────────────────────────────────────────────────────────────────────────
+
+\subsection{Golden-ratio scaling as structural ansatz}
+
+The fractal $S^3$ manifold is parameterised by level radii
+\[
+  \boxed{R_n = \Rzero\,\ph^n,}
+  \qquad n\in\mathbb{Z},
+\]
+where $\ph = \tfrac{1+\sqrt{5}}{2}\approx 1.618$ is the golden ratio and $n=0$
+marks the recombination epoch, at which photons decouple from matter and propagate
+freely.
+
+\smallskip
+\noindent\textbf{Status of the ansatz.}\;
+The golden-ratio hierarchy is used as a minimal self-similar scaling structure.
+Its mathematical motivation is the Perron--Frobenius dominance of the minimal
+positive second-order recursion, but its physical realisation in the present
+light-boundary model remains a \emph{structural ansatz}. We do not assert that
+$\ph$ is the uniquely valid scaling ratio for an $S^3$ geometry; we adopt it as
+a discrete self-similar hierarchy and test the resulting consistency.
+
+\subsection{Optional Planck-scale calibration}
+
+A Planck-scale seed may be used as a reference normalisation,
+\[
+  \Rzero = \lP\,\ph^N,
+  \qquad \lP = \sqrt{\frac{\hbar G}{c^3}}\approx 1.616\times10^{-35}\ \mathrm{m},
+\]
+connecting the quantum scale to a cosmological boundary scale through the
+golden-ratio hierarchy. For the recombination-horizon scale
+$\Rzero\approx 2.536\times10^8\ \mathrm{m}$, this gives
+\[
+  N = \frac{\ln(\Rzero/\lP)}{\ln\ph}\approx 206.8 \;\Longrightarrow\; N = 207.
+\]
+
+\begin{notebox}
+\textbf{Calibration note.}\quad
+The value $N\approx 207$ is used only as one illustrative calibration connecting
+a Planck-scale seed to a recombination-scale boundary. It is \emph{not} required
+for the logical structure of the closure condition developed in
+Section~\ref{sec:closure}, and it does not constitute a derivation of $c$ or of any
+cosmological observable.
+\end{notebox}
+
+% ─────────────────────────────────────────────────────────────────────────────
+\section{Volume, Density, and Mass Normalisation}
+% ─────────────────────────────────────────────────────────────────────────────
+
+\subsection{Global $S^3$ volume}
+
+For a three-sphere $S^3$ of radius $R$, the exact global volume is
+\[
+  \Vg(R) = 2\pi^2 R^3.
+\]
+This is the geometrically correct definition for the compact, simply connected,
+boundaryless $S^3$ manifold used in this framework.
+
+\subsection{Local Euclidean approximation}
+
+In the regime of small hyperspherical coordinate ($\chi\ll 1$), the $S^3$ volume
+reduces locally to the Euclidean approximation
+\[
+  V_{\mathrm{local}}(R) \approx \tfrac{4}{3}\pi R^3.
+\]
+
+\begin{notebox}
+\textbf{Scope of the approximation.}\quad
+The local Euclidean form is employed below only for illustrative dynamical scaling
+in the $\chi\ll 1$ regime. It does not replace the global $S^3$ volume definition,
+and a fully covariant treatment would use $\Vg$ throughout.
+\end{notebox}
+
+\subsection{Mass as a closure normalisation parameter}
+
+The matter density at the zeroth level is parameterised as
+\[
+  \rho_0 = \frac{\Mzero}{\tfrac{4}{3}\pi\Rzero^3}.
+\]
+The mass $\Mzero$ is a \emph{normalisation parameter chosen to test closure of the
+dynamical relation under the empirical causal speed $c$}. It is not derived from
+first principles, and its value is determined self-consistently at the closure step
+(Section~\ref{sec:closure}).
+
+% ─────────────────────────────────────────────────────────────────────────────
+\section{Causal Boundary Dynamics}
+% ─────────────────────────────────────────────────────────────────────────────
+
+\subsection{Boundary velocity}
+
+The rate at which the fractal boundary advances between consecutive levels is
+\[
+  c_n = \frac{R_{n+1}-R_n}{\Delta t_n}
+       = \frac{\Rzero\ph^n(\ph-1)}{\Delta t_n}.
+\]
+At the zeroth level ($n=0$):
+\[
+  c = \frac{\Rzero(\ph-1)}{\Delta t_0}.
+\]
+We \emph{posit} that this boundary velocity equals the empirically measured $c$,
+and subsequently test whether this assumption is maintained self-consistently.
+
+\subsection{Effective expansion rate}
+
+Using the Friedmann-type effective Hubble parameter,
+\[
+  H_0 = \sqrt{\frac{8\pi G\rho_0}{3}}
+       = \sqrt{\frac{2G\Mzero}{\Rzero^3}},
+\]
+the causal boundary velocity becomes
+\[
+  c = H_0\,\Rzero = \sqrt{\frac{2G\Mzero}{\Rzero}}.
+\]
+Incorporating the fractal correction $1/\ph$ (arising from the golden-ratio step
+between adjacent levels):
+\begin{equation}\label{eq:cdyn}
+  c = \sqrt{\frac{2G\Mzero}{\Rzero}}\cdot\frac{1}{\ph}.
+\end{equation}
+
+% ─────────────────────────────────────────────────────────────────────────────
+\section{Closure Condition}
+\label{sec:closure}
+% ─────────────────────────────────────────────────────────────────────────────
+
+Solving equation~\eqref{eq:cdyn} for the mass normalisation that makes the
+relation consistent with the empirical invariant $c$ gives:
+\[
+  \Mzero = \frac{c^2\,\Rzero\,\ph^2}{2G}.
+\]
+Substituting back into~\eqref{eq:cdyn}:
+\begin{align}
+  c_{\mathrm{out}}
+  &= \sqrt{\frac{2G}{\Rzero}\cdot\frac{c^2\Rzero\ph^2}{2G}}\cdot\frac{1}{\ph}
+   = \sqrt{c^2\ph^2}\cdot\frac{1}{\ph}
+   = c\ph\cdot\frac{1}{\ph}
+   = c.\label{eq:closure}
+\end{align}
+
+\begin{closurebox}
+\textbf{Closure condition.}\;
+The substitution yields the identity $c = c$. This identity is expected by
+construction once $\Mzero$ is chosen as the closure normalisation.
+
+\smallskip
+The point is \emph{not} to predict $c$ independently. The point is to show that
+\textbf{the proposed dynamical chain admits a self-consistent solution when the
+causal boundary speed is the empirical invariant $c$}: the assumed fractal $S^3$
+scaling, density--volume relation, and causal-boundary dynamics form a closed,
+coherent system under that boundary condition. The result is therefore a
+\emph{fixed-point condition for causal self-consistency}, not an independent
+prediction of the speed of light.
+\end{closurebox}
+
+\medskip
+The structure of the constraint is the following. The golden-ratio hierarchy,
+Planck-scale calibration, and Friedmann-type dynamics together admit a
+self-consistent solution when the boundary propagation speed equals $c$. Modifying
+the scaling ratio, the calibration level $N$, or the density--volume relation
+changes the algebraic structure and may or may not admit a self-consistent closure.
+Within the present model calibration, $c$ appears as the consistent propagation
+speed — the \emph{fixed point of causal self-consistency}.
+
+% ─────────────────────────────────────────────────────────────────────────────
+\section{Analogy with Maxwell Electrodynamics}
+% ─────────────────────────────────────────────────────────────────────────────
+
+In Maxwell's electrodynamics, the speed of light appears as
+\[
+  c = \frac{1}{\sqrt{\varepsilon_0\,\mu_0}},
+\]
+relating the propagation speed of electromagnetic waves to the electric permittivity
+$\varepsilon_0$ and magnetic permeability $\mu_0$ of the vacuum. This relation does
+not derive $c$ ex nihilo. It relates $c$ to independently measured electromagnetic
+constants and shows that the internal structure of Maxwell's equations singles out a
+characteristic invariant speed.
+
+Similarly, the present framework does not derive $c$ from nothing. It tests whether
+a fractal $S^3$ volume--density hierarchy admits a causal closure when the boundary
+speed is the empirical invariant $c$. In both cases, $c$ appears not as an arbitrary
+free parameter, but as \emph{the speed required for internal consistency of the
+theoretical structure}.
+
+\medskip
+\begin{notebox}
+\textbf{Epistemological note.}\quad
+This analogy is intended as an epistemological comparison only. We do not claim that
+the present framework achieves the same empirical scope or predictive status as
+Maxwell's theory. The analogy illustrates a shared logical structure: in both cases,
+$c$ is singled out by an internal consistency requirement rather than introduced
+as a free parameter.
+\end{notebox}
+
+% ─────────────────────────────────────────────────────────────────────────────
+\section{Causal Self-Consistency Principle}
+% ─────────────────────────────────────────────────────────────────────────────
+
+\begin{principlebox}
+A compact, simply connected, boundaryless $S^3$ geometry undergoing fractal
+volume--density evolution governed by $R_n = R_0\ph^n$ admits a coherent
+causal-boundary description when the boundary propagation speed is the empirical
+invariant $c$. Within the present model calibration, the golden-ratio hierarchy,
+Planck-scale normalisation, and Friedmann-type dynamics together select $c$ as the
+consistent propagation speed — the fixed point of causal self-consistency.
+\end{principlebox}
+
+\medskip
+This principle is understood as a \emph{necessary condition for internal coherence
+within the stated model}. It is not asserted as a uniqueness theorem without further
+derivation: asserting ``if and only if'' would require a separate proof that no
+other boundary speed admits any reparametrisation of the model that also closes
+consistently. The present paper establishes the fixed-point character of $c$, not
+its uniqueness in a strong mathematical sense.
+
+% ─────────────────────────────────────────────────────────────────────────────
+\section{Numerical Illustration}
+% ─────────────────────────────────────────────────────────────────────────────
+
+We verify that the closure condition~\eqref{eq:closure} is numerically realised for
+standard values of the physical constants, using the $N=207$ illustrative calibration.
+
+\begin{center}
+\renewcommand{\arraystretch}{1.35}
+\begin{tabular}{llr}
+  \toprule
+  \textbf{Parameter} & \textbf{Symbol} & \textbf{Value} \\
+  \midrule
+  Planck length & $\lP$ & $1.616\times10^{-35}\ \mathrm{m}$ \\
+  Golden ratio & $\ph$ & $1.618$ \\
+  Base scale (calibration) & $\Rzero = \lP\ph^{207}$ & $2.536\times10^{8}\ \mathrm{m}$ \\
+  Gravitational constant & $G$ & $6.674\times10^{-11}\ \mathrm{m^3\,kg^{-1}\,s^{-2}}$ \\
+  Speed of light \emph{(empirical input)} & $c$ & $2.998\times10^{8}\ \mathrm{m\,s^{-1}}$ \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\bigskip
+\noindent\textbf{Closure normalisation:}
+\[
+  \Mzero = \frac{c^2\Rzero\ph^2}{2G}
+  = \frac{(2.998\times10^8)^2\cdot 2.536\times10^8\cdot(1.618)^2}
+         {2\times6.674\times10^{-11}}
+  \approx 4.47\times10^{35}\ \mathrm{kg}.
+\]
+
+\noindent\textbf{Recovered causal boundary speed:}
+\[
+  c_{\mathrm{out}}
+  = \sqrt{\frac{2G\Mzero}{\Rzero}}\cdot\frac{1}{\ph}
+  = \sqrt{\frac{2\times6.674\times10^{-11}\times4.47\times10^{35}}
+               {2.536\times10^8}}
+    \cdot\frac{1}{1.618}
+  \approx 2.998\times10^{8}\ \mathrm{m\,s^{-1}}.
+\]
+
+\begin{notebox}
+This numerical agreement reflects the \emph{imposed closure condition} and does not
+constitute an independent prediction of $c$. The recovered value equals the input
+because $\Mzero$ was defined precisely to enforce this agreement. The numerical
+exercise demonstrates that the closure is algebraically and numerically coherent,
+not that $c$ has been derived from more primitive quantities.
+\end{notebox}
+
+% ─────────────────────────────────────────────────────────────────────────────
+\section{Conclusion}
+% ─────────────────────────────────────────────────────────────────────────────
+
+The results of this paper may be summarised as follows.
+
+\begin{enumerate}[leftmargin=2em, itemsep=5pt]
+
+  \item \textbf{No derivation of $c$.}\;
+  This work does not derive the numerical value of the speed of light from
+  independent first principles. $c$ is treated throughout as the empirically
+  observed invariant causal speed.
+
+  \item \textbf{Closure structure.}\;
+  The fractal $S^3$ hierarchy $R_n = R_0\ph^n$, the density--volume relation, and
+  the causal-boundary dynamics together form a self-consistent closure structure
+  when the boundary propagation speed is set to the empirical invariant $c$. The
+  identity $c = c$ arising from substitution is a \emph{fixed-point condition for
+  causal self-consistency}.
+
+  \item \textbf{Epistemological analogy.}\;
+  The logical structure parallels Maxwell's relation $c = 1/\!\sqrt{\varepsilon_0\mu_0}$:
+  in both cases, $c$ is not an arbitrary free parameter but the speed required for
+  internal consistency of the theoretical framework.
+
+  \item \textbf{Optional calibration.}\;
+  The Planck-scale normalisation $R_0 = \lP\ph^N$ with $N\approx207$ is an
+  illustrative calibration connecting quantum and cosmological scales through the
+  golden-ratio hierarchy. It is not a fundamental derivation and is not required for
+  the logical structure of the closure condition.
+
+  \item \textbf{Scope.}\;
+  This paper is a conceptual consistency study in fractal $S^3$ geometry.
+  Its contribution is to show that the proposed geometric and dynamical
+  framework is internally coherent under the empirical causal speed $c$.
+
+\end{enumerate}
+
+\medskip
+\begin{closurebox}
+Thus, $c$ should not be understood here as a number derived from more primitive
+constants, but as the \textbf{empirical invariant causal speed that makes the
+proposed fractal $S^3$ volume--density evolution close consistently}. The result is
+a fixed-point condition for causal self-consistency — a conceptual consistency
+framework, not an independent prediction of the speed of light.
+\end{closurebox}
+
+\vspace{18pt}
+{\color{ruleblue}\hrule}
+\vspace{10pt}
+\begin{center}
+  \textit{\color{midblue}Namaste.}
+\end{center}
+
+\vspace{20pt}
+{\color{midblue}\hrule height 1.2pt}
+\vspace{12pt}
+
+% ─────────────────────────────────────────────────────────────────────────────
+\begin{thebibliography}{99}
+\small
+
+\bibitem{einstein1905}
+A.~Einstein,
+\textit{Zur Elektrodynamik bewegter K\"orper},
+Annalen der Physik \textbf{17} (1905) 891--921.
+
+\bibitem{maxwell1865}
+J.~C.~Maxwell,
+\textit{A Dynamical Theory of the Electromagnetic Field},
+Philosophical Transactions of the Royal Society of London
+\textbf{155} (1865) 459--512.
+
+\bibitem{penrose2004}
+R.~Penrose,
+\textit{The Road to Reality: A Complete Guide to the Laws of the Universe},
+Jonathan Cape, London, 2004.
+
+\bibitem{misner1973}
+C.~W.~Misner, K.~S.~Thorne, J.~A.~Wheeler,
+\textit{Gravitation},
+W.~H.~Freeman, San Francisco, 1973.
+
+\bibitem{weinberg1972}
+S.~Weinberg,
+\textit{Gravitation and Cosmology: Principles and Applications
+  of the General Theory of Relativity},
+John Wiley \& Sons, New York, 1972.
+
+\bibitem{kolb1990}
+E.~W.~Kolb, M.~S.~Turner,
+\textit{The Early Universe},
+Addison-Wesley, Redwood City, 1990.
+
+\bibitem{livio2002}
+M.~Livio,
+\textit{The Golden Ratio: The Story of Phi, the World's Most Astonishing Number},
+Broadway Books, New York, 2002.
+
+\bibitem{codata2018}
+E.~R.~Cohen, T.~Cvita\v{s}, J.~G.~Frey \textit{et al.},
+\textit{CODATA Internationally Recommended 2018 Values
+  of the Fundamental Physical Constants},
+NIST, Gaithersburg, MD, 2019.
+\url{https://physics.nist.gov/cuu/Constants/}
+
+\bibitem{planck1900}
+M.~Planck,
+\textit{\"Uber irreversible Strahlungsvorg\"ange},
+Sitzungsberichte der K\"oniglich Preu\ss{}ischen Akademie der Wissenschaften
+(1900) 440--480.
+
+\bibitem{friedmann1922}
+A.~Friedmann,
+\textit{\"Uber die Kr\"ummung des Raumes},
+Zeitschrift f\"ur Physik \textbf{10} (1922) 377--386.
+
+\end{thebibliography}
+
+\end{document}

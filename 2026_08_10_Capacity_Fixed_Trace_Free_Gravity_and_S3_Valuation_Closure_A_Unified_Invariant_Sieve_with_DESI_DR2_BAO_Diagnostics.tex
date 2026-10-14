@@ -1,0 +1,1785 @@
+\documentclass[aps,prd,reprint,nofootinbib,superscriptaddress]{revtex4-2}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{mathrsfs}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{xurl}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage[nameinlink,noabbrev]{cleveref}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!55!black,
+  citecolor=blue!55!black,
+  urlcolor=blue!55!black,
+  pdftitle={Capacity-Fixed Trace-Free Gravity and S3 Valuation Closure: An Invariant Sieve for the Cosmological Constant and the Homogeneous Dark Sector},
+  pdfauthor={Andrei Preece and Boris Batenin},
+  pdfsubject={Cosmological constant replacement by a horizon-capacity integration mode},
+  pdfkeywords={cosmological constant; unimodular gravity; horizon entropy; S3; B4 filling; convex valuations; dilation spectrum; dark matter; quantum constraint algebra}
+}
+
+\numberwithin{equation}{section}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{criterion}{Criterion}[section]
+\newtheorem{hypothesis}{Hypothesis}[section]
+\newtheorem{remark}{Remark}[section]
+\newtheorem{nogotheorem}{No-go theorem}[section]
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{corollary}{Corollary}[section]
+
+\crefname{definition}{definition}{definitions}
+\Crefname{definition}{Definition}{Definitions}
+\crefname{criterion}{criterion}{criteria}
+\Crefname{criterion}{Criterion}{Criteria}
+\crefname{hypothesis}{hypothesis}{hypotheses}
+\Crefname{hypothesis}{Hypothesis}{Hypotheses}
+\crefname{remark}{remark}{remarks}
+\Crefname{remark}{Remark}{Remarks}
+\crefname{nogotheorem}{no-go theorem}{no-go theorems}
+\Crefname{nogotheorem}{No-go theorem}{No-go theorems}
+\crefname{theorem}{theorem}{theorems}
+\Crefname{theorem}{Theorem}{Theorems}
+\crefname{lemma}{lemma}{lemmas}
+\Crefname{lemma}{Lemma}{Lemmas}
+\crefname{proposition}{proposition}{propositions}
+\Crefname{proposition}{Proposition}{Propositions}
+\crefname{corollary}{corollary}{corollaries}
+\Crefname{corollary}{Corollary}{Corollaries}
+
+\newcommand{\R}{\mathbb R}
+\newcommand{\dd}{\mathrm d}
+\newcommand{\Sthree}{S^3}
+\newcommand{\Bfour}{B^4}
+\newcommand{\Dil}{\mathscr D}
+\newcommand{\Spec}{\operatorname{Spec}}
+\newcommand{\vol}{\operatorname{Vol}}
+\newcommand{\spanop}{\operatorname{span}}
+\newcommand{\diag}{\operatorname{diag}}
+\newcommand{\Mpl}{M_{\rm Pl}}
+\newcommand{\Agrav}{\mathcal A_{\rm grav}}
+\newcommand{\Cinv}{\mathfrak C_{\rm inv}}
+\newcommand{\Ncap}{N_{\partial}}
+\newcommand{\Hkin}{\mathcal H_{\rm kin}}
+\newcommand{\Hphys}{\mathcal H_{\rm phys}}
+\newcommand{\Hbd}{\mathcal H_{\partial}}
+\newcommand{\PiHD}{\Pi_{\rm HD}}
+
+\newcommand{\Capacity}{\operatorname{Cap}}
+\newcommand{\Tfour}{\mathcal T_4}
+\newcommand{\Lie}{\mathcal L}
+
+\newcommand{\tf}{\operatorname{tf}}
+\newcommand{\Ptr}{\mathcal P_{\rm tf}}
+\newcommand{\statementbox}[1]{\begin{center}\fbox{\begin{minipage}{0.88\columnwidth}\centering\small #1\end{minipage}}\end{center}}
+\sloppy
+\emergencystretch=4em
+\allowdisplaybreaks
+
+\begin{document}
+
+\title{Capacity-Fixed Trace-Free Gravity and \texorpdfstring{$S^3$}{S3} Valuation Closure: A Unified Invariant Sieve with DESI DR2 BAO Diagnostics}
+
+\author{Andrei~Preece}
+\email{andre.preece@web.de}
+\affiliation{Independent Researcher, Berlin, Germany}
+
+\author{Boris~Batenin}
+\email{batenin@web.de}
+\affiliation{Independent Researcher, Berlin, Germany}
+
+\date{August 10, 2026}
+
+\begin{abstract}
+We formulate a conditional invariant sieve for cosmological gravity.  The local equation is taken in trace-free form,
+\[
+R_{\mu\nu}-\frac14Rg_{\mu\nu}
+=
+8\pi G\left(T_{\mu\nu}-\frac14Tg_{\mu\nu}\right),
+\]
+so constant vacuum-energy shifts lie in the kernel of the trace-free source projector.  If \(\nabla^\mu T_{\mu\nu}=0\), the contracted Bianchi identity recovers an Einstein equation with an integration mode,
+\[
+G_{\mu\nu}+\Lambda_{\rm int}g_{\mu\nu}=8\pi G\,T_{\mu\nu}.
+\]
+The manuscript does not compute \(\Lambda\) from first principles.  It replaces a freely inserted bare cosmological constant by the sharply posed boundary entropy-counting condition
+\[
+\Lambda_{\rm cap}
+=
+\frac{3\pi}{\ell_P^2\,\Ncap},
+\qquad
+\Ncap=\Capacity(\mathcal H_{\partial};\Agrav,Q_{\rm DM},P_{\rm val}),
+\]
+where \(\Ncap\) is a logarithmic horizon-capacity eigenvalue, not a Hilbert-space dimension.
+
+The same framework retains the finite homogeneous \(B^4/S^3\) valuation closure,
+\[
+P_{\rm val}(\Dil)\rho_{\rm val}=0,\qquad
+P_{\rm val}(z)=(z-1)z(z+1)(z+2)(z+3),
+\]
+so the density spectrum lies in \(\{1,0,-1,-2,-3\}\).  In \(n\) spatial dimensions the same argument gives \(S_{\rm val}^{(n)}=\{1,0,-1,\ldots,-n\}\); after quotienting the boundary alphabet by vacuum, curvature, and dust, a single nonstandard boundary direction occurs only for \(n=3\).  A time-dependent dark-energy density is treated separately as an effective capacity-flow diagnostic,
+\[
+N_\partial(a)=\frac{3\pi}{\ell_P^2\Lambda_{\rm eff}(a)},
+\qquad
+\Dil\ln N_\partial=3[1+w_{\rm eff}(a)],
+\]
+not as a varying Bianchi integration constant.  The quantum layer is stated as a common-kernel requirement for the hypersurface-deformation algebra, trace-free locality, capacity, dark-charge superselection, and homogeneous valuation closure.  We also include a DESI DR2 BAO background audit, explicitly limited to the published BAO vector and its implemented approximation: the invariant construction is not excluded, but the positive \(a^{-1}\) branch is not yet empirically superior to the flexible \(w_0w_a\) benchmark.
+\end{abstract}
+
+
+\maketitle
+
+\section{Claim boundary}
+
+\statementbox{The manuscript does not yet compute \(\Lambda\); it turns \(\Lambda\) into a sharply posed boundary entropy-counting problem.}
+
+This paper changes the logical status of \(\Lambda\).  It does not insert a small fundamental constant into the action.  It replaces that constant by two invariant operations:
+\statementbox{local trace-free projection\\[2pt]\(+\)\\[2pt]global horizon-capacity fixation}
+The local projection removes vacuum-energy shifts from the gravitational source.  The global condition fixes the integration constant that the Bianchi identity leaves behind.
+
+The boundary is equally important.  The paper does not derive the microscopic Hilbert space \(\mathcal H_\partial\).  Hence it does not yet compute the integer or real capacity eigenvalue \(\Ncap\) from first principles.  Its exact statement is conditional:
+\statementbox{If the physical boundary state space has capacity \(\Ncap\), then
+\(\Lambda=3\pi/(\Ncap\ell_P^2)\) is fixed and not fitted.}
+
+This is stronger than treating
+\[
+N_\Lambda=\frac{3\pi}{\Lambda\ell_P^2}
+\]
+as a diagnostic after \(\Lambda\) has already been measured.  The direction of determination is reversed:
+\begin{equation}
+\boxed{
+\mathcal H_\partial\longrightarrow \Ncap\longrightarrow \Lambda_{\rm cap}.
+}
+\end{equation}
+
+Throughout, \(c=\hbar=1\) unless explicitly restored.
+
+\begin{definition}[Trace-free projector]
+For a symmetric rank-two tensor \(X_{\mu\nu}\) in four spacetime dimensions, define
+\begin{equation}
+\boxed{
+(\Ptr X)_{\mu\nu}:=
+X_{\mu\nu}-\frac14Xg_{\mu\nu},
+\qquad
+X:=g^{\mu\nu}X_{\mu\nu}.
+}
+\end{equation}
+Thus \(\operatorname{tr}(\Ptr X)=0\).
+\end{definition}
+
+\begin{definition}[Capacity-fixed completion object]
+The invariant completion object of this paper is
+\begin{equation}
+\boxed{
+\Cinv^{\rm cap}
+:=
+(\Ptr,\Capacity\mathcal H_\partial,\Agrav,Q_{\rm DM},P_{\rm val}(\Dil)).
+}
+\end{equation}
+Here \(\Ptr\) removes local vacuum-energy shifts, \(\Capacity\mathcal H_\partial\) fixes the integration mode, \(\Agrav\) is the anomaly-free quantum constraint algebra, \(Q_{\rm DM}\) is an exact dark charge or equivalent stability invariant, and \(P_{\rm val}(\Dil)\) is the finite dilation annihilator of the homogeneous valuation sector.
+\end{definition}
+
+
+
+\begin{remark}[Status of the capacity postulate]
+The capacity postulate does not by itself compute \(\Ncap\).  It replaces a freely inserted cosmological constant by a sharply defined microscopic eigenvalue problem.  A full solution of the cosmological-constant amplitude problem requires an independent derivation of \(\Ncap\) from the boundary state space.  The present work supplies the invariant mechanism and the falsification criteria.
+\end{remark}
+
+\section{Layer separation and invariant atlas}\label{sec:atlas}
+
+The construction uses three different finite alphabets.  They must not be identified.
+
+\begin{definition}[Three alphabets]
+The round valuation density alphabet is
+\begin{equation}
+\boxed{
+S_{\rm val}^{\rho}:=\{1,0,-1,-2,-3\}.
+}
+\end{equation}
+The boundary-local valuation density alphabet is
+\begin{equation}
+\boxed{
+S_{\partial}^{\rho}:=\{0,-1,-2,-3\}.
+}
+\end{equation}
+If ordinary radiation is added to the Friedmann ledger, the expansion alphabet used for \(F=H^2/H_0^2\) is
+\begin{equation}
+\boxed{
+S_{\rm cos}^{F}:=\{0,-1,-2,-3,-4\}.
+}
+\end{equation}
+The radiation exponent \(s=-4\) is not produced by the four-dimensional Euclidean valuation density on the round \(B^4/S^3\) family.  It is an external standard source added to the cosmological ledger.
+\end{definition}
+
+\begin{criterion}[Exact invariant atlas]\label{crit:atlas}
+A proposed completion passes the invariant sieve only if the following sectors are simultaneously well defined.
+\begin{center}
+\footnotesize
+\setlength{\tabcolsep}{2pt}
+\begin{tabular}{@{}p{0.23\columnwidth}p{0.31\columnwidth}p{0.37\columnwidth}@{}}
+\toprule
+Sector & invariant object & sharp test or equation\\
+\midrule
+local gravity & \(\Ptr\) & \(\Ptr(-\rho_0g_{\mu\nu})=0\)\\
+\(\Lambda\)-mode & \(\Ncap=\Capacity\mathcal H_\partial\) & \(\Lambda_{\rm cap}=3\pi/(\ell_P^2\Ncap)\)\\
+quantum covariance & \(\Agrav\) & anomaly-free constraint algebra\\
+dark matter & \(Q_{\rm DM}\) & \(\nabla_\mu J^\mu_{\rm DM}=0\)\\
+valuation density & \(P_{\rm val}(\Dil)\) & \(P_{\rm val}(\Dil)\rho_{\rm val}=0\)\\
+boundary quotient & \([a^{-1}]\) & \(w_X=-2/3\)\\
+curvature split & \(\mathcal C_{-2}[F]-\Omega_K^{\rm geom}\) & \(\Omega_{2,\rm val}\)\\
+spectroscopy & Hankel pencil \((H_1,H_0)\) & free recovery of \(s_j\)\\
+positivity & inertia of \(H_0^{\rm phys}\) & \(\nu_-=0\) after split\\
+spin--2 lift & tensor causal cone & \(c_T=c\)\\
+equation of state & cumulant closure & nonlinear Bell identity\\
+\bottomrule
+\end{tabular}
+\end{center}
+The atlas is a sieve, not a fit.  A candidate that fails one line has not solved the corresponding part of the problem.
+\end{criterion}
+
+\begin{remark}[Corrections relative to a loose formulation]
+There are four common confusions that this manuscript excludes.  First, \(N_\Lambda=3\pi/(\Lambda\ell_P^2)\) is of order \(10^{122}\) for the observed universe, not of order \(3\pi\).  Second, \(P_{\rm val}(\Dil)\) annihilates the density profile, not the equation-of-state ratio \(w(a)\).  Third, a dark charge is a conserved current or protected discrete/topological charge, not a bare linear combination of \(\Omega_\Lambda\) and \(\Omega_X\).  Fourth, the homogeneous \(s=-2\) expansion branch is not the spin--2 graviton propagation mode; tensor propagation belongs to the perturbative lift.
+\end{remark}
+
+\section{Why a bare cosmological constant is the wrong invariant}
+
+A bare cosmological constant is a dimensional term.  It can be made small or large by units; only the combination
+\begin{equation}
+\boxed{
+\Lambda\ell_P^2
+}
+\end{equation}
+or, equivalently,
+\begin{equation}
+\boxed{
+N_\Lambda:=\frac{3\pi}{\Lambda\ell_P^2}
+}
+\end{equation}
+is invariant.  For the observed late-time universe, \(N_\Lambda\) is of order \(10^{122}\).  The factor \(3\pi\) is only the numerator determined by the de Sitter area formula; it is not the value of the capacity.
+
+\begin{nogotheorem}[No topology-only dimensional amplitude]\label{nogo:topology-amplitude}
+Pure topology or other dimensionless data cannot naturally determine a nonzero dimensional constant such as \(\Lambda\), \(H_0\), a particle mass, or a vacuum energy density while remaining covariant under global length rescalings.
+\end{nogotheorem}
+
+\begin{proof}
+Let \(X\) have length dimension \(L^k\), \(k\ne0\).  Under \(L\mapsto\lambda L\), \(X\mapsto\lambda^kX\).  Pure topology and dimensionless data are unchanged.  If \(X\) is determined by such data alone, it must both transform and remain fixed.  For all \(\lambda>0\), this forces \(X=0\).
+\end{proof}
+
+\begin{criterion}[Solved versus renamed cosmological constant]
+A proposal solves the cosmological-constant amplitude problem only if it supplies a mechanism determining \(N_\Lambda\), or a distribution plus measure selecting it.  Merely rewriting
+\[
+N_\Lambda=\frac{3\pi}{\Lambda\ell_P^2}
+\]
+after \(\Lambda\) has been observed renames the problem but does not solve it.
+\end{criterion}
+
+\section{Trace-free local dynamics}
+
+The local gravitational equation is postulated to be
+\begin{equation}
+\boxed{
+R_{\mu\nu}-\frac14Rg_{\mu\nu}
+=
+8\pi G\left(T_{\mu\nu}-\frac14Tg_{\mu\nu}\right).
+}
+\label{eq:tracefree}
+\end{equation}
+Equivalently,
+\begin{equation}
+\boxed{
+\Ptr R_{\mu\nu}=8\pi G\,\Ptr T_{\mu\nu}.
+}
+\end{equation}
+
+\begin{theorem}[Vacuum-energy kernel]\label{thm:vacuum-kernel}
+Let
+\begin{equation}
+T_{\mu\nu}\longmapsto T_{\mu\nu}'=T_{\mu\nu}-\rho_0g_{\mu\nu}
+\end{equation}
+with constant \(\rho_0\).  Then
+\begin{equation}
+\Ptr T'_{\mu\nu}=\Ptr T_{\mu\nu}.
+\end{equation}
+Thus a local constant vacuum-energy shift does not source the trace-free equation \eqref{eq:tracefree}.
+\end{theorem}
+
+\begin{proof}
+In four dimensions \(T'=T-4\rho_0\).  Therefore
+\begin{align}
+T'_{\mu\nu}-\frac14T'g_{\mu\nu}
+&=
+T_{\mu\nu}-\rho_0g_{\mu\nu}
+-\frac14(T-4\rho_0)g_{\mu\nu}\\
+&=
+T_{\mu\nu}-\frac14Tg_{\mu\nu}.
+\end{align}
+\end{proof}
+
+\begin{theorem}[Bianchi integration mode]\label{thm:bianchi-integration}
+Assume \(\nabla^\mu T_{\mu\nu}=0\).  Then \eqref{eq:tracefree} implies
+\begin{equation}
+\nabla_\nu(R+8\pi G T)=0.
+\end{equation}
+Hence on every connected spacetime region
+\begin{equation}
+\boxed{
+R+8\pi G T=4\Lambda_{\rm int}
+}
+\label{eq:traceconstant}
+\end{equation}
+for a constant \(\Lambda_{\rm int}\), and \eqref{eq:tracefree} is equivalent to
+\begin{equation}
+\boxed{
+G_{\mu\nu}+\Lambda_{\rm int}g_{\mu\nu}
+=
+8\pi G\,T_{\mu\nu}.
+}
+\label{eq:einstein-int}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Taking the divergence of \eqref{eq:tracefree} and using the contracted Bianchi identity gives
+\[
+\nabla^\mu R_{\mu\nu}-\frac14\nabla_\nu R
+=
+\frac12\nabla_\nu R-\frac14\nabla_\nu R
+=
+\frac14\nabla_\nu R.
+\]
+The right-hand side has divergence
+\[
+8\pi G\left(\nabla^\mu T_{\mu\nu}-\frac14\nabla_\nu T\right)
+=
+-2\pi G\nabla_\nu T.
+\]
+Thus \(\nabla_\nu(R+8\pi GT)=0\), proving \eqref{eq:traceconstant}.  Substitution of
+\[
+R=4\Lambda_{\rm int}-8\pi GT
+\]
+back into \eqref{eq:tracefree} gives
+\[
+G_{\mu\nu}+\Lambda_{\rm int}g_{\mu\nu}=8\pi GT_{\mu\nu}.
+\]
+\end{proof}
+
+\begin{remark}[Vacuum-shift equivalence class]
+The trace-free equation is invariant under \(T_{\mu\nu}\mapsto T_{\mu\nu}-\rho_0g_{\mu\nu}\), but the reconstructed Einstein form is invariant only if either \(T_{\mu\nu}\) is understood modulo this kernel or the integration constant shifts as
+\[
+\Lambda_{\rm int}\mapsto\Lambda_{\rm int}+8\pi G\rho_0 .
+\]
+The capacity postulate fixes the representative by assigning the integration mode from boundary entropy capacity, rather than by choosing a local vacuum counterterm.
+\end{remark}
+
+\begin{remark}[Relation to unimodular gravity]
+The trace-free equation is the local equation familiar from unimodular formulations \cite{AndersonFinkelstein1971,Unruh1989,HenneauxTeitelboim1989,Weinberg1989}.  The new element here is not the trace-free equation by itself.  It is the invariant prescription that fixes the resulting integration mode by a horizon-capacity eigenvalue.
+\end{remark}
+
+\section{Horizon-capacity fixation}
+
+Let the late-time cosmological sector have a future de Sitter horizon.  Its radius and area are
+\begin{equation}
+R_{\rm dS}=\sqrt{\frac3{\Lambda}},
+\qquad
+A_{\rm dS}=4\pi R_{\rm dS}^2=\frac{12\pi}{\Lambda}.
+\end{equation}
+The Bekenstein--Hawking--Gibbons entropy normalization gives \cite{Bekenstein1973,Hawking1975,GibbonsHawking1977}
+\begin{equation}
+S_{\rm dS}=\frac{A_{\rm dS}}{4\ell_P^2}
+=
+\frac{3\pi}{\Lambda\ell_P^2}.
+\end{equation}
+
+\begin{definition}[Boundary entropy capacity]\label{def:entropy-capacity}
+The symbol
+\[
+\Ncap=\Capacity(\mathcal H_\partial;\Agrav,Q_{\rm DM},P_{\rm val})
+\]
+denotes a logarithmic state-counting capacity, normalized so that in the semiclassical de Sitter sector it equals the horizon entropy rather than the Hilbert-space dimension itself.  Thus a finite microcanonical realization has
+\[
+\dim\mathcal H_\partial\sim e^{\Ncap},
+\]
+not \(\dim\mathcal H_\partial=\Ncap\).
+\end{definition}
+
+\begin{hypothesis}[Boundary capacity postulate]\label{hyp:capacity}
+The physical cosmological boundary sector has a finite entropy-capacity eigenvalue
+\begin{equation}
+\boxed{
+\Ncap
+:=
+\Capacity(\mathcal H_\partial;\Agrav,Q_{\rm DM},P_{\rm val})
+}
+\end{equation}
+defined after imposing:
+\begin{enumerate}
+\item the anomaly-free quantum constraint algebra \(\Agrav\);
+\item the dark-charge superselection rule \(Q_{\rm DM}\);
+\item the finite homogeneous valuation closure \(P_{\rm val}(\Dil)\).
+\end{enumerate}
+In the semiclassical de Sitter limit this capacity equals the horizon entropy:
+\begin{equation}
+\boxed{
+\Ncap=S_{\rm dS}.
+}
+\end{equation}
+\end{hypothesis}
+
+\begin{theorem}[Capacity-fixed cosmological mode]\label{thm:capacity-mode}
+Under \cref{hyp:capacity}, once the entropy-capacity eigenvalue is supplied or computed, the integration constant in \eqref{eq:einstein-int} is fixed by
+\begin{equation}
+\boxed{
+\Lambda_{\rm int}=\Lambda_{\rm cap}
+=
+\frac{3\pi}{\Ncap\ell_P^2}
+=
+\frac{3\pi}
+{\ell_P^2\Capacity(\mathcal H_\partial;\Agrav,Q_{\rm DM},P_{\rm val})}.
+}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+By \cref{hyp:capacity},
+\[
+\Ncap=S_{\rm dS}=\frac{3\pi}{\Lambda_{\rm cap}\ell_P^2}.
+\]
+Solving for \(\Lambda_{\rm cap}\) gives the result.  For a given positive entropy capacity \(\Ncap>0\), the value is single-valued.
+\end{proof}
+
+\begin{corollary}[Replacement of the cosmological constant]\label{cor:lambda-replacement}
+The gravitational field equation becomes
+\begin{equation}
+\boxed{
+G_{\mu\nu}
++
+\frac{3\pi}{\Ncap\ell_P^2}g_{\mu\nu}
+=
+8\pi G\,T_{\mu\nu}.
+}
+\label{eq:capacity-einstein}
+\end{equation}
+The term proportional to \(g_{\mu\nu}\) is not a free bare cosmological constant.  It is an on-shell integration mode fixed once the boundary entropy capacity is supplied or computed.
+\end{corollary}
+
+\begin{theorem}[Vacuum-shift immunity of the capacity mode]\label{thm:vacuum-shift-immunity}
+A shift \(T_{\mu\nu}\mapsto T_{\mu\nu}-\rho_0g_{\mu\nu}\) cannot change \(\Lambda_{\rm cap}\) unless it changes the physical boundary capacity \(\Ncap\).
+\end{theorem}
+
+\begin{proof}
+By \cref{thm:vacuum-kernel}, the local trace-free equation is invariant under the shift.  By \cref{thm:capacity-mode}, the integration mode is a function only of \(\Ncap\) and \(\ell_P\).  Therefore the shift changes \(\Lambda_{\rm cap}\) only if it changes \(\Ncap\), which is a global state-counting datum rather than a local zero-point counterterm.
+\end{proof}
+
+\begin{criterion}[Exact cosmological-constant null]\label{crit:lambda-null}
+The invariant residual for the replacement mechanism is
+\begin{equation}
+\boxed{
+\mathcal R_\Lambda
+:=
+\Lambda_{\rm obs}
+-
+\frac{3\pi}
+{\ell_P^2\Capacity(\mathcal H_\partial;\Agrav,Q_{\rm DM},P_{\rm val})}.
+}
+\end{equation}
+A completed microscopic theory must give \(\mathcal R_\Lambda=0\) within observational and state-counting uncertainty.  Failure to compute the capacity is not a numerical failure of \eqref{eq:capacity-einstein}; it marks the remaining microscopic boundary state-counting task.
+\end{criterion}
+
+
+\section{Dynamical dark-energy update: capacity flow rather than a varying bare constant}\label{sec:dynamic-capacity}
+
+Recent DESI DR2 analyses do not establish that a literal cosmological constant is increasing.  A cosmological constant is, by definition, constant.  The empirical statement is sharper and weaker: combinations of DESI BAO with CMB and supernova data show a preference, still below the discovery threshold and sensitive to dataset consistency, for a time-evolving dark-energy equation of state.  The DESI DR2 key paper reports that the preferred \(w_0w_a\) solution lies in the quadrant
+\[
+w_0>-1,\qquad w_a<0,
+\]
+with a \(3.1\sigma\) preference over \(\Lambda\)CDM for DESI BAO plus CMB and \(2.8\)--\(4.2\sigma\) when supernova samples are also included \cite{DESIDR2BAO2025}.  The DESI extended dark-energy paper reports that two-parameter \(w(z)\) descriptions capture the observed trends and that the evidence for dynamical dark energy is especially stable at low redshift \cite{DESIDR2Extended2025}.  Critical analyses emphasize that dataset tensions and systematics still matter, so this is not yet a final discovery of a unique dark-energy law \cite{WangMota2025}.
+
+The invariant response is not to promote \(\Lambda\) back to a local variable.  The trace-free sector continues to remove local vacuum-energy shifts.  What may vary is the effective dark-energy density
+\[
+\Lambda_{\rm eff}(a):=\frac{8\pi G}{c^4}\rho_{\rm DE}(a),
+\]
+or equivalently the boundary capacity
+\[
+\boxed{
+N_\partial(a):=\frac{3\pi}{\ell_P^2\Lambda_{\rm eff}(a)}.
+}
+\]
+Thus a time-dependent dark-energy density is a capacity-flow measurement.
+
+\begin{definition}[Capacity-flow exponent]
+Let
+\[
+\Dil:=a\frac{d}{da}.
+\]
+For any effective dark-energy sector with \(\rho_{\rm DE}>0\), define
+\[
+s_{\rm eff}(a):=\Dil\ln\rho_{\rm DE}(a)
+=\Dil\ln\Lambda_{\rm eff}(a),
+\]
+and
+\[
+\nu_\partial(a):=\Dil\ln N_\partial(a).
+\]
+Then
+\[
+\boxed{
+\nu_\partial(a)=-s_{\rm eff}(a).
+}
+\]
+Using the continuity equation
+\[
+\Dil\ln\rho_{\rm DE}=-3[1+w_{\rm eff}(a)],
+\]
+one obtains the invariant diagnostic
+\[
+\boxed{
+s_{\rm eff}(a)=-3[1+w_{\rm eff}(a)],
+\qquad
+\nu_\partial(a)=3[1+w_{\rm eff}(a)].
+}
+\]
+\end{definition}
+
+\begin{remark}[No varying Bianchi constant]
+The quantity \(\Lambda_{\rm eff}(a)\) in this section is an effective dark-energy density written in cosmological-constant units.  It is not the Bianchi integration constant \(\Lambda_{\rm int}\) of \cref{thm:bianchi-integration}.  A time-dependent \(\Lambda_{\rm eff}(a)\) is compatible with the preceding trace-free construction only as part of a conserved enlarged stress tensor or a covariant boundary-exchange law.
+\end{remark}
+
+For the CPL form
+\[
+w(a)=w_0+w_a(1-a),
+\]
+the exact size-dependent factor is
+\[
+\boxed{
+\frac{\Lambda_{\rm eff}(a)}{\Lambda_0}
+=
+a^{-3(1+w_0+w_a)}
+\exp\!\left[3w_a(a-1)\right],
+}
+\]
+and the corresponding capacity factor is
+\[
+\boxed{
+\frac{N_\partial(a)}{N_{\partial0}}
+=
+a^{3(1+w_0+w_a)}
+\exp\!\left[-3w_a(a-1)\right].
+}
+\]
+The instantaneous crossing of the phantom divide, if \(w_a\ne0\), occurs at
+\[
+\boxed{
+a_\times=1+\frac{1+w_0}{w_a},
+\qquad
+z_\times=a_\times^{-1}-1.
+}
+\]
+For the DESI-favored quadrant \(w_0>-1,w_a<0\), this crossing lies in the past when \(0<a_\times<1\).  In that case \(w<-1\) before the crossing and \(w>-1\) after it.  Equivalently, \(\Lambda_{\rm eff}\) grows with scale while \(w<-1\), reaches an extremum at \(w=-1\), and decreases with scale while \(w>-1\).
+
+\begin{theorem}[Static valuation interpretation of an increasing effective \(\Lambda\)]
+In a single valuation branch,
+\[
+\rho_s(a)\propto a^s,
+\qquad
+w_s=-1-\frac{s}{3},
+\qquad
+\frac{N_s(a)}{N_{s0}}=a^{-s}.
+\]
+Thus an increasing effective dark-energy density,
+\[
+\Dil\ln\Lambda_{\rm eff}>0,
+\]
+requires
+\[
+s_{\rm eff}>0
+\qquad\Longleftrightarrow\qquad
+w_{\rm eff}<-1.
+\]
+Within the static positive \(B^4/S^3\) valuation spectrum, the only positive root is
+\begin{equation}
+\boxed{\begin{gathered}
+s=1,\qquad w=-\frac43,\\
+\Lambda_{\rm eff}\propto a,\qquad N_\partial\propto a^{-1}.
+\end{gathered}}
+\end{equation}
+The boundary-local quotient branch \(s=-1\) instead gives
+\begin{equation}
+\boxed{\begin{gathered}
+s=-1,\qquad w=-\frac23,\\
+\Lambda_{\rm eff}\propto a^{-1},\qquad N_\partial\propto a.
+\end{gathered}}
+\end{equation}
+Therefore a genuine increasing-\(\Lambda_{\rm eff}\) epoch cannot be represented by the positive boundary-local \(a^{-1}\) branch.  It either selects the full bulk valuation root \(s=1\), or it requires a controlled interacting/sign-changing capacity-flow extension.
+\end{theorem}
+
+\begin{proof}
+For a power branch \(\rho_s\propto a^s\), the continuity equation gives \(s=-3(1+w_s)\), hence \(w_s=-1-s/3\).  Since \(N_\partial\propto\Lambda_{\rm eff}^{-1}\), one has \(N_s/N_{s0}=a^{-s}\).  The density increases with scale exactly when \(s>0\).  In the finite valuation spectrum \(\{1,0,-1,-2,-3\}\), the only positive exponent is \(s=1\).  The boundary-local spectrum \(\{0,-1,-2,-3\}\) contains no positive exponent.
+\end{proof}
+
+\begin{corollary}[Positive-mixture monotonicity test]
+For a positive finite valuation mixture,
+\[
+\Dil w=-\frac13{\rm Var}_\pi(s)\le0.
+\]
+Hence a reconstructed epoch with \(\Dil w>0\) cannot be a positive noninteracting valuation mixture on a fixed support.  If confirmed, the DESI-type trend from phantom-like behavior in the past to quintessence-like behavior today selects one of three possibilities:
+\statementbox{bulk valuation activation, interacting branch exchange, or sign-indefinite effective reconstruction}
+It does not invalidate the valuation annihilator.  It identifies the boundary-positive subclass as too small for that epoch.
+\end{corollary}
+
+\begin{theorem}[Interacting two-branch capacity flow and observable exchange current]
+\label{thm:interacting-current}
+Let
+\[
+\begin{gathered}
+\rho(a)=C_-(a)a^{s_-}+C_+(a)a^{s_+},\\
+C_\pm(a)>0,\qquad s_-<s_+
+\end{gathered}
+\]
+with branch fractions \(\pi_\pm\) and
+\[
+\kappa_1:=\Dil\ln\rho .
+\]
+Define the exchange current
+\[
+J_+:=\Dil\pi_+-(s_+-\kappa_1)\pi_+,
+\qquad
+J_-:=-J_+ .
+\]
+Then
+\[
+\sum_sJ_s=0,
+\qquad
+\Dil\kappa_1=\kappa_2+(s_+-s_-)J_+ .
+\]
+Since
+\[
+\kappa_1=-3(1+w),
+\]
+and, for a two-point support,
+\[
+\kappa_2=(s_+-\kappa_1)(\kappa_1-s_-),
+\]
+the current is recovered pointwise from the observable pair \((w,\Dil w)\):
+\begin{equation}
+\boxed{
+J_+(a)=
+\frac{
+-3\Dil w-(s_+-\kappa_1)(\kappa_1-s_-)
+}{
+s_+-s_-
+}.
+}
+\label{eq:observable-current}
+\end{equation}
+Hence \(J_+\equiv0\) if and only if the noninteracting replicator closure holds.  Moreover, \(\Dil w>0\) on an interval if and only if
+\[
+J_+<-\frac{\kappa_2}{s_+-s_-}<0
+\]
+there; capacity then flows from the upper branch to the lower branch while both branch weights remain positive.
+\end{theorem}
+
+\begin{proof}
+From \(\pi_++\pi_-=1\) and
+\[
+\kappa_1=s_-+(s_+-s_-)\pi_+,
+\]
+one has
+\[
+\Dil\kappa_1=(s_+-s_-)\Dil\pi_+ .
+\]
+Substituting
+\[
+\Dil\pi_+=(s_+-\kappa_1)\pi_++J_+
+\]
+and using
+\[
+(s_+-s_-)(s_+-\kappa_1)\pi_+=\kappa_2
+\]
+for a two-point distribution gives the stated identity.  The variance formula is
+\[
+\kappa_2=\pi_+\pi_-(s_+-s_-)^2
+=(s_+-\kappa_1)(\kappa_1-s_-).
+\]
+\end{proof}
+
+\begin{corollary}[Phantom quadrant under positivity]
+A reconstructed epoch with \(w<-1\) in the past, \(w>-1\) today, and \(\Dil w>0\) cannot be a positive noninteracting mixture on any fixed support.  It is realized by a positive interacting two-branch mixture if and only if
+\[
+\kappa_1\in(s_-,s_+),
+\qquad
+J_+<-\frac{\kappa_2}{s_+-s_-}.
+\]
+For the valuation pair \((s_-,s_+)=(-1,1)\), this gives an exact amplitude-free diagnostic of the DESI-type quadrant.
+\end{corollary}
+
+\begin{criterion}[Interacting capacity-flow null]
+The observable residual
+\[
+\boxed{\mathcal R_{\rm int}(a):=J_+(a)}
+\]
+vanishes identically for the noninteracting valuation closure.  A statistically nonzero reconstruction of \(\mathcal R_{\rm int}\) with the sign pattern of \cref{thm:interacting-current} is the invariant signature of interacting capacity exchange, distinct from both signed negative-weight shadow fits and bulk-valuation-root activation.
+\end{criterion}
+
+\begin{criterion}[Dynamical-capacity null]
+The invariant observational null replacing a varying bare cosmological constant is
+\[
+\boxed{
+\mathcal R_{\rm cap}(a):=
+\Dil\ln N_\partial(a)-3[1+w_{\rm eff}(a)]=0.
+}
+\]
+For a static valuation branch this reduces to
+\[
+\mathcal R_{\rm cap}=0,\qquad
+\nu_\partial=-s\in\{-1,0,1,2,3\}.
+\]
+For a free-spectrum reconstruction one shall first infer \(s_{\rm eff}\) or the discrete pencil roots from the data, and only afterwards compare them with
+\[
+S_{\rm val}=\{1,0,-1,-2,-3\}.
+\]
+This is the same consistency-versus-identification boundary already required by the invariant test architecture.
+\end{criterion}
+
+Using the Planck-length value \( \ell_P=1.616255\times10^{-35}\,{\rm m}\) \cite{NISTPlanckLength2022}, and a representative \(\Lambda\)CDM normalization \(H_0=67.4\,{\rm km\,s^{-1}\,Mpc^{-1}}\), \(\Omega_\Lambda\simeq0.685\), one obtains
+\[
+\Lambda_0\simeq1.091\times10^{-52}\,{\rm m}^{-2},
+\]
+and therefore
+\[
+\boxed{
+N_{\partial0}
+=
+\frac{3\pi}{\Lambda_0\ell_P^2}
+\simeq3.31\times10^{122}.
+}
+\]
+For the static valuation roots, the size-dependent capacity factors are
+\[
+\begin{array}{c|c|c|c}
+s & w_s & \Lambda_s(a)/\Lambda_{s0} & N_s(a)/N_{s0}\\
+\hline
+1 & -4/3 & a & a^{-1}\\
+0 & -1 & 1 & 1\\
+-1 & -2/3 & a^{-1} & a\\
+-2 & -1/3 & a^{-2} & a^2\\
+-3 & 0 & a^{-3} & a^3
+\end{array}
+\]
+This table is the exact size-dependent factorization of the capacity mechanism.
+
+
+
+
+\section{Invariant frontier and all-dimensional closure ledger}
+\label{sec:frontier}
+
+This section records what is closed at theorem level and what remains a
+microscopic frontier.  This distinction is part of the result.  A finite
+annihilator, a projector, a sign certificate, or a null test may be exact
+without determining a dimensional amplitude.
+
+\subsection{All-dimensional valuation skeleton}
+
+Let the spatial dimension be \(n\ge1\), with round section \(S^n_A\) and
+auxiliary filling \(B^{n+1}_A\).  Since \(\vol(S^n_A)\propto A^n\), the
+round restriction of a continuous rigid-motion invariant additive valuation
+on convex bodies in \(\mathbb R^{n+1}\) has filling-energy powers
+\[
+E_{\rm val}(A)\in
+\spanop\{A^{n+1},A^n,A^{n-1},\ldots,A,1\}.
+\]
+After division by the \(S^n_A\) volume, the density spectrum is
+\[
+S_{\rm val}^{(n)}=\{1,0,-1,\ldots,-n\}.
+\]
+Equivalently,
+\begin{equation}
+\boxed{
+P_n(\Dil)\rho=0,\qquad
+P_n(z)=(z-1)z(z+1)\cdots(z+n).
+}
+\end{equation}
+All roots are simple and real, hence
+\[
+\mathbb R[z]/(P_n)\simeq \mathbb R^{\,n+2}.
+\]
+The boundary-local face removes the bulk intrinsic volume:
+\[
+S_{\partial}^{(n)}=\{0,-1,\ldots,-n\},
+\qquad
+P_{\partial,n}(z)=z(z+1)\cdots(z+n).
+\]
+For a branch \(\rho_s\propto a^s\), the \(n\)-dimensional work-map equation
+of state is
+\[
+w_s=-1-\frac{s}{n}.
+\]
+
+\begin{theorem}[Dimension-sensitive boundary quotient]
+\label{thm:dimension-quotient}
+For \(n\ge3\), quotient the boundary alphabet
+\(S_{\partial}^{(n)}=\{0,-1,\ldots,-n\}\) by the standard homogeneous
+expansion powers carried by vacuum, geometric curvature, and dust,
+\[
+0,\qquad -2,\qquad -n .
+\]
+Then the quotient dimension is \(n-2\).  Hence the condition that there be
+exactly one nonstandard boundary-local homogeneous direction selects
+\(n=3\).  The surviving direction is then
+\[
+\boxed{
+s=-1,\qquad
+\rho_X\propto a^{-1},\qquad
+w_X=-\frac23 .
+}
+\]
+\end{theorem}
+
+\begin{proof}
+For \(n\ge3\), the three exponents \(0,-2,-n\) are distinct.  Since
+\(|S_{\partial}^{(n)}|=n+1\), the quotient dimension is
+\((n+1)-3=n-2\).  It equals one if and only if \(n=3\).  The remaining
+exponent in \(\{0,-1,-2,-3\}\) after removing \(\{0,-2,-3\}\) is \(s=-1\),
+and \(w_s=-1-s/3=-2/3\).
+\end{proof}
+
+\subsection{Closed ledger}
+
+The following entries are closed under the hypotheses stated in the
+corresponding sections.
+
+First, constant vacuum shifts are removed by the trace-free source
+projector:
+\[
+\Ptr(-\rho_0g_{\mu\nu})=0.
+\]
+Second, if the physical stress tensor is conserved, the trace-free equation
+recovers a Bianchi integration mode,
+\[
+R+8\pi GT=4\Lambda_{\rm int},
+\qquad
+G_{\mu\nu}+\Lambda_{\rm int}g_{\mu\nu}=8\pi GT_{\mu\nu}.
+\]
+Third, the capacity postulate fixes this mode only after the boundary entropy
+capacity is supplied:
+\[
+\Lambda_{\rm cap}=\frac{3\pi}{\ell_P^2N_\partial},
+\qquad
+N_\partial=\log\dim \mathcal H_{\partial}^{\rm eff}.
+\]
+Thus the manuscript does not yet compute \(\Lambda\); it turns it into a
+boundary entropy-counting problem.
+
+Fourth, positive noninteracting finite mixtures obey the arrow
+\[
+\Dil w=-\frac13{\rm Var}_\pi(s)\le0.
+\]
+A reconstructed epoch with \(\Dil w>0\) therefore requires a signed
+effective reconstruction, interacting branch exchange, or an enlarged
+functional class.  The interacting two-branch current in
+\cref{thm:interacting-current} is the local observable diagnostic of the
+second possibility.
+
+Fifth, the \(a^{-2}\) coefficient must be split before positivity is read:
+\[
+\Omega_{2,{\rm val}}=\mathcal C_{-2}[F]-\Omega_K^{\rm geom}.
+\]
+Sixth, dark matter stability is encoded by a current,
+\[
+\nabla_\mu J^\mu_{\rm DM}=0,\qquad
+\rho_{\rm DM}=m n_{\rm DM}\propto a^{-n},
+\]
+which gives \(a^{-3}\) in the observed \(n=3\) case.
+
+\subsection{Open frontier}
+
+The remaining tasks are now sharply localized.
+
+The first is microscopic capacity counting:
+\begin{equation}
+\boxed{
+N_\partial
+=
+\Capacity(\Hbd;\Agrav,Q_{\rm DM},P_{\rm val})
+\simeq 3.3\times10^{122}.
+}
+\end{equation}
+Smooth valuation theory and topology alone do not compute this number.
+
+The second is a covariant boundary-exchange law.  If data prefer an
+effective \(\Lambda_{\rm eff}(a)\), the Bianchi integration constant is not
+varying.  The time dependence must live in an enlarged conserved
+stress tensor or a boundary exchange sector.
+
+The third is the perturbative lift.  EDSC closes the homogeneous background;
+it does not fix sound speed, anisotropic stress, scalar-vector-tensor
+perturbations, or nonlinear clustering.
+
+The fourth is free-spectrum identification:
+\[
+s_j=\frac{\log r_j}{h}
+\]
+must be reconstructed before comparison with
+\(S_{\rm val}^{(3)}=\{1,0,-1,-2,-3\}\).
+
+The fifth is compact topology in perturbations.  For \(S^3_A\),
+\[
+-\Delta_{S^3_A}Y_{n\ell m}
+=
+\frac{n(n+2)}{A^2}Y_{n\ell m},
+\qquad
+{\rm degeneracy}=(n+1)^2 .
+\]
+This harmonic spectrum is separate from the homogeneous valuation spectrum.
+
+The sixth is quantum covariance.  The physical space must be a common kernel
+or rigging-map image,
+\[
+\Hphys={\rm Im}\,\eta
+\subseteq
+\bigcap_A{\rm Ker}\,\widehat{\mathcal H}_A
+\cap{\rm Ker}\,\widehat Q_{\rm DM}
+\cap{\rm Ker}\,P_{\rm val}(\widehat{\Dil}) ,
+\]
+not an order-dependent product of noncommuting projectors.
+
+Thus the final status is
+\[
+{\rm theorem}\ne{\rm consistency\ audit}\ne{\rm empirical\ identification}.
+\]
+
+
+\section{Illustrative real-data audit: DESI DR2 BAO}\label{sec:real-data-audit}
+
+The invariant sieve must not be judged by rhetoric.  We therefore include an illustrative, reproducible background audit against published DESI DR2 BAO distance measurements.  The data vector used here is the DESI DR2 BAO Table 4 cosmology vector: \(D_V/r_d\) for BGS and \(D_M/r_d,D_H/r_d\) for the six combined high-redshift tracers, including the combined LRG3+ELG1 bin rather than the two correlated sub-bins \cite{DESIDR2BAO2025}.  The calculation is a BAO-only background audit.  It is not a joint CMB+BAO+SNe+growth likelihood, not a substitute for the official DESI chains, and not a full covariance public-likelihood reproduction.
+
+We compare the following finite models:
+\[
+\Lambda{\rm CDM},\qquad
+X:{F(a)=\Omega_m a^{-3}+\Omega_Xa^{-1}+\Omega_\Lambda},
+\]
+\[
+P:{F(a)=\Omega_m a^{-3}+\Omega_Pa+\Omega_\Lambda},
+\qquad
+X+P,
+\]
+and the empirical \(w_0w_a\)CDM benchmark.  The nuisance scale \(C=c/(H_0r_d)\) is profiled.  Positivity is imposed in the physical valuation fits unless explicitly stated.
+
+\begin{table*}[t]
+\caption{DESI DR2 BAO-only audit of the capacity/valuation background families.  The \(\chi^2\) values use the published BAO distance vector and the diagonal/limited-correlation approximation implemented in the accompanying audit files.  AIC and BIC are quoted relative to \(\Lambda\)CDM.  The table is an illustrative reproducibility check of the invariant sieve, not a full cosmological model comparison.}
+\label{tab:bao-audit}
+\begin{ruledtabular}
+\begin{tabular}{lcccccc}
+model & \(k\) & \(\chi^2\) & dof & \(\Delta\chi^2\) & \(\Delta{\rm AIC}\) & \(\Delta{\rm BIC}\)\\
+\hline
+\(w_0w_a\)CDM & 4 & 5.812 & 9 & -4.727 & -0.727 & 0.403\\
+\(\Lambda\)CDM & 2 & 10.539 & 11 & 0 & 0 & 0\\
+\(P\) signed & 3 & 8.971 & 10 & -1.568 & 0.432 & 0.997\\
+\(X+P\) signed & 4 & 7.085 & 9 & -3.453 & 0.547 & 1.677\\
+\(X\) positive & 3 & 9.530 & 10 & -1.009 & 0.991 & 1.556\\
+\(P\) positive & 3 & 10.539 & 10 & 0 & 2.000 & 2.565\\
+\(X+P\) positive & 4 & 9.530 & 9 & -1.009 & 2.991 & 4.121
+\end{tabular}
+\end{ruledtabular}
+\end{table*}
+
+The best positive \(X\)-branch fit gives
+\[
+\boxed{
+\Omega_X=0.146840,\qquad
+\Omega_m=0.293136,\qquad
+\chi^2=9.5299.
+}
+\]
+This is a consistency-level improvement over \(\Lambda\)CDM in this BAO-only audit, not a detection.  The positive \(s=+1\) branch is driven to
+\[
+\boxed{\Omega_P\simeq0,}
+\]
+so these BAO data do not select a positive increasing-\(\Lambda_{\rm eff}\propto a\) branch.  Signed \(P\) and signed \(X+P\) fits can improve \(\chi^2\), but their negative branch weights violate the positive-branch interpretation and must be treated as effective reconstructions rather than positive valuation fluids.
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=.92\textwidth]{fig_model_comparison.png}
+\caption{BAO-only comparison of the tested background families.  The flexible \(w_0w_a\) benchmark has the lowest \(\chi^2\); BIC still favors the simpler \(\Lambda\)CDM model over this small data vector.  The positive \(X:a^{-1}\) branch is viable but not superior.}
+\label{fig:model-comparison}
+\end{figure*}
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=.92\textwidth]{fig_capacity_flow_DESI_w0wa.png}
+\caption{Capacity-flow representation of the official DESI-style \(w_0w_a\) trend.  A time-dependent dark-energy density is represented as a flow of \(N_\partial(a)=3\pi/[\ell_P^2\Lambda_{\rm eff}(a)]\), not as a varying bare cosmological constant.}
+\label{fig:capacity-flow}
+\end{figure*}
+
+The absolute normalization check uses \(H_0=67.4\,{\rm km\,s^{-1}\,Mpc^{-1}}\), \(\Omega_\Lambda=0.685\), and \(\ell_P=1.616255\times10^{-35}\,{\rm m}\) \cite{Planck2018,NISTPlanckLength2022}.  It gives
+\[
+\boxed{
+\Lambda_0=1.091\times10^{-52}\,{\rm m}^{-2},\qquad
+N_{\partial0}=3.31\times10^{122}.
+}
+\]
+The exact capacity-flow null remains
+\[
+\boxed{
+\mathcal R_{\rm cap}(a)
+=
+\Dil\ln N_\partial(a)-3[1+w_{\rm eff}(a)]=0.
+}
+\]
+The illustrative audit conclusion is therefore precise:
+\statementbox{DESI DR2 BAO in this audit does not falsify the invariant sieve; it does not yet prove superiority of the simple positive \(a^{-1}\) valuation branch.  The data favor using the dynamical capacity-flow formalism and free-spectrum reconstruction before making an identification claim.}
+
+
+\section{Quantum covariance algebra}
+
+The capacity in \cref{hyp:capacity} is not a raw dimension of an arbitrary vector space.  It is counted after the gravitational constraints are imposed.  Classically, general relativity is a constrained Hamiltonian system:
+\begin{equation}
+\mathcal H_\perp(x)=0,
+\qquad
+\mathcal H_i(x)=0,
+\end{equation}
+with the hypersurface-deformation algebra \cite{Dirac1958,ADM1962,HenneauxTeitelboim1992,Dirac1964}.
+
+\begin{definition}[Anomaly-free quantum covariance algebra]\label{def:agrav}
+A quantum gravitational completion supplies a domain, state space, and constraint operators
+\begin{equation}
+\widehat{\mathcal H}_A=(\widehat{\mathcal H}_\perp,\widehat{\mathcal H}_i)
+\end{equation}
+such that
+\begin{equation}
+\boxed{
+\widehat{\mathcal H}_A\Psi=0,
+\qquad
+[\widehat{\mathcal H}_A,\widehat{\mathcal H}_B]
+=
+i\hbar\,\widehat f_{AB}^{\ \ C}\widehat{\mathcal H}_C
+}
+\end{equation}
+on the physical domain, with no anomalous obstruction.  This structure is denoted \(\Agrav\).
+\end{definition}
+
+\begin{nogotheorem}[Anomalous constraint algebras do not fix capacity]\label{nogo:anomaly}
+If the quantum constraints do not close on the physical domain, then \(\mathcal H_\partial\) is not a physical boundary state space for spacetime covariance and its dimension cannot define \(\Ncap\).
+\end{nogotheorem}
+
+\begin{proof}
+The constraints generate changes of spatial coordinates and refoliations.  If their quantum representatives fail to close, the supposed physical state space depends on the order of gauge projection.  Such a space cannot carry an invariant state count.
+\end{proof}
+
+
+\section{Boundary-constraint quantum kernel}\label{sec:quantum-kernel}
+
+The previous section gives the algebraic admissibility condition.  To avoid leaving the quantum layer as a slogan, we state the minimal physical-space construction.  The kinematical space is
+\begin{equation}
+\boxed{
+\Hkin=
+\mathcal H_{\rm geom}(\Sigma)
+\otimes
+\mathcal H_{\rm matter}
+\otimes
+\Hbd
+\otimes
+L^2(\R_\Lambda).
+}
+\end{equation}
+The last factor carries the global integration mode.  A conjugate four-volume variable may be introduced by
+\begin{equation}
+[\widehat{\Tfour},\widehat\Lambda]=i\hbar,
+\end{equation}
+which is the quantum form of the unimodular fact that \(\Lambda\) is conjugate to spacetime four-volume.
+
+\begin{definition}[Invariant physical space]\label{def:physical-projector}
+The admissible physical space is the common kernel, or equivalently a rigging-map image when the constraints are implemented by group averaging,
+\begin{equation}
+\boxed{
+\begin{aligned}
+\Hphys={}&
+\ker\widehat{\mathcal H}_A
+\cap
+\ker\widehat C_{\rm tf}
+\cap
+\ker\widehat C_{\rm cap}
+\\
+&{}\cap
+\ker P_{\rm val}(\widehat\Dil)
+\cap
+\ker(\widehat Q_{\rm DM}-q_{\rm DM}) .
+\end{aligned}}
+\end{equation}
+When the corresponding projectors are mutually well defined and commute on a common invariant domain \(\mathfrak D\), this common-kernel notation may be represented formally as
+\[
+\Hphys=
+\Pi_{\rm HD}\Pi_{\rm tf}\Pi_{\rm cap}\Pi_{\rm val}\Pi_Q\,\Hkin .
+\]
+Without the common-domain and commutation property, the ordered product is not a definition.
+\end{definition}
+
+\begin{remark}[Projection order and common domain]
+The capacity, valuation, and dark-charge conditions are imposed as abelian superselection conditions and are required to commute with the hypersurface-deformation constraints on the common domain \(\mathfrak D\).  This is a hypothesis on the microscopic completion, not a theorem of the kinematical notation.  If it fails, different projection orders define different spaces and the candidate model fails the quantum part of the invariant sieve.
+\end{remark}
+
+The hypersurface-deformation projector is admissible only if the regulated constraints close on a common physical domain:
+\begin{align}
+[\widehat D[\vec N],\widehat D[\vec M]]
+&=i\hbar\,\widehat D[[\vec N,\vec M]],\\
+[\widehat D[\vec N],\widehat H[N]]
+&=i\hbar\,\widehat H[\Lie_{\vec N}N],\\
+[\widehat H[N],\widehat H[M]]
+&=i\hbar\,\widehat D[\widehat q^{ab}
+(N\partial_bM-M\partial_bN)].
+\end{align}
+The displayed relations are the hypersurface-deformation algebra in canonical form \cite{HKT1976}.  The last relation is an operator-algebroid relation because the structure function is the inverse spatial metric operator.  This is the point at which many candidate quantum gravities fail: good homogeneous dynamics is insufficient if refoliation covariance is anomalous.
+
+\begin{criterion}[Weak anomaly-free completion]\label{crit:weak-anomaly}
+A regulator or microscopic model passes the quantum part of the invariant sieve only if
+\begin{equation}
+\Delta_{AB}
+:=
+[\widehat C_A,\widehat C_B]
+-i\hbar f_{AB}^{\ \ C}(\widehat q)\widehat C_C
+\end{equation}
+vanishes on the common physical domain, at least weakly:
+\begin{equation}
+\langle\Phi|\Delta_{AB}|\Psi\rangle=0,
+\qquad
+\Phi,\Psi\in\mathfrak D.
+\end{equation}
+\end{criterion}
+
+\begin{theorem}[Capacity eigenvalue in the projected theory]\label{thm:capacity-eigenvalue-quantum}
+If the capacity projector imposes
+\begin{equation}
+\widehat C_{\rm cap}:=\ell_P^2\widehat\Lambda\,\widehat N_\partial-3\pi=0
+\end{equation}
+on \(\Hphys\), then every simultaneous \((\widehat\Lambda,\widehat N_\partial)\)-eigen-sector satisfies
+\begin{equation}
+\boxed{
+\Lambda_{\rm cap}=\frac{3\pi}{\ell_P^2N_\partial}.
+}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+On a joint eigenstate,
+\[
+(\ell_P^2\widehat\Lambda\widehat N_\partial-3\pi)\Psi=0
+\]
+is exactly
+\[
+\ell_P^2\Lambda N_\partial=3\pi.
+\]
+For superpositions the statement holds sector by sector in the joint spectral decomposition whenever the two operators commute on the capacity domain.
+\end{proof}
+
+\begin{remark}[Status of the quantum kernel]
+This construction is not a completed regulator, spin-foam sum, lattice path integral, or ultraviolet fixed-point calculation.  Concrete microscopic programs such as causal dynamical triangulations and functional-renormalization-group gravity supply examples of the kind of ultraviolet completion that would have to reproduce this kernel \cite{Loll2020,Saueressig2023}.  The present construction is the minimal invariant kernel that any such microscopic realization must reproduce: trace-free locality, boundary capacity, anomaly-free refoliation covariance, dark-charge superselection, and finite homogeneous \(S^3\)-valuation closure.
+\end{remark}
+
+
+\section{Dark matter as a protected charge sector}
+
+A cold dark component is not explained merely by adding \(a^{-3}\) to the Friedmann ledger.  It must be stable, gravitating, and approximately collisionless.
+
+\begin{hypothesis}[Dark charge]\label{hyp:dark-charge}
+There exists an exact conserved current
+\begin{equation}
+\boxed{
+\nabla_\mu J^\mu_{\rm DM}=0
+}
+\end{equation}
+and a charge
+\begin{equation}
+\boxed{
+Q_{\rm DM}=\int_\Sigma J^\mu_{\rm DM}n_\mu\,\dd\Sigma
+}
+\end{equation}
+or an equivalent discrete or topological protection.  In the homogeneous cold limit,
+\begin{equation}
+\boxed{
+T^{\rm DM}_{\mu\nu}=\rho_{\rm DM}u_\mu u_\nu,
+\qquad
+\rho_{\rm DM}\propto a^{-3},
+\qquad
+p_{\rm DM}\simeq0.
+}
+\end{equation}
+\end{hypothesis}
+
+\begin{remark}[Separation from the valuation dark-energy branch]
+The \(s=-1\) valuation branch has \(w=-2/3\), not cold dust.  It must not be double counted as dark matter.  The cold \(s=-3\) sector is protected by \(Q_{\rm DM}\); the nonstandard homogeneous boundary branch \(s=-1\) is controlled by \(P_{\rm val}(\Dil)\).
+\end{remark}
+
+
+\begin{nogotheorem}[No linear density charge for nonzero exponents]\label{nogo:linear-density-charge}
+Let
+\[
+Q[\rho](a)=\sum_s q_sC_sa^s
+\]
+be a linear functional of independent homogeneous density branches and require \(\Dil Q[\rho]=0\) for all \(a\) on an interval.  Then every active nonzero exponent in the support has \(q_sC_s=0\).  Hence a conserved dark charge cannot in general be a bare linear combination of \(\Omega_\Lambda\) and \(\Omega_X\).
+\end{nogotheorem}
+
+\begin{proof}
+One has
+\[
+\Dil Q=\sum_s s\,q_sC_sa^s.
+\]
+Distinct powers are linearly independent.  Therefore \(s\,q_sC_s=0\) for each active branch.  Only \(s=0\) can survive without further structure.  A physical dark charge must instead be represented by a conserved current, a discrete charge, or a topological protection law.
+\end{proof}
+
+\section{\texorpdfstring{\(S^3\)}{S3} valuation closure}
+
+Let a closed homogeneous spatial section be \(\Sigma\simeq\Sthree\) with round metric \(g_A=A^2\dd\Omega_3^2\).  Let \(\Bfour_A\) be the auxiliary Euclidean filling.  Under continuous, rigid-motion invariant, additive Euclidean valuation closure on convex bodies in \(\R^4\), Hadwiger theory gives the intrinsic-volume span \cite{Hadwiger1957,Schneider2014}.  On the round family this implies
+\begin{equation}
+E_4^{\rm val}(A)
+=
+\frac{\pi^2}{2}\gamma A^4
++
+2\pi^2
+\left(
+\alpha_0A^3+3\alpha_1A^2+3\alpha_2A+\alpha_3
+\right).
+\end{equation}
+Since \(V_3(A)=2\pi^2A^3\),
+\begin{equation}
+\begin{split}
+\rho_{\rm val}(A)
+&=\frac{E_4^{\rm val}(A)}{V_3(A)}\\
+&=\frac{\gamma}{4}A+\alpha_0+3\alpha_1A^{-1}\\
+&\quad+3\alpha_2A^{-2}+\alpha_3A^{-3}.
+\end{split}
+\end{equation}
+Thus
+\begin{equation}
+\boxed{
+\Spec_\Dil(\rho_{\rm val})\subseteq \{1,0,-1,-2,-3\},
+\qquad
+\Dil:=A\frac{\dd}{\dd A}.
+}
+\end{equation}
+
+\begin{theorem}[Finite valuation annihilator]\label{thm:val-ann}
+For \(C^5\) profiles on a positive interval,
+\begin{equation}
+\boxed{\begin{gathered}
+P_{\rm val}(\Dil)\rho_{\rm val}=0,\\
+P_{\rm val}(z)=(z-1)z(z+1)(z+2)(z+3).
+\end{gathered}}
+\end{equation}
+if and only if
+\begin{equation}
+\rho_{\rm val}(A)\in
+\spanop\{A,1,A^{-1},A^{-2},A^{-3}\}.
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+With \(x=\ln A\), \(\Dil=\dd/\dd x\).  The equation becomes a constant-coefficient ODE with simple roots \(1,0,-1,-2,-3\), hence the stated exponential/power basis.
+\end{proof}
+
+\begin{corollary}[Boundary quotient]\label{cor:boundary-quotient}
+In the boundary-local class the bulk \(s=1\) branch is removed:
+\begin{equation}
+S_\partial=\{0,-1,-2,-3\}.
+\end{equation}
+At the expansion level, quotienting by vacuum, curvature-degenerate, and dust powers \(\{1,a^{-2},a^{-3}\}\) leaves the unique nonstandard direction
+\begin{equation}
+\boxed{
+\rho_X\propto a^{-1},
+\qquad
+w_X=-1-\frac{-1}{3}=-\frac23.
+}
+\end{equation}
+\end{corollary}
+
+\begin{remark}[What valuation does and does not fix]
+The valuation algebra fixes the allowed homogeneous powers.  It does not fix the amplitude of the \(s=0\) branch.  In the present manuscript that amplitude is supplied by the capacity mode:
+\[
+\rho_\Lambda^{\rm cap}=\frac{\Lambda_{\rm cap}}{8\pi G}.
+\]
+Thus the \(s=0\) power is valuation-allowed, while its amplitude is capacity-fixed.
+\end{remark}
+
+
+\section{Nonlinear equation-of-state closure}\label{sec:w-closure}
+
+The density closure is linear.  The equation-of-state closure is not.
+
+Let
+\begin{equation}
+\rho(a)=\sum_{s\in S}C_sa^s,\qquad \rho>0,
+\end{equation}
+and define
+\begin{equation}
+\begin{aligned}
+w&:=-1-\frac{1}{3}\frac{\Dil\rho}{\rho},\\
+\kappa_1&:=\Dil\ln\rho=-3(1+w),\\
+\kappa_{n}&:=\Dil^n\ln\rho\qquad(n\ge2).
+\end{aligned}
+\end{equation}
+Then \(\kappa_n\) are the cumulants of the tilted finite spectral distribution.  Since
+\begin{equation}
+\frac{\Dil^n\rho}{\rho}=B_n(\kappa_1,\ldots,\kappa_n),
+\end{equation}
+with \(B_n\) the complete exponential Bell polynomial, the valuation annihilator gives the amplitude-free nonlinear identity
+\begin{equation}
+\boxed{
+B_5+5B_4+5B_3-5B_2-6B_1=0.
+}
+\end{equation}
+The boundary-local face gives
+\begin{equation}
+\boxed{
+B_4+6B_3+11B_2+6B_1=0.
+}
+\end{equation}
+For the endpoint support \(\{0,-3\}\),
+\begin{equation}
+\boxed{
+\Dil w=3w(1+w).
+}
+\end{equation}
+
+\begin{criterion}[Correct \(w\)-null]
+The correct null is not \(P_{\rm val}(\Dil)w=0\).  Except for single branches and accidental degeneracies, \(w(a)\) is a ratio of finite exponential sums and satisfies the nonlinear cumulant closure above.  Observational tests based on \(w(a)\) must therefore propagate derivative covariance through this nonlinear identity.
+\end{criterion}
+
+\section{Capacity-fixed EDSC}
+
+Let
+\begin{equation}
+F(a):=\frac{H^2(a)}{H_0^2},
+\qquad
+\Omega_K^{\rm geom}:=-\frac{1}{A_0^2H_0^2}
+\end{equation}
+in units \(c=1\).  Define the physical density and pressure represented by the homogeneous Einstein tensor:
+\begin{equation}
+\boxed{
+E_F(a):=F(a)-\Omega_K^{\rm geom}a^{-2},
+}
+\end{equation}
+\begin{equation}
+\boxed{
+P_F(a):=-E_F(a)-\frac13\Dil E_F(a).
+}
+\end{equation}
+This is the homogeneous Bianchi identity in dilation form.
+
+The capacity-fixed vacuum slot is
+\begin{equation}
+\boxed{
+\Omega_\Lambda^{\rm cap}
+=
+\frac{\Lambda_{\rm cap}}{3H_0^2}
+=
+\frac{\pi}{H_0^2\ell_P^2\Ncap}.
+}
+\end{equation}
+Therefore a finite capacity-fixed homogeneous ledger has the form
+\begin{equation}
+\boxed{\begin{aligned}
+E_F(a)
+={}&\Omega_\Lambda^{\rm cap}
++\Omega_Xa^{-1}
++\Omega_{2,\rm val}a^{-2}\\
+&+\Omega_ma^{-3}
++\Omega_ra^{-4}.
+\end{aligned}}
+\label{eq:capacity-ledger}
+\end{equation}
+with
+\begin{equation}
+F(a)=E_F(a)+\Omega_K^{\rm geom}a^{-2}.
+\end{equation}
+
+\begin{theorem}[Homogeneous closure with capacity-fixed vacuum]\label{thm:capacity-edsc}
+Assume closed FLRW symmetry, trace-free local dynamics, conserved physical stress, the boundary capacity postulate, and the finite valuation support for the nonstandard homogeneous sector.  Then the homogeneous gravitational sector is closed by \eqref{eq:capacity-ledger}.  The vacuum coefficient is not free:
+\[
+\Omega_\Lambda=\Omega_\Lambda^{\rm cap}.
+\]
+The remaining physical coefficients are separated from geometric curvature by
+\[
+\boxed{
+\Omega_{2,\rm val}=\mathcal C_{-2}[F]-\Omega_K^{\rm geom},
+}
+\]
+where \(\mathcal C_s\) are the exact dilation coefficient projectors.
+\end{theorem}
+
+\begin{proof}
+\Cref{thm:bianchi-integration,thm:capacity-mode} give the Einstein equation with \(\Lambda_{\rm cap}\).  The first Friedmann equation gives \(F=E_F+\Omega_K^{\rm geom}a^{-2}\).  The Bianchi identity gives \(P_F=-E_F-\Dil E_F/3\).  The finite valuation closure gives the allowed nonstandard powers, while the standard cold and radiation sectors supply \(a^{-3}\) and \(a^{-4}\).  The coefficient projector statement follows from linear independence of the finite power alphabet.
+\end{proof}
+
+\section{Projectors, spectral recovery, and falsifiable nulls}
+
+For a finite expansion alphabet
+\[
+S_{\rm cos}:=\{0,-1,-2,-3,-4\},
+\qquad
+F(a)=\sum_{s\in S_{\rm cos}}\Omega_s a^s,
+\]
+define
+\begin{equation}
+\boxed{
+\mathcal C_s[F](a)
+:=
+a^{-s}
+\prod_{\substack{t\in S_{\rm cos}\\t\ne s}}
+\frac{\Dil-t}{s-t}F(a).
+}
+\end{equation}
+Then \(\mathcal C_s[F]=\Omega_s\).
+
+The exact nulls are:
+\begin{align}
+\mathcal R_\Lambda
+&=
+\Lambda_{\rm obs}
+-
+\frac{3\pi}{\ell_P^2\Ncap},
+\\
+\mathcal R_{\rm val}[\rho]
+&=
+(\Dil-1)\Dil(\Dil+1)(\Dil+2)(\Dil+3)\rho,
+\\
+\mathcal R_{\partial}[\rho]
+&=
+\Dil(\Dil+1)(\Dil+2)(\Dil+3)\rho,
+\\
+\mathcal R_X[F]
+&=
+\Dil\mathcal C_{-1}[F],
+\\
+\mathcal R_{2}[F]
+&=
+\mathcal C_{-2}[F]-\Omega_K^{\rm geom}-\Omega_{2,\rm val},
+\\
+\mathcal R_{\rm DM}
+&=
+\nabla_\mu J^\mu_{\rm DM}.
+\end{align}
+A capacity-fixed, boundary-local, one-parameter \(X\) execution has
+\begin{equation}
+\boxed{
+\mathcal R_\Lambda=\mathcal R_{\partial}=\mathcal R_X=\mathcal R_2=\mathcal R_{\rm DM}=0,
+\qquad
+\Omega_{2,\rm val}=0.
+}
+\end{equation}
+
+\begin{theorem}[Hankel-pencil recovery under exact support hypotheses]\label{thm:hankel-hyp}
+Let \(\rho\in C^{2k-1}\) on an interval and suppose
+\[
+\rho(a)=\sum_{j=1}^k C_j a^{s_j},
+\qquad
+C_j\ne0,\qquad
+s_i\ne s_j\ (i\ne j).
+\]
+Define derivative moments \(M_n=\Dil^n\rho\) and Hankel matrices
+\[
+H_0=[M_{i+j}]_{i,j=0}^{k-1},
+\qquad
+H_1=[M_{i+j+1}]_{i,j=0}^{k-1}.
+\]
+Then
+\[
+\det H_0=
+\left(\prod_{i<j}(s_j-s_i)^2\right)
+\prod_{j=1}^k C_ja^{s_j}.
+\]
+Hence \(H_0\) is invertible exactly when the active exponents are distinct and all active amplitudes are nonzero, and
+\begin{equation}
+\boxed{
+\frac{\det(\lambda H_0-H_1)}{\det H_0}
+=
+\prod_{j=1}^k(\lambda-s_j).
+}
+\end{equation}
+\end{theorem}
+
+Thus the active weights must be inferred freely before comparison with \(\{1,0,-1,-2,-3\}\).  In noisy applications the theorem is not a raw-differentiation prescription: covariance, model order, smoothing, and the condition number of \(H_0\) must be propagated.  A pinned \(w_X=-2/3\) calculation tests consistency, not independent identification.
+
+\section{No-go statements}
+
+\begin{nogotheorem}[No local vacuum-density solution]\label{nogo:vacuum-density}
+No mechanism that leaves local vacuum energy as a freely gravitating source solves the cosmological-constant problem within the present invariant criterion.
+\end{nogotheorem}
+
+\begin{proof}
+If local vacuum energy gravitates as \(T^{\rm vac}_{\mu\nu}=-\rho_{\rm vac}g_{\mu\nu}\), then arbitrary shifts of the zero of energy shift the curvature unless cancelled by a counterterm.  Such cancellation is a parametrization unless a principle fixes the invariant combination; this is the same structural target pursued by vacuum-energy sequestering mechanisms \cite{KaloperPadilla2014}.  In the present mechanism the trace-free projector removes the shift and the boundary capacity fixes the remaining integration mode.
+\end{proof}
+
+\begin{nogotheorem}[No capacity from \(S^3\) topology alone]\label{nogo:no-topology-capacity}
+The topology \(\Sigma\simeq S^3\) and the finite valuation spectrum do not by themselves compute \(\Ncap\).
+\end{nogotheorem}
+
+\begin{proof}
+The valuation spectrum supplies powers of the scale factor and algebraic projectors.  It contains no Planck-scale Hilbert-space dimension.  By \cref{nogo:topology-amplitude}, topology and dimensionless homogeneous algebra cannot alone select a nonzero dimensional \(\Lambda\).  The additional microscopic input is precisely \(\mathcal H_\partial\) and its capacity.
+\end{proof}
+
+\begin{nogotheorem}[No single four-dimensional second-order metric correction]\label{nogo:lovelock}
+Under the usual four-dimensional assumptions of locality, metric dependence only, second-order field equations, and covariant conservation, a new arbitrary left-hand side cannot be the solution.  The Lovelock uniqueness result leaves only the Einstein tensor plus a term proportional to \(g_{\mu\nu}\) \cite{Lovelock1971,Curiel2016,PadmanabhanKothawala2013}.
+\end{nogotheorem}
+
+\section{Empirical interpretation}
+
+The capacity-fixed mechanism changes what must be measured or computed.
+
+First, cosmology measures an effective \(\Lambda_{\rm obs}\).  The theory demands
+\begin{equation}
+\boxed{
+\Ncap
+=
+\frac{3\pi}{\Lambda_{\rm obs}\ell_P^2}
+}
+\end{equation}
+as the target capacity.  This number is large, of order \(10^{122}\) in the observed late-time cosmology \cite{Planck2018}.  The microscopic task is to derive this capacity from \(\mathcal H_\partial\), not to tune a vacuum density.
+
+
+\begin{remark}[Tensor propagation is not the \(s=-2\) ledger branch]
+The homogeneous \(s=-2\) coefficient in \(F(a)\) is a background expansion term.  It is geometrical curvature before the split and a \(w=-1/3\) physical stress branch after the split.  It is not the graviton mass and not the tensor-wave speed.  The condition \(c_T=c\) constrains the perturbative spin--2 lift of the gravitational action, not the presence or absence of a homogeneous \(a^{-2}\) power in the background ledger.
+\end{remark}
+
+
+Second, multimessenger gravity requires a luminal tensor sector,
+\begin{equation}
+\boxed{c_T=c,}
+\end{equation}
+consistent with the observed near-simultaneous gravitational-wave and electromagnetic propagation in GW170817/GRB 170817A \cite{AbbottGW170817,MonitorGRB170817A}.
+
+Third, the dark sector must pass both the cold-charge test and the valuation-spectrum test.  Cold dark matter is protected by \(Q_{\rm DM}\), while the homogeneous nonstandard valuation branch is tested by \(\mathcal C_{-1}[F]\) and free-spectrum Hankel reconstruction.  Lensing systems such as the Bullet Cluster motivate a stable gravitating dark sector independent of baryonic plasma \cite{Clowe2006,Markevitch2004}.
+
+Fourth, the real-data audit in \cref{sec:real-data-audit} fixes the empirical status of the present manuscript.  The invariant framework is a falsifiable architecture that survives BAO-only tests, while superiority over flexible dark-energy parameterizations is not established by the positive \(a^{-1}\) branch alone.
+
+\section{Conclusion}
+
+The illustrative DESI DR2 BAO audit updates the status of the construction.  It confirms that the invariant sieve is operational and not excluded by current BAO-only distances.  It also prevents an overclaim: the positive boundary \(X:a^{-1}\) branch improves \(\chi^2\) only mildly, the positive \(s=+1\) branch is not selected, and the flexible \(w_0w_a\) benchmark remains the better empirical background fit in BAO-only AIC.  Thus the theory's present achievement is a sharp invariant mechanism and test architecture, not a completed observational proof of a unique branch.
+
+
+The all-dimensional valuation skeleton further sharpens the role of the observed
+three spatial dimensions: the boundary-local quotient by vacuum, curvature, and
+dust has dimension \(n-2\), so the existence of exactly one nonstandard
+boundary-local direction is special to \(n=3\).
+
+
+The cosmological constant is replaced here by an exact invariant mechanism:
+\begin{equation}
+\boxed{
+\text{trace-free local dynamics}
++
+\text{horizon-capacity fixation}.
+}
+\end{equation}
+The local equation
+\[
+R_{\mu\nu}-\frac14Rg_{\mu\nu}
+=
+8\pi G\left(T_{\mu\nu}-\frac14Tg_{\mu\nu}\right)
+\]
+annihilates constant vacuum-energy shifts.  The Bianchi identity yields an integration mode.  The boundary capacity postulate fixes it:
+\[
+\boxed{
+\Lambda_{\rm cap}
+=
+\frac{3\pi}
+{\ell_P^2\Capacity(\mathcal H_\partial;\Agrav,Q_{\rm DM},P_{\rm val})}.
+}
+\]
+Thus \(\Lambda\) is not a bare coupling and not a fitted fluid.  It is an on-shell eigenvalue of the global capacity sector.
+
+The full completion object is
+\[
+\boxed{
+\Cinv^{\rm cap}
+=
+(\Ptr,\Capacity\mathcal H_\partial,\Agrav,Q_{\rm DM},P_{\rm val}(\Dil)).
+}
+\]
+The valuation algebra remains as the exact homogeneous \(S^3\) infrared closure; the dark charge protects the cold \(a^{-3}\) sector; the quantum constraint algebra defines which boundary states may be counted; the capacity fixes the vacuum slot.  What remains open is not the role of \(\Lambda\), but the microscopic computation of \(\Ncap\).  That is now a sharply posed state-counting problem rather than a free cosmological constant.
+
+\section*{Data and code availability}
+
+The theorem layer is analytic.  The illustrative DESI DR2 BAO audit uses the published BAO distance vector and the approximation stated in \cref{sec:real-data-audit}; the submission package includes the plotted figures and the corresponding audit files.  A full empirical implementation should additionally publish the complete covariance, likelihood, optimizer or sampler settings, priors, capacity prescription, expansion reconstruction, free-spectrum inference, curvature split, dark-charge realization, and posterior model-order diagnostics.
+
+\begin{thebibliography}{99}
+
+\bibitem{Lovelock1971}
+D. Lovelock,
+``The Einstein tensor and its generalizations,''
+\emph{J. Math. Phys.} \textbf{12}, 498--501 (1971),
+\href{https://doi.org/10.1063/1.1665613}{doi:10.1063/1.1665613}.
+
+\bibitem{Curiel2016}
+E. Curiel,
+``A Simple Proof of the Uniqueness of the Einstein Field Equation in All Dimensions,''
+\href{https://arxiv.org/abs/1601.03032}{arXiv:1601.03032}.
+
+\bibitem{PadmanabhanKothawala2013}
+T. Padmanabhan and D. Kothawala,
+``Lanczos--Lovelock models of gravity,''
+\emph{Phys. Rept.} \textbf{531}, 115--171 (2013),
+\href{https://doi.org/10.1016/j.physrep.2013.05.007}{doi:10.1016/j.physrep.2013.05.007}.
+
+\bibitem{AndersonFinkelstein1971}
+J. L. Anderson and D. Finkelstein,
+``Cosmological constant and fundamental length,''
+\emph{Am. J. Phys.} \textbf{39}, 901--904 (1971),
+\href{https://doi.org/10.1119/1.1986321}{doi:10.1119/1.1986321}.
+
+\bibitem{Unruh1989}
+W. G. Unruh,
+``A Unimodular Theory of Canonical Quantum Gravity,''
+\emph{Phys. Rev. D} \textbf{40}, 1048--1052 (1989),
+\href{https://doi.org/10.1103/PhysRevD.40.1048}{doi:10.1103/PhysRevD.40.1048}.
+
+\bibitem{HenneauxTeitelboim1989}
+M. Henneaux and C. Teitelboim,
+``The cosmological constant and general covariance,''
+\emph{Phys. Lett. B} \textbf{222}, 195--199 (1989),
+\href{https://doi.org/10.1016/0370-2693(89)91251-3}{doi:10.1016/0370-2693(89)91251-3}.
+
+\bibitem{Weinberg1989}
+S. Weinberg,
+``The cosmological constant problem,''
+\emph{Rev. Mod. Phys.} \textbf{61}, 1--23 (1989),
+\href{https://doi.org/10.1103/RevModPhys.61.1}{doi:10.1103/RevModPhys.61.1}.
+
+
+\bibitem{KaloperPadilla2014}
+N. Kaloper and A. Padilla,
+``Sequestering the standard model vacuum energy,''
+\emph{Phys. Rev. Lett.} \textbf{112}, 091304 (2014),
+\href{https://doi.org/10.1103/PhysRevLett.112.091304}{doi:10.1103/PhysRevLett.112.091304}.
+
+\bibitem{Planck2018}
+N. Aghanim \emph{et al.} (Planck Collaboration),
+``Planck 2018 results. VI. Cosmological parameters,''
+\emph{Astron. Astrophys.} \textbf{641}, A6 (2020),
+\href{https://doi.org/10.1051/0004-6361/201833910}{doi:10.1051/0004-6361/201833910}.
+
+\bibitem{Bekenstein1973}
+J. D. Bekenstein,
+``Black holes and entropy,''
+\emph{Phys. Rev. D} \textbf{7}, 2333--2346 (1973),
+\href{https://doi.org/10.1103/PhysRevD.7.2333}{doi:10.1103/PhysRevD.7.2333}.
+
+\bibitem{Hawking1975}
+S. W. Hawking,
+``Particle creation by black holes,''
+\emph{Commun. Math. Phys.} \textbf{43}, 199--220 (1975),
+\href{https://doi.org/10.1007/BF02345020}{doi:10.1007/BF02345020}.
+
+\bibitem{GibbonsHawking1977}
+G. W. Gibbons and S. W. Hawking,
+``Cosmological event horizons, thermodynamics, and particle creation,''
+\emph{Phys. Rev. D} \textbf{15}, 2738--2751 (1977),
+\href{https://doi.org/10.1103/PhysRevD.15.2738}{doi:10.1103/PhysRevD.15.2738}.
+
+\bibitem{Dirac1958}
+P. A. M. Dirac,
+``The theory of gravitation in Hamiltonian form,''
+\emph{Proc. Roy. Soc. Lond. A} \textbf{246}, 333--343 (1958),
+\href{https://doi.org/10.1098/rspa.1958.0142}{doi:10.1098/rspa.1958.0142}.
+
+\bibitem{ADM1962}
+R. Arnowitt, S. Deser, and C. W. Misner,
+``The dynamics of general relativity,''
+in \emph{Gravitation: An Introduction to Current Research},
+ed. L. Witten (Wiley, New York, 1962), pp. 227--265,
+\href{https://arxiv.org/abs/gr-qc/0405109}{arXiv:gr-qc/0405109}.
+
+\bibitem{HenneauxTeitelboim1992}
+M. Henneaux and C. Teitelboim,
+\emph{Quantization of Gauge Systems},
+Princeton University Press, Princeton (1992).
+
+\bibitem{Hadwiger1957}
+H. Hadwiger,
+\emph{Vorlesungen \"uber Inhalt, Oberfl\"ache und Isoperimetrie},
+Springer, Berlin (1957).
+
+\bibitem{Schneider2014}
+R. Schneider,
+\emph{Convex Bodies: The Brunn--Minkowski Theory},
+2nd expanded ed., Cambridge University Press, Cambridge (2014).
+
+\bibitem{AbbottGW170817}
+B. P. Abbott \emph{et al.} (LIGO Scientific Collaboration and Virgo Collaboration),
+``GW170817: Observation of Gravitational Waves from a Binary Neutron Star Inspiral,''
+\emph{Phys. Rev. Lett.} \textbf{119}, 161101 (2017),
+\href{https://doi.org/10.1103/PhysRevLett.119.161101}{doi:10.1103/PhysRevLett.119.161101}.
+
+\bibitem{MonitorGRB170817A}
+B. P. Abbott \emph{et al.},
+``Gravitational Waves and Gamma-rays from a Binary Neutron Star Merger: GW170817 and GRB 170817A,''
+\emph{Astrophys. J. Lett.} \textbf{848}, L13 (2017),
+\href{https://doi.org/10.3847/2041-8213/aa920c}{doi:10.3847/2041-8213/aa920c}.
+
+\bibitem{Clowe2006}
+D. Clowe, M. Bradac, A. H. Gonzalez, M. Markevitch, S. W. Randall, C. Jones, and D. Zaritsky,
+``A direct empirical proof of the existence of dark matter,''
+\emph{Astrophys. J. Lett.} \textbf{648}, L109--L113 (2006),
+\href{https://doi.org/10.1086/508162}{doi:10.1086/508162}.
+
+\bibitem{Markevitch2004}
+M. Markevitch, A. H. Gonzalez, D. Clowe, A. Vikhlinin, W. Forman, C. Jones, S. Murray, and W. Tucker,
+``Direct constraints on the dark matter self-interaction cross-section from the merging galaxy cluster 1E 0657--56,''
+\emph{Astrophys. J.} \textbf{606}, 819--824 (2004),
+\href{https://doi.org/10.1086/383178}{doi:10.1086/383178}.
+
+
+\bibitem{DESIDR2BAO2025}
+M. Abdul Karim \emph{et al.} (DESI Collaboration),
+``DESI DR2 Results II: Measurements of Baryon Acoustic Oscillations and Cosmological Constraints,''
+\emph{Phys. Rev. D} \textbf{112}, 083515 (2025),
+\href{https://doi.org/10.1103/tr6y-kpc6}{doi:10.1103/tr6y-kpc6},
+\href{https://arxiv.org/abs/2503.14738}{arXiv:2503.14738}.
+
+\bibitem{DESIDR2Extended2025}
+K. Lodha \emph{et al.} (DESI Collaboration),
+``Extended Dark Energy analysis using DESI DR2 BAO measurements,''
+\href{https://arxiv.org/abs/2503.14743}{arXiv:2503.14743}.
+
+\bibitem{WangMota2025}
+D. Wang and D. Mota,
+``Did DESI DR2 truly reveal dynamical dark energy?''
+\href{https://arxiv.org/abs/2504.15222}{arXiv:2504.15222}.
+
+\bibitem{NISTPlanckLength2022}
+NIST Reference on Constants, Units, and Uncertainty,
+``CODATA Value: Planck length,''
+2022 CODATA recommended values,
+\href{https://physics.nist.gov/cgi-bin/cuu/Value?plkl=}{physics.nist.gov/cgi-bin/cuu/Value?plkl=}.
+
+
+
+\bibitem{HKT1976}
+K. V. Kucha\v{r}, ``Geometry of hyperspace. I,''
+\emph{J. Math. Phys.} \textbf{17}, 777 (1976);
+see also C. Teitelboim, ``How commutators of constraints reflect the spacetime structure,''
+\emph{Ann. Phys.} \textbf{79}, 542 (1973).
+
+\bibitem{Dirac1964}
+P. A. M. Dirac, \emph{Lectures on Quantum Mechanics}, Belfer Graduate School of Science, Yeshiva University, New York, 1964.
+
+\bibitem{Loll2020}
+R. Loll, ``Quantum Gravity from Causal Dynamical Triangulations: A Review,''
+\emph{Class. Quantum Grav.} \textbf{37}, 013002 (2020),
+\href{https://doi.org/10.1088/1361-6382/ab57c7}{doi:10.1088/1361-6382/ab57c7}.
+
+\bibitem{Saueressig2023}
+F. Saueressig, ``The Functional Renormalization Group in Quantum Gravity,''
+\emph{Living Rev. Relativ.} \textbf{26}, 2 (2023),
+\href{https://doi.org/10.1007/s41114-023-00042-3}{doi:10.1007/s41114-023-00042-3}.
+
+\end{thebibliography}
+
+\end{document}
