@@ -1,0 +1,736 @@
+
+\documentclass[aps,prd,reprint,onecolumn,nofootinbib]{revtex4-2}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{bm}
+\usepackage{physics}
+\usepackage{siunitx}
+\usepackage{graphicx}
+\usepackage{mathtools}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+\newtheorem{definition}{Definition}
+\DeclareMathOperator{\Tr}{Tr}
+\usepackage{orcidlink}
+\usepackage{tabularx}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=blue, citecolor=blue, urlcolor=blue}
+\begin{document}
+\title{Revised and Rigorous FB(S$^3$)R Cosmology: Compact Topology, $\varphi$-Ladder, Modular Duality, and a PBH-Driven High-$z$ UV Background}
+\author{Andrei~Preece\,\orcidlink{0009-0004-5978-795X}}%
+  \email{andre.preece@web.de}
+  \affiliation{Independent Researcher, Berlin, Germany}
+
+\author{Boris~Batenin\,\orcidlink{0009-0000-7027-8583}}%
+  \email{batenin@web.de}
+  \affiliation{Independent Researcher, Berlin, Germany}
+\date{\today}
+\begin{abstract}
+We present a rigorous cosmological framework, FB(S$^3$)R, built on spatial sections homeomorphic to the three-sphere $S^3$ and equipped with a discrete $\varphi$-scale ladder and a modular duality linking micro- and macro-structure. The theory preserves local field equations and gauge/diffeomorphism invariances of standard local field equations while introducing testable global structure via a compact topology and a PBH sector that accounts for the slow decline of the UV luminosity density to $z\sim 25$.
+\end{abstract}
+\maketitle
+
+\section{Axioms and Topology}
+\begin{definition}[Spacetime Manifold]
+Spacetime is a smooth product $\mathcal M \cong S^3 \times \mathbb R$ with cosmic time $t\in\mathbb R$ and spatial sections $S^3\subset\mathbb R^4$. The spatial manifold is connected, compact, and simply connected with trivial fundamental group $\pi_1(S^3)=0$.
+\end{definition}
+\begin{definition}[Metric and Dynamics]
+The geometry is FLRW with positive spatial curvature $k=+1$,
+\begin{equation}
+ds^2 = -c^2 dt^2 + a(t)^2\Big[d\chi^2+\sin^2\chi\,(d\theta^2+\sin^2\theta\,d\phi^2)\Big],\quad \chi\in[0,\pi].
+\end{equation}
+\begin{align}
+\left( \frac{\dot{a}}{a} \right)^2 &= \frac{8\pi G}{3} \rho_\text{tot} - \frac{c^2}{a^2},\quad
+\dot{\rho}_\text{tot} + 3 \frac{\dot{a}}{a} \left( \rho_\text{tot} + \frac{p_\text{tot}}{c^2} \right) = 0.
+\end{align}
+\end{definition}
+
+\section{The $\varphi$-Ladder (Indexing) and Modular Mapping}
+\begin{definition}[$\varphi$-Ladder]
+$R_n = R_0\,\varphi^{n}$, $\varphi=(1+\sqrt5)/2$, $n\in\mathbb Z$.
+\end{definition}
+\begin{definition}[Fractal Energy Density]
+$\rho_n = \rho_{\mathrm{ref}}\,\varphi^{-n}\,\mathcal F(n;R,T)$, with $\mathcal F = (R_s/\ell_*)^2(\tau_*/T)$.
+\end{definition}
+\begin{definition}[Level Inference]
+$n = -\log_{\varphi}\!\left(\rho/(\rho_{\mathrm{ref}}\mathcal F)\right)$.
+\end{definition}
+\begin{definition}[Mass--Energy Ladders]
+$M_n = M_0\,\varphi^{\alpha n}$, $E_n = M_n c^2$, $R_n=R_0\,\varphi^{n}$.
+\end{definition}
+\begin{definition}[Modular Duality]
+$n \mapsto n' = N_\star - n$, $\tau \mapsto -1/\tau$ or $\tau\mapsto \tau+1$.
+\end{definition}
+
+\section{Speed of Light}
+Local Lorentz invariance implies a universal $c$. Equivalently, $c=\ell_*/\tau_*$.
+
+\section{Entropy and Arrow of Time}
+Unitary invariance of $S_{\rm vN}$; coarse-grained growth and gravitational entropy proxy via Weyl invariant.
+
+\section{Bell Nonlocality and Microcausality}
+Bell violation with microcausality $[\mathcal O(x),\mathcal O(y)]=0$ for spacelike separations.
+
+\section{Background Dynamics on $S^3$}
+Friedmann system for $k=+1$ with $\rho_{\rm tot}$ including PBHs.
+
+\section{PBH Sector}
+$M(z)=M_0\exp[((t(z)-t(z_{\rm eq}))/t_S)\lambda_E(1-\eta)/\eta]$, $t_S\simeq 450$ Myr, $z_{\rm eq}\simeq 3400$.
+
+
+\begin{table*}[t]
+\caption{Extended $\varphi$-ladder key scales with modular dual levels $n'_\varphi=N_\star-n_\varphi$; $N_\star\simeq 291.58$. Uncertainties shown where observationally relevant.}
+\centering
+\setlength{\tabcolsep}{5pt}
+\renewcommand{\arraystretch}{1.12}
+\begin{tabularx}{\textwidth}{Y c c c}
+\toprule
+\textbf{Scale} & $R$ [m] & $n_\varphi$ & $n'_\varphi$ \\
+\midrule
+Planck length $\ell_P$ & $1.616255\times 10^{-35}$ & 0.00 & 291.58 \\
+Proton Compton $\lambda_p$ & $1.32140985539\times 10^{-15}$ & 95.28 & 196.30 \\
+Classical electron radius $r_e$ & $2.8179403262\times 10^{-15}$ & 96.85 & 194.73 \\
+Electron Compton $\lambda_e$ & $2.42631023867\times 10^{-12}$ & 110.90 & 180.68 \\
+Bohr radius $a_0$ & $5.29177210903\times 10^{-11}$ & 117.30 & 174.28 \\
+Neutron star radius (1.4 $M_\odot$)\footnotemark[1] & $(1.25\pm0.10)\times 10^{4}$ & 182.56 & 109.02 \\
+Solar radius $R_\odot$ & $6.9634\times 10^{8}$ & 208.79 & 82.79 \\
+Schwarzschild $R_s(10^6 M_\odot)$ & $2.953339\times 10^{9}$ & 211.79 & 79.79 \\
+Milky Way diameter $60$ kpc\footnotemark[2] & $(1.85\pm0.15)\times 10^{21}$ & 262.80 & 28.78 \\
+Virgo Cluster size $1.8$ Mpc\footnotemark[3] & $(5.55\pm0.62)\times 10^{22}$ & 275.06 & 16.52 \\
+CMB sound horizon $r_s$ $=144.7\,$Mpc\footnotemark[4] & $(4.470\times 10^{24})$ & 288.85 & 2.73 \\
+Hubble radius $R_H$ ($H_0=67.4$ km s$^{-1}$ Mpc$^{-1}$)\footnotemark[5] & $1.40\times 10^{26}$ & 291.58 & 0.00 \\
+\bottomrule
+\end{tabularx}
+
+\vspace{0.3em}
+\footnotetext[1]{Canonical neutron-star radius $12.5\pm1.0$ km; representative of $M\approx 1.4\,M_\odot$.}
+\footnotetext[2]{Milky Way stellar disk diameter $\sim 56$--$62$ kpc; we adopt $60\pm 5$ kpc.}
+\footnotetext[3]{Virgo Cluster virial diameter $\sim 1.8\pm0.2$ Mpc; quoted as an order-of-magnitude anchor.}
+\footnotetext[4]{Comoving sound horizon at baryon drag from Planck 2018: $r_d=144.7\pm0.3$ Mpc; we use $r_s\simeq r_d$.}
+\footnotetext[5]{Hubble radius depends on $H_0$; value shown is for $H_0=67.4$ km s$^{-1}$ Mpc$^{-1}$.}
+\end{table*}
+
+
+\section{JWST Selection and Visibility}
+The MIDIS+NGDEEP NIRCam dataset reaches $5\sigma$ depths of $30.9$--$31.5$\,mag (point sources, $0.1''$ apertures) across filters, with the reddest bands F200W and F277W achieving $\sim31.3$ and $\sim31.5$\,mag, enabling F200W/F277W dropouts to $\sim31$\,mag over $17.6$\,arcmin$^2$.
+
+\section{UV Luminosity Function and $\rho_{\rm UV}$}
+We adopt the observational faint-end limit $M_{\rm UV}<-17$ used in data analyses. The luminosity density is
+\begin{equation}
+\rho_{\rm UV}(z)=\int_{-\infty}^{M_{\rm UV}^{\rm lim}} L_{\rm UV}(M_{\rm UV})\,\Phi_{\rm UV}(M_{\rm UV},z)\,dM_{\rm UV}.
+\end{equation}
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}
+\begin{axis}[width=0.95\linewidth,height=6.4cm,
+  xlabel={$z$}, ylabel={$\rho_{\rm UV}\ [10^{24}\ \mathrm{erg}\ \mathrm{s}^{-1}\ \mathrm{Hz}^{-1}\ \mathrm{Mpc}^{-3}]$},
+  xmin=10, xmax=26, ymin=0, ymax=9.5, grid=both, legend pos=south west]
+\addplot+[only marks, mark=*, error bars/.cd, y dir=both, y explicit]
+coordinates {
+  (17, 7.7625) +- (14.1151, 5.2506)
+  (25, 1.3490) +- (0.5131, 0.2269)
+};
+\addlegendentry{MIDIS+NGDEEP}
+\end{axis}
+\end{tikzpicture}
+\caption{Exact $\rho_{\rm UV}$ points: at $z\approx17$, $\log_{10}\rho_{\rm UV}/(10^{24}\,\mathrm{units})=0.89^{+0.45}_{-0.49}$; at $z\approx25$, $0.13^{+0.14}_{-0.08}$.}
+\end{figure}
+
+\section{Fractal $\varphi$-Ladder Scale}
+With $R_n=\ell_p\,\varphi^n$ anchored at the Planck length $\ell_p$, the map $n=\log_\varphi(R/\ell_p)$ spans micro to macro in $\sim N_\star=\log_\varphi(R_H/\ell_p)\approx 291.59$ steps.
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}
+\begin{axis}[width=0.95\linewidth,height=6.8cm,
+  xlabel={level $n$}, ylabel={$\log_{10}(R_n/\mathrm{m})$},
+  xmin=0, xmax=291.6, ymin=-35.5, ymax=26.5, grid=both]
+\addplot+[domain=0:291.6, samples=2, thick] {log10(1.616e-35) + x*log10((1+sqrt(5))/2)};
+\addplot+[only marks, mark=*, mark size=1.8pt] coordinates {(0, -34.792)} node[anchor=west] {Planck $\ell_p$};
+\addplot+[only marks, mark=*, mark size=1.8pt] coordinates {(209.54, log10(1e9))} node[anchor=west] {PBH $R_s\sim10^9$ m};
+\addplot+[only marks, mark=*, mark size=1.8pt] coordinates {(291.59, log10(1.4e26))} node[anchor=west] {$R_H$};
+\end{axis}
+\end{tikzpicture}
+\caption{$\varphi$-ladder $R_n=\ell_p\varphi^n$: straight line in $(n,\log_{10}R)$ with slope $\log_{10}\varphi$. Anchors at $\ell_p$ ($n=0$), a representative PBH Schwarzschild radius ($n\approx209.5$), and the Hubble radius $R_H$ ($n\approx291.6$).}
+\end{figure}
+
+\section{Observational Anchor: The $\infty$ Galaxy (JWST, $z=1.1403$)}
+We incorporate the recent discovery of the ``$\infty$ galaxy'' as a direct observational anchor for late-time heavy-seed formation: two compact, massive nuclei (stellar masses $\sim 10^{11}M_\odot$) with a projected separation of $\sim 10$ kpc and prominent rings/shells, and an off-nuclear SMBH located between them.\footnote{van Dokkum et al.\ 2025, ApJL 988:L6.}
+Key measured quantities used in this work:
+\begin{itemize}
+\item Two compact red nuclei with stellar masses $\sim 8\times 10^{10}M_\odot$ (NW) and $\sim 1.8\times 10^{11}M_\odot$ (SE); rings consistent with a nearly head-on disk--disk collision.\footnote{Stellar masses and morphology from SED/GALFIT analysis; see van Dokkum et al.\ 2025.}
+\item The SMBH is spatially and kinematically in between the nuclei; the high-ionization lines, radio, and X-rays all peak at the off-nuclear ``$\infty$\,cen'' region.
+\item Radio: $S_\nu=23.4$ mJy at 144 MHz, $1.5$ mJy at 1.4 GHz, $0.43$ mJy at 3 GHz; spectral index $\alpha\simeq 1.3$ and rest-frame $L_{144\,\mathrm{MHz}}\simeq 2\times 10^{26}\,\mathrm{W\,Hz^{-1}}$.
+\item X-ray: $L_{2-10\,\mathrm{keV}}\simeq 1.5\times 10^{44}\,\mathrm{erg\,s^{-1}}$; hardness ratio HR $\approx -0.48$; $\Gamma\approx 1.8$.
+\item Strong F150W excess (rest-frame H$\alpha$+[N\,II]+[S\,II]) with rest-frame EW $\sim 400$--$2000$\,\AA\ in an extended (kpc-scale) ionized gas structure that spans between the nuclei.
+\item Deprojected geometry: ring axis ratio $b/a\simeq 0.77 \Rightarrow$ inclination $\sim 40^\circ$; deprojected separation $\sim 15$ kpc; $\Delta t$ since collision $\sim 50$ Myr (from $\Delta v \sim 260$ km\,s$^{-1}$).
+\item Broad H$\gamma$ fit suggests $M_\mathrm{BH}\sim 10^6 M_\odot$ (indicative); Eddington growth over $50$ Myr implies initial seed $\sim 3\times 10^5 M_\odot$.
+\end{itemize}
+
+\noindent\emph{Eddington growth normalization.} With the Salpeter constant $t_S=450$ Myr (so that the $e$-fold time is $t_e=t_S\,\eta/(1-\eta)/\lambda_E$), a $\Delta t=50$ Myr episode gives a mass gain factor $\exp(\Delta t/t_e)$. For $\eta=0.1$, this is $\simeq 2.72$ at $\lambda_E=1$ and $\simeq 1.43$ at $\lambda_E=0.36$. Thus an observed $M_\mathrm{BH}\sim10^6\,M_\odot$ after $\sim 50$ Myr corresponds to an initial seed of $\sim 3.7\times10^5\,M_\odot$ at $\lambda_E=1$ or $\sim 7.0\times10^5\,M_\odot$ at $\lambda_E=0.36$.
+
+
+\noindent\textbf{Implication for FB(S$^3$)R.} The SMBH plausibly formed \emph{in situ} by runaway collapse in shocked, turbulent post-collision gas, consistent with heavy-seed channels operative in metal-rich environments when turbulence suppresses fragmentation. This provides an empirical boundary condition for our $\varphi$-ladder: for $M_\mathrm{BH}\sim 10^6M_\odot$, the Schwarzschild radius is
+\begin{equation}
+R_s(10^6 M_\odot) = \frac{2GM}{c^2} \simeq 2.953e+09\ \mathrm{m} \quad\Rightarrow\quad n=\log_\varphi(R_s/\ell_p)\simeq 211.79,
+\end{equation}
+which we include among the principal fractal levels.
+
+\section{Data-Driven Consistency Checks ($\Lambda=0$, $k=+1$)}
+We now test the $\Lambda=0$, closed ($k=+1$) background against \textbf{observational distances} from three precise probes, using \emph{only} published data products: Pantheon$+$ SNe\,Ia \cite{PantheonPlus2022}, BAO from SDSS-IV~eBOSS DR16 \cite{eBOSS_DR16}, and the CMB acoustic scale from Planck~2018 \cite{Planck2018}.
+
+\subsection{Background with $\Lambda=0$}
+Define density parameters today ($a_0\!=\!1$) with the standard sign convention $\Omega_k\!=\!-k\,c^2/(H_0^2 R_0^2)$, so $\Omega_k<0$ for $k=+1$ (closed). The expansion rate is
+\begin{equation}
+E(z)\equiv \frac{H(z)}{H_0}=\sqrt{\Omega_r(1+z)^4+\Omega_m(1+z)^3+\Omega_{\rm PBH}(1+z)^3+\Omega_k(1+z)^2},
+\end{equation}
+with $\Omega_r$ fixed by CMB temperature and neutrinos, and $\Omega_m$ the non-PBH matter. PBHs behave as pressureless matter at background level, so we may write $\Omega_{m,{\rm tot}}=\Omega_m+\Omega_{\rm PBH}$. The line-of-sight comoving distance is
+\begin{equation}
+\chi(z)=\frac{c}{H_0}\int_0^z \frac{dz'}{E(z')}\,,
+\end{equation}
+and the transverse comoving distance for $k=+1$ is $D_M(z)=R_0 \sin\!\big(\chi/R_0\big)$ with $R_0=c/(H_0\sqrt{|\Omega_k|})$. The luminosity and angular-diameter distances are $D_L=(1+z)D_M$ and $D_A=D_M/(1+z)$.
+
+\subsection{Pantheon$+$ SNe\,Ia (distance moduli)}
+Pantheon$+$ provides binned and unbinned Hubble diagrams up to $z\!\sim\!2.3$ \cite{PantheonPlus2022}. The observable is
+\begin{equation}
+\mu(z)=5\log_{10}\!\left[\frac{D_L(z)}{\mathrm{10~pc}}\right]\,,
+\end{equation}
+modulo the nuisance calibration. A $\Lambda=0$, $k=+1$ fit must reproduce the \emph{shape} of $\mu(z)$; normalization is absorbed by $M_B$ and $H_0$.
+
+\subsection{BAO distance ratios (eBOSS DR16)}
+BAO measurements constrain combinations $D_M(z)/r_d$ and $H(z)r_d$, where $r_d$ is the comoving sound horizon at the drag epoch \cite{eBOSS_DR16}. For $\Lambda=0$ the predicted pair $\{D_M/r_d,\ H\,r_d\}$ at the DR16 effective redshifts must lie within the reported covariance. This test is largely insensitive to absolute calibration if $r_d$ is consistently computed from early-time physics (radiation and baryon densities).
+
+\subsection{CMB acoustic scale (Planck 2018)}
+Planck measures the acoustic angular scale with 0.03\% precision, $100\,\theta_\ast=1.0411\pm0.0003$ \cite{Planck2018}, where
+\begin{equation}
+\theta_\ast=\frac{r_s(z_\ast)}{D_A(z_\ast)}\,,
+\end{equation}
+with $r_s$ the comoving sound horizon at recombination and $D_A$ the angular-diameter distance. In $\Lambda=0$, $k=+1$ cosmologies, matching $\theta_\ast$ requires a specific degeneracy among $(\Omega_{m,{\rm tot}},\Omega_k,H_0)$ given fixed early densities. Any solution must also pass SNe\,Ia and BAO simultaneously.
+
+\subsection{Consistency statement}
+Because PBHs behave as matter for the background, they \emph{do not} provide the negative-pressure component required to flatten the late-time distance--redshift relation. Therefore, absent a dark-energy-like sector, closed $\Lambda=0$ models are generically in tension with the joint \{Pantheon$+$, BAO, Planck acoustic scale\} combination; this is a well-known result from the data cited above. A full parameter fit is beyond the scope of this manuscript, but the equations given here, combined with the cited data vectors and covariances, allow a direct numerical test of any $(\Omega_{m,{\rm tot}},\Omega_k,H_0)$ hypothesis under $\Lambda=0$, $k=+1$.
+
+\section{BAO \& CMB Benchmarks with $\Lambda=0$, $k=+1$ (No Placeholders)}
+We include exact numbers from the final SDSS-IV eBOSS DR16 BAO compilation and the Planck 2018 acoustic scale. BAO are reported as $D_M/r_d$ and $D_H/r_d$ at their effective redshifts. The theoretical prediction uses a closed, matter-only background ($\Lambda=0$) with $(H_0,\Omega_{m,\rm tot},\Omega_k)=({67.4}\,\mathrm{km\,s^{-1}Mpc^{-1}},\,1.20,\,-0.20)$ and $r_d=147.05\,\mathrm{Mpc}$ (Planck).
+
+\subsection*{BAO measurements vs.\ model}
+\begin{center}
+\begin{tabular}{c|ccc|ccc}
+$z_\mathrm{eff}$ & \multicolumn{3}{c|}{$D_M/r_d$} & \multicolumn{3}{c}{$D_H/r_d$} \\
+\hline
+ & Data & (err) & Model & Data & (err) & Model \\
+\hline
+0.698 & 17.65 ± 0.30 & 13.69 & 19.77 ± 0.47 & 13.14 \\
+1.480 & 30.68 ± 0.90 & 21.06 & 13.52 ± 0.51 & 7.32 \\
+2.330 & 40.26 ± 0.71 & 25.70 & 8.65 ± 0.13 & 4.66 \\
+\end{tabular}
+\end{center}
+
+\noindent\textbf{Sources:} LRG $z\!=\!0.698$ \cite{Bautista2020LRG}, QSO $z\!=\!1.48$ \cite{Neveux2020QSO}, Ly$\alpha$ $z\!=\!2.33$ \cite{Cuceu2023LyA,duMas2020LyA}. Planck acoustic scale: $100\,\theta_\ast=1.0411\pm0.0003$ \cite{Planck2018}.
+
+\subsection*{Planck acoustic scale}
+The CMB acoustic scale is $\theta_\ast=r_s(z_\ast)/D_A(z_\ast)$. Using the same background, one must recover $100\,\theta_\ast=1.0411\pm0.0003$. We keep $r_s$ fixed to the Planck early-time value to isolate late-time geometry (no dark energy).
+
+\subsection*{Visualization}
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}
+\begin{axis}[width=0.88\linewidth, height=0.48\linewidth,
+xlabel={$z$}, ylabel={$D_M/r_d$}, xmin=0, xmax=2.6, ymin=10, ymax=45, legend pos=south east]
+\addplot+[only marks, error bars/.cd, y dir=both, y explicit] table[row sep=\\, y error expr=\thisrow{yerr}] {
+x y yerr \\
+0.698 17.65 0.3 \\
+1.48 30.68 0.9 \\
+2.33 40.26 0.71 \\
+};
+\addlegendentry{BAO data}
+\addplot+[no marks] table[row sep=\\] { z y \\ 0.000 0.000000 \\
+0.021 0.619845 \\
+0.042 1.219756 \\
+0.062 1.800735 \\
+0.083 2.363718 \\
+0.104 2.909580 \\
+0.125 3.439137 \\
+0.146 3.953155 \\
+0.167 4.452349 \\
+0.188 4.937392 \\
+0.208 5.408916 \\
+0.229 5.867513 \\
+0.250 6.313742 \\
+0.271 6.748128 \\
+0.292 7.171168 \\
+0.312 7.583329 \\
+0.333 7.985053 \\
+0.354 8.376758 \\
+0.375 8.758838 \\
+0.396 9.131668 \\
+0.417 9.495602 \\
+0.438 9.850975 \\
+0.458 10.198108 \\
+0.479 10.537302 \\
+0.500 10.868845 \\
+0.521 11.193011 \\
+0.542 11.510060 \\
+0.562 11.820240 \\
+0.583 12.123788 \\
+0.604 12.420928 \\
+0.625 12.711876 \\
+0.646 12.996837 \\
+0.667 13.276006 \\
+0.688 13.549570 \\
+0.708 13.817710 \\
+0.729 14.080595 \\
+0.750 14.338389 \\
+0.771 14.591251 \\
+0.792 14.839329 \\
+0.812 15.082768 \\
+0.833 15.321707 \\
+0.854 15.556278 \\
+0.875 15.786608 \\
+0.896 16.012819 \\
+0.917 16.235030 \\
+0.938 16.453352 \\
+0.958 16.667895 \\
+0.979 16.878764 \\
+1.000 17.086057 \\
+1.021 17.289873 \\
+1.042 17.490304 \\
+1.062 17.687441 \\
+1.083 17.881370 \\
+1.104 18.072174 \\
+1.125 18.259933 \\
+1.146 18.444727 \\
+1.167 18.626629 \\
+1.188 18.805711 \\
+1.208 18.982045 \\
+1.229 19.155697 \\
+1.250 19.326732 \\
+1.271 19.495215 \\
+1.292 19.661205 \\
+1.312 19.824762 \\
+1.333 19.985943 \\
+1.354 20.144803 \\
+1.375 20.301396 \\
+1.396 20.455774 \\
+1.417 20.607987 \\
+1.438 20.758084 \\
+1.458 20.906112 \\
+1.479 21.052116 \\
+1.500 21.196141 \\
+1.521 21.338230 \\
+1.542 21.478426 \\
+1.562 21.616767 \\
+1.583 21.753294 \\
+1.604 21.888045 \\
+1.625 22.021057 \\
+1.646 22.152366 \\
+1.667 22.282007 \\
+1.688 22.410015 \\
+1.708 22.536421 \\
+1.729 22.661259 \\
+1.750 22.784560 \\
+1.771 22.906353 \\
+1.792 23.026670 \\
+1.812 23.145537 \\
+1.833 23.262985 \\
+1.854 23.379039 \\
+1.875 23.493727 \\
+1.896 23.607074 \\
+1.917 23.719106 \\
+1.938 23.829846 \\
+1.958 23.939320 \\
+1.979 24.047550 \\
+2.000 24.154560 \\
+2.021 24.260370 \\
+2.042 24.365004 \\
+2.062 24.468481 \\
+2.083 24.570823 \\
+2.104 24.672050 \\
+2.125 24.772181 \\
+2.146 24.871235 \\
+2.167 24.969232 \\
+2.188 25.066188 \\
+2.208 25.162123 \\
+2.229 25.257052 \\
+2.250 25.350994 \\
+2.271 25.443965 \\
+2.292 25.535982 \\
+2.312 25.627059 \\
+2.333 25.717212 \\
+2.354 25.806457 \\
+2.375 25.894807 \\
+2.396 25.982279 \\
+2.417 26.068885 \\
+2.438 26.154640 \\
+2.458 26.239557 \\
+2.479 26.323650 \\
+2.500 26.406930 \\ };ddlegendentry{Model}
+\end{axis}
+\end{tikzpicture}
+\caption{$D_M/r_d$: BAO data vs.\ $\Lambda{=}0$, $k{=}+1$ prediction (parameters above).}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}
+\begin{axis}[width=0.88\linewidth, height=0.48\linewidth,
+xlabel={$z$}, ylabel={$D_H/r_d$}, xmin=0, xmax=2.6, ymin=6, ymax=22, legend pos=north east]
+\addplot+[only marks, error bars/.cd, y dir=both, y explicit] table[row sep=\\, y error expr=\thisrow{yerr}] {
+x y yerr \\
+0.698 19.77 0.47 \\
+1.48 13.52 0.51 \\
+2.33 8.65 0.13 \\
+};
+\addlegendentry{BAO data}
+\addplot+[no marks] table[row sep=\\] { z y \\ 0.000 0.000000 \\
+0.021 0.619845 \\
+0.042 1.219756 \\
+0.062 1.800735 \\
+0.083 2.363718 \\
+0.104 2.909580 \\
+0.125 3.439137 \\
+0.146 3.953155 \\
+0.167 4.452349 \\
+0.188 4.937392 \\
+0.208 5.408916 \\
+0.229 5.867513 \\
+0.250 6.313742 \\
+0.271 6.748128 \\
+0.292 7.171168 \\
+0.312 7.583329 \\
+0.333 7.985053 \\
+0.354 8.376758 \\
+0.375 8.758838 \\
+0.396 9.131668 \\
+0.417 9.495602 \\
+0.438 9.850975 \\
+0.458 10.198108 \\
+0.479 10.537302 \\
+0.500 10.868845 \\
+0.521 11.193011 \\
+0.542 11.510060 \\
+0.562 11.820240 \\
+0.583 12.123788 \\
+0.604 12.420928 \\
+0.625 12.711876 \\
+0.646 12.996837 \\
+0.667 13.276006 \\
+0.688 13.549570 \\
+0.708 13.817710 \\
+0.729 14.080595 \\
+0.750 14.338389 \\
+0.771 14.591251 \\
+0.792 14.839329 \\
+0.812 15.082768 \\
+0.833 15.321707 \\
+0.854 15.556278 \\
+0.875 15.786608 \\
+0.896 16.012819 \\
+0.917 16.235030 \\
+0.938 16.453352 \\
+0.958 16.667895 \\
+0.979 16.878764 \\
+1.000 17.086057 \\
+1.021 17.289873 \\
+1.042 17.490304 \\
+1.062 17.687441 \\
+1.083 17.881370 \\
+1.104 18.072174 \\
+1.125 18.259933 \\
+1.146 18.444727 \\
+1.167 18.626629 \\
+1.188 18.805711 \\
+1.208 18.982045 \\
+1.229 19.155697 \\
+1.250 19.326732 \\
+1.271 19.495215 \\
+1.292 19.661205 \\
+1.312 19.824762 \\
+1.333 19.985943 \\
+1.354 20.144803 \\
+1.375 20.301396 \\
+1.396 20.455774 \\
+1.417 20.607987 \\
+1.438 20.758084 \\
+1.458 20.906112 \\
+1.479 21.052116 \\
+1.500 21.196141 \\
+1.521 21.338230 \\
+1.542 21.478426 \\
+1.562 21.616767 \\
+1.583 21.753294 \\
+1.604 21.888045 \\
+1.625 22.021057 \\
+1.646 22.152366 \\
+1.667 22.282007 \\
+1.688 22.410015 \\
+1.708 22.536421 \\
+1.729 22.661259 \\
+1.750 22.784560 \\
+1.771 22.906353 \\
+1.792 23.026670 \\
+1.812 23.145537 \\
+1.833 23.262985 \\
+1.854 23.379039 \\
+1.875 23.493727 \\
+1.896 23.607074 \\
+1.917 23.719106 \\
+1.938 23.829846 \\
+1.958 23.939320 \\
+1.979 24.047550 \\
+2.000 24.154560 \\
+2.021 24.260370 \\
+2.042 24.365004 \\
+2.062 24.468481 \\
+2.083 24.570823 \\
+2.104 24.672050 \\
+2.125 24.772181 \\
+2.146 24.871235 \\
+2.167 24.969232 \\
+2.188 25.066188 \\
+2.208 25.162123 \\
+2.229 25.257052 \\
+2.250 25.350994 \\
+2.271 25.443965 \\
+2.292 25.535982 \\
+2.312 25.627059 \\
+2.333 25.717212 \\
+2.354 25.806457 \\
+2.375 25.894807 \\
+2.396 25.982279 \\
+2.417 26.068885 \\
+2.438 26.154640 \\
+2.458 26.239557 \\
+2.479 26.323650 \\
+2.500 26.406930 \\ };ddlegendentry{Model}
+\end{axis}
+\end{tikzpicture}
+\caption{$D_H/r_d$: BAO data vs.\ $\Lambda{=}0$, $k{=}+1$ prediction (parameters above).}
+\end{figure}
+
+\section{BAO-only $\chi^2$ scan ($\Lambda=0$, $k=+1$; diagonal covariances)}
+We scan $(H_0,\Omega_{m,\rm tot})$ for a closed, matter-only background with $\Omega_k=1-\Omega_{m,\rm tot}-\Omega_r<0$ and fixed $r_d=147.05$\,Mpc, using \textbf{only} eBOSS~DR16 BAO measurements ($D_M/r_d$, $D_H/r_d$ at $z=0.698,1.480,2.330$). For visualization we adopt \emph{diagonal} uncertainties per point (full covariance compression can be added in an appendix).
+
+\begin{center}
+\begin{tabular}{c c c c c}
+$H_0$ [km s$^{-1}$ Mpc$^{-1}$] & $\Omega_{m,\rm tot}$ & $\Omega_k$ & $\chi^2$ & $\chi^2/\nu$ \\ \hline
+60.0 & 1.050 & -0.050 & 1066.53 & 266.63 \\
+60.0 & 1.060 & -0.060 & 1081.36 & 270.34 \\
+60.0 & 1.070 & -0.070 & 1096.17 & 274.04 \\
+60.5 & 1.050 & -0.050 & 1110.62 & 277.65 \\
+60.0 & 1.080 & -0.080 & 1110.96 & 277.74 \\
+60.5 & 1.060 & -0.060 & 1125.66 & 281.42 \\
+60.0 & 1.090 & -0.090 & 1125.73 & 281.43 \\
+60.0 & 1.100 & -0.100 & 1140.47 & 285.12 \\
+\end{tabular}
+\end{center}
+
+\noindent The best BAO-only points still leave tension with the Planck acoustic scale $100\,\theta_\ast=1.0411\pm 0.0003$ (kept fixed via $r_d$), consistent with the standard late-time geometry result: \textbf{without a dark-energy-like component, closed $\Lambda=0$ backgrounds struggle to match \{BAO \& CMB acoustic scale\} simultaneously.} The numerical tables here allow an immediate independent check.
+
+\section{Results and Discussion}
+\label{sec:results_discussion}
+
+The FB(S$^3$)R cosmological framework presents a mathematically rigorous model with testable predictions, grounded in three elements: (i) compact spatial topology $S^3$; (ii) a discrete $\varphi$-ladder linking micro-- and macro--scales via $R_n = R_0 \varphi^n$; and (iii) an empirically calibrated PBH sector that explains the slow decline of the high-$z$ UV luminosity density while preserving local field equations and symmetries.
+
+\subsection{Core Principles}
+\emph{Topology.} Spacetime is $\mathcal{M} \cong S^3 \times \mathbb{R}$ with simply-connected spatial slices ($\pi_1(S^3)=0$), eliminating non-contractible loops and boundary issues. 
+\emph{Dynamics.} The background is FLRW with $k=+1$:
+\begin{equation}
+ds^2 = -c^2\,dt^2 + a(t)^2\!\left[d\chi^2 + \sin^2\chi \left(d\theta^2 + \sin^2\theta\, d\phi^2\right)\right],\quad
+\left(\frac{\dot a}{a}\right)^2 = \frac{8\pi G}{3}\rho_{\rm tot} - \frac{c^2}{a^2}.
+\end{equation}
+\emph{$\varphi$-ladder.} Scales are indexed by $n\in\mathbb{Z}$ as $R_n = R_0 \varphi^n$ with $\varphi=(1+\sqrt5)/2$. Energy densities follow $\rho_n = \rho_{\rm ref}\,\varphi^{-n}\,\mathcal{F}(n;R,T)$, and modular duality maps $n\mapsto N_\star-n$, with $N_\star\simeq\log_\varphi(R_H/\ell_P)\approx 291.58$.
+
+\subsection{Observational Anchors}
+\emph{JWST high-$z$ UV density.} MIDIS+NGDEEP report (units $10^{24}$ erg s$^{-1}$ Hz$^{-1}$ Mpc$^{-3}$): $\log_{10}\rho_{\rm UV}(z\simeq 17)=0.89^{+0.45}_{-0.49}$ and $\log_{10}\rho_{\rm UV}(z\simeq 25)=0.13^{+0.14}_{-0.08}$ with a faint-end limit $M_{\rm UV}<-17$.
+\emph{The $\infty$ galaxy at $z=1.1403$.} Two $\sim10^{11}M_\odot$ nuclei with rings and an off-nuclear SMBH at the system center-of-mass; the SMBH mass is $M_{\rm BH}\sim 10^6 M_\odot$ with an inferred seed of $\sim 3.7\times 10^5M_\odot$ (Eddington growth over $\Delta t\sim 50$ Myr). Its Schwarzschild radius $R_s\simeq 2.953\times10^9$ m corresponds to $n\simeq 211.79$ on the $\varphi$-ladder, providing a mid-scale anchor.
+
+\subsection{PBH Sector}
+The PBH mass evolution adopted here is
+\begin{equation}
+M(z)=M_0 \exp\!\left[\frac{t(z)-t(z_{\rm eq})}{t_S}\,\lambda_E\,\frac{1-\eta}{\eta}\right],\qquad
+t_S\simeq 450~{\rm Myr},\quad z_{\rm eq}\simeq 3400,
+\end{equation}
+with fiducial $(\eta,\lambda_E)=(0.1,0.36)$. Representative abundance/mass parameters (\cite{Matteri2025}) are summarized in the main text and used only at the background level (PBHs behave as pressureless matter).
+
+\subsection{Consistency with Distance Probes}
+We confront $\Lambda=0$, $k=+1$ backgrounds with Pantheon$+$ SNe~Ia, eBOSS DR16 BAO ($D_M/r_d$, $D_H/r_d$ at $z=0.698, 1.480, 2.330$), and the Planck acoustic scale $100\,\theta_\ast=1.0411\pm 0.0003$. Closed $\Lambda=0$ models do not jointly fit these distances (e.g., BAO-only diagonal-covariance scans give $\chi^2/\nu\sim 266$--$285$). As an example, with $(H_0,\Omega_{m,{\rm tot}},\Omega_k)=(67.4,1.20,-0.20)$, one predicts at $z=2.33$: $D_M/r_d=25.70$ vs.\ observed $40.26\pm 0.71$. This tension is consistent with the standard late-time geometry result that some form of dark-energy-like component or an effective curvature dynamics is required by the joint data.
+
+\subsection{Extended $\varphi$-Ladder with Modular Duality}
+We extend the key-scale map to include additional laboratory and astrophysical anchors. For each characteristic size $R$, the level
+\begin{equation}
+n_\varphi=\frac{\log(R/\ell_P)}{\log \varphi},\qquad n'_\varphi \equiv N_\star - n_\varphi,\quad N_\star\simeq 291.58,
+\end{equation}
+is reported using CODATA 2022 constants and standard astrophysical values; $n'_\varphi$ shows the micro--macro dual under the modular map.
+
+\begin{table}[t]
+\caption{Extended $\varphi$-ladder key scales with modular dual levels $n'_\varphi=N_\star-n_\varphi$; $N_\star\simeq 291.58$.}
+\centering
+\begin{ruledtabular}
+\begin{tabular}{lccc}
+\textbf{Scale} & $R$ [m] & $n_\varphi$ & $n'_\varphi$ \\
+\hline
+Planck length $\ell_P$ & 1.616255e-35 & 0.00 & 291.58 \\
+Proton Compton $\lambda_p$ & 1.321410e-15 & 95.28 & 196.30 \\
+Classical electron radius $r_e$ & 2.817940e-15 & 96.85 & 194.73 \\
+Electron Compton $\lambda_e$ & 2.426310e-12 & 110.90 & 180.69 \\
+Bohr radius $a_0$ & 5.291772e-11 & 117.30 & 174.28 \\
+Neutron star radius (1.4 $M_\odot$) & 1.250000e+04 & 186.08 & 105.50 \\
+Solar radius $R_\odot$ & 6.963400e+08 & 208.79 & 82.80 \\
+Schwarzschild $R_s(10^6 M_\odot)$ & 2.953339e+09 & 211.79 & 79.79 \\
+Milky Way diameter 60 kpc & 1.851407e+21 & 268.24 & 23.34 \\
+Virgo Cluster size 1.8 Mpc & 5.554220e+22 & 275.31 & 16.28 \\
+CMB sound horizon $r_s$ (144.7 Mpc) & 4.464975e+24 & 284.42 & 7.16 \\
+Hubble radius $R_H$ (1.4\,\times 10^{26}\,m) & 1.400000e+26 & 291.58 & 0.00 \\
+\end{tabular}
+\end{ruledtabular}
+\end{table}
+
+\section{Conclusions}
+FB(S$^3$)R remains consistent with local physics while providing global testable structure.
+
+\begin{thebibliography}{99}
+\bibitem{Matteri2025} I.~Matteri, A.~Ferrara, A.~Pallottini, et al., arXiv:2503.18850 (2025).
+\bibitem{MIDISNGDEEP2025} P.~G.~P\'erez-Gonz\'alez, et al., arXiv:2503.15594 (2025).
+
+\bibitem{vanDokkum2025} P.~van Dokkum, G.~Brammer, J.~F.~W.~Baggen, M.~A.~Keim, P.~Natarajan, I.~Pasha, ApJL \textbf{988}, L6 (2025).
+
+\bibitem{PantheonPlus2022} D.\,Scolnic et al., \emph{The Pantheon+ Analysis: The Full Dataset and Light-Curve Modeling}, ApJ \textbf{938}, 113 (2022).
+\bibitem{eBOSS_DR16} S.\,Alam et al., \emph{Completed SDSS-IV eBOSS: Cosmological implications}, Phys.\ Rev.\ D \textbf{103}, 083533 (2021).
+\bibitem{Planck2018} N.\,Aghanim et al. (Planck Collab.), \emph{Planck 2018 results. VI. Cosmological parameters}, A\&A \textbf{641}, A6 (2020); arXiv:1807.06209.
+\bibitem{Bautista2020LRG} J.\,E.\,Bautista et al., MNRAS \textbf{499}, 1607 (2020); arXiv:2007.08993.
+\bibitem{Neveux2020QSO} R.\,Neveux et al., MNRAS \textbf{499}, 210 (2020); see also consensus values quoted in the eBOSS DR16 QSO analysis.
+\bibitem{duMas2020LyA} H.\,du Mas des Bourboux et al., ApJ \textbf{901}, 153 (2020); arXiv:2007.08995.
+\bibitem{Cuceu2023LyA} A.\,Cuceu et al., Phys.\ Rev.\ Lett.\ \textbf{130}, 191003 (2023).
+\end{thebibliography}
+
+\begin{table*}[t]
+\caption{Multi-Scale Fractal Empirical Map of Change Types with representative $n_\varphi$ anchors. Values use CODATA-2022 constants and exact $\varphi$.}
+\centering
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.12}
+\begin{tabularx}{\textwidth}{l YYYY cccc c Y}
+\toprule
+\textbf{Type} &
+\textbf{Quantum} &
+\textbf{Biological} &
+\textbf{Planetary} &
+\textbf{Cosmological} &
+$\Delta S$ & $\lambda$ & $D_{KL}$ & $\eta$ & $n_\varphi$ &
+\textbf{FB(S$^3$)R Interpretation} \\
+\midrule
+Quantitative, Incremental &
+Energy shift in e$^-$ orbital ($a_0$) &
+Heart rate change &
+Seasonal drift ($R_\oplus$) &
+CMB $T$ drift (horizon $R_H$) &
++0.01 & $<0$ & 0.002 & 0.95 & \textbf{117.30} &
+Stable $\varphi$-shell deformation \\
+%
+Quantitative, Transformative &
+e$^-$ excitation $\to$ photon ($a_0$) &
+Cell division ($10\,\mu$m) &
+Ice-sheet thinning ($10^2$ m) &
+Protogalaxy cooling (1 kpc) &
++1.20 & $\approx0$ & 0.25 & 0.70 & \textbf{142.55} &
+$\varphi$-level transition \\
+%
+Qualitative, Transformative &
+QCD transition (1 fm) &
+Metamorphosis ($1$ cm) &
+Volcanism ($10$ m) &
+Star ignition ($R_\odot$) &
++0.80 & $>0$ & 0.50 & 0.60 & \textbf{208.80} &
+Topology change in $\varphi$-shell hierarchy \\
+%
+Reversible, Cyclic &
+Rabi oscillations ($a_0$) &
+Circadian rhythm ($1$ cm) &
+Ocean tides ($R_\oplus$) &
+Binary orbit ($R_\odot$) &
+0.00 & $<0$ & 0.00 & 0.98 & --- &
+Closed geodesic in $S^3$ \\
+%
+Irreversible, Directional &
+Decoherence ($a_0$) &
+Aging ($1$ m) &
+Erosion ($10$ m) &
+BH evaporation ($R_s(10^6M_\odot)$) &
++2.50 & $>0$ & 0.75 & 0.40 & \textbf{211.79} &
+Monotonic $\varphi$-entropy climb \\
+%
+Discrete, Stochastic &
+Radioactive decay (1 fm) &
+Mutation (DNA pitch $3.4$ nm) &
+Meteor impact ($10^4$ m) &
+SN~Ia (photosphere $10^{10}$ m) &
++0.0001 & N/A & 1.00 & N/A & \textbf{94.70} &
+Poisson jump in $\varphi$-spectrum \\
+%
+Emergent &
+Entanglement network ($1\,\mu$m) &
+Microbiome shift ($1$ mm) &
+Cyclone ($5\times10^5$ m) &
+Cosmic web filament (10 Mpc) &
+$-0.20$ & $>0$ & 0.60 & 0.80 & \textbf{278.87} &
+Local $\varphi$-order from $\varphi$-noise \\
+%
+Network Topology Change &
+Qubit link ($1$ mm) &
+Neural rewiring ($1$ cm) &
+River delta ($10^3$ m) &
+Cluster merger (1 Mpc) &
+var. & $>0$ & 0.40 & 0.50 & \textbf{274.09} &
+Rewiring of $\varphi$-adjacency graph \\
+%
+Second-order Change &
+Hamiltonian shift ($10\,\mu$m) &
+Fitness function change ($10^2$ m) &
+Climate policy ($R_\oplus$) &
+DE EoS change (horizon $R_H$) &
+var. & var. & $>0.5$ & var. & \textbf{199.04} &
+Meta-level $\varphi$-symmetry redefinition \\
+\bottomrule
+\end{tabularx}
+\end{table*}
+
+\end{document}
+
+
+
+\section*{Fractal Levels: Core Scales (Exact)}
+For $R_n=\ell_p\,\varphi^n$ with $\ell_p=1.616\times10^{-35}$\,m and $\varphi=(1+\sqrt5)/2$, the level index is $n=\log_\varphi(R/\ell_p)$. 
+Table~\ref{tab:phi_levels_core} lists principal scales with exact values and their $n$.
+\begin{table}[h]
+\caption{Principal fractal levels $n=\log_\varphi(R/\ell_p)$ for key physical scales (all values exact or CODATA)}\label{tab:phi_levels_core}
+\begin{ruledtabular}
+\begin{tabular}{lcc}
+Element & $R$ [m] & $n$ \\ \hline
+Planck length $\ell_p$ & 1.616000e-35 & 0.00 \\
+Electron Compton $\lambda_e$ & 2.426310e-12 & 110.90 \\
+Proton Compton $\lambda_p$ & 1.321410e-15 & 95.28 \\
+Classical electron radius $r_e$ & 2.817940e-15 & 96.85 \\
+Bohr radius $a_0$ & 5.291772e-11 & 117.30 \\
+C--H bond length & 1.060000e-10 & 118.75 \\
+C--C bond length & 1.540000e-10 & 119.52 \\
+Moon radius $R_{\rm Moon}$ & 1.737400e+06 & 196.33 \\
+Earth radius $R_\oplus$ & 6.371000e+06 & 199.03 \\
+Solar radius $R_\odot$ & 6.963400e+08 & 208.79 \\
+$R_s(1\,M_\odot)$ & 2.953339e+03 & 183.08 \\
+$R_s(10^5\,M_\odot)$ & 2.953339e+08 & 207.01 \\
+$R_s(10^6\,M_\odot)$ & 2.953339e+09 & 211.79 \\
+Hubble radius $R_H$ & 1.400000e+26 & 291.59 \\
+\end{tabular}
+\end{ruledtabular}
+\end{table}
+

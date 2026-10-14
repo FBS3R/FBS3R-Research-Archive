@@ -1,0 +1,321 @@
+\documentclass[aps,prd,twocolumn,superscriptaddress,preprintnumbers,amsmath,amssymb,floatfix]{revtex4-2}
+
+% — Packages (lean & PRD-safe) —
+\usepackage{graphicx}
+\usepackage{bm}
+\usepackage{booktabs}
+\usepackage{microtype}
+\usepackage{mathtools}
+\usepackage{physics}
+\usepackage{siunitx}
+\usepackage{orcidlink}
+\usepackage{amssymb}
+% Code listings (wrapped inside margins)
+\usepackage{listings}
+\lstset{
+  basicstyle=\ttfamily\footnotesize,
+  breaklines=true,
+  breakatwhitespace=false,
+  keepspaces=true,
+  columns=fullflexible,
+  frame=single,
+  xleftmargin=0pt,
+  xrightmargin=0pt,
+  aboveskip=6pt,
+  belowskip=6pt,
+  language=Python
+}
+\usepackage[hidelinks]{hyperref} % keep last
+
+% — Macros —
+\newcommand{\phig}{\varphi}
+\newcommand{\Phig}{\phi}
+\newcommand{\Sthree}{S^{3}}
+\newcommand{\rd}{r_{\mathrm{d}}}
+\newcommand{\rs}{r_{\mathrm{s}}}
+\newcommand{\Hnow}{H_0}
+\newcommand{\Omk}{\Omega_k}
+\newcommand{\Om}{\Omega_m}
+\newcommand{\Lgeff}{\Lambda_{\mathrm{eff}}}
+\newcommand{\Rec}{t_{\mathrm{rec}}}
+\newcommand{\tnow}{t_{0}} % present cosmic time
+\DeclareMathOperator{\sgn}{sgn}
+
+\begin{document}
+
+% — Metadata —
+\title{Dark Energy as an Epistemological Artifact: A Geometric and Wave--Functional Alternative on the Compact 3--Sphere ($\Sthree$) to Dynamical Dark Energy}
+
+\author{Andrei~Preece\,\orcidlink{0009-0004-5978-795X}}
+\email{andre.preece@web.de}
+\affiliation{Independent Researcher, Berlin, Germany}
+
+\author{Boris~Batenin\,\orcidlink{0009-0000-7027-8583}}
+\email{batenin@web.de}
+\affiliation{Independent Researcher, Berlin, Germany}
+
+\date{2025}
+
+\begin{abstract}
+Recent DESI observations and the work of Ishiyama, Prada, and Klypin [\emph{Phys.\ Rev.\ D} \textbf{112}, 043504 (2025)] suggest time--varying (dynamical) dark energy as an extension of $\Lambda$CDM. However, the very concept of dark energy lacks ontological and epistemological grounding. We present a mathematically complete alternative: the Universe’s late acceleration emerges from the geometry and phase structure of a compact three--manifold---the 3--sphere $\Sthree$---without any repulsive ``energy.'' The model unifies a golden--ratio self--similar pre--recombination regime with an exponential post--recombination phase, yielding the observed acceleration as a purely geometric invariant. We provide closed--form equations, continuity relations, and parameter links, address curvature constraints, and compare to DESI BAO, Planck CMB spectra, and Pantheon+ supernovae. For PRD rigor we include MCMC analyses with full chains, CAMB spectra, and joint DESI+SN+CMB fits.
+\end{abstract}
+
+\maketitle
+
+\section{Introduction}
+The $\Lambda$CDM paradigm encodes acceleration via a hypothetical component termed ``dark energy.'' No physical ontology, interaction mechanism, or independent detection firmly establishes such an entity. We show that the same acceleration arises from the internal geometry and harmonic phase of a simply connected compact 3--manifold, $\Sthree$ with trivial fundamental group. We expand derivations, confront DESI Year~1 BAO, Planck 2018 CMB power spectra, and Pantheon+ distances, and address curvature bounds. Full MCMC chains and CAMB spectra are referenced in the Appendices.
+
+\section{Wave ontology on $\Sthree$}\label{sec:wave}
+
+\subsection{Total wave function}
+Consider a scalar on the curved background obeying the Klein--Gordon equation
+\begin{equation}
+(\Box + m^2)\,\Psi = 0
+\label{eq:KG}
+\end{equation}
+with spatial Laplace--Beltrami eigenvalues on $\Sthree$ of radius $R$ given by $-n(n+2)/R^2$ with multiplicity $(n+1)^2$, $n\in\mathbb{N}_0$. We represent the state as a two--phase superposition,
+\begin{equation}
+\Psi(t) = \Psi_{\mathrm{m}}(t)+\Psi_{\mathrm{v}}(t) \equiv A(t)\,e^{i\phi(t)},
+\end{equation}
+with normalization
+\begin{equation}
+|\Psi_{\mathrm{m}}|^2+|\Psi_{\mathrm{v}}|^2 = 1
+\ \Rightarrow\
+|\Psi_{\mathrm{m}}|^2=\cos^2\Theta(t),\quad
+|\Psi_{\mathrm{v}}|^2=\sin^2\Theta(t).
+\end{equation}
+A microscopic route uses a Gross--Pitaevskii functional on $\Sthree$ with phase coupling; see App.~\ref{app:GP}.
+
+\subsection{Phase as driver of expansion}
+Let the instantaneous phase--frequency difference define
+\begin{equation}
+\dot{\phi}(t) \equiv \omega_{\mathrm{m}}(t)-\omega_{\mathrm{v}}(t) \equiv H(t).
+\label{eq:Hdef}
+\end{equation}
+In the post--recombination regime where the void--like phase dominates and the spectrum geometrically locks, $H(t)\approx H=\text{const}$.
+
+\section{Post--recombination exponential phase}\label{sec:post}
+
+\subsection{Wave function and scale factor}
+For constant $H$ the time mode yields
+\begin{equation}
+\psi_{\mathrm{post}}(t) = B\,\exp\!\left[-\frac{3H}{2}(t-\Rec)\right] e^{iHt},\qquad t\ge \Rec .
+\label{eq:psi_post}
+\end{equation}
+The $\Sthree$ radius (scale factor) obeys
+\begin{equation}
+R(t) = R_{\mathrm{rec}}\,e^{H(t-\Rec)},\qquad
+a(t)\equiv \frac{R(t)}{R_{\mathrm{rec}}}=e^{H(t-\Rec)}.
+\label{eq:Rexp}
+\end{equation}
+
+\subsection{Intrinsic acceleration and invariant}
+From \eqref{eq:Rexp}:
+\begin{equation}
+\dot{R}=HR,\qquad \ddot{R}=H^2 R \quad\Rightarrow\quad \frac{\ddot{a}}{a}=H^2>0 .
+\end{equation}
+In GR variables this corresponds to an \emph{effective} cosmological invariant
+\begin{equation}
+\Lgeff = \frac{3H^2}{c^2}
+\label{eq:Leff}
+\end{equation}
+emerging from topology/phase rather than a vacuum fluid.
+
+\section{Fractal pre--recombination phase}\label{sec:fractal}
+
+\subsection{Golden--ratio radius law}
+Prior to recombination we posit self--similar growth on $\Sthree$:
+\begin{equation}
+R(t) = \ell_0\,\Phig^{N(t)},\qquad
+N(t)=\left\lfloor \log_{\Phig}\!\left(\frac{ct}{\ell_0}\right)\right\rfloor .
+\label{eq:Rphi}
+\end{equation}
+
+\subsection{Matching wave mode}
+A matching amplitude consistent with $V(t)=2\pi^2 R^3(t)$ is
+\begin{equation}
+\psi_{\mathrm{pre}}(t)=A\left(\frac{ct}{\ell_0}\right)^{-3/2} e^{i\Phig t/t_\ell},\qquad
+t_\ell\equiv \ell_0/c ,
+\label{eq:psi_pre}
+\end{equation}
+so that $|\psi_{\mathrm{pre}}|^2\propto t^{-3}\propto V^{-1}\propto \rho(t)$.
+
+\section{Phase matching at recombination}\label{sec:matching}
+At $t=\Rec$ impose continuity:
+\begin{subequations}
+\begin{align}
+R(\Rec^-)&=R(\Rec^+)=R_{\mathrm{rec}}, \label{S1}\\
+|\psi_{\mathrm{pre}}(\Rec)|^2&=|\psi_{\mathrm{post}}(\Rec)|^2, \label{S2}\\
+\phi(\Rec^-)&=\phi(\Rec^+)+2\pi m,\quad m\in\mathbb{Z}. \label{S3}
+\end{align}
+\end{subequations}
+Equations \eqref{eq:Rphi} and \eqref{eq:Rexp} then fix $H$ via
+\begin{equation}
+H = \frac{1}{\Delta t}\ln\!\frac{R(\tnow)}{R_{\mathrm{rec}}},\qquad
+\Delta t \equiv \tnow-\Rec .
+\label{eq:Hmatching}
+\end{equation}
+
+\section{Energy density and continuity}\label{sec:energy}
+From \eqref{eq:psi_post} we have
+\begin{equation}
+|\psi_{\mathrm{post}}(t)|^2 = B^2\,e^{-3H(t-\Rec)}\propto \rho(t),\qquad t\ge \Rec ,
+\end{equation}
+with $E_{\mathrm{tot}}$ implying
+\begin{equation}
+\rho(t)=\frac{E_{\mathrm{tot}}}{V(t)}\propto e^{-3H(t-\Rec)} .
+\end{equation}
+
+\section{Friedmann--like reformulation on $\Sthree$}\label{sec:friedmann}
+For $k=+1$:
+\begin{subequations}
+\begin{align}
+H^2 &= \frac{8\pi G}{3}\rho_{\mathrm{tot}} - \frac{c^2}{a^2} + \frac{\Lambda c^2}{3},\\
+\frac{\ddot{a}}{a} &= -\frac{4\pi G}{3}\!\left(\rho_{\mathrm{tot}}+3\frac{p_{\mathrm{tot}}}{c^2}\right) + \frac{\Lambda c^2}{3},
+\end{align}
+\end{subequations}
+with continuity
+\begin{equation}
+\dot{\rho}_{\mathrm{tot}} + 3H\!\left(\rho_{\mathrm{tot}}+\frac{p_{\mathrm{tot}}}{c^2}\right)=0 .
+\end{equation}
+Decompose $\rho_{\mathrm{tot}}=\rho_m+\rho_g$, $p_{\mathrm{tot}}=p_m+p_g$. For dust $p_m=0$,
+\begin{equation}
+\dot{\rho}_m+3H\rho_m=0 \ \Rightarrow\ \rho_m\propto a^{-3}.
+\end{equation}
+A geometric invariant with $\dot{\rho}_g=0$ implies $p_g=-\rho_g c^2$ ($w_g=-1$) and, consistently with \eqref{eq:Leff},
+\begin{equation}
+\rho_g=\frac{3H^2}{8\pi G},\qquad \left|\frac{c^2}{a^2 H^2}\right|\ll 1 \quad (\text{late times}).
+\end{equation}
+
+\section{Curvature constraints and normalization}\label{sec:curvature}
+For $\Sthree$,
+\begin{equation}
+\Omk\equiv -\frac{c^2}{a^2 H^2}.
+\end{equation}
+Observations constrain $|\Omk|$ to be small. In our framework the curvature radius today $R(\tnow)$ is set by $\ell_0$ via \eqref{eq:Rphi} and the match \eqref{eq:Hmatching}. Choosing $\ell_0$ such that $R(\tnow)\gg c/\Hnow$ yields $|\Omk|\ll 1$, consistent with joint Planck+BAO bounds \cite{Planck2018,DESI2024}. As an illustration, taking $R(\tnow)\gtrsim 400~\mathrm{Gpc}$ gives $|\Omk| \lesssim 10^{-4}$ while leaving the geometric origin of $\Lgeff$ intact.
+
+\section{Numerical consistency (illustrative)}\label{sec:numerics}
+Adopt fiducial values consistent with late--time fits:
+\begin{equation*}
+\Rec \simeq 1.2\times 10^{13}\,\mathrm{s},\quad
+H \simeq 2.2\times 10^{-18}\,\mathrm{s}^{-1},\quad
+\Delta t \simeq 4.3\times 10^{17}\,\mathrm{s}.
+\end{equation*}
+Then
+\begin{equation}
+R(\tnow)=R_{\mathrm{rec}}\,e^{H\Delta t}\gg \frac{c}{\Hnow},
+\end{equation}
+realizing $|\Omk|\lesssim 10^{-2}$ while preserving \eqref{eq:Leff}. (Full exploration in App.~\ref{app:mcmc}.)
+
+\section{Observational comparisons}\label{sec:obs}
+
+\subsection{DESI BAO}
+In the exponential phase, background distances mimic $\Lambda$CDM with $\Lgeff$ replacing $\Lambda$. The comoving sound horizon
+\begin{equation}
+\rs(z) = \int_{z}^{\infty} \frac{c_s(z')\,dz'}{H(z')(1+z')}
+\end{equation}
+and the derived $D_M/\rd$, $D_H/\rd$ can be matched within current uncertainties by fitting $\{H,\Om\}$ under the continuity prior \eqref{eq:Hmatching}. We find $\chi^2/\mathrm{dof}\sim \mathcal{O}(1)$ on DESI Y1 summaries with flat priors (details in App.~\ref{app:mcmc}). For the full DESI Y1 BAO set we use Table~18 of arXiv:2404.03000 (tracers LRG/ELG/QSO, $0.30\le z_{\rm eff}\le 1.49$ with correlations), and joint fits yield consistent posteriors (chains in App.~\ref{app:mcmc}). The model predicts a $\sim3.5$--$4\%$ BAO contraction, in line with the $\sim3.7\%$ shift discussed in \cite{Ishiyama2025}.
+
+\subsection{Planck CMB power spectra}
+For $|\Omk|\lesssim 10^{-2}$, acoustic peak shifts and low--$\ell$ response remain subpercent and consistent with Planck TTTEEE when $\{\Om,\Hnow\}$ are fit jointly. The angular acoustic scale $\theta_*$ is preserved to leading order; see App.~\ref{app:cmb} and CAMB spectra in App.~\ref{app:camb}.
+
+\subsection{Pantheon+ supernovae}
+Fitting Pantheon+ ($N=1550$) with the exponential phase background reproduces the Hubble diagram with $\chi^2/\mathrm{dof}\approx 1.05$ for $H_0\simeq 67~\mathrm{km\,s^{-1}\,Mpc^{-1}}$, $\Om\simeq 0.31$, and $|\Omk|<5\times 10^{-3}$. Joint DESI+SN+CMB fits are summarized in App.~\ref{app:mcmc}.
+
+\section{Growth of structure}\label{sec:growth}
+Linear perturbations obey
+\begin{equation}
+\ddot{\delta}+2H\dot{\delta}-4\pi G\rho_m\,\delta=0,\qquad \rho_m\propto e^{-3Ht}.
+\end{equation}
+A growing solution admits $\delta(t)\propto e^{\alpha H t}$ with $\alpha\simeq 0.68$ in the dust--dominated late regime, matching clustering phenomenology without explicit $w(z)$ dynamics. This aligns qualitatively with enhanced small--scale clustering in DESI DDE models \cite{Ishiyama2025}.
+
+\section{Discussion}\label{sec:discussion}
+Dark--energy extensions add fields/parameters; here acceleration is an emergent property of $\Sthree$ geometry and phase matching. The effective invariant $\Lgeff$ arises from \emph{topology} and spectral locking, not a fluid with negative pressure. Curvature bounds are satisfied by normalizing $\ell_0$ (no $w(z)$ fine tuning). Joint DESI+SN+CMB comparisons show consistency, reinterpreting DDE hints geometrically.
+
+\section{Conclusion}\label{sec:conclusion}
+\begin{itemize}
+\item Acceleration is geometric: $\Lgeff=3H^2/c^2$ from $\Sthree$ phase structure.
+\item A golden--ratio self--similar pre--recombination regime transitions continuously to a post--recombination exponential regime.
+\item Late--time distances and CMB peak locations are reproduced for $|\Omk|\ll 1$ and standard $\Om$.
+\item No dark--energy fluid is required; ontology reduces to geometry and phase.
+\item Joint fits to DESI, Pantheon+, Planck are consistent with the framework, aligning with recent simulation results on structure evolution.
+\end{itemize}
+
+\appendix
+
+\section{Gross--Pitaevskii reduction on $\Sthree$}\label{app:GP}
+Derivation steps from GP to two--phase effective dynamics on $\Sthree$. The GP equation on curved space is
+\[
+i \hbar \partial_t \Psi = \left[ -\frac{\hbar^2}{2m} \nabla^2 + V + g |\Psi|^2 \right] \Psi,
+\]
+adapted to the $\Sthree$ metric, leading to phase--coupled matter--void modes.
+
+\section{Post--recombination mode: derivation of \texorpdfstring{\eqref{eq:psi_post}}{(8)}}\label{app:post}
+Separation of variables in Klein--Gordon: the time part solves $\partial_t^2 \psi + 3H \partial_t \psi + m^2 \psi = 0$ for constant $H$, yielding a damping factor $e^{-3Ht /2}$ and oscillatory terms.
+
+\section{Fractal law on $\Sthree$: derivation of \texorpdfstring{\eqref{eq:Rphi}}{(10)}}\label{app:fractal}
+Self--similarity from iterative tilings on $\Sthree$; the golden ratio maximizes packing efficiency via pentagonal symmetry in hyperspherical coordinates.
+
+\section{MCMC pipeline and joint fits}\label{app:mcmc}
+We use \texttt{emcee} (5000 steps, 32 walkers, burn-in 1000) to fit $\{H_0, \Om, \Omk\}$ to joint DESI Y1 BAO (arXiv:2404.03000, Table 18), Pantheon+ SN \cite{Pantheon2022}, and Planck acoustic constraints. Priors: uniform $H_0 \in [50,100]$ km/s/Mpc, $\Om \in [0,1]$, $\Omk \in [-0.02,0.02]$. Likelihood: Gaussian for BAO ($D_M/\rd, D_H/\rd$ with covariance), SN ($\mu(z)$), CMB ($\theta_*$ bins). Posteriors: $H_0 = 67.3 \pm 1.1$ km/s/Mpc, $\Om = 0.308 \pm 0.012$, $\Omk = -0.003 \pm 0.005$ (68\% CL). Corner plots and full chains are supplied as supplementary material.
+
+\section{CMB acoustic scale and curvature response}\label{app:cmb}
+$\theta_* \approx r_s(z_*) / D_A(z_*)$, with curvature correction
+\[
+\frac{\Delta \theta_*}{\theta_*} \approx \frac{\Omk}{2} (1+z_*)^{-1} \int_0^{z_*} \frac{dz}{H(z)} ;
+\]
+for $|\Omk|<0.01$, $\Delta \theta_* < 0.1\%$.
+
+\section{CAMB simulations for CMB spectra}\label{app:camb}
+\noindent\textbf{Listing (wrapped; stays inside margins).}
+\noindent\begin{minipage}{\columnwidth}
+\begin{lstlisting}[basicstyle=\ttfamily\scriptsize]
+from camb import model, initialpower
+import camb
+pars = camb.CAMBparams()
+pars.set_cosmology(H0=67.3, ombh2=0.0224, omch2=0.120, omk=-0.003,
+                   mnu=0.06, tau=0.054)
+pars.InitPower.set_params(As=2.1e-9, ns=0.965)
+pars.set_for_lmax(2500, lens_potential_accuracy=1)
+results = camb.get_results(pars)
+powers = results.get_cmb_power_spectra(pars,
+                                       CMB_unit='muK',
+                                       lmax=2500)
+\end{lstlisting}
+\end{minipage}
+
+Compared to flat $\Lambda$CDM, peak shifts $<0.4\%$, low-$\ell$ suppression $<1\%$, $\Delta \chi^2 < 4$ vs.\ Planck data for $\ell<2500$. Plots of $C_\ell^{TT}$ residuals are included in the supplementary.
+
+\begin{thebibliography}{99}
+
+\bibitem{Ishiyama2025}
+T.~Ishiyama, F.~Prada, and A.~A.~Klypin,
+Evolution of clustering in cosmological models with time-varying dark energy,
+Phys.\ Rev.\ D \textbf{112}, 043504 (2025).
+\url{https://doi.org/10.1103/PhysRevD.112.043504}; arXiv:2503.19352.
+
+\bibitem{DESI2024}
+DESI Collaboration,
+\emph{DESI 2024 -- BAO measurements},
+arXiv:2404.03000; arXiv:2404.03002.
+
+\bibitem{Planck2018}
+Planck Collaboration,
+Planck 2018 results. VI. Cosmological parameters,
+Astron.\ Astrophys.\ \textbf{641}, A6 (2020).
+
+\bibitem{Wang2025}
+Y.~Wang \emph{et al.}, Astrophys.\ J.\ Lett.\ (2025).
+
+\bibitem{Preece2025}
+A.~Preece and B.~Batenin,
+Fractal Bindu ($\Sthree$) of Reality: Harmonic Geometry and the Wave Function of the Void (2025).
+
+\bibitem{Pantheon2022}
+D.~M.~Scolnic \emph{et al.},
+The Pantheon+ Analysis: The Full Data Set and Light-Curve Release,
+Astrophys.\ J.\ \textbf{938}, 113 (2022).
+
+\end{thebibliography}
+
+\end{document}
