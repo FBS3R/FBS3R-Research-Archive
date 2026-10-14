@@ -1,0 +1,2463 @@
+\documentclass[aps,prd,reprint,superscriptaddress,nofootinbib,floatfix]{revtex4-2}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,mathtools,bm}
+\usepackage{amsthm}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{mathrsfs}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage[nameinlink,capitalize]{cleveref}
+\hypersetup{colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{hypothesis}[theorem]{Transfer hypothesis}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\Sthree}{S^3_R}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\Tthree}{\mathbb{T}^3}
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\Def}{\operatorname{Def}}
+\newcommand{\divg}{\operatorname{div}_g}
+\newcommand{\gradg}{\operatorname{grad}_g}
+\newcommand{\Ric}{\operatorname{Ric}}
+\newcommand{\cR}{\mathcal{R}}
+\newcommand{\cG}{\mathcal{G}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\cE}{\mathcal{E}}
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\cM}{\mathcal{M}}
+\newcommand{\cK}{\mathcal{K}}
+\newcommand{\cI}{\mathcal{I}}
+\newcommand{\PP}{\mathbb{P}}
+\newcommand{\cV}{\mathcal{V}}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\OO}{\mathcal{O}}
+\newcommand{\vx}{\mathbf{v}}
+\newcommand{\ux}{\mathbf{u}}
+\newcommand{\px}{p}
+\newcommand{\bx}{\mathbf{b}}
+\newcommand{\Lam}{\Lambda_h}
+\newcommand{\Eul}{\mathsf E}
+\newcommand{\Vol}{\operatorname{Vol}}
+\newcommand{\curl}{\operatorname{curl}}
+
+\begin{document}
+
+\title{Finite-Dimensional Spectral Closure and a Relative Forced Singular Branch for Navier--Stokes on the Round Three-Sphere}
+
+\author{Andrei Preece}
+\affiliation{Independent Researcher, Germany}
+\author{Boris Batenin}
+\affiliation{Independent Researcher, Germany}
+
+\date{September 20, 2026}
+
+\begin{abstract}
+
+	Assuming a specified Euclidean forced-blowup source package, we construct a
+	relative finite-time singular branch for the deformation-tensor formulation of
+	forced incompressible Navier--Stokes dynamics on the round three-sphere
+	\(S^3_R\).  The source package is external to this paper and is divided into
+	five transfer assumptions: the Euclidean singular branch, the inner scaling
+	and profile, the finite-truncation slow solver, the exterior matching
+	mechanism, and the annular localization estimates.  The statement on
+	\(S^3_R\) is therefore a conditional geometric consequence, not an independent
+	proof of the Euclidean source theorem.
+
+	The independent part of the paper is a finite-dimensional spectral-closure
+	analysis.  For the projected equation
+	\[
+		\partial_tu+\nu Au+B(u,u)=\PP f,\qquad
+		A=-\PP\mathcal L_g,\quad B(u,v)=\PP\nabla_u v,
+	\]
+	the relevant bilinear map is the symmetric polarization
+	\[
+		Q(u,v)=\frac12\{B(u,v)+B(v,u)\},
+	\]
+	because the equation contains only the diagonal \(B(u,u)=Q(u,u)\).  A finite
+	modal space \(W\) is an exact reducing space precisely when
+	\[
+		AW\subset W,\qquad Q(W,W)\subset W .
+	\]
+	Equivalently, its closure defect \(\mathfrak L_Q(W)\) vanishes.  For finite
+	unions of complete signed curl shells the same condition is expressed by a
+	representation-theoretic scalar \(\mathfrak R(S)\), built from \(SO(4)\)
+	Hilbert--Schmidt coefficients of \(Q\).
+
+	The closure criterion is model independent: any Hilbert-space quadratic
+	evolution \(\dot x+\nu Ax+Q(x,x)=F(t)\) with a specified finite candidate
+	subspace has the same defect-matrix test, provided the projected images are in
+	the ambient Hilbert space.  If the quadratic term is energy cancelling and the
+	linear part is nonnegative, no exact finite reducing space can carry
+	bounded-energy \(L^\infty\)-blowup under \(L^1([0,T);L^2)\) forcing.
+	Consequently, any singular branch supplied by the relative transfer must leave
+	every fixed finite modal sector.  On \(S^3_R\), sharp curl-band projector
+	identities quantify this spectral escape.
+
+\end{abstract}
+
+\maketitle
+
+\section{Introduction}
+
+The paper has two logically distinct parts.  The first is a relative geometric
+transfer: a forced Euclidean finite-time singular construction is assumed as an
+external source package, and the local construction is transported to the round
+three-sphere \(S^3_R\) for the deformation-tensor Navier--Stokes operator used
+below.  The second part is intrinsic to \(S^3_R\): it gives exact
+finite-dimensional closure criteria, exact invariant solution families,
+finite-sector no-blowup bounds, and quantitative curl-band escape estimates.
+
+The Euclidean source announced by OpenAI gives, for every positive viscosity, a
+smooth compactly supported force and a three-dimensional incompressible
+Navier--Stokes flow that starts from rest, has uniformly bounded kinetic
+energy, and develops unbounded velocity in finite time; compact support also
+gives a periodic analogue on \(\mathbb T^3\)~\cite{OpenAI2026Paper,OpenAI2026Repo}.
+We do not reprove that source theorem.  The transfer question is whether its
+local singular architecture survives the curvature terms introduced by the
+round metric and the chosen viscous convention.  Related work on modified or
+averaged Navier--Stokes blowup mechanisms is background only and is not used in
+the argument~\cite{Tao2016}.
+
+The intrinsic closure question is independent of the source theorem.  After
+Leray projection the equation has the form
+\[
+	\partial_tu+\nu Au+B(u,u)=\PP f.
+\]
+Since only the diagonal \(B(u,u)\) enters the equation, the exact
+finite-dimensional closure tensor is the symmetric polarization \(Q\), not the
+unsymmetrized bilinear map \(B\).  Thus a finite smooth divergence-free space
+\(W\) is an exact reducing space if and only if
+\[
+	AW\subset W,\qquad Q(W,W)\subset W.
+\]
+This criterion gives a scalar closure defect \(\mathfrak L_Q(W)\).  For
+complete signed curl-shell unions it gives the representation-theoretic shell
+defect \(\mathfrak R(S)\).  These quantities decide whether a supplied finite
+candidate is an exact reduction.
+
+The finite-sector obstruction fixes the role of the closure analysis.  Every
+exact finite reducing sector is too small to support bounded-energy
+\(L^\infty\)-blowup under \(L^1([0,T);L^2)\) forcing.  Consequently, a
+singular branch produced by the relative transfer must leave every fixed finite
+modal sector.  The exact curl-projector norms on \(S^3_R\) quantify this
+escape.
+
+\subsection{Main results and logical structure}\label{subsec:mainmap}
+
+The work is kept as one paper, not split into a transfer article and a catalogue of solutions, because the modules constrain one another.  The transfer theorem supplies a singular solution branch; the leakage algebra says which finite modal reductions are exact; the finite-sector theorem proves that none of those exact finite reductions can be the singular candidate reduction; the projector theorem measures the resulting escape.
+
+
+\paragraph*{Main result map.}
+For the Navier--Stokes model \eqref{eq:NSg} on the round \(S^3_R\), the paper separates its conclusions into the following logically distinct parts:
+\begin{enumerate}[label=(\roman*),leftmargin=*]
+    \item Assuming the transfer assumptions \(\mathbf S_0,\ldots,\mathbf S_4\), there is a source-relative bounded-energy \(L^\infty\)-singular branch on \(S^3_R\); this is Theorem~\ref{thm:S3}.
+    \item Independently of those source assumptions, the maximal-torus, Killing, and signed-Beltrami families are exact invariant solution families for the chosen deformation-tensor model.
+    \item For every supplied finite-dimensional smooth divergence-free subspace \(W\), the zero-defect condition
+          \[
+              AW\subset W,\qquad Q(W,W)\subset W
+          \]
+          is equivalent to exact finite reduction; this is Theorem~\ref{thm:polarizedclosure}.
+    \item For complete finite unions of signed curl shells, the same closure question is encoded by the representation-theoretic shell defect \(\mathfrak R(S)\); this is Theorem~\ref{thm:modalclosure}.
+    \item The structured status convention below records whether a claim is intrinsic, source-relative, a finite closure criterion, an obstruction, or outside the declared category.
+    \item Every supplied finite candidate in the declared modal categories receives a defined closure status by the defect matrix and shell criteria of Sec.~\ref{sec:finitecriteria}.
+    \item No verified finite exact reducing sector can carry bounded-energy \(L^\infty\)-blowup under \(L^1([0,T);L^2)\) forcing; this is Theorem~\ref{thm:finite-sector-no-blowup}.
+    \item A source-relative singular branch, if the transfer assumptions are valid, therefore escapes every fixed finite modal description; the escape is quantified by Theorem~\ref{thm:spectralescape}.
+\end{enumerate}
+The compatibility of these assertions is structural: the source-relative branch supplies a singular object, the intrinsic defect tests certify finite modal reductions, the finite-sector obstruction excludes those reductions as singularity carriers, and the curl-projector theorem gives the homogeneous spectral measurement of the remaining possibility.
+
+
+The result is not an independent proof of the Clay problem.  It is a
+conditional transfer theorem together with intrinsic closure and exclusion
+criteria: relative where the singular branch depends on external input,
+intrinsic where the geometry and modal algebra are proved here, and negative
+where finite reducing sectors are eliminated.
+
+
+\subsection{Terminology and scope discipline}\label{subsec:terminology}
+
+The terminology is deliberately neutral.  A \emph{closure criterion} is a necessary-and-sufficient algebraic test inside a stated category.  It is not a formal proof certificate unless a proof assistant is explicitly named.  A \emph{modal sector} means a finite-dimensional subspace built from the Leray-projected curl/Stokes decomposition specified below.  A \emph{complete signed curl shell} means the whole eigenspace \(E_{k,\sigma}\), not a chosen subspace of it.  A \emph{reducing sector} means invariance under both the linear projected viscous operator and the diagonal quadratic projected nonlinearity, equivalently under \(A\) and the polarized map \(Q\).  A \emph{relative transfer module} means a theorem conditional on the Euclidean source assumptions \(\mathbf{S_0},\ldots,\mathbf{S_4}\).  An \emph{exclusion result} means a proved nonexistence or boundedness statement in the stated category, not evidence against dynamics outside that category.  A \emph{spectral lower-bound statement} means escape from every fixed finite curl band under the stated energy and \(L^\infty\) hypotheses; it is not a classification of all singularities.
+
+These conventions are deliberately narrow.  In particular, ``all'' always refers to the immediately stated class; no claim below classifies arbitrary weak solutions, arbitrary infinite-dimensional invariant manifolds, or source-independent Euclidean singular constructions.  The word ``complete'' below means defined-status complete for a supplied candidate in the declared category; it does not mean that all candidates outside that category are enumerated or effectively listed.
+
+\subsection{Model-independent closure template}\label{subsec:abstracttemplate}
+
+The finite-sector part of the paper is not special to coordinates on \(S^3_R\).  Its algebraic core applies to any quadratic evolution for which the linear part, the diagonal quadratic part, and the projection onto a proposed finite subspace are specified.
+
+Let \(\mathcal H\) be a Hilbert space, let \(\mathcal V\subset\mathcal H\) be a dense vector space, let \(A:\mathcal V\to\mathcal H\) be linear, and let
+\[
+	Q:\mathcal V\times\mathcal V\to\mathcal H
+\]
+be symmetric bilinear.  Consider
+\begin{equation}
+	\dot x+\nu A x+Q(x,x)=F(t).
+	\label{eq:abstractquadratic}
+\end{equation}
+For a finite-dimensional \(W\subset\mathcal V\), assume explicitly that \(Ae_i\in\mathcal H\) and \(Q(e_i,e_j)\in\mathcal H\) for an orthonormal basis \(\{e_i\}\).  With orthogonal projector \(\Pi_W\) and orthonormal basis \(\{e_i\}\), define the abstract defect matrix
+\begin{equation}
+	\mathcal D_W=
+	\bigl((I-\Pi_W)Ae_i,\ (I-\Pi_W)Q(e_i,e_j)\bigr)_{i,j}.
+	\label{eq:abstractdefectmatrix}
+\end{equation}
+Then
+\begin{align}
+	\|\mathcal D_W\|_{\rm HS}^2
+	 & =
+	\sum_i\|(I-\Pi_W)Ae_i\|^2 \nonumber \\
+	 & \quad+
+	\sum_{i,j}\|(I-\Pi_W)Q(e_i,e_j)\|^2 .
+	\label{eq:abstractdefect}
+\end{align}
+is independent of the orthonormal basis of \(W\).
+
+\begin{proposition}[Abstract finite-reduction criterion]\label{prop:abstractclosure}
+	The ansatz \(x(t)\in W\) closes to an exact finite-dimensional system for every forcing \(F(t)\in W\) if and only if
+	\[
+		AW\subset W,\qquad Q(W,W)\subset W,
+	\]
+	equivalently \(\|\mathcal D_W\|_{\rm HS}=0\).
+\end{proposition}
+
+\begin{proof}
+	The equation closes in \(W\) exactly when the components orthogonal to \(W\) vanish for \(Ax\) and \(Q(x,x)\) for all \(x\in W\).  The linear condition gives \(AW\subset W\).  The diagonal quadratic condition gives \((I-\Pi_W)Q(x,x)=0\) for all \(x\in W\); polarization gives \((I-\Pi_W)Q(x,y)=0\) for all \(x,y\in W\).  This is precisely the vanishing of \(\mathcal D_W\).
+\end{proof}
+
+If, in addition,
+\[
+	\langle Q(x,x),x\rangle=0,\qquad \langle Ax,x\rangle\ge0 ,
+	\label{eq:abstractenergy}
+\]
+then every exact finite reduction obeys the energy estimate
+\[
+	\|x(t)\|\le \|x(0)\|+\int_0^t\|F(s)\|\,ds.
+\]
+Thus finite-sector exclusion results below are instances of a general Hilbert-quadratic principle.  The Navier--Stokes system on \(S^3_R\) supplies a geometric realization with \(\mathcal H=L^2_\sigma(TS^3_R)\), \(A=-\PP\mathcal L_g\), and \(Q\) the symmetric polarization of the projected convective term.
+
+\subsection{Structured status table}\label{subsec:statusnormalform}
+
+The previous terminology fixes the words.  We now fix the organization.  The paper uses a finite number of mathematical object types: geometric tensors, projected operators, source inputs, finite modal spaces, shell unions, exact solution families, obstruction theorems, and explicit frontiers.  To prevent any object from carrying an unstated role, we attach to each such type a status table entry
+\[
+	\Theta(X)=\bigl(\mathscr D_X,\sim_X,\mathscr I_X,\operatorname{Crit}_X,\sigma_X\bigr).
+\]
+Here \(\mathscr D_X\) is the domain or class in which \(X\) lives, \(\sim_X\) is the equivalence relation or gauge under which it is compared, \(\mathscr I_X\) is the invariant datum retained by the proof, \(\operatorname{Crit}_X\) is the criterion map applied to it, and \(\sigma_X\) is the resulting status.
+
+The primary statuses are:
+\[
+	\mathsf G,\quad \mathsf S,\quad \mathsf C,\quad \mathsf O,\quad \mathsf F.
+\]
+They mean, respectively: intrinsic geometric identity; source-relative input; verified finite object; obstruction or exclusion theorem; frontier outside the declared finite category.  These symbols are bookkeeping devices, not new hypotheses.
+
+
+\paragraph*{Status convention.}
+Every named mathematical object used in the manuscript is assigned one of these proof roles:
+\begin{enumerate}[label=(\roman*),leftmargin=*]
+    \item metric, divergence, curvature, Leray projection, and curl-projector identities have status \(\mathsf G\);
+    \item \(\mathbf{S_0},\ldots,\mathbf{S_4}\) and every result depending on them have status \(\mathsf S\);
+    \item finite subspaces \(W\in\mathscr C_{\rm sub}\) have closure-defect datum
+          \[
+              \operatorname{Crit}_W(W)=\mathfrak L_Q(W)=\|\cM_W\|_{\rm HS}^2;
+          \]
+    \item finite complete-shell unions \(W_S\in\mathscr C_{\rm shell}\) have shell-defect datum
+          \[
+              \operatorname{Crit}_{\rm shell}(S)=\mathfrak R(S);
+          \]
+    \item finite exact reducing sectors \(W\in\mathscr C_{\rm red}\) have status \(\mathsf C\), while bounded-energy \(L^\infty\)-blowup inside them has status \(\mathsf O\);
+    \item arbitrary weak solutions, arbitrary infinite-dimensional invariant manifolds, and the independent Euclidean proof itself have status \(\mathsf F\) relative to the finite closure analysis.
+\end{enumerate}
+This convention is bookkeeping. It is not an additional theorem and does not certify any external source claim.
+
+
+\begin{table*}[t]
+	\caption{Structured status table.  The table classifies proof roles, not all possible Navier--Stokes objects.}
+	\label{tab:structured-status-table}
+	\footnotesize
+	\begin{tabular}{lllll}
+		\toprule
+		Status        & domain             & equivalence or gauge & invariant datum                      & criterion/output        \\
+		\midrule
+		\(\mathsf G\) & geometry           & isometry/coordinates & \(g_R,\dd V_g,\Ric,\PP,A,\curl\)     & internal proof         \\
+		\(\mathsf S\) & source module      & interface            & \(\mathbf{S_0},\ldots,\mathbf{S_4}\) & relative               \\
+		\(\mathsf C\) & finite \(W\)       & basis change         & \((A,Q,\Pi_W,\cM_W)\)                & \(\mathfrak L_Q(W)=0\) \\
+		\(\mathsf C\) & shell \(S\)        & \(SO(4)\)-type       & \(C_{\alpha\beta}^{\gamma}\)         & \(\mathfrak R(S)=0\)   \\
+		\(\mathsf O\) & exact finite \(W\) & norm equivalence     & \(C_W\), energy                      & no finite blowup       \\
+		\(\mathsf O\) & curl bands         & equivariance         & \(N_K,\Pi_K\)                        & spectral escape        \\
+		\(\mathsf F\) & outside class      & none fixed           & no finite closure criterion          & not classified         \\
+		\bottomrule
+	\end{tabular}
+\end{table*}
+
+This table fixes the logical role of the statements used below.  It does not enlarge the theorem class.  It prevents a stronger error: using the same word for an intrinsic identity, a relative input, a verified sector, an obstruction, and an open frontier.
+
+\subsection{Logical status and source assumptions}\label{subsec:sourcecontract}
+
+The paper has one external input and several internal outputs.  The external input is the Euclidean forced blowup theorem and its quantitative construction estimates in Ref.~\cite{OpenAI2026Paper}.  All statements whose proof uses that input are marked as relative.  The geometry of $S^3_R$, the curvature algebra, the exterior pure-swirl parametrix, and the finite-band spectral identities are independent statements proved here.
+
+For reference, the source input is used only through the following transfer
+assumptions.  They are external assumptions, not results proved in this paper.
+
+\begin{hypothesis}[Euclidean source assumptions]\label{hyp:source}
+	For each positive viscosity, Ref.~\cite{OpenAI2026Paper} supplies the following
+	five items.
+	\begin{enumerate}[label=\(\mathbf{S_{\arabic*}}\),leftmargin=*,start=0]
+		\item\label{hyp:S0} A smooth compactly supported Euclidean force, a smooth
+		      incompressible solution on \([0,T)\) starting from rest, a bounded-energy
+		      estimate, and finite-time \(L^\infty\) blowup.
+		\item\label{hyp:S1} Inner variables, the leading singular profile, scaling
+		      relations, smoothness at the axis, and the growth path used by the local
+		      singular branch.
+		\item\label{hyp:S2} A finite-truncation slow-order solver: for every finite
+		      mixed-order truncation, the required positive-order inner correction equations
+		      are solvable with estimates sufficient for the stated residual order. This item
+		      includes the replacement of the source discrete orders by the finitely many
+		      mixed orders actually used in the truncation.
+		\item\label{hyp:S3} The exterior matching construction, including the five
+		      matching functionals, invertibility of the source matching derivative, pressure
+		      normalization, smoothness of the exterior force, and stability of matching after
+		      the compact spherical exterior subtraction used below.
+		\item\label{hyp:S4} The annular correction and localization estimates, including
+		      the four ordered correction steps, their class bounds, residual improvement,
+		      summability, and compact support after curvature terms have been placed beyond
+		      the active thresholds.
+	\end{enumerate}
+\end{hypothesis}
+
+\begin{remark}[Internal and relative parts]\label{rem:internalrelative}
+	The exact round metric, the volume identity, the density-form divergence identity, the Ebin--Marsden curvature formulas, the mixed-order triangularity, the pure-swirl spherical heat parametrix, and the curl-band projector norms are proved without Hypothesis~\ref{hyp:source}.  The existence of the spherical singular Navier--Stokes solution is proved relative to Hypothesis~\ref{hyp:source}.  This separation is part of the statement, not a matter of exposition.
+\end{remark}
+
+
+\subsection{Logical dependencies}\label{subsec:dependencies}
+
+The proof is organized so that each dependency is explicit.  There are four logical levels.
+
+\begin{enumerate}[label=(\Alph*),leftmargin=*]
+	\item \emph{Intrinsic geometry:} identities following only from the round metric \(g_R\), the Leray projector, and the chosen Ebin--Marsden viscous convention.
+	\item \emph{Relative transfer:} statements using Hypothesis~\ref{hyp:source}; these inherit their final validity from the Euclidean source proof.
+	\item \emph{Exact zero-defect criteria:} scalar zero-leak tests such as \(\mathfrak L_Q(W)=0\) and \(\mathfrak R(S)=0\), which verify a proposed finite-dimensional modal sector but do not by themselves list every zero.
+	\item \emph{Obstructions:} negative statements, such as finite-sector no-blowup and spectral escape, which exclude whole classes of possible candidate reductions.
+\end{enumerate}
+
+The word ``complete'' is used only after the relevant category has been fixed.  For example, Theorem~\ref{thm:modalclosure} is complete for finite unions of whole signed curl shells, not for arbitrary nonlinear invariant manifolds; Theorem~\ref{thm:globaltorus} is complete for maximal-torus fixed fields, not for one-circle reductions.
+
+For reproducibility we refine Hypothesis~\ref{hyp:source} into the following source interface.  This is not an additional assumption; it is the dependency graph of the relative part of the argument.
+
+\begin{enumerate}[label=\(S_{\arabic*}\),leftmargin=*,start=0]
+	\item singular branch and leading profile: supplies the Euclidean force, solution from rest, bounded energy, finite-time peak growth, and leading profile data; without it there is no spherical singular-branch theorem;
+	\item inner scaling and local profile: supplies the variables, scaling relations, axis smoothness, and growth path used in the core transplant;
+	\item finite-truncation solver: supplies solvability and estimates for the finitely many mixed positive slow orders used in each truncation;
+	\item renormalized matching: supplies the five matching functionals, source derivative invertibility, pressure normalization, exterior regularity, and stability under the compact spherical exterior subtraction;
+	\item annular correction and localization: supplies the four-step active-shell correction, class bounds, residual improvement, summability, and compact support after curvature terms are placed beyond the active thresholds.
+\end{enumerate}
+
+Thus every relative theorem below can be checked by asking exactly which \(S_j\) it uses.  Conversely, the metric identities, torus/Jacobi reduction, Killing family, Beltrami shells, polarized leakage test, finite-sector obstruction, and curl-projector escape do not require \(\mathbf{S_0},\dots,\mathbf{S_4}\).
+
+\section{Geometric and hydrodynamic setting}\label{sec:setting}
+
+Let
+\begin{equation}
+	\Sthree=\{X\in\RR^4:|X|=R\}
+\end{equation}
+with its standard round metric $g_R$ and sectional curvature $R^{-2}$. Thus
+\begin{equation}
+	\Ric=\frac{2}{R^2}g_R.
+\end{equation}
+We consider an incompressible Newtonian velocity field $u$ on this fixed Riemannian three-manifold. Following the deformation-tensor formulation advocated by Ebin--Marsden and subsequent analyses~\cite{EbinMarsden1970,ChanCzubakDisconzi2017,SamavakiTuomela2020}, define
+\begin{align}
+	\cL_g u         & :=2\,\operatorname{div}_g(\Def_g u),\nonumber \\
+	(\Def_g u)_{ij} & :=\frac12(\nabla_i u_j+\nabla_j u_i).
+	\label{eq:EMoperator}
+\end{align}
+For divergence-free fields this agrees, up to the stated sign convention, with the rough vector Laplacian plus the Ricci term. The forced equations are
+\begin{align}
+	\partial_t u+\nabla_u u-\nu\cL_g u+\gradg p & =f,\label{eq:NSg}  \\
+	\divg u                                     & =0.\label{eq:divg}
+\end{align}
+In flat Euclidean space, \cref{eq:EMoperator} reduces to the componentwise Laplacian on divergence-free fields, so \cref{eq:NSg} becomes the usual incompressible Navier--Stokes system.
+
+We emphasize the modeling scope. Equation~\eqref{eq:NSg} is a nonrelativistic incompressible fluid equation on a fixed spatial geometry. It is not the Einstein--Euler system, does not include cosmological expansion, and does not determine the topology of physical space.
+
+
+\section{Exact geodesic-axis coordinates on the round three-sphere}\label{sec:coords}
+
+Choose the great circle
+\begin{equation}
+	\Gamma=\{(R\cos(z/R),R\sin(z/R),0,0):z\in\RR/(2\pi R\mathbb Z)\}.
+\end{equation}
+For $0\le r<R$, $\theta\in\RR/(2\pi\mathbb Z)$, and $z\in\RR/(2\pi R\mathbb Z)$, define
+\begin{equation}
+	\Phi_R(r,\theta,z)=
+	\begin{pmatrix}
+		\sqrt{R^2-r^2}\cos(z/R) \\
+		\sqrt{R^2-r^2}\sin(z/R) \\
+		r\cos\theta             \\
+		r\sin\theta
+	\end{pmatrix}.
+	\label{eq:embedding}
+\end{equation}
+The coordinate singularity at $r=0$ is the ordinary polar degeneracy of the normal two-plane; the set $r=R$ is the complementary great circle and will not be used.
+
+\begin{theorem}[Exact geodesic-axis metric]\label{thm:metric}
+	Let
+	\begin{equation}
+		a(r):=1-\frac{r^2}{R^2}.
+	\end{equation}
+	The pullback of the round metric by \cref{eq:embedding} is
+	\begin{equation}
+		\Phi_R^*g_R=\frac{\dd r^2}{a(r)}+r^2\dd\theta^2+a(r)\dd z^2.
+		\label{eq:metric}
+	\end{equation}
+	Moreover,
+	\begin{equation}
+		\det g_R=r^2,\qquad \dd V_{g_R}=r\,\dd r\,\dd\theta\,\dd z.
+		\label{eq:volume}
+	\end{equation}
+\end{theorem}
+
+\begin{proof}
+	Differentiate \cref{eq:embedding}. The $r$, $\theta$, and $z$ coordinate vectors are mutually orthogonal in $\RR^4$. Their squared norms are respectively
+	\begin{equation}
+		\frac{R^2}{R^2-r^2}=a^{-1},\qquad r^2,\qquad \frac{R^2-r^2}{R^2}=a.
+	\end{equation}
+	This gives \cref{eq:metric}. Multiplication of the three diagonal coefficients yields $\det g_R=r^2$, proving \cref{eq:volume}.
+\end{proof}
+
+The exact determinant identity is the key geometric fact of this work. It is stronger than a normal-coordinate expansion $g_{ij}=\delta_{ij}+\OO(|x|^2/R^2)$.
+
+\begin{definition}[Cylindrical density components]\label{def:density}
+	Write a vector field in the chart as
+	\begin{equation}
+		u=v_r\,\partial_r+\frac{v_\theta}{r}\,\partial_\theta+v_z\,\partial_z.
+		\label{eq:densitycomponents}
+	\end{equation}
+	We call $v=(v_r,v_\theta,v_z)$ its cylindrical density components. For any vector $X$, write
+	\begin{equation}
+		[X]_d=(X^r,rX^\theta,X^z).
+	\end{equation}
+\end{definition}
+
+\begin{corollary}[Exact incompressibility transfer]\label{cor:div}
+	For \cref{eq:densitycomponents},
+	\begin{equation}
+		\divg u=
+		\partial_r v_r+\frac{v_r}{r}+\frac1r\partial_\theta v_\theta+\partial_z v_z.
+		\label{eq:divexact}
+	\end{equation}
+	This is exactly the Euclidean cylindrical divergence of the vector field with physical cylindrical components $(v_r,v_\theta,v_z)$.
+\end{corollary}
+
+\begin{proof}
+	Use $\operatorname{div}_g u=(\sqrt{|g|})^{-1}\partial_i(\sqrt{|g|}u^i)$ and \cref{eq:volume}.
+\end{proof}
+
+Thus every Euclidean cylindrical divergence-free field can be transplanted to the tube by keeping its three component functions unchanged. No projection onto divergence-free fields and no curvature correction is required for the constraint.
+
+\begin{corollary}[The Euclidean cylindrical curl remains an exact divergence solver]\label{cor:curl}
+	For a cylindrical potential $A=(A_r,A_\theta,A_z)$ define
+	\begin{equation}
+		\operatorname{curl}_d A:=
+		\begin{pmatrix}
+			r^{-1}\partial_\theta A_z-\partial_zA_\theta \\
+			\partial_zA_r-\partial_rA_z                  \\
+			(\partial_r+r^{-1})A_\theta-r^{-1}\partial_\theta A_r
+		\end{pmatrix}.
+		\label{eq:curlDensity}
+	\end{equation}
+	Interpreting these three functions as density components in \cref{eq:densitycomponents},
+	\begin{equation}
+		\divg(\operatorname{curl}_d A)=0
+	\end{equation}
+	identically. After the OpenAI dyadic normalization, including the chain-rule derivative operators induced by the auxiliary phase map, this is exactly the algebraic operator denoted $\operatorname{curl}_*$ in their Eq.~(7.37).
+\end{corollary}
+
+\begin{proof}
+	Substitute \cref{eq:curlDensity} into \cref{eq:divexact}; all mixed derivatives cancel pairwise. This is an algebraic consequence of the exact density $\sqrt{|g|}=r$ and does not require the metric curl $\sharp *\dd(A^\flat)$.
+\end{proof}
+
+This observation is important for the fast correctors: the Euclidean vector potentials, pulse cutoffs, and curl remainders can be retained without changing their divergence identities. Curvature is therefore confined to the momentum residual rather than the incompressibility repair.
+
+The kinetic-energy density is also explicit:
+\begin{equation}
+	|u|_{g_R}^2=\frac{v_r^2}{a}+v_\theta^2+a v_z^2.
+	\label{eq:norm}
+\end{equation}
+Hence, on any tube $r\le r_0<R$, the spherical and Euclidean cylindrical kinetic energies are uniformly equivalent, with constants depending only on $r_0/R$.
+
+
+\section{Exact curvature corrections in the momentum equation}\label{sec:momentum}
+
+Define the Euclidean cylindrical material derivative
+\begin{equation}
+	D_v:=v_r\partial_r+\frac{v_\theta}{r}\partial_\theta+v_z\partial_z.
+\end{equation}
+The nonzero Christoffel symbols of \cref{eq:metric}, up to symmetry in the lower indices, are
+\begin{align}
+	\Gamma^r_{rr}           & =\frac{r}{R^2-r^2},           &
+	\Gamma^r_{\theta\theta} & =-r+\frac{r^3}{R^2},\nonumber   \\
+	\Gamma^r_{zz}           & =\frac{r(R^2-r^2)}{R^4},      &
+	\Gamma^\theta_{r\theta} & =\frac1r,\nonumber              \\
+	\Gamma^z_{rz}           & =-\frac{r}{R^2-r^2}.
+	\label{eq:christoffel}
+\end{align}
+A direct contraction gives $\Ric_{ij}=2R^{-2}g_{ij}$, providing an independent local check of the round curvature.
+
+\begin{proposition}[Exact inertial and pressure decomposition]\label{prop:advective}
+	In density components,
+	\begin{equation}
+		[\nabla_u u]_d=\cA_0(v)+\cA_R(v),
+		\label{eq:advsplit}
+	\end{equation}
+	where the Euclidean cylindrical term is
+	\begin{equation}
+		\cA_0(v)=
+		\begin{pmatrix}
+			D_vv_r-v_\theta^2/r       \\
+			D_vv_\theta+v_rv_\theta/r \\
+			D_vv_z
+		\end{pmatrix},
+		\label{eq:A0}
+	\end{equation}
+	and the exact curvature correction is
+	\begin{equation}
+		\cA_R(v)=\frac{r}{R^2}
+		\begin{pmatrix}
+			a^{-1}v_r^2+v_\theta^2+a v_z^2 \\
+			0                              \\
+			-2a^{-1}v_rv_z
+		\end{pmatrix}.
+		\label{eq:AR}
+	\end{equation}
+	Similarly,
+	\begin{equation}
+		[\gradg p]_d=\nabla_{\rm cyl}p+\cP_R(p),
+		\label{eq:presssplit}
+	\end{equation}
+	with
+	\begin{align}
+		\nabla_{\rm cyl}p & =\begin{pmatrix}\partial_rp\\r^{-1}\partial_\theta p\\\partial_zp\end{pmatrix}, \\
+		\cP_R(p)          & =\begin{pmatrix}
+			                     -\dfrac{r^2}{R^2}\partial_rp \\[3pt]
+			                     0                            \\[3pt]
+			                     \dfrac{r^2}{R^2a}\partial_zp
+		                     \end{pmatrix}.
+		\label{eq:PR}
+	\end{align}
+	In particular, the angular inertial and pressure components are exactly Euclidean in these variables.
+\end{proposition}
+
+\begin{proof}
+	Insert \cref{eq:densitycomponents} and \cref{eq:christoffel} into
+	$(\nabla_u u)^i=u^j\partial_j u^i+\Gamma^i_{jk}u^ju^k$, and multiply the $\theta$ component by $r$. For the pressure term use $(\gradg p)^i=g^{ij}\partial_jp$ with $g^{rr}=a$, $g^{\theta\theta}=r^{-2}$ and $g^{zz}=a^{-1}$.
+\end{proof}
+
+\subsection{The viscous operator}
+
+Let $\Delta_{\rm vec,cyl}$ denote the usual Euclidean vector Laplacian acting on physical cylindrical components:
+\begin{align}
+	(\Delta_{\rm vec,cyl}v)_r      & =\Delta_s v_r-\frac{v_r}{r^2}
+	-\frac{2}{r^2}\partial_\theta v_\theta,\nonumber                                              \\
+	(\Delta_{\rm vec,cyl}v)_\theta & =\Delta_s v_\theta-\frac{v_\theta}{r^2}
+	+\frac{2}{r^2}\partial_\theta v_r,\nonumber                                                   \\
+	(\Delta_{\rm vec,cyl}v)_z      & =\Delta_s v_z,\nonumber                                      \\
+	\Delta_s                       & =\partial_r^2+\frac1r\partial_r+\frac1{r^2}\partial_\theta^2
+	+\partial_z^2.\label{eq:veclap}
+\end{align}
+
+\begin{proposition}[Curvature structure of the Ebin--Marsden Stokes operator]\label{prop:viscous}
+	For divergence-free $u$ written as in \cref{eq:densitycomponents}, there exists a linear second-order differential operator $\cV_R$ such that
+	\begin{equation}
+		[\cL_g u]_d=\Delta_{\rm vec,cyl}v+\cV_Rv.
+		\label{eq:viscsplit}
+	\end{equation}
+	On every closed tube $0\le r\le r_0<R$, all coefficients of $\cV_R$ are smooth functions of $r$ and analytic functions of $r^2/R^2$. The principal second-order coefficient differences are $\OO(r^2/R^2)$, the genuinely new first-order connection coefficients are $\OO(r/R^2)$, and the zeroth-order coefficients are $\OO(R^{-2})$. More explicitly, for each compact subchart there is $C=C(r_0/R)$ such that
+	\begin{align}
+		|\cV_Rv|\le \frac{C}{R^2}\big[ & r^2(|\partial_r^2v|+|\partial_z^2v|)
+		+r(|\partial_rv|+|\partial_zv|)\nonumber                              \\
+		                               & +|v|+|\partial_\theta v|\big],
+		\label{eq:Vbound}
+	\end{align}
+	with the standard axis-regular interpretation of cylindrical components. Analogous estimates hold after any finite number of derivatives, with constants depending on the derivative order and $r_0/R$.
+\end{proposition}
+
+\begin{proof}
+	For divergence-free fields, $2\operatorname{div}\Def$ is the rough vector Laplacian plus the Ricci endomorphism in the sign convention for which it equals the Euclidean Laplacian in flat space. Substitute \cref{eq:metric}--\eqref{eq:christoffel}. The difference from the Euclidean cylindrical operator is a second-order linear operator. Its coefficient functions are rational in $a(r)$ and polynomial in $r/R$, hence analytic for $r<R$. The only denominators are powers of $a$, uniformly bounded on $r\le r_0<R$. Subtracting the Euclidean Christoffel symbols shows the coefficient orders stated above. The Ricci contribution is exactly $2R^{-2}u$. Collecting terms yields \cref{eq:Vbound}.
+\end{proof}
+
+The first terms in the large-$R$ expansion are
+\begin{align}
+	(\cV_Rv)_r={}      & \frac1{R^2}\big[-r^2v_{r,rr}+r^2v_{r,zz}
+	-rv_{r,r}\nonumber                                                             \\
+	                   & \qquad\qquad\quad +2rv_{z,z}+5v_r+2v_{\theta,\theta}\big]
+	+\OO(R^{-4}),\nonumber                                                         \\
+	(\cV_Rv)_\theta={} & \frac1{R^2}\big[-r^2v_{\theta,rr}+r^2v_{\theta,zz}
+	-3rv_{\theta,r}+3v_\theta\big]\nonumber                                        \\
+	                   & \qquad\qquad\quad+\OO(R^{-4}),\nonumber                   \\
+	(\cV_Rv)_z={}      & \frac1{R^2}\big[-r^2v_{z,rr}+r^2v_{z,zz}
+	-2rv_{r,z}-5rv_{z,r}\big]\nonumber                                             \\
+	                   & \qquad\qquad\quad+\OO(R^{-4}).
+	\label{eq:Vexpansion}
+\end{align}
+Equation~\eqref{eq:Vexpansion} is not used as an asymptotic definition; the exact operator \cref{eq:viscsplit} is primary.
+
+Combining the previous results gives the exact chart residual decomposition
+\begin{equation}
+	[\cR_{g_R}(u,p)]_d=\cR_{\rm E}(v,p)+\cG_R(v,p),
+	\label{eq:residualsplit}
+\end{equation}
+where
+\begin{equation}
+	\cG_R(v,p)=\cA_R(v)+\cP_R(p)-\nu\cV_Rv.
+	\label{eq:Gdef}
+\end{equation}
+Thus the entire geometric problem is reduced to controlling one explicit curvature perturbation of the Euclidean residual.
+
+
+
+\section{Regional decomposition of the curvature residual}\label{sec:regional}
+
+We adopt the source similarity notation
+\begin{align}
+	A & =\frac12+h,\qquad D=\frac12-h,\nonumber \\
+	X & =\frac{r^2}{2q},\qquad 0<h<\frac1{100}.
+	\label{eq:AD}
+\end{align}
+The leading profiles satisfy
+\begin{align}
+	u_\theta^{(0)} & =q^{-A}E(X,\eta),          &
+	u_z^{(0)}      & =q^{-A}U(X,\eta),\nonumber   \\
+	r u_r^{(0)}    & =V_0(X,\eta),              &
+	p^{(0)}        & =q^{-2A}\Pi(X,\eta).
+	\label{eq:leadprofiles}
+\end{align}
+and the exact leading radial balance is
+\begin{equation}
+	\Pi_X=\frac{E^2}{2X}.
+	\label{eq:radbal}
+\end{equation}
+
+\begin{proposition}[Inner-core curvature obstruction]\label{prop:innerobs}
+	For the naively transplanted leading profile, at fixed $(X,\eta)$ the leading radial curvature defect is
+	\begin{align}
+		(\cA_R+\cP_R)_r
+		 & =\frac{\sqrt{2X}}{R^2}q^{1/2-2A}
+		\bigl(E^2+U^2-2X\Pi_X\bigr)\nonumber \\
+		 & \quad+o(q^{1/2-2A}).
+		\label{eq:innerobs}
+	\end{align}
+	Using \eqref{eq:radbal}, the bracket is exactly $U^2$. Hence wherever $U\neq0$ in the inner region,
+	\begin{equation}
+		(\cA_R+\cP_R)_r
+		=\frac{\sqrt{2X}}{R^2}q^{-1/2-2h}U^2+o(q^{-1/2-2h}),
+		\label{eq:innerobsU}
+	\end{equation}
+	which diverges as $q\downarrow0$.
+\end{proposition}
+
+\begin{proof}
+	Insert \eqref{eq:leadprofiles} into the exact radial entries of Eqs.~\eqref{eq:AR} and \eqref{eq:PR}. Since $r=\sqrt{2Xq}$ and $\partial_rX=r/q$, both the tangential kinetic terms and the radial pressure correction have the common power $q^{1/2-2A}$. Equation~\eqref{eq:radbal} cancels the $E^2$ term but leaves $U^2$. The source construction has a nontrivial axial core profile, so this is not an identically vanishing coefficient.
+\end{proof}
+
+The source paper places the primary and subsequent oscillatory covariance corrections in the active shell where the background stress is nonzero. They vanish in a neighborhood of the axis. Proposition~\ref{prop:innerobs} fixes the required support decomposition: the inner curvature defect must be canceled inside the slow hierarchy rather than assigned to the annular wave inverse.
+
+There is an independent exterior obstruction. Let $w(r,t)e_\theta$ be independent of $\theta,z$.
+
+\begin{proposition}[Exact round-sphere pure-swirl operator]\label{prop:swirlop}
+	For a pure azimuthal field on the geodesic-axis tube,
+	\begin{equation}
+		\cL_{g_R}(w e_\theta)=\cL_R^\theta w\,e_\theta,
+	\end{equation}
+	where
+	\begin{align}
+		\cL_R^\theta w={} & \left(1-\frac{r^2}{R^2}\right)w_{rr}
+		+\left(\frac1r-\frac{3r}{R^2}\right)w_r\nonumber                               \\
+		                  & +\left(-\frac1{r^2}+\frac3{R^2}\right)w,\label{eq:swirlop} \\
+		\cL_R^\theta w={} & \cL_0^\theta w+\frac1{R^2}P(\Eul)w,\label{eq:Pform}        \\
+		\cL_0^\theta={}   & \partial_{rr}+r^{-1}\partial_r-r^{-2},\qquad
+		\Eul=r\partial_r,                                                              \\
+		P(x)={}           & -(x-1)(x+3).
+	\end{align}
+	The radial nonlinear acceleration is canceled exactly by the same relation $p_r=w^2/r$ as in Euclidean cylindrical coordinates.
+\end{proposition}
+
+\begin{proof}
+	The formula follows either by direct evaluation of $2\,\mathrm{div}\,\Def$ or from the rough vector Laplacian plus $2R^{-2}u$. The correction in \eqref{eq:Pform} is
+	$R^{-2}(-r^2w_{rr}-3rw_r+3w)=R^{-2}P(\Eul)w$. For $w=r$, which is the Killing field $\partial_\theta$, the expression vanishes identically, providing a geometric check. For pure swirl, $\Gamma^r_{\theta\theta}=-r(1-r^2/R^2)$ and $g^{rr}=1-r^2/R^2$, so the common factor leaves $p_r=w^2/r$.
+\end{proof}
+
+The Euclidean exterior heat field $K$ used in the source paper solves $(\partial_t-\cL_0^\theta)K=0$, not the spherical equation. Its terminal power has Euler exponent $-2A=-1-2h$, and
+\begin{equation}
+	P(-2A)=4(1-h^2)\neq0.
+\end{equation}
+Thus the exterior requires its own curvature correction rather than being left to the annular waves.
+
+
+\section{The mixed curvature exponent monoid}\label{sec:monoid}
+
+The source background expansion uses relative exponents $2nh$. Round-sphere coefficients are analytic in
+\begin{equation}
+	\frac{r^2}{R^2}=\frac{2qX}{R^2}.
+\end{equation}
+Consequently every multiplication by a nonflat metric coefficient shifts the relative $q$ exponent by a positive integer. This leads to the following index set.
+
+\begin{definition}[Curvature-completed slow orders]\label{def:monoid}
+	Define
+	\begin{equation}
+		\Lam:=\{2nh+m:n,m\in\mathbb N_0\}.
+		\label{eq:monoid}
+	\end{equation}
+	Repeated values are identified, and the distinct elements are ordered as
+	$0=\lambda_0<\lambda_1<\lambda_2<\cdots$.
+\end{definition}
+
+\begin{lemma}[Local finiteness and closure]\label{lem:monoid}
+	The set $\Lam$ is locally finite, $\lambda_j\to\infty$, and is closed under addition and under the shifts $\lambda\mapsto\lambda+2h$ and $\lambda\mapsto\lambda+1$.
+\end{lemma}
+
+\begin{proof}
+	If $2nh+m\le L$, then $n\le L/(2h)$ and $m\le L$, leaving only finitely many pairs. The remaining statements are immediate from the definition.
+\end{proof}
+
+No rationality relation between $2h$ and $1$ is required. If two pairs $(n,m)$ generate the same exponent, all source terms at that exponent are simply combined before solving for the single coefficient.
+
+
+\section{Triangularity of the curved slow equations}\label{sec:triangular}
+
+Write a formal slow field in the same physical component conventions as the source paper, but with orders in $\Lam$:
+\begin{align}
+	u_\theta & =q^{-A}\sum_{\lambda\in\Lam}q^\lambda E_\lambda(X,\eta),\nonumber \\
+	u_z      & =q^{-A}\sum_{\lambda\in\Lam}q^\lambda U_\lambda(X,\eta),\nonumber \\
+	r u_r    & =\sum_{\lambda\in\Lam}q^\lambda V_\lambda(X,\eta),\nonumber       \\
+	p        & =q^{-2A}\sum_{\lambda\in\Lam}q^\lambda\Pi_\lambda(X,\eta).
+	\label{eq:mixedseries}
+\end{align}
+The coefficient at $\lambda=0$ is exactly the source leading profile.
+
+For arbitrary real $\lambda$ set
+\begin{equation}
+	T_{a,\lambda}:=T_a+\lambda,\qquad
+	Z_{a,\lambda}:=Z_a+\lambda,
+	\label{eq:genericTZ}
+\end{equation}
+with $T_a,Z_a$ the source similarity operators. These are precisely the replacements produced when derivatives hit $q^{a+\lambda}$.
+
+\begin{lemma}[One-power curvature filtration]\label{lem:curvfilter}
+	On every fixed similarity-profile rectangle $0\le X\le X_*$, $|\eta|\le\eta_*<1$, the difference between the round-tube momentum operator and its Euclidean cylindrical counterpart raises the relative slow $q$ order by at least one. More precisely, after the same componentwise principal factors used in the source slow equations are removed, the possible geometric contributions have the schematic sizes
+	\begin{align*}
+		\text{advection / pressure:}\quad & r^2/R^2 &  & \Longrightarrow q/R^2,        \\
+		\text{radial second order:}\quad  & r^2/R^2 &  & \Longrightarrow q/R^2,        \\
+		\text{radial first order:}\quad   & r/R^2   &  & \Longrightarrow q/R^2,        \\
+		\text{Ricci / zeroth order:}\quad & R^{-2}  &  & \Longrightarrow q/R^2,        \\
+		\text{axial second order:}\quad   & r^2/R^2 &  & \Longrightarrow q^{1+2h}/R^2.
+	\end{align*}
+	with smooth bounded coefficient functions of $(X,\eta)$ on the stated rectangle.
+\end{lemma}
+
+\begin{proof}
+	The exact formulas \eqref{eq:AR}--\eqref{eq:PR} give the $r^2/R^2$ ratio for the nonlinear and pressure corrections directly. For viscosity, the round operator has second-order coefficient differences $O(r^2/R^2)$, first-order coefficients $O(r/R^2)$, and zeroth-order coefficients $O(R^{-2})$. In similarity variables
+	\begin{equation}
+		r\asymp q^{1/2},\qquad \partial_r\asymp q^{-1/2},\qquad
+		\partial_z\asymp q^{-D}=q^{-1/2+h}.
+	\end{equation}
+	Relative to the radial second-order scale $\partial_r^2\asymp q^{-1}$, the first three viscous rows therefore all gain $q/R^2$, while an axial second derivative gains $q^{1+2h}/R^2$. The coefficients are analytic in $r^2/R^2=2qX/R^2$, so higher geometric terms add further positive integer powers of $q$.
+\end{proof}
+
+\begin{theorem}[Triangular curvature structure]\label{thm:triangular}
+	Fix a positive order $\lambda\in\Lam$ and suppose all coefficients with exponent $\mu<\lambda$ have been constructed. On a fixed profile interval, the coefficient of the spherical Navier--Stokes residual at relative order $q^\lambda$ has the form
+	\begin{equation}
+		\cL_\lambda(\phi_\lambda,U_\lambda,\Pi_\lambda)
+		=F_\lambda[\{P_\mu:\mu<\lambda\}],
+		\label{eq:triangular}
+	\end{equation}
+	where $\cL_\lambda$ is exactly the Euclidean current-order linear operator obtained from the source paper's Eqs.~(5.2)--(5.6) after replacing $\lambda_n=2nh$ by $\lambda$. All curvature contributions occur on the known right-hand side.
+\end{theorem}
+
+\begin{proof}
+	By Lemma~\ref{lem:curvfilter}, curvature acting on a coefficient of order $\mu$ first enters at an order $\mu+m$ with an integer $m\ge1$ (or still later by an additional $2h$). Consequently no curvature term at relative order $\lambda$ can contain the current unknown coefficient at that same order: it is assembled entirely from coefficients with exponent below $\lambda$.
+
+	The remaining $q^0$ terms are exactly the Euclidean slow equations. Products split into exponents $\mu+\nu=\lambda$, axial viscosity shifts by $2h$, and all such indices are in $\Lam$ by Lemma~\ref{lem:monoid}. Terms involving one leading factor and the current coefficient are therefore precisely the linear terms isolated in the source proof. This proves \eqref{eq:triangular}.
+\end{proof}
+
+It is inserted as a known source in the next available slow order.
+
+
+\section{Generic-order inner solvability}\label{sec:innersolve}
+
+The source paper states its inner solver at the discrete values \(\lambda_n=2nh\).  The spherical construction also uses the mixed orders in \(\Lambda_h=\{2nh+m:n,m\in\mathbb N_0\}\).  The passage from the source discrete orders to the finitely many mixed orders required at a fixed truncation is treated here as part of the source interface, not as an independently proved theorem.
+
+\begin{hypothesis}[Finite-truncation generic-order inner solver]\label{hyp:genericinner}
+	On the same inner interval used by the source construction, for every finite mixed-order truncation and every finite set of positive order parameters appearing in that truncation, the current-order inner correction equations have unique solutions with zero positive-order axis traces.  The required estimates hold with constants depending on the largest order parameter and on the truncation, but not on later unused orders.
+\end{hypothesis}
+
+This hypothesis is exactly the strengthened content of item \(\mathbf S_2\) needed by the spherical transfer.  An independent proof would require checking the resonance denominators, axis conditions, and order-uniform estimates in the source inner system after replacing \(\lambda_n\) by the finite list of mixed orders.
+
+
+\section{Renormalized finite-dimensional matching to the spherical exterior}\label{sec:matching}
+
+The inner coefficient cannot be matched to the spherical exterior by inserting the latter directly into the five raw moments of the source proof.  The reason is a genuine integrability obstruction rather than a matter of notation.
+
+To avoid a collision of symbols, let $\lambda_\star>0$ denote the \emph{fixed leading-tail exponent} occurring in the source paper's Theorem~4.6 and on its reserved positive-order patch.  We reserve $\sigma\in\Lam$ for the current mixed slow order.  If $\varrho=\sqrt{2X}$ is the source profile-radius variable, the source moment matrices are
+\begin{align}
+	(B_U)_{ij}    & =\int_0^\infty \varrho^{p_i}b^U_j(\varrho)\,\dd\varrho,
+	\label{eq:BUstar}                                                       \\
+	(p_1,p_2)     & =(1,1-2\lambda_\star),\nonumber                         \\
+	(B_E)_{ij}    & =\int_0^\infty \varrho^{s_i}b^E_j(\varrho)\,\dd\varrho,
+	\label{eq:BEstar}                                                       \\
+	(s_1,s_2,s_3) & =(2,-2-2\lambda_\star,-2\lambda_\star).\nonumber
+\end{align}
+The bumps are supported on the same ordered disjoint subintervals as in the source construction.  Consequently $B_U$ and $B_E$ are fixed, independent of $\sigma$, and invertible by the same distinct-power argument used there.
+
+\subsection{Why the raw exterior moments are inadmissible}
+Write the leading Euclidean exterior swirl in similarity form as
+\begin{equation}
+	K=q^{-A}E^{\rm ext}_0(X,\eta),\qquad \varrho=\sqrt{2X}.
+	\label{eq:E0ext}
+\end{equation}
+At integer curvature order $m\ge1$, the formal spherical exterior parametrix of Sec.~\ref{sec:exterior} prescribes
+\begin{align}
+	E_m^{\rm ext}(X,\eta)
+	  & =R^{-2m}d^m B_m(2X\partial_X)E^{\rm ext}_0(X,\eta),\label{eq:Emext} \\
+	d & =1-\eta^2.\nonumber
+\end{align}
+with $U_m^{\rm ext}=V_m^{\rm ext}=0$ and pressure determined order by order from $p_r=K_R^2/r$.  At noninteger $\sigma\in\Lam\setminus\mathbb N$, the prescribed pure-exterior coefficient is zero.
+
+\begin{lemma}[Raw-moment obstruction]\label{lem:rawmoment}
+	The first nontrivial exterior curvature coefficient is not admissible in the source paper's raw angular moment.  More precisely, as $\varrho\to\infty$,
+	\begin{equation}
+		E_1^{\rm ext}(\varrho,\eta)
+		=C(\eta)\varrho^{-1-2h}+o(\varrho^{-1-2h})
+		\label{eq:E1tail}
+	\end{equation}
+	with a generically nonzero coefficient, and therefore
+	\begin{equation}
+		\int^\infty \varrho^2E_1^{\rm ext}(\varrho,\eta)\,\dd\varrho
+		\label{eq:rawdiv}
+	\end{equation}
+	diverges for $0<h<1/100$.
+\end{lemma}
+
+\begin{proof}
+	The Euclidean heat exterior has the terminal power $K\sim r^{-1-2h}$, hence $E^{\rm ext}_0\sim C_0(\eta)\varrho^{-1-2h}$.  Euler polynomials preserve a pure power.  Using Eq.~\eqref{eq:B1},
+	\begin{equation}
+		B_1(-1-2h)=4(h-1)(h+1)\neq0
+	\end{equation}
+	for the admissible range of $h$.  Thus Eq.~\eqref{eq:E1tail} follows, and the integrand in Eq.~\eqref{eq:rawdiv} is asymptotic to $C(\eta)\varrho^{1-2h}$, which is nonintegrable.  This is why a literal use of the unrenormalized five moments would be incorrect.
+\end{proof}
+
+\subsection{Compact deviation and renormalized defect map}
+Choose fixed radii
+\begin{equation}
+	X_v<X_1<X_2<X_b,
+	\label{eq:spliceinterval}
+\end{equation}
+strictly to the right of both reserved source intervals $I_{\rm pos}$ and $I_{\rm mean}$, and let $\chi_{\rm out}(X)$ be smooth, flat at its endpoints, zero for $X\le X_1$, and one for $X\ge X_2$.  For the current order $\sigma$, let $P_\sigma^{\rm ext}$ denote the prescribed exterior profile tuple described above and define the compact deviation
+\begin{equation}
+	\widehat P_\sigma:=P_\sigma-\chi_{\rm out}P_\sigma^{\rm ext}.
+	\label{eq:compactdev}
+\end{equation}
+We construct $P_\sigma$ so that $\widehat P_\sigma$ vanishes for $X$ sufficiently large.  Substituting Eq.~\eqref{eq:compactdev} into the current-order equations produces a known commutator/transition source $J_\sigma$ supported in $[X_1,X_b]$.  It contains no current bump amplitude and is disjoint from $I_{\rm pos}$.
+
+The five compatibility functionals are now the source functionals applied to the compact deviation, with $J_\sigma$ included in the affine target.  Equivalently, the two stress-primitive conditions are imposed on the total compact renormalized tangential residual $\widehat r_\sigma$:
+\begin{equation}
+	\int_0^\infty \varrho^2\widehat r_{\theta,\sigma}(\varrho,\eta)\,\dd\varrho=0,
+	\qquad
+	\int_0^\infty \varrho\widehat r_{z,\sigma}(\varrho,\eta)\,\dd\varrho=0,
+	\label{eq:renormstressmom}
+\end{equation}
+while the remaining three source moments remove the exterior streamfunction and pressure constants.  Every integral is finite because the objects entering them are compactly supported after subtraction of the exterior reference.
+
+\begin{hypothesis}[Renormalized five-condition repair]\label{hyp:fiverepair}
+	Fix \(\sigma\in\Lam\), assume all lower mixed orders have been finalized, and prescribe the spherical exterior coefficient \(P_\sigma^{\rm ext}\).  The source five-condition matching step remains valid after replacing the raw exterior by the compact deviation \eqref{eq:compactdev}: the current inner solution extends through the reserved positive-order patch and then to the exterior so that
+	\begin{enumerate}[label=(\roman*),leftmargin=*]
+		\item incompressibility and the current radial pressure equation hold at that order;
+		\item the compact deviation \eqref{eq:compactdev} satisfies all five renormalized moment conditions;
+		\item the two tangential residual primitives define a smooth stress supported in the active annulus;
+		\item \(P_\sigma=P_\sigma^{\rm ext}\) in the pure exterior.
+	\end{enumerate}
+	The five current bump amplitudes are uniquely determined.  The Fr\'echet derivative of the renormalized defect map with respect to them is the source matching matrix \(B_U\oplus B_E\) from Eqs.~\eqref{eq:BUstar}--\eqref{eq:BEstar}; the new compact source \(J_\sigma\) changes only the affine target.
+\end{hypothesis}
+
+This is the precise form of item \(\mathbf S_3\) used below.  The compact subtraction makes the moment functionals finite.  It does not by itself prove that the source matching derivative remains \(B_U\oplus B_E\); that assertion is part of the transfer interface.
+
+
+
+\section{All-order spherical exterior parametrix}\label{sec:exterior}
+
+We now remove the second support obstruction. Put $\tau=1-t$ and let $K(r,\tau)$ be the exact Euclidean pure-swirl exterior heat field of the source construction. It obeys
+\begin{equation}
+	(\partial_\tau+\cL_0^\theta)K=0,
+	\qquad (\Eul+2\tau\partial_\tau)K=-2A K.
+	\label{eq:Kidentities}
+\end{equation}
+The second identity is its parabolic homogeneity. The Euler operator satisfies
+\begin{equation}
+	\cL_0^\theta B(\Eul)=B(\Eul+2)\cL_0^\theta
+	\label{eq:commute}
+\end{equation}
+for every polynomial $B$.
+
+\begin{definition}[Exterior polynomial recursion]\label{def:Brec}
+	Let $B_0(x)=1$. For $m\ge1$ define $B_m$ by
+	\begin{equation}
+		\mathcal Q_mB_m=-P B_{m-1},
+		\label{eq:Brec}
+	\end{equation}
+	where
+	\begin{equation}
+		(\mathcal Q_mB)(x)
+		=mB(x)+\frac{x+2A}{2}\bigl(B(x+2)-B(x)\bigr).
+		\label{eq:Qm}
+	\end{equation}
+\end{definition}
+
+\begin{lemma}[Polynomial invertibility]\label{lem:Qinvert}
+	For every $m\ge1$, $\mathcal Q_m$ is invertible on each finite-dimensional polynomial space. The unique $B_m$ has degree $2m$.
+\end{lemma}
+
+\begin{proof}
+	In the monomial basis, $\mathcal Q_m x^j=(m+j)x^j+$ lower-degree terms. Its matrix is triangular with strictly positive diagonal $m+j$. Since $P$ has degree two, induction gives $\deg B_m=2m$.
+\end{proof}
+
+The first correction is explicit:
+\begin{equation}
+	B_1(x)=\frac{x^2+(1-2h)x+4h^2-4h-12}{3}.
+	\label{eq:B1}
+\end{equation}
+
+\begin{theorem}[Finite-order exterior cancellation]\label{thm:extfinite}
+	For
+	\begin{equation}
+		K_R^{[M]}(r,\tau)=\sum_{m=0}^M\frac{\tau^m}{R^{2m}}B_m(\Eul)K(r,\tau),
+		\label{eq:KRfinite}
+	\end{equation}
+	one has the exact identity
+	\begin{equation}
+		(\partial_\tau+\cL_R^\theta)K_R^{[M]}
+		=\frac{\tau^M}{R^{2M+2}}P(\Eul)B_M(\Eul)K.
+		\label{eq:KRremainder}
+	\end{equation}
+\end{theorem}
+
+\begin{proof}
+	For a polynomial $B$, Eqs.~\eqref{eq:Kidentities}--\eqref{eq:commute} give
+	\begin{align}
+		 & (\partial_\tau+\cL_0^\theta)\bigl[\tau^mB(\Eul)K\bigr]\nonumber \\
+		 & \qquad=\tau^{m-1}\left[mB(\Eul)
+			+\frac{\Eul+2A}{2}\bigl(B(\Eul+2)-B(\Eul)\bigr)\right]K.
+		\label{eq:H0Bm}
+	\end{align}
+	At order $R^{-2m}$ this cancels $P(\Eul)$ applied to the preceding coefficient by \eqref{eq:Brec}. All terms telescope, leaving only the curvature action on the final coefficient.
+\end{proof}
+
+The source integral representation of its heat factor $H(Z)$ implies, for every fixed $j$, a uniform bound on $Z^jH^{(j)}(Z)$ for $Z\ge0$: after differentiating under the integral, $(Zv)^j(1+Zv)^{-j}\le1$. Hence every fixed Euler derivative of $K$ has the same scale envelope as $K$. Although the constants attached to $B_m$ can grow with $m$, no uniform-in-$m$ bound is needed.
+
+\begin{corollary}[Flat exterior realization preserving pure swirl]\label{cor:extborel}
+	There is a locally finite realization of the formal exterior series using cutoffs that depend only on $\tau=1-t$,
+	\begin{equation}
+		K_R=K+\sum_{m\ge1}\chi(a_m\tau)
+		\frac{\tau^m}{R^{2m}}B_m(\Eul)K,
+		\qquad a_m\uparrow\infty,
+		\label{eq:KRborel}
+	\end{equation}
+	where $\chi=1$ near the origin and vanishes for sufficiently large argument.  The field remains exactly independent of $z$ and $\theta$.  On every fixed exterior profile rectangle $X_b\le X\le X_{\max}$ and for every fixed physical derivative order,
+	\begin{equation}
+		\forall N\qquad
+		|(\partial_\tau+\cL_R^\theta)K_R|_{m_0}=O(q^N)
+		\qquad(q\downarrow0).
+		\label{eq:extflat}
+	\end{equation}
+	A fixed radial cutoff farther out in the strict tube produces only a residual which extends smoothly through $t=1$.
+\end{corollary}
+
+\begin{proof}
+	Choose $\chi\in C_c^\infty([0,\infty))$ with $\chi=1$ on $[0,1]$ and $\chi=0$ on $[2,\infty)$, and choose $a_m$ recursively so fast that the finitely many seminorms required at stage $m$ are bounded by $2^{-m}$ after multiplication by the $m$th term.  For every fixed $\tau>0$ only finitely many summands in Eq.~\eqref{eq:KRborel} survive, while for every fixed $M$ all terms $m\le M$ equal their formal values once $\tau$ is sufficiently small.  Thus the realized field has the formal asymptotic expansion to arbitrary order.
+
+	This cutoff choice is essential: because it depends only on $\tau$, no spatial derivative of a cutoff is created and exact $z$ independence of the pure swirl is preserved.  On a transition $a_m\tau\asymp1$, $b$ time derivatives of the cutoff cost at most $C_b\tau^{-b}$; multiplied by $\tau^m$, this leaves order $\tau^{m-b}$.  For each fixed derivative order this still tends to arbitrarily high order as $m\to\infty$.  Equation~\eqref{eq:KRremainder} supplies the corresponding finite-order residual estimate.  In the similarity variables of the source construction,
+	\begin{equation}
+		\tau=q(1-\eta^2)\le q,
+		\label{eq:tauleq}
+	\end{equation}
+	so every $O(\tau^N)$ remainder is also $O(q^N)$ on a fixed profile rectangle.  Euler derivatives of $K$ change constants but not this order.  The diagonal cutoff choice therefore gives Eq.~\eqref{eq:extflat}.
+
+	Finally choose a fixed $r_{\rm cut}<R$ beyond the local singular tube and multiply the azimuthal exterior by an axisymmetric radial cutoff which is one on the entire shrinking profile region.  An axisymmetric pure azimuthal field remains divergence-free under such a radial cutoff.  Since $r$ is then bounded away from zero on the transition annulus and $K_R$ and all fixed derivatives have one-sided limits as $t\uparrow1$, the resulting cutoff error is smooth through the singular time and may be included in the final force.
+\end{proof}
+
+For this pure swirl, define the exterior pressure by $p_r=K_R^2/r$ plus an arbitrary time-dependent additive constant. Proposition~\ref{prop:swirlop} then cancels radial acceleration identically, while the tangential residual is flat by Corollary~\ref{cor:extborel}.
+
+
+
+\section{Invariant solution atlas and closed symmetry reductions}\label{sec:invariantatlas}
+
+The transfer construction uses local coordinates adapted to the torus generated by
+$\partial_\theta$ and $\partial_z$.  This torus does more than simplify notation:
+it gives an exact invariant atlas of solutions on the round sphere.  We record it
+because it is a useful independent check on the curvature terms and because it
+separates genuine closed reductions from tempting but false ansatz classes.
+
+Let
+\begin{equation}
+	G_0=U(1)_\theta\times U(1)_z
+\end{equation}
+be the isometry subgroup generated by rotations in $\theta$ and translations in
+$z$ along the chosen great circle.  In a proper tube away from the complementary
+axis, write
+\begin{equation}
+	u=v_r(r,t)\partial_r+\frac{v_\theta(r,t)}{r}\partial_\theta
+	+v_z(r,t)\partial_z .
+\end{equation}
+
+\begin{proposition}[Complete $G_0$-invariant incompressible form]\label{prop:T2class}
+	Every smooth $G_0$-invariant divergence-free field in such a tube has
+	\begin{equation}
+		v_r=0,\qquad v_\theta=A(r,t),\qquad v_z=B(r,t).
+		\label{eq:T2form}
+	\end{equation}
+	Thus
+	\begin{equation}
+		u=\frac{A(r,t)}{r}\partial_\theta+B(r,t)\partial_z.
+		\label{eq:T2u}
+	\end{equation}
+	Conversely every field of the form \eqref{eq:T2u}, with the usual polar
+	regularity of $A$ at the axis, is $G_0$-invariant and divergence-free.
+\end{proposition}
+
+\begin{proof}
+	For a $G_0$-invariant field the exact divergence identity
+	\eqref{eq:divexact} reduces to
+	\[
+		\partial_r v_r+\frac{v_r}{r}=0.
+	\]
+	Hence $rv_r=C(t)$. Smoothness at the polar axis gives $C(t)=0$.
+	The remaining two components are arbitrary functions of $r$ and $t$ subject only
+	to smoothness.
+\end{proof}
+
+\begin{theorem}[Exact two-scalar invariant Navier--Stokes family]\label{thm:T2family}
+	Let $u$ be given by \eqref{eq:T2u}.  Put
+	\begin{align}
+		\mathfrak L_\theta A
+		 & :=\Bigl(1-\frac{r^2}{R^2}\Bigr)A''
+		+\Bigl(\frac1r-\frac{3r}{R^2}\Bigr)A'
+		+\Bigl(-\frac1{r^2}+\frac3{R^2}\Bigr)A,
+		\label{eq:LthetaExact}                \\
+		\mathfrak L_z B
+		 & :=\Bigl(1-\frac{r^2}{R^2}\Bigr)B''
+		+\Bigl(\frac1r-\frac{5r}{R^2}\Bigr)B'.
+		\label{eq:LzExact}
+	\end{align}
+	Then the geometric Navier--Stokes equation \eqref{eq:NSg} with force
+	\[
+		f=\frac{F_\theta(r,t)}{r}\partial_\theta+F_z(r,t)\partial_z
+	\]
+	is solved exactly by \eqref{eq:T2u} if and only if
+	\begin{align}
+		\partial_t A-\nu\mathfrak L_\theta A & =F_\theta,\label{eq:Aheat} \\
+		\partial_t B-\nu\mathfrak L_z B      & =F_z,\label{eq:Bheat}
+	\end{align}
+	and the radial pressure is chosen by
+	\begin{equation}
+		\partial_r p=\frac{A^2}{r}-\frac{rB^2}{R^2}.
+		\label{eq:T2pressure}
+	\end{equation}
+	Thus the nonlinear term is entirely absorbed into pressure, and the true
+	dynamics of this invariant sector is the direct product of two scalar parabolic
+	equations.
+\end{theorem}
+
+\begin{proof}
+	The Christoffel symbols needed for the convective term are
+	\[
+		\Gamma^r_{\theta\theta}=-\Bigl(1-\frac{r^2}{R^2}\Bigr)r,\qquad
+		\Gamma^r_{zz}=\Bigl(1-\frac{r^2}{R^2}\Bigr)\frac r{R^2}.
+	\]
+	Since the field has no $r$ component and all coefficients are $\theta,z$
+	independent,
+	\[
+		(\nabla_u u)^r
+		=-\Bigl(1-\frac{r^2}{R^2}\Bigr)\frac{A^2}{r}
+		+\Bigl(1-\frac{r^2}{R^2}\Bigr)\frac{rB^2}{R^2}.
+	\]
+	The radial component of $\nabla p$ is
+	$(1-r^2/R^2)\partial_rp$, so \eqref{eq:T2pressure} cancels the radial
+	acceleration.  Direct computation of $\cL_g$ on \eqref{eq:T2u} gives
+	\[
+		[\cL_g u]_d=(0,\mathfrak L_\theta A,\mathfrak L_zB).
+	\]
+	The $\theta$ and $z$ components of \eqref{eq:NSg} are precisely
+	\eqref{eq:Aheat} and \eqref{eq:Bheat}.
+\end{proof}
+
+\begin{corollary}[Killing subcone]\label{cor:KillingCone}
+	For arbitrary scalar functions $\Omega(t)$ and $W(t)$,
+	\begin{equation}
+		u=\Omega(t)\partial_\theta+W(t)\partial_z
+	\end{equation}
+	belongs to the invariant family.  Equivalently,
+	\[
+		A(r,t)=\Omega(t)r,\qquad B(r,t)=W(t).
+	\]
+	Both profiles lie in the kernel of their viscous operators:
+	\[
+		\mathfrak L_\theta(r)=0,\qquad \mathfrak L_z(1)=0.
+	\]
+	The required force is $\Omega'(t)\partial_\theta+W'(t)\partial_z$.  If
+	$\Omega,W$ are constant, the solution is unforced and stationary, with pressure
+	\begin{equation}
+		p=\frac12\left(\Omega^2r^2+W^2\Bigl(1-\frac{r^2}{R^2}\Bigr)\right)+c(t).
+	\end{equation}
+	This is the two-dimensional Killing cone generated by the two coordinate Hopf
+	rotations.
+\end{corollary}
+
+\begin{corollary}[Euler-monomial invariant towers]\label{cor:EulerTowers}
+	For every exponent $\lambda$,
+	\begin{align}
+		\mathfrak L_\theta r^\lambda
+		 & = (\lambda^2-1)r^{\lambda-2}
+		-\frac{(\lambda-1)(\lambda+3)}{R^2}r^\lambda,
+		\label{eq:thetaMonomial}        \\
+		\mathfrak L_z r^\lambda
+		 & = \lambda^2 r^{\lambda-2}
+		-\frac{\lambda(\lambda+4)}{R^2}r^\lambda.
+		\label{eq:zMonomial}
+	\end{align}
+	Consequently the swirl profile space
+	\[
+		\mathcal A_\theta^{(m)}=\operatorname{span}\{r,r^3,\ldots,r^{2m+1}\}
+	\]
+	is invariant for \(\mathfrak L_\theta\).  The corresponding vector-field space is
+	\[
+		\begin{aligned}
+		W_\theta^{(m)}
+		&=
+		\left\{\frac{A(r)}{r}\partial_\theta:
+		A\in\mathcal A_\theta^{(m)}\right\} \\
+		&=
+		\operatorname{span}\{1,s,\ldots,s^m\}\partial_\theta,
+		\qquad s=\frac{r^2}{R^2}.
+		\end{aligned}
+	\]
+	The axial vector-field space is
+	\[
+		W_z^{(m)}
+		=
+		\operatorname{span}\{1,s,\ldots,s^m\}\partial_z .
+	\]
+	Equivalently, the axial profile space
+	\(\operatorname{span}\{1,r^2,\ldots,r^{2m}\}\) is invariant for \(\mathfrak L_z\).  The exterior polynomial recursion of
+	\cref{sec:exterior} is the first of these Euler towers; the second, axial tower,
+	is an additional exact check on the round-sphere Stokes algebra.
+\end{corollary}
+
+\begin{remark}[What is not a solution ansatz]
+	The classification above is complete only for the closed $G_0$-invariant
+	sector.  There is no nonzero smooth $G_0$-invariant radial incompressible branch:
+	the divergence equation forces $rv_r$ to be constant, and smoothness kills that
+	constant.  There is also no nonzero fully $SO(4)$-invariant vector field on
+	$S^3_R$, since the isotropy group at any point acts irreducibly on the tangent
+	space and fixes no nonzero tangent vector.  Single-axis invariance gives a
+	larger reduced partial differential system, not a finite scalar solution family.
+\end{remark}
+
+
+
+\section{Isometry-invariance scope: naturality, global torus spectrum, and Killing closure}\label{sec:isometryinv}
+
+The preceding atlas is complete for the local $G_0$-invariant tube variables.  We now record the intrinsic invariance content.  Here ``isometry-invariant'' means invariant under the natural action of a stated subgroup of the round-sphere isometry group, not merely preserved by a coordinate ansatz.
+
+\begin{theorem}[Naturality of fixed-symmetry sectors]\label{thm:naturality}
+	Let $H$ be any closed subgroup of $\operatorname{Isom}(S^3_R,g_R)$.  The space
+	\begin{equation}
+		\cV_H:=\{u:\divg u=0,\ h_*u=u\ \text{for all }h\in H\}
+	\end{equation}
+	is dynamically closed for \eqref{eq:NSg}: if $u,p,f$ solve \eqref{eq:NSg}, then
+	$h_*u$, $p\circ h^{-1}$, and $h_*f$ solve the same equation.  Consequently, with
+	$H$-invariant force and $H$-invariant smooth initial data, local uniqueness keeps the solution inside $\cV_H$ for as long as the smooth solution exists.
+\end{theorem}
+
+\begin{proof}
+	The Levi--Civita connection, gradient, divergence, deformation tensor, Ricci tensor, and volume form are natural under isometries.  Thus every term in \eqref{eq:NSg} is equivariant under $h_*$.  The last assertion follows by applying uniqueness to $u$ and $h_*u$ with the same initial data and force.
+\end{proof}
+
+\begin{corollary}[Sharp full-isometry obstruction]\label{cor:SO4zero}
+	The only $SO(4)$-invariant smooth vector field on $S^3_R$ is zero.  Hence the singular solution cannot be invariant under the full round-sphere isometry group.
+\end{corollary}
+
+\begin{proof}
+	Fix $x\in S^3_R$.  The isotropy group at $x$ is $SO(3)$ acting in the standard way on $T_xS^3_R$.  Its fixed subspace is $\{0\}$.  An $SO(4)$-invariant vector field must take values in that fixed subspace at every point.
+\end{proof}
+
+\begin{theorem}[Full Killing family]\label{thm:KillingFamily}
+	Let $A(t)\in\mathfrak{so}(4)$ be smooth in time and put
+	\begin{equation}
+		u(t,x)=A(t)x,\qquad x\in S^3_R\subset\RR^4 .
+	\end{equation}
+	Then $u$ is divergence-free and solves \eqref{eq:NSg} with
+	\begin{equation}
+		f(t,x)=\dot A(t)x,\qquad p(t,x)=\frac12 |A(t)x|^2 .
+	\end{equation}
+	If $A$ is constant in time, this is an unforced stationary solution.  If $A$ lies in one of the two simple factors
+	$\mathfrak{so}(4)=\mathfrak{su}(2)_+\oplus\mathfrak{su}(2)_-$, then $|A x|$ is constant on $S^3_R$ and the pressure may be chosen spatially constant.
+\end{theorem}
+
+\begin{proof}
+	For each fixed $t$, $x\mapsto A(t)x$ is a Killing field.  Hence $\Def_g u=0$, so $\cL_g u=0$, and $\divg u=0$.  The Killing identity gives
+	\[
+		\nabla_u u+\gradg\frac12|u|^2=0.
+	\]
+	Substitution into \eqref{eq:NSg} leaves only $\partial_tu=f$.  In the self-dual or anti-self-dual factor, $A^2=-\omega^2 I$ for some $\omega$, so $|Ax|^2=\omega^2R^2$.
+\end{proof}
+
+\begin{theorem}[Global maximal-torus reduction and Jacobi diagonalization]\label{thm:globaltorus}
+	Put
+	\begin{equation}
+		s=\frac{r^2}{R^2}\in[0,1].
+	\end{equation}
+	Every globally smooth $G_0=U(1)_\theta\times U(1)_z$-invariant divergence-free vector field on $S^3_R$ has the form
+	\begin{equation}
+		u=\alpha(s,t)\,\partial_\theta+\beta(s,t)\,\partial_z ,
+		\label{eq:globalTorusForm}
+	\end{equation}
+	where $\alpha,\beta\in C^\infty([0,1])$ in the standard even boundary sense at the two Hopf axes.  Conversely every field of the form \eqref{eq:globalTorusForm} is smooth, $G_0$-invariant, and divergence-free.
+
+	With force
+	\[
+		f=\Phi_\theta(s,t)\,\partial_\theta+\Phi_z(s,t)\,\partial_z,
+	\]
+	\eqref{eq:NSg} is equivalent to
+	\begin{align}
+		\partial_t\alpha-\frac{4\nu}{R^2}
+		\Bigl[s(1-s)\alpha_{ss}+(2-3s)\alpha_s\Bigr] & =\Phi_\theta,
+		\label{eq:alphaJacobiHeat}                                   \\
+		\partial_t\beta-\frac{4\nu}{R^2}
+		\Bigl[s(1-s)\beta_{ss}+(1-3s)\beta_s\Bigr]   & =\Phi_z,
+		\label{eq:betaJacobiHeat}
+	\end{align}
+	and
+	\begin{equation}
+		p_s=\frac{R^2}{2}\alpha^2-\frac12\beta^2 .
+		\label{eq:globalTorusPressure}
+	\end{equation}
+	Moreover, with
+	\begin{equation}
+		J_n^\theta(s):=P_n^{(1,0)}(1-2s),\qquad
+		J_n^z(s):=P_n^{(0,1)}(1-2s),
+	\end{equation}
+	one has the exact eigenvalue identities
+	\begin{align}
+		\Bigl[s(1-s)\partial_{ss}+(2-3s)\partial_s\Bigr]J_n^\theta
+		 & =-n(n+2)J_n^\theta, \\
+		\Bigl[s(1-s)\partial_{ss}+(1-3s)\partial_s\Bigr]J_n^z
+		 & =-n(n+2)J_n^z .
+	\end{align}
+	Thus the unforced global $G_0$-invariant heat dynamics is diagonal.  With
+	\[
+		\mu_n:=\frac{4\nu n(n+2)}{R^2},
+	\]
+	\begin{equation}
+		\begin{aligned}
+			u(t)={} & \sum_{n\ge0}a_n e^{-\mu_n t}J_n^\theta(s)\partial_\theta \\
+			        & +\sum_{n\ge0}b_n e^{-\mu_n t}J_n^z(s)\partial_z ,
+		\end{aligned}
+		\label{eq:JacobiExactSolution}
+	\end{equation}
+	for the usual rapidly decreasing smooth coefficients.
+\end{theorem}
+
+\begin{proof}
+	Global smoothness at the axis $r=0$ requires $A(r,t)=r\,\alpha(r^2/R^2,t)$; global smoothness at the complementary axis requires $B(r,t)=\beta(r^2/R^2,t)$.  This converts \eqref{eq:T2u} into \eqref{eq:globalTorusForm}.  Since $A=r\alpha(s,t)$ and $B=\beta(s,t)$, direct substitution into \eqref{eq:LthetaExact}--\eqref{eq:LzExact} gives
+	\[
+		\frac1r\mathfrak L_\theta(r\alpha)
+		=\frac4{R^2}\{s(1-s)\alpha_{ss}+(2-3s)\alpha_s\},
+	\]
+	and
+	\[
+		\mathfrak L_z\beta
+		=\frac4{R^2}\{s(1-s)\beta_{ss}+(1-3s)\beta_s\}.
+	\]
+	The pressure formula follows from \eqref{eq:T2pressure} and $ds/dr=2r/R^2$.  The last identities are the Jacobi differential equations, with weights $s$ and $1-s$ respectively.
+\end{proof}
+
+\begin{remark}[Scope of isometry invariance]\label{rem:isometryMeaning}
+	The invariant content is functorial at the level of Theorem~\ref{thm:naturality}: every isometry subgroup gives a closed fixed sector.  It is explicit at three sharp places: the full $SO(4)$ sector is zero, the full Killing sector is the six-dimensional family in Theorem~\ref{thm:KillingFamily}, and every maximal-torus sector is conjugate to Theorem~\ref{thm:globaltorus}.  A single-circle subgroup gives a larger cohomogeneity-two PDE, not a complete finite scalar solution atlas; no claim of classifying all such reductions is made.
+\end{remark}
+
+
+
+
+
+\section{Beltrami shells, helicity, and nonlinear curl-mode closures}\label{sec:beltrami}
+
+The maximal-torus atlas is not the end of the exact solution theory.  The round
+three-sphere has another rigid structure: each signed curl eigenspace is already
+a nonlinear Navier--Stokes solution manifold.  This gives a second independent
+check on the viscous convention and connects the invariant check directly to the
+spectral escape theorem.  Background on Beltrami fields and steady Euler
+structures on compact three-manifolds can be found in
+Refs.~\cite{PeraltaSlobodeanu2023,EncisoPeralta2012}; those results are not
+used as inputs for the closure criterion below.
+
+For $k\ge0$ and $\sigma\in\{+1,-1\}$ let
+\begin{equation}
+	E_{k,\sigma}:=\{\,\phi:\divg\phi=0,\
+	\operatorname{curl}\phi=\sigma (k+2)R^{-1}\phi\,\}.
+\end{equation}
+Its dimension is $(k+1)(k+3)$.  Put
+\begin{equation}
+	\mu_{k,\sigma}:=\sigma\frac{k+2}{R},
+	\qquad
+	\kappa_k:=\mu_{k,\sigma}^2-\frac4{R^2}=\frac{k(k+4)}{R^2}.
+	\label{eq:kappak}
+\end{equation}
+The number $\kappa_k$ is independent of the helicity sign.
+
+\begin{proposition}[Stokes eigenvalue on a curl shell]\label{prop:StokesCurlShell}
+	For every $\phi\in E_{k,\sigma}$,
+	\begin{equation}
+		\cL_g\phi=-\kappa_k\phi .
+		\label{eq:StokesCurlShell}
+	\end{equation}
+\end{proposition}
+
+\begin{proof}
+	On divergence-free one-forms, with the sign convention of
+	\eqref{eq:NSg}--\eqref{eq:EMoperator}, the deformation-tensor operator on the
+	round three-sphere is
+	\begin{equation}
+		\cL_g=-\Delta_1+\frac4{R^2},
+		\label{eq:StokesHodgeCurl}
+	\end{equation}
+	where $\Delta_1$ is the nonnegative Hodge Laplacian on coexact one-forms.  Since
+	$\Delta_1=\operatorname{curl}^2$ on coexact one-forms and
+	$\operatorname{curl}\phi=\mu_{k,\sigma}\phi$, Eq.~\eqref{eq:StokesCurlShell}
+	follows.
+\end{proof}
+
+\begin{theorem}[Exact Beltrami-shell Navier--Stokes solutions]\label{thm:BeltramiShell}
+	Fix $k\ge0$, a sign $\sigma$, and a field $\phi\in E_{k,\sigma}$.  For every
+	smooth scalar amplitude $a(t)$,
+	\begin{equation}
+		u(t)=a(t)\phi
+		\label{eq:BeltramiAnsatz}
+	\end{equation}
+	solves \eqref{eq:NSg} with
+	\begin{align}
+		f(t) & =\bigl(a'(t)+\nu\kappa_k a(t)\bigr)\phi,
+		\label{eq:BeltramiForce}                        \\
+		p(t) & =-\frac12a(t)^2|\phi|^2 .
+		\label{eq:BeltramiPressure}
+	\end{align}
+	In particular, the unforced solution is
+	\begin{equation}
+		u(t)=e^{-\nu\kappa_k t}u(0).
+		\label{eq:BeltramiDecay}
+	\end{equation}
+\end{theorem}
+
+\begin{proof}
+	Use the standard identity
+	\begin{equation}
+		\nabla_u u=\gradg\frac12|u|^2-u\times\operatorname{curl}u .
+		\label{eq:BeltramiVectorIdentity}
+	\end{equation}
+	For $u=a\phi$, one has
+	$\operatorname{curl}u=\mu_{k,\sigma}u$, hence
+	$u\times\operatorname{curl}u=0$.  Thus the nonlinear term is exactly
+	$\gradg(\frac12|u|^2)$ and is cancelled by \eqref{eq:BeltramiPressure}.  The
+	remaining vector equation is
+	\[
+		a'\phi-\nu a\cL_g\phi=f,
+	\]
+	which is \eqref{eq:BeltramiForce} by Proposition~\ref{prop:StokesCurlShell}.
+	Setting $f=0$ gives \eqref{eq:BeltramiDecay}.
+\end{proof}
+
+\begin{corollary}[Energy--helicity ray]\label{cor:BeltramiHelicity}
+	For an unforced Beltrami-shell solution,
+	\begin{align}
+		E(t)         & :=\frac12\|u(t)\|_2^2
+		=E(0)e^{-2\nu\kappa_k t},                                        \\
+		\mathsf H(t) & :=\int_{S^3_R} g(u,\operatorname{curl}u)\,\dd V_g
+		=2\mu_{k,\sigma}E(t).
+		\label{eq:helicityray}
+	\end{align}
+	Thus each signed curl shell is an exact helicity ray.  The case $k=0$ has
+	$\kappa_0=0$ and recovers the Hopf Beltrami fields.  The full six-dimensional
+	Killing family of Theorem~\ref{thm:KillingFamily} is larger: it allows sums of
+	the two $k=0$ helicities, which are Killing but not Beltrami unless one signed
+	component vanishes.
+\end{corollary}
+
+\begin{proof}
+	The identity $\operatorname{curl}u=\mu_{k,\sigma}u$ gives
+	$\mathsf H=\mu_{k,\sigma}\|u\|_2^2=2\mu_{k,\sigma}E$.  The energy decay follows
+	from \eqref{eq:BeltramiDecay}.
+\end{proof}
+
+The Beltrami closure is exact, but it is also sharp in the following sense.  The
+cancellation in Theorem~\ref{thm:BeltramiShell} is the pointwise condition
+$u\times\operatorname{curl}u=0$.  A generic sum of different curl eigenvalues, or
+of opposite helicities at the same $k\ge1$, violates this condition and is not a
+Beltrami shell.  Such sums may still have special cancellations, but they are not
+closed by the scalar amplitude law \eqref{eq:BeltramiForce}.  This is why the
+Beltrami result is an exact solution theorem, not a disguised classification of
+all finite-dimensional invariant manifolds.
+
+\begin{theorem}[Clebsch--Gordan resonance gate]\label{thm:CGgate}
+	Let $Q(u,v)=\frac12\PP(\nabla_u v+\nabla_v u)$ denote the polarized projected Euler term on divergence-free
+	fields.  Under
+	\[
+		SO(4)\simeq(SU(2)_L\times SU(2)_R)/\{\pm1\},
+	\]
+	the curl shells decompose as
+	\begin{equation}
+		E_{k,+}\simeq V_{(k+2)/2}\boxtimes V_{k/2},
+		\qquad
+		E_{k,-}\simeq V_{k/2}\boxtimes V_{(k+2)/2},
+		\label{eq:curlirreps}
+	\end{equation}
+	where $V_j$ is the spin-$j$ irreducible representation of $SU(2)$.  Therefore
+	the projection of $Q(E_{k,\sigma},E_{\ell,\tau})$ onto $E_{m,\rho}$ can be
+	nonzero only if both inequalities
+	\begin{align}
+		j_L(m,\rho) & \in
+		\{|j_L(k,\sigma)-j_L(\ell,\tau)|,\ldots,
+		j_L(k,\sigma)+j_L(\ell,\tau)\}, \\
+		j_R(m,\rho) & \in
+		\{|j_R(k,\sigma)-j_R(\ell,\tau)|,\ldots,
+		j_R(k,\sigma)+j_R(\ell,\tau)\}
+	\end{align}
+	hold, with half-integer steps and with
+	\begin{align}
+		(j_L(k,+),j_R(k,+))
+		 & =\left(\frac{k+2}{2},\frac k2\right), \\
+		(j_L(k,-),j_R(k,-))
+		 & =\left(\frac k2,\frac{k+2}{2}\right).
+	\end{align}
+	Outside this gate the quadratic interaction coefficient is identically zero by
+	symmetry.
+\end{theorem}
+
+\begin{proof}
+	The Levi--Civita connection, metric contraction, and Leray projection commute
+	with the round $SO(4)$ action.  Thus $Q$ is an $SO(4)$-equivariant symmetric bilinear map.
+	Equation~\eqref{eq:curlirreps} gives the irreducible type of each signed curl
+	shell.  The tensor product of two $SU(2)$ irreducibles contains precisely the
+	Clebsch--Gordan spins between the absolute difference and the sum; this must hold
+	independently in the left and right factors.  Schur's lemma then kills every
+	output shell whose left or right spin lies outside the stated ranges.
+\end{proof}
+
+\begin{remark}[What this adds to spectral escape]
+	The spectral escape theorem says that a finite curl band cannot keep the
+	singular peak.  The Beltrami-shell theorem identifies the exact nonlinear
+	one-shell motions inside that same spectral decomposition, while the resonance
+	gate records which shell interactions are forbidden before any coefficient is
+	computed.  The gate is necessary; the invariant coefficients introduced below decide exact closure.  Thus the compact curl spectrum is not merely a measuring device: it
+	also organizes the exact solution families and the possible quadratic routes by
+	which energy can leave any finite band.
+\end{remark}
+
+
+
+
+\section{Coordinate-free closure criterion: polarized equations, modal algebra, and link atlas}
+\label{sec:coordinate-free closure}
+
+The preceding sections identify several invariant sectors.  The next step is to remove the dependence on the chosen names of these sectors.  The coordinate-free objects for incompressible Navier--Stokes are
+\begin{equation}
+	A=-\PP\mathcal L_g,\qquad
+	B(u,v)=\PP\nabla_u v ,
+	\label{eq:leray-stokes-pair}
+\end{equation}
+where \(\PP\) is the Hodge--Leray projection onto divergence-free vector fields.  The equation is
+\begin{equation}
+	\partial_tu+\nu Au+B(u,u)=\PP f.
+	\label{eq:projected-ns}
+\end{equation}
+The diagonal quadratic term is governed by the symmetric polarization
+\begin{equation}
+	Q(u,v)=\frac12\{B(u,v)+B(v,u)\}.
+	\label{eq:polarized-Q}
+\end{equation}
+Thus \(B(u,u)=Q(u,u)\).  The skew part of \(B\) is not part of the Navier--Stokes diagonal.  This is not a cosmetic point: Killing spaces and chiral Beltrami shells have \(Q(W,W)=0\), while their unsymmetrized \(B(e_i,e_j)\) may contain bracket data which cancels on the diagonal.  Therefore \(Q\), not raw \(B\), is the exact invariant of finite-dimensional closure.
+
+\begin{definition}[Exact reducing space]
+	A linear subspace \(W\) of smooth divergence-free vector fields is an exact Navier--Stokes reducing space if
+	\begin{equation}
+		AW\subset W,\qquad Q(W,W)\subset W.
+		\label{eq:reducing-space}
+	\end{equation}
+	It is a pressure-linear reducing space if \(AW\subset W\) and \(Q(W,W)=0\).
+\end{definition}
+
+\begin{theorem}[Polarized finite-dimensional closure test]\label{thm:polarizedclosure}
+	Let \(W=\operatorname{span}\{e_1,\dots,e_N\}\) be finite dimensional.  The ansatz
+	\[
+		u(t)=\sum_{j=1}^N a_j(t)e_j
+	\]
+	closes to an exact \(N\)-dimensional ordinary differential system for every forcing \(\PP f(t)\in W\) if and only if \(W\) satisfies \eqref{eq:reducing-space}.  In that case
+	\[
+		\dot a_k+\nu\sum_j A^k_j a_j+\sum_{i,j}Q^k_{ij}a_i a_j=F_k(t),
+	\]
+	where \(Ae_j=\sum_k A^k_j e_k\) and \(Q(e_i,e_j)=\sum_k Q^k_{ij}e_k\).  If \(Q(W,W)=0\), the system is linear.
+\end{theorem}
+
+\begin{proof}
+	Apply \(\PP\) to the equation.  If \eqref{eq:reducing-space} holds, every term in \eqref{eq:projected-ns} lies in \(W\), so the coefficient equations above are exact.  Conversely, exact closure for arbitrary coefficients implies \((I-\Pi_W)Au=0\) for every \(u\in W\).  It also implies
+	\[
+		(I-\Pi_W)Q(u,u)=0\qquad (u\in W).
+	\]
+	Polarization gives
+	\[
+		2Q(u,v)=Q(u+v,u+v)-Q(u,u)-Q(v,v),
+	\]
+	hence \(Q(W,W)\subset W\).
+\end{proof}
+
+This is the first coordinate-free closure test: the exact finite-dimensional closure problem is the zero set of a coordinate-free symmetric bilinear leakage.
+
+\begin{corollary}[Polarized invariant leakage scalar]\label{cor:polarizedleakage}
+	For a finite-dimensional \(W\), define
+	\begin{equation}
+		\begin{aligned}
+			\mathfrak L_Q(W)
+			 & =
+			\sum_i\|(I-\Pi_W)Ae_i\|_{L^2}^2 \\
+			 & \quad+
+			\sum_{i,j}\|(I-\Pi_W)Q(e_i,e_j)\|_{L^2}^2 ,
+		\end{aligned}
+		\label{eq:leakageQ}
+	\end{equation}
+	for any \(L^2\)-orthonormal basis \(\{e_i\}\) of \(W\).  Then \(W\) is an exact reducing space if and only if \(\mathfrak L_Q(W)=0\).  The number \(\mathfrak L_Q(W)\) is independent of the chosen orthonormal basis and is invariant under the isometry group of \(S^3_R\).
+\end{corollary}
+
+\begin{proof}
+	The two sums are Hilbert--Schmidt norms of the maps \(A|_W\) and \(Q|_{W\times W}\) after projection to \(W^\perp\).  Hilbert--Schmidt norms do not depend on the orthonormal basis.  Isometries commute with \(\PP\), \(\mathcal L_g\), \(\nabla\), and the \(L^2\) norm.
+\end{proof}
+
+The verified solution families are now no-leak witnesses:
+\begin{align}
+	 & \mathfrak L_Q(\mathfrak{so}(4))=0,\qquad
+	   Q(\mathfrak{so}(4),\mathfrak{so}(4))=0, \\
+	 & \mathfrak L_Q(E_{k,\sigma})=0,\qquad
+	   Q(E_{k,\sigma},E_{k,\sigma})=0,          \\
+	 & \mathfrak L_Q(W_\theta^{(m)})=0,\qquad
+	   \mathfrak L_Q(W_z^{(m)})=0 .
+\end{align}
+Here
+\begin{align}
+	W_\theta^{(m)}
+	 & =
+	\left\{\frac{A(r)}r\partial_\theta:
+	A\in\operatorname{span}(r,r^3,\dots,r^{2m+1})\right\} \nonumber\\
+	 & =
+	\operatorname{span}(1,s,\dots,s^m)\partial_\theta,
+	\qquad s=r^2/R^2,                                    \\
+	W_z^{(m)}
+	 & =
+	\operatorname{span}(1,s,\dots,s^m)\partial_z .
+\end{align}
+The first line follows because the sum of Killing fields is Killing, so \(\nabla_X X=-\gradg |X|^2/2\).  The second follows because the sum of two fields in the same signed curl shell is again Beltrami with the same eigenvalue:
+\[
+	\nabla_u u=\gradg |u|^2/2-u\times\operatorname{curl}u,
+	\qquad \operatorname{curl}u=\mu u.
+\]
+The last two are the triangular polynomial towers in the maximal-torus chart; their nonlinear terms are pure pressure gradients inside the corresponding single-component sector.
+
+\subsection{Representation-theoretic modal closure algebra}
+
+The second coordinate-free closure test is obtained by replacing a chosen basis by the irreducible \(SO(4)\)-types of the curl decomposition.  Let
+\[
+	\alpha=(k,\sigma),\qquad k\in\mathbb N_0,\quad \sigma\in\{+,-\},
+\]
+and write \(E_\alpha=E_{k,\sigma}\).  Then
+\begin{equation}
+	L^2_\sigma(TS^3_R)=\widehat{\bigoplus}_{k\ge0,\ \sigma=\pm}E_{k,\sigma},
+	\label{eq:curl-decomp}
+\end{equation}
+where \(L^2_\sigma\) denotes the divergence-free subspace.  The signed shell \(E_{k,\sigma}\) has curl eigenvalue
+\[
+	\mu_{k,\sigma}=\sigma\frac{k+2}{R},
+\]
+Stokes eigenvalue
+\[
+	\kappa_k=\frac{k(k+4)}{R^2},
+\]
+and dimension
+\[
+	d_k=(k+1)(k+3).
+\]
+As an \(SO(4)\simeq(SU(2)_L\times SU(2)_R)/\{\pm1\}\)-module,
+\begin{equation}
+	E_{k,+}\simeq V_{(k+2)/2}\boxtimes V_{k/2},\qquad
+	E_{k,-}\simeq V_{k/2}\boxtimes V_{(k+2)/2}.
+	\label{eq:irreptype}
+\end{equation}
+
+For three signed shells define the invariant quadratic coefficient
+\begin{equation}
+	C_{\alpha\beta}^{\gamma}
+	=
+	\left\|\Pi_\gamma Q\big|_{E_\alpha\times E_\beta}\right\|_{\mathrm{HS}}^2 .
+	\label{eq:modalcoeff}
+\end{equation}
+Here the Hilbert--Schmidt norm is computed with any orthonormal bases in the three shells.  It is independent of those bases.  It is also an isometry invariant, because \(Q\) and \(\Pi_\gamma\) are \(SO(4)\)-equivariant.
+
+\begin{theorem}[Modal representation closure theorem]\label{thm:modalclosure}
+	Let \(S\) be a finite set of signed shell labels and set
+	\[
+		W_S=\bigoplus_{\alpha\in S}E_\alpha .
+	\]
+	Then \(W_S\) is an exact Navier--Stokes reducing space if and only if
+	\begin{equation}
+		\mathfrak R(S):=
+		\sum_{\alpha,\beta\in S}\sum_{\gamma\notin S}
+		C_{\alpha\beta}^{\gamma}=0.
+		\label{eq:modal-leakage}
+	\end{equation}
+	The linear Stokes condition is automatic for such \(W_S\).
+\end{theorem}
+
+\begin{proof}
+	The operator \(A\) is scalar on each signed shell, with eigenvalue \(\kappa_k\), so \(AW_S\subset W_S\).  The remaining condition is \(Q(W_S,W_S)\subset W_S\).  Orthogonal projection onto the shell decomposition gives
+	\[
+		(I-\Pi_{W_S})Q(W_S,W_S)=0
+	\]
+	if and only if every component \(\Pi_\gamma Q(E_\alpha,E_\beta)\) with \(\alpha,\beta\in S\) and \(\gamma\notin S\) vanishes.  This is exactly \(\mathfrak R(S)=0\), since \eqref{eq:modalcoeff} is a squared norm.
+\end{proof}
+
+The Clebsch--Gordan gate now becomes a computational sieve rather than a slogan.  If \(C_{\alpha\beta}^{\gamma}\ne0\), then the two spins of \(\gamma\) must occur in the tensor products of the corresponding left and right spins of \(\alpha\) and \(\beta\).  Thus most coefficients in \eqref{eq:modal-leakage} are zero before integration.  The remaining coefficients are numerical or symbolic structure constants of one compact homogeneous space.
+
+\begin{corollary}[Complete-shell mining protocol]\label{cor:shellmining}
+	A finite union of complete signed curl shells is an exact modal reducing space precisely when its finite label set \(S\) satisfies \(\mathfrak R(S)=0\).  In particular, a proposed finite complete-shell model is verified or refuted by the single invariant scalar \(\mathfrak R(S)\).
+\end{corollary}
+
+This is the precise replacement for the phrase ``all possibilities.''  Arbitrary smooth solutions are not classified here.  Nor is \(\mathfrak R(S)=0\) used as an already printed enumeration of all zero sets.  It is the exact finite computation whose zeros are exactly the complete-shell closures.  The more general non-\(SO(4)\)-stable subspace question is still decided by \(\mathfrak L_Q(W)\).
+
+\subsection{Invariant link atlas}
+
+The same principle organizes the proof itself.  Each link carries an invariant and a leakage obstruction.
+
+\begin{table*}[t]
+	\caption{Invariant links of the construction.  ``Zero'' means zero leakage; ``relative'' means imported from the Euclidean source assumptions.}
+	\label{tab:invariant-links}
+	\footnotesize
+	\begin{tabular}{llll}
+		\toprule
+		Link          & invariant object               & obstruction                      & status     \\
+		\midrule
+		Tube          & isometry orbit of axes         & axis dependence                  & zero       \\
+		Divergence    & \(r\,\dd r\,\dd\theta\,\dd z\) & curved incompressibility         & zero       \\
+		Pressure      & Leray projection \(\PP\)       & gradient counted as flow         & zero       \\
+		Slow orders   & \(\Lambda_h=\{2hn+m\}\)        & current-order mixing             & triangular \\
+		Inner solve   & source linear operator         & generic-order solvability        & relative   \\
+		Exterior heat & \(P(\mathsf E)\)               & non-polynomial cascade           & zero       \\
+		Matching      & compact deviation              & raw moment divergence            & zero       \\
+		Annulus       & \(Q/R^2\) gain                 & fast-class collision             & relative   \\
+		Torus         & \(D_\theta,D_z\)               & radial/nonlinear leakage         & zero       \\
+		Killing       & \(\mathfrak{so}(4)\)           & symmetric quadratic leakage      & zero       \\
+		Beltrami      & \(E_{k,\sigma}\)               & \(u\times\operatorname{curl}u\)  & zero       \\
+		Modal algebra & \(C_{\alpha\beta}^{\gamma}\)   & shell leakage \(\mathfrak R(S)\) & exact test \\
+		Escape        & \(N_K,\Pi_K\) norm             & fixed band captures peak         & impossible \\
+		\bottomrule
+	\end{tabular}
+\end{table*}
+
+\begin{definition}[Invariant data set]
+	The invariant data set is the equivalence class of
+	\[
+		\begin{aligned}
+			\mathfrak N_{12}=\big( & g_R,\PP,A,Q,\Lambda_h,P(\mathsf E),D_\theta,D_z,                  \\
+			                       & \{E_{k,\sigma}\},\{C_{\alpha\beta}^{\gamma}\},\{\Pi_K,N_K\}\big).
+		\end{aligned}
+	\]
+	under isometries of \(S^3_R\), pressure gauges, changes of orthonormal basis inside eigenspaces, and replacement of a tube by an isometric tube.
+\end{definition}
+
+\begin{proposition}[Coordinate-free data form]\label{prop:dataform}
+	Every theorem in this manuscript depends only on the data set \(\mathfrak N_{12}\) and on the explicitly named Euclidean source package.  In particular, all coordinate calculations are witnesses for data entries, not additional assumptions.  Any new finite-dimensional exact modal solution family on \(S^3_R\) must either be verified by \(\mathfrak L_Q(W)=0\), or, if it is a finite complete-shell family, by \(\mathfrak R(S)=0\).
+\end{proposition}
+
+\begin{proof}
+	The curvature transfer uses only the metric, its density in a geodesic-axis tube, the filtered monoid, and the source estimates.  The exterior uses only \(P(\mathsf E)\).  The invariant atlas uses only the fixed-sector theorem and the pair \((A,Q)\).  The Beltrami and Killing families are eigenspace statements for curl and Killing fields.  The modal algebra uses only the irreducible \(SO(4)\)-types and the invariant coefficients \(C_{\alpha\beta}^{\gamma}\).  The compact escape theorem uses only the curl projector ranks and their diagonal kernels.  All these objects are entries of \(\mathfrak N_{12}\).
+\end{proof}
+
+This is the sense in which the work becomes an invariant of invariants: not by claiming full symmetry of the singular velocity, which is false, but by making each declared solution sector, transfer link, modal resonance, and spectral obstruction pass through a coordinate-free zero-leak equation.
+
+
+\subsection{Finite-sector impossibility and reduction analysis}
+\label{subsec:finite-sector-impossibility}
+
+The closure algebra is useful not only because it produces exact solution families.  It also proves that no finite no-leak modal world can be the hiding place of a bounded-energy singularity.  This is the reduction-analysis exclusion result which ties the invariant atlas to the spectral-escape theorem.
+
+\begin{theorem}[Finite reducing sectors cannot carry bounded-energy blowup]
+	\label{thm:finite-sector-no-blowup}
+	Let \(W\) be a finite-dimensional exact Navier--Stokes reducing space in the sense of \eqref{eq:reducing-space}.  Let
+	\[
+		u:[0,T)\to W
+	\]
+	solve
+	\[
+		\partial_tu+\nu Au+Q(u,u)=F(t),\qquad F(t)\in W,
+	\]
+	with \(u(0)=u_0\in W\) and \(F\in L^1([0,T);L^2)\).  Then, for every \(t<T\),
+	\begin{equation}
+		\|u(t)\|_{2}
+		\le
+		\|u_0\|_{2}
+		+\int_0^t\|F(s)\|_{2}\,\dd s .
+		\label{eq:finite-sector-L2}
+	\end{equation}
+	Consequently, if \(C_W=\sup_{\|w\|_2=1,w\in W}\|w\|_\infty\), then
+	\begin{equation}
+		\|u(t)\|_{\infty}
+		\le
+		C_W\left(
+		\|u_0\|_{2}
+		+\int_0^t\|F(s)\|_{2}\,\dd s
+		\right).
+		\label{eq:finite-sector-Linf}
+	\end{equation}
+	In particular, a smooth force on a compact time interval cannot produce finite-time \(L^\infty\)-blowup inside \(W\).
+\end{theorem}
+
+\begin{proof}
+	Since \(W\) is exact, the finite-dimensional equation is the genuine projected Navier--Stokes equation restricted to \(W\).  Taking the \(L^2\) inner product with \(u\) gives
+	\[
+		\frac12\frac{\dd}{\dd t}\|u\|_2^2
+		+\nu\langle Au,u\rangle
+		+\langle Q(u,u),u\rangle
+		=
+		\langle F,u\rangle .
+	\]
+	The nonlinear term vanishes:
+	\begin{align*}
+		\langle Q(u,u),u\rangle
+		 & =\langle B(u,u),u\rangle                  \\
+		 & =\int_{S^3_R} g(\nabla_u u,u)\,\dd V_g    \\
+		 & =\frac12\int_{S^3_R}u(|u|^2)\,\dd V_g=0 .
+	\end{align*}
+	because \(S^3_R\) has no boundary and \(\divg u=0\).  For the Ebin--Marsden viscosity,
+	\[
+		\langle Au,u\rangle=2\|\Def u\|_2^2\ge0 .
+	\]
+	Thus
+	\[
+		\frac{\dd}{\dd t}\|u\|_2\le \|F(t)\|_2
+	\]
+	whenever \(u(t)\ne0\), and the same inequality follows by standard regularization at zeros.  This proves \eqref{eq:finite-sector-L2}.  The \(L^\infty\) bound follows from equivalence of norms on the finite-dimensional space \(W\).
+\end{proof}
+
+\begin{corollary}[A singular solution branch is necessarily infinite-modal]
+	\label{cor:singular-branch-infinite-modal}
+	Let \(u\) be any solution on \(S^3_R\) with bounded \(L^2\) norm and \(\|u(t)\|_\infty\to\infty\) as \(t\uparrow T\), under forcing whose Leray projection is \(L^1([0,T);L^2)\).  Then \(u([0,T))\) is not contained in any fixed finite-dimensional exact reducing space \(W\).  In particular it is not contained in any finite complete-shell sector \(W_S\) with \(\mathfrak R(S)=0\).
+\end{corollary}
+
+\begin{proof}
+	If \(u([0,T))\subset W\), Theorem~\ref{thm:finite-sector-no-blowup} gives a finite uniform \(L^\infty\) bound up to \(T\), because the forcing has finite \(L^1([0,T);L^2)\) norm.  This contradicts \(\|u(t)\|_\infty\to\infty\).  The complete-shell statement follows from Theorem~\ref{thm:modalclosure}.
+\end{proof}
+
+\begin{definition}[Reduction-analysis spine]
+	The reduction-analysis spine of the manuscript is the ordered triple
+	\[
+		\mathfrak M_{12}=(\mathfrak N_{12},\mathfrak L_Q,\mathfrak R),
+	\]
+	together with the finite-sector impossibility theorem above.  Its function is to sort every proposed candidate reduction into exactly one of three classes:
+	\begin{enumerate}[label=(\alph*),leftmargin=*]
+		\item closed finite candidate reduction: \(\mathfrak L_Q(W)=0\) or \(\mathfrak R(S)=0\);
+		\item false finite candidate reduction: \(\mathfrak L_Q(W)>0\) or \(\mathfrak R(S)>0\);
+		\item possible singular candidate reduction: escape from every fixed finite \(W\).
+	\end{enumerate}
+\end{definition}
+
+\begin{proposition}[No finite-dimensional reducing-space blowup route]
+	\label{prop:no-finite-reducing-route}
+	Within the geometric Navier--Stokes model used here, no proof of bounded-energy \(L^\infty\)-blowup can be completed solely inside a fixed finite-dimensional exact reducing space.  Any valid blowup proof must contain an infinite-dimensional step: either an explicit cascade through unbounded curl shells, or an equivalent compactness failure which forces the lower bounds of Theorem~\ref{thm:spectralescape}.
+\end{proposition}
+
+\begin{proof}
+	A finite exact reducing space has the a priori estimate \eqref{eq:finite-sector-Linf}.  Hence it cannot contain the claimed singular behavior.  The exact projector bounds in Theorem~\ref{thm:spectralescape} quantify the necessary failure of finite-band capture.
+\end{proof}
+
+This is the strict sense in which the paper becomes a reduction-analysis device rather than a catalogue.  Every supplied finite candidate reduction in the declared categories is either verified, refuted, or shown incapable of carrying the singularity.  What remains is precisely the infinite-dimensional source candidate reduction and the curvature transfer of that candidate reduction.
+
+
+
+\section{Finite-category closure criteria: variables, defect matrices, and frontier}
+\label{sec:finitecriteria}
+
+The preceding closure algebra decides whether a proposed finite sector is closed.  To remove ambiguity, we make the criterion layer explicit.  The purpose of this section is not to assert that all Navier--Stokes solutions have been classified.  Its purpose is narrower and stronger: inside each category named by the paper, every admissible object is assigned a defined closure status.
+
+\begin{definition}[Declared finite categories]
+	The declared finite categories are:
+	\begin{itemize}[leftmargin=*]
+		\item \(\mathscr C_{\rm sub}\): finite-dimensional smooth divergence-free subspaces \(W\);
+		\item \(\mathscr C_{\rm shell}\): finite unions \(W_S=\bigoplus_{\alpha\in S}E_\alpha\) of complete signed curl shells;
+		\item \(\mathscr C_{\rm red}\): finite exact reducing spaces for \((A,Q)\).
+	\end{itemize}
+	The inclusions are logical, not equalities:
+	\[
+		\mathscr C_{\rm shell}\subset\mathscr C_{\rm sub},\qquad
+		\mathscr C_{\rm red}\subset\mathscr C_{\rm sub}.
+	\]
+	The paper gives a closure criterion on supplied elements of \(\mathscr C_{\rm sub}\), a compressed representation criterion on supplied elements of \(\mathscr C_{\rm shell}\), and a no-blowup obstruction on \(\mathscr C_{\rm red}\).
+\end{definition}
+
+\begin{definition}[Defect matrix]
+	Let \(W\in\mathscr C_{\rm sub}\), let \(\{e_i\}_{i=1}^N\) be an \(L^2\)-orthonormal basis of \(W\), and let \(\Pi_W\) be the \(L^2\)-orthogonal projector.  The defect matrix is the Hilbert-space-valued block matrix
+	\begin{equation}
+		\cM_W=
+		\big(
+		L_i,\ Q_{ij}^{\perp}
+		\big)_{1\le i\le N,\ 1\le i,j\le N},
+		\label{eq:closure-matrix}
+	\end{equation}
+	where
+	\[
+		L_i=(I-\Pi_W)Ae_i,\qquad
+		Q_{ij}^{\perp}=(I-\Pi_W)Q(e_i,e_j).
+	\]
+	Its squared Hilbert--Schmidt norm is
+	\begin{align}
+		\|\cM_W\|_{\rm HS}^2
+		 & =
+		\sum_i\|(I-\Pi_W)Ae_i\|_2^2 \nonumber           \\
+		 & \quad+
+		\sum_{i,j}\|(I-\Pi_W)Q(e_i,e_j)\|_2^2 \nonumber \\
+		 & =
+		\mathfrak L_Q(W).
+		\label{eq:closure-matrix-norm}
+	\end{align}
+	Changing the orthonormal basis of \(W\) conjugates the finite coordinates and leaves \(\|\cM_W\|_{\rm HS}\) unchanged.
+\end{definition}
+
+For computation one may choose a larger finite ambient space \(V\supset W\) and replace \(I-\Pi_W\) by \(\Pi_V-\Pi_W\).  This gives a truncated leakage matrix \(\cM_{W,V}\).  Vanishing of the exact matrix implies vanishing of every truncation; a single nonzero truncation already refutes exact closure.
+
+\begin{theorem}[Closure criteria for supplied finite candidates]
+	\label{thm:finitecategorycomplete}
+	The following criteria assign a defined closure status to every supplied object in the stated finite category. They do not enumerate all such objects and do not assert an effective finite algorithm for arbitrary smooth input data.
+	\begin{enumerate}[label=(\roman*),leftmargin=*]
+		\item For every \(W\in\mathscr C_{\rm sub}\),
+		      \[
+			      W\in\mathscr C_{\rm red}
+			      \quad\Longleftrightarrow\quad
+			      \|\cM_W\|_{\rm HS}^2=\mathfrak L_Q(W)=0.
+		      \]
+		      If \(\mathfrak L_Q(W)>0\), then \(W\) is not an exact reducing space.
+		\item For every \(W_S\in\mathscr C_{\rm shell}\),
+		      \[
+			      W_S\in\mathscr C_{\rm red}
+			      \quad\Longleftrightarrow\quad
+			      \mathfrak R(S)=0.
+		      \]
+		      If \(\mathfrak R(S)>0\), then the complete-shell model has nonzero modal leakage.
+		\item For every \(W\in\mathscr C_{\rm red}\), bounded-energy \(L^\infty\)-blowup under \(L^1([0,T);L^2)\) forcing is impossible inside \(W\).
+		\item Therefore any bounded-energy \(L^\infty\)-singular solution branch in the model belongs to exactly one remaining class: it is not finite-reducing, or it escapes every fixed finite reducing sector.
+	\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+	Items (i) and (ii) are exactly Theorems~\ref{thm:polarizedclosure} and~\ref{thm:modalclosure} rewritten as a closure table.  Item (iii) is Theorem~\ref{thm:finite-sector-no-blowup}.  Item (iv) is the contrapositive of item (iii), together with the fact that every finite reducing sector has already been recognized by item (i).
+\end{proof}
+
+\begin{table*}[t]
+	\caption{Finite-category closure criteria.  The entries give criteria for supplied objects in the named class; they do not enumerate all objects in the class.}
+	\label{tab:finite-closure-table}
+	\scriptsize
+	\begin{tabular}{llll}
+		\toprule
+		Class or variable           & invariant datum                      & criterion object                        & status                               \\
+		\midrule
+		Pressure gauge              & \(\PP\) and gradients                & exact one-form quotient                & intrinsic                            \\
+		Divergence constraint       & \(r\,\dd r\,\dd\theta\,\dd z\)       & density divergence                     & exact identity                       \\
+		Viscosity convention        & \(A=-\PP\cL_g\)                      & Ebin--Marsden form                     & model choice                         \\
+		Finite subspace \(W\)       & \((A,Q,\Pi_W)\)                      & \(\cM_W\)                              & criterion in \(\mathscr C_{\rm sub}\)   \\
+		Complete shell set \(S\)    & \(C_{\alpha\beta}^{\gamma}\)         & \(\mathfrak R(S)\)                     & criterion in \(\mathscr C_{\rm shell}\) \\
+		Exact finite sector         & \(C_W\), energy                      & Thm.~\ref{thm:finite-sector-no-blowup} & no finite blowup                     \\
+		Killing family              & \(\mathfrak{so}(4)\)                 & \(Q=0\)                                & complete family                      \\
+		Signed Beltrami shell       & \(E_{k,\sigma}\)                     & \(u\times\operatorname{curl}u=0\)      & complete shell                       \\
+		Maximal torus sector        & \(D_\theta,D_z\)                     & Jacobi diagonalization                 & classified                           \\
+		Relative branch             & \(\mathbf{S_0},\ldots,\mathbf{S_4}\) & source assumptions                     & relative                             \\
+		Spectral peak               & \((\Pi_K,N_K)\)                      & projector norm                         & obstruction                          \\
+		Other weak/infinite sectors & none finite                          & outside class                          & not classified                       \\
+		\bottomrule
+	\end{tabular}
+\end{table*}
+
+\begin{definition}[Dimensionless invariant variables]
+	The round radius and viscosity can be removed from the formal dimensions by
+	\[
+		\tau=\frac{\nu t}{R^2},\qquad
+		U=\frac{R}{\nu}u,\qquad
+		P=\frac{R^2}{\nu^2}p,\qquad
+		F=\frac{R^3}{\nu^2}f .
+	\]
+	On the unit sphere these variables give the same projected equation with \(\nu=R=1\).  This is a normalization, not a scaling symmetry of one fixed sphere.  It shows that the intrinsic finite-sector tests depend on representation labels and dimensionless amplitudes; \(R\) and \(\nu\) re-enter through the physical damping rates and force units.
+\end{definition}
+
+The dimensionless form is useful for comparing computations across radii and viscosities.  It also prevents a false parameter count: changing \(R\) changes the geometry, and changing \(\nu\) changes the physical time scale, but neither produces a new algebraic closure condition after normalization.
+
+\paragraph*{Supplied-candidate dichotomy.}
+Within \(\mathscr C_{\rm sub}\), every supplied finite candidate \(W\) has exactly one of the two statuses
+\[
+	\mathfrak L_Q(W)=0,\qquad \mathfrak L_Q(W)>0 .
+\]
+In the first case \(W\) is an exact finite reduction; by Theorem~\ref{thm:finite-sector-no-blowup} it cannot carry bounded-energy blowup under \(L^1([0,T);L^2)\) forcing.  In the second case \(W\) is not an exact reduction.  For \(W=W_S\in\mathscr C_{\rm shell}\), the same dichotomy is measured by \(\mathfrak R(S)=0\) or \(\mathfrak R(S)>0\).
+
+
+This is the stated boundary of the finite invariant layer.  What remains outside this finite closure table is explicitly outside: infinite-dimensional invariant manifolds, weak solution selection, and the independent Euclidean source proof.  They are not hidden omissions of the finite criterion; they are different categories.
+
+
+\section{Curvature-completed slow background}\label{sec:slowcomplete}
+
+We now combine the inner solver, annular repair, and exterior branch.
+
+\begin{theorem}[Relative mixed-order slow background]\label{thm:slowbackground}
+	Assume Hypothesis~\ref{hyp:source}, the finite-truncation solver Hypothesis~\ref{hyp:genericinner}, and the matching Hypothesis~\ref{hyp:fiverepair}.  Relative to the leading profiles of the source construction, there is a locally finite, divergence-free spherical slow background indexed by the ordered set $\Lam$ with the following properties:
+	\begin{enumerate}[label=(\roman*),leftmargin=*]
+		\item its leading coefficient is unchanged;
+		\item on the inner region, the spherical residual is flat in $q$ after the slow stress divergence is included;
+		\item its nonflat tangential stress is supported in the same fixed active annulus as the source stress;
+		\item in the exterior it matches the flat pure-swirl parametrix of Sec.~\ref{sec:exterior};
+		\item on every fixed physical derivative order, the loss in $q$ exponent is independent of the truncation index.
+	\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+	Order the distinct positive elements $\sigma_1<\sigma_2<\cdots$ of $\Lam$.  At order $\sigma_j$, Theorem~\ref{thm:triangular} turns every curvature and shifted-viscosity contribution from lower orders into a known source, while Hypothesis~\ref{hyp:genericinner} solves the current coefficient on the common inner interval.
+
+	If $\sigma_j\notin\mathbb N$, prescribe $P_{\sigma_j}^{\rm ext}=0$.  If $\sigma_j=m\in\mathbb N$, prescribe the $m$th coefficient of the exterior parametrix, Eq.~\eqref{eq:Emext}, together with its radial pressure coefficient.  Hypothesis~\ref{hyp:fiverepair} then extends the inner solution using the compact deviation $\widehat P_{\sigma_j}=P_{\sigma_j}-\chi_{\rm out}P_{\sigma_j}^{\rm ext}$.  The splice commutator is supported to the right of both reserved source patches and only changes the affine target of the five moment equations.  Consequently the positive-order background continues to vanish on $I_{\rm mean}$ exactly as required by the source pulse construction, while the current coefficient agrees with the prescribed spherical exterior reference for $X\ge X_b$.
+
+	For a finite truncation at $\sigma_J$, every uncanceled product, axial-viscosity shift, curvature shift, and renormalized splice source occurs at a strictly later element of $\Lam$.  The source chain-rule estimate applies to $q^\sigma$ for arbitrary real $\sigma$; dependence on $\sigma$ changes coefficient constants but the loss at any fixed physical derivative order is independent of $J$.  Since $\sigma_J\to\infty$, the source summation lemma for arbitrary increasing decay orders applies to the compact deviations and stresses.  Exact divergence is retained by cutting off the same Stokes potentials before taking the cylindrical density curl.
+
+	The noncompact exterior reference is \emph{not} part of that $q$-cutoff summation.  It is summed separately by the $\tau$-only realization of Corollary~\ref{cor:extborel}, which preserves exact pure-swirl structure.  The two realizations agree to every finite formal order in their overlap because Hypothesis~\ref{hyp:fiverepair} imposed precisely the exterior reference coefficients there.  Thus their difference, as well as the full spherical momentum residual, is flat on every fixed overlap profile rectangle.  This proves all five assertions.
+\end{proof}
+
+
+\section{Dyadic curvature gain for annular fast oscillations}\label{sec:fast}
+
+After Theorem~\ref{thm:slowbackground}, every nonflat residual that remains to be canceled by waves is confined to the active shell. We may therefore apply the dyadic coefficient calculus of the source proof on precisely the support where its inverses act.
+
+In a dyadic band let
+\begin{equation}
+	Q=2^{-\ell},\qquad \eps=Q^h,
+	\qquad r=\sqrt Q\,\mathsf R,
+	\label{eq:dyadic}
+\end{equation}
+with $q\asymp Q$ on the enlarged chart. The round coefficients obey
+\begin{equation}
+	a(r)=1-\frac{Q\mathsf R^2}{R^2},\qquad
+	\delta_Q:=\frac{Q}{R^2}=\frac{\eps^{1/h}}{R^2}.
+	\label{eq:deltaQ}
+\end{equation}
+
+\begin{lemma}[Annular fast curvature gain]\label{lem:fast}
+	In the source $W_\alpha$, $M_\alpha$, and $S_\alpha$ coefficient classes, every curvature increment generated by a wave or mean correction gains at least
+	\begin{equation}
+		\chi=\frac1h>100
+		\label{eq:fastchi}
+	\end{equation}
+	in the normalized $\eps$ exponent, up to the already present fixed derivative losses of the source calculus.
+\end{lemma}
+
+\begin{proof}
+	Every principal coefficient difference contains $Q/R^2$. For the nonlinear connection and pressure terms this factor survives directly after normalization. For the viscous part, the worst case is two derivatives striking a fast phase. The source construction chooses $k=\lceil\eps^{-1/2}\rceil$ and proves $1\le\eps k^2\le4$. Hence the normalized factor $\eps$ multiplying the second derivative cancels the possible $k^2$ loss but not $Q/R^2$. One-fast-derivative and amplitude-derivative terms are better. Fixed derivatives of the metric coefficients preserve $\delta_Q$ on the enlarged bounded chart.
+\end{proof}
+
+The source correction stage improves the active wave/mean orders by $1/10$, with explicit margins larger than that amount. Since $\chi>100$, curvature terms generated during one annular correction lie far beyond the next active threshold.
+
+\begin{hypothesis}[Stability of the source four-step annular cycle]\label{hyp:cycle}
+	Starting from the curvature-completed slow background of Theorem~\ref{thm:slowbackground}, the four ordered inverses used in the source construction---nonzero-harmonic pulse inversion, signed covariance correction, zero-Haar-mean temporal inversion, and the five-dimensional mean/moment correction---remain valid on \(S^3_R\) with the same stage improvement after the curvature terms have been placed beyond the next active threshold.
+\end{hypothesis}
+
+This is the precise form of item \(\mathbf S_4\) used in the singular-branch theorem.  Lemma~\ref{lem:fast} gives the spherical curvature gain \(Q/R^2\); the transfer assumption is that the source residual classes, derivative losses, and support classes are stable under that gain for the four-step cycle.
+
+
+\section{Relative blowup module on the round three-sphere}\label{sec:mainthm}
+
+\begin{lemma}[Exact viscosity scaling on a fixed manifold]\label{lem:nuscale}
+	Suppose $(u,p,f)$ solves \eqref{eq:NSg} with viscosity $1$ on a fixed Riemannian manifold for $0\le s<T_1$. For any $\nu>0$, define
+	\begin{align}
+		u_\nu(x,t) & =\nu u(x,\nu t),\qquad
+		p_\nu(x,t)=\nu^2p(x,\nu t),\nonumber \\
+		f_\nu(x,t) & =\nu^2f(x,\nu t).
+		\label{eq:nuscale}
+	\end{align}
+	Then $(u_\nu,p_\nu,f_\nu)$ solves the same equation on the \emph{same} manifold with viscosity $\nu$ for $0\le t<T_1/\nu$.
+\end{lemma}
+
+\begin{proof}
+	The time derivative, quadratic transport, pressure gradient, and forcing in \eqref{eq:NSg} all acquire the common factor $\nu^2$, while $\nu\cL_g(\nu u)=\nu^2\cL_g u$. No spatial rescaling or change of the sphere radius is involved.
+\end{proof}
+
+\begin{theorem}[Relative forced singular branch on the round three-sphere]\label{thm:S3}
+	Assume Hypothesis~\ref{hyp:source}, together with the transfer hypotheses \ref{hyp:genericinner}, \ref{hyp:fiverepair}, and \ref{hyp:cycle}.  For every round radius $R>0$ and viscosity $\nu>0$, there exist a proper tubular neighborhood $\mathcal T\Subset S^3_R$, a force
+	\begin{equation}
+		f\in C_c^\infty\bigl(S^3_R\times(0,\infty);TS^3_R\bigr),
+		\qquad \operatorname{supp}f\subset\overline{\mathcal T}\times[t_-,t_+],
+		\label{eq:compactforce}
+	\end{equation}
+	and smooth velocity and pressure fields on $S^3_R\times[0,T)$ satisfying Eq.~\eqref{eq:NSg}, with
+	\begin{equation}
+		\operatorname{div}_{g_R}u=0,\qquad u(\cdot,0)=0,
+	\end{equation}
+	such that
+	\begin{equation}
+		\sup_{0\le t<T}\|u(t)\|_{L^2(S^3_R)}<\infty,
+		\qquad
+		\limsup_{t\uparrow T}\|u(t)\|_{L^\infty(S^3_R)}=\infty.
+		\label{eq:S3blowup}
+	\end{equation}
+	The force is smooth through the singular time $T$.
+\end{theorem}
+
+\begin{proof}
+	Theorem~\ref{thm:slowbackground} makes the inner and exterior momentum residuals flat while preserving the leading singular profile.  Hypothesis~\ref{hyp:cycle} drives the remaining annular residual to infinite order.  The compact slow summation and the separate $\tau$-only exterior summation agree to all formal orders on their overlap, so the full residual and every fixed space--time derivative have a one-sided $C^\infty$ extension across $t=T$.
+
+	Choose the entire local construction inside a strict tube $r<r_0<R$.  Localize the radial/axial velocity at the level of its vector potential and then take the density cylindrical curl; Eq.~\eqref{eq:divexact} preserves incompressibility exactly.  The direct azimuthal component can be multiplied by an axisymmetric fixed radial cutoff without changing its divergence.  On the fixed transition annulus $r\asymp r_0>0$, all fields and derivatives extend smoothly through $T$, so the localization error is a smooth force.  Extend this force smoothly for a short time past $T$ and multiply the extension by a time cutoff equal to one near $T$ and zero for sufficiently large time.
+
+	For the initial side, use the same source localization principle: multiply the local potentials and direct azimuthal field by a smooth time cutoff which is zero on an initial interval and one throughout a neighborhood of the singular epoch.  All cutoff derivatives are supported away from $T$, where the fields are regular, and therefore contribute only a smooth compactly supported force.  This yields Eq.~\eqref{eq:compactforce} and $u(\cdot,0)=0$.
+
+	The leading singular coefficient is untouched by every cutoff near $(r,z,t)=(0,0,T)$.  On the strict tube the round norm is uniformly equivalent to the Euclidean cylindrical norm, while the volume form is exactly $r\,\dd r\,\dd\theta\,\dd z$.  The source bounded-energy estimate and pointwise blowup therefore transfer directly.  Construct first at viscosity one and apply Lemma~\ref{lem:nuscale}; this changes only amplitude and time, not the sphere radius or spatial support, and proves the theorem for every $\nu>0$.
+\end{proof}
+
+\begin{corollary}[Breakdown formulation]\label{cor:breakdown}
+	Under the hypotheses of Theorem~\ref{thm:S3}, the same initial datum and force admit no smooth solution of Eq.~\eqref{eq:NSg} on $S^3_R\times[0,\infty)$ extending the constructed branch on $[0,T)$.
+\end{corollary}
+
+\begin{proof}
+	Suppose such a global smooth solution existed.  Local uniqueness for the deformation-tensor Navier--Stokes system on the compact smooth manifold $S^3_R$ implies that it agrees with the constructed solution on their common interval of existence.  Its smoothness up to and beyond $T$ would give a finite $L^\infty$ bound on a neighborhood of $T$, contradicting Eq.~\eqref{eq:S3blowup}.
+\end{proof}
+
+
+
+\section{Exact spectral escape of the singular peak}\label{sec:spectralescape}
+
+The compact manifold carries a discrete global curl spectrum.  We now connect that spectrum directly to the solution of Theorem~\ref{thm:S3}.  Identify divergence-free vector fields with coexact one-forms.  On the round sphere,
+\begin{equation}
+	\operatorname{curl}=\sharp *\dd\flat ,
+	\qquad
+	\operatorname{curl}^2=\Delta_1
+\end{equation}
+on the coexact subspace.  The nonzero curl levels are
+\begin{equation}
+	\mu_{k,\pm}=\pm\frac{k+2}{R},\qquad k=0,1,2,\ldots,
+	\label{eq:curllevels}
+\end{equation}
+with multiplicity $(k+1)(k+3)$ for each sign~\cite{IkedaTaniguchi1978,EncisoGernerPeralta2023}.  Let
+\begin{equation}
+	\mathcal H_K=\bigoplus_{k=0}^K(E_{k,+}\oplus E_{k,-}),
+	\qquad
+	\Pi_K:L^2(TS^3_R)\to\mathcal H_K
+\end{equation}
+be the orthogonal projector. Its rank is
+\begin{equation}
+	N_K=2\sum_{k=0}^K(k+1)(k+3)
+	=\frac{(K+1)(K+2)(2K+9)}{3}.
+	\label{eq:NK}
+\end{equation}
+
+\begin{theorem}[Exact finite-band evaluation norms]\label{thm:evalnorms}
+	For every $K\ge0$,
+	\begin{align}
+		\|\Pi_K\|_{L^1(TS^3_R)\to L^\infty(TS^3_R)}
+		 & =\frac{N_K}{3\Vol(S^3_R)},\label{eq:L1Linf}        \\
+		\|\Pi_K\|_{L^2(TS^3_R)\to L^\infty(TS^3_R)}
+		 & =\sqrt{\frac{N_K}{3\Vol(S^3_R)}}.\label{eq:L2Linf}
+	\end{align}
+	Since $\Vol(S^3_R)=2\pi^2R^3$, both constants are explicit at every finite cutoff.
+\end{theorem}
+
+\begin{proof}
+	Let $P_K(x,y):T_yS^3_R\to T_xS^3_R$ be the projector kernel and
+	$E_x:\mathcal H_K\to T_xS^3_R$ the evaluation map. Then
+	\begin{equation}
+		P_K(x,y)=E_xE_y^*,\qquad P_K(x,x)=E_xE_x^*.
+	\end{equation}
+	The subspace $\mathcal H_K$ is invariant under the orientation-preserving isometry group $SO(4)$. At a fixed point, the isotropy group acts irreducibly on the three-dimensional tangent space. Hence Schur's lemma and transitivity give
+	\begin{equation}
+		P_K(x,x)=c_K I,\qquad
+		3c_K\Vol(S^3_R)=N_K,
+	\end{equation}
+	so $c_K=N_K/[3\Vol(S^3_R)]$.
+
+	The identity $P_K(x,y)=E_xE_y^*$ yields
+	$\|P_K(x,y)\|_{\rm op}\le\|E_x\|\|E_y\|=c_K$.
+	This gives the upper bound in \eqref{eq:L1Linf}; a polarized $L^1$ approximate identity concentrated at $x=y$ attains the diagonal value in the limit, proving equality.
+
+	For \eqref{eq:L2Linf}, orthogonality of $\Pi_K$ and
+	$\|E_x\|^2=\|E_xE_x^*\|=c_K$ give
+	\begin{equation}
+		|(\Pi_Kv)(x)|\le\sqrt{c_K}\,\|v\|_2.
+	\end{equation}
+	Conversely, for a unit tangent vector $\xi\in T_xS^3_R$, the field
+	$E_x^*\xi/\sqrt{c_K}\in\mathcal H_K$ has $L^2$ norm one and value of magnitude $\sqrt{c_K}$ at $x$. Thus the bound is sharp.
+\end{proof}
+
+\begin{theorem}[Spectral escape of the actual blowup]\label{thm:spectralescape}
+	Let $u$ be the spherical Navier--Stokes solution of Theorem~\ref{thm:S3}, and put
+	\begin{equation}
+		E_*:=\sup_{0\le t<T}\|u(t)\|_2<\infty.
+	\end{equation}
+	Then for every fixed $K$,
+	\begin{equation}
+		\frac{\|\Pi_Ku(t)\|_\infty}{\|u(t)\|_\infty}
+		\le
+		\sqrt{\frac{N_K}{3\Vol(S^3_R)}}\,
+		\frac{E_*}{\|u(t)\|_\infty}
+		\longrightarrow0
+	\end{equation}
+	along every sequence $t\uparrow T$ on which $\|u(t)\|_\infty\to\infty$.
+
+	More quantitatively, if at time $t$ a curl band carries at least a fraction $\eta\in(0,1]$ of the true peak,
+	\begin{equation}
+		\|\Pi_Ku(t)\|_\infty\ge\eta\|u(t)\|_\infty,
+	\end{equation}
+	then necessarily
+	\begin{equation}
+		\boxed{
+			N_K\ge
+			3\Vol(S^3_R)\eta^2
+			\frac{\|u(t)\|_\infty^2}{\|u(t)\|_2^2}
+			\ge
+			3\Vol(S^3_R)\eta^2
+			\frac{\|u(t)\|_\infty^2}{E_*^2}.}
+		\label{eq:actualrank}
+	\end{equation}
+	Hence the spectral rank required to retain a fixed fraction of the singular peak diverges.
+\end{theorem}
+
+\begin{proof}
+	Apply \eqref{eq:L2Linf} to $u(t)$ and divide by $\|u(t)\|_\infty$.  The first statement follows from bounded $L^2$ norm and unbounded $L^\infty$ norm.  Rearranging the same sharp inequality under the peak-capture hypothesis gives \eqref{eq:actualrank}.
+\end{proof}
+
+The preceding theorem concerns the full Navier--Stokes solution and requires no decomposition into two competing solutions. The singular core permits a sharper rate because its effective concentration volume is known.
+
+Let $\tau=T-t$.  Choose a fixed smooth profile cutoff equal to one on a smaller core and supported in the similarity core, and denote the resulting localized singular field by $v_\tau$.  The source scaling, unchanged by the round volume identity \eqref{eq:volume}, gives
+\begin{align}
+	\ell_r            & \asymp\tau^{1/2},                        &
+	\ell_z            & \asymp\tau^{1/2-h},\label{eq:corescales}   \\
+	\|v_\tau\|_\infty & \asymp\tau^{-1/2-h},                     &
+	\operatorname{Vol}(\operatorname{supp}v_\tau)
+	                  & \asymp\tau^{3/2-h},\nonumber               \\
+	\|v_\tau\|_1      & \asymp\tau^{1-2h}. \label{eq:coreL1}
+\end{align}
+Thus its effective concentration volume
+\begin{equation}
+	V_{\rm eff}(v_\tau):=\frac{\|v_\tau\|_1}{\|v_\tau\|_\infty}
+	\asymp\tau^{3/2-h}.
+\end{equation}
+
+\begin{corollary}[Sharp concentration-rank barrier]\label{cor:corerank}
+	If the canonical curl cutoff retains a fixed fraction $\eta>0$ of the localized singular peak,
+	\begin{equation}
+		\|\Pi_Kv_\tau\|_\infty\ge\eta\|v_\tau\|_\infty,
+	\end{equation}
+	then
+	\begin{equation}
+		N_K\ge\frac{3\eta\Vol(S^3_R)}{V_{\rm eff}(v_\tau)}
+		\gtrsim\tau^{-3/2+h}.
+		\label{eq:coreN}
+	\end{equation}
+	Since $N_K\sim\frac23K^3$,
+	\begin{equation}
+		K\gtrsim\tau^{-1/2+h/3}.
+		\label{eq:coreK}
+	\end{equation}
+	In particular, the lowest Hopf and anti-Hopf sector, corresponding to $K=0$, carries an asymptotically vanishing fraction of the singular peak.
+\end{corollary}
+
+\begin{proof}
+	Equation~\eqref{eq:L1Linf} gives
+	\begin{equation}
+		\eta\|v_\tau\|_\infty
+		\le
+		\frac{N_K}{3\Vol(S^3_R)}\|v_\tau\|_1.
+	\end{equation}
+	Rearrangement gives \eqref{eq:coreN}; \eqref{eq:coreK} follows from the exact cubic rank formula \eqref{eq:NK}.
+\end{proof}
+
+The two rank bounds describe different invariants of the same singularity.  Theorem~\ref{thm:spectralescape} is a statement about the actual solution and its bounded total energy.  Corollary~\ref{cor:corerank} uses the finer spatial concentration of the extracted core and recovers the inverse-volume exponent.  Together they show that compactness of space does not regularize the singularity by forcing it into finitely many global modes: the required spectral dimension itself diverges.
+
+\section{Discussion}
+
+\subsection{Scope of transfer beyond the round sphere}
+
+The neutral formulation separates three layers.  The first layer is purely Hilbert-quadratic: the defect matrix \(\mathcal D_W\), the zero-defect reduction test, and the finite-sector energy bound.  This layer applies without reference to \(S^3_R\).
+
+The second layer is equivariant spectral analysis.  Whenever a compact geometry supplies an orthogonal modal decomposition and an isometry group acting unitarily on divergence-free fields, the same construction gives invariant block coefficients
+\[
+	C_{\alpha\beta}^{\gamma}
+	=
+	\|\Pi_\gamma Q|_{E_\alpha\times E_\beta}\|_{\rm HS}^2.
+\]
+The representation labels and numerical constants change, but the closure principle does not: a finite modal union is closed exactly when all outward coefficients vanish.
+
+The third layer is specific to the round three-sphere.  The exact geodesic-axis density, the Jacobi torus spectrum, the signed curl shells, and the rank formula for finite curl bands use the high symmetry of \(S^3_R\).  These features are not asserted for a general manifold.  Thus the paper exports a closure method, not the special spherical constants.
+
+\label{sec:discussion}
+
+The strongest new conclusion is negative and therefore useful: exact finite modal closure is not a route to the singularity.  The closure scalars \(\mathfrak L_Q\) and \(\mathfrak R\) mine exact finite-dimensional solution families, while Theorem~\ref{thm:finite-sector-no-blowup} proves that every such no-leak family is too small to support bounded-energy \(L^\infty\)-blowup.  Thus the singular part of the relative theorem is forced into an infinite-dimensional spectral escape.  This sharpens the interpretation of Theorem~\ref{thm:spectralescape}: it is not merely an after-the-fact diagnostic, but the necessary complement of the finite-sector classification.
+
+
+
+The decisive geometric identity is $\sqrt{\det g_R}=r$. It preserves the cylindrical divergence operator exactly, so the difficult part of the Euclidean construction---its divergence-free pulse algebra---does not acquire a curvature correction. Momentum does acquire curvature corrections, but on the shrinking core they enter at positive mixed order. This makes curvature triangular rather than principal.
+
+The exterior has an equally rigid structure. For pure swirl, the round correction is the polynomial $P(\mathsf E)=-(\mathsf E-1)(\mathsf E+3)$ in the dilation generator. Parabolic homogeneity then turns the curved heat equation into a polynomial recurrence. The noncompact exterior is handled as a prescribed reference, while all finite-dimensional moment conditions act only on compact deviations. This keeps the source matching matrix unchanged.
+
+After slow completion, the active annulus sees curvature only through $Q/R^2$. Since $Q=\varepsilon^{1/h}$ and $h<1/100$, curvature is separated by more than one hundred normalized $\varepsilon$ orders from the current fast class. The oscillatory cancellation candidate reduction therefore closes with the same finite stage margins as in the Euclidean construction.
+
+The invariance check separates three notions that are often conflated.  Full $SO(4)$ invariance forces the velocity to vanish.  Killing invariance gives a six-dimensional exact stationary family.  Maximal-torus invariance gives the complete two-scalar Jacobi heat system, whose two towers have the same eigenvalues $-4n(n+2)/R^2$ but different endpoint weights.  This makes the invariant content intrinsic rather than coordinate decorative.
+
+The Beltrami-shell theorem adds a different kind of exactness.  A whole signed curl eigenspace, not merely one distinguished mode, is a nonlinear solution family because the Euler nonlinearity becomes a pure pressure gradient.  The Stokes damping rate is not an adjustable parameter but the curvature-renormalized value $k(k+4)/R^2$, vanishing exactly on the Hopf level.  The Clebsch--Gordan gate then says which inter-shell transfers are impossible by symmetry alone.
+
+
+The coordinate-free closure criterion is the organizing layer above these examples.  Instead of asking whether a formula looks symmetric, it asks whether its subspace has zero polarized Leray leakage:
+\[
+	(I-\Pi_W)AW=0,\qquad (I-\Pi_W)Q(W,W)=0.
+\]
+This is practical.  A proposed modal model is not judged by terminology but by the scalar \(\mathfrak L_Q(W)\).  For finite unions of complete signed curl shells the same question is compressed further to the representation scalar \(\mathfrak R(S)\).  The already verified sectors have zero leakage; a generic mixture of unrelated curl levels does not.
+
+The compact geometry adds a global invariant statement. The blowup peak cannot remain visible in any fixed finite curl band because the evaluation norm of that band is finite and the total $L^2$ norm of the solution is bounded. The local core sharpens this to an inverse-volume mode law. Thus the singularity is simultaneously a physical-space concentration and a forced escape to increasing spectral rank.
+
+The theorem remains a forced Navier--Stokes result. It does not assert finite-time blowup for the unforced equation. The role of $S^3_R$ is mathematical: it is the round compact three-manifold on which the exact geodesic-axis density, the pure-swirl operator, and the global curl spectrum can all be computed in closed form.
+
+\section{Conclusion}
+
+The correct final form is not a second paper and not a change of subject.  It is a change of invariant center.  The manuscript now has one spine:
+\[
+	\begin{array}{c}
+		\text{source-relative singular solution branch}   \\
+		+\ \text{intrinsic closure-defect modal analysis} \\
+		+\ \text{closure-matrix closure criteria}        \\
+		+\ \text{finite-sector obstruction}               \\
+		+\ \text{exact spectral escape}
+	\end{array}
+\]
+Each part is needed.  Without the source-relative transfer there is no singular solution branch on \(S^3_R\).  Without the leakage algebra and closure criteria there is no disciplined way to distinguish true finite solutions from ansatzes.  Without the finite-sector obstruction one could still suspect that the singular behavior is confined in a small exact subsystem.  Without the curl-projector theorem there is no sharp compact spectral measurement of the escape.
+
+For every round radius \(R>0\) and viscosity \(\nu>0\), the relative module transports the Euclidean forced singular-branch construction into a strict tube of \(S^3_R\).  The reason this is geometrically possible is exact, not asymptotic: the geodesic-axis volume density is the Euclidean cylindrical density \(r\), curvature shifts the slow hierarchy by integer orders, and the pure-swirl exterior admits an all-order spherical heat parametrix.
+
+The intrinsic modules are independent of that transfer.  The closure criteria make their range explicit.  The maximal-torus sector is globally classified and diagonalized by Jacobi polynomials; the full-isometry fixed sector is zero; the six-dimensional Killing sector is explicit; each signed curl eigenspace is a pressure-exact Beltrami solution manifold; and the modal closure problem is governed by the polarized tensor \(Q\).  These results do not prove blowup.  They give the closure language in which finite modal candidate reductions can be accepted or rejected.
+
+The decisive obstruction is finite-sector no-blowup.  A verified finite reducing sector has an \(L^2\)-to-\(L^\infty\) equivalence constant, and the incompressible energy cancellation prevents bounded-energy finite-dimensional dynamics from developing the singular peak under \(L^1([0,T);L^2)\) forcing.  Therefore the relative singularity, if the source assumptions are valid, must pass through unbounded modal complexity.  This is why the spectral-escape theorem is structural rather than ornamental.
+
+Thus the work should be read as a reduction-analysis instrument.  Its portable part is the Hilbert-quadratic closure method; its spherical part is the exact realization of that method on \(S^3_R\).  It does not claim an independent solution of the Navier--Stokes problem.  It does give an invariant machine for the round sphere: build a candidate sector, form its defect matrix, compute its polarized leakage, discard it if leakage remains, reduce it if leakage vanishes, and know in advance that no fixed finite successful sector can be the bounded-energy blowup candidate reduction.  The remaining singular candidate reduction is forced into infinite spectral escape, with exact rank growth measured by the curl projectors.
+
+\appendix
+
+\section{Derivation of the round metric}\label{app:metric}
+
+Let $\rho(r)=\sqrt{R^2-r^2}$. From \cref{eq:embedding},
+\begin{align}
+	\partial_r\Phi_R      & =\left(-\frac r\rho\cos\frac zR,-\frac r\rho\sin\frac zR,\cos\theta,\sin\theta\right), \\
+	\partial_\theta\Phi_R & =(0,0,-r\sin\theta,r\cos\theta),                                                       \\
+	\partial_z\Phi_R      & =\left(-\frac\rho R\sin\frac zR,\frac\rho R\cos\frac zR,0,0\right).
+\end{align}
+The three vectors are mutually orthogonal and have squared norms $R^2/(R^2-r^2)$, $r^2$, and $(R^2-r^2)/R^2$, proving Theorem~\ref{thm:metric}.
+
+
+\section{Connection and Ricci identities}\label{app:connection}
+
+For a diagonal metric depending only on $r$, the Christoffel calculation is elementary. Substitution of \cref{eq:christoffel} into
+\begin{equation}
+	\Ric_{ij}=\partial_k\Gamma^k_{ij}-\partial_j\Gamma^k_{ik}
+	+\Gamma^k_{k\ell}\Gamma^\ell_{ij}-\Gamma^k_{j\ell}\Gamma^\ell_{ik}
+\end{equation}
+returns
+\begin{align}
+	\Ric_{rr} & =\frac{2}{R^2-r^2},\qquad
+	\Ric_{\theta\theta}=\frac{2r^2}{R^2},\nonumber \\
+	\Ric_{zz} & =\frac{2(R^2-r^2)}{R^4}.
+\end{align}
+which is exactly $2R^{-2}g_{ij}$.
+
+
+
+\section{Exterior-operator algebra}\label{app:extalg}
+
+For $w=w(r)$, direct computation from the Christoffel symbols gives
+\begin{equation}
+	\cL_R^\theta w
+	=\cL_0^\theta w+R^{-2}(-r^2w_{rr}-3rw_r+3w).
+\end{equation}
+Since $\Eul^2w=r^2w_{rr}+rw_r$,
+\begin{equation}
+	-r^2w_{rr}-3rw_r+3w
+	=(-\Eul^2-2\Eul+3)w=-(\Eul-1)(\Eul+3)w.
+\end{equation}
+Also $[\Eul,\cL_0^\theta]=-2\cL_0^\theta$, hence
+$\cL_0^\theta B(\Eul)=B(\Eul+2)\cL_0^\theta$.
+
+For the source exterior heat field, parabolic homogeneity gives
+$(\Eul+2\tau\partial_\tau)K=-2AK$. Combining this with
+$\partial_\tau K=-\cL_0^\theta K$ yields
+\begin{equation}
+	\tau\cL_0^\theta K=\frac{\Eul+2A}{2}K,
+\end{equation}
+which is the only identity needed in Eq.~\eqref{eq:H0Bm}.
+
+
+\section{First exterior polynomials}\label{app:Bpoly}
+
+The recursion produces
+\begin{align}
+	B_0(x)={} & 1,                                         \\
+	B_1(x)={} & \frac{x^2+(1-2h)x+4h^2-4h-12}{3},          \\
+	B_2(x)={} & \frac1{90}\bigl[5x^4+(2-20h)x^3\nonumber   \\
+	          & \quad +(60h^2-48h-137)x^2\nonumber         \\
+	          & \quad +(-80h^3+144h^2+232h-134)x\nonumber  \\
+	          & \quad +80h^4-224h^3-368h^2+512h+720\bigr].
+\end{align}
+
+
+
+\section{Exponent and support calculus}\label{app:expcheck}
+
+The two generators of the slow expansion are $2h$ and $1$. The first comes from axial viscosity relative to radial viscosity in the source similarity system; the second comes from $r^2/R^2=2qX/R^2$. A physical derivative may reduce a $q$ exponent, but the reduction depends only on derivative order, not on the coefficient index. Therefore an ordered truncation at $\sigma_J$ has residual order tending to infinity with $J$.
+
+For annular oscillations, $Q=\eps^{1/h}$ and the source carrier obeys $\eps k^2\asymp1$. Hence the worst normalized second-order curvature term is
+\begin{equation}
+	\frac{Q}{R^2}\eps k^2 W_\alpha
+	=\OO(\eps^{\alpha+1/h}),
+\end{equation}
+and first-order/zeroth-order terms are no worse. This estimate is valid only on the wave support; Sec.~\ref{sec:regional} explains why extending it to the core or exterior is invalid.
+
+
+
+
+\section{Finite-dimensional invariant-mining protocol}
+\label{app:invariant-mining}
+
+For reproducibility, the search for exact modal families can be reduced to two basis-free calculations.
+
+First choose a finite-dimensional candidate space \(W\) of divergence-free modes.  Orthonormalize a basis \(\{e_i\}\).  Compute
+\[
+	A_i^\perp=(I-\Pi_W)Ae_i,\qquad
+	Q_{ij}^\perp=(I-\Pi_W)Q(e_i,e_j),
+\]
+where
+\[
+	Q(e_i,e_j)=\frac12\PP(\nabla_{e_i}e_j+\nabla_{e_j}e_i).
+\]
+Then \(W\) is an exact reducing space precisely when
+\[
+	\sum_i\|A_i^\perp\|_{L^2}^2+
+	\sum_{i,j}\|Q_{ij}^\perp\|_{L^2}^2=0.
+\]
+This is the sharp test.  The stronger unsymmetrized condition
+\[
+	(I-\Pi_W)B(e_i,e_j)=0
+\]
+is sufficient but not necessary; it would incorrectly discard pressure-linear families whose antisymmetric bilinear part cancels on the Navier--Stokes diagonal.  The chiral Beltrami shells and the full Killing space are verified by the symmetric test \(Q(W,W)=0\).
+
+Second, if \(W\) is a finite complete-shell sector
+\[
+	W_S=\bigoplus_{\alpha\in S}E_\alpha,
+\]
+compute only the invariant shell coefficients
+\[
+	C_{\alpha\beta}^{\gamma}
+	=
+	\left\|\Pi_\gamma Q\big|_{E_\alpha\times E_\beta}\right\|_{\mathrm{HS}}^2
+\]
+which survive the Clebsch--Gordan gate.  Then \(W_S\) closes precisely when
+\[
+	\mathfrak R(S)=
+	\sum_{\alpha,\beta\in S}\sum_{\gamma\notin S}C_{\alpha\beta}^{\gamma}=0.
+\]
+Thus the modal mining problem is finite, representation-filtered, and coordinate-free.
+
+The protocol is invariant under three operations: isometries of \(S^3_R\), orthonormal basis changes inside \(W\), and pressure gauge changes.  These are precisely the operations that should not affect a physical or geometric Navier--Stokes statement.
+
+\section{Scope conditions for the relative theorem}\label{sec:scopeconditions}
+
+This section records the scope conditions used by the relative theorem.
+
+\begin{enumerate}[leftmargin=*]
+	\item \textbf{Geometric model.}  The viscous operator is the Ebin--Marsden deformation-tensor operator in Eq.~\eqref{eq:EMoperator}; alternative Hodge or Bochner conventions are not silently substituted.
+	\item \textbf{Support control.}  The construction is confined to a strict tube $\mathcal T\Subset S^3_R$ and the force satisfies Eq.~\eqref{eq:compactforce}.  The pressure normalization is chosen so that no force is introduced outside the localization tube.
+	\item \textbf{Relative claims.}  Every invocation of the Euclidean blowup candidate reduction factors through Hypothesis~\ref{hyp:source}.  No step depending on the Euclidean source theorem is counted as an independent spherical proof.
+	\item \textbf{Curvature order.}  Each appearance of $R^{-2}$ raises the mixed exponent by an integer member of $\Lambda_h$, and the local finiteness of $\Lambda_h$ is used before any infinite summation.
+	\item \textbf{Exterior reference.}  The pure-swirl exterior is not matched to the raw Euclidean heat profile but to the spherical parametrix generated by the polynomial recurrence in $\mathsf E$.
+	\item \textbf{Annular perturbation.}  Fast oscillatory corrections are applied only after the inner and exterior residuals are flat, so that curvature enters the annulus through the gain $Q/R^2$ and not through a leading-order obstruction.
+	\item \textbf{Breakdown.}  The blowup statement is converted to a nonextendibility statement by local smooth uniqueness, as in Corollary~\ref{cor:breakdown}.
+	\item \textbf{Isometry invariance.}  The fixed-sector claim is the equivariance statement in Theorem~\ref{thm:naturality}; explicit classification is asserted only for full $SO(4)$, the Killing family, maximal tori, and signed Beltrami curl shells, not for every one-circle reduction.
+	\item \textbf{Beltrami shells.}  The one-shell solution family uses both identities $\cL_g=-\Delta_1+4R^{-2}$ on coexact one-forms and $\nabla_u u=\gradg(|u|^2/2)-u\times\operatorname{curl}u$; mixed curl shells are not silently treated as Beltrami.
+	\item \textbf{Finite-sector impossibility.}  The no-blowup conclusion for finite reducing spaces uses the exact \(L^2\) energy cancellation of the convective term and finite-dimensional norm equivalence; it does not assert regularity for arbitrary infinite-dimensional solutions.
+	\item \textbf{Spectral escape.}  The finite-band lower bounds use the exact projector identities \eqref{eq:L1Linf}--\eqref{eq:L2Linf}; they are not numerical evidence.
+	\item \textbf{Boundary of the finite criteria.}  The modal criterion \(\mathfrak R(S)=0\) is an exact closure criterion for a finite union of complete signed curl shells; it is not an already completed enumeration of all finite shell zero sets.  The generic-order inner solver is invoked only in the finite-truncation sense stated in Hypothesis~\ref{hyp:genericinner}.
+\end{enumerate}
+
+
+
+\section*{Use of AI Tools}
+
+An AI language model was used for language editing, organization of logical
+dependencies, and consistency checks during manuscript preparation.  The
+authors reviewed the manuscript and are responsible for all mathematical
+claims.
+
+\section*{Data Availability}
+
+No numerical data sets were generated or analyzed in this work.  The finite symbolic checks used for algebraic consistency are ancillary
+sanity checks for identities, dimensions, and textual consistency.  They do not
+verify the external Euclidean source package and do not constitute a formal proof
+of the relative transfer.
+
+\begin{thebibliography}{99}
+
+	\bibitem{OpenAI2026Paper}
+	OpenAI, \emph{Finite Time Blowup for Navier--Stokes} (2026), research manuscript released September 8, 2026,
+	\url{https://cdn.openai.com/pdf/32d9f210-8b73-45e0-91bc-82a30aef8a9a/navier-stokes.pdf}.
+
+	\bibitem{OpenAI2026Repo}
+	OpenAI, \emph{NavierStokesAndEuler: Lean certificates accompanying Navier--Stokes and Euler results} (2026),
+	\url{https://github.com/openai/NavierStokesAndEuler}.
+
+	\bibitem{EbinMarsden1970}
+	D.~G. Ebin and J. Marsden, Groups of diffeomorphisms and the motion of an incompressible fluid,
+	Ann. Math. \textbf{92}, 102 (1970), doi:10.2307/1970699.
+
+	\bibitem{ChanCzubakDisconzi2017}
+	C.~H. Chan, M. Czubak, and M.~M. Disconzi, The formulation of the Navier--Stokes equations on Riemannian manifolds,
+	J. Geom. Phys. \textbf{121}, 335 (2017), doi:10.1016/j.geomphys.2017.07.015.
+
+	\bibitem{SamavakiTuomela2020}
+	M. Samavaki and J. Tuomela, Navier--Stokes equations on Riemannian manifolds,
+	J. Geom. Phys. \textbf{148}, 103543 (2020), doi:10.1016/j.geomphys.2019.103543.
+
+	\bibitem{Tao2016}
+	T. Tao, Finite time blowup for an averaged three-dimensional Navier--Stokes equation,
+	J. Am. Math. Soc. \textbf{29}, 601 (2016), doi:10.1090/jams/838.
+
+	\bibitem{IkedaTaniguchi1978}
+	A. Ikeda and Y. Taniguchi, Spectra and eigenforms of the Laplacian on $S^n$ and $P^n(\mathbb C)$,
+	Osaka J. Math. \textbf{15}, 515 (1978).
+
+	\bibitem{EncisoGernerPeralta2023}
+	A. Enciso, W. Gerner, and D. Peralta-Salas, Optimal metrics for the first curl eigenvalue on 3-manifolds,
+	arXiv:2305.06681.
+
+	\bibitem{PeraltaSlobodeanu2023}
+	D. Peralta-Salas and R. Slobodeanu, Contact structures and Beltrami fields on the torus and the sphere,
+	Indiana Univ. Math. J. \textbf{72}, 699 (2023), doi:10.1512/iumj.2023.72.9066.
+
+	\bibitem{EncisoPeralta2012}
+	A. Enciso and D. Peralta-Salas, Knots and links in steady solutions of the Euler equation,
+	Ann. Math. \textbf{175}, 345 (2012), doi:10.4007/annals.2012.175.1.9.
+
+\end{thebibliography}
+\end{document}

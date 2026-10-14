@@ -1,0 +1,5404 @@
+\documentclass[
+ aps,
+ prd,
+ reprint,
+ amsmath,
+ amssymb,
+ nofootinbib,
+ superscriptaddress
+]{revtex4-2}
+
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage{bm}
+\usepackage{mathrsfs}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage[nameinlink,capitalize]{cleveref}
+
+\hypersetup{
+ colorlinks=true,
+ linkcolor=blue,
+ citecolor=blue,
+ urlcolor=blue
+}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\Sthree}{S^3_R}
+\newcommand{\PP}{\mathbb P}
+\newcommand{\cL}{\mathcal L}
+\newcommand{\cG}{\mathcal G}
+\newcommand{\cM}{\mathscr M}
+\newcommand{\cS}{\mathscr S}
+\newcommand{\cZ}{\mathcal Z}
+\newcommand{\cE}{\mathcal E}
+\newcommand{\cK}{\mathfrak K}
+\newcommand{\cA}{\mathscr A}
+\newcommand{\cR}{\mathscr R}
+\newcommand{\cB}{\mathscr B}
+\newcommand{\cC}{\mathscr C}
+\newcommand{\cN}{\mathscr N}
+\newcommand{\curl}{\operatorname{curl}}
+\newcommand{\divg}{\operatorname{div}_g}
+\newcommand{\gradg}{\operatorname{grad}_g}
+\newcommand{\Def}{\operatorname{Def}}
+\newcommand{\Id}{\mathrm{Id}}
+\newcommand{\Gr}{\operatorname{Gr}}
+\newcommand{\Vol}{\operatorname{Vol}}
+\newcommand{\dd}{\,\mathrm d}
+\newcommand{\HS}{\mathrm{HS}}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\op}{\mathrm{op}}
+\newcommand{\ad}{\operatorname{ad}}
+
+\begin{document}
+
+\title{Geometric Reduction, Killing-Response Reconstruction, and Spectral Tomography for Navier--Stokes Flow on the Round Three-Sphere}
+
+\author{Boris~Batenin}
+\email{batenin@web.de}
+\affiliation{Independent Researcher, Berlin, Germany}
+
+\author{Andrei~Preece}
+\email{andre.preece@web.de}
+\affiliation{Independent Researcher, Berlin, Germany}
+
+\begin{abstract}
+We develop a unified geometric and spectral theory for incompressible
+Navier--Stokes flow on the round three-sphere.  The common hinge is the
+Killing--Beltrami interaction on the signed curl decomposition.  First, the
+projected quadratic convection vanishes on every single signed curl shell,
+so the full Grassmannian of its linear subspaces consists of exact
+finite-dimensional Navier--Stokes reductions.  We study the resulting
+moduli under the $SO(4)$ isometry action, derive a real-algebraic leakage
+functional for multi-shell reductions, and obtain its infinitesimal
+deformation equation.  Killing drift transports these reductions by a
+projector Lax equation; for constant drift we give an exact Grassmannian
+geodesic criterion, diagonalize the shell generator, derive the finite
+Diophantine resonance condition, and prove determinant-one shell transport.
+Second, the six convective responses to Killing generators factor the
+Stokes operator.  After $A^{-1/2}$ normalization they form a Parseval
+operator-valued frame.  Either chiral triplet is uniformly stable, two
+orthonormal same-chirality probes determine the entire non-Killing velocity,
+and a single probe is invertible exactly on odd signed-curl levels.  Gram
+compression yields a Casimir response tensor with exact chiral trace
+splitting.  Stokes weighting produces a positive Hankel moment hierarchy,
+while curl weighting produces a positive matrix-valued spectral measure.
+Because the signed curl spectrum lies on an integer lattice, its
+operator-valued characteristic function is periodic; Fourier inversion
+recovers every signed-shell response tensor, and its scalar trace recovers
+all signed-shell energies for arbitrary finite-dissipation states.  Under
+linear Stokes evolution this characteristic function satisfies an exact
+matrix heat equation on the response circle.  Combining the reduction and
+response branches further yields Clebsch--Gordan parity and locality rules
+for nonlinear shell interactions, one- and two-probe certificates for the
+full leakage variety, a master response-circle functional calculus, and a
+Fisher--Rao spectral-selection law whose nonlinear extension separates
+viscous gradient drift from conservative shell transfer.
+\end{abstract}
+\maketitle
+
+\section{Introduction}
+
+The round three-sphere is a particularly rigid background for incompressible
+hydrodynamics: its isometry group is \(SO(4)\), its Killing algebra splits
+into two commuting \(\mathfrak{su}(2)\) factors, and the divergence-free
+spectrum admits a signed curl decomposition.  With deformation-tensor
+viscosity these structures interact directly with the projected
+Navier--Stokes nonlinearity.
+
+The purpose of this article is to treat two consequences of the same
+Killing--Beltrami algebra within one theorem chain.  The first is a
+\emph{reduction problem}: which finite-dimensional subspaces are exact
+Navier--Stokes systems, how are they organized geometrically, and how do
+Killing drifts move them?  The second is an \emph{information problem}: how
+much of a velocity field can be recovered from its convective responses to
+the six Killing generators?
+
+The reduction problem begins with a complete cancellation on a single
+signed curl shell.  Since the Stokes operator is scalar there and the
+polarized projected convection vanishes, every linear subspace of that shell
+is an exact pressure-linear reduction.  Thus exact reductions occur in
+Grassmannian families rather than as isolated modes.  The physical
+\(SO(4)\) action produces quotient moduli, while cross-shell interactions
+lead to a real-algebraic zero-leakage locus on products of Grassmannians.
+Killing drift gives a natural nonabelian transport on these moduli.  Its
+projector satisfies a Lax equation, but a constant drift orbit is geodesic
+only under an additional block-compatibility condition.  The same
+representation theory gives the exact fixed-drift spectrum and its
+resonance arithmetic.
+
+The information problem begins from the quadratic Casimir factorization of
+the Stokes operator by six Killing-response operators.  After Stokes
+normalization these responses form a Parseval operator-valued frame.  The
+redundancy is explicit: either chiral triplet remains a stable frame, any
+two orthonormal probes in one chiral factor are globally injective, and the
+one-probe problem has an exact odd/even shell parity law.
+
+Compressing the response fields to their \(6\times6\) Gram operator yields
+a Casimir response geometry.  Applying powers of the Stokes operator
+produces a positive moment hierarchy whose traces are the Stokes spectral
+moments.  Applying powers of curl instead retains chirality and yields a
+positive matrix-valued measure on the signed curl spectrum.  Since
+\(\mu_{k,\sigma}=\sigma(k+2)/R\), the associated unitary curl group is
+periodic with period \(2\pi R\); consequently a single operator-valued
+function on this response circle admits exact Fourier inversion.
+
+The individual ingredients have established relatives: invariant helical
+subspaces and special exact solutions occur in Navier--Stokes theory
+\cite{MahalovTitiLeibovich1990,BogoyavlenskijFuchssteiner2005}; Killing
+fields in deformation-tensor Navier--Stokes equations were studied by
+Samavaki and Tuomela \cite{SamavakiTuomela2020}; Grassmann geometry,
+operator-valued frames, Lie-group Riesz transforms, and matrix-valued moment
+problems have independent abstract theories
+\cite{Bendokat2024,Sun2006,KaftalLarsonZhang2009,
+BoggarapuThangavelu2016,KimseyTrachana2022}.  The contribution here is the
+exact realization of these structures by one \(SO(4)\)-equivariant
+Navier--Stokes system and the explicit theorems linking reduction geometry,
+minimal observability, and spectral tomography.  No historical priority is
+inferred from the literature search; the claims are the proved statements
+below.
+
+
+
+\subsection*{Relation to the three public Zenodo preprints}
+
+The present manuscript belongs to a three-stage public preprint program.
+
+The earliest work, Ref.~\cite{BateninPreece2026}, was publicly deposited on Zenodo on
+September 20, 2026.  It introduced the general finite-dimensional closure
+criterion and the zero-defect viewpoint, developed the maximal-torus,
+Killing, and signed-Beltrami sectors, established spectral-escape/projector
+bounds, and kept the forced singular-transfer construction explicitly
+conditional.
+
+The second work, Ref.~\cite{BateninPreeceKB2026}, was publicly deposited on Zenodo on
+September 21, 2026.  It isolated the exact Killing--Beltrami intertwining
+law, shell-diagonal Killing precession, the associated connection and
+curvature, Killing-saturated rigidity, the quadratic Casimir factorization,
+a finite toric classification, and sharp homogeneous-projector norms.  That
+paper is not superseded by the unified manuscript: several of these
+classification and homogeneous-bundle results are not reproduced below.
+
+The third work, Ref.~\cite{BateninPreeceUnified2026}, was also publicly deposited on
+September 21, 2026 and is the immediate Version 1.0 baseline for the unified
+reduction/response theory.  It developed Grassmannian reduction moduli,
+multi-shell leakage geometry, Killing-precession geometry, lossless
+Killing-response reconstruction, Casimir response moments, and
+curl-Fourier tomography.
+
+The additional results collected in Sec.~\ref{N:sec:synthesis} were derived
+subsequently.  In particular, the Clebsch--Gordan interaction selection rule
+there answers a limitation explicitly left open in
+Ref.~\cite{BateninPreeceKB2026}: that paper did not infer a chiral shell
+selection rule without an explicit Clebsch--Gordan analysis.  The new
+section should therefore be read as a subsequent extension of the three
+public preprints, not as a retrospective claim about their original
+contents.
+
+\section{Geometric and spectral setting}
+
+Let $(\Sthree,g)$ be the round three-sphere of radius $R$, with
+\[
+        V_R=\Vol(\Sthree)=2\pi^2R^3.
+\]
+We use the deformation-tensor viscosity
+\[
+\begin{aligned}
+ \partial_tu+\nabla_u u-\nu\cL_g u+\gradg p&=f,\\
+ \divg u&=0,\\
+ \cL_g u&=2\,\operatorname{div}_g\Def_g u.
+\end{aligned}
+\]
+Let $\PP$ denote the Leray projection and put
+\[
+\begin{aligned}
+ A&=-\PP\cL_g,\\
+ B(u,v)&=\PP\nabla_u v,\\
+ Q(u,v)&=\frac12\{B(u,v)+B(v,u)\}.
+\end{aligned}
+\]
+Then
+\begin{equation}
+       \partial_tu+\nu Au+Q(u,u)=\PP f.
+       \label{G:eq:NS}
+\end{equation}
+
+The divergence-free $L^2$ space decomposes as
+\begin{equation}
+ L^2_\sigma(T\Sthree)
+ =
+ \widehat{\bigoplus}_{k\ge0,\ \sigma=\pm} E_{k,\sigma},
+ \label{G:eq:signeddecomp}
+\end{equation}
+where
+\begin{align}
+ \curl u &= \mu_{k,\sigma}u,
+ &
+ \mu_{k,\sigma}&=\sigma\frac{k+2}{R},
+ \label{G:eq:curlspec}\\
+ Au &= \kappa_k u,
+ &
+ \kappa_k&=\frac{k(k+4)}{R^2},
+ \label{G:eq:stokespec}\\
+ \dim E_{k,\sigma}
+ &=d_k=(k+1)(k+3).
+ \label{G:eq:dim}
+\end{align}
+These formulas are consistent with the standard spectrum of differential
+forms on spheres \cite{IkedaTaniguchi1978} and with the signed-shell
+conventions of Ref.~\cite{BateninPreece2026}.
+
+We first record the cancellation that drives everything that follows.
+
+\begin{lemma}[Polarized single-shell cancellation]
+\label{G:lem:shellcancel}
+For all $u,v\in E_{k,\sigma}$,
+\begin{equation}
+          Q(u,v)=0.
+          \label{G:eq:shellcancel}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+On an oriented Riemannian three-manifold,
+\[
+ \nabla_uv+\nabla_vu
+ =
+ \gradg\langle u,v\rangle
+ -u\times\curl v-v\times\curl u.
+\]
+If $u$ and $v$ belong to the same signed curl shell, then
+$\curl u=\mu u$ and $\curl v=\mu v$ with the same scalar $\mu$.  Hence
+\[
+ -u\times\curl v-v\times\curl u
+ =
+ -\mu u\times v-\mu v\times u=0.
+\]
+Thus $\nabla_uv+\nabla_vu$ is a gradient, and its Leray projection vanishes.
+\end{proof}
+
+\begin{remark}
+For $u=v$, \cref{G:lem:shellcancel} is the usual Beltrami observation that
+$\nabla_u u$ is a gradient.  The polarized statement is stronger: it removes
+the interaction between \emph{any two} vectors in the same signed shell.
+\end{remark}
+
+
+\section{Exact-reduction moduli and leakage geometry}
+
+\subsection{The Grassmannian exact-reduction theorem}
+
+Fix $(k,\sigma)$ and abbreviate
+\[
+          E=E_{k,\sigma},
+          \qquad
+          D=\dim E=d_k.
+\]
+All Grassmannians below are real.
+
+\begin{theorem}[Grassmannian family of exact reductions]
+\label{G:thm:grassmann}
+Let $1\le d\le D$.  Every point
+\[
+          L\in\Gr(d,E)
+\]
+is an exact $d$-dimensional reducing space for \eqref{G:eq:NS}:
+\begin{equation}
+          AL\subset L,
+          \qquad
+          Q(L,L)=0.
+          \label{G:eq:exactL}
+\end{equation}
+For unforced dynamics and $u_0\in L$,
+\begin{equation}
+          u(t)=e^{-\nu\kappa_k t}u_0.
+          \label{G:eq:fiberflow}
+\end{equation}
+If $\PP f(t)\in L$ for all $t$, then
+\begin{equation}
+ u(t)
+ =
+ e^{-\nu\kappa_k t}u_0
+ +
+ \int_0^t
+ e^{-\nu\kappa_k(t-s)}\PP f(s)\,\dd s.
+ \label{G:eq:forcedfiber}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Equation \eqref{G:eq:stokespec} gives
+$A|_E=\kappa_k\Id_E$, hence $AL\subset L$ for every subspace $L\subset E$.
+Equation \eqref{G:eq:shellcancel} gives $Q(L,L)=0$.  Restricting
+\eqref{G:eq:NS} to $L$ therefore leaves the linear scalar equation
+\[
+        \partial_tu+\nu\kappa_k u=\PP f.
+\]
+The formulas follow by variation of constants.
+\end{proof}
+
+\begin{corollary}[No finite low-dimensional atlas]
+\label{G:cor:nofiniteatlas}
+For every $d\ge1$ there are infinitely many exact $d$-dimensional linear
+Navier--Stokes reductions on $\Sthree$.  For every $1\le d\le8$ there are
+continuous families already inside a single signed curl shell.
+\end{corollary}
+
+\begin{proof}
+Choose $k$ so that $d_k>d$.  Then
+$\Gr(d,E_{k,\sigma})$ is a positive-dimensional compact manifold of
+dimension $d(d_k-d)$.
+\end{proof}
+
+\begin{remark}
+The theorem concerns exact \emph{linear} invariant subspaces.  It is
+different from the local nonlinear spectral submanifolds used in modern
+model reduction \cite{Buza2023}.  Here invariance is global on the subspace
+and no perturbative graph construction is required.
+\end{remark}
+
+\subsection{Tautological Navier--Stokes dynamics}
+
+Let
+\[
+ \cG_{D,d}:=\Gr(d,E)
+\]
+and let
+\[
+ \pi:\cS_{D,d}\longrightarrow\cG_{D,d}
+\]
+be the tautological bundle,
+\[
+ \cS_{D,d}
+ =
+ \{(L,u)\in\cG_{D,d}\times E:\ u\in L\}.
+\]
+
+\begin{theorem}[Universal tautological semigroup]
+\label{G:thm:tautological}
+For each $t\ge0$, define
+\begin{equation}
+ \Phi_t:\cS_{D,d}\longrightarrow\cS_{D,d},
+ \qquad
+ \Phi_t(L,u)
+ =
+ \bigl(L,e^{-\nu\kappa_k t}u\bigr).
+ \label{G:eq:tautflow}
+\end{equation}
+Then $(\Phi_t)_{t\ge0}$ is a smooth bundle semigroup over the identity on
+$\cG_{D,d}$, and its restriction to every fiber is exactly the unforced
+Navier--Stokes flow on that reduction.
+
+The construction is $SO(4)$-equivariant.
+\end{theorem}
+
+\begin{proof}
+Fiber preservation and equality with the Navier--Stokes flow are
+\cref{G:thm:grassmann}.  The formula is smooth and satisfies
+$\Phi_{t+s}=\Phi_t\circ\Phi_s$.  Since the $SO(4)$ action preserves the round
+metric, curl shells, and the Stokes operator,
+\[
+ g\cdot\Phi_t(L,u)
+ =
+ (gL,e^{-\nu\kappa_k t}gu)
+ =
+ \Phi_t(gL,gu).
+\]
+\end{proof}
+
+\begin{remark}
+The base point $L$ labels the exact reduced model; the fiber variable is the
+fluid state within that model.  Thus the tautological bundle packages all
+$d$-dimensional same-shell exact reductions into one geometric dynamical
+object.
+\end{remark}
+
+\subsection{Isometry moduli and orbit dimension}
+
+The isometry group $G=SO(4)$ acts orthogonally on $E_{k,\sigma}$ and hence
+smoothly on $\Gr(d,E_{k,\sigma})$.
+
+\begin{definition}
+The moduli space of $d$-dimensional same-shell reductions up to isometry is
+\begin{equation}
+ \cM_{k,\sigma,d}
+ :=
+ \Gr(d,E_{k,\sigma})/SO(4).
+ \label{G:eq:moduli}
+\end{equation}
+\end{definition}
+
+\begin{theorem}[Compact quotient and dimension lower bound]
+\label{G:thm:moddim}
+The quotient $\cM_{k,\sigma,d}$ is compact and Hausdorff.  Its principal
+orbit stratum has dimension
+\begin{equation}
+ d(d_k-d)-r_{\mathrm{pr}},
+ \label{G:eq:principalmoddim}
+\end{equation}
+where $r_{\mathrm{pr}}\le6$ is the dimension of a principal $SO(4)$ orbit.
+Consequently,
+\begin{equation}
+ \boxed{
+ \dim\cM_{k,\sigma,d}
+ \ge
+ d(d_k-d)-6.
+ }
+ \label{G:eq:modlower}
+\end{equation}
+In particular, if $d(d_k-d)>6$, there is a positive-dimensional continuum
+of pairwise isometrically inequivalent exact reductions.
+\end{theorem}
+
+\begin{proof}
+The real Grassmannian is compact and $SO(4)$ is compact, so the orbit space
+is compact Hausdorff.  By the principal orbit type theorem, a dense open
+subset of the Grassmannian consists of orbits of one principal type.  If
+their dimension is $r_{\mathrm{pr}}$, then the quotient of this principal
+stratum has dimension
+\[
+      \dim\Gr(d,D)-r_{\mathrm{pr}}
+      =
+      d(D-d)-r_{\mathrm{pr}}.
+\]
+Since $\dim SO(4)=6$, one has $r_{\mathrm{pr}}\le6$.
+\end{proof}
+
+\begin{corollary}[Positive-dimensional moduli in the first non-Killing shell]
+\label{G:cor:firstshellmoduli}
+For $k=1$, one has $d_1=8$.  Hence for every proper dimension
+$1\le d\le7$,
+\[
+        \dim\cM_{1,\sigma,d}\ge d(8-d)-6>0.
+\]
+Thus even the first non-Killing signed curl shell contains continuous
+isometry moduli of exact reductions in every proper dimension.
+\end{corollary}
+
+\begin{remark}
+The quotient need not be a smooth manifold globally because stabilizer type
+can jump.  The theorem uses only the principal stratum, so no global
+freeness assumption is made.
+\end{remark}
+
+\subsection{A concentration landscape on the Grassmannian}
+
+Let $L$ be any $d$-dimensional subspace of smooth vector fields on $\Sthree$,
+and let $\Pi_L$ be its $L^2$-orthogonal projector.  Choose an orthonormal
+basis $\{\phi_j\}_{j=1}^d$ of $L$.  The projector kernel is
+\begin{equation}
+ K_L(x,y)
+ =
+ \sum_{j=1}^d
+ \phi_j(x)\otimes\phi_j(y)^\flat.
+ \label{G:eq:kernel}
+\end{equation}
+At the diagonal $K_L(x,x)$ is a positive semidefinite endomorphism of the
+three-dimensional tangent space.
+
+\begin{lemma}[Evaluation formula]
+\label{G:lem:evaluation}
+For the evaluation map
+$E_x:L\to T_x\Sthree$, one has
+\[
+ K_L(x,x)=E_xE_x^*,
+\]
+and therefore
+\begin{equation}
+ \|\Pi_L\|_{2\to\infty}^2
+ =
+ \sup_{x\in\Sthree}
+ \lambda_{\max}\bigl(K_L(x,x)\bigr).
+ \label{G:eq:L2kernel}
+\end{equation}
+Moreover,
+\begin{equation}
+ \int_{\Sthree}\tr K_L(x,x)\,\dd V=d.
+ \label{G:eq:traceidentity}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+The kernel identity follows directly from an orthonormal basis.  The
+$L^2\to L^\infty$ norm is the supremum of the evaluation norms, and
+$\|E_x\|^2=\lambda_{\max}(E_xE_x^*)$.  Finally,
+\[
+ \int\tr K_L(x,x)\dd V
+ =
+ \sum_{j=1}^d\|\phi_j\|_2^2=d.
+\]
+\end{proof}
+
+\begin{theorem}[Universal concentration floor]
+\label{G:thm:concentrationfloor}
+For every $d$-dimensional subspace $L$ of smooth vector fields on $\Sthree$,
+\begin{align}
+ \boxed{
+ \|\Pi_L\|_{2\to\infty}
+ \ge
+ \sqrt{\frac{d}{3V_R}},
+ }
+ \label{G:eq:floor2}\\
+ \boxed{
+ \|\Pi_L\|_{1\to\infty}
+ \ge
+ \frac{d}{3V_R}.
+ }
+ \label{G:eq:floor1}
+\end{align}
+In particular these inequalities hold for every point of every exact
+Grassmannian family $\Gr(d,E_{k,\sigma})$.
+\end{theorem}
+
+\begin{proof}
+By \eqref{G:eq:traceidentity}, there exists $x$ with
+\[
+       \tr K_L(x,x)\ge\frac{d}{V_R}.
+\]
+Since $K_L(x,x)$ acts on a three-dimensional space,
+\[
+ \lambda_{\max}\bigl(K_L(x,x)\bigr)
+ \ge
+ \frac13\tr K_L(x,x)
+ \ge
+ \frac{d}{3V_R}.
+\]
+Equation \eqref{G:eq:floor2} follows from \eqref{G:eq:L2kernel}.
+
+For the $L^1\to L^\infty$ norm, the continuous finite-rank kernel satisfies
+\[
+ \|\Pi_L\|_{1\to\infty}
+ =
+ \sup_{x,y}\|K_L(x,y)\|_{\op}.
+\]
+The diagonal is included in the supremum, so the same point $x$ gives
+\eqref{G:eq:floor1}.
+\end{proof}
+
+\begin{definition}
+For $L\in\Gr(d,E_{k,\sigma})$, define the dimensionless concentration
+defects
+\begin{equation}
+ \mathcal C_2(L)
+ :=
+ \frac{3V_R}{d}\|\Pi_L\|_{2\to\infty}^2,
+ \qquad
+ \mathcal C_1(L)
+ :=
+ \frac{3V_R}{d}\|\Pi_L\|_{1\to\infty}.
+ \label{G:eq:defects}
+\end{equation}
+Then $\mathcal C_1,\mathcal C_2\ge1$.
+\end{definition}
+
+These functions are invariant under the physical $SO(4)$ action and
+therefore descend to the isometry moduli space \eqref{G:eq:moduli}.  They
+provide quantitative functions on the moduli of exact reductions.
+
+\subsection{Random Grassmannian reductions}
+
+We now equip $\Gr(d,E)$ with its normalized $O(E)$-invariant probability
+measure.  This ensemble is not a physical symmetry average; it is the
+canonical uniform measure on the parameter space of exact reductions.
+
+Let $P_L:E\to E$ denote the orthogonal projector onto $L$.
+
+\begin{lemma}[First moment of a random subspace projector]
+\label{G:lem:firstmoment}
+If $L$ is uniformly distributed in $\Gr(d,E)$ and $D=\dim E$, then
+\begin{equation}
+       \mathbb E\,P_L=\frac{d}{D}\Id_E.
+       \label{G:eq:firstmoment}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+The expectation commutes with every orthogonal transformation of $E$, so it
+is a scalar multiple of the identity.  Taking the trace gives the scalar
+$d/D$.
+\end{proof}
+
+Let $K_E(x,y)$ be the orthogonal projector kernel of the full shell.  By
+$SO(4)$ homogeneity and irreducibility of the tangent isotropy,
+\begin{equation}
+       K_E(x,x)
+       =
+       \frac{D}{3V_R}\Id_{T_x\Sthree}.
+       \label{G:eq:fullshelldiagonal}
+\end{equation}
+
+\begin{theorem}[Ensemble isotropy]
+\label{G:thm:ensembleisotropy}
+For a uniformly random $L\in\Gr(d,E_{k,\sigma})$,
+\begin{align}
+ \mathbb E\,K_L(x,y)
+ &=
+ \frac{d}{D}K_E(x,y),
+ \label{G:eq:meankernel}\\
+ \boxed{
+ \mathbb E\,K_L(x,x)
+ =
+ \frac{d}{3V_R}\Id_{T_x\Sthree}.
+ }
+ \label{G:eq:meandiagonal}
+\end{align}
+Thus the ensemble of exact reductions is pointwise isotropic in expectation,
+even though an individual reduction need not be homogeneous.
+\end{theorem}
+
+\begin{proof}
+Write $\operatorname{ev}_x:E\to T_x\Sthree$ for evaluation.  Then
+\[
+ K_L(x,y)
+ =
+ \operatorname{ev}_x P_L\operatorname{ev}_y^*.
+\]
+Take expectation and use \eqref{G:eq:firstmoment}; the diagonal formula follows
+from \eqref{G:eq:fullshelldiagonal}.
+\end{proof}
+
+The second moment is also explicit.
+
+\begin{theorem}[Exact pointwise projector variance]
+\label{G:thm:variance}
+Let $D=d_k$ and $1\le d\le D$.  For every $x\in\Sthree$,
+\begin{equation}
+ \boxed{
+ \mathbb E
+ \left\|
+ K_L(x,x)
+ -
+ \frac{d}{3V_R}\Id
+ \right\|_{\HS}^2
+ =
+ \frac{
+ 2d(D-d)(2D-1)
+ }{
+ 3V_R^2(D-1)(D+2)
+ }.
+ }
+ \label{G:eq:variance}
+\end{equation}
+The right-hand side is independent of $x$.
+\end{theorem}
+
+\begin{proof}
+Fix an orthonormal basis of $E$ and write $P=P_L$.  Orthogonal invariance
+implies
+\begin{equation}
+ \mathbb E(P_{ij}P_{kl})
+ =
+ a\,\delta_{ij}\delta_{kl}
+ +
+ b\bigl(
+ \delta_{ik}\delta_{jl}
+ +
+ \delta_{il}\delta_{jk}
+ \bigr).
+ \label{G:eq:secondtensor}
+\end{equation}
+The identities
+$\tr P=d$ and $\tr P^2=d$ give
+\begin{align}
+ a&=
+ \frac{d\{d(D+1)-2\}}
+ {D(D-1)(D+2)},
+ \label{G:eq:a}\\
+ b&=
+ \frac{d(D-d)}
+ {D(D-1)(D+2)}.
+ \label{G:eq:b}
+\end{align}
+
+Let $T=\operatorname{ev}_x:E\to T_x\Sthree$ and
+$H=T^*T$.  Then
+$K_L(x,x)=TPT^*$ and, by \eqref{G:eq:fullshelldiagonal},
+\begin{equation}
+ \tr H=\frac{D}{V_R},
+ \qquad
+ \tr H^2=\frac{D^2}{3V_R^2}.
+ \label{G:eq:Hmoments}
+\end{equation}
+Contracting \eqref{G:eq:secondtensor} yields
+\begin{equation}
+ \mathbb E\,\tr(TPT^*)^2
+ =
+ (a+b)\tr H^2+b(\tr H)^2.
+ \label{G:eq:Ksecond}
+\end{equation}
+Subtract
+\[
+ \left\|
+ \frac{d}{3V_R}\Id
+ \right\|_{\HS}^2
+ =
+ \frac{d^2}{3V_R^2},
+\]
+insert \eqref{G:eq:a}--\eqref{G:eq:Hmoments}, and simplify.  This gives
+\eqref{G:eq:variance}.
+\end{proof}
+
+\begin{remark}
+For a fixed proportion $d/D$, the absolute variance grows only linearly in
+$D$, whereas the squared size of the mean diagonal kernel grows
+quadratically.  Thus high-dimensional random exact reductions become
+relatively isotropic at a fixed point.
+\end{remark}
+
+\subsection{Multi-shell leakage as a real-algebraic moduli problem}
+
+The single-shell Grassmannian is maximally degenerate: every point is exact.
+Cross-shell interaction creates the genuine classification problem.
+
+Let
+\[
+ \mathcal A=\{\alpha_1,\ldots,\alpha_m\},
+ \qquad
+ E_{\alpha_j}=E_{k_j,\sigma_j},
+\]
+be finitely many signed shells and set
+\[
+        V_{\mathcal A}
+        =
+        \bigoplus_{\alpha\in\mathcal A}E_\alpha.
+\]
+Fix a dimension vector
+$\mathbf d=(d_\alpha)_{\alpha\in\mathcal A}$ with
+$0\le d_\alpha\le\dim E_\alpha$, and define
+\begin{equation}
+ \cG_{\mathcal A,\mathbf d}
+ :=
+ \prod_{\alpha\in\mathcal A}
+ \Gr(d_\alpha,E_\alpha).
+ \label{G:eq:productgrass}
+\end{equation}
+A point
+$\mathbf L=(L_\alpha)_\alpha$
+determines
+\[
+        L(\mathbf L)
+        =
+        \bigoplus_{\alpha\in\mathcal A}L_\alpha
+\]
+and its orthogonal projector
+\[
+        P_{\mathbf L}
+        =
+        \bigoplus_{\alpha\in\mathcal A}P_{L_\alpha},
+\]
+extended by zero on $V_{\mathcal A}^\perp$.
+
+Because $A$ is scalar on each shell,
+\[
+        A L(\mathbf L)\subset L(\mathbf L)
+\]
+for every point of \eqref{G:eq:productgrass}.  Only quadratic leakage remains.
+
+\begin{definition}[Grassmannian leakage functional]
+Choose any orthonormal basis $\{e_i\}_{i=1}^N$ of
+$V_{\mathcal A}$.  Define
+\begin{equation}
+ \Lambda_{\mathcal A,\mathbf d}(\mathbf L)
+ :=
+ \sum_{i,j=1}^N
+ \left\|
+ (I-P_{\mathbf L})
+ Q(P_{\mathbf L}e_i,P_{\mathbf L}e_j)
+ \right\|_2^2.
+ \label{G:eq:leakage}
+\end{equation}
+\end{definition}
+
+This is the squared Hilbert--Schmidt norm of the bilinear map
+\[
+ (I-P_{\mathbf L})Q
+ \big|_{L(\mathbf L)\times L(\mathbf L)},
+\]
+so it is independent of the chosen orthonormal basis.
+
+\begin{theorem}[Leakage variety]
+\label{G:thm:leakagevariety}
+The function
+$\Lambda_{\mathcal A,\mathbf d}$ has the following properties.
+
+\begin{enumerate}[label=(\roman*)]
+\item
+It is nonnegative, continuous, real analytic, and $SO(4)$-invariant.
+
+\item
+In the orthogonal-projector realization
+\[
+ \Gr(d,E)
+ \simeq
+ \{P\in\operatorname{End}(E):
+ P^2=P,\ P^*=P,\ \tr P=d\},
+\]
+it is the restriction of a polynomial function of the projector entries.
+
+\item
+Its zero set
+\begin{equation}
+ \cZ_{\mathcal A,\mathbf d}
+ :=
+ \{\mathbf L\in\cG_{\mathcal A,\mathbf d}:
+ \Lambda_{\mathcal A,\mathbf d}(\mathbf L)=0\}
+ \label{G:eq:Z}
+\end{equation}
+is exactly the set of exact reducing spaces with the prescribed spectral
+dimension vector:
+\begin{equation}
+ \mathbf L\in\cZ_{\mathcal A,\mathbf d}
+ \quad\Longleftrightarrow\quad
+ Q(L(\mathbf L),L(\mathbf L))
+ \subset L(\mathbf L).
+ \label{G:eq:Zcriterion}
+\end{equation}
+
+\item
+$\cZ_{\mathcal A,\mathbf d}$ is a compact $SO(4)$-invariant real-algebraic
+subset of the compact product Grassmannian.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+Nonnegativity and continuity are immediate.  The Hilbert--Schmidt expression
+is independent of basis.  Equivariance of the Navier--Stokes bilinear map
+under isometries gives $SO(4)$ invariance.
+
+For algebraicity, use orthogonal projector coordinates.  The vectors
+$P_{\mathbf L}e_i$ depend linearly on the entries of $P_{\mathbf L}$,
+the bilinear map $Q$ is fixed, and the final application of
+$I-P_{\mathbf L}$ is again linear in the projector.  Since
+$Q(V_{\mathcal A},V_{\mathcal A})$ spans a finite-dimensional space, the
+squared $L^2$ norm in \eqref{G:eq:leakage} is a finite polynomial expression in
+those entries.
+
+The sum of squares vanishes exactly when every leakage vector vanishes,
+which is precisely
+\[
+      Q(L(\mathbf L),L(\mathbf L))
+      \subset L(\mathbf L).
+\]
+Stokes invariance is automatic from the shell decomposition, proving
+\eqref{G:eq:Zcriterion}.  Compactness follows because the zero set is closed
+inside a compact product of Grassmannians.
+\end{proof}
+
+\begin{corollary}[Single-shell component]
+\label{G:cor:singlecomponent}
+If $\mathcal A=\{\alpha\}$ consists of one signed shell, then
+\[
+        \Lambda_{\mathcal A,d}\equiv0,
+        \qquad
+        \cZ_{\mathcal A,d}
+        =
+        \Gr(d,E_\alpha).
+\]
+\end{corollary}
+
+\begin{corollary}[Complete-shell leakage is a vertex specialization]
+\label{G:cor:vertex}
+Suppose each $d_\alpha$ is either $0$ or $\dim E_\alpha$.  Let $S$ be the
+set of selected complete shells.  Then
+\begin{equation}
+ \Lambda_{\mathcal A,\mathbf d}
+ =
+ \sum_{\alpha,\beta\in S}
+ \sum_{\gamma\notin S}
+ \left\|
+ \Pi_\gamma Q
+ \big|_{E_\alpha\times E_\beta}
+ \right\|_{\HS}^2,
+ \label{G:eq:completeleak}
+\end{equation}
+which is the complete-shell leakage scalar of
+Ref.~\cite{BateninPreece2026}.
+\end{corollary}
+
+\begin{proof}
+At such a vertex, $P_{\mathbf L}$ is the orthogonal projector onto the union
+of the selected shells.  Orthogonality of the signed-shell decomposition
+splits the squared leakage norm into the sum in \eqref{G:eq:completeleak}.
+\end{proof}
+
+\begin{remark}
+The complete-shell criterion tests finitely many distinguished vertices of a
+much larger moduli problem.  The function \eqref{G:eq:leakage} extends that
+test to every partial-shell configuration with the same finite spectral
+support.
+\end{remark}
+
+\subsection{Infinitesimal deformation of the leakage variety}
+
+The algebraic zero-locus description also has a concrete first-order
+deformation theory.  We record it in a graph chart, which avoids assigning a
+spurious codimension to a singular zero set.
+
+Let
+\[
+ W=L_\alpha\oplus L_\beta
+ \subset E_\alpha\oplus E_\beta
+\]
+be a zero-leakage point for two distinct signed shells.  A tangent vector to
+the product Grassmannian is represented by
+\[
+ X_\alpha\in\operatorname{Hom}(L_\alpha,L_\alpha^\perp),
+ \qquad
+ X_\beta\in\operatorname{Hom}(L_\beta,L_\beta^\perp).
+\]
+
+\begin{theorem}[Linearized leakage and Zariski tangent space]
+\label{G:thm:linearizedleakage}
+In the standard graph trivialization of the leakage bundle, the differential
+at a zero-leakage point is
+\begin{align}
+ d\Phi(X_\alpha,X_\beta)(u,v)
+ ={}&
+ (I-P_W)
+ \left[
+ Q(X_\alpha u,v)+Q(u,X_\beta v)
+ \right]
+ \notag\\
+ &-
+ X_\alpha P_{L_\alpha}Q(u,v)
+ -
+ X_\beta P_{L_\beta}Q(u,v),
+ \label{G:eq:linearizedleakage}
+\end{align}
+for \(u\in L_\alpha\), \(v\in L_\beta\).  Consequently
+\begin{equation}
+ \boxed{
+ T_{(L_\alpha,L_\beta)}^{\rm Zar}\mathcal Z_{\alpha,\beta}
+ =
+ \ker d\Phi.
+ }
+ \label{G:eq:zartangent}
+\end{equation}
+At a regular point the local codimension equals
+\(\operatorname{rank}d\Phi\).
+\end{theorem}
+
+\begin{proof}
+Represent nearby planes as graphs of
+\(\varepsilon X_\alpha\) and \(\varepsilon X_\beta\).
+Differentiate the bilinear leakage
+\[
+ (I-P_{W(\varepsilon)})
+ Q(u+\varepsilon X_\alpha u,
+   v+\varepsilon X_\beta v)
+\]
+at \(\varepsilon=0\).  The first line of
+\eqref{G:eq:linearizedleakage} comes from varying the two arguments, while the
+second line is the first variation of the target projection.  The tangent
+space to the zero locus of an algebraic section is the kernel of its
+linearization.  At a regular zero, the constant-rank theorem gives the
+codimension statement.
+\end{proof}
+
+\begin{remark}
+There is no universal formula equating the codimension of the leakage variety
+with the sum of ranks of the shell projections of \(Q\).  Such a formula
+would require additional transversality and independence hypotheses.
+\end{remark}
+
+\subsection{Pressure-linear incidence varieties}
+
+One may impose the stronger requirement
+\[
+          Q(L,L)=0
+\]
+rather than merely $Q(L,L)\subset L$.  For two distinct shells
+$E_\alpha,E_\beta$, same-shell terms already vanish.  Hence pressure-linearity
+of $L_\alpha\oplus L_\beta$ is equivalent to
+\[
+          Q(L_\alpha,L_\beta)=0.
+\]
+
+\begin{definition}
+For dimensions $d,e$, define
+\begin{equation}
+ \mathcal I_{\alpha,\beta}^{d,e}
+ :=
+ \{(L,M)\in
+ \Gr(d,E_\alpha)\times\Gr(e,E_\beta):
+ Q(L,M)=0\}.
+ \label{G:eq:incidence}
+\end{equation}
+\end{definition}
+
+\begin{proposition}[Cross-shell incidence variety]
+\label{G:prop:incidence}
+The set $\mathcal I_{\alpha,\beta}^{d,e}$ is a compact
+$SO(4)$-invariant real-algebraic subset of the product Grassmannian.
+Every point parameterizes a pressure-linear exact reduction
+$L\oplus M$.
+\end{proposition}
+
+\begin{proof}
+Use projector coordinates as in \cref{G:thm:leakagevariety}.  The condition
+$Q(L,M)=0$ is equivalent to the vanishing of the finite family of bilinear
+coefficients
+\[
+      Q(P_Le_i,P_Mf_j),
+\]
+hence is algebraic.  Stokes invariance is automatic because $L$ and $M$ lie
+in eigenspaces of $A$; the same-shell terms vanish by
+\cref{G:lem:shellcancel}.
+\end{proof}
+
+This incidence geometry separates two questions.  Representation theory
+determines which shell pairs can interact at all; algebraic geometry then
+determines which partial subspaces annihilate the allowed interaction tensor.
+
+
+\section{Killing precession on reduction moduli}
+
+\subsection{Killing drift on a signed shell}
+
+Let \(E_{k,\sigma}\), \(k\ge1\), \(\sigma=\pm\), be a real signed curl
+eigenspace on the round three-sphere of radius \(R\).  Its dimension is
+\[
+ d_k=(k+1)(k+3),
+\]
+and the Stokes operator is scalar:
+\[
+ A|_{E_{k,\sigma}}=\kappa_k\Id,
+ \qquad
+ \kappa_k=\frac{k(k+4)}{R^2}.
+\]
+The full Killing algebra splits as
+\[
+ \cK=\cK_+\oplus\cK_-
+ \simeq\mathfrak{su}(2)_+\oplus\mathfrak{su}(2)_-.
+\]
+
+We use the exact shell drift
+\begin{equation}
+\begin{aligned}
+ D_{k,\sigma}(m)
+ &=
+ a_k\,\ad_{m_\sigma}
+ +
+ b_k\,\ad_{m_{-\sigma}},\\
+ a_k&=\frac{k}{k+2},
+ \qquad
+ b_k=\frac{k+4}{k+2}.
+\end{aligned}
+\label{G:pr:eq:D}
+\end{equation}
+Here \(\ad\) denotes the infinitesimal isometry action on the shell.
+The two simple factors commute, and \(D_{k,\sigma}(m)\) is real
+skew-adjoint.
+
+The complexification of \(E_{k,\sigma}\) is the tensor product
+\[
+ V_{j_\sigma}\boxtimes V_{j_{-\sigma}},
+ \qquad
+ j_\sigma=\frac{k+2}{2},
+ \quad
+ j_{-\sigma}=\frac{k}{2}.
+\]
+These are the only representation-theoretic inputs used below.
+
+\subsection{Projector Lax dynamics}
+
+Let \(L_0\subset E_{k,\sigma}\) be a real \(d\)-dimensional subspace and let
+\(U(t)\) solve
+\[
+ \dot U(t)=-D(t)U(t),
+ \qquad U(0)=I,
+\]
+where \(D(t)=D_{k,\sigma}(m(t))\).  Since \(D(t)^*=-D(t)\), \(U(t)\) is
+orthogonal.
+
+Define
+\[
+ L(t)=U(t)L_0,
+ \qquad
+ P(t)=U(t)P_0U(t)^*.
+\]
+
+\begin{theorem}[Exact projector equation]
+\label{G:pr:thm:lax}
+The orthogonal projector satisfies
+\begin{equation}
+ \boxed{\dot P=[P,D].}
+ \label{G:pr:eq:lax}
+\end{equation}
+If \(D\) is constant, then
+\begin{equation}
+ L_D(t):=P(t)D
+\end{equation}
+satisfies the Lax equation
+\begin{equation}
+ \boxed{\dot L_D=[L_D,D].}
+ \label{G:pr:eq:LD}
+\end{equation}
+Consequently
+\begin{equation}
+ \tr\bigl(L_D(t)^r\bigr)
+ =
+ \tr\bigl(L_D(0)^r\bigr)
+ \qquad(r\ge1).
+ \label{G:pr:eq:invariants}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Differentiate \(P=UP_0U^*\):
+\[
+ \dot P=-DP+PD=[P,D].
+\]
+For constant \(D\),
+\[
+ \dot L_D=[P,D]D=PD^2-DPD=[PD,D].
+\]
+Trace invariance follows from cyclicity.
+\end{proof}
+
+\begin{remark}
+The invariants \eqref{G:pr:eq:invariants} are spectral invariants of one Lax
+matrix.  Their existence does not by itself establish Liouville or
+Gelfand--Tsetlin complete integrability.
+\end{remark}
+
+\subsection{Exact geodesic criterion}
+
+The physical space of real \(d\)-planes is
+\[
+ \Gr_{\mathbb R}(d,d_k)
+ \simeq
+ O(d_k)/(O(d)\times O(d_k-d)),
+\]
+with its canonical metric.  Geodesics in the projector model are generated
+by horizontal, block-off-diagonal skew matrices
+\cite{Edelman1998,Bendokat2024}.
+
+Assume now that \(D\) is constant.  Relative to the orthogonal splitting
+\[
+ E_{k,\sigma}=L_0\oplus L_0^\perp,
+\]
+write
+\begin{equation}
+ D=
+ \begin{pmatrix}
+ A&-B^*\\
+ B&C
+ \end{pmatrix},
+ \qquad
+ A^*=-A,\quad C^*=-C.
+ \label{G:pr:eq:blockD}
+\end{equation}
+
+\begin{theorem}[Geodesic criterion]
+\label{G:pr:thm:geodesic}
+The orbit
+\[
+ P(t)=e^{-tD}P_0e^{tD}
+\]
+is a canonical Grassmann geodesic if and only if
+\begin{equation}
+ \boxed{CB=BA.}
+ \label{G:pr:eq:geodesiccriterion}
+\end{equation}
+Equivalently, the block-diagonal and block-off-diagonal parts of \(D\)
+commute.
+\end{theorem}
+
+\begin{proof}
+At \(P_0=\mathrm{diag}(I,0)\),
+\[
+ \dot P(0)=
+ \begin{pmatrix}
+ 0&-B^*\\
+ -B&0
+ \end{pmatrix}.
+\]
+A second differentiation gives
+\[
+ \ddot P(0)=
+ \begin{pmatrix}
+ -2B^*B&A B^*-B^*C\\
+ CB-BA&2BB^*
+ \end{pmatrix}.
+\]
+For the canonical Grassmann metric, the tangential part of an ambient
+symmetric matrix is precisely its block-off-diagonal part.  Thus vanishing
+covariant acceleration at \(t=0\) is equivalent to
+\(CB=BA\).
+
+If this condition holds, the decomposition
+\(D=D_{\rm diag}+D_{\rm off}\) satisfies
+\[
+ [D_{\rm diag},D_{\rm off}]=0,
+ \qquad
+ [D_{\rm diag},P_0]=0.
+\]
+Hence
+\[
+ e^{-tD}P_0e^{tD}
+ =
+ e^{-tD_{\rm off}}P_0e^{tD_{\rm off}},
+\]
+which is the standard Grassmann geodesic generated by the horizontal
+skew matrix \(D_{\rm off}\).  This proves sufficiency as well.
+\end{proof}
+
+\begin{corollary}
+A generic constant Killing drift orbit is not a Grassmann geodesic.
+Geodesicity is an algebraic compatibility condition between the action
+inside \(L_0\), the action inside \(L_0^\perp\), and the mixing block \(B\).
+\end{corollary}
+
+\subsection{Exact fixed-drift spectrum}
+
+Choose pointwise-orthonormal Cartan generators
+\(X_3^\pm\) satisfying the standard round-sphere normalization.  By
+independent rotations in the two simple factors, any fixed Killing momentum
+may be written
+\[
+ m_\sigma=M_\sigma X_3^\sigma,
+ \qquad
+ m_{-\sigma}=M_{-\sigma}X_3^{-\sigma},
+ \qquad
+ M_\pm\ge0.
+\]
+
+On the complexified shell choose the tensor-product weight basis
+\[
+ |p,q\rangle,
+ \qquad
+ p=-j_\sigma,-j_\sigma+1,\ldots,j_\sigma,
+\]
+\[
+ q=-j_{-\sigma},-j_{-\sigma}+1,\ldots,j_{-\sigma}.
+\]
+
+\begin{theorem}[Exact shell splitting]
+\label{G:pr:thm:spectrum}
+The operator
+\[
+ \mathcal L_m=\nu A+D_{k,\sigma}(m)
+\]
+has eigenvalues
+\begin{equation}
+ \boxed{
+ \lambda_{p,q}
+ =
+ \nu\kappa_k
+ +
+ \frac{2i}{R}
+ \left(
+ a_kM_\sigma p+
+ b_kM_{-\sigma}q
+ \right).
+ }
+ \label{G:pr:eq:spectrum}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+The two \(SU(2)\) factors commute.  The infinitesimal generator
+\(X_3^\tau\) has eigenvalues \(2ip/R\) in spin \(j_\tau\).  Apply
+\eqref{G:pr:eq:D} and add the scalar Stokes part.
+\end{proof}
+
+\subsection{Resonance arithmetic and generic simplicity}
+
+Two weights \((p,q)\) and \((p',q')\) collide exactly when
+\[
+ a_kM_\sigma(p-p')
+ +
+ b_kM_{-\sigma}(q-q')
+ =
+ 0.
+\]
+The differences are integers:
+\[
+ r=p-p',
+ \qquad
+ s=q-q',
+\]
+with
+\[
+ |r|\le k+2,
+ \qquad
+ |s|\le k.
+\]
+
+\begin{theorem}[Finite Diophantine collision criterion]
+\label{G:pr:thm:collision}
+The spectrum \eqref{G:pr:eq:spectrum} is simple if and only if
+\begin{equation}
+ a_kM_\sigma r+b_kM_{-\sigma}s\ne0
+ \label{G:pr:eq:nocollision}
+\end{equation}
+for every nonzero admissible integer pair
+\[
+ (r,s)\in\mathbb Z^2,
+ \qquad
+ |r|\le k+2,\quad |s|\le k.
+\]
+If both \(M_\sigma\) and \(M_{-\sigma}\) are nonzero, an irrational ratio
+\[
+ \frac{a_kM_\sigma}{b_kM_{-\sigma}}
+\]
+is sufficient for simplicity.
+\end{theorem}
+
+\begin{corollary}[Exact minimum spacing]
+\label{G:pr:cor:spacing}
+The minimum nonzero frequency spacing is
+\begin{equation}
+ \boxed{
+ \Delta\omega_k
+ =
+ \frac2R
+ \min_{\substack{(r,s)\in\mathbb Z^2\setminus\{0\}\\
+ |r|\le k+2,\ |s|\le k}}
+ |a_kM_\sigma r+b_kM_{-\sigma}s|.
+ }
+ \label{G:pr:eq:spacing}
+\end{equation}
+Thus the minimum spacing can be smaller than either one-axis step because of
+cross-factor cancellation.
+\end{corollary}
+
+\begin{remark}
+Spectral splitting alone does not prove suppression of nonlinear triads.
+A cascade estimate requires a separate oscillatory-integral theorem and
+explicit exclusion of resonances satisfying \eqref{G:pr:eq:nocollision} with
+equality.
+\end{remark}
+
+\subsection{Special-orthogonal shell transport}
+
+The shell drift is a real skew-adjoint representation operator.
+
+\begin{lemma}[Tracelessness]
+\label{G:pr:lem:traceless}
+For every \(m\in\cK\),
+\begin{equation}
+ \boxed{\tr D_{k,\sigma}(m)=0.}
+ \label{G:pr:eq:traceless}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Each simple-factor infinitesimal representation of
+\(\mathfrak{su}(2)\) is traceless.  The drift is a linear combination of the
+two commuting simple-factor actions.
+\end{proof}
+
+\begin{theorem}[Determinant-one transport]
+\label{G:pr:thm:detone}
+Let
+\[
+ \dot U(t)=-D_{k,\sigma}(m(t))U(t),
+ \qquad U(0)=I.
+\]
+Then
+\begin{equation}
+ \boxed{
+ U(t)\in SO(d_k),
+ \qquad
+ \det U(t)=1
+ }
+ \label{G:pr:eq:detone}
+\end{equation}
+for every \(t\).  After complexification,
+\(U(t)\in SU(d_k)\).
+\end{theorem}
+
+\begin{proof}
+Skew-adjointness gives orthogonality.  Jacobi's determinant formula and
+\cref{G:pr:lem:traceless} give
+\[
+ \frac{\dd}{\dd t}\log\det U
+ =
+ -\tr D_{k,\sigma}(m(t))
+ =
+ 0.
+\]
+Since \(\det U(0)=1\), the result follows.
+\end{proof}
+
+\begin{corollary}[No determinant Berry phase]
+\label{G:pr:cor:nouone}
+The determinant line of the full shell has trivial parallel transport.
+Therefore full-shell precession carries no nontrivial scalar \(U(1)\)
+Berry phase obtained from \(\det U\), even though the nonabelian
+\(SO(d_k)\) holonomy can be nontrivial.
+\end{corollary}
+
+\begin{remark}[Closed loops]
+A periodic coefficient \(m(T)=m(0)\) does not by itself define holonomy of a
+closed base loop.  If the connection is viewed over \(SO(4)\), the
+reconstructed group path must satisfy \(g(T)=g(0)\).  Likewise, to speak of
+a holonomy operator on a particular subspace \(L_0\), the endpoint transport
+must return that subspace to itself.
+\end{remark}
+
+\subsection{Curvature without scalar topology}
+
+The shell curvature may be written
+\[
+\begin{aligned}
+ \Omega_{k,\sigma}(m,n)
+ &=
+ -\frac{2k}{(k+2)^2}
+ \ad_{[m_\sigma,n_\sigma]}\\
+ &\quad+
+ \frac{2(k+4)}{(k+2)^2}
+ \ad_{[m_{-\sigma},n_{-\sigma}]}.
+\end{aligned}
+\]
+Every term is traceless, hence
+\[
+ \tr\Omega_{k,\sigma}=0.
+\]
+Thus nonflatness is a genuinely nonabelian phenomenon.  It should not be
+confused with a nonzero first Chern class or with a quantized scalar
+Chern--Simons charge.  Chern--Simons functionals require their own
+normalization and gauge analysis; in general their real values are not
+topological integers.
+
+
+\section{Killing-response transform and minimal observability}
+
+\subsection{Killing--Beltrami response identity}
+
+Choose pointwise-orthonormal frames $X_a^\tau$ in the two simple Killing
+factors with
+\[
+ [X_a^\tau,X_b^\tau]
+ =
+ \frac{2}{R}\varepsilon_{abc}X_c^\tau,
+ \qquad
+ [X_a^+,X_b^-]=0,
+\]
+and put $K_a^\tau=V_R^{-1/2}X_a^\tau$.
+
+\begin{lemma}[Killing--Beltrami response]
+\label{R:lem:KB}
+If $K\in E_{0,\tau}$ and $v\in E_{k,\sigma}$, $k\ge1$, then
+\begin{equation}
+ \boxed{
+ 2Q(K,v)=
+ \left(1-\frac{2\tau\sigma}{k+2}\right)[K,v].
+ }
+ \label{R:eq:KB}
+\end{equation}
+In particular $Q(K,v)\in E_{k,\sigma}$.
+\end{lemma}
+
+\begin{proof}
+On an oriented Riemannian three-manifold,
+\[
+ \nabla_Kv+\nabla_vK
+ =
+ \gradg\langle K,v\rangle
+ -K\times\curl v-v\times\curl K.
+\]
+With
+$\lambda=2\tau/R$ and
+$\mu=\sigma(k+2)/R$,
+the non-gradient part is
+$(\lambda-\mu)K\times v$.
+Since $K$ is Killing, its flow commutes with curl, so
+$[K,v]\in E_{k,\sigma}$.  Also
+$\curl(K\times v)=-[K,v]$.
+After Leray projection,
+\[
+ \PP(K\times v)=-\mu^{-1}[K,v].
+\]
+Substitution gives \eqref{R:eq:KB}.
+\end{proof}
+
+The representation of the two $SU(2)$ factors on $E_{k,\sigma}$ has spins
+\begin{equation}
+       j_\tau=\frac{k+1+\tau\sigma}{2}.
+       \label{R:eq:spin}
+\end{equation}
+For the $L^2$-normalized Killing basis,
+\begin{equation}
+ -\sum_{a=1}^3\mathcal L_{K_a^\tau}^2
+ =
+ \frac{4}{R^2V_R}j_\tau(j_\tau+1)\Id.
+ \label{R:eq:partialCasimir}
+\end{equation}
+
+\subsection{The six-channel Parseval frame}
+
+Set
+\[
+       T_a^\tau=Q(K_a^\tau,\cdot).
+\]
+These operators are skew-adjoint and preserve every signed shell.
+
+Define
+\[
+ (\cA v)_{a,\tau}
+ =
+ \sqrt{2V_R}\,T_a^\tau v
+\]
+on $D(A^{1/2})\cap\mathcal H$.
+
+\begin{theorem}[Casimir factorization]
+\label{R:thm:factor}
+On $\mathcal H$,
+\begin{equation}
+ \boxed{\cA^*\cA=A.}
+ \label{R:eq:factor}
+\end{equation}
+Equivalently,
+\begin{equation}
+ \boxed{
+ 2V_R\sum_{\tau,a}\|T_a^\tau v\|_2^2
+ =
+ \langle Av,v\rangle.
+ }
+ \label{R:eq:diss}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+On each signed shell, use \eqref{R:eq:KB} and
+\eqref{R:eq:partialCasimir}.  The sum of the two chiral scalar contributions
+reduces to $\kappa_k$.  Shell orthogonality then gives the operator identity.
+\end{proof}
+
+
+The same identity may be written in sum-of-squares form as
+\begin{equation}
+ \boxed{
+ A
+ =
+ -2V_R
+ \sum_{\tau=\pm}\sum_{a=1}^3
+ (T_a^\tau)^2.
+ }
+ \label{R:eq:CasimirCore}
+\end{equation}
+
+Define the bounded normalized transforms
+\begin{equation}
+ \boxed{
+ \cR_a^\tau
+ =
+ \sqrt{2V_R}\,T_a^\tau A^{-1/2}
+ :
+ \mathcal H\to L^2_\sigma(T\Sthree).
+ }
+ \label{R:eq:R}
+\end{equation}
+
+\begin{theorem}[Parseval Killing-response frame]
+\label{R:thm:parseval}
+\begin{equation}
+ \boxed{
+ \sum_{\tau=\pm}\sum_{a=1}^3
+ (\cR_a^\tau)^*\cR_a^\tau
+ =
+ I_{\mathcal H}.
+ }
+ \label{R:eq:parseval}
+\end{equation}
+Hence
+\[
+       \|v\|_2^2
+       =
+       \sum_{\tau,a}\|\cR_a^\tau v\|_2^2.
+\]
+\end{theorem}
+
+\begin{proof}
+Conjugate \eqref{R:eq:factor} by $A^{-1/2}$.
+\end{proof}
+
+\subsection{A single chirality is already complete}
+
+Let
+\[
+       \cA_\tau v
+       =
+       \sqrt{2V_R}
+       (T_1^\tau v,T_2^\tau v,T_3^\tau v).
+\]
+
+\begin{theorem}[Exact chiral frame operator]
+\label{R:thm:chiral}
+On $\mathcal H$,
+\begin{align}
+ \boxed{
+ \cA_\tau^*\cA_\tau
+ =
+ \frac12A
+ \left(I-\frac{2\tau}{R}\curl^{-1}\right),
+ }
+ \label{R:eq:chiralraw}\\
+ \boxed{
+ \cS_\tau:=
+ \sum_{a=1}^3(\cR_a^\tau)^*\cR_a^\tau
+ =
+ \frac12
+ \left(I-\frac{2\tau}{R}\curl^{-1}\right).
+ }
+ \label{R:eq:chiralnorm}
+\end{align}
+Moreover,
+\begin{equation}
+ \boxed{
+ \frac16I\le\cS_\tau\le\frac56I,
+ }
+ \label{R:eq:sharpbounds}
+\end{equation}
+and both constants are sharp.
+\end{theorem}
+
+\begin{proof}
+On $E_{k,\sigma}$, \eqref{R:eq:KB} and
+\eqref{R:eq:partialCasimir} give
+\[
+ \cA_\tau^*\cA_\tau
+ =
+ \frac{\kappa_k}{2}
+ \left(1-\frac{2\tau\sigma}{k+2}\right)\Id.
+\]
+Since
+$\curl^{-1}=\sigma R/(k+2)$ on this shell,
+\eqref{R:eq:chiralraw} follows.  Conjugation by $A^{-1/2}$ gives
+\eqref{R:eq:chiralnorm}.  Finally,
+\[
+       \frac{2}{k+2}\le\frac23,
+       \qquad k\ge1,
+\]
+so the spectral interval is $[1/6,5/6]$.  Both endpoints occur at $k=1$.
+\end{proof}
+
+\begin{corollary}[Stable three-channel reconstruction]
+\label{R:cor:three}
+For either chirality,
+\begin{equation}
+ \frac16\|v\|_2^2
+ \le
+ \sum_{a=1}^3\|\cR_a^\tau v\|_2^2
+ \le
+ \frac56\|v\|_2^2.
+ \label{R:eq:three}
+\end{equation}
+The canonical dual reconstruction is
+\begin{equation}
+ \boxed{
+ v
+ =
+ \cS_\tau^{-1}
+ \sum_{a=1}^3
+ (\cR_a^\tau)^*\cR_a^\tau v.
+ }
+ \label{R:eq:dual}
+\end{equation}
+\end{corollary}
+
+For raw response fields,
+\begin{equation}
+ \boxed{
+ v
+ =
+ -4V_R
+ \left[
+ A\left(I-\frac{2\tau}{R}\curl^{-1}\right)
+ \right]^{-1}
+ \sum_{a=1}^3
+ T_a^\tau(T_a^\tau v).
+ }
+ \label{R:eq:rawreconstruction}
+\end{equation}
+
+\subsection{Two probes determine the entire high-mode field}
+
+Fix an orthonormal pair
+$K_1^\tau,K_2^\tau\in\cK_\tau$ and define
+\[
+       \cA_{\tau,2}v
+       =
+       \sqrt{2V_R}(T_1^\tau v,T_2^\tau v).
+\]
+
+\begin{lemma}[Two-axis shell spectrum]
+\label{R:lem:pair}
+On $E_{k,\sigma}$ set
+\[
+       j=\frac{k+1+\tau\sigma}{2},
+\qquad
+       d_\tau=
+       \frac{\kappa_k}{2}
+       \left(1-\frac{2\tau\sigma}{k+2}\right).
+\]
+In a weight basis of the omitted third generator, the pair frame eigenvalues
+are
+\begin{equation}
+ \lambda_m^{(2)}
+ =
+ d_\tau
+ \frac{j(j+1)-m^2}{j(j+1)},
+ \qquad
+ m=-j,\ldots,j.
+ \label{R:eq:pairlambda}
+\end{equation}
+Hence
+\begin{equation}
+ \boxed{
+ \lambda_{\min}^{(2)}
+ =
+ \frac{d_\tau}{j+1}>0.
+ }
+ \label{R:eq:pairmin}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+The common scalar in \eqref{R:eq:KB} cancels in the ratio between the full
+three-axis Casimir and the two-axis operator.  In spin $j$,
+\[
+       J_1^2+J_2^2=j(j+1)I-J_3^2.
+\]
+The minimum occurs at $|m|=j$, where the numerator is $j$.
+\end{proof}
+
+\begin{theorem}[Sharp global two-probe bound]
+\label{R:thm:two}
+For either chirality and every
+$v\in D(A^{1/2})\cap\mathcal H$,
+\begin{equation}
+ \boxed{
+ 2V_R
+ \left(
+ \|T_1^\tau v\|_2^2+
+ \|T_2^\tau v\|_2^2
+ \right)
+ \ge
+ \frac{1}{3R^2}\|v\|_2^2.
+ }
+ \label{R:eq:twobound}
+\end{equation}
+The constant is sharp.  Thus two fixed same-chirality Killing responses
+determine the complete non-Killing state and have a bounded inverse on their
+range in the $L^2$ topology.
+\end{theorem}
+
+\begin{proof}
+By shell orthogonality, minimize \eqref{R:eq:pairmin}.
+
+If $\tau\sigma=+1$, then
+\[
+ j=\frac{k+2}{2},
+ \qquad
+ \lambda_{\min}^{(2)}
+ =
+ \frac{k^2}{R^2(k+2)}.
+ \label{R:eq:same}
+\]
+This is increasing for $k\ge1$ and equals $1/(3R^2)$ at $k=1$.
+
+If $\tau\sigma=-1$, then
+\[
+ j=\frac{k}{2},
+ \qquad
+ \lambda_{\min}^{(2)}
+ =
+ \frac{k(k+4)^2}{R^2(k+2)^2},
+ \label{R:eq:opp}
+\]
+which is larger than $1/(3R^2)$ for all $k\ge1$.
+\end{proof}
+
+\begin{remark}
+The raw pair is a first-order closed analysis operator, not a bounded map
+$L^2\to(L^2)^2$.  The estimate \eqref{R:eq:twobound} states that its inverse
+from the exact response range to $L^2$ is bounded.  The normalized
+three- and six-channel transforms are the bounded $g$-frames.
+\end{remark}
+
+\subsection{One-probe parity law}
+
+Fix $0\ne K\in\cK_\tau$.
+
+\begin{theorem}[Parity and exact blind-space dimension]
+\label{R:thm:parity}
+On $E_{k,\sigma}$:
+
+\begin{enumerate}[label=(\roman*)]
+\item If $k$ is odd, then
+\[
+       T_K=Q(K,\cdot)
+\]
+is invertible.
+
+\item If $k$ is even, then $T_K$ has a nontrivial kernel of dimension
+\begin{equation}
+ \boxed{
+ \dim\ker T_K
+ =
+ k+2-\tau\sigma.
+ }
+ \label{R:eq:kerneldim}
+\end{equation}
+Thus the dimensions are $k+1$ for $\tau\sigma=+1$ and $k+3$ for
+$\tau\sigma=-1$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+By \eqref{R:eq:KB}, $T_K$ is a nonzero scalar multiple of an
+$SU(2)_\tau$ infinitesimal generator in spin
+\[
+       j_\tau=\frac{k+1+\tau\sigma}{2}.
+\]
+After complexification its weights are
+$-j_\tau,-j_\tau+1,\ldots,j_\tau$.
+Zero occurs if and only if $j_\tau$ is an integer.
+
+For odd $k$, both possible spins are half-integers.
+For even $k$, both are integers.  The zero-weight line in the
+$SU(2)_\tau$ factor is tensored with the opposite factor of dimension
+\[
+       2j_{-\tau}+1
+       =
+       k+2-\tau\sigma.
+\]
+Complexification preserves the kernel dimension of the real operator.
+\end{proof}
+
+\begin{corollary}[One-probe condition number on odd shells]
+\label{R:cor:onecond}
+For odd $k$,
+\begin{equation}
+ \boxed{
+ \operatorname{cond}(T_K)
+ =
+ k+1+\tau\sigma.
+ }
+ \label{R:eq:onecond}
+\end{equation}
+Thus the condition number is $k+2$ for $\tau\sigma=+1$ and $k$ for
+$\tau\sigma=-1$.
+\end{corollary}
+
+\begin{proof}
+For half-integer spin $j$, the largest generator weight has magnitude $j$
+and the smallest has magnitude $1/2$.  The ratio is $2j$.
+\end{proof}
+
+\subsection{Two-probe condition numbers and minimality}
+
+\begin{theorem}[Exact pair condition number]
+\label{R:thm:paircond}
+For two orthonormal same-chirality probes on $E_{k,\sigma}$, with
+$j=(k+1+\tau\sigma)/2$,
+\begin{equation}
+ \boxed{
+ \operatorname{cond}_2
+ =
+ \begin{cases}
+ \sqrt{j+1},&j\in\mathbb Z,\\[1ex]
+ \sqrt{j+1-\dfrac{1}{4j}},
+ &j\in\mathbb Z+\dfrac12.
+ \end{cases}
+ }
+ \label{R:eq:paircond}
+\end{equation}
+Hence the pair condition number is $O(k^{1/2})$, whereas one-channel
+inversion on odd shells is $O(k)$.
+\end{theorem}
+
+\begin{proof}
+The squared singular values are proportional to
+$j(j+1)-m^2$ by \eqref{R:eq:pairlambda}.  The minimum is $j$.
+For integer $j$, the maximum is $j(j+1)$ at $m=0$.
+For half-integer $j$, it is $j(j+1)-1/4$ at $|m|=1/2$.
+\end{proof}
+
+\begin{corollary}[Minimal universal probe count]
+\label{R:cor:minimal}
+Within either fixed chiral Killing factor:
+
+\begin{enumerate}[label=(\roman*)]
+\item two linearly independent fixed probes are sufficient to distinguish
+every non-Killing state;
+
+\item one fixed probe is never sufficient uniformly over all shells because
+every even shell has a blind subspace;
+
+\item on a prescribed odd shell the minimal number is one, while on a
+prescribed even shell it is two.
+\end{enumerate}
+\end{corollary}
+
+\subsection{Erasure hierarchy}
+
+The reconstruction structure can be summarized as follows.
+
+\begin{theorem}[Chiral erasure hierarchy]
+\label{R:thm:erasure}
+Fix $E_{k,\sigma}$ and one Killing chirality.
+
+\begin{enumerate}[label=(\roman*)]
+\item Three orthonormal response channels form a tight operator frame on the
+shell.
+
+\item Erasing any one channel leaves a frame with lower eigenvalue
+$d_\tau/(j_\tau+1)$.
+
+\item Erasing two channels leaves an injective one-channel transform if and
+only if $k$ is odd.
+
+\item On even shells, every one-channel transform has the blind-space
+dimension \eqref{R:eq:kerneldim}.
+\end{enumerate}
+\end{theorem}
+
+The result gives exact loss tolerance of the Killing-response representation.
+
+
+\section{Casimir response geometry}
+
+\subsection{From lossless response fields to Gram compression}
+
+The frame results above use the response fields themselves.  We now compress
+those six fields to their mutual inner products.  This passage is useful but
+not lossless.  It produces finite-dimensional isometry covariants and exact
+spectral statistics, while forgetting part of the common phase information.
+This hierarchy should be kept explicit:
+\[
+\boxed{
+v
+\longmapsto
+\{Q(K_a^\tau,v)\}_{\tau,a}
+\longmapsto
+\mathscr M_v
+\longmapsto
+\{\mathscr M_v^{[s]}\}_{s}
+\longmapsto
+\Phi_v(\theta).
+}
+\]
+The first arrow is injective by the two-probe theorem.  Later we show that the
+Gram-level map cannot be injective on sufficiently high individual shells.
+
+\subsection{The Casimir response tensor}
+
+\begin{definition}[Response operator and response tensor]
+\label{R:rg:def:response}
+For a divergence-free field $u$ in the form domain of $A$, define
+\begin{equation}
+ \cB_u:\mathfrak K\longrightarrow L^2_\sigma(T\Sthree),
+ \qquad
+ \cB_uX
+ :=
+ \sqrt{2V_R}\,Q(X,u).
+ \label{R:rg:eq:Rdef}
+\end{equation}
+Its Casimir response tensor is
+\begin{equation}
+ \boxed{
+ \cM_u
+ :=
+ \cB_u^*\cB_u
+ }
+ \label{R:rg:eq:Moperator}
+\end{equation}
+or, equivalently,
+\begin{equation}
+ \cM_u(X,Y)
+ =
+ 2V_R
+ \langle Q(X,u),Q(Y,u)\rangle_{L^2}.
+ \label{R:rg:eq:Mform}
+\end{equation}
+\end{definition}
+
+The tensor is positive semidefinite and quadratic in $u$:
+\[
+      \cM_{cu}=c^2\cM_u.
+\]
+
+\begin{theorem}[Trace identity and exact dissipation]
+\label{R:rg:thm:trace}
+For every divergence-free $u$ in the form domain of $A$,
+\begin{equation}
+ \boxed{
+ \tr_{\mathfrak K}\cM_u
+ =
+ \langle Au,u\rangle
+ =
+ 2\|\Def u\|_2^2.
+ }
+ \label{R:rg:eq:trace}
+\end{equation}
+Hence the viscous energy dissipation satisfies
+\begin{equation}
+ \boxed{
+ \varepsilon_\nu(u)
+ :=
+ 2\nu\|\Def u\|_2^2
+ =
+ \nu\,\tr\cM_u.
+ }
+ \label{R:rg:eq:diss}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+The quadratic Casimir identity for the six $L^2$-normalized Killing
+responses is
+\begin{equation}
+ A
+ =
+ -2V_R
+ \sum_{\tau=\pm}\sum_{a=1}^3
+ T_a^\tau T_a^\tau,
+ \qquad
+ T_a^\tau:=Q(K_a^\tau,\cdot),
+ \label{R:rg:eq:Acasimir}
+\end{equation}
+where each $T_a^\tau$ is skew-adjoint.  Therefore
+\[
+ \langle Au,u\rangle
+ =
+ 2V_R
+ \sum_{\tau,a}
+ \|Q(K_a^\tau,u)\|_2^2
+ =
+ \tr\cM_u.
+\]
+For the deformation-tensor viscosity,
+$\langle Au,u\rangle=2\|\Def u\|_2^2$.
+\end{proof}
+
+\begin{remark}
+The response tensor is a global $L^2$ object.  Equation
+\eqref{R:rg:eq:trace} does not, by itself, imply spatial localization,
+microlocal anisotropy, or a preferred geometric axis in physical space.
+\end{remark}
+
+\subsection{Isometry covariance and the response ellipsoid}
+
+Let $g\in SO(4)$ act unitarily on vector fields by pushforward.  The induced
+action on $\mathfrak K$ is the adjoint action.
+
+\begin{theorem}[Isometry covariance]
+\label{R:rg:thm:covariance}
+For every $g\in SO(4)$,
+\begin{equation}
+ \cM_{g_*u}
+ =
+ \operatorname{Ad}_g\,
+ \cM_u\,
+ \operatorname{Ad}_{g^{-1}}.
+ \label{R:rg:eq:covariance}
+\end{equation}
+Consequently the ordered eigenvalues
+\begin{equation}
+ \lambda_1(u)\ge\cdots\ge\lambda_6(u)\ge0
+ \label{R:rg:eq:eigenvalues}
+\end{equation}
+are invariants of the physical isometry orbit of $u$.
+\end{theorem}
+
+\begin{proof}
+Isometry equivariance of the Levi-Civita connection and Leray projection
+gives
+\[
+ Q(X,g_*u)
+ =
+ g_*Q(\operatorname{Ad}_{g^{-1}}X,u).
+\]
+Since $g_*$ is unitary in $L^2$, substitution into \eqref{R:rg:eq:Mform} gives
+\eqref{R:rg:eq:covariance}.
+\end{proof}
+
+\begin{definition}[Response ellipsoid]
+The image of the unit sphere in $\mathfrak K$ under $\cB_u$ is the response
+ellipsoid in $\operatorname{ran}\cB_u$.  Its principal semiaxis lengths are
+\begin{equation}
+        \sqrt{\lambda_1(u)},\ldots,\sqrt{\lambda_6(u)},
+ \label{R:rg:eq:axes}
+\end{equation}
+with zero axes allowed.
+\end{definition}
+
+\begin{remark}
+The eigenvalues themselves are \emph{squared} semiaxis lengths.  This
+distinction is important when interpreting the geometry.
+\end{remark}
+
+\begin{corollary}[Extremal-response principle]
+\label{R:rg:cor:extremal}
+For every $u$,
+\begin{equation}
+ \frac{1}{6}\langle Au,u\rangle
+ \le
+ \lambda_1(u)
+ \le
+ \langle Au,u\rangle.
+ \label{R:rg:eq:lambdabounds}
+\end{equation}
+Hence along any sequence $u_n$,
+\begin{equation}
+ \|\Def u_n\|_2\longrightarrow\infty
+ \quad\Longleftrightarrow\quad
+ \lambda_1(u_n)\longrightarrow\infty.
+ \label{R:rg:eq:blowupequiv}
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+For a positive semidefinite $6\times6$ operator,
+\[
+       \lambda_1
+       \le\sum_i\lambda_i
+       \le6\lambda_1.
+\]
+Use \cref{R:rg:thm:trace}.
+\end{proof}
+
+\begin{remark}
+Equation \eqref{R:rg:eq:blowupequiv} does not say that dissipation growth must
+become anisotropic.  All six eigenvalues may grow simultaneously.  A
+separate normalized spectral diagnostic is required to discuss response
+polarization.
+\end{remark}
+
+\subsection{Spectral additivity}
+
+Write
+\[
+       u=\sum_{k,\sigma}u_{k,\sigma},
+       \qquad
+       u_{k,\sigma}\in E_{k,\sigma}.
+\]
+
+\begin{theorem}[Spectral additivity of the response tensor]
+\label{R:rg:thm:additivity}
+For every $u$ in the form domain of $A$,
+\begin{equation}
+ \boxed{
+ \cM_u
+ =
+ \sum_{k,\sigma}
+ \cM_{u_{k,\sigma}}
+ }
+ \label{R:rg:eq:additivity}
+\end{equation}
+with convergence in the finite-dimensional operator norm on $\mathfrak K$
+whenever $\langle Au,u\rangle<\infty$.
+\end{theorem}
+
+\begin{proof}
+By \eqref{R:eq:KB},
+\[
+ Q(X,u_{k,\sigma})\in E_{k,\sigma}
+\]
+for every $X\in\mathfrak K$.  Distinct signed shells are $L^2$-orthogonal.
+Hence for $X,Y\in\mathfrak K$,
+\[
+ \langle Q(X,u),Q(Y,u)\rangle
+ =
+ \sum_{k,\sigma}
+ \langle
+ Q(X,u_{k,\sigma}),
+ Q(Y,u_{k,\sigma})
+ \rangle.
+\]
+This is \eqref{R:rg:eq:additivity}.  The trace of the positive series is
+$\langle Au,u\rangle$, so convergence follows in finite dimension.
+\end{proof}
+
+This identity says that shell phases can affect the shape of each
+$\cM_{u_{k,\sigma}}$, but there are no cross-shell interference terms in
+the response tensor itself.
+
+\subsection{Exact chiral splitting}
+
+Let $P_\tau:\mathfrak K\to\mathfrak K_\tau$ be the orthogonal projections and
+define the two chiral response traces
+\begin{equation}
+ D_\tau(u)
+ :=
+ \tr_{\mathfrak K_\tau}\cM_u
+ =
+ 2V_R\sum_{a=1}^3
+ \|Q(K_a^\tau,u)\|_2^2.
+ \label{R:rg:eq:Dtau}
+\end{equation}
+Then
+\begin{equation}
+       D_+(u)+D_-(u)=\langle Au,u\rangle.
+ \label{R:rg:eq:Dsum}
+\end{equation}
+
+\begin{theorem}[Pure-shell chiral partition]
+\label{R:rg:thm:pureshellsplit}
+Let $u\in E_{k,\sigma}$ with $k\ge1$.  Then
+\begin{equation}
+ \boxed{
+ D_\tau(u)
+ =
+ \frac{\kappa_k}{2}
+ \left(
+ 1-\frac{2\tau\sigma}{k+2}
+ \right)
+ \|u\|_2^2.
+ }
+ \label{R:rg:eq:Dtauclosed}
+\end{equation}
+Equivalently,
+\begin{align}
+ D_\sigma(u)
+ &=
+ \frac{k}{2(k+2)}
+ \kappa_k\|u\|_2^2,
+ \label{R:rg:eq:same}\\
+ D_{-\sigma}(u)
+ &=
+ \frac{k+4}{2(k+2)}
+ \kappa_k\|u\|_2^2.
+ \label{R:rg:eq:opposite}
+\end{align}
+Thus the opposite Killing chirality carries the larger partial response
+trace, and the relative imbalance is
+\begin{equation}
+ \frac{
+ D_{-\sigma}(u)-D_{\sigma}(u)
+ }{
+ D_{-\sigma}(u)+D_{\sigma}(u)
+ }
+ =
+ \frac{2}{k+2}.
+ \label{R:rg:eq:pureshellbias}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Set
+\[
+ c_\tau(k,\sigma)
+ :=
+ \frac{k+2-2\tau\sigma}{k+2}.
+\]
+By \eqref{R:eq:KB},
+\[
+ Q(K_a^\tau,u)
+ =
+ \frac{c_\tau}{2}\mathcal L_{K_a^\tau}u.
+\]
+Using the factor Casimir \eqref{R:eq:partialCasimir},
+\begin{align*}
+ D_\tau(u)
+ &=
+ 2V_R
+ \frac{c_\tau^2}{4}
+ \sum_{a=1}^3
+ \|\mathcal L_{K_a^\tau}u\|_2^2\\
+ &=
+ \frac{2}{R^2}
+ c_\tau^2
+ j_\tau(j_\tau+1)
+ \|u\|_2^2.
+\end{align*}
+If $\tau\sigma=1$, then
+$c_\tau=k/(k+2)$ and $j_\tau=(k+2)/2$, giving
+\eqref{R:rg:eq:same}.  If $\tau\sigma=-1$, then
+$c_\tau=(k+4)/(k+2)$ and $j_\tau=k/2$, giving
+\eqref{R:rg:eq:opposite}.  Formula \eqref{R:rg:eq:Dtauclosed} combines the two cases.
+\end{proof}
+
+\begin{remark}[High-frequency balance without connection flattening]
+The relative trace bias \eqref{R:rg:eq:pureshellbias} tends to zero as
+$k\to\infty$.  This does not contradict persistence of nonzero
+operator-norm curvature in the shell-precession connection: response-trace
+balance and connection flatness are different operator statements.
+\end{remark}
+
+\begin{theorem}[Global chiral trace identity]
+\label{R:rg:thm:globalchiral}
+Let $u$ be divergence-free with $\langle Au,u\rangle<\infty$.  Then
+\begin{align}
+ D_\tau(u)
+ &=
+ \sum_{k\ge1,\ \sigma=\pm}
+ \frac{\kappa_k}{2}
+ \left(
+ 1-\frac{2\tau\sigma}{k+2}
+ \right)
+ \|u_{k,\sigma}\|_2^2,
+ \label{R:rg:eq:Dtauglobal}\\
+ D_-(u)-D_+(u)
+ &=
+ \frac{2}{R}
+ \langle A\curl^{-1}u,u\rangle.
+ \label{R:rg:eq:chiraltraceidentity}
+\end{align}
+The Killing component does not contribute because $\kappa_0=0$.
+\end{theorem}
+
+\begin{proof}
+Apply \cref{R:rg:thm:additivity,R:rg:thm:pureshellsplit}.  For the difference,
+\[
+ D_--D_+
+ =
+ 2\sum_{k,\sigma}
+ \sigma\frac{\kappa_k}{k+2}
+ \|u_{k,\sigma}\|_2^2.
+\]
+Since
+\[
+ \frac{1}{\mu_{k,\sigma}}
+ =
+ \frac{\sigma R}{k+2},
+\]
+the right-hand side equals
+\[
+ \frac{2}{R}
+ \sum_{k,\sigma}
+ \frac{\kappa_k}{\mu_{k,\sigma}}
+ \|u_{k,\sigma}\|_2^2
+ =
+ \frac{2}{R}
+ \langle A\curl^{-1}u,u\rangle.
+\]
+\end{proof}
+
+\begin{definition}[Chiral response index]
+For $u$ with $\langle Au,u\rangle>0$, define
+\begin{equation}
+ \Xi(u)
+ :=
+ \frac{D_-(u)-D_+(u)}
+      {D_-(u)+D_+(u)}.
+ \label{R:rg:eq:Xi}
+\end{equation}
+\end{definition}
+
+\begin{corollary}[Sharp universal chiral bound]
+\label{R:rg:cor:Xibound}
+For every non-Killing $u$ in the form domain of $A$,
+\begin{equation}
+ \boxed{
+ |\Xi(u)|
+ \le
+ \frac{2}{3}.
+ }
+ \label{R:rg:eq:Xibound}
+\end{equation}
+The constant $2/3$ is sharp.  For $u\in E_{k,\sigma}$,
+\begin{equation}
+ \boxed{
+ \Xi(u)=\frac{2\sigma}{k+2}.
+ }
+ \label{R:rg:eq:Xipureshell}
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+By \eqref{R:rg:eq:Dtauglobal}, $\Xi$ is a convex weighted average of the numbers
+$2\sigma/(k+2)$ with nonnegative weights
+$\kappa_k\|u_{k,\sigma}\|_2^2$.  Since $k\ge1$ on the dissipative sector,
+their absolute values are at most $2/3$.  Equality is attained on
+$E_{1,+}$ or $E_{1,-}$.
+\end{proof}
+
+\subsection{The cross-chiral block}
+
+Relative to
+$\mathfrak K=\mathfrak K_+\oplus\mathfrak K_-$, write
+\begin{equation}
+ \cM_u
+ =
+ \begin{pmatrix}
+ M^{++}_u & M^{+-}_u\\
+ M^{-+}_u & M^{--}_u
+ \end{pmatrix}.
+ \label{R:rg:eq:blockM}
+\end{equation}
+The diagonal traces are $D_\pm(u)$.
+
+\begin{proposition}[Universal cross-block bound]
+\label{R:rg:prop:crossbound}
+For every $u$,
+\begin{equation}
+ \boxed{
+ \|M^{+-}_u\|_{\HS}
+ \le
+ \sqrt{D_+(u)D_-(u)}.
+ }
+ \label{R:rg:eq:crossbound}
+\end{equation}
+For a pure shell $u\in E_{k,\sigma}$,
+\begin{equation}
+ \|M^{+-}_u\|_{\HS}
+ \le
+ \frac{\sqrt{k(k+4)}}{2(k+2)}
+ \kappa_k\|u\|_2^2.
+ \label{R:rg:eq:crosspure}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+Split the response map as
+\[
+       \cB_u=(\cB_{u,+},\cB_{u,-})
+\]
+on the two Killing factors.  Then
+\[
+       M^{+-}_u=\cB_{u,+}^*\cB_{u,-}.
+\]
+Therefore
+\[
+ \|M^{+-}_u\|_{\HS}
+ \le
+ \|\cB_{u,+}\|_{\HS}
+ \|\cB_{u,-}\|_{\HS}
+ =
+ \sqrt{D_+(u)D_-(u)}.
+\]
+Insert \cref{R:rg:thm:pureshellsplit} for \eqref{R:rg:eq:crosspure}.
+\end{proof}
+
+\begin{remark}
+The cross block generally need not vanish for a fixed pure-shell vector.
+Thus it is incorrect to infer from shell irreducibility that the full
+$6\times6$ response tensor is block diagonal or scalar on each
+$\mathfrak K_\tau$ for every $u$.  Only the two block traces are fixed
+pointwise; full block isotropy emerges after an invariant ensemble average.
+\end{remark}
+
+\subsection{Uniform pure-shell ensemble}
+
+Fix a shell $E=E_{k,\sigma}$ of real dimension $d_k$ and let $u$ be uniformly
+distributed on its $L^2$ unit sphere.
+
+\begin{theorem}[Ensemble-averaged response tensor]
+\label{R:rg:thm:ensemble}
+Let
+\begin{equation}
+ d_\tau^{(k,\sigma)}
+ :=
+ \frac{\kappa_k}{2}
+ \left(
+ 1-\frac{2\tau\sigma}{k+2}
+ \right).
+ \label{R:rg:eq:dtaudef}
+\end{equation}
+Then
+\begin{align}
+ \mathbb E\,M^{\tau\tau}_u
+ &=
+ \frac{d_\tau^{(k,\sigma)}}{3}\Id_{\mathfrak K_\tau},
+ \label{R:rg:eq:ensembleblock}\\
+ \mathbb E\,M^{+-}_u
+ &=
+ 0,
+ \label{R:rg:eq:ensemblecross}\\
+ \boxed{
+ \mathbb E\,\cM_u
+ =
+ \begin{pmatrix}
+ \frac{d_+^{(k,\sigma)}}{3}I_3 & 0\\
+ 0 & \frac{d_-^{(k,\sigma)}}{3}I_3
+ \end{pmatrix}.
+ }
+ \label{R:rg:eq:ensembleM}
+\end{align}
+\end{theorem}
+
+\begin{proof}
+The uniform measure on the unit sphere of $E$ is invariant under the full
+orthogonal group of $E$.  For fixed linear operators $S,T$ on $E$,
+\[
+ \mathbb E\,\langle Su,Tu\rangle
+ =
+ \frac{1}{d_k}\tr(S^*T).
+ \label{R:rg:eq:sphereaverage}
+\]
+Within one simple factor, the trace pairing of the three representation
+generators is an invariant bilinear form and therefore proportional to
+$\delta_{ab}$.  Its total trace is already fixed by
+\cref{R:rg:thm:pureshellsplit}, giving \eqref{R:rg:eq:ensembleblock}.
+
+For opposite simple factors, the representation is a tensor product.
+Each Lie generator is traceless on its irreducible spin factor, so
+\[
+ \tr\!\left[
+ (\mathcal L_{K_a^+})^*
+ \mathcal L_{K_b^-}
+ \right]=0.
+\]
+Equation \eqref{R:rg:eq:sphereaverage} then gives
+\eqref{R:rg:eq:ensemblecross}.
+\end{proof}
+
+\begin{remark}
+The deterministic shell bias survives ensemble averaging through unequal
+block traces, while directional anisotropy inside each
+$\mathfrak K_\tau$ disappears in the mean.
+\end{remark}
+
+\subsection{Response polarization diagnostics}
+
+The Casimir identity determines only the sum of the six eigenvalues.
+To distinguish isotropic from concentrated response spectra, define
+\begin{equation}
+ p_i(u)
+ :=
+ \frac{\lambda_i(u)}{\tr\cM_u},
+ \qquad
+ \sum_{i=1}^6p_i=1,
+ \label{R:rg:eq:pi}
+\end{equation}
+whenever $\tr\cM_u>0$.
+
+Two useful invariants are
+\begin{align}
+ \mathcal P_\infty(u)
+ &:=
+ 6p_1(u)
+ =
+ \frac{6\lambda_1(u)}{\tr\cM_u},
+ \label{R:rg:eq:Pinfty}\\
+ r_{\rm eff}(u)
+ &:=
+ \frac{1}{\sum_i p_i(u)^2}
+ =
+ \frac{(\tr\cM_u)^2}{\tr(\cM_u^2)}.
+ \label{R:rg:eq:reff}
+\end{align}
+
+\begin{proposition}[Response-rank bounds]
+\label{R:rg:prop:responsebounds}
+For every non-Killing $u$,
+\begin{equation}
+ 1\le\mathcal P_\infty(u)\le6,
+ \qquad
+ 1\le r_{\rm eff}(u)\le6.
+ \label{R:rg:eq:responsebounds}
+\end{equation}
+Both quantities are invariant under $SO(4)$ and under nonzero scalar
+multiplication of $u$.
+\end{proposition}
+
+\begin{proof}
+The statements are the standard inequalities for a probability vector
+$(p_1,\ldots,p_6)$, together with
+\cref{R:rg:thm:covariance} and $\cM_{cu}=c^2\cM_u$.
+\end{proof}
+
+\begin{remark}
+A divergence of $\tr\cM_u$ says nothing by itself about the limiting values
+of $\mathcal P_\infty$ or $r_{\rm eff}$.  Therefore the Casimir identity
+forces at least one response to become large if dissipation becomes large,
+but it does not force the normalized response spectrum to polarize.
+\end{remark}
+
+\subsection{Relation to helicity}
+
+The chiral response index \eqref{R:rg:eq:Xi} is not the normalized fluid helicity.
+Indeed,
+\begin{equation}
+ \mathscr H(u)
+ =
+ \langle u,\curl u\rangle
+ =
+ \sum_{k,\sigma}
+ \sigma\frac{k+2}{R}
+ \|u_{k,\sigma}\|_2^2,
+ \label{R:rg:eq:helicity}
+\end{equation}
+whereas \eqref{R:rg:eq:chiraltraceidentity} uses the inverse-curl weight
+$\kappa_k/\mu_{k,\sigma}$.
+
+The two quantities emphasize opposite spectral ends: helicity weights high
+curl frequency more strongly, while the response difference contains the
+factor $1/(k+2)$ relative to the Stokes dissipation weight.
+
+\begin{proposition}[Killing precession is transparent to weighted chirality]
+\label{R:rg:prop:precessiontransparent}
+Let $D(m)=2Q(m,\cdot)$ be the shellwise Killing-precession operator.  Then
+\begin{equation}
+ \langle D(m)v,A\curl^{-1}v\rangle=0
+ \label{R:rg:eq:weightedtransparent}
+\end{equation}
+for every sufficiently regular $v$.
+Equivalently, the quadratic form on the right side of
+\eqref{R:rg:eq:chiraltraceidentity} receives no instantaneous contribution from
+Killing precession.
+\end{proposition}
+
+\begin{proof}
+The operator $D(m)$ is skew-adjoint and commutes with both $A$ and $\curl$
+on the signed-shell decomposition.  Therefore
+$A\curl^{-1}$ is self-adjoint and commutes with $D(m)$, so
+\[
+\begin{aligned}
+ \langle Dv,A\curl^{-1}v\rangle
+ &=
+ -\langle v,D A\curl^{-1}v\rangle\\
+ &=
+ -\langle v,A\curl^{-1}Dv\rangle.
+\end{aligned}
+\]
+which is the negative of the original real scalar.
+\end{proof}
+
+\begin{remark}
+This transparency does not imply that the nonlinear high--high term
+$Q(v,v)$ preserves shellwise $+$/$-$ energy equality.  In particular, zero
+initial helicity does not force pairwise equality
+$\|v_{k,+}(t)\|_2=\|v_{k,-}(t)\|_2$ for later times.
+\end{remark}
+
+
+\section{Stokes response moments and finite-band tomography}
+
+\subsection{The Casimir response hierarchy}
+
+Because $A$ is invertible on $\cK^\perp$, negative fractional powers are
+well defined there.
+
+\begin{definition}[Response hierarchy]
+\label{R:hi:def:hierarchy}
+Let $s\ge-1$ and suppose
+$v\in\cK^\perp$ belongs to the domain of $A^{(s+1)/2}$.
+For $X,Y\in\cK$, define
+\begin{equation}
+ \boxed{
+ \cM_v^{[s]}(X,Y)
+ :=
+ 2V_R
+ \left\langle
+ A^{s/2}Q(X,v),
+ A^{s/2}Q(Y,v)
+ \right\rangle.
+ }
+ \label{R:hi:eq:Ms}
+\end{equation}
+For $s=-1$, $A^{-1/2}$ is taken on $\cK^\perp$.
+\end{definition}
+
+Each $\cM_v^{[s]}$ is a positive semidefinite symmetric operator on the
+six-dimensional Killing algebra.
+
+\begin{theorem}[Exact trace ladder]
+\label{R:hi:thm:traceladder}
+For every $s\ge-1$,
+\begin{equation}
+ \boxed{
+ \tr_{\cK}\cM_v^{[s]}
+ =
+ \langle A^{s+1}v,v\rangle
+ =
+ \left\|A^{(s+1)/2}v\right\|_2^2.
+ }
+ \label{R:hi:eq:traceladder}
+\end{equation}
+In particular,
+\begin{align}
+ \tr\cM_v^{[-1]}
+ &=
+ \|v\|_2^2,
+ \label{R:hi:eq:energyresponse}\\
+ \tr\cM_v^{[0]}
+ &=
+ \langle Av,v\rangle
+ =
+ 2\|\Def v\|_2^2.
+ \label{R:hi:eq:dissresponse}
+\end{align}
+\end{theorem}
+
+\begin{proof}
+Since every $T_a^\tau$ commutes with $A$ and is skew-adjoint,
+\begin{align*}
+ \tr\cM_v^{[s]}
+ &=
+ 2V_R
+ \sum_{\tau,a}
+ \left\langle
+ T_a^\tau v,A^sT_a^\tau v
+ \right\rangle\\
+ &=
+ -2V_R
+ \sum_{\tau,a}
+ \left\langle
+ v,A^s(T_a^\tau)^2v
+ \right\rangle.
+\end{align*}
+Use \eqref{R:eq:CasimirCore}.
+\end{proof}
+
+\begin{theorem}[Spectral additivity]
+\label{R:hi:thm:additivity}
+If
+\[
+       v=\sum_{k\ge1,\ \sigma=\pm}v_{k,\sigma},
+\]
+then
+\begin{equation}
+ \boxed{
+ \cM_v^{[s]}
+ =
+ \sum_{k,\sigma}
+ \cM_{v_{k,\sigma}}^{[s]}.
+ }
+ \label{R:hi:eq:additivity}
+\end{equation}
+Whenever the trace in \eqref{R:hi:eq:traceladder} is finite, the series converges
+in operator norm on $\cK$.
+\end{theorem}
+
+\begin{proof}
+Each $Q(X,v_{k,\sigma})$ remains in $E_{k,\sigma}$, and distinct signed
+shells are orthogonal.  Hence all cross-shell Gram terms vanish.  The
+summands are positive semidefinite and their traces sum to
+\eqref{R:hi:eq:traceladder}; finite-dimensional monotone convergence then gives
+operator-norm convergence.
+\end{proof}
+
+\subsection{The Stokes moment sequence}
+
+Define the total energy at Stokes level $k$ by
+\begin{equation}
+ E_k
+ :=
+ \|v_{k,+}\|_2^2+\|v_{k,-}\|_2^2.
+ \label{R:hi:eq:Ek}
+\end{equation}
+
+\begin{definition}[Casimir response moments]
+For integers $n\ge0$, set
+\begin{equation}
+ \boxed{
+ m_n(v)
+ :=
+ \tr\cM_v^{[n-1]}
+ =
+ \langle A^n v,v\rangle.
+ }
+ \label{R:hi:eq:mn}
+\end{equation}
+\end{definition}
+
+By the signed-shell decomposition,
+\begin{equation}
+ \boxed{
+ m_n
+ =
+ \sum_{k\ge1}\kappa_k^nE_k.
+ }
+ \label{R:hi:eq:moments}
+\end{equation}
+Thus $(m_n)$ is the moment sequence of the positive discrete measure
+\begin{equation}
+ \mu_v
+ :=
+ \sum_{k\ge1}E_k\,\delta_{\kappa_k}.
+ \label{R:hi:eq:measure}
+\end{equation}
+
+\begin{theorem}[Hankel positivity and exact spectral rank]
+\label{R:hi:thm:Hankel}
+For $N\ge0$, define the Hankel matrix
+\begin{equation}
+ H_N(v)
+ :=
+ [m_{i+j}(v)]_{i,j=0}^N.
+ \label{R:hi:eq:Hankel}
+\end{equation}
+Then $H_N(v)$ is positive semidefinite.
+
+If $v$ has exactly $r$ active Stokes levels
+$k_1,\ldots,k_r$, then
+\begin{equation}
+ \boxed{
+ \operatorname{rank}H_N(v)
+ =
+ \min\{N+1,r\}.
+ }
+ \label{R:hi:eq:Hankelrank}
+\end{equation}
+Consequently,
+\begin{equation}
+ \det H_{r-1}>0,
+ \qquad
+ \det H_r=0.
+ \label{R:hi:eq:detcriterion}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+For $c=(c_0,\ldots,c_N)$ and
+$p(\lambda)=\sum_{j=0}^Nc_j\lambda^j$,
+\begin{align*}
+ c^\mathsf T H_Nc
+ &=
+ \sum_{i,j}c_ic_jm_{i+j}\\
+ &=
+ \sum_kE_k|p(\kappa_k)|^2
+ \ge0.
+\end{align*}
+If the support consists of $r$ distinct nodes, write
+\[
+ H_N
+ =
+ V_N
+ \operatorname{diag}(E_{k_1},\ldots,E_{k_r})
+ V_N^\mathsf T,
+\]
+where $(V_N)_{ij}=\kappa_{k_j}^i$.
+The Vandermonde matrix has rank $\min\{N+1,r\}$.
+\end{proof}
+
+\begin{remark}
+Hankel rank is used broadly in finite moment problems and realization theory
+\cite{Fasino1995}.  Here the point is not the linear-algebra fact itself, but
+that the required moments are exact traces of Killing-response tensors.
+\end{remark}
+
+\subsection{Log-convexity and an exact spectral-spread identity}
+
+\begin{theorem}[Log-convex response moments]
+\label{R:hi:thm:logconvex}
+For every $n\ge1$ for which the moments are finite,
+\begin{equation}
+ \boxed{
+ m_n^2
+ \le
+ m_{n-1}m_{n+1}.
+ }
+ \label{R:hi:eq:logconvex}
+\end{equation}
+If $v\ne0$, equality holds for some $n\ge1$ if and only if the non-Killing
+field is supported on one Stokes level
+\[
+       E_{k,+}\oplus E_{k,-}
+\]
+for a single $k$.
+\end{theorem}
+
+\begin{proof}
+Apply Cauchy--Schwarz to
+$A^{(n-1)/2}v$ and $A^{(n+1)/2}v$.
+Equality requires these two vectors to be linearly dependent.  Since $A$ is
+self-adjoint with distinct eigenvalues $\kappa_k$ for distinct levels, this
+occurs exactly on one Stokes eigenspace.
+\end{proof}
+
+For the first inequality one can write the defect exactly.
+
+\begin{theorem}[Spectral-variance identity]
+\label{R:hi:thm:variance}
+For every $v\in D(A)$,
+\begin{equation}
+ \boxed{
+ m_0m_2-m_1^2
+ =
+ \frac12
+ \sum_{k,\ell\ge1}
+ E_kE_\ell
+ (\kappa_k-\kappa_\ell)^2.
+ }
+ \label{R:hi:eq:variance}
+\end{equation}
+Equivalently,
+\begin{equation}
+ \frac{m_2}{m_0}
+ -
+ \left(\frac{m_1}{m_0}\right)^2
+ =
+ \operatorname{Var}_{p}(\kappa),
+ \qquad
+ p_k=\frac{E_k}{m_0}.
+ \label{R:hi:eq:normalizedvariance}
+\end{equation}
+Thus three response traces detect exact Stokes monochromaticity.
+\end{theorem}
+
+\begin{proof}
+Expand the right side:
+\[
+ \frac12\sum_{k,\ell}E_kE_\ell
+ (\kappa_k^2+\kappa_\ell^2-2\kappa_k\kappa_\ell)
+ =
+ m_0m_2-m_1^2.
+\]
+\end{proof}
+
+\begin{corollary}[Monotone effective Stokes frequency]
+\label{R:hi:cor:effectivefrequency}
+Assume all moments involved are finite and define
+\begin{equation}
+ \Omega_n(v)
+ :=
+ \frac{m_{n+1}(v)}{m_n(v)}.
+ \label{R:hi:eq:Omega}
+\end{equation}
+Then $\Omega_n$ is nondecreasing in $n$.  For finite spectral support,
+\begin{equation}
+ \lim_{n\to\infty}\Omega_n
+ =
+ \max\{\kappa_k:E_k>0\}.
+ \label{R:hi:eq:Omegalimit}
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+Monotonicity is \eqref{R:hi:eq:logconvex}.  For finite support, divide numerator
+and denominator by the largest active eigenvalue to the power $n$.
+\end{proof}
+
+\subsection{Chiral moment sequence}
+
+Let
+\begin{equation}
+ D_\tau^{[s]}(v)
+ :=
+ \tr_{\cK_\tau}\cM_v^{[s]}.
+ \label{R:hi:eq:Dtaus}
+\end{equation}
+The signed-shell Killing--Beltrami algebra gives the pure-shell formula
+\begin{equation}
+ D_\tau^{[s]}(v_{k,\sigma})
+ =
+ \frac{\kappa_k^{s+1}}{2}
+ \left(
+ 1-\frac{2\tau\sigma}{k+2}
+ \right)
+ \|v_{k,\sigma}\|_2^2.
+ \label{R:hi:eq:pureshellD}
+\end{equation}
+
+\begin{theorem}[Higher chiral trace identity]
+\label{R:hi:thm:chiralhierarchy}
+For every $s\ge-1$,
+\begin{align}
+ D_+^{[s]}(v)+D_-^{[s]}(v)
+ &=
+ \langle A^{s+1}v,v\rangle,
+ \label{R:hi:eq:chiralsum}\\
+ \boxed{
+ D_-^{[s]}(v)-D_+^{[s]}(v)
+ =
+ \frac{2}{R}
+ \langle A^{s+1}\curl^{-1}v,v\rangle.
+ }
+ \label{R:hi:eq:chiraldiff}
+\end{align}
+\end{theorem}
+
+\begin{proof}
+Sum \eqref{R:hi:eq:pureshellD} over signed shells and use
+\[
+       \mu_{k,\sigma}^{-1}
+       =
+       \sigma\frac{R}{k+2}.
+\]
+\end{proof}
+
+\begin{definition}[Signed response moments]
+For $n\ge0$, define
+\begin{equation}
+\begin{aligned}
+ h_n(v)
+ &:=
+ \frac{R}{2}
+ \left(
+ D_-^{[n-1]}(v)-D_+^{[n-1]}(v)
+ \right)\\
+ &=
+ \langle A^n\curl^{-1}v,v\rangle.
+\end{aligned}
+\label{R:hi:eq:hn}
+\end{equation}
+\end{definition}
+
+Writing
+\[
+ E_{k,\pm}
+ :=
+ \|v_{k,\pm}\|_2^2,
+\]
+one obtains
+\begin{equation}
+ \boxed{
+ h_n
+ =
+ \sum_{k\ge1}
+ \kappa_k^n
+ \frac{R}{k+2}
+ \bigl(E_{k,+}-E_{k,-}\bigr).
+ }
+ \label{R:hi:eq:hmoments}
+\end{equation}
+
+\subsection{Finite-band spectral tomography}
+
+We now show that the two moment sequences recover the complete signed-shell
+energy spectrum.
+
+\begin{theorem}[Exact finite-band tomography]
+\label{R:hi:thm:tomography}
+Suppose $v$ has nonzero energy on exactly $r$ distinct Stokes levels
+\[
+       k_1,\ldots,k_r.
+\]
+Then the finite data
+\begin{equation}
+ m_0,m_1,\ldots,m_{2r},
+ \qquad
+ h_0,h_1,\ldots,h_{r-1}
+ \label{R:hi:eq:tomodata}
+\end{equation}
+determine uniquely
+\[
+       \{k_j,E_{k_j,+},E_{k_j,-}\}_{j=1}^r.
+\]
+\end{theorem}
+
+\begin{proof}
+By \cref{R:hi:thm:Hankel}, $r$ is the unique integer for which
+\[
+       \det H_{r-1}>0,
+       \qquad
+       \det H_r=0.
+\]
+
+Let
+\[
+ p(z)
+ =
+ \prod_{j=1}^r(z-\kappa_{k_j})
+ =
+ z^r+c_{r-1}z^{r-1}+\cdots+c_0.
+\]
+Since $p(\kappa_{k_j})=0$,
+\begin{equation}
+ \sum_{\ell=0}^r
+ c_\ell m_{n+\ell}
+ =
+ 0,
+ \qquad
+ n=0,\ldots,r-1,
+ \qquad
+ c_r=1.
+ \label{R:hi:eq:recurrence}
+\end{equation}
+The coefficient vector $(c_0,\ldots,c_{r-1})$ therefore solves
+\begin{equation}
+ H_{r-1}
+ \begin{pmatrix}
+ c_0\\ \vdots\\ c_{r-1}
+ \end{pmatrix}
+ =
+ -
+ \begin{pmatrix}
+ m_r\\ \vdots\\ m_{2r-1}
+ \end{pmatrix}.
+ \label{R:hi:eq:annihilator}
+\end{equation}
+The matrix is positive definite, so the solution is unique.  The roots of
+$p$ are exactly the active Stokes eigenvalues.  Since
+$\kappa_k=k(k+4)/R^2$ is strictly increasing in $k$, the levels $k_j$ are
+recovered uniquely.
+
+Now solve the Vandermonde system
+\begin{equation}
+ m_n
+ =
+ \sum_{j=1}^r
+ \kappa_{k_j}^n E_{k_j},
+ \qquad
+ n=0,\ldots,r-1,
+ \label{R:hi:eq:totalVandermonde}
+\end{equation}
+for
+\[
+       E_{k_j}=E_{k_j,+}+E_{k_j,-}.
+\]
+Likewise solve
+\begin{equation}
+ h_n
+ =
+ \sum_{j=1}^r
+ \kappa_{k_j}^n\delta_j,
+ \qquad
+ \delta_j
+ :=
+ \frac{R}{k_j+2}
+ (E_{k_j,+}-E_{k_j,-}),
+ \label{R:hi:eq:signedVandermonde}
+\end{equation}
+for $n=0,\ldots,r-1$.  Finally,
+\begin{equation}
+ \boxed{
+ E_{k_j,\pm}
+ =
+ \frac12
+ \left[
+ E_{k_j}
+ \pm
+ \frac{k_j+2}{R}\delta_j
+ \right].
+ }
+ \label{R:hi:eq:recoverenergies}
+\end{equation}
+\end{proof}
+
+\begin{remark}
+The reconstruction is an exact finite moment problem and can be implemented
+by standard Prony/Hankel techniques.  Numerical conditioning is a separate
+issue; Hankel moment matrices are well known to become ill-conditioned at
+high order \cite{Fasino1995}.
+\end{remark}
+
+\subsection{Complete monotonicity under Stokes relaxation}
+
+Consider the unforced linear Stokes equation on $\cK^\perp$,
+\begin{equation}
+       \partial_tv+\nu Av=0.
+       \label{R:hi:eq:Stokes}
+\end{equation}
+
+\begin{theorem}[Loewner-complete monotonicity]
+\label{R:hi:thm:matrixCM}
+For every $s\ge-1$,
+\begin{equation}
+ \boxed{
+ \frac{\dd}{\dd t}
+ \cM_{v(t)}^{[s]}
+ =
+ -2\nu
+ \cM_{v(t)}^{[s+1]}.
+ }
+ \label{R:hi:eq:matrixladder}
+\end{equation}
+Consequently, for every integer $q\ge0$,
+\begin{equation}
+ \boxed{
+ (-1)^q
+ \frac{\dd^q}{\dd t^q}
+ \cM_{v(t)}^{[s]}
+ =
+ (2\nu)^q
+ \cM_{v(t)}^{[s+q]}
+ \succeq0.
+ }
+ \label{R:hi:eq:matrixCM}
+\end{equation}
+Thus $t\mapsto\cM_{v(t)}^{[s]}$ is completely monotone in the Loewner
+order.
+\end{theorem}
+
+\begin{proof}
+Since every Killing response commutes with $A$,
+\[
+ \frac{\dd}{\dd t}
+ A^{s/2}Q(X,v)
+ =
+ -\nu
+ A^{s/2+1}Q(X,v).
+\]
+Differentiate the two factors in \eqref{R:hi:eq:Ms}.  The two equal terms combine
+to give \eqref{R:hi:eq:matrixladder}; iteration gives \eqref{R:hi:eq:matrixCM}.
+\end{proof}
+
+\begin{corollary}[Scalar moment derivatives]
+\label{R:hi:cor:mderivatives}
+Under \eqref{R:hi:eq:Stokes},
+\begin{equation}
+ \frac{\dd}{\dd t}m_n(t)
+ =
+ -2\nu m_{n+1}(t),
+ \label{R:hi:eq:mderivative}
+\end{equation}
+and
+\begin{equation}
+ (-1)^q
+ \frac{\dd^q}{\dd t^q}
+ m_n(t)
+ =
+ (2\nu)^q
+ m_{n+q}(t).
+ \label{R:hi:eq:scalarCM}
+\end{equation}
+\end{corollary}
+
+\subsection{Two-signal Stokes spectroscopy}
+
+Let
+\begin{align}
+ \mathcal E(t)
+ &:=
+ \|v(t)\|_2^2,
+ \label{R:hi:eq:Etime}\\
+ \mathcal C(t)
+ &:=
+ \langle\curl^{-1}v(t),v(t)\rangle.
+ \label{R:hi:eq:Ctime}
+\end{align}
+
+\begin{theorem}[Relaxation tomography]
+\label{R:hi:thm:relaxationtomography}
+For the Stokes evolution \eqref{R:hi:eq:Stokes},
+\begin{align}
+ \mathcal E(t)
+ &=
+ \sum_{k\ge1}
+ E_k(0)e^{-2\nu\kappa_kt},
+ \label{R:hi:eq:Eexp}\\
+ \mathcal C(t)
+ &=
+ \sum_{k\ge1}
+ \frac{R}{k+2}
+ \bigl(E_{k,+}(0)-E_{k,-}(0)\bigr)
+ e^{-2\nu\kappa_kt}.
+ \label{R:hi:eq:Cexp}
+\end{align}
+Moreover,
+\begin{align}
+ \boxed{
+ m_n(0)
+ =
+ \frac{(-1)^n}{(2\nu)^n}
+ \mathcal E^{(n)}(0),
+ }
+ \label{R:hi:eq:mfromE}\\
+ \boxed{
+ h_n(0)
+ =
+ \frac{(-1)^n}{(2\nu)^n}
+ \mathcal C^{(n)}(0).
+ }
+ \label{R:hi:eq:hfromC}
+\end{align}
+Hence, for a finite-band state with $r$ active Stokes levels, the derivatives
+\[
+ \mathcal E^{(0)}(0),\ldots,\mathcal E^{(2r)}(0),
+ \qquad
+ \mathcal C^{(0)}(0),\ldots,\mathcal C^{(r-1)}(0)
+\]
+determine the complete signed-shell energy distribution.
+\end{theorem}
+
+\begin{proof}
+The Stokes semigroup multiplies each shell by
+$e^{-\nu\kappa_kt}$.  Squaring gives
+\eqref{R:hi:eq:Eexp}--\eqref{R:hi:eq:Cexp}.  Differentiate at $t=0$ and use
+\cref{R:hi:thm:tomography}.
+\end{proof}
+
+\begin{remark}[Relation to Hankel methods in fluid mechanics]
+Time-delay Hankel matrices are widely used for data-driven fluid
+decompositions and are closely related to space-time POD
+\cite{FrameTowne2023}.  The two scalar curves above solve a different
+inverse problem: in the exact round-sphere Stokes dynamics their exponential
+nodes are fixed geometric eigenvalues, and their amplitudes are the signed
+shell energies.
+\end{remark}
+
+\subsection{The nonlinear tensor balance}
+
+Return to the high-mode Navier--Stokes equation on an affine Killing leaf,
+\begin{equation}
+ \partial_tv
+ +
+ \nu Av
+ +
+ Q(v,v)
+ +
+ D(m)v
+ =
+ F_\perp,
+ \label{R:hi:eq:highNS}
+\end{equation}
+where $D(m)$ is skew-adjoint and commutes with $A$.
+
+For $s\ge-1$ and high-mode fields $v,w$, define the symmetric cross-response
+tensor
+\begin{align}
+ \cC_s[v;w](X,Y)
+ &:=
+ 2V_R
+ \Bigl[
+ \langle
+ A^{s/2}Q(X,w),
+ A^{s/2}Q(Y,v)
+ \rangle
+ \notag\\
+ &\qquad\qquad+
+ \langle
+ A^{s/2}Q(X,v),
+ A^{s/2}Q(Y,w)
+ \rangle
+ \Bigr].
+ \label{R:hi:eq:Cs}
+\end{align}
+
+\begin{lemma}[Trace polarization]
+\label{R:hi:lem:tracepolarization}
+For all sufficiently regular $v,w$,
+\begin{equation}
+ \boxed{
+ \tr\cC_s[v;w]
+ =
+ 2\langle A^{s+1}v,w\rangle.
+ }
+ \label{R:hi:eq:tracepolarization}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Polarize the proof of \cref{R:hi:thm:traceladder}.
+\end{proof}
+
+\begin{theorem}[Exact nonlinear response balance]
+\label{R:hi:thm:nonlinearbalance}
+Along \eqref{R:hi:eq:highNS},
+\begin{equation}
+\begin{aligned}
+ \frac{\dd}{\dd t}\cM_v^{[s]}
+ &=
+ -2\nu\cM_v^{[s+1]}
+ -
+ \cC_s[v;Q(v,v)]\\
+ &\quad-
+ \cC_s[v;D(m)v]
+ +
+ \cC_s[v;F_\perp].
+\end{aligned}
+\label{R:hi:eq:tensorbalance}
+\end{equation}
+Taking the trace gives, with $n=s+1\ge0$,
+\begin{equation}
+\begin{aligned}
+ \frac{\dd}{\dd t}\langle A^n v,v\rangle
+ &=
+ -2\nu\langle A^{n+1}v,v\rangle\\
+ &\quad-
+ 2\langle A^n v,Q(v,v)\rangle
+ +
+ 2\langle A^n v,F_\perp\rangle.
+\end{aligned}
+\label{R:hi:eq:momentbalance}
+\end{equation}
+The Killing-precession term has zero trace at every level.
+\end{theorem}
+
+\begin{proof}
+Differentiate \eqref{R:hi:eq:Ms} and substitute \eqref{R:hi:eq:highNS}.  Since
+$Q(X,\cdot)$ commutes with $A$, the viscous contribution is exactly
+$-2\nu\cM^{[s+1]}$.  Taking the trace and using
+\cref{R:hi:lem:tracepolarization} gives \eqref{R:hi:eq:momentbalance}.  Finally,
+\[
+ \langle A^n v,D(m)v\rangle=0
+\]
+because $D(m)$ is skew-adjoint and commutes with $A^n$.
+\end{proof}
+
+\begin{corollary}[Trace-free nonlinear redistribution at the energy level]
+\label{R:hi:cor:tracefree}
+At $s=-1$,
+\begin{equation}
+ \tr\cC_{-1}[v;Q(v,v)]
+ =
+ 2\langle v,Q(v,v)\rangle
+ =
+ 0.
+ \label{R:hi:eq:tracefreeQ}
+\end{equation}
+Also,
+\begin{equation}
+ \tr\cC_{-1}[v;D(m)v]=0.
+ \label{R:hi:eq:tracefreeD}
+\end{equation}
+Hence, in the unforced equation, the energy-response tensor obeys
+\begin{equation}
+ \frac{\dd}{\dd t}\cM_v^{[-1]}
+ =
+ -2\nu\cM_v^{[0]}
+ +
+ \mathcal R_{\rm tf}(v,m),
+ \qquad
+ \tr\mathcal R_{\rm tf}=0,
+ \label{R:hi:eq:energymatrixbalance}
+\end{equation}
+where the trace-free term redistributes the six response channels without
+changing their total high-mode energy.
+\end{corollary}
+
+\begin{proof}
+The first identity is the standard skew-energy property of incompressible
+convection.  The second follows from skew-adjointness of $D(m)$.
+\end{proof}
+
+\begin{remark}
+Trace-free does not mean norm-free or dynamically negligible.  The nonlinear
+and Killing terms can substantially change the eigenvectors and eigenvalue
+distribution of $\cM^{[-1]}$ while preserving its trace instantaneously.
+\end{remark}
+
+\subsection{A response-moment notion of spectral complexity}
+
+The Hankel hierarchy gives an exact algebraic notion of the number of active
+Stokes levels.
+
+\begin{definition}
+For a finite-band nonzero field, define its response spectral rank by
+\begin{equation}
+ r_{\rm spec}(v)
+ :=
+ \operatorname{rank}
+ [m_{i+j}]_{i,j\ge0}.
+ \label{R:hi:eq:rspec}
+\end{equation}
+\end{definition}
+
+\begin{corollary}
+For finite-band $v$,
+\begin{equation}
+ \boxed{
+ r_{\rm spec}(v)
+ =
+ \#\{k\ge1:E_k>0\}.
+ }
+ \label{R:hi:eq:rspeclevels}
+\end{equation}
+This quantity is invariant under $SO(4)$ and under nonzero rescaling of
+$v$.
+\end{corollary}
+
+The definition counts distinct Stokes eigenvalues, not the number of signed
+shells or individual modes.  The signed moments $h_n$ provide the additional
+chirality information required to split each active level.
+
+
+\section{Curl-response Fourier tomography}
+
+\subsection{Curl-response moments}
+
+\begin{definition}[Curl-response tensor]
+For an integer $n\ge0$ and sufficiently regular
+$v\in\cK^\perp$, define the symmetric bilinear form on $\cK$
+\begin{equation}
+ \boxed{
+ \cC_n(v)(X,Y)
+ :=
+ 2V_R
+ \left\langle
+ Q(X,v),
+ \curl^n Q(Y,v)
+ \right\rangle.
+ }
+ \label{R:cf:eq:Cn}
+\end{equation}
+\end{definition}
+
+Symmetry follows because $\curl^n$ is self-adjoint.
+
+For a single signed shell define its zeroth response weight
+\begin{equation}
+ \cN_{k,\sigma}(v)
+ :=
+ \cC_0(v_{k,\sigma}).
+ \label{R:cf:eq:Nks}
+\end{equation}
+It is a positive semidefinite operator on the six-dimensional Killing
+algebra.
+
+\begin{theorem}[Matrix-valued curl moment representation]
+\label{R:cf:thm:momentrepresentation}
+Let
+\[
+       v=\sum_{k\ge1,\sigma=\pm}v_{k,\sigma}
+\]
+and suppose the moment in question is finite.  Then
+\begin{equation}
+ \boxed{
+ \cC_n(v)
+ =
+ \sum_{k\ge1,\sigma=\pm}
+ \mu_{k,\sigma}^n
+ \cN_{k,\sigma}(v).
+ }
+ \label{R:cf:eq:matrixmoments}
+\end{equation}
+Moreover
+\begin{equation}
+ \boxed{
+ \tr\cN_{k,\sigma}(v)
+ =
+ \kappa_k\|v_{k,\sigma}\|_2^2
+ }
+ \label{R:cf:eq:Ntrace}
+\end{equation}
+and therefore
+\begin{equation}
+ \boxed{
+ c_n(v)
+ :=
+ \tr\cC_n(v)
+ =
+ \langle A\curl^n v,v\rangle
+ =
+ \sum_{k,\sigma}
+ \kappa_k\mu_{k,\sigma}^n
+ \|v_{k,\sigma}\|_2^2.
+ }
+ \label{R:cf:eq:scalarcurlmoments}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+For every Killing field $X$,
+\[
+       Q(X,v_{k,\sigma})\in E_{k,\sigma}.
+\]
+Distinct signed shells are orthogonal.  Hence the Gram tensor splits over
+shells, and applying $\curl^n$ to the shell response multiplies it by
+$\mu_{k,\sigma}^n$, proving \eqref{R:cf:eq:matrixmoments}.
+
+Taking $n=0$ and using \eqref{R:eq:CasimirCore},
+\[
+ \tr\cN_{k,\sigma}
+ =
+ 2V_R\sum_{\tau,a}
+ \|T_a^\tau v_{k,\sigma}\|_2^2
+ =
+ \langle Av_{k,\sigma},v_{k,\sigma}\rangle,
+\]
+which is \eqref{R:cf:eq:Ntrace}.
+
+Finally, the same Casimir argument, using commutation with curl, gives
+\[
+ 2V_R\sum_{\tau,a}
+ \langle T_a^\tau v,\curl^nT_a^\tau v\rangle
+ =
+ \langle A\curl^n v,v\rangle.
+\]
+\end{proof}
+
+\begin{definition}[Response spectral measure]
+If $\langle Av,v\rangle<\infty$, define the positive
+$\operatorname{Sym}^+(\cK)$-valued measure
+\begin{equation}
+ \boxed{
+ \Sigma_v
+ :=
+ \sum_{k\ge1,\sigma=\pm}
+ \cN_{k,\sigma}(v)\,
+ \delta_{\mu_{k,\sigma}}.
+ }
+ \label{R:cf:eq:Sigmav}
+\end{equation}
+\end{definition}
+
+Its total trace mass is finite:
+\[
+        \tr\Sigma_v(\mathbb R)
+        =
+        \langle Av,v\rangle.
+\]
+Equation \eqref{R:cf:eq:matrixmoments} is precisely the matrix moment formula
+\[
+       \cC_n
+       =
+       \int_{\mathbb R}\lambda^n\,d\Sigma_v(\lambda).
+\]
+
+\subsection{Block Hankel positivity and response-channel rank}
+
+For $N\ge0$ form the $6(N+1)\times6(N+1)$ block Hankel matrix
+\begin{equation}
+ \mathbb H_N(v)
+ :=
+ [\cC_{i+j}(v)]_{i,j=0}^N.
+ \label{R:cf:eq:blockHankel}
+\end{equation}
+
+\begin{theorem}[Block Hankel positivity]
+\label{R:cf:thm:blockpositive}
+Whenever the moments through order $2N$ are finite,
+\begin{equation}
+ \boxed{
+ \mathbb H_N(v)\succeq0.
+ }
+ \label{R:cf:eq:blockpositive}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+For $X_0,\ldots,X_N\in\cK$,
+\begin{align*}
+ \sum_{i,j=0}^N
+ \langle X_i,\cC_{i+j}X_j\rangle
+ &=
+ \sum_{k,\sigma}
+ \left\langle
+ \sum_i\mu_{k,\sigma}^iX_i,
+ \cN_{k,\sigma}
+ \sum_j\mu_{k,\sigma}^jX_j
+ \right\rangle\\
+ &\ge0.
+\end{align*}
+\end{proof}
+
+The scalar Hankel matrix
+\[
+       H_N^{\rm tr}
+       =
+       [c_{i+j}]_{i,j=0}^N
+\]
+is therefore positive as well.
+
+\begin{theorem}[Finite-support rank laws]
+\label{R:cf:thm:ranklaws}
+Suppose exactly $q$ signed shells
+$\alpha=1,\ldots,q$ are active, with distinct curl eigenvalues
+$\mu_\alpha$ and nonzero response weights $\cN_\alpha$.  Then
+\begin{equation}
+ \boxed{
+ \operatorname{rank}H_N^{\rm tr}
+ =
+ \min\{N+1,q\}.
+ }
+ \label{R:cf:eq:scalarrank}
+\end{equation}
+For the block Hankel matrix, if $N\ge q-1$,
+\begin{equation}
+ \boxed{
+ \operatorname{rank}\mathbb H_N
+ =
+ \sum_{\alpha=1}^q
+ \operatorname{rank}\cN_\alpha.
+ }
+ \label{R:cf:eq:blockrank}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+The scalar weights
+\[
+       w_\alpha
+       =
+       \tr\cN_\alpha
+       =
+       \kappa_\alpha\|v_\alpha\|_2^2
+\]
+are strictly positive.  Thus
+\[
+ H_N^{\rm tr}
+ =
+ V_N
+ \operatorname{diag}(w_1,\ldots,w_q)
+ V_N^\mathsf T,
+\]
+where $(V_N)_{i\alpha}=\mu_\alpha^i$.  This gives
+\eqref{R:cf:eq:scalarrank}.
+
+Similarly,
+\begin{equation}
+ \mathbb H_N
+ =
+ \mathbb V_N
+ \operatorname{diag}(\cN_1,\ldots,\cN_q)
+ \mathbb V_N^*,
+ \label{R:cf:eq:blockfactor}
+\end{equation}
+where $\mathbb V_N$ is the block Vandermonde operator with
+$\alpha$th block column
+\[
+       (1,\mu_\alpha,\ldots,\mu_\alpha^N)^\mathsf T\otimes I_{\cK}.
+\]
+For $N\ge q-1$ the scalar Vandermonde columns are independent, so
+$\mathbb V_N$ is injective on the direct sum of the $q$ copies of $\cK$.
+Hence multiplication by $\mathbb V_N$ and its adjoint preserves the rank of
+the block diagonal weight.
+\end{proof}
+
+\begin{remark}
+The two ranks measure different complexity.  The scalar rank counts active
+signed curl shells.  The block rank counts the sum of the independent
+Killing-response channel ranks carried by those shells.
+\end{remark}
+
+\begin{corollary}[Block-Hankel determinant]
+\label{R:cf:cor:blockdet}
+Assume $N=q-1$ and every active $\cN_\alpha$ is positive definite on
+$\cK$.  Then
+\begin{equation}
+ \boxed{
+ \det\mathbb H_{q-1}
+ =
+ \left[
+ \prod_{\alpha<\beta}
+ (\mu_\beta-\mu_\alpha)
+ \right]^{12}
+ \prod_{\alpha=1}^q
+ \det\cN_\alpha.
+ }
+ \label{R:cf:eq:blockdet}
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+In \eqref{R:cf:eq:blockfactor}, $\mathbb V_{q-1}=V\otimes I_6$ with square
+Vandermonde $V$.  Therefore
+\[
+\begin{aligned}
+ \det\mathbb H_{q-1}
+ &=
+ \det(V\otimes I_6)^2
+ \prod_\alpha\det\cN_\alpha\\
+ &=
+ \det(V)^{12}
+ \prod_\alpha\det\cN_\alpha.
+\end{aligned}
+\]
+\end{proof}
+
+\subsection{Finite-band matrix recurrence}
+
+\begin{theorem}[Annihilating recurrence]
+\label{R:cf:thm:recurrence}
+Under the finite-support assumptions of \cref{R:cf:thm:ranklaws}, let
+\begin{equation}
+ p(z)
+ =
+ \prod_{\alpha=1}^q(z-\mu_\alpha)
+ =
+ z^q+a_{q-1}z^{q-1}+\cdots+a_0.
+ \label{R:cf:eq:annpoly}
+\end{equation}
+Then the full matrix sequence obeys
+\begin{equation}
+ \boxed{
+ \cC_{n+q}
+ +
+ a_{q-1}\cC_{n+q-1}
+ +\cdots+
+ a_0\cC_n
+ =
+ 0,
+ \qquad
+ n\ge0.
+ }
+ \label{R:cf:eq:matrixrecurrence}
+\end{equation}
+The same polynomial is the minimal scalar recurrence for
+$c_n=\tr\cC_n$.
+\end{theorem}
+
+\begin{proof}
+Insert \eqref{R:cf:eq:matrixmoments}.  The coefficient of each
+$\cN_\alpha$ is
+$\mu_\alpha^np(\mu_\alpha)=0$.
+Minimality for the scalar sequence follows because all scalar weights are
+strictly positive and the nodes are distinct.
+\end{proof}
+
+Thus the scalar trace moments identify the signed curl eigenvalues, while
+the first $q$ matrix moments determine the full response weights through an
+operator-valued Vandermonde system.
+
+\subsection{The curl-response characteristic function}
+
+The spectrum \eqref{G:eq:curlspec} lies in $(1/R)\mathbb Z$.  Hence
+\begin{equation}
+       e^{i2\pi R\curl}=\Id
+ \label{R:cf:eq:periodiccurl}
+\end{equation}
+on divergence-free vector fields.
+
+\begin{definition}[Operator-valued response characteristic function]
+For $v$ with finite Stokes energy define
+\begin{equation}
+\begin{aligned}
+ \Phi_v(\theta)(X,Y)
+ &:=
+ 2V_R
+ \left\langle
+ Q(X,v),
+ e^{i\theta\curl}Q(Y,v)
+ \right\rangle,\\
+ &\hspace{2em}\theta\in\mathbb R.
+\end{aligned}
+\label{R:cf:eq:Phi}
+\end{equation}
+\end{definition}
+
+The function is $2\pi R$-periodic and satisfies
+\[
+       \Phi_v(-\theta)=\Phi_v(\theta)^*.
+\]
+
+\begin{theorem}[Exact operator-valued Fourier representation]
+\label{R:cf:thm:Fourier}
+For every finite-dissipation $v$,
+\begin{equation}
+ \boxed{
+ \Phi_v(\theta)
+ =
+ \sum_{k\ge1,\sigma=\pm}
+ e^{i\sigma(k+2)\theta/R}
+ \cN_{k,\sigma}(v),
+ }
+ \label{R:cf:eq:Fourier}
+\end{equation}
+where the series converges absolutely in trace norm, hence uniformly in
+operator norm.
+
+Each shell-response tensor is recovered by Fourier inversion:
+\begin{equation}
+ \boxed{
+ \cN_{k,\sigma}(v)
+ =
+ \frac{1}{2\pi R}
+ \int_0^{2\pi R}
+ \Phi_v(\theta)
+ e^{-i\sigma(k+2)\theta/R}
+ \,\dd\theta.
+ }
+ \label{R:cf:eq:matrixinversion}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+On $E_{k,\sigma}$,
+$e^{i\theta\curl}$ is multiplication by
+$e^{i\theta\mu_{k,\sigma}}$.
+Thus \eqref{R:cf:eq:Fourier} follows from shell orthogonality.
+Moreover
+\[
+ \sum_{k,\sigma}
+ \|\cN_{k,\sigma}\|_1
+ =
+ \sum_{k,\sigma}
+ \tr\cN_{k,\sigma}
+ =
+ \langle Av,v\rangle
+ <\infty.
+\]
+The matrix Fourier series is therefore absolutely convergent in trace norm.
+Fourier inversion on the circle of length $2\pi R$ gives
+\eqref{R:cf:eq:matrixinversion}.
+\end{proof}
+
+\begin{theorem}[Operator-valued positive definiteness]
+\label{R:cf:thm:positivefunction}
+The periodic function $\Phi_v$ is positive definite: for arbitrary
+$\theta_1,\ldots,\theta_m$ and
+$X_1,\ldots,X_m\in\cK$,
+\begin{equation}
+ \boxed{
+ \sum_{i,j=1}^m
+ \left\langle
+ X_i,
+ \Phi_v(\theta_i-\theta_j)X_j
+ \right\rangle_{\cK}
+ \ge0.
+ }
+ \label{R:cf:eq:positivefunction}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Use \eqref{R:cf:eq:Fourier}:
+\[
+\begin{aligned}
+ &\sum_{i,j}
+ \langle
+ X_i,\Phi(\theta_i-\theta_j)X_j
+ \rangle\\
+ &\quad=
+ \sum_\alpha
+ \left\langle
+ \sum_i e^{-i\mu_\alpha\theta_i}X_i,
+ \cN_\alpha
+ \sum_j e^{-i\mu_\alpha\theta_j}X_j
+ \right\rangle
+ \ge0.
+\end{aligned}
+\]
+\end{proof}
+
+This is the concrete Navier--Stokes realization of an operator-valued
+Bochner/Herglotz representation \cite{Minh2016}.
+
+\subsection{Infinite-band signed-shell energy tomography}
+
+Take the trace:
+\begin{equation}
+ \phi_v(\theta)
+ :=
+ \tr\Phi_v(\theta).
+ \label{R:cf:eq:phi}
+\end{equation}
+By \cref{R:cf:thm:momentrepresentation,R:cf:thm:Fourier},
+\begin{equation}
+ \boxed{
+ \phi_v(\theta)
+ =
+ \sum_{k\ge1,\sigma=\pm}
+ \kappa_k
+ \|v_{k,\sigma}\|_2^2
+ e^{i\sigma(k+2)\theta/R}.
+ }
+ \label{R:cf:eq:scalarFourier}
+\end{equation}
+
+\begin{theorem}[Exact infinite-band energy tomography]
+\label{R:cf:thm:infiniteTomography}
+Let $v$ satisfy $\langle Av,v\rangle<\infty$.  Then every signed-shell
+energy is determined by the single scalar periodic function
+$\phi_v$:
+\begin{equation}
+ \boxed{
+ \|v_{k,\sigma}\|_2^2
+ =
+ \frac{1}{\kappa_k}
+ \frac{1}{2\pi R}
+ \int_0^{2\pi R}
+ \phi_v(\theta)
+ e^{-i\sigma(k+2)\theta/R}
+ \,\dd\theta.
+ }
+ \label{R:cf:eq:energyinversion}
+\end{equation}
+No finite-band hypothesis is required.
+\end{theorem}
+
+\begin{proof}
+The Fourier coefficient at
+$n=\sigma(k+2)$ in \eqref{R:cf:eq:scalarFourier} is
+$\kappa_k\|v_{k,\sigma}\|_2^2$.  Since $k\ge1$, $\kappa_k>0$.
+\end{proof}
+
+\begin{remark}[Forbidden low harmonics]
+For $v\perp\cK$, the Fourier coefficients of $\phi_v$ and $\Phi_v$ vanish
+at $n=0,\pm1,\pm2$.  The response circle therefore carries a built-in
+spectral gap between the zero harmonic and the first high-mode frequencies
+$n=\pm3$.
+\end{remark}
+
+Normalize by the total dissipation weight:
+\begin{equation}
+ \psi_v(\theta)
+ :=
+ \frac{\phi_v(\theta)}{\phi_v(0)}.
+ \label{R:cf:eq:psi}
+\end{equation}
+Then $\psi_v$ is the characteristic function of the probability distribution
+\begin{equation}
+ p_{k,\sigma}
+ =
+ \frac{
+ \kappa_k\|v_{k,\sigma}\|_2^2
+ }{
+ \langle Av,v\rangle
+ }.
+ \label{R:cf:eq:pk}
+\end{equation}
+
+\begin{corollary}[Dissipation-weighted curl statistics]
+\label{R:cf:cor:curlstats}
+If the required moments are finite, then
+\begin{align}
+ \frac1{i}\psi_v'(0)
+ &=
+ \sum_{k,\sigma}
+ p_{k,\sigma}\mu_{k,\sigma},
+ \label{R:cf:eq:meanmu}\\
+ -\psi_v''(0)
+ -
+ \left|\psi_v'(0)\right|^2
+ &=
+ \operatorname{Var}_{p}(\mu)
+ \ge0.
+ \label{R:cf:eq:varmu}
+\end{align}
+The variance vanishes if and only if the field is supported on one signed
+curl shell.
+\end{corollary}
+
+\subsection{Stokes dynamics as heat flow on the response circle}
+
+Consider
+\begin{equation}
+       \partial_tv+\nu Av=0.
+       \label{R:cf:eq:Stokes}
+\end{equation}
+Then
+\[
+       v_{k,\sigma}(t)
+       =
+       e^{-\nu\kappa_kt}v_{k,\sigma}(0)
+\]
+and hence
+\begin{equation}
+ \cN_{k,\sigma}(t)
+ =
+ e^{-2\nu\kappa_kt}
+ \cN_{k,\sigma}(0).
+ \label{R:cf:eq:Nt}
+\end{equation}
+
+\begin{theorem}[Matrix heat equation on the response circle]
+\label{R:cf:thm:heatcircle}
+Under \eqref{R:cf:eq:Stokes},
+\begin{equation}
+ \boxed{
+ \partial_t\Phi
+ =
+ 2\nu
+ \left(
+ \partial_\theta^2+\frac4{R^2}
+ \right)\Phi
+ }
+ \label{R:cf:eq:heatcircle}
+\end{equation}
+on the circle
+$\mathbb R/(2\pi R\mathbb Z)$.
+The same equation holds for
+$\phi=\tr\Phi$.
+\end{theorem}
+
+\begin{proof}
+For one Fourier mode,
+\[
+ 2\nu
+ \left(
+ \partial_\theta^2+\frac4{R^2}
+ \right)
+ e^{i\mu\theta}
+ =
+ -2\nu
+ \left(
+ \mu^2-\frac4{R^2}
+ \right)
+ e^{i\mu\theta}
+ =
+ -2\nu\kappa
+ e^{i\mu\theta}.
+\]
+Compare with \eqref{R:cf:eq:Nt} and sum the absolutely convergent Fourier series.
+\end{proof}
+
+\begin{remark}
+The auxiliary circle is not physical space.  It is the Pontryagin dual of
+the integer-spaced curl spectrum.  The heat equation
+\eqref{R:cf:eq:heatcircle} is therefore an exact spectral representation of
+viscous relaxation, not an additional spatial dimension.
+\end{remark}
+
+\begin{corollary}[Monotone Fourier coefficient decay]
+Every matrix Fourier coefficient evolves independently:
+\[
+ \widehat\Phi_{\sigma(k+2)}(t)
+ =
+ e^{-2\nu\kappa_kt}
+ \widehat\Phi_{\sigma(k+2)}(0).
+\]
+Thus the response circle diagonalizes the complete matrix-valued Stokes
+relaxation.
+\end{corollary}
+
+\subsection{What matrix tomography reconstructs}
+
+The Fourier inversion theorem recovers
+$\cN_{k,\sigma}$, not necessarily the full vector
+$v_{k,\sigma}$.
+
+\begin{proposition}[High-shell noninjectivity]
+\label{R:cf:prop:noninjective}
+Fix $k\ge3$ and $\sigma$.  Consider the normalized quadratic response map
+\begin{equation}
+ \mathcal R_{k,\sigma}:
+ \mathbb RP^{d_k-1}
+ \longrightarrow
+ \operatorname{Sym}_6,
+ \qquad
+ [v]
+ \longmapsto
+ \frac{\cN_{k,\sigma}(v)}{\|v\|_2^2}.
+ \label{R:cf:eq:responsemap}
+\end{equation}
+This map cannot be injective.
+\end{proposition}
+
+\begin{proof}
+The domain is a compact manifold of real dimension
+\[
+       d_k-1=(k+1)(k+3)-1.
+\]
+For $k\ge3$ this is at least $23$.  The real vector space
+$\operatorname{Sym}_6$ has dimension $21$.  A compact manifold of topological
+dimension greater than $21$ cannot embed continuously in $\mathbb R^{21}$.
+Since \eqref{R:cf:eq:responsemap} is continuous, it is not injective.
+\end{proof}
+
+\begin{remark}
+Thus even complete knowledge of the response circle recovers the full
+\emph{response geometry} of every signed shell and its energy, but not the
+internal phase state of sufficiently high shells.  Additional covariants
+would be required for state-level orbit reconstruction.
+\end{remark}
+
+\subsection{Information hierarchy, limitations, and relation to prior theory}
+
+The combined structure separates four inverse problems.
+
+\begin{enumerate}[label=(\roman*)]
+\item
+\textbf{State reconstruction.}
+The response fields form a lossless transform; two fixed same-chirality
+channels suffice globally.
+
+\item
+\textbf{Gram geometry.}
+The \(6\times6\) response tensor retains dissipation, chiral traces and
+isometry covariants, but it can lose internal shell phase information.
+
+\item
+\textbf{Moment tomography.}
+The Stokes-weighted hierarchy recovers spectral moments and finite-band
+energy distributions through Hankel/Vandermonde reconstruction.
+
+\item
+\textbf{Fourier tomography.}
+The curl-response characteristic function recovers every signed-shell
+response tensor and every signed-shell energy without a finite-band
+hypothesis.
+\end{enumerate}
+
+General \(g\)-frames and operator-valued frames were developed independently
+of fluid mechanics \cite{Sun2006,KaftalLarsonZhang2009}.  Matrix-valued
+moment theory and operator-valued Bochner theorems provide abstract
+reconstruction frameworks, while the present setting supplies a concrete
+hydrodynamic measure with support fixed by the round-sphere curl spectrum.
+The results should therefore be read as an exact geometric realization, not
+as a claim that frame or moment theory itself is new.
+
+Three limitations are essential.  First, Gram compression need not determine
+a high-dimensional shell state.  Second, exact moment inversion from finitely
+many moments requires finite spectral support or additional determinacy
+information; the Fourier-circle theorem avoids that issue for
+finite-dissipation states.  Third, none of the global \(L^2\) response
+identities is an endpoint \(L^\infty\) continuation criterion for the
+three-dimensional Navier--Stokes problem.
+
+
+
+\section{Observable leakage, response-circle generators, and spectral selection}
+\label{N:sec:synthesis}
+
+The reduction and response theories developed above admit several further
+consequences once they are used together.  This section records those
+consequences separately because they connect objects that were introduced
+for different purposes: the Clebsch--Gordan support of nonlinear leakage,
+minimal Killing observability, the response characteristic function, and the
+normalized spectral energy distribution.
+
+\subsection{Clebsch--Gordan locality and parity of nonlinear interactions}
+
+The complexified signed shell has the representation
+\begin{equation}
+ E_{k,\sigma}^{\mathbb C}
+ \simeq
+ V_{j_+}\boxtimes V_{j_-},
+ \qquad
+ j_\tau=\frac{k+1+\tau\sigma}{2}.
+ \label{N:eq:shellrep}
+\end{equation}
+Since the Levi-Civita connection and Leray projection are isometry
+equivariant, \(Q\) is an \(SO(4)\)-equivariant bilinear map.  Ref.~\cite{BateninPreeceKB2026} explicitly left the resulting
+Clebsch--Gordan shell-selection question open; the next theorem supplies
+that analysis.
+
+\begin{theorem}[Interaction parity and spectral locality]
+\label{N:thm:selection}
+Suppose
+\[
+ \Pi_{\ell,\tau}
+ Q(E_{k_1,\sigma_1},E_{k_2,\sigma_2})
+ \neq0.
+\]
+Then
+\begin{equation}
+ \boxed{
+ \ell\equiv k_1+k_2\pmod 2,
+ \qquad
+ \ell\le k_1+k_2.
+ }
+ \label{N:eq:paritylocality}
+\end{equation}
+More precisely,
+\begin{equation}
+ \boxed{
+ \ell
+ \le
+ k_1+k_2+1-
+ \left|\sigma_1+\sigma_2-\tau\right|.
+ }
+ \label{N:eq:refinedlocality}
+\end{equation}
+Thus, when
+\(\sigma_1=\sigma_2=-\tau\),
+one has the stronger bound
+\[
+       \ell\le k_1+k_2-2.
+\]
+\end{theorem}
+
+\begin{proof}
+A nonzero projected interaction produces a nonzero
+\(SO(4)\)-intertwiner from
+\(E_{k_1,\sigma_1}^{\mathbb C}\otimes
+ E_{k_2,\sigma_2}^{\mathbb C}\)
+to \(E_{\ell,\tau}^{\mathbb C}\).
+For each \(SU(2)\) factor, the Clebsch--Gordan rule therefore requires
+\[
+ j_\pm(\ell,\tau)
+ \le
+ j_\pm(k_1,\sigma_1)+j_\pm(k_2,\sigma_2),
+\]
+and the output spin has the same integer/half-integer parity as the sum of
+the two input spins.  Doubling the \(+\) spin gives
+\[
+ \ell+1+\tau
+ \le
+ k_1+k_2+2+\sigma_1+\sigma_2,
+\]
+while doubling the \(-\) spin gives
+\[
+ \ell+1-\tau
+ \le
+ k_1+k_2+2-\sigma_1-\sigma_2.
+\]
+Taking the smaller upper bound yields
+\eqref{N:eq:refinedlocality}.  Modulo two,
+\(2j_\pm(k,\sigma)\equiv k\), so the Clebsch--Gordan parity condition gives
+\(\ell\equiv k_1+k_2\pmod2\).
+\end{proof}
+
+\begin{corollary}[Finite output band]
+\label{N:cor:finiteout}
+If a finite-dimensional candidate space \(W\) is supported in shell levels
+\(k\le K\), then
+\[
+ Q(W,W)
+ \subset
+ \bigoplus_{\ell\le2K,\ \tau=\pm}E_{\ell,\tau}.
+\]
+In particular, every leakage field from \(W\) has Stokes eigenvalue at most
+\[
+ \kappa_{2K}
+ =
+ \frac{4K(K+2)}{R^2}.
+\]
+\end{corollary}
+
+\subsection{Arbitrary two-probe observability}
+
+The sharp theorem above used an orthonormal pair of Killing probes.  The
+orthogonality assumption is not needed for injectivity.
+
+\begin{theorem}[Angle-stable two-probe observability]
+\label{N:thm:angledpair}
+Let \(K,L\in\mathfrak K_\tau\) be linearly independent and let
+\[
+ G(K,L)
+ =
+ \begin{pmatrix}
+ \langle K,K\rangle&\langle K,L\rangle\\
+ \langle L,K\rangle&\langle L,L\rangle
+ \end{pmatrix}
+\]
+be their \(L^2\) Gram matrix.  Then every
+\(v\in D(A^{1/2})\cap\mathfrak K^\perp\) satisfies
+\begin{equation}
+ \boxed{
+ 2V_R
+ \left(
+ \|Q(K,v)\|_2^2+\|Q(L,v)\|_2^2
+ \right)
+ \ge
+ \frac{\lambda_{\min}(G(K,L))}{3R^2}
+ \|v\|_2^2.
+ }
+ \label{N:eq:angledpair}
+\end{equation}
+Hence any two linearly independent same-chirality probes determine the
+complete non-Killing state.
+
+If \(K,L\) are unit probes and \(\theta\) is their angle, then
+\begin{equation}
+ 2V_R
+ \left(
+ \|Q(K,v)\|_2^2+\|Q(L,v)\|_2^2
+ \right)
+ \ge
+ \frac{1-|\cos\theta|}{3R^2}\|v\|_2^2.
+ \label{N:eq:anglebound}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Choose an orthonormal basis \(e_1,e_2\) of
+\(\operatorname{span}\{K,L\}\), and let \(C\) be the \(2\times2\) matrix of
+the coordinates of \(K,L\) in that basis.  By linearity in the Killing
+argument,
+\[
+ \binom{Q(K,v)}{Q(L,v)}
+ =
+ C
+ \binom{Q(e_1,v)}{Q(e_2,v)}.
+\]
+Therefore
+\[
+\begin{aligned}
+ &\|Q(K,v)\|_2^2+\|Q(L,v)\|_2^2\\
+ &\qquad\ge
+ \lambda_{\min}(C^*C)
+ \left(
+ \|Q(e_1,v)\|_2^2+\|Q(e_2,v)\|_2^2
+ \right).
+\end{aligned}
+\]
+The nonzero eigenvalues of \(C^*C\) are those of
+\(CC^*=G(K,L)\).  Apply the sharp orthonormal two-probe bound
+\eqref{R:eq:twobound}.  For unit probes the Gram eigenvalues are
+\(1\pm|\cos\theta|\).
+\end{proof}
+
+There is also a uniform one-probe result on the odd shell sector.
+
+\begin{theorem}[Uniform one-probe coercivity on odd levels]
+\label{N:thm:oddcoercive}
+Let \(K\in\mathfrak K_\tau\) be \(L^2\)-normalized and let
+\[
+ \mathcal H_{\mathrm{odd}}
+ =
+ \widehat{\bigoplus}_{\substack{k\ge1\ {\rm odd}\\\sigma=\pm}}
+ E_{k,\sigma}.
+\]
+Then, for
+\(v\in D(A^{1/2})\cap\mathcal H_{\mathrm{odd}}\),
+\begin{equation}
+ \boxed{
+ 2V_R\|Q(K,v)\|_2^2
+ \ge
+ \frac{1}{18R^2}\|v\|_2^2.
+ }
+ \label{N:eq:oddcoercive}
+\end{equation}
+The constant \(1/(18R^2)\) is sharp.
+\end{theorem}
+
+\begin{proof}
+On \(E_{k,\sigma}\), align \(K\) with a Cartan generator of the
+\(SU(2)_\tau\) factor.  The chiral three-axis response has scalar eigenvalue
+\[
+ d_\tau(k,\sigma)
+ =
+ \frac{\kappa_k}{2}
+ \left(1-\frac{2\tau\sigma}{k+2}\right).
+\]
+For spin \(j_\tau=(k+1+\tau\sigma)/2\), a single axis has squared response
+weights proportional to
+\(m^2/[j_\tau(j_\tau+1)]\).  When \(k\) is odd,
+\(j_\tau\) is half-integer and \(|m|\ge1/2\).  Hence the minimum one-axis
+eigenvalue is
+\[
+ \frac{d_\tau(k,\sigma)}
+      {4j_\tau(j_\tau+1)}
+ =
+ \begin{cases}
+ \dfrac{k^2}{2R^2(k+2)^2},&\tau\sigma=+1,\\[2mm]
+ \dfrac{(k+4)^2}{2R^2(k+2)^2},&\tau\sigma=-1.
+ \end{cases}
+\]
+Over odd \(k\ge1\) and both signs, the minimum is
+\(1/(18R^2)\), attained at \(k=1\) and \(\tau\sigma=+1\).
+Shell orthogonality gives \eqref{N:eq:oddcoercive}.
+\end{proof}
+
+\subsection{Two-probe detection of the full leakage variety}
+
+Let \(W\subset\mathfrak K^\perp\) be a finite-dimensional Stokes-invariant
+candidate reduction and define its bilinear leakage map
+\begin{equation}
+ \mathcal L_W(u,v)
+ :=
+ (I-P_W)Q(u,v),
+ \qquad u,v\in W.
+ \label{N:eq:leakmap}
+\end{equation}
+For an orthonormal basis \(\{e_i\}\) of \(W\), set
+\[
+ \Lambda(W)
+ =
+ \sum_{i,j}\|\mathcal L_W(e_i,e_j)\|_2^2.
+\]
+The symmetric projected convection has no Killing component:
+for every Killing field \(K_0\),
+\begin{equation}
+ \langle Q(u,v),K_0\rangle=0.
+ \label{N:eq:noKillingQ}
+\end{equation}
+Indeed, integration by parts followed by the Killing equation cancels the
+two polarized terms.  Thus every leakage field lies in
+\(\mathfrak K^\perp\).
+
+\begin{theorem}[Two-probe leakage certificate]
+\label{N:thm:leakcertificate}
+Let \(K,L\in\mathfrak K_\tau\) be linearly independent and define
+\begin{align}
+ \Lambda_{K,L}(W)
+ &:=
+ 2V_R\sum_{i,j}
+ \Bigl(
+ \|Q(K,\mathcal L_W(e_i,e_j))\|_2^2
+ \notag\\
+ &\hspace{7em}
+ +\|Q(L,\mathcal L_W(e_i,e_j))\|_2^2
+ \Bigr).
+ \label{N:eq:observedleak}
+\end{align}
+If \(W\) is supported in levels \(k\le K_{\max}\), then
+\begin{equation}
+\begin{aligned}
+ \frac{\lambda_{\min}(G(K,L))}{3R^2}\Lambda(W)
+ &\le
+ \Lambda_{K,L}(W)\\
+ &\le
+ \lambda_{\max}(G(K,L))
+ \kappa_{2K_{\max}}\Lambda(W).
+\end{aligned}
+\label{N:eq:leakequiv}
+\end{equation}
+Consequently,
+\begin{equation}
+ \boxed{
+ \Lambda(W)=0
+ \quad\Longleftrightarrow\quad
+ \Lambda_{K,L}(W)=0.
+ }
+ \label{N:eq:leakzeroequiv}
+\end{equation}
+
+Moreover, if \(\Phi\) is the algebraic leakage section on a product of
+Grassmannians and
+\[
+ \Psi_{K,L}
+ :=
+ \bigl(Q(K,\cdot),Q(L,\cdot)\bigr)\circ\Phi,
+\]
+then at every zero-leakage point
+\begin{equation}
+ \boxed{
+ \ker d\Psi_{K,L}=\ker d\Phi,
+ \qquad
+ \operatorname{rank}d\Psi_{K,L}
+ =
+ \operatorname{rank}d\Phi.
+ }
+ \label{N:eq:tangentvisible}
+\end{equation}
+Thus two Killing-response channels detect not only exact closure but also
+the full infinitesimal deformation geometry of the leakage variety.
+\end{theorem}
+
+\begin{proof}
+Apply \cref{N:thm:angledpair} to each leakage field and sum over \(i,j\).
+This gives the lower bound.  For the upper bound, choose an orthonormal basis
+of \(\operatorname{span}\{K,L\}\).  The largest eigenvalue of \(G(K,L)\)
+bounds the pair response by that orthonormal pair, and the latter is bounded
+by the full six-channel Casimir sum.  Hence
+\[
+\begin{aligned}
+ \Lambda_{K,L}(W)
+ &\le
+ \lambda_{\max}(G(K,L))
+ \sum_{i,j}
+ \bigl\langle
+ A\mathcal L_W(e_i,e_j),\\
+ &\hspace{9em}
+ \mathcal L_W(e_i,e_j)
+ \bigr\rangle.
+\end{aligned}
+\]
+By \cref{N:thm:selection,N:cor:finiteout}, every leakage field is supported
+in levels at most \(2K_{\max}\), yielding the upper estimate.
+
+The response pair is injective on \(\mathfrak K^\perp\), so composing the
+leakage section with it does not change the zero set.  At a zero,
+\(d\Psi_{K,L}\) is the fixed injective response pair composed with \(d\Phi\).
+An injective postcomposition preserves both kernel and rank.
+\end{proof}
+
+\begin{corollary}[One-probe closure test for opposite shell parity]
+\label{N:cor:oneprobeclosure}
+Let
+\[
+ W=L_\alpha\oplus L_\beta,
+ \qquad
+ L_\alpha\subset E_{k_1,\sigma_1},
+ \quad
+ L_\beta\subset E_{k_2,\sigma_2},
+\]
+with \(k_1+k_2\) odd.  For any \(L^2\)-normalized nonzero
+\(K\in\mathfrak K_\tau\), define
+\[
+ \Lambda_K(W)
+ =
+ 2V_R
+ \|Q(K,\mathcal L_W)\|_{\HS}^2.
+\]
+Then
+\begin{equation}
+ \boxed{
+ \frac{1}{18R^2}\Lambda(W)
+ \le
+ \Lambda_K(W)
+ \le
+ \kappa_{k_1+k_2}\Lambda(W),
+ }
+ \label{N:eq:oneprobeclosure}
+\end{equation}
+and hence
+\[
+       W\text{ is exact}
+       \quad\Longleftrightarrow\quad
+       \Lambda_K(W)=0.
+\]
+\end{corollary}
+
+\begin{proof}
+Single-shell terms vanish identically, so only the cross interaction
+\(Q(L_\alpha,L_\beta)\) remains.  By
+\cref{N:thm:selection}, every output shell has odd index because
+\(k_1+k_2\) is odd, and its level is at most \(k_1+k_2\).
+Apply \cref{N:thm:oddcoercive} and the Casimir upper bound.
+\end{proof}
+
+\subsection{The response circle as a master generating object}
+
+Let
+\[
+ \mathscr D_\theta=-i\partial_\theta,
+ \qquad
+ \mathscr L_\theta
+ =
+ \mathscr D_\theta^2-\frac4{R^2}
+ =
+ -\partial_\theta^2-\frac4{R^2}
+\]
+on the circle of length \(2\pi R\), restricted to the high harmonics
+\(|n|\ge3\).  On the Fourier character
+\(e^{i\mu_{k,\sigma}\theta}\),
+\[
+ \mathscr D_\theta=\mu_{k,\sigma},
+ \qquad
+ \mathscr L_\theta=\kappa_k.
+\]
+
+\begin{theorem}[Master response-circle functional calculus]
+\label{N:thm:mastercircle}
+Let \(\Phi_v\) be the operator-valued response characteristic function from
+\cref{R:cf:thm:Fourier}.  Whenever the corresponding moments are finite,
+\begin{align}
+ \boxed{
+ \cC_n(v)
+ =
+ \left.
+ \mathscr D_\theta^n\Phi_v(\theta)
+ \right|_{\theta=0},
+ }
+ \label{N:eq:curljet}\\
+ \boxed{
+ \cM_v^{[s]}
+ =
+ \left.
+ \mathscr L_\theta^s\Phi_v(\theta)
+ \right|_{\theta=0}.
+ }
+ \label{N:eq:stokesjet}
+\end{align}
+For noninteger \(s\), \(\mathscr L_\theta^s\) is the positive Fourier
+multiplier on the high-harmonic subspace.
+
+Define the energy-response characteristic function
+\begin{equation}
+ \mathscr E_v(\theta)
+ :=
+ \mathscr L_\theta^{-1}\Phi_v(\theta),
+ \qquad
+ \varepsilon_v(\theta)
+ :=
+ \tr\mathscr E_v(\theta).
+ \label{N:eq:energycircle}
+\end{equation}
+Then
+\begin{equation}
+ \boxed{
+ \varepsilon_v(\theta)
+ =
+ \sum_{k\ge1,\sigma=\pm}
+ \|v_{k,\sigma}\|_2^2
+ e^{i\sigma(k+2)\theta/R}.
+ }
+ \label{N:eq:energyFourier}
+\end{equation}
+Consequently,
+\begin{align}
+ \|v\|_2^2
+ &=
+ \varepsilon_v(0),
+ \label{N:eq:energyat0}\\
+ \langle \curl^r v,v\rangle
+ &=
+ \left.
+ \mathscr D_\theta^r\varepsilon_v
+ \right|_{\theta=0},
+ \label{N:eq:curlmomenergy}\\
+ \langle A^n v,v\rangle
+ &=
+ \left.
+ \mathscr L_\theta^n\varepsilon_v
+ \right|_{\theta=0},
+ \label{N:eq:stokemomenergy}\\
+ \langle A^n\curl^{-1}v,v\rangle
+ &=
+ \left.
+ \mathscr D_\theta^{-1}
+ \mathscr L_\theta^n\varepsilon_v
+ \right|_{\theta=0}.
+ \label{N:eq:signedmomenergy}
+\end{align}
+Thus the Stokes hierarchy, curl hierarchy, kinetic energy, helicity and
+signed inverse-curl moments are all jets or Fourier multipliers of one
+periodic function.
+\end{theorem}
+
+\begin{proof}
+The Fourier representation
+\[
+ \Phi_v(\theta)
+ =
+ \sum_{k,\sigma}
+ e^{i\mu_{k,\sigma}\theta}\cN_{k,\sigma}
+\]
+and the identities
+\[
+ \mathscr D_\theta e^{i\mu\theta}
+ =
+ \mu e^{i\mu\theta},
+ \qquad
+ \mathscr L_\theta e^{i\mu\theta}
+ =
+ \left(\mu^2-\frac4{R^2}\right)e^{i\mu\theta}
+ =
+ \kappa e^{i\mu\theta}
+\]
+give \eqref{N:eq:curljet}--\eqref{N:eq:stokesjet}.
+Since
+\(\tr\cN_{k,\sigma}=\kappa_k\|v_{k,\sigma}\|_2^2\),
+applying \(\mathscr L_\theta^{-1}\) and taking the trace gives
+\eqref{N:eq:energyFourier}.  The remaining identities are its Fourier
+moments.
+\end{proof}
+
+\subsection{Extreme spectral characters and exact same-shell sectors}
+
+For \(v\neq0\), normalize
+\begin{align}
+ \chi_v(\theta)
+ &:=
+ \frac{\varepsilon_v(\theta)}{\varepsilon_v(0)}
+ =
+ \sum_{k,\sigma}
+ p_{k,\sigma}
+ e^{i\sigma(k+2)\theta/R},
+ \label{N:eq:normalizedenergycircle}\\
+ p_{k,\sigma}
+ &:=
+ \frac{\|v_{k,\sigma}\|_2^2}{\|v\|_2^2}.
+ \label{N:eq:spectralprob}
+\end{align}
+This is a positive-definite function and the characteristic function of a
+probability measure on the allowed signed curl lattice.
+
+\begin{theorem}[Spectral extremality of same-shell exact states]
+\label{N:thm:extreme}
+Within the convex set of normalized energy-response functions
+\eqref{N:eq:normalizedenergycircle}, \(\chi_v\) is an extreme point if and
+only if \(v\) is supported on one signed curl shell.  In that case
+\begin{equation}
+ \boxed{
+ \chi_v(\theta)
+ =
+ e^{i\sigma(k+2)\theta/R},
+ }
+ \label{N:eq:character}
+\end{equation}
+and \(Q(v,v)=0\).
+
+Thus every Grassmannian family
+\(\Gr(d,E_{k,\sigma})\) of exact same-shell reductions is collapsed by
+scalar spectral tomography to the single extreme character
+\eqref{N:eq:character}.
+\end{theorem}
+
+\begin{proof}
+The Fourier coefficients in
+\eqref{N:eq:normalizedenergycircle} form a probability vector.
+The extreme points of a probability simplex are the Dirac masses, hence the
+extreme positive-definite functions are the single characters.  A Dirac
+spectral measure is equivalent to support in one signed shell.  The
+single-shell cancellation then gives \(Q(v,v)=0\).
+\end{proof}
+
+\subsection{Fisher--Rao Stokes selection}
+
+The normalized shell energies reveal a second geometry.  General
+Fisher--Rao gradient-flow theory is independent of the present fluid
+construction \cite{Carrillo2026}; here it arises exactly from Stokes
+spectral decay.
+
+\begin{theorem}[Fisher--Rao spectral selection law]
+\label{N:thm:fisher}
+Consider the linear Stokes evolution
+\[
+       \partial_t v+\nu Av=0
+\]
+and set
+\[
+\begin{aligned}
+ E_\alpha(t)&=\|v_\alpha(t)\|_2^2,\\
+ p_\alpha(t)&=
+ \frac{E_\alpha(t)}{\sum_\beta E_\beta(t)},\\
+ \bar\kappa(t)&=
+ \sum_\alpha p_\alpha(t)\kappa_\alpha.
+\end{aligned}
+\]
+where \(\alpha=(k,\sigma)\).
+Then
+\begin{equation}
+ \boxed{
+ \dot p_\alpha
+ =
+ -2\nu
+ \bigl(\kappa_\alpha-\bar\kappa\bigr)p_\alpha.
+ }
+ \label{N:eq:replicator}
+\end{equation}
+On every finite spectral simplex, if
+\[
+ g_p(\xi,\eta)
+ =
+ \sum_\alpha\frac{\xi_\alpha\eta_\alpha}{p_\alpha}
+\]
+is the Fisher--Rao metric and
+\(\mathcal K(p)=\sum_\alpha\kappa_\alpha p_\alpha\), then
+\begin{equation}
+ \boxed{
+ \dot p=-2\nu\,\operatorname{grad}_{FR}\mathcal K.
+ }
+ \label{N:eq:FRgradient}
+\end{equation}
+Moreover,
+\begin{equation}
+ \boxed{
+ \frac{\dd}{\dd t}\bar\kappa
+ =
+ -2\nu\operatorname{Var}_{p}(\kappa)
+ \le0.
+ }
+ \label{N:eq:meanKdecay}
+\end{equation}
+Equality holds exactly when the normalized energy is supported on one
+Stokes level.
+\end{theorem}
+
+\begin{proof}
+The shell energies satisfy
+\[
+ E_\alpha(t)
+ =
+ E_\alpha(0)e^{-2\nu\kappa_\alpha t}.
+\]
+Differentiating their normalization gives
+\eqref{N:eq:replicator}.  For a tangent vector \(\xi\) with
+\(\sum_\alpha\xi_\alpha=0\),
+\[
+ d\mathcal K[\xi]
+ =
+ \sum_\alpha\kappa_\alpha\xi_\alpha
+ =
+ g_p\!\left(
+ \bigl(p_\alpha(\kappa_\alpha-\bar\kappa)\bigr)_\alpha,
+ \xi
+ \right),
+\]
+which proves \eqref{N:eq:FRgradient}.  Finally,
+\[
+ \dot{\bar\kappa}
+ =
+ -2\nu
+ \sum_\alpha
+ p_\alpha(\kappa_\alpha-\bar\kappa)\kappa_\alpha
+ =
+ -2\nu\operatorname{Var}_{p}(\kappa).
+\]
+\end{proof}
+
+\begin{corollary}[Exact viscous spectral selection]
+\label{N:cor:selection}
+Let \(k_*\) be the smallest active Stokes level and let
+\[
+ P_*(0)
+ =
+ p_{k_*,+}(0)+p_{k_*,-}(0)>0.
+\]
+If \(\Delta\kappa\) is the gap from \(\kappa_{k_*}\) to the next active
+Stokes eigenvalue, then
+\begin{equation}
+ 1-P_*(t)
+ \le
+ \frac{1-P_*(0)}{P_*(0)}
+ e^{-2\nu\Delta\kappa t}.
+ \label{N:eq:selectionrate}
+\end{equation}
+The ratio
+\(p_{k_*,+}(t):p_{k_*,-}(t)\)
+is constant.  Thus viscosity selects the lowest active Stokes
+\emph{level}, but does not by itself equalize or select its two chiralities.
+\end{corollary}
+
+\subsection{Nonlinear response-circle transfer}
+
+The same normalized spectral picture survives the full nonlinear equation as
+an exact decomposition into a viscous gradient term and an energy-conserving
+transfer term.
+
+For a sufficiently regular unforced high-mode solution
+\begin{equation}
+ \partial_t v+\nu Av+Q(v,v)+D(m)v=0,
+ \label{N:eq:highmode}
+\end{equation}
+define
+\begin{equation}
+ \mathcal T_{k,\sigma}
+ :=
+ -2
+ \left\langle
+ \Pi_{k,\sigma}Q(v,v),
+ v_{k,\sigma}
+ \right\rangle
+ \label{N:eq:shelltransfer}
+\end{equation}
+and its response-circle transform
+\begin{equation}
+ \mathcal T_v(\theta)
+ :=
+ \sum_{k,\sigma}
+ \mathcal T_{k,\sigma}
+ e^{i\sigma(k+2)\theta/R}.
+ \label{N:eq:transfercircle}
+\end{equation}
+
+\begin{theorem}[Nonlinear response-circle balance]
+\label{N:thm:nonlinearcircle}
+The energy-response characteristic function
+\(\varepsilon_v\) satisfies
+\begin{equation}
+ \boxed{
+ \partial_t\varepsilon_v
+ =
+ 2\nu
+ \left(
+ \partial_\theta^2+\frac4{R^2}
+ \right)
+ \varepsilon_v
+ +
+ \mathcal T_v.
+ }
+ \label{N:eq:nonlinearcircle}
+\end{equation}
+The nonlinear transfer source obeys the two exact conservation constraints
+\begin{equation}
+ \boxed{
+ \mathcal T_v(0)=0,
+ \qquad
+ \left.
+ \mathscr D_\theta\mathcal T_v
+ \right|_{\theta=0}=0.
+ }
+ \label{N:eq:doublezero}
+\end{equation}
+They are respectively the energy and helicity conservation laws of the
+Euler nonlinearity.
+
+If
+\(E(t)=\|v(t)\|_2^2\) and
+\(p_\alpha=E_\alpha/E\), then
+\begin{equation}
+ \boxed{
+ \dot p_\alpha
+ =
+ -2\nu(\kappa_\alpha-\bar\kappa)p_\alpha
+ +
+ \frac{\mathcal T_\alpha}{E}.
+ }
+ \label{N:eq:gradienttransfer}
+\end{equation}
+Thus normalized spectral dynamics decomposes exactly into a Fisher--Rao
+viscous gradient flow and a zero-sum nonlinear redistribution.  In
+particular,
+\begin{equation}
+ \boxed{
+ \dot{\bar\kappa}
+ =
+ -2\nu\operatorname{Var}_{p}(\kappa)
+ +
+ \frac1E
+ \sum_\alpha\kappa_\alpha\mathcal T_\alpha.
+ }
+ \label{N:eq:meanKnonlinear}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+The Killing drift preserves each signed shell and is skew-adjoint there, so
+it contributes nothing to the shell energies.  Taking the \(L^2\) inner
+product of \eqref{N:eq:highmode} with \(v_{k,\sigma}\) gives
+\[
+ \dot E_{k,\sigma}
+ =
+ -2\nu\kappa_kE_{k,\sigma}
+ +
+ \mathcal T_{k,\sigma}.
+\]
+Fourier summation and
+\[
+ 2\nu
+ \left(\partial_\theta^2+\frac4{R^2}\right)
+ e^{i\mu_{k,\sigma}\theta}
+ =
+ -2\nu\kappa_k
+ e^{i\mu_{k,\sigma}\theta}
+\]
+give \eqref{N:eq:nonlinearcircle}.
+
+The zeroth transfer moment is
+\[
+ \sum_{k,\sigma}\mathcal T_{k,\sigma}
+ =
+ -2\langle Q(v,v),v\rangle
+ =
+ 0.
+\]
+The first signed-curl moment is
+\[
+ \sum_{k,\sigma}
+ \mu_{k,\sigma}\mathcal T_{k,\sigma}
+ =
+ -2\langle Q(v,v),\curl v\rangle
+ =
+ 0,
+\]
+because
+\(\nabla_vv=\gradg(|v|^2/2)-v\times\curl v\):
+the gradient is orthogonal to \(\curl v\) and
+\((v\times\curl v)\cdot\curl v=0\).
+This proves \eqref{N:eq:doublezero}.
+
+Normalize the shell-energy equation by \(E(t)\).  Since the nonlinear
+transfer sums to zero,
+\(\dot E=-2\nu\bar\kappa E\), which gives
+\eqref{N:eq:gradienttransfer}.  Multiplication by \(\kappa_\alpha\) and
+summation gives \eqref{N:eq:meanKnonlinear}.
+\end{proof}
+
+\begin{corollary}[Finite-band conservation factorization]
+\label{N:cor:transferfactor}
+If \(v\) has finite spectral support, write
+\(z=e^{i\theta/R}\).
+Then the Laurent polynomial
+\[
+ P_v(z)
+ =
+ \sum_{k,\sigma}
+ \mathcal T_{k,\sigma}
+ z^{\sigma(k+2)}
+\]
+has a double root at \(z=1\).  Hence
+\begin{equation}
+ \boxed{
+ P_v(z)=(z-1)^2S_v(z)
+ }
+ \label{N:eq:transferfactor}
+\end{equation}
+for another Laurent polynomial \(S_v\).
+\end{corollary}
+
+\subsection{Quantitative information loss under Gram compression}
+
+The two-probe transform is injective, whereas the pure-shell Gram tensor is
+necessarily many-to-one at high shell number.  The chiral trace constraints
+sharpen the dimension obstruction.
+
+\begin{theorem}[Lower bound on Gram-compression fiber dimension]
+\label{N:thm:gramfiber}
+Fix \(k\ge1\) and \(\sigma\), and consider the normalized pure-shell Gram map
+\[
+ \Gamma_{k,\sigma}:
+ \mathbb RP^{d_k-1}
+ \longrightarrow
+ \operatorname{Sym}_6,
+ \qquad
+ [v]\longmapsto
+ \frac{\cM_v}{\|v\|_2^2}.
+\]
+Its image lies in the affine subspace
+\begin{equation}
+\begin{aligned}
+ \mathcal A_{k,\sigma}
+ =
+ \bigl\{
+ M\in\operatorname{Sym}_6:\;&
+ \tr_{\mathfrak K_+}M=d_+^{(k,\sigma)},\\
+ &
+ \tr_{\mathfrak K_-}M=d_-^{(k,\sigma)}
+ \bigr\}.
+\end{aligned}
+\label{N:eq:gramaffine}
+\end{equation}
+which has dimension \(19\).
+
+On every constant-rank stratum of \(\Gamma_{k,\sigma}\), every local fiber
+has dimension at least
+\begin{equation}
+ \boxed{
+ d_k-20
+ =
+ k^2+4k-17.
+ }
+ \label{N:eq:fiberdim}
+\end{equation}
+In particular, for \(k\ge3\) Gram compression loses at least four continuous
+projective degrees of freedom at every regular point of maximal differential
+rank.
+\end{theorem}
+
+\begin{proof}
+The pure-shell chiral partition fixes the two block traces independently
+after normalization by \(\|v\|_2^2\).  Since
+\(\dim\operatorname{Sym}_6=21\), the two independent affine trace
+constraints reduce the ambient dimension to \(19\).
+
+The domain has dimension \(d_k-1\).  On a constant-rank stratum with
+differential rank \(r\le19\), the constant-rank theorem gives local fiber
+dimension
+\[
+       d_k-1-r
+       \ge
+       d_k-20.
+\]
+For \(k=3\), this lower bound is \(24-20=4\), and it increases quadratically
+with \(k\).
+\end{proof}
+
+\begin{corollary}[Exact information ladder on a pure shell]
+\label{N:cor:informationladder}
+For a fixed signed shell \(E_{k,\sigma}\):
+
+\begin{enumerate}[label=(\roman*)]
+\item scalar normalized spectral tomography is constant on
+\(\mathbb RP^{d_k-1}\);
+
+\item normalized Gram compression has local fibers of dimension at least
+\(d_k-20\) on every constant-rank stratum;
+
+\item any two linearly independent same-chirality raw Killing responses are
+injective.
+
+\end{enumerate}
+Thus information loss occurs at compression, not at the Killing-response
+analysis itself.
+\end{corollary}
+
+
+\section{Open problems}
+
+The unified structure isolates several concrete problems.
+
+\begin{enumerate}[label=(\arabic*)]
+\item
+Determine the principal orbit types and singular strata of
+\(\Gr(d,E_{k,\sigma})/SO(4)\), and compute the first nontrivial irreducible
+components of the multi-shell zero-leakage variety.
+
+\item
+Classify when the constant-drift Grassmannian geodesic condition is
+compatible with nontrivial resonance-free shell splitting.
+
+\item
+Determine exact frame bounds for arbitrary nonorthogonal pairs of Killing
+probes and the minimal spatial sampling needed to reconstruct their response
+fields.
+
+\item
+Classify the image and orbit strata of the pure-shell Gram map
+\(v\mapsto\mathscr M_v/\|v\|_2^2\), including extremal spectra and
+cross-chiral ranks.
+
+\item
+Develop stable noisy versions of the finite-band Hankel reconstruction and
+the infinite-band response-circle Fourier inversion.
+
+\item
+Use the nonlinear tensor balance and leakage geometry together to determine
+when cross-shell interaction creates new response spectral rank.
+
+\item
+Find higher \(SO(4)\)-covariants that complement the Gram tensor and
+separate generic isometry orbits inside high signed-curl shells.
+
+\item
+Study persistence of the reduction moduli, response frame, and response
+circle under perturbations of the round metric.
+\end{enumerate}
+
+\section{Conclusion}
+
+The Killing--Beltrami structure on the round three-sphere organizes both the
+exact subsystems of Navier--Stokes flow and the information contained in
+their symmetry responses.
+
+On the reduction side, every subspace of a signed curl shell is an exact
+pressure-linear Navier--Stokes system.  These systems form Grassmannian
+moduli, acquire exact projector dynamics under Killing drift, and extend to
+multi-shell reductions as the zero set of a real-algebraic leakage
+functional.  Constant drift admits an exact geodesic criterion, an explicit
+shell spectrum, finite resonance arithmetic, and special-orthogonal
+transport.
+
+On the reconstruction side, the six Killing responses factor the Stokes
+operator and, after normalization, form a lossless Parseval transform.  Two
+same-chirality probes already determine the complete non-Killing velocity,
+while the one-probe problem has an exact shell-parity law.  Gram compression
+produces a finite-dimensional response geometry; Stokes weighting produces
+a positive moment hierarchy; curl weighting produces a positive
+matrix-valued spectral measure whose periodic characteristic function
+admits exact Fourier inversion.
+
+The common chain is therefore
+\[
+\begin{aligned}
+\text{signed-shell structure}
+&\longrightarrow
+\text{exact reductions}\\
+&\longrightarrow
+\text{Killing transport}\\
+&\longrightarrow
+\text{response tomography}.
+\end{aligned}
+\]
+This is one geometric-spectral theory rather than two independent
+manuscripts.
+
+
+\section*{AI-Assisted Research Method}
+OpenAI ChatGPT (GPT-5.6 Sol) was used as an AI-assisted research tool to
+generate candidate algebraic deductions, test derivation paths, perform
+algebraic consistency checks, and organize targeted literature searches.
+The tool was directed through explicit mathematical prompts specifying the
+relevant hypotheses, operators, and target identities. Candidate statements
+were retained only when supported by explicit derivations in the manuscript
+or by the cited sources; unsupported candidate claims were discarded. The
+authors independently reviewed the retained AI-assisted mathematical claims
+and source attributions and assume full responsibility for their accuracy
+and interpretation.
+
+\begin{acknowledgments}
+In addition to the research-method use disclosed above, OpenAI ChatGPT
+(GPT-5.6 Sol) assisted with manuscript organization and \LaTeX{}
+preparation. The authors remain fully responsible for the accuracy,
+interpretation, and scientific content of the manuscript.
+\end{acknowledgments}
+
+\section*{Data Availability}
+No data were created or analyzed in this study.
+
+\begin{thebibliography}{99}
+
+
+\bibitem{BateninPreeceUnified2026}
+B.~Batenin and A.~Preece,
+``Geometric Reduction, Killing-Response Reconstruction, and Spectral
+Tomography for Navier--Stokes Flow on the Round Three-Sphere,''
+Zenodo, Version 1.0 (2026),
+doi:10.5281/zenodo.22875853.
+
+
+\bibitem{BateninPreeceKB2026}
+B.~Batenin and A.~Preece,
+``Killing--Beltrami Algebra and exact Reductions of Navier--Stokes Flow on
+the Three-Sphere,''
+Zenodo, Version 1.0 (2026),
+doi:10.5281/zenodo.22874017.
+
+\bibitem{BateninPreece2026}
+B.~Batenin and A.~Preece,
+``Finite-Dimensional Spectral Closure and a Relative Forced Singular Branch
+for Navier--Stokes on the Round Three-Sphere,''
+Zenodo, Version 1.0 (2026),
+doi:10.5281/zenodo.22858542.
+
+\bibitem{Bendokat2024}
+T.~Bendokat, R.~Zimmermann, and P.-A. Absil,
+``A Grassmann manifold handbook: basic geometry and computational aspects,''
+Adv. Comput. Math. \textbf{50}, 6 (2024),
+doi:10.1007/s10444-023-10090-8.
+
+\bibitem{BoggarapuThangavelu2016}
+P.~Boggarapu and S.~Thangavelu,
+``Mixed norm estimates for the Riesz transforms on $SU(2)$,''
+Publ. Mat. \textbf{60}, 171--190 (2016),
+doi:10.5565/PUBLMAT\_60116\_06.
+
+\bibitem{BogoyavlenskijFuchssteiner2005}
+O.~I. Bogoyavlenskij and B.~Fuchssteiner,
+``Exact NSE solutions with crystallographic symmetries and no transfer of
+energy through the spectrum,''
+J. Geom. Phys. \textbf{54}, 324--338 (2005),
+doi:10.1016/j.geomphys.2004.10.003.
+
+\bibitem{Buza2023}
+G.~Buza,
+``Spectral Submanifolds of the Navier--Stokes Equations,''
+arXiv:2301.07898 (2023).
+
+
+\bibitem{Carrillo2026}
+J.~A. Carrillo, Y.~Chen, D.~Z. Huang, J.~Huang, and D.~Wei,
+``Fisher--Rao Gradient Flow: Geodesic Convexity and Functional Inequalities,''
+SIAM J. Math. Anal. \textbf{58}, 1062--1099 (2026),
+doi:10.1137/25M176252X.
+
+\bibitem{Capoferri2026}
+M.~Capoferri and D.~Vassiliev,
+``Beyond the Hodge theorem: Curl and asymmetric pseudodifferential projections,''
+J. Lond. Math. Soc. \textbf{113}, e70431 (2026),
+doi:10.1112/jlms.70431.
+
+\bibitem{Edelman1998}
+A.~Edelman, T.~A. Arias, and S.~T. Smith,
+``The geometry of algorithms with orthogonality constraints,''
+SIAM J. Matrix Anal. Appl. \textbf{20}, 303--353 (1998),
+doi:10.1137/S0895479895290954.
+
+\bibitem{EncisoPeraltaSalas2017}
+A.~Enciso and D.~Peralta-Salas,
+``Vortex reconnection in the three dimensional Navier--Stokes equations,''
+Adv. Math. \textbf{309}, 452--486 (2017),
+doi:10.1016/j.aim.2017.01.025.
+
+\bibitem{EncisoReview2023}
+A.~Enciso and D.~Peralta-Salas,
+``Beltrami fields and knotted vortex structures in incompressible fluid
+flows,''
+Bull. Lond. Math. Soc. \textbf{55}, 2819--2845 (2023),
+doi:10.1112/blms.12780.
+
+\bibitem{Fasino1995}
+D.~Fasino,
+``Spectral properties of Hankel matrices and numerical solutions of finite
+moment problems,''
+J. Comput. Appl. Math. \textbf{65}, 145--155 (1995),
+doi:10.1016/0377-0427(95)00108-5.
+
+\bibitem{FrameTowne2023}
+P.~Frame and A.~Towne,
+``Space-time POD and the Hankel matrix,''
+PLoS ONE \textbf{18}, e0289637 (2023),
+doi:10.1371/journal.pone.0289637.
+
+\bibitem{IkedaTaniguchi1978}
+A.~Ikeda and Y.~Taniguchi,
+``Spectra and eigenforms of the Laplacian on $S^n$ and $P^n(\mathbb C)$,''
+Osaka J. Math. \textbf{15}, 515--546 (1978).
+
+\bibitem{KaftalLarsonZhang2009}
+V.~Kaftal, D.~R. Larson, and S.~Zhang,
+``Operator-Valued Frames,''
+Trans. Am. Math. Soc. \textbf{361}, 6349--6385 (2009),
+doi:10.1090/S0002-9947-09-04915-0.
+
+\bibitem{KimseyTrachana2022}
+D.~P. Kimsey and M.~Trachana,
+``On a Solution of the Multidimensional Truncated Matrix-Valued Moment
+Problem,''
+Milan J. Math. \textbf{90}, 17--101 (2022),
+doi:10.1007/s00032-021-00346-7.
+
+\bibitem{LiXu2025}
+D.~Li and Y.~Xu,
+``Phase and norm retrievable operator valued frames,''
+Adv. Oper. Theory \textbf{10}, 82 (2025),
+doi:10.1007/s43036-025-00449-7.
+
+\bibitem{MahalovTitiLeibovich1990}
+A.~Mahalov, E.~S. Titi, and S.~Leibovich,
+``Invariant helical subspaces for the Navier--Stokes equations,''
+Arch. Ration. Mech. Anal. \textbf{112}, 193--222 (1990),
+doi:10.1007/BF00381234.
+
+\bibitem{Minh2016}
+H.~Q. Minh,
+``Operator-Valued Bochner Theorem, Fourier Feature Maps for Operator-Valued
+Kernels, and Vector-Valued Learning,''
+arXiv:1608.05639 (2016).
+
+\bibitem{SamavakiTuomela2020}
+M.~Samavaki and J.~Tuomela,
+``Navier--Stokes equations on Riemannian manifolds,''
+J. Geom. Phys. \textbf{148}, 103543 (2020),
+doi:10.1016/j.geomphys.2019.103543.
+
+\bibitem{Sun2006}
+W.~Sun,
+``G-frames and g-Riesz bases,''
+J. Math. Anal. Appl. \textbf{322}, 437--452 (2006),
+doi:10.1016/j.jmaa.2005.09.039.
+
+\bibitem{SunZalar2026}
+S.~Sun and A.~Zalar,
+``Matrix Fej\'er--Riesz type theorem for a union of an interval and a point,''
+J. Pure Appl. Algebra \textbf{230}, 108173 (2026),
+doi:10.1016/j.jpaa.2026.108173.
+
+\end{thebibliography}
+
+\end{document}

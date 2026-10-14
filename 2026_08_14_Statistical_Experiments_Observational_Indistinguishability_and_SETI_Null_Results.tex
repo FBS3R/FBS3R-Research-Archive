@@ -1,0 +1,1199 @@
+\pdfoutput=1
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[a4paper,margin=2.35cm]{geometry}
+\usepackage{microtype}
+\usepackage{etoolbox}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{booktabs,longtable,array}
+\usepackage{enumitem}
+\usepackage{xurl}
+\usepackage{natbib}
+\usepackage[hidelinks]{hyperref}
+\usepackage{doi}
+
+\newcolumntype{Q}[1]{>{\raggedright\arraybackslash}p{#1}}
+\setlength{\emergencystretch}{3em}
+\setcounter{secnumdepth}{0}
+\setlist{itemsep=0.25\baselineskip,topsep=0.35\baselineskip}
+\AtBeginEnvironment{longtable}{\small}
+\urlstyle{same}
+
+\hypersetup{
+  pdftitle={Statistical Experiments, Observational Indistinguishability, and SETI Null Results},
+  pdfauthor={Andrei Preece and Boris Batenin},
+  pdfsubject={Methodological framework for SETI null-result inference}
+}
+
+\title{Statistical Experiments, Observational Indistinguishability, and SETI Null Results}
+\author{Andrei Preece and Boris Batenin\\
+\small Independent Researchers, Berlin, Germany\\
+\small ORCID: Andrei Preece, \href{https://orcid.org/0009-0004-5978-795X}{0009-0004-5978-795X}\\
+\small ORCID: Boris Batenin, \href{https://orcid.org/0009-0000-7027-8583}{0009-0000-7027-8583}}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Null results in the search for extraterrestrial intelligence (SETI) are often discussed as evidence against abundant technological civilizations. Their force, however, depends on the probability that a specified experiment would have produced a validated event under each population model. We formulate a SETI survey as a statistical experiment on a stratified source-model space. Propagation, measurement, feature extraction, and decision are represented by a typed composition of Markov kernels; detection efficiency is test power at a declared false-alarm constraint. Each experiment thereby induces a pseudometric on source models, separating exact observational equivalence from threshold-based approximate indistinguishability. Population inference follows from thinning a marked point process: the expected detection count is the integral of experimental power against population intensity, and the Poisson null likelihood is obtained as a special case. We also formulate strategic observational indistinguishability as an observer--source minimax problem while distinguishing it from passive weakness and causal disconnection. The framework preserves geometric cosmic-haystack measures only as chart-dependent summaries over declared bounded domains and treats settlement and persistent artifacts through a separate trace-survival branch. Eight formal propositions record the assumptions behind the main inferential steps, and a validation protocol specifies end-to-end injection and recovery, false-alarm calibration, dependence-aware survey combination, hierarchical population inference, and robustness analysis. The result is not a universal resolution of the Fermi question; it is an operational standard for stating exactly which technosignature models a null observation constrains and which remain observationally indistinguishable.
+\end{abstract}
+
+\section{1. Scope and Central Thesis}\label{1-scope-and-central-thesis}
+
+The Fermi question is often compressed into a rhetorical contrast: a Galaxy old enough to host technological life appears silent. That compression hides the inferential object. Observers do not test ``civilizations in general.'' They run finite experiments with selected targets, bands, schedules, sensitivities, pipelines, and decision rules. Each experiment is sensitive to a restricted family of manifestations and can exclude only those population models that predict a sufficiently large probability of a reportable event. \citep{tarter2001,nasa2018,haqqmisra2022,sheikh2020,socasnavarro2021}
+
+Let \(H\) denote a population hypothesis and \(D_e\) the event that experiment \(e\) produces a validated detection. The popular argument becomes empirically forceful only when
+
+\begin{equation}
+P(D_e\mid H) \approx 1.
+\end{equation}
+
+If \(P(D_e\mid H)\) is small, then a null result is expected under \(H\) and carries little evidential weight. The relevant quantity is not merely \(P(H)\) but the likelihood of the observed data under each specified model. A useful analysis must therefore join four components: a population model, a manifestation model, a propagation and persistence model, and an experiment-specific observation-and-decision model.
+
+The central thesis is methodological. SETI nulls are model-dependent outcomes of statistical experiments. Their strength is determined by calibrated detection power, false-alarm control, population exposure, and the identifiability of alternative source models. This thesis dissolves no well-defined physical contradiction by fiat. It replaces an overbroad rhetorical inference with a family of explicit statistical questions.
+
+Three boundaries follow immediately.
+
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  A null radio survey cannot be promoted into a universal statement about optical beacons, waste heat, atmospheric pollutants, probes, artifacts, or settlement histories.
+\item
+  Low detectability is not asserted as a universal fact. Some models---bright, persistent, expansionist, or locally artifact-producing models---can imply high detectability and can be strongly constrained by null observations.
+\item
+  Classical Hart--Tipler arguments require a distinct settlement-and-trace model. Cosmic-haystack incompleteness alone does not answer the absence of visits or durable evidence in the Solar System.
+\end{enumerate}
+
+The contribution is therefore an integrated operational framework. It unifies the logic of composite detection, typed observation kernels, experiment-induced indistinguishability, population-weighted completeness, temporal and causal accessibility, strategic observability, and a validation protocol. The mathematical propositions used below are established results from statistics, information theory, probability, and causal geometry; their value here lies in disciplined application and in the testable research program they generate, not in a claim of priority over those fields.
+
+\section{2. The Fermi Question and the Boundary of the Argument}\label{2-the-fermi-question-and-the-boundary-of-the-argument}
+
+\subsection{2.1 Popular and classical formulations}\label{21-popular-and-classical-formulations}
+
+The popular formulation asks why extraterrestrial technological civilizations are not visible if they are numerous. It tends to merge three propositions: civilizations may exist; some civilizations may produce observable manifestations; and completed searches should have detected those manifestations. These propositions concern different mechanisms. The first concerns origins and population history, the second technology and behavior, and the third survey design and inference. No logical identity connects them.
+
+The classical Hart--Tipler line is more specific. Hart compared the age of the Galaxy with possible settlement times and treated the absence of extraterrestrials on Earth as an empirical fact requiring explanation. Tipler emphasized self-reproducing probes. In these arguments the relevant outcome is not a chance interception of a remote signal but the arrival, survival, or discovery of visits, probes, settlements, or persistent local traces. Their force depends on assumptions about expansion motives, feasibility, continuity, stopping processes, trace survival, and the completeness of searches of Earth and the Solar System. Those assumptions may be defensible in selected models, but they must remain explicit \citep{hart1975,tipler1980,newmansagan1981,olson2015,carrollnellenback2019,sandberg2018,hanson1998,hanson2021}.
+
+The framework developed here therefore separates a signal branch from a settlement-and-artifact branch. Both may share a population model, yet their emission, propagation, persistence, observation, and decision processes differ. Treating them as one generic ``visibility'' variable obscures rather than strengthens inference.
+
+\subsection{2.2 Drake-type expectations and uncertainty}\label{22-drake-type-expectations-and-uncertainty}
+
+The Drake equation is often written \citep{drake1961,cocconimorrison1959}
+
+\begin{equation}
+E[N_{\mathrm{active}}] = R_* f_p n_e f_l f_i f_c L,
+\end{equation}
+
+where \(R_*\) is a formation rate, \(L\) is a lifetime, and the remaining factors are conditional fractions or expected counts. The product is most safely interpreted as an expected number under a stationary model, not as an exact census. The factors can be uncertain by many orders of magnitude and may be correlated. A more general population model replaces the product with a birth-rate, survival, and mark distribution over space-time.
+
+Uncertainty in the abundance of life and uncertainty in detectability are distinct. A wide distribution over the number of civilizations does not by itself determine the expected number of detections. Conversely, even a small population can yield a large expected detection count if each source creates a bright and durable trace. The quantity that connects population assumptions to data is an experiment-specific exposure integral, developed in Section 9 \citep{bryson2021,spiegelturner2012,lacki2016,grimaldi2020,grimaldimarcy2018}.
+
+\subsection{2.3 What counts as a paradox}\label{23-what-counts-as-a-paradox}
+
+There is no formal contradiction among the propositions that civilizations exist, that their detection probability by a specified observer is small, and that no detection has occurred. Tension appears only when a model jointly asserts \(H\), predicts \(P(D_e\mid H)\) close to one, and encounters \(\neg D_e\). The ``paradox'' is therefore attached to a model class rather than to the Universe independently of a model.
+
+This reframing preserves the empirical importance of null results. A precisely defined null may sharply reject a bright-beacon model, a high-duty-cycle transmitter population, a common waste-heat scenario, or an aggressive settlement process. What it rejects is the model that generated a high expected detection rate---not an undefined proposition that ``someone exists somewhere.''
+
+\section{3. Detection as a Composite Event}\label{3-detection-as-a-composite-event}
+
+\subsection{3.1 A conditional chain}\label{31-a-conditional-chain}
+
+A validated technosignature report is a composite event. One useful decomposition distinguishes:
+
+\begin{itemize}
+\item
+  \(C\): a technological civilization or technological process exists;
+\item
+  \(S\): it produces a physical manifestation relevant to the model class;
+\item
+  \(P\): that manifestation propagates or persists into an accessible region;
+\item
+  \(T\): source and observer windows are causally and temporally compatible;
+\item
+  \(I\): the manifestation lies within instrumental sensitivity;
+\item
+  \(R\): the instrument records usable data;
+\item
+  \(A\): the pipeline isolates an anomaly or structured feature;
+\item
+  \(Q\): the candidate is attributed to an artificial source after validation.
+\end{itemize}
+
+For this decomposition,
+
+\begin{equation}
+D = C\cap S\cap P\cap T\cap I\cap R\cap A\cap Q.
+\end{equation}
+
+The chain rule, which does not assume independence, gives
+
+\begin{equation}
+\begin{aligned}
+P(D\mid C) ={}& P(S\mid C) P(P\mid C,S) P(T\mid C,S,P)\\
+&\times P(I\mid C,S,P,T) P(R\mid C,S,P,T,I)\\
+&\times P(A\mid C,S,P,T,I,R) P(Q\mid C,S,P,T,I,R,A).
+\end{aligned}
+\end{equation}
+
+Several moderate conditional probabilities can produce a small joint probability. That observation is structural, not a license to multiply arbitrary numbers. Directionality depends on power, temporal overlap depends on lifetime, algorithmic recovery depends on signal morphology and interference, and attribution depends on the follow-up design. A valid model represents those dependencies.
+
+\subsection{3.2 Nulls, false positives, and action spaces}\label{32-nulls-false-positives-and-action-spaces}
+
+A one-way implication chain is insufficient because false positives create paths to candidate status without a true source. Radio-frequency interference, calibration failures, unknown astrophysical transients, catalog errors, and pipeline artifacts must enter the null model. The terminal state should also be richer than ``detected/not detected.'' A practical action space includes no candidate, automated rejection, human review, follow-up observation, natural or interference attribution, artificial attribution, and unresolved status \citep{sheikh2021}.
+
+Detection is consequently a decision under loss. Missing a real signal, escalating interference, and falsely declaring artificial origin have different costs. The decision rule belongs to the experiment, and detection efficiency is incomplete unless reported with its false-alarm behavior.
+
+\subsection{3.3 Registration, attribution, and understanding}\label{33-registration-attribution-and-understanding}
+
+The following non-implications are essential:
+
+\begin{equation}
+\begin{gathered}
+\text{structure}\not\Rightarrow\text{artificiality},\qquad
+\text{artificiality}\not\Rightarrow\text{message},\\
+\text{message}\not\Rightarrow\text{understanding}.
+\end{gathered}
+\end{equation}
+
+A pipeline may recover a statistically significant pattern yet fail to distinguish engineered origin from an unmodeled natural process. An engineered artifact need not encode a message, and a message need not be decodable by an observer lacking the relevant representational conventions. These levels should be evaluated with task-specific hypotheses, calibrated confusion matrices, and utilities. A universal ``semantic distance'' is neither required nor presently justified.
+
+\section{4. A Typed Model of Technosignatures and Experiments}\label{4-a-typed-model-of-technosignatures-and-experiments}
+
+\subsection{4.1 Stratified source space}\label{41-stratified-source-space}
+
+Different technosignature classes do not share every coordinate. Beam width is meaningful for a directed transmitter but not for a stationary artifact; modulation may be relevant to a radio signal but not to waste heat. A global Cartesian product would create inapplicable coordinates and invite double counting.
+
+Let \(Z\) be a countable set of source or manifestation classes. For each \(z\in Z\), let \(\Theta_z\) be a standard Borel parameter space. The complete source-model space is the disjoint union
+
+\begin{equation}
+\Theta = \bigsqcup_{z\in Z}\{z\}\times\Theta_z.
+\end{equation}
+
+Representative strata include narrowband radio transmitters, broadband or pulsed emissions, optical lasers, industrial atmospheric chemistry, waste heat, stellar-scale engineering, persistent artifacts, mobile probes, and settlement processes \citep{wright2014}. Each stratum may possess its own product structure and, where appropriate, a local smooth structure. No single natural Euclidean metric or finite uniform measure exists across the union.
+
+Let \(\Xi\) denote nuisance and environmental variables such as propagation state, receiver calibration, atmospheric transmission, interference environment, and catalog uncertainty. Let \(\mathcal E\) denote admissible experiment designs: telescope, pointing, schedule, bandwidth, resolution, pipeline, thresholds, and follow-up policy. For each \(e\in\mathcal E\), \((Y_e,\mathcal Y_e)\) is the measurable data space and \(\mathcal A\) the action space.
+
+\subsection{4.2 Markov-kernel composition}\label{42-markov-kernel-composition}
+
+The physical and observational chain is represented by typed stochastic maps \citep{fritz2020,pearl1995}:
+
+\begin{itemize}
+\item
+  \(K^P(dx\mid\theta,\xi)\): propagation or persistence;
+\item
+  \(K^I_e(dy\mid x,\xi)\): instrument and noise;
+\item
+  \(F_e(du\mid y)\): feature extraction, which may be deterministic;
+\item
+  \(\Delta_e(da\mid u)\): decision and follow-up.
+\end{itemize}
+
+The data kernel is
+
+\begin{equation}
+K_e(dy\mid\theta,\xi)
+=\int K^I_e(dy\mid x,\xi)K^P(dx\mid\theta,\xi),
+\end{equation}
+
+and the induced action law is
+
+\begin{equation}
+Q_e(da\mid\theta,\xi)
+=\iiint \Delta_e(da\mid u)F_e(du\mid y)
+K^I_e(dy\mid x,\xi)K^P(dx\mid\theta,\xi).
+\end{equation}
+
+This composition is well typed because every output space matches the next input space. A deterministic transformation is embedded as a Dirac kernel. Unknown nuisance variables are estimated, marginalized under a declared model, or treated robustly; they are not silently counted as ``volume'' in the source space.
+
+\subsection{4.3 Statistical experiment and power}\label{43-statistical-experiment-and-power}
+
+After nuisance treatment, a fixed design \(e\) defines the statistical experiment
+
+\begin{equation}
+\mathsf{Exp}(e)=\left(Y_e,\mathcal Y_e,\{P^e_\theta:\theta\in\Theta\}\right),
+\qquad P^e_\theta(A)=K_e(A\mid\theta).
+\end{equation}
+
+For a test \(\varphi_e:Y_e\to[0,1]\) of a specified null model \(P^e_0\) against an alternative \(P^e_\theta\), define
+
+\begin{equation}
+\alpha_e=E_0[\varphi_e(Y)],\qquad
+\beta_e(\theta)=E_\theta[\varphi_e(Y)].
+\end{equation}
+
+Here \(\alpha_e\) is the false-alarm probability and \(\beta_e(\theta)\) is power, or detection efficiency, at source state \(\theta\) \citep{neymanpearson1933}. A searched region is meaningful only with both thresholds declared:
+
+\begin{equation}
+S_e(\alpha_0,\beta_0)
+=\{\theta\in\Theta:\alpha_e\le\alpha_0,\;\beta_e(\theta)\ge\beta_0\}.
+\end{equation}
+
+This definition avoids the empty claim that every state with a nonzero false-positive probability has been searched. In practice, \(\beta_e\) should be measured through end-to-end injection and recovery over a joint parameter grid, with uncertainty intervals and a documented global false-alarm budget.
+
+\section{5. Experiment-Induced Indistinguishability and Geometry}\label{5-experiment-induced-indistinguishability-and-geometry}
+
+\subsection{5.1 Exact and approximate indistinguishability}\label{51-exact-and-approximate-indistinguishability}
+
+Two source models are exactly indistinguishable under experiment \(e\) when they induce the same probability law:
+
+\begin{equation}
+\theta\sim_e\theta' \quad\Longleftrightarrow\quad P^e_\theta=P^e_{\theta'}.
+\end{equation}
+
+This is a genuine equivalence relation. It partitions the source-model space into classes that the experiment cannot separate with any decision rule based solely on its data.
+
+Let \(d\) be a metric on probability measures, such as total variation or Hellinger distance. Pulling it back through the observation kernel yields
+
+\begin{equation}
+d_e(\theta,\theta')=d(P^e_\theta,P^e_{\theta'}).
+\end{equation}
+
+The function \(d_e\) is a pseudometric on \(\Theta\) and a metric on the quotient \(\Theta/{\sim_e}\). A threshold condition \(d_e(\theta,\theta')\le\delta\) defines a neighborhood or an indistinguishability graph. It is not generally transitive and should not be called an equivalence relation.
+
+For total variation and equal prior odds, the minimum probability of error in testing two simple hypotheses is
+
+\begin{equation}
+R^*=\frac{1-d_{\mathrm{TV}}(P^e_\theta,P^e_{\theta'})}{2}.
+\end{equation}
+
+The expression gives operational meaning to distance: models close in total variation are intrinsically hard to separate in that experiment. Kullback--Leibler divergence is useful for asymptotic information but is asymmetric and may be infinite \citep{kullbackleibler1951}. Fisher--Rao geometry is appropriate only locally on smooth, dominated, identifiable strata \citep{fisher1922,rao1945}, where
+
+\begin{equation}
+g^e_{ij}(\theta)=E_\theta\!\left[
+\partial_i\log p_e(Y\mid\theta)\,
+\partial_j\log p_e(Y\mid\theta)
+\right].
+\end{equation}
+
+It becomes singular in nonidentifiable directions and does not create a global manifold across heterogeneous source classes.
+
+\subsection{5.2 Data processing}\label{52-data-processing}
+
+For any statistical divergence satisfying a data-processing inequality, distinguishability cannot increase under propagation, measurement loss, feature compression, or decision. For example,
+
+\begin{equation}
+d_{\mathrm{TV}}(P^{\mathrm{decision}}_\theta,
+P^{\mathrm{decision}}_{\theta'})
+\le d_{\mathrm{TV}}(P^{\mathrm{features}}_\theta,
+P^{\mathrm{features}}_{\theta'})
+\le d_{\mathrm{TV}}(P^{\mathrm{data}}_\theta,
+P^{\mathrm{data}}_{\theta'}).
+\end{equation}
+
+An algorithm can recover information present in raw data more efficiently than another algorithm, but no downstream processing can create source distinguishability absent from its input. This statement is stronger and safer than a rhetorical chain of non-implications.
+
+\subsection{5.3 Comparing experiments}\label{53-comparing-experiments}
+
+Experiment \(e_2\) Blackwell-dominates \(e_1\) if a Markov kernel \(G\) exists such that \citep{blackwell1953,lecam1986,torgersen1991}
+
+\begin{equation}
+K_{e_1}=K_{e_2}G.
+\end{equation}
+
+Data from \(e_1\) can then be simulated by garbling data from \(e_2\). For every prior and bounded loss, the minimum Bayes risk under \(e_2\) is no larger than under \(e_1\). This provides a prior-independent statement that one experiment is at least as informative as another. When exact dominance fails, Le Cam deficiency, risk envelopes, or a declared expected utility offer partial comparisons.
+
+\subsection{5.4 Why no universal geometric coverage exists}\label{54-why-no-universal-geometric-coverage-exists}
+
+A geometric fraction
+
+\begin{equation}
+\eta_{\mathrm{geom}}
+=\frac{\mu(\Theta_{\mathrm{searched}})}
+{\mu(\Theta_{\mathrm{admissible}})}
+\end{equation}
+
+is defined only after selecting a bounded admissible set and a reference measure with finite, nonzero denominator. It changes under nonlinear reparameterization if the measure is not pushed forward. Frequency, power, duration, distance, and categorical source class also have no natural commensurate scale. Geometric haystack fractions are therefore valuable descriptive summaries of a declared chart---not intrinsic measures of how much of all technosignature possibility has been explored.
+
+The most defensible global language is a stratified measurable source space equipped with physically meaningful population measures and a family of experiment-induced pseudometrics. On smooth identifiable strata, local information geometry may be added. Stronger global geometric claims require additional structure and evidence.
+
+\section{6. Measures of Survey Reach}\label{6-measures-of-survey-reach}
+
+No single scalar answers every design question. At least five distinct quantities should be kept separate (Table~\ref{tab:reach}).
+
+\begin{longtable}[]{@{}Q{0.16\textwidth}Q{0.20\textwidth}Q{0.25\textwidth}Q{0.27\textwidth}@{}}
+\caption{Distinct measures of survey reach and their interpretation.}\label{tab:reach}\\
+\toprule\noalign{}
+Quantity & Definition & Scientific use & Essential qualification \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+Quantity & Definition & Scientific use & Essential qualification \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Detection power & \(\beta_e(\theta)\) & Sensitivity to a specified source & Report with \(\alpha_e\) and uncertainty \\
+Population completeness & \(C_\pi(e)=\int\beta_e(\theta)\pi(d\theta)\) & Probability of detecting a random source under model \(\pi\) & Model dependent but coordinate invariant \\
+Intensity-weighted exposure & \(\lambda_e(\psi)=\int\beta_e(\theta)\Lambda_\psi(d\theta)\) & Expected detections under population hyperparameters \(\psi\) & Requires a population process \\
+Expected information & \(I(\Theta;Y\mid e)\) & Learning-oriented design & Measured in bits or nats, not a coverage fraction \\
+Expected utility & \(E[U(a,\theta)-c(e)]\) & Balances discovery, follow-up, information, and cost & Requires declared actions and utilities \\
+\end{longtable}
+
+For a normalized population distribution \(\pi\), \(C_\pi(e)\) is a prior-predictive detection probability. For a finite population intensity \(\Lambda\),
+
+\begin{equation}
+C_\Lambda(e)=
+\frac{\int\beta_e(\theta)\Lambda(d\theta)}{\Lambda(\Theta)}.
+\end{equation}
+
+A robust minimum \(\inf_{\pi\in\Pi}C_\pi(e)\) is useful only when \(\Pi\) is a justified ambiguity set. If all point masses are allowed, the result usually collapses to \(\inf_\theta\beta_e(\theta)\) and becomes zero. Defensible ambiguity sets may constrain class weights or moments, or form Kullback--Leibler, total-variation, or Wasserstein neighborhoods around a baseline model. Results should be reported as sensitivity envelopes, not as a single supposedly objective number.
+
+Expected Bayesian information gain is
+
+\begin{equation}
+U_{\mathrm{info}}(e)
+=E_{Y\sim m_e}
+\left[D_{\mathrm{KL}}\!\left(\pi(\cdot\mid Y,e)\Vert\pi\right)\right]
+=I(\Theta;Y\mid e),
+\end{equation}
+
+where \(m_e(dy)=\int K_e(dy\mid\theta)\pi(d\theta)\). This quantity may rank experiments differently from raw haystack volume or population completeness \citep{lindley1956,chalonerverdinelli1995}. Such disagreement is informative because the criteria answer different questions.
+
+\section{7. Strategic Observational Indistinguishability}\label{7-strategic-observational-indistinguishability}
+
+\subsection{7.1 Observability as a controlled variable}\label{71-observability-as-a-controlled-variable}
+
+Standard survey models treat the source as passive. Its parameters determine an observation law, but the source does not respond to the observer. A technological agent may instead choose aspects of its own observability. Let \(S\) be a physically admissible strategy set. A strategy may control activity time, location, emitted power, bandwidth, directionality, duty cycle, waste-heat management, computational substrate, motion through noisy environments, or the statistical form of an emitted trace.
+
+The observation law becomes \(P^e_{\theta,s}\). Relative to a background model \(P^e_0\), the residual distinguishability available to experiment \(e\) is
+
+\begin{equation}
+r_e(\theta;S)=\inf_{s\in S}d(P^e_{\theta,s},P^e_0).
+\end{equation}
+
+Three cases should be distinguished.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Exact concealability:} the infimum is attained at zero, so some admissible strategy produces \(P^e_{\theta,s^*}=P^e_0\).
+\item
+  \textbf{Approximate concealability:} the infimum is zero or small, but exact equality is unavailable or unnecessary.
+\item
+  \textbf{Unavoidable distinguishability:} the infimum is bounded below by a positive value for every admissible strategy.
+\end{enumerate}
+
+This is a model of detectability, not evidence that concealment occurs. The strategy set must respect energy conservation, thermodynamics, gravity, material constraints, historical emissions, and the observer's full class of measurements. A large formal strategy set can make any problem vacuous; a physical strategy set makes the claim testable.
+
+\subsection{7.2 Three mechanisms of non-observation}\label{72-three-mechanisms-of-non-observation}
+
+Accidental weak observability, strategic indistinguishability, and causal disconnection have different causes.
+
+\begin{itemize}
+\item
+  \textbf{Accidental weak observability} arises from distance, short lifetime, low power, unfavorable direction, incomplete coverage, or an untrained classifier. No optimization by the source is involved.
+\item
+  \textbf{Strategic statistical indistinguishability} arises when the source selects a strategy that reduces a declared statistical distance between the civilization-present and civilization-absent observation laws.
+\item
+  \textbf{Causal disconnection} arises when the source world-tube does not intersect the causal past of the observing region in a way that can influence the data. The source parameters then do not enter the accessible likelihood at all.
+\end{itemize}
+
+The phrase ``they are hiding'' collapses these mechanisms and should be avoided. Statistical concealment may occur inside a shared causal domain, whereas causal disconnection is a space-time constraint. Weak detectability can occur without intention.
+
+\subsection{7.3 Observer--source game}\label{73-observersource-game}
+
+Let \(\mathcal E_h\) be the class of experiments physically available to an observer at technological horizon \(h\). Define the distinguishability payoff
+
+\begin{equation}
+L(e,s)=d(P^e_{\theta,s},P^e_0).
+\end{equation}
+
+The observer maximizes distinguishability and the source minimizes it. The lower and upper values are
+
+\begin{equation}
+V_-(h)=\sup_{e\in\mathcal E_h}\inf_{s\in S}L(e,s),
+\qquad
+V_+(h)=\inf_{s\in S}\sup_{e\in\mathcal E_h}L(e,s),
+\end{equation}
+
+with \(V_-(h)\le V_+(h)\). If \(V_+(h)=0\), one strategy conceals the source from every available experiment. If \(V_-(h)>0\), the observer has an experiment guaranteeing positive residual distinguishability. If \(V_-(h)=0<V_+(h)\), every individual experiment has a counterstrategy, but no single source strategy works against all experiments.
+
+Minimax equality is not automatic. Strategy and experiment sets may be nonconvex, and the distance may be nonlinear. Compactness, convexification, continuity, and randomization conditions must be checked before claiming a saddle point.
+
+\subsection{7.4 Technological horizon hypothesis}\label{74-technological-horizon-hypothesis}
+
+A restrained form of the strategic hypothesis is relative rather than absolute:
+
+\begin{equation}
+\inf_{s\in S}\sup_{e\in\mathcal E_h}
+d(P^e_{\theta,s},P^e_0)=0
+\end{equation}
+
+may hold for a limited human experiment class \(\mathcal E_h\) even when concealment from all physically possible experiments is impossible. If
+
+\begin{equation}
+\mathcal E_1\subset\mathcal E_2\subset\cdots,
+\end{equation}
+
+a strategy successful against one technological horizon can fail at a later horizon. This yields a dynamic problem: either a source selects a strategy robust to expanding observation classes or adapts as the observer's capabilities change.
+
+The strongest empirical target is a lower bound. If every long-lived technological system with specified computation, energy throughput, and spatial influence must create a minimum detectable disturbance, then strategic invisibility is limited. If no such bound exists under a defensible physical model, the indistinguishable model class remains broad. The research question is thus not whether concealment is rhetorically conceivable but which residual signals are physically unavoidable.
+
+\section{8. Temporal and Causal Contact}\label{8-temporal-and-causal-contact}
+
+\subsection{8.1 One-way temporal overlap}\label{81-one-way-temporal-overlap}
+
+Let \(I_A\) be the interval of emission or trace production by source \(A\), \(I_B\) the interval during which observer \(B\) can receive or inspect the manifestation, and \(T_{AB}\) a constant propagation delay. One-way contact is possible exactly when
+
+\begin{equation}
+(I_A+T_{AB})\cap I_B\ne\varnothing,
+\end{equation}
+
+equivalently \(I_A\cap(I_B-T_{AB})\ne\varnothing\). This elementary condition is necessary, not sufficient: sufficient power, directionality, spectral compatibility, sensitivity, and recognition must still hold. Two-way exchange requires a compatible return path and additional lifetime \citep{horvat2011,grimaldi2018}.
+
+For moving sources, cosmological propagation, or general relativity, a scalar time shift is inadequate. Let \(W_c\) be the source world-tube and \(W_o\) the observing world-tube. A manifestation can influence the observation only if
+
+\begin{equation}
+W_c\cap J^-(W_o)\ne\varnothing,
+\end{equation}
+
+where \(J^-(W_o)\) is the causal past of the observing region. Persistent artifacts require a survival kernel in addition to emission and propagation: a trace created before the observer exists can remain available later even when the source civilization has vanished.
+
+\subsection{8.2 Contact constraints}\label{82-contact-constraints}
+
+The original idea of eight ``contact domains'' is retained as a checklist of measurable constraints, not as an ill-typed intersection of unrelated sets (Table~\ref{tab:contact}).
+
+\begin{longtable}[]{@{}Q{0.15\textwidth}Q{0.33\textwidth}Q{0.40\textwidth}@{}}
+\caption{Operational contact constraints and representative model components.}\label{tab:contact}\\
+\toprule\noalign{}
+Constraint & Operational question & Representative model component \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+Constraint & Operational question & Representative model component \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Causal & Can any influence reach the observing region? & World-tubes, light cones, propagation kernel \\
+Temporal & Do production, survival, and observation windows overlap? & Birth, lifetime, duty cycle, persistence \\
+Energetic & Is flux or physical disturbance large enough? & Luminosity, beaming, attenuation, receiver noise \\
+Spectral or morphological & Does the manifestation occupy modeled channels and forms? & Frequency, bandwidth, drift, pulse shape, chemistry \\
+Instrumental & Can the apparatus resolve and record it? & Sensitivity map, cadence, resolution, calibration \\
+Behavioral & Does the source produce outwardly accessible traces? & Activity and strategy model \\
+Evolutionary & Does the population enter and remain in the relevant state? & Transition and survival model \\
+Interpretive & Can the pipeline distinguish the trace from background? & Hypotheses, classifier, follow-up, loss \\
+\end{longtable}
+
+These constraints are dependent. Power and beam width trade against each other; duration affects both temporal overlap and sensitivity; source evolution shapes emissions; and the interpretive stage depends on the instrument and interference environment. They therefore belong in a joint generative model or probabilistic graph, not in a product of subjective one-dimensional efficiencies.
+
+\subsection{8.3 Persistent artifacts and settlement}\label{83-persistent-artifacts-and-settlement}
+
+Signals and persistent artifacts obey different timing. A short emission requires a compatible reception window, whereas an artifact may remain detectable for a survival time much longer than its producer's active phase. A settlement model also changes the sampling unit: descendants, probes, or engineered environments can form correlated clusters rather than independent sources.
+
+The Hart--Tipler branch should include a settlement process, stopping and regulation mechanisms, trace production, trace survival, and the selection function of surveys of Earth, the Moon, near-Earth space, small bodies, and the outer Solar System. Absence of local evidence is informative only to the extent that those traces would survive and the relevant regions and object classes have been searched with calibrated completeness.
+
+\section{9. Population Models and Null Inference}\label{9-population-models-and-null-inference}
+
+\subsection{9.1 Marked point-process formulation}\label{91-marked-point-process-formulation}
+
+Let potential technosignature sources form a marked Poisson point process on \(\Theta\) with locally finite intensity measure \(\Lambda_\psi\), where \(\psi\) denotes population hyperparameters. Conditional on source state \(\theta\), let experiment \(e\) report the source independently with probability \(\beta_e(\theta)\). Independent thinning gives
+
+\begin{equation}
+N_e\mid\psi\sim\operatorname{Poisson}(\lambda_e(\psi)),
+\qquad
+\lambda_e(\psi)=\int_\Theta\beta_e(\theta)\Lambda_\psi(d\theta).
+\end{equation}
+
+With zero background,
+
+\begin{equation}
+P(N_e=0\mid\psi,e)=
+\exp\!\left[-\int_\Theta\beta_e(\theta)\Lambda_\psi(d\theta)\right].
+\end{equation}
+
+The null constrains the exposure integral, not an abstract count of civilizations. A large population can yield small \(\lambda_e\) if manifestations are rare, brief, narrowly beamed, weak, or poorly recovered. A smaller population can yield large \(\lambda_e\) if traces are bright, durable, and widely distributed.
+
+For a homogeneous rate parameter \(\rho\) and known exposure \(X_e=\int\beta_e(\theta)\mu(d\theta)\), the one-sided upper limit after zero events and zero background is
+
+\begin{equation}
+\rho_{\mathrm{up}}=\frac{-\log\alpha}{X_e},
+\end{equation}
+
+at confidence level \(1-\alpha\). At 95\% confidence, \(-\log(0.05)\approx2.996\). The formula is valid only for the declared Poisson model and known exposure.
+
+\subsection{9.2 Background and efficiency uncertainty}\label{92-background-and-efficiency-uncertainty}
+
+Real searches include background candidates and uncertain efficiency. With background mean \(b_e\) and efficiency calibration parameter \(\zeta\),
+
+\begin{equation}
+P(0\mid\psi,e)=
+\iint\exp\!\left[-b_e-
+\int\beta_e(\theta;\zeta)\Lambda_\psi(d\theta)
+\right]p(db_e,d\zeta).
+\end{equation}
+
+When sources cluster, when one civilization creates many correlated emissions, or when survey opportunities share a latent environment, the Poisson model may fail. Cox processes, cluster processes, or hierarchical source-to-emission models then replace independent thinning. Posterior predictive checks and simulated coverage tests should determine whether the assumed count model is adequate.
+
+\subsection{9.3 Bayesian updating}\label{93-bayesian-updating}
+
+With hyperprior \(p(\psi)\) and data \(y\) \citep{stuart2010},
+
+\begin{equation}
+p(\psi\mid y,e)\propto p(y\mid\psi,e)p(\psi).
+\end{equation}
+
+For a Poisson null,
+
+\begin{equation}
+p(\psi\mid N_e=0,e)
+\propto\exp[-\lambda_e(\psi)]p(\psi).
+\end{equation}
+
+If \(\lambda_e(\psi)\ll1\) throughout the plausible region, the posterior remains close to the prior. If a subset of models predicts \(\lambda_e(\psi)\gg1\), the null strongly suppresses that subset. This is the precise replacement for a binary statement that non-detection either ``proves absence'' or ``means nothing.''
+
+\subsection{9.4 Identifiability}\label{94-identifiability}
+
+A null often constrains a product or integral involving birth rate, abundance, active lifetime, luminosity, duty cycle, beam solid angle, trace persistence, spatial distribution, and survey power. Those factors are not separately identifiable without additional observations or priors. Reporting a bound on one factor while silently fixing the others understates model dependence. Results should present the constrained combination, sensitivity to population assumptions, and any directions of nonidentifiability.
+
+\section{10. Combining Surveys and Choosing Designs}\label{10-combining-surveys-and-choosing-designs}
+
+\subsection{10.1 Dependence across surveys}\label{101-dependence-across-surveys}
+
+For detection indicators \(Z_i\) that are conditionally independent at source state \(\theta\),
+
+\begin{equation}
+P_\theta\!\left(\bigcup_i\{Z_i=1\}\right)
+=1-\prod_i[1-\beta_i(\theta)].
+\end{equation}
+
+Conditional independence can fail because surveys overlap in targets and time, reuse raw data, share interference environments, calibration models, catalogs, or pipelines, and apply a common follow-up decision. In general,
+
+\begin{equation}
+\beta_{\mathrm{joint}}(\theta)
+=1-P_\theta\!\left(\bigcap_i\{Z_i=0\}\right),
+\end{equation}
+
+and the marginal powers alone imply only
+
+\begin{equation}
+\max_i\beta_i(\theta)
+\le\beta_{\mathrm{joint}}(\theta)
+\le\min\!\left(1,\sum_i\beta_i(\theta)\right).
+\end{equation}
+
+Joint likelihoods, inclusion--exclusion with measured intersections, or explicit dependence models are required for exact combination. A global false-alarm budget must be preserved when the union rule ``success in any survey'' is used.
+
+\subsection{10.2 Design under resource constraints}\label{102-design-under-resource-constraints}
+
+Experiment design chooses pointing, dwell time, cadence, bandwidth, resolution, threshold, pipeline, and follow-up under telescope time, computation, storage, and opportunity cost. A general objective is
+
+\begin{equation}
+e^*=\arg\max_{e\in\mathcal E}
+E[U(a,\theta)-c(e)].
+\end{equation}
+
+Possible utilities emphasize different goals: probability of at least one validated detection, population completeness, information about hyperparameters, robustness to prior uncertainty, anomaly discovery, or follow-up value. Optimizing raw geometric volume can be inefficient if it allocates exposure to regions with negligible source probability, poor discriminability, or overwhelming background.
+
+Sequential designs are especially relevant. A first-stage survey may maximize broad anomaly recall, while follow-up experiments maximize discrimination among natural, interference, and artificial models. The value of a candidate is therefore not exhausted by a binary detection decision; it includes the expected value of the next observation.
+
+\section{11. Unknown Classes and the Interpretive Boundary}\label{11-unknown-classes-and-the-interpretive-boundary}
+
+Every parameter space is conditioned by current concepts. It contains known parameters of known classes and perhaps uncertain parameters of known classes, but it cannot enumerate all unknown manifestation classes. A defensible program therefore combines targeted tests with anomaly-sensitive methods.
+
+Anomaly detection is not a substitute for a null model. It requires a reference distribution, an out-of-distribution score, calibration, and a follow-up policy. A system trained only on known signals and known interference can fail silently on unfamiliar morphologies. Validation should include withheld, deliberately novel signal families and measure not only recall but abstention, false attribution, and the stability of rankings under distribution shift.
+
+The operational alphabet of an experiment is the set of distinctions that its sensor and pipeline can reliably register, isolate, classify, and connect to hypotheses. A manifestation may be physically present while absent from that alphabet. Enlarging the alphabet may require a new instrument, an uncompressed data product, a less restrictive feature map, or a decision rule that retains unresolved candidates.
+
+Artificial attribution should remain probabilistic. Historical candidate analyses such as BLC1 illustrate how structured signals can survive several filters and still be resolved as terrestrial interference only through detailed follow-up and population-level comparisons. A credible claim must report the competing natural and instrumental hypotheses, calibration of the classifier, and the evidence required to move from anomaly to artificial origin.
+
+\section{12. Validation and Reproducibility Protocol}\label{12-validation-and-reproducibility-protocol}
+
+The framework becomes scientific only when its observation kernels and power surfaces are tied to data. The minimum reproducibility protocol has six layers.
+
+\subsection{12.1 Experiment declaration}\label{121-experiment-declaration}
+
+The release must record target-selection rules, pointings, schedules, dwell times, beam models, frequency and time resolution, searched drift rates or morphology ranges, thresholds, flagged regions, calibration versions, and the full candidate and follow-up policy. The population unit and the source-class stratum must be explicit.
+
+\subsection{12.2 End-to-end injection and recovery}\label{122-end-to-end-injection-and-recovery}
+
+Synthetic or hardware-injected signals should span a joint grid of sky position, received flux or equivalent isotropic radiated power, frequency, drift, bandwidth, duration, duty cycle, directionality, and morphology. Injection must occur sufficiently early in the pipeline to include every loss mechanism under study. Recovery labels produce an estimate of \(\beta_e(\theta)\) with binomial or hierarchical uncertainty. Published SETI pipelines and surveys provide concrete test beds for this protocol \citep{enriquez2017,price2020,margot2023,tremblaytingay2020,wlodarczyksroka2020,ma2023,pinchukmargot2022}.
+
+One-dimensional efficiency curves are insufficient when parameters interact. The public result should be a joint completeness surface or a reproducible emulator, together with its valid domain, interpolation rule, and calibration uncertainty.
+
+\subsection{12.3 False alarms and attribution}\label{123-false-alarms-and-attribution}
+
+Off-source, scrambled, time-shifted, or otherwise valid background data should measure \(\alpha_e\) and the distribution of anomaly scores. Threshold selection must account for the number of trials. Candidate classification should report a confusion matrix, probability calibration, abstention behavior, and outcomes of follow-up observations.
+
+\subsection{12.4 Population inference}\label{124-population-inference}
+
+The calibrated power surface is integrated against declared population models. Simulations should include distributions of luminosity, lifetime, beam solid angle, duty cycle, birth rate, and spatial history. Inference code must be tested by simulation-based calibration, frequentist coverage checks where applicable, and posterior predictive checks under both null and injected-candidate datasets.
+
+\subsection{12.5 Cross-survey combination}\label{125-cross-survey-combination}
+
+The release must identify overlapping targets, observing windows, raw data, catalogs, interference conditions, pipeline components, and follow-up resources. Shared systematics are modeled or bounded. Results should compare the joint model with the naive independence formula and quantify the resulting bias.
+
+\subsection{12.6 Persistent trace and settlement branch}\label{126-persistent-trace-and-settlement-branch}
+
+For artifacts and settlement, validation requires a different selection function: searched volume, object-size and albedo sensitivity, surface-retention or degradation models, orbital and dynamical completeness, geological preservation, and inspection probability. Agent-based settlement simulations should be coupled to trace survival and survey completeness rather than compared directly with radio exposure.
+
+The recommended computational program is summarized in Table~\ref{tab:validation}.
+
+\begin{longtable}[]{@{}Q{0.25\textwidth}Q{0.31\textwidth}Q{0.32\textwidth}@{}}
+\caption{Validation studies, required outputs, and the primary failure mode tested.}\label{tab:validation}\\
+\toprule\noalign{}
+Study & Required output & Primary failure tested \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+Study & Required output & Primary failure tested \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+End-to-end injection--recovery & Joint \(\beta_e(\theta)\) with uncertainty & Unmeasured pipeline loss \\
+Geometric versus power-weighted comparison & Competing survey rankings & Misleading volume fraction \\
+Hierarchical point-process simulation & Calibrated posterior or interval under nulls and candidates & Invalid population inference \\
+Correlated survey combination & Joint likelihood and dependence bounds & Double counting and shared systematics \\
+Light-cone simulation & Contact probabilities for transient signals and persistent traces & Oversimplified temporal overlap \\
+Robust-prior analysis & Posterior and upper-limit envelopes & Fragile prior dependence \\
+Blackwell or Le Cam comparison & Dominance or deficiency estimate in a simplified model & Unprincipled design ranking \\
+Budget-constrained optimization & Reproducible optimal design and sensitivity analysis & Maximizing the wrong objective \\
+Unknown-class stress test & Recall, abstention, and attribution under novel morphologies & Closed-world classifier failure \\
+Settlement-and-artifact simulation & Trace abundance, survival, and survey completeness & Conflating signal SETI with Hart--Tipler evidence \\
+\end{longtable}
+
+\section{13. Formal Results}\label{13-formal-results}
+
+The propositions in this section are specialized statements of standard results. They make the framework auditable and identify exactly which assumptions support each inference.
+
+\subsection{13.1 Thinning and the null likelihood}\label{131-thinning-and-the-null-likelihood}
+
+\textbf{Proposition 1.} Let sources form a Poisson point process on a standard Borel space \(\Theta\) with locally finite intensity \(\Lambda_\psi\). Conditional on source state \(\theta\), retain the source independently with measurable probability \(\beta_e(\theta)\). The detected sources form a Poisson point process with intensity \(\beta_e\Lambda_\psi\), and
+
+\begin{equation}
+P(N_e=0\mid\psi)=
+\exp\!\left[-\int_\Theta\beta_e(\theta)\Lambda_\psi(d\theta)\right].
+\end{equation}
+
+\textbf{Proof.} Independent thinning of a Poisson process preserves Poisson counts on measurable disjoint sets. For a set \(A\), the retained count has mean \(\int_A\beta_e\,d\Lambda_\psi\). Taking \(A=\Theta\) gives the stated count distribution and null probability. \(\square\)
+
+\subsection{13.2 Data-processing bound}\label{132-data-processing-bound}
+
+\textbf{Proposition 2.} Let two source models pass through a composition of Markov kernels. Any \(f\)-divergence that satisfies data processing, including total variation, cannot increase at a downstream stage.
+
+\textbf{Proof.} For one Markov kernel, contraction follows from the data-processing inequality. Applying the inequality successively to propagation, instrument, feature, and decision kernels yields the chain of bounds. \(\square\)
+
+\subsection{13.3 Quotient geometry}\label{133-quotient-geometry}
+
+\textbf{Proposition 3.} If \(d\) is a metric on probability measures, then \(d_e(\theta,\theta')=d(P^e_\theta,P^e_{\theta'})\) is a pseudometric on \(\Theta\). The zero-distance relation is an equivalence relation, and \(d_e\) descends to a metric on \(\Theta/{\sim_e}\).
+
+\textbf{Proof.} Nonnegativity, symmetry, and the triangle inequality are inherited through the pullback. The triangle inequality makes the zero-distance relation transitive. If representatives are replaced by zero-distance alternatives, another application of the triangle inequality leaves the quotient distance unchanged. \(\square\)
+
+\subsection{13.4 Blackwell monotonicity}\label{134-blackwell-monotonicity}
+
+\textbf{Proposition 4.} If \(K_{e_1}=K_{e_2}G\) for a Markov kernel \(G\), then for every prior and bounded loss the minimum Bayes risk under \(e_2\) is no greater than under \(e_1\).
+
+\textbf{Proof.} Every decision rule available after \(e_1\) can be implemented after \(e_2\) by first applying \(G\) and then applying the same rule. The admissible rule set for \(e_2\) therefore contains a simulation of every rule for \(e_1\), so its infimum risk cannot be larger. \(\square\)
+
+\subsection{13.5 Union of surveys}\label{135-union-of-surveys}
+
+\textbf{Proposition 5.} If detection indicators are conditionally independent given \(\theta\), the probability of at least one detection is \(1-\prod_i(1-\beta_i(\theta))\). Without independence it lies between \(\max_i\beta_i(\theta)\) and \(\min(1,\sum_i\beta_i(\theta))\).
+
+\textbf{Proof.} The first statement follows from the complement rule and conditional independence. The general lower and upper bounds are the elementary union bounds. \(\square\)
+
+\subsection{13.6 Temporal overlap}\label{136-temporal-overlap}
+
+\textbf{Proposition 6.} For emission interval \(I_A\), reception interval \(I_B\), and constant delay \(T\), one-way temporal compatibility holds if and only if \((I_A+T)\cap I_B\ne\varnothing\).
+
+\textbf{Proof.} There exists \(t\in I_A\) with \(t+T\in I_B\) exactly when \(t\in I_A\cap(I_B-T)\). \(\square\)
+
+\subsection{13.7 Coordinate dependence of naive volume}\label{137-coordinate-dependence-of-naive-volume}
+
+\textbf{Proposition 7.} A ratio of Lebesgue volumes assigned independently in two nonlinear coordinate systems is not invariant.
+
+\textbf{Proof.} Let \(\theta\in[0,1]\) and take the searched set \([0,1/2]\). Its naive uniform fraction is \(1/2\). Under \(u=\theta^2\), the image is \([0,1/4]\) inside \([0,1]\) and has naive uniform fraction \(1/4\). Invariance is recovered only by pushing the measure forward with the Jacobian. \(\square\)
+
+\subsection{13.8 Attainment of robust completeness}\label{138-attainment-of-robust-completeness}
+
+\textbf{Proposition 8.} Let \(\Pi\) be a convex weakly compact set of probability measures and \(\beta\) bounded and continuous. Then \(\inf_{\pi\in\Pi}\int\beta\,d\pi\) is attained.
+
+\textbf{Proof.} Integration against a bounded continuous function is continuous under weak convergence. A continuous functional on a compact set attains its minimum. \(\square\)
+
+\section{14. Scientific Interpretation}\label{14-scientific-interpretation}
+
+\subsection{14.1 What a null can establish}\label{141-what-a-null-can-establish}
+
+A null result can exclude source populations that would almost certainly have produced a validated outcome under the declared experiment. It can set upper limits on the intensity of a specified transmitter class, suppress high-duty-cycle or high-luminosity regions of a population model, disfavor common persistent artifacts above a calibrated threshold, or challenge settlement models that predict abundant surviving local traces.
+
+Its force increases with calibrated power, low and controlled false-alarm probability, broad population exposure, robustness to nuisance uncertainty, and identifiability of the population parameters. Its force decreases when the expected count is small, the power surface is guessed rather than measured, priors dominate the exposure, or several population factors remain confounded.
+
+\subsection{14.2 What a null cannot establish by itself}\label{142-what-a-null-cannot-establish-by-itself}
+
+A finite null cannot exclude manifestations outside its class, sources outside its causal or instrumental domain, strategic models that are genuinely indistinguishable under the experiment, or unknown classes that the pipeline maps into background. It cannot by itself determine separate values of abundance, lifetime, luminosity, directionality, and duty cycle when only their exposure-weighted combination enters the likelihood.
+
+These limits are not reasons for pessimism. They specify how to improve an experiment: enlarge the class of measurements, retain more informative data, reduce garbling, calibrate joint power, diversify channels, and target models whose competing observation laws are well separated.
+
+\subsection{14.3 Relation to established literature}\label{143-relation-to-established-literature}
+
+The cosmic-haystack program established the multidimensional incompleteness of SETI searches \citep{tarter2001,wright2018,sheikh2020}. Modern radio surveys report explicit sensitivity and transmitter-rate limits, while injection--recovery work measures losses in real pipelines. Bayesian SETI analyses connect nulls to population assumptions, and work on temporal coverage emphasizes that emitting and observing epochs must overlap.
+
+The statistical language used here is established: Neyman--Pearson testing defines power under false-alarm control; Blackwell and Le Cam compare experiments; inverse-problem theory treats identifiability; Kullback--Leibler, Fisher--Rao, and Bayesian design quantify information; Markov kernels provide type-safe stochastic composition. The defensible contribution is the integrated application of these tools across heterogeneous technosignature classes, strategic source behavior, and the signal-versus-artifact boundary. Any stronger novelty claim requires a new theorem, calibrated computational method, or empirical result.
+
+\subsection{14.4 Research sequence}\label{144-research-sequence}
+
+The highest-value sequence is:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  build a typed generative model for one source class and one published survey;
+\item
+  measure the joint power surface and false-alarm behavior through end-to-end injections;
+\item
+  fit a hierarchical point-process model with calibration uncertainty;
+\item
+  combine overlapping surveys without double counting;
+\item
+  compare candidate designs by utility, information, or Blackwell/Le Cam criteria;
+\item
+  extend the procedure across source strata;
+\item
+  develop the settlement-and-artifact branch with its own trace-survival and survey-completeness model.
+\end{enumerate}
+
+Only after this quantitative core exists should the framework be used for broad claims about the Fermi question.
+
+\section{15. Limitations}\label{15-limitations}
+
+The framework has substantive limits.
+
+First, the source classes are constructed from present concepts and may omit unknown physical manifestations. Anomaly methods reduce but do not eliminate this closed-world limitation.
+
+Second, population distributions, strategic motives, and technological trajectories are uncertain. Robustness analysis can expose sensitivity but cannot manufacture knowledge absent from data.
+
+Third, factorized efficiency models are generally unsafe. Detection stages share latent variables, and survey combinations share systematic errors. Joint injection and dependence modeling are resource intensive.
+
+Fourth, exact concealment against a broad experiment class is an exceptionally strong condition. Waste heat, momentum transfer, gravitational influence, material extraction, or historical emissions may impose lower bounds on observability. The strategic theory remains a hypothesis until those bounds and admissible strategies are physically modeled.
+
+Fifth, causal disconnection is not a universal galactic explanation. Civilizations in one Galaxy and persisting for long intervals can enter one another's light cones. Causal arguments require specific world-lines, horizons, and histories.
+
+Sixth, persistent artifacts and settlement cannot be assessed with signal-search metrics alone. Geological loss, orbital dynamics, object detection, and inspection selection functions may dominate.
+
+Seventh, mutual information, Fisher information, population completeness, and geometric volume measure different properties. Combining them under one label hides their units and assumptions.
+
+Finally, the propositions in Section 13 are standard mathematical results. A publication-level claim of novelty must arise from their nontrivial extension, a new calibrated method, a real survey analysis, or a new physical lower bound---not from renaming established concepts.
+
+\section{16. Conclusion}\label{16-conclusion}
+
+The Fermi question becomes scientifically tractable when the observation process is made explicit. A civilization, a remotely accessible manifestation, a causally compatible path, an instrumentally recoverable signal, and an artificial attribution are different events. Their relationship is probabilistic and model dependent.
+
+A SETI program is therefore best treated as a statistical experiment defined on a stratified source-model space. Markov kernels describe propagation and measurement; a decision rule supplies power and false-alarm behavior; observation laws induce a pseudometric of experimental distinguishability; and a population intensity connects survey power to the expected number of detections. Nulls then update models through a likelihood rather than through a global rhetorical inference.
+
+Strategic behavior adds a further possibility: observability may be controlled by the source. The resulting observer--source game distinguishes passive weakness, deliberate statistical matching, and causal disconnection. It does not prove concealment, but it identifies the physical lower bounds and experiment classes that must be studied before concealment can be excluded.
+
+The central question is consequently not ``where is everyone?'' in the abstract. It is: which explicit populations and manifestations would our experiments probably have detected, which remain indistinguishable, and what new experiment most efficiently separates the surviving models? That question preserves the depth of the Fermi problem while placing every inference within a measurable domain.
+
+
+
+\section{Appendix A. Notation}\label{appendix-a-notation}
+
+Table~\ref{tab:notation} collects the symbols used throughout the manuscript.
+
+\begin{longtable}[]{@{}Q{0.25\textwidth}Q{0.63\textwidth}@{}}
+\caption{Notation used in the statistical-experiment framework.}\label{tab:notation}\\
+\toprule\noalign{}
+Symbol & Meaning \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+Symbol & Meaning \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\(Z\) & Countable set of technosignature or trace classes \\
+\(\Theta_z\) & Parameter space for class \(z\) \\
+\(\Theta=\bigsqcup_z\{z\}\times\Theta_z\) & Stratified source-model space \\
+\(\Xi\) & Nuisance and environmental state space \\
+\(\mathcal E\) & Admissible experiment designs \\
+\((Y_e,\mathcal Y_e)\) & Measurable data space for design \(e\) \\
+\(\mathcal A\) & Action and follow-up space \\
+\(K^P\) & Propagation or persistence kernel \\
+\(K^I_e\) & Instrument and noise kernel \\
+\(F_e\) & Feature kernel or deterministic feature map \\
+\(\Delta_e\) & Decision kernel \\
+\(P^e_\theta\) & Data law induced by source model \(\theta\) under \(e\) \\
+\(\alpha_e\) & False-alarm probability \\
+\(\beta_e(\theta)\) & Detection power or efficiency at source state \(\theta\) \\
+\(d_e\) & Experiment-induced pseudometric \\
+\(\pi\) & Normalized population or epistemic distribution \\
+\(\Lambda_\psi\) & Population intensity measure with hyperparameters \(\psi\) \\
+\(\lambda_e(\psi)\) & Expected number of detections \\
+\(S\) & Physically admissible source strategies \\
+\(V_-,V_+\) & Lower and upper values of the observer--source game \\
+\(J^-,J^+\) & Causal past and causal future \\
+\end{longtable}
+
+\section{Appendix B. Model Scenarios}\label{appendix-b-model-scenarios}
+
+The framework covers, without equating, several representative scenarios.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Rare, powerful, approximately isotropic emissions:} low source intensity and high conditional power.
+\item
+  \textbf{Frequent, weak emissions:} high source intensity and low individual power; stacking and population methods may dominate.
+\item
+  \textbf{Narrowly directed beacons:} high power inside a small solid angle and a severe pointing-overlap constraint.
+\item
+  \textbf{Incidental leakage:} broad or complex morphology, low received flux, and strong dependence on technological history.
+\item
+  \textbf{Short technological windows:} high sensitivity to birth time, lifetime, duty cycle, and observing cadence.
+\item
+  \textbf{Persistent artifacts:} survival and search completeness replace simultaneous emission as the main timing constraint.
+\item
+  \textbf{Large-scale energy use:} astrophysical background models and quantitative upper limits dominate semantic arguments.
+\item
+  \textbf{Strategically managed emissions:} the source strategy enters the likelihood and is constrained by physical lower bounds.
+\item
+  \textbf{Unknown manifestations:} an open-set detection and abstention model supplements targeted searches.
+\item
+  \textbf{Settlement and probes:} a correlated diffusion or branching process produces traces whose survival and local search selection must be modeled.
+\end{enumerate}
+
+\section{Appendix C. Data Release Checklist}\label{appendix-c-data-release-checklist}
+
+\begin{itemize}
+\item
+  Target catalog and selection function.
+\item
+  Pointings, beam response, schedules, cadence, and dwell times.
+\item
+  Frequency, time, spatial, and spectral resolution.
+\item
+  Sensitivity and calibration maps with uncertainty.
+\item
+  Searched drift rates, bandwidths, durations, duty cycles, and morphology ranges.
+\item
+  Flagged data, interference masks, trial counts, and threshold rules.
+\item
+  Background samples, candidate table, rejection reasons, and follow-up outcomes.
+\item
+  Injection definitions, random seeds, locations, amplitudes, and recovery labels.
+\item
+  Pipeline and model versions, feature transforms, classifier calibration, and abstention rule.
+\item
+  Reproducible code for the joint power surface and uncertainty model.
+\item
+  Population priors or intensities, hyperparameters, and sensitivity analyses.
+\item
+  Overlap and dependence metadata for every combined survey.
+\item
+  Posterior predictive checks, simulation-based calibration, and interval coverage tests.
+\item
+  For artifacts: search volume, object properties, retention, degradation, and orbital selection.
+\end{itemize}
+
+\section{Appendix D. Evidence Standard}\label{appendix-d-evidence-standard}
+
+A complete empirical claim based on a null result should state, in ordinary scientific language:
+
+\begin{quote}
+In the declared target population, observing window, parameter domain, source model, noise and interference model, and decision procedure, no validated event exceeded the stated threshold. The power surface, false-alarm behavior, exposure integral, calibration uncertainty, and population assumptions define the model class constrained by that null.
+\end{quote}
+
+The claim should then report the likelihood or interval for the relevant population parameters, the dependence on priors and nuisance models, and the classes to which the result does not apply. Global phrases such as ``the Universe is silent'' should be reserved for communication and never substitute for the actual statistical statement.
+
+\begin{thebibliography}{44}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Blackwell(1953)]{blackwell1953}
+David Blackwell.
+\newblock Equivalent comparisons of experiments.
+\newblock \emph{The Annals of Mathematical Statistics}, 24:\penalty0 265--272,
+  1953.
+
+\bibitem[Bryson et~al.(2021)]{bryson2021}
+Steve Bryson et~al.
+\newblock The occurrence of rocky habitable-zone planets around solar-like
+  stars from {Kepler} data.
+\newblock \emph{The Astronomical Journal}, 161:\penalty0 36, 2021.
+\newblock \doi{10.3847/1538-3881/abc418}.
+
+\bibitem[Carroll-Nellenback et~al.(2019)Carroll-Nellenback, Frank, Wright, and
+  Scharf]{carrollnellenback2019}
+Jonathan Carroll-Nellenback, Adam Frank, Jason~T. Wright, and Caleb Scharf.
+\newblock The {Fermi} paradox and the {Aurora} effect: Exo-civilization
+  settlement, expansion, and steady states.
+\newblock \emph{The Astronomical Journal}, 158:\penalty0 117, 2019.
+\newblock \doi{10.3847/1538-3881/ab31a3}.
+
+\bibitem[Chaloner and Verdinelli(1995)]{chalonerverdinelli1995}
+Kathryn Chaloner and Isabella Verdinelli.
+\newblock Bayesian experimental design: A review.
+\newblock \emph{Statistical Science}, 10:\penalty0 273--304, 1995.
+
+\bibitem[Cocconi and Morrison(1959)]{cocconimorrison1959}
+Giuseppe Cocconi and Philip Morrison.
+\newblock Searching for interstellar communications.
+\newblock \emph{Nature}, 184:\penalty0 844--846, 1959.
+\newblock \doi{10.1038/184844a0}.
+
+\bibitem[Drake(1961)]{drake1961}
+Frank~D. Drake.
+\newblock Project {Ozma}.
+\newblock \emph{Physics Today}, 14\penalty0 (4):\penalty0 40--46, 1961.
+\newblock \doi{10.1063/1.3057500}.
+
+\bibitem[Enriquez et~al.(2017)]{enriquez2017}
+J.~Emilio Enriquez et~al.
+\newblock The {Breakthrough Listen} search for intelligent life: 1.1--1.9 {GHz}
+  observations of 692 nearby stars.
+\newblock \emph{The Astrophysical Journal}, 849:\penalty0 104, 2017.
+\newblock \doi{10.3847/1538-4357/aa8d1b}.
+
+\bibitem[Fisher(1922)]{fisher1922}
+Ronald~A. Fisher.
+\newblock On the mathematical foundations of theoretical statistics.
+\newblock \emph{Philosophical Transactions of the Royal Society A},
+  222:\penalty0 309--368, 1922.
+
+\bibitem[Fritz(2020)]{fritz2020}
+Tobias Fritz.
+\newblock A synthetic approach to {Markov} kernels, conditional independence
+  and theorems on sufficient statistics.
+\newblock \emph{Advances in Mathematics}, 370:\penalty0 107239, 2020.
+\newblock \doi{10.1016/j.aim.2020.107239}.
+
+\bibitem[Grimaldi(2020)]{grimaldi2020}
+Claudio Grimaldi.
+\newblock Demography of galactic technosignatures.
+\newblock \emph{Monthly Notices of the Royal Astronomical Society},
+  500:\penalty0 2950--2961, 2020.
+\newblock \doi{10.1093/mnras/staa3323}.
+
+\bibitem[Grimaldi and Marcy(2018)]{grimaldimarcy2018}
+Claudio Grimaldi and Geoffrey~W. Marcy.
+\newblock Bayesian approach to {SETI}.
+\newblock \emph{Proceedings of the National Academy of Sciences}, 115:\penalty0
+  E11195--E11203, 2018.
+\newblock \doi{10.1073/pnas.1808578115}.
+
+\bibitem[Grimaldi et~al.(2018)Grimaldi, Marcy, Tellis, and Drake]{grimaldi2018}
+Claudio Grimaldi, Geoffrey~W. Marcy, Nathaniel~K. Tellis, and Frank Drake.
+\newblock Area coverage of expanding {E.T.} signals in the galaxy: {SETI} and
+  {Drake}'s $n$.
+\newblock \emph{Publications of the Astronomical Society of the Pacific},
+  130:\penalty0 024201, 2018.
+\newblock \doi{10.1088/1538-3873/aa9d19}.
+
+\bibitem[Hanson(1998)]{hanson1998}
+Robin Hanson.
+\newblock The great filter---are we almost past it?, 1998.
+\newblock Unpublished essay.
+
+\bibitem[Hanson et~al.(2021)Hanson, Martin, McCarter, and Paulson]{hanson2021}
+Robin Hanson, Daniel Martin, Calvin McCarter, and Jonathan Paulson.
+\newblock If loud aliens explain human earliness, quiet aliens are also rare.
+\newblock \emph{The Astrophysical Journal}, 922:\penalty0 182, 2021.
+\newblock \doi{10.3847/1538-4357/ac2369}.
+
+\bibitem[Haqq-Misra et~al.(2022)]{haqqmisra2022}
+Jacob Haqq-Misra et~al.
+\newblock Searching for technosignatures in exoplanetary systems.
+\newblock \emph{Acta Astronautica}, 198:\penalty0 194--207, 2022.
+\newblock \doi{10.1016/j.actaastro.2022.05.040}.
+
+\bibitem[Hart(1975)]{hart1975}
+Michael~H. Hart.
+\newblock An explanation for the absence of extraterrestrials on earth.
+\newblock \emph{Quarterly Journal of the Royal Astronomical Society},
+  16:\penalty0 128--135, 1975.
+
+\bibitem[Horvat et~al.(2011)Horvat, Naki{\'c}, and Oto{\v c}an]{horvat2011}
+Martin Horvat, An{\v z}e Naki{\'c}, and Ivan Oto{\v c}an.
+\newblock Impact of technological synchronicity on prospects for {CETI}, 2011.
+\newblock URL \url{https://arxiv.org/abs/1112.0423}.
+
+\bibitem[Kullback and Leibler(1951)]{kullbackleibler1951}
+Solomon Kullback and Richard~A. Leibler.
+\newblock On information and sufficiency.
+\newblock \emph{The Annals of Mathematical Statistics}, 22:\penalty0 79--86,
+  1951.
+
+\bibitem[Lacki(2016)]{lacki2016}
+Brian~C. Lacki.
+\newblock The log log prior for the frequency of extraterrestrial
+  intelligences, 2016.
+\newblock URL \url{https://arxiv.org/abs/1609.05931}.
+
+\bibitem[Le~Cam(1986)]{lecam1986}
+Lucien Le~Cam.
+\newblock \emph{Asymptotic Methods in Statistical Decision Theory}.
+\newblock Springer, New York, 1986.
+
+\bibitem[Lindley(1956)]{lindley1956}
+Dennis~V. Lindley.
+\newblock On a measure of the information provided by an experiment.
+\newblock \emph{The Annals of Mathematical Statistics}, 27:\penalty0 986--1005,
+  1956.
+
+\bibitem[Ma et~al.(2023)]{ma2023}
+Peter~X. Ma et~al.
+\newblock A deep-learning search for technosignatures from 820 nearby stars.
+\newblock \emph{Nature Astronomy}, 7:\penalty0 492--503, 2023.
+\newblock \doi{10.1038/s41550-022-01872-z}.
+
+\bibitem[Margot et~al.(2023)]{margot2023}
+Jean-Luc Margot et~al.
+\newblock A search for technosignatures around 11,680 stars with the {Green
+  Bank Telescope} at 1.15--1.73 {GHz}.
+\newblock \emph{The Astronomical Journal}, 166:\penalty0 206, 2023.
+\newblock \doi{10.3847/1538-3881/acf1f3}.
+
+\bibitem[{NASA Technosignatures Workshop Participants}(2018)]{nasa2018}
+{NASA Technosignatures Workshop Participants}.
+\newblock {NASA} and the search for technosignatures, 2018.
+\newblock URL \url{https://arxiv.org/abs/1812.08681}.
+
+\bibitem[Newman and Sagan(1981)]{newmansagan1981}
+William~I. Newman and Carl Sagan.
+\newblock Galactic civilizations: Population dynamics and interstellar
+  diffusion.
+\newblock \emph{Icarus}, 46:\penalty0 293--327, 1981.
+\newblock \doi{10.1016/0019-1035(81)90135-4}.
+
+\bibitem[Neyman and Pearson(1933)]{neymanpearson1933}
+Jerzy Neyman and Egon~S. Pearson.
+\newblock On the problem of the most efficient tests of statistical hypotheses.
+\newblock \emph{Philosophical Transactions of the Royal Society A},
+  231:\penalty0 289--337, 1933.
+
+\bibitem[Olson(2015)]{olson2015}
+S.~Jay Olson.
+\newblock Homogeneous cosmology with aggressively expanding civilizations.
+\newblock \emph{Classical and Quantum Gravity}, 32:\penalty0 215025, 2015.
+\newblock \doi{10.1088/0264-9381/32/21/215025}.
+
+\bibitem[Pearl(1995)]{pearl1995}
+Judea Pearl.
+\newblock Causal diagrams for empirical research.
+\newblock \emph{Biometrika}, 82:\penalty0 669--688, 1995.
+\newblock \doi{10.1093/biomet/82.4.669}.
+
+\bibitem[Pinchuk and Margot(2022)]{pinchukmargot2022}
+Pavlo Pinchuk and Jean-Luc Margot.
+\newblock A machine-learning search for narrowband technosignatures in the
+  {Green Bank Telescope} observations of 31 sun-like stars.
+\newblock \emph{The Astronomical Journal}, 163:\penalty0 76, 2022.
+\newblock \doi{10.3847/1538-3881/ac426f}.
+
+\bibitem[Price et~al.(2020)]{price2020}
+Danny~C. Price et~al.
+\newblock The {Breakthrough Listen} search for intelligent life: Observations
+  of 1327 nearby stars over 1.10--3.45 {GHz}.
+\newblock \emph{The Astronomical Journal}, 159:\penalty0 86, 2020.
+\newblock \doi{10.3847/1538-3881/ab65f1}.
+
+\bibitem[Rao(1945)]{rao1945}
+C.~Radhakrishna Rao.
+\newblock Information and the accuracy attainable in the estimation of
+  statistical parameters.
+\newblock \emph{Bulletin of the Calcutta Mathematical Society}, 37:\penalty0
+  81--91, 1945.
+
+\bibitem[Sandberg et~al.(2018)Sandberg, Drexler, and Ord]{sandberg2018}
+Anders Sandberg, Eric Drexler, and Toby Ord.
+\newblock Dissolving the {Fermi} paradox, 2018.
+\newblock URL \url{https://arxiv.org/abs/1806.02404}.
+
+\bibitem[Sheikh(2020)]{sheikh2020}
+Sofia~Z. Sheikh.
+\newblock Nine axes of merit for technosignature searches.
+\newblock \emph{International Journal of Astrobiology}, 19:\penalty0 237--243,
+  2020.
+\newblock \doi{10.1017/S1473550419000284}.
+
+\bibitem[Sheikh et~al.(2021)]{sheikh2021}
+Sofia~Z. Sheikh et~al.
+\newblock Analysis of the {Breakthrough Listen} signal of interest {blc1} with
+  a technosignature verification framework.
+\newblock \emph{Nature Astronomy}, 5:\penalty0 1153--1162, 2021.
+\newblock \doi{10.1038/s41550-021-01508-8}.
+
+\bibitem[Socas-Navarro et~al.(2021)]{socasnavarro2021}
+H{\'e}ctor Socas-Navarro et~al.
+\newblock Concepts for future missions to search for technosignatures.
+\newblock \emph{Acta Astronautica}, 182:\penalty0 446--453, 2021.
+\newblock \doi{10.1016/j.actaastro.2021.02.029}.
+
+\bibitem[Spiegel and Turner(2012)]{spiegelturner2012}
+David~S. Spiegel and Edwin~L. Turner.
+\newblock Bayesian analysis of the astrobiological implications of life's early
+  emergence on earth.
+\newblock \emph{Proceedings of the National Academy of Sciences}, 109:\penalty0
+  395--400, 2012.
+\newblock \doi{10.1073/pnas.1111694108}.
+
+\bibitem[Stuart(2010)]{stuart2010}
+Andrew~M. Stuart.
+\newblock Inverse problems: A bayesian perspective.
+\newblock \emph{Acta Numerica}, 19:\penalty0 451--559, 2010.
+\newblock \doi{10.1017/S0962492910000061}.
+
+\bibitem[Tarter(2001)]{tarter2001}
+Jill Tarter.
+\newblock The search for extraterrestrial intelligence ({SETI}).
+\newblock \emph{Annual Review of Astronomy and Astrophysics}, 39:\penalty0
+  511--548, 2001.
+\newblock \doi{10.1146/annurev.astro.39.1.511}.
+
+\bibitem[Tipler(1980)]{tipler1980}
+Frank~J. Tipler.
+\newblock Extraterrestrial intelligent beings do not exist.
+\newblock \emph{Quarterly Journal of the Royal Astronomical Society},
+  21:\penalty0 267--281, 1980.
+
+\bibitem[Torgersen(1991)]{torgersen1991}
+Erik Torgersen.
+\newblock \emph{Comparison of Statistical Experiments}.
+\newblock Cambridge University Press, Cambridge, 1991.
+
+\bibitem[Tremblay and Tingay(2020)]{tremblaytingay2020}
+Chenoa~D. Tremblay and Steven~J. Tingay.
+\newblock A {SETI} survey of the {Vela} region using the {Murchison Widefield
+  Array}.
+\newblock \emph{Publications of the Astronomical Society of Australia},
+  37:\penalty0 e035, 2020.
+\newblock \doi{10.1017/pasa.2020.27}.
+
+\bibitem[{W{\l}odarczyk-Sroka} et~al.(2020){W{\l}odarczyk-Sroka}, Garrett, and
+  Siemion]{wlodarczyksroka2020}
+Bartlomiej~S. {W{\l}odarczyk-Sroka}, Michael~A. Garrett, and Andrew P.~V.
+  Siemion.
+\newblock Extending the {Breakthrough Listen} nearby star survey to other
+  stellar objects in the field.
+\newblock \emph{Monthly Notices of the Royal Astronomical Society},
+  498:\penalty0 5720--5729, 2020.
+\newblock \doi{10.1093/mnras/staa2672}.
+
+\bibitem[Wright et~al.(2014)Wright, Griffith, Sigurdsson, Povich, and
+  Mullan]{wright2014}
+Jason~T. Wright, Roger~L. Griffith, Steinn Sigurdsson, Matthew~S. Povich, and
+  Brendan Mullan.
+\newblock The {G} infrared search for extraterrestrial civilizations with large
+  energy supplies. {II}. framework, strategy, and first result.
+\newblock \emph{The Astrophysical Journal}, 792:\penalty0 27, 2014.
+\newblock \doi{10.1088/0004-637X/792/1/27}.
+
+\bibitem[Wright et~al.(2018)Wright, Kanodia, and Lubar]{wright2018}
+Jason~T. Wright, Shubham Kanodia, and Emily Lubar.
+\newblock How much {SETI} has been done? finding needles in the $n$-dimensional
+  cosmic haystack.
+\newblock \emph{The Astronomical Journal}, 156:\penalty0 260, 2018.
+\newblock \doi{10.3847/1538-3881/aae099}.
+
+\end{thebibliography}
+
+\end{document}

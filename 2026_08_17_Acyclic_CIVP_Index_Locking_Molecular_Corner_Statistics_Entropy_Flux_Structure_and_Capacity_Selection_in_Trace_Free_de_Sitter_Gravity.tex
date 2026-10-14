@@ -1,0 +1,2718 @@
+
+\documentclass[aps,prd,preprint,nofootinbib,superscriptaddress]{revtex4-2}
+
+\usepackage{amsmath,amssymb,amsthm,mathtools,bm}
+\usepackage{enumitem}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{criterion}[theorem]{Criterion}
+\newtheorem{nogotheorem}[theorem]{No-go theorem}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\Ind}{\operatorname{Ind}}
+\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\rankop}{\operatorname{rank}}
+\newcommand{\Spec}{\operatorname{Spec}}
+\newcommand{\ev}{\operatorname{ev}}
+\newcommand{\id}{\operatorname{id}}
+\newcommand{\UV}{\mathrm{UV}}
+\newcommand{\cI}{\mathfrak I}
+\newcommand{\cE}{\mathcal E}
+\newcommand{\cH}{\mathcal H}
+\newcommand{\cO}{\mathcal O}
+\newcommand{\PP}{\lambda_*}
+\newcommand{\dd}{\mathrm d}
+\newcommand{\ind}{\operatorname{ind}}
+\newcommand{\CP}{\mathbb{CP}}
+\newcommand{\Conf}{\operatorname{Conf}}
+\newcommand{\UConf}{\operatorname{UConf}}
+\newcommand{\Fib}{\mathrm{Fib}}
+\newcommand{\Corr}{\mathrm{Corr}}
+
+\begin{document}
+
+\title{Acyclic CIVP--Index Locking, Molecular Corner Statistics, Entropy--Flux Structure, and Capacity Selection in Trace-Free de Sitter Gravity}
+
+\author{Andrei Preece}
+\affiliation{Independent Researcher, Berlin, Germany}
+\author{Boris Batenin}
+\affiliation{Independent Researcher, Berlin, Germany}
+
+\date{August 2026}
+
+\begin{abstract}
+We develop an invariant formulation of a proposed sector-selection mechanism for trace-free de Sitter gravity at intersecting null boundaries.  The construction is organized around localized molecular quanta of the null area measure (embadons), the quantum characteristic initial-value problem (CIVP), a finite holomorphic carrier on $\CP^1$, finite-index operator algebra, and a single reduced ultraviolet sector measure.  The aim is not to fit or predict the observed cosmological constant.  It is to determine exactly which parts of the locking mechanism follow from mathematics and which require independent physical certificates.
+
+The molecular null geometry begins with a positive atomic area measure and its unordered configuration space.  This separates support number from area weight, produces the bosonic permutation quotient, and yields one collective area-conjugate mode together with relative shape modes.  Equality of the two atomic measures on the common cut of a double-null CIVP fixes the collision-safe molecular divisor up to permutation.  Independently, for $K_q=H^0(\CP^1,\cO(q-1))$, the molecular evaluation problem is controlled by the residual complex $R\Gamma(\CP^1,\cO(q-1)(-Z))$; it is acyclic exactly when the divisor degree equals the index-space dimension.  Equality with geometric area capacity additionally requires unit molecular weights.
+
+We then distinguish the finite carrier from the finite-index defect.  A Berry--Kirillov line over the round fuzzy-sphere carrier has degree $N-1$ and Dolbeault index $N$, while a Capelli--Harish--Chandra reconstruction supplies an independent rank-sensitive route from central data.  Neither the matrix rank nor the continuous supertranslation semigroup is itself a Jones index: divisibility, invariant-subalgebra, and matrix-tower no-go theorems exclude these shortcuts.  If a correctly typed finite-index defect nevertheless satisfies the strict Pimsner--Popa window $1/3<\lambda_*<1/2$, the small-index spectrum forces $\Ind=\varphi^2$ and the $A_4$/Fibonacci standard-invariant branch under the stated hypotheses.
+
+Finally, a positive primitive sequence $\cI_q^{\UV}$ derived from one reduced molecular measure defines the selector.  Its second logarithmic difference is the complete invariant modulo affine sector reweighting; strict discrete convexity and one adjacent sign change give a unique sector, while topology-dependent Casimir deformations admit exact stability bounds.  Finite-index entropy enters additively: a possible physical bridge is $\Delta S_{\rm gen}=\log\Ind$, not $\Delta\log Q=\log\Ind$.  The resulting de Sitter map is purely kinematic until the five independent physical certificates identified in the paper are derived.
+\end{abstract}
+
+\maketitle
+
+\section{Introduction}
+\label{sec:intro}
+
+The gravitational data carried by a codimension-two cut are not exhausted by the bulk equations.  Corner symmetries, null edge modes, and their quantum representations organize physical information attached to subregions and characteristic boundaries.  Matrix regularizations of spherical corner algebras, quantum-corner representations, molecular null geometry, and the recent operator-algebraic quantization of the double-null characteristic initial-value problem (CIVP) provide several concrete realizations of this principle \cite{FreidelGeillerPranzetti2020,DonnellyFreidelMoosavianSperanza2023,CiambelliKowalskiVarrin2025,CiambelliFreidelLeigh2024,CiambelliKlinger2026}.
+
+The present work asks a narrower question than ``quantize gravity.''  Suppose a compact null cut carries a normalized area capacity, an atomic molecular description, a finite holomorphic carrier, and a reduced fixed-sector quantum measure.  Which equalities among these objects are mathematical identities, which are consequences of operator-algebraic classification, and which remain independent physical identifications?
+
+The distinction is essential because the same integer or scalar can occur in several unrelated types.  We use
+\begin{align}
+q_{\rm can} &:= \frac{A}{4\ell_P^2}\in\mathbb R_{>0},
+\\
+N_{\rm emb} &:= \deg Z_{\rm emb}\in\mathbb Z_{\ge0},
+\\
+q_{\rm ind} &:= \ind\bar\partial_L=\dim H^0(\CP^1,L)\in\mathbb Z_{>0},
+\quad L\simeq\cO(q_{\rm ind}-1),
+\\
+N_{\rm Berry} &:= \dim V_N\in\mathbb Z_{>0},
+\\
+I_J &:= \Ind(X)\in\mathbb R_{\ge1}.
+\end{align}
+Before a locking theorem is proved, these symbols are not interchangeable.  In particular, the support count of an atomic area measure is not the total area, the dimension of a finite carrier is not a Jones index, and a finite-index statistical dimension is not a geometric shell spacing.
+
+The construction has three independent vertical lines.  The first is molecular:
+\begin{equation}
+\text{atomic null area}
+\longrightarrow
+Z_{\rm emb}
+\longrightarrow
+N_{\rm emb},\;\gamma_i.
+\label{eq:intro-molecular}
+\end{equation}
+The second is representation-theoretic:
+\begin{equation}
+\text{CIVP data}
+\longrightarrow
+V_N\ {\rm or}\ K_q
+\longrightarrow
+q_{\rm ind},N_{\rm Berry},
+\label{eq:intro-carrier}
+\end{equation}
+with a separate finite-index branch
+\begin{equation}
+\text{CIVP channel correspondence}
+\longrightarrow
+X
+\longrightarrow
+I_J.
+\label{eq:intro-index}
+\end{equation}
+The third is statistical:
+\begin{equation}
+\text{one reduced UV measure}
+\longrightarrow
+\cI_q^{\UV}
+\longrightarrow
+Z_q^{\UV}
+\longrightarrow
+q_*.
+\label{eq:intro-selector}
+\end{equation}
+
+The main results are therefore reduction and obstruction theorems.  The molecular support is locked to the $\CP^1$ index precisely by acyclicity of a residual evaluation complex.  Unit molecular area weights are a distinct condition.  The finite fuzzy-sphere carrier supplies an integral Berry line but cannot itself be the desired Pimsner--Popa defect.  The raw positive supertranslation semigroup cannot carry a nontrivial multiplicative finite Jones index if represented endomorphically and functorially.  A strict finite-index window, if physically obtained, rigidly forces the golden index.  The UV selector has a complete quotient calculus, but its absolute location requires the unreduced linear datum of a single microscopic measure.
+
+Two corrections are imposed throughout and are not optional conventions.  First, the generalized entropy $S_{\rm gen}$ is additive, so a finite-index entropy bridge, if derived, must take the form
+\begin{equation}
+\Delta S_{\rm gen}=\log\Ind(X),
+\label{eq:intro-entropy}
+\end{equation}
+rather than a multiplicative law for the already entropic variable $A/(4\ell_P^2)$.  Second, once a physical integer capacity is selected, four-dimensional de Sitter kinematics gives
+\begin{equation}
+R_q=\ell_P\sqrt{\frac q\pi},
+\qquad
+\Lambda_q=\frac{3\pi}{q\ell_P^2},
+\label{eq:intro-ds}
+\end{equation}
+without a separate shell intercept.
+
+The paper is organized so that every arrow can be removed without changing the type of the remaining objects.  Sections~\ref{sec:tracefree}--\ref{sec:gluing} define the trace-free and molecular CIVP data.  Section~\ref{sec:cp1} proves the acyclic evaluation lock.  Sections~\ref{sec:carrier} and \ref{sec:capelli} develop two independent finite-carrier diagnostics.  Sections~\ref{sec:divisible}--\ref{sec:index} isolate the finite-index obstruction and golden window.  Section~\ref{sec:fib} records the $A_4$/Fibonacci structure without identifying it with the molecular count.  Sections~\ref{sec:selector} and \ref{sec:topology} establish the UV selector and its topology response.  Sections~\ref{sec:entropy}--\ref{sec:consistency} give entropy--flux and independent consistency tests.  The final closure theorem states exactly five physical certificates and no more.
+
+\section{Trace-free gravity, de Sitter capacity, and the global mode}
+\label{sec:tracefree}
+
+We take the local gravitational equation in trace-free form,
+\begin{equation}
+R_{\mu\nu}-\frac14Rg_{\mu\nu}
+=
+8\pi G\left(
+T_{\mu\nu}-\frac14Tg_{\mu\nu}
+\right).
+\label{eq:tf}
+\end{equation}
+It is invariant under
+\begin{equation}
+T_{\mu\nu}\mapsto T_{\mu\nu}+c\,g_{\mu\nu}
+\label{eq:vacshift}
+\end{equation}
+for constant $c$.  Assuming local stress-tensor conservation, the contracted Bianchi identity yields
+\begin{equation}
+\dd(R+8\pi G T)=0.
+\label{eq:globalmode}
+\end{equation}
+On each connected component, $R+8\pi G T$ is therefore a global integration mode.  We denote the corresponding constant by $\Lambda_{\rm int}$ after conventional normalization.
+
+\begin{proposition}[Local vacuum-shift kernel]
+The trace-free local equation and the null focusing source descend to the same pure-trace equivalence class
+\begin{equation}
+[T_{\mu\nu}]
+=
+\{T_{\mu\nu}+c g_{\mu\nu}:c\in\mathbb R\}.
+\end{equation}
+A constant vacuum shift is invisible to both the local trace-free curvature equation and the null contraction $T_{\mu\nu}k^\mu k^\nu$.
+\end{proposition}
+
+\begin{proof}
+Equation~\eqref{eq:tf} is manifestly unchanged by Eq.~\eqref{eq:vacshift}.  For null $k^\mu$, $g_{\mu\nu}k^\mu k^\nu=0$, so the same shift drops out of $T_{\mu\nu}k^\mu k^\nu$.
+\end{proof}
+
+This local quotient does not determine the global integration mode in Eq.~\eqref{eq:globalmode}.  In particular, $\Lambda_{\rm int}$ is not a Jones index, a molecular charge, or a topological degree.
+
+For a four-dimensional de Sitter horizon,
+\begin{equation}
+A=4\pi R^2,\qquad R^2=\frac3\Lambda.
+\label{eq:dsrelations}
+\end{equation}
+Define the geometric capacity
+\begin{equation}
+q_{\rm can}:=\frac{A}{4\ell_P^2},
+\qquad \ell_P^2=G\hbar.
+\label{eq:qcan}
+\end{equation}
+Then
+\begin{equation}
+q_{\rm can}=\frac{\pi R^2}{\ell_P^2}
+=\frac{3\pi}{\Lambda\ell_P^2}.
+\label{eq:dscapacity}
+\end{equation}
+
+\begin{proposition}[Exact de Sitter capacity map]
+For every positive capacity $q$ identified with Eq.~\eqref{eq:qcan},
+\begin{equation}
+R_q=\ell_P\sqrt{\frac q\pi},
+\qquad
+\Lambda_q=\frac{3\pi}{q\ell_P^2}.
+\label{eq:dsmap}
+\end{equation}
+\end{proposition}
+
+No quantization statement occurs in this proposition.  It is a kinematic map from a selected capacity to de Sitter geometry.  A theory predicts a cosmological sector only if it selects $q$ independently of the observed value of $\Lambda$.
+
+For the smooth Euclidean de Sitter saddle $S^4$, one additionally has the standard semiclassical identities
+\begin{equation}
+q_{\rm dS}
+=
+\frac{3\pi}{G\hbar\Lambda}
+=
+\frac{\rho_\Lambda V_4}{\hbar}
+=
+-\frac{I_E}{\hbar}
+=
+S_{\rm GH},
+\label{eq:ds-global-identity}
+\end{equation}
+with the conventional Einstein saddle normalization.  Equation~\eqref{eq:ds-global-identity} is useful as a global consistency relation, but it must not be counted several times as independent entropy, action, and state-degeneracy input.
+
+\section{Molecular null geometry and embadons}
+\label{sec:embadon}
+
+The molecular null-geometry construction localizes the positive area measure of a cut into elementary contributions \cite{CiambelliFreidelLeigh2024}.  We write
+\begin{equation}
+\widehat\Omega(z)
+=
+\sum_{i=1}^{N_{\rm emb}}
+\widehat\Omega_i\,
+\delta^{(2)}(z-z_i).
+\label{eq:embadonmeasure}
+\end{equation}
+The localized geometric units will be called \emph{embadons}.  The terminology is secondary; the primary object is the positive atomic measure.
+
+For distinct support points, the physically unordered configuration space is
+\begin{equation}
+\UConf_N(\mathcal C)
+=
+\Conf_N(\mathcal C)/S_N.
+\label{eq:uconf}
+\end{equation}
+The quotient immediately explains why a factorial can occur in a molecular sector measure.
+
+\begin{theorem}[Bosonic molecular quotient]
+\label{thm:bosonicquotient}
+Let the lifted action and measure on $\Conf_N(\mathcal C)$ be permutation invariant, and let $S_N$ act freely on the distinct-point locus.  Then
+\begin{equation}
+\int_{\UConf_N(\mathcal C)}
+\dd\mu\,e^{-S}
+=
+\frac1{N!}
+\int_{\Conf_N(\mathcal C)}
+\dd\widetilde\mu\,e^{-S}.
+\label{eq:bosonicquotient}
+\end{equation}
+\end{theorem}
+
+The theorem is elementary, but its typing matters.  The factor $1/N!$ is a quotient of a molecular configuration measure.  It is not automatically the same factorial that appears when a fixed-rank determinantal point process is written in ordered coordinates.
+
+Normalize each atomic area by
+\begin{equation}
+\gamma_i:=\frac{\Omega_i}{4\ell_P^2}.
+\label{eq:gamma}
+\end{equation}
+Then the geometric capacity is
+\begin{equation}
+q_{\rm can}
+=
+\frac1{4\ell_P^2}\int_{\mathcal C}\Omega
+=
+\sum_{i=1}^{N_{\rm emb}}\gamma_i.
+\label{eq:weightedcapacity}
+\end{equation}
+Consequently
+\begin{equation}
+\frac{q_{\rm can}}{N_{\rm emb}}
+=
+\bar\gamma,
+\qquad
+\bar\gamma:=\frac1{N_{\rm emb}}\sum_i\gamma_i.
+\label{eq:avgweight}
+\end{equation}
+
+\begin{nogotheorem}[Support is not area]
+\label{thm:supportnotarea}
+The atomic decomposition~\eqref{eq:embadonmeasure} does not imply
+$q_{\rm can}=N_{\rm emb}$.  The equality holds only if the mean normalized weight satisfies $\bar\gamma=1$, and pointwise unit capacity requires the stronger condition $\gamma_i=1$ for all constituents.
+\end{nogotheorem}
+
+This separation is the first locking gate.  A support count can become a geometric capacity only after a physical weight theorem.
+
+\subsection{Collective and relative corner modes}
+
+In the spin-zero molecular sector, the corner symplectic form takes the sum-of-rays form
+\begin{equation}
+\Omega^{(0)}_{\rm can}
+=
+-\frac1{8\pi G}
+\sum_{i=1}^{N}
+\int
+\delta\mu_i(v)\wedge\delta\Omega_i(v)\,\dd v,
+\label{eq:molecularsymp}
+\end{equation}
+with $\mu_i$ conjugate to the corresponding area density along the null generator.  In normalized variables
+\begin{equation}
+n_i=\frac{\Omega_i}{4G\hbar},
+\end{equation}
+quantization gives the canonical local commutators
+\begin{equation}
+[\widehat n_i(v_1),\widehat\mu_j(v_2)]
+=
+2\pi i\,\delta_{ij}\delta(v_1-v_2)
+\label{eq:molecularcomm}
+\end{equation}
+in the normalization of the molecular sector.
+
+Define the collective variables
+\begin{equation}
+\widehat q_{\rm can}=\sum_i\widehat n_i,
+\qquad
+\widehat{\bar\mu}=\frac1N\sum_i\widehat\mu_i.
+\label{eq:collective}
+\end{equation}
+They satisfy
+\begin{equation}
+[\widehat q_{\rm can},\widehat{\bar\mu}]=2\pi i.
+\label{eq:collectivecomm}
+\end{equation}
+The orthogonal complement contains $N-1$ relative scalar pairs before the remaining constraints and higher-spin sectors are imposed.
+
+\begin{remark}
+Equation~\eqref{eq:collectivecomm} gives an operator origin for the distinction between one capacity-conjugate collective mode and an extensive family of relative shape modes.  It does not by itself quantize the value of $q_{\rm can}$.
+\end{remark}
+
+\subsection{The common-area triangle}
+
+Several descriptions of the same cut can carry an area observable.  The correct locking target is equality of the physical areas,
+\begin{equation}
+A_{\mathcal S}
+=
+A_{\rm QCS}(\lambda_\perp)
+=
+\sum_i\Omega_i
+=
+\sum_i A_k(\lambda_{k,i}),
+\label{eq:commonarea}
+\end{equation}
+not equality of raw representation labels.  The symbols on the right can belong to different representation categories.
+
+In a perturbative nonexpanding null-CFT realization, the total ray central charge has the support-count form
+\begin{equation}
+c_{\rm tot}=c_{\rm ray}N_{\rm emb},
+\qquad
+c_{\rm ray}=4+c_{\rm mat},
+\label{eq:ctot}
+\end{equation}
+so that
+\begin{equation}
+\frac{c_{\rm tot}}{q_{\rm can}}
+=
+\frac{c_{\rm ray}}{\bar\gamma}.
+\label{eq:centralweight}
+\end{equation}
+This relation is useful as a support--weight diagnostic in that sector.  It is not assumed universal outside the stated realization.
+
+\subsection{A unit-weight rigidity theorem}
+
+There is one simple statistical route by which the pointwise unit-weight gate can become a theorem.
+
+\begin{theorem}[Compound-Poisson unit-weight rigidity]
+\label{thm:unitweight}
+Let $N\sim{\rm Poisson}(Q)$ and let $\{\gamma_i\}$ be iid nonnegative weights independent of $N$.  Set
+\begin{equation}
+q_A=\sum_{i=1}^N\gamma_i.
+\end{equation}
+Then
+\begin{equation}
+\mathbb E q_A=Q\,\mathbb E\gamma,
+\qquad
+{\rm Var}(q_A)=Q\,\mathbb E\gamma^2.
+\label{eq:cp-moments}
+\end{equation}
+If the same physical ensemble independently gives
+\begin{equation}
+\mathbb E q_A=Q,
+\qquad
+{\rm Var}(q_A)=Q,
+\label{eq:unitmoments}
+\end{equation}
+then $\gamma=1$ almost surely.
+\end{theorem}
+
+\begin{proof}
+Equations~\eqref{eq:cp-moments} are the standard cumulants of a compound-Poisson sum.  Equation~\eqref{eq:unitmoments} gives $\mathbb E\gamma=\mathbb E\gamma^2=1$, hence
+\[
+{\rm Var}(\gamma)=\mathbb E\gamma^2-(\mathbb E\gamma)^2=0.
+\]
+Nonnegativity then gives $\gamma=1$ almost surely.
+\end{proof}
+
+The logical restriction ``same physical ensemble'' is essential.  An area-variance result computed in one reduced measure cannot be combined with a Poisson count introduced in another measure to manufacture Eq.~\eqref{eq:unitmoments}.  Known horizon phase-space calculations constrain area fluctuations and hence moments of candidate weights \cite{CiambelliHeZurek2025}, but do not by themselves identify the molecular count with the Poisson variable used in Theorem~\ref{thm:unitweight}.
+
+\section{Double-null CIVP gluing and molecular preservation}
+\label{sec:gluing}
+
+The characteristic initial-value problem uses two null hypersurfaces glued at their common codimension-two corner.  In the operator-algebraic quantization, superboosts, superrotations, and supertranslations encode respectively area, tangential/Háji\v{c}ek-type data, and expansion-related data; the positive supertranslation sector is represented by quantum channels rather than automorphisms \cite{CiambelliKlinger2026}.  This distinction will matter later for finite index.
+
+At the molecular level, gluing has a sharp measure-theoretic consequence.
+
+\begin{theorem}[Atomic gluing uniqueness]
+\label{thm:atomicgluing}
+Let
+\begin{align}
+\Omega^{(u)}
+&=
+\sum_{a=1}^{M_u}
+w_a^{(u)}\delta_{x_a^{(u)}},
+\\
+\Omega^{(v)}
+&=
+\sum_{b=1}^{M_v}
+w_b^{(v)}\delta_{x_b^{(v)}}
+\end{align}
+be positive finite atomic measures on the common cut, each written in minimal atomic form.  If CIVP gluing imposes equality
+\begin{equation}
+\Omega^{(u)}=\Omega^{(v)}
+\label{eq:measuregluing}
+\end{equation}
+as measures, then $M_u=M_v$, and the support points and positive weights agree up to permutation.
+\end{theorem}
+
+\begin{proof}
+The atoms of a positive finite measure are intrinsically characterized as points of positive atomic mass.  Equality of measures therefore gives the same atomic support and the same mass at each atom.  Minimality excludes redundant zero-weight entries.
+\end{proof}
+
+Thus the double-null gluing preserves one diagonal molecular measure.  If the independent unit-weight certificate holds, collisions can be encoded by an effective divisor
+\begin{equation}
+\Omega
+=
+4\ell_P^2
+\sum_a m_a\delta_{x_a},
+\qquad
+Z_{\rm emb}:=\sum_a m_a x_a,
+\qquad
+N_{\rm emb}=\deg Z_{\rm emb}=\sum_a m_a.
+\label{eq:effectivedivisor}
+\end{equation}
+The multiplicity description is collision safe.
+
+The tangential data are logically separate.  Equality of the atomic area measures does not prove equality of all superrotation/H\'aji\v{c}ek data, nor does it prove that the fully glued von Neumann algebra is of a particular Murray--von Neumann type.  The finite-index problem is therefore formulated later at the level of a channel correspondence or an extracted finite defect, not by assuming a global $II_1$ trace at this stage.
+
+\begin{criterion}[Physical molecular gluing gate]
+\label{crit:moleculargluing}
+A complete molecular CIVP realization must establish, in one reduced physical representation:
+\begin{enumerate}[label=(\roman*)]
+\item equality of the two positive atomic area measures on the common cut;
+\item compatible tangential/H\'aji\v{c}ek gluing data;
+\item a common treatment of collisions and stabilizers;
+\item a single quotient convention for the diagonal permutation symmetry.
+\end{enumerate}
+\end{criterion}
+
+
+\section{The $\mathbb{CP}^1$ index space and acyclic molecular locking}
+\label{sec:cp1}
+
+The molecular support supplies an effective divisor.  The independent analytic carrier is the positive line bundle
+\begin{equation}
+L_q=\cO(q_{\rm ind}-1)
+\longrightarrow
+\CP^1,
+\label{eq:Lq}
+\end{equation}
+with
+\begin{equation}
+K_q:=H^0(\CP^1,L_q),
+\qquad
+\dim K_q=q_{\rm ind}.
+\label{eq:Kq}
+\end{equation}
+Riemann--Roch gives
+\begin{equation}
+\ind\bar\partial_{L_q}
+=
+\deg L_q+1
+=
+q_{\rm ind}.
+\label{eq:RRbasic}
+\end{equation}
+
+\subsection{The divisor off-by-one obstruction}
+
+A nonzero holomorphic section of $\cO(q_{\rm ind}-1)$ has a zero divisor of degree $q_{\rm ind}-1$.
+
+\begin{nogotheorem}[Literal zero-divisor identification]
+\label{thm:offbyone}
+If the embadon divisor is identified literally with the zero divisor of one nonzero section of $L_q=\cO(q_{\rm ind}-1)$, then
+\begin{equation}
+N_{\rm emb}=q_{\rm ind}-1.
+\label{eq:offbyone}
+\end{equation}
+Therefore the desired count lock $N_{\rm emb}=q_{\rm ind}$ cannot arise by identifying embadons with the zeros of a single carrier section.
+\end{nogotheorem}
+
+The correct object is not a zero divisor of one state but an \emph{evaluation frame}: the molecular support imposes conditions on the entire $q_{\rm ind}$-dimensional space.
+
+\subsection{Residual line-bundle complex}
+
+For an effective divisor $Z_{\rm emb}$ of degree $N_{\rm emb}$, define
+\begin{equation}
+R_{q,Z}
+:=
+L_q(-Z_{\rm emb})
+\simeq
+\cO(q_{\rm ind}-1-N_{\rm emb}).
+\label{eq:residualbundle}
+\end{equation}
+The exact defect is
+\begin{equation}
+\Delta_{\rm lock}
+:=
+\ind\bar\partial_{R_{q,Z}}
+=
+q_{\rm ind}-N_{\rm emb}.
+\label{eq:deltalock}
+\end{equation}
+
+\begin{theorem}[Residual acyclicity]
+\label{thm:acyclic}
+For every effective divisor $Z_{\rm emb}$ on $\CP^1$,
+\begin{equation}
+R\Gamma(\CP^1,L_q(-Z_{\rm emb}))\simeq0
+\quad\Longleftrightarrow\quad
+N_{\rm emb}=q_{\rm ind}.
+\label{eq:acyclic}
+\end{equation}
+More explicitly,
+\begin{align}
+N_{\rm emb}<q_{\rm ind}
+&:
+&
+h^0&=q_{\rm ind}-N_{\rm emb},
+&
+h^1&=0,
+\\
+N_{\rm emb}=q_{\rm ind}
+&:
+&
+h^0&=0,
+&
+h^1&=0,
+\\
+N_{\rm emb}>q_{\rm ind}
+&:
+&
+h^0&=0,
+&
+h^1&=N_{\rm emb}-q_{\rm ind}.
+\end{align}
+\end{theorem}
+
+\begin{proof}
+The residual bundle has degree $d=q_{\rm ind}-1-N_{\rm emb}$.  On $\CP^1$,
+\[
+h^0(\cO(d))=\max(d+1,0),
+\qquad
+h^1(\cO(d))=\max(-d-1,0).
+\]
+Both vanish only at $d=-1$, equivalently $N_{\rm emb}=q_{\rm ind}$.
+\end{proof}
+
+This theorem is exact and collision safe.  It does not require the divisor to be reduced.
+
+\subsection{Evaluation complex and confluent interpolation}
+
+The divisor exact sequence
+\begin{equation}
+0
+\longrightarrow
+L_q(-Z_{\rm emb})
+\longrightarrow
+L_q
+\longrightarrow
+L_q|_{Z_{\rm emb}}
+\longrightarrow0
+\label{eq:divisorsequence}
+\end{equation}
+induces the evaluation map
+\begin{equation}
+\ev_{Z_{\rm emb}}:
+K_q
+\longrightarrow
+H^0(Z_{\rm emb},L_q|_{Z_{\rm emb}}).
+\label{eq:evalmap}
+\end{equation}
+For a reduced divisor with $N$ distinct points, this is the ordinary value-evaluation map.  For a nonreduced divisor, the target contains the corresponding jet fibers and Eq.~\eqref{eq:evalmap} is the confluent/Hermite evaluation map.
+
+Define the two-term complex
+\begin{equation}
+\cE_{\rm ev}(q,Z)
+=
+\left[
+K_q
+\xrightarrow{\ \ev_Z\ }
+H^0(Z,L_q|_Z)
+\right],
+\label{eq:evalcomplex}
+\end{equation}
+with the source in degree zero.
+
+\begin{theorem}[Evaluation-cone equivalence]
+\label{thm:evalcone}
+There is a canonical quasi-isomorphism
+\begin{equation}
+\cE_{\rm ev}(q,Z)
+\simeq
+R\Gamma(\CP^1,L_q(-Z)).
+\label{eq:evalquasi}
+\end{equation}
+Hence
+\begin{equation}
+\cE_{\rm ev}(q,Z)\simeq0
+\quad\Longleftrightarrow\quad
+\ev_Z\ {\rm is\ an\ isomorphism}
+\quad\Longleftrightarrow\quad
+N_{\rm emb}=q_{\rm ind}.
+\label{eq:evalequiv}
+\end{equation}
+\end{theorem}
+
+For a reduced divisor and $N\le q_{\rm ind}$, a Vandermonde minor gives
+\begin{equation}
+\rankop\ev_Z=N,
+\qquad
+\dim\ker\ev_Z=q_{\rm ind}-N.
+\label{eq:vandermonde}
+\end{equation}
+For collisions, the confluent Vandermonde determinant supplies the same rank statement with jets.
+
+The physical certificate required later is stronger than this theorem:
+\begin{equation}
+C_E:
+\qquad
+\text{the physical embadon support realizes the complete evaluation frame.}
+\label{eq:CE}
+\end{equation}
+The mathematical equivalence~\eqref{eq:evalequiv} does not derive $C_E$ from CIVP dynamics.
+
+\subsection{Local index density and Bergman sampling}
+
+Normalize the round volume form $\nu$ on $\CP^1$ by
+\begin{equation}
+\int_{\CP^1}\nu=1.
+\end{equation}
+Then
+\begin{equation}
+c_1(L_q)=(q_{\rm ind}-1)[\nu],
+\qquad
+c_1(T\CP^1)=2[\nu].
+\end{equation}
+The degree-two part of the Riemann--Roch density is
+\begin{equation}
+\left[
+{\rm ch}(L_q)\,{\rm Td}(T\CP^1)
+\right]_{(2)}
+=
+q_{\rm ind}\,\nu.
+\label{eq:localindexdensity}
+\end{equation}
+By homogeneity, the diagonal Bergman kernel of the round carrier with the normalized measure is constant:
+\begin{equation}
+B_q(z)=q_{\rm ind}.
+\label{eq:bergmandiagonal}
+\end{equation}
+Thus the one-point intensity of the rank-$q_{\rm ind}$ projection process agrees with the local index density.
+
+For an orthonormal basis $\{s_i\}_{i=1}^{q_{\rm ind}}$, the fixed-rank projection determinantal point process has
+\begin{equation}
+\dd P_q(z_1,\ldots,z_q)
+=
+\frac1{q!}
+\left|
+\det(s_i(z_j))
+\right|^2
+\dd\mu(z_1)\cdots\dd\mu(z_q).
+\label{eq:DPP}
+\end{equation}
+The normalization identity
+\begin{equation}
+\int
+\left|\det(s_i(z_j))\right|^2
+\dd\mu^q
+=
+q!
+\label{eq:andreief}
+\end{equation}
+shows that the $1/q!$ in Eq.~\eqref{eq:DPP} is internal to the fixed-$q$ conditional spatial law \cite{Lemoine2026,Eum2026}.
+
+\begin{nogotheorem}[Factorial no-double-counting]
+\label{thm:nodoublefactorial}
+The fixed-rank determinantal normalization in Eq.~\eqref{eq:DPP} cannot be extracted a second time as the cross-sector molecular abundance factor.  A second factorial is physical only if it arises independently from the quotient of the cross-sector embadon configuration measure in Theorem~\ref{thm:bosonicquotient}.
+\end{nogotheorem}
+
+A consistent hierarchical model may therefore take
+\begin{equation}
+\dd P_\lambda(q,Z)
+=
+e^{-\lambda}
+\frac{\lambda^q}{q!}
+\,\dd P_q^{\rm Berg}(Z),
+\label{eq:hierarchicalDPP}
+\end{equation}
+where the conditional rank-$q$ point process has exactly $q$ points while the cross-sector cardinality fluctuates.  The two factorials have different origins and must be normalized only once each.
+
+\subsection{The two molecular locking gates}
+
+Combining the exact evaluation theorem with the area decomposition gives the type-safe chain
+\begin{equation}
+q_{\rm can}
+\overset{C_U}{=}
+N_{\rm emb}
+\overset{C_E}{=}
+q_{\rm ind},
+\label{eq:triplelock}
+\end{equation}
+where
+\begin{align}
+C_U&:\quad \gamma_i=1
+\quad\text{in the same reduced physical measure},
+\label{eq:CU}
+\\
+C_E&:\quad \cE_{\rm ev}(q,Z_{\rm emb})\simeq0
+\quad\text{for the physical support}.
+\end{align}
+Neither certificate follows from the other.  An evaluation isomorphism is a statement about support and a vector-space dimension; unit weight is a statement about the area carried by each support point.
+
+\section{Finite carrier extraction: polarization transport and the Berry--Kirillov index}
+\label{sec:carrier}
+
+The integer carrier is a separate problem from both $N_{\rm emb}$ and the noninteger Jones index.  Two immediate identifications are forbidden.
+
+First, the global superboost zero mode is one collective charge and cannot be a $q$-dimensional holomorphic carrier.  Second, the full post-dressing null representation remains a nontrivial radiative/edge system \cite{FreidelKirklin2026}; it cannot be identified with the vanishing finite residual complex in Eq.~\eqref{eq:acyclic}.  The finite object must be extracted from a count-normal representation sector.
+
+\subsection{Round finite matrix carrier}
+
+For the spherical matrix regularization, let
+\begin{equation}
+V_N\simeq\mathbb C^N,
+\qquad
+J=\frac{N-1}{2},
+\label{eq:fuzzycarrier}
+\end{equation}
+be the irreducible spin-$J$ carrier of $SU(2)$.  At the round polarization,
+\begin{equation}
+V_N
+\simeq
+\operatorname{Sym}^{N-1}\mathbb C^2
+\simeq
+H^0(\CP^1,\cO(N-1)).
+\label{eq:borelweil}
+\end{equation}
+This is an exact Borel--Weil identification once the integer $N$ has been chosen.
+
+A generic orientation-preserving diffeomorphism does not preserve one fixed complex polarization.  The correct finite-rank construction is therefore a family over the polarization groupoid.
+
+\begin{definition}[Polarization groupoid]
+An object is a triple
+\begin{equation}
+p=(J,L,\bar\partial_p)
+\end{equation}
+on $S^2$, with $\deg L=N-1$.  A morphism is a line-bundle isomorphism covering an orientation-preserving diffeomorphism and transporting the holomorphic structure.  The quantization functor is
+\begin{equation}
+Q_N(p)
+=
+H^0(S^2_J,L,\bar\partial_p),
+\qquad
+\dim Q_N(p)=N.
+\label{eq:polarizationfunctor}
+\end{equation}
+\end{definition}
+
+Thus a generic superrotation can transport the polarization rather than act inside a single fixed $K_q$.  At the round object,
+\begin{equation}
+\operatorname{End} Q_N(p_{\rm rd})\simeq M_N(\mathbb C).
+\end{equation}
+
+\subsection{Atiyah extension and the curvature obstruction}
+
+For a fixed Hermitian degree-$(N-1)$ line bundle with connection, the Atiyah extension \cite{Atiyah1957} is
+\begin{equation}
+0
+\longrightarrow
+C^\infty(S^2,i\mathbb R)
+\longrightarrow
+\Gamma({\rm At}(L))
+\longrightarrow
+{\rm Vect}(S^2)
+\longrightarrow0.
+\label{eq:atiyah}
+\end{equation}
+A connection splitting has curvature defect
+\begin{equation}
+[s_\nabla(Y),s_\nabla(Y')]
+-
+s_\nabla([Y,Y'])
+=
+F_\nabla(Y,Y').
+\label{eq:atiyahcurv}
+\end{equation}
+For $N>1$,
+\begin{equation}
+\frac1{2\pi i}\int_{S^2}F_\nabla
+=
+N-1\neq0.
+\label{eq:chernN}
+\end{equation}
+
+The classical CIVP superboost/superrotation moment map is strict in the corresponding classical setting.  Consequently the nonzero degree in Eq.~\eqref{eq:chernN} cannot be obtained merely by relabeling the classical split algebra; it requires genuine quantum prequantum/projective data.
+
+\subsection{Berry--Kirillov integral lift}
+
+The finite matrix carrier itself supplies a canonical integral class.  The highest-weight coherent-state orbit gives
+\begin{equation}
+\CP^1
+\longrightarrow
+\mathbb P(V_N).
+\end{equation}
+Pulling back the hyperplane/Berry line gives
+\begin{equation}
+L_N\simeq\cO(N-1),
+\qquad
+\frac1{2\pi i}\int_{\CP^1}F_N=N-1.
+\label{eq:berrydegree}
+\end{equation}
+Hence
+\begin{equation}
+q_{\rm ind}^{(N)}
+=
+\ind\bar\partial_{L_N}
+=
+N.
+\label{eq:berryindex}
+\end{equation}
+
+\begin{proposition}[Integral carrier lift]
+\label{prop:berrylift}
+Once a physical CIVP reduction selects a finite irreducible round carrier of dimension $N$, the associated Berry--Kirillov line has the exact off-by-one degree $N-1$ and Dolbeault index $N$.
+\end{proposition}
+
+This proposition is independent of the embadon count.  It supplies the correct mathematical architecture for a noncircular comparison
+\begin{equation}
+N_{\rm Berry}
+\stackrel{?}{=}
+q_{\rm ind}
+\stackrel{?}{=}
+N_{\rm emb}.
+\label{eq:independentintegers}
+\end{equation}
+The first equality is exact inside the selected Berry carrier; the second is the physical evaluation-frame gate.
+
+\subsection{A canonical isotypic UCP channel}
+
+Let the round-cut CIVP representation contain a spin-$J$ isotypic component,
+\begin{equation}
+P_J\mathcal H
+\simeq
+V_J\otimes M_J.
+\end{equation}
+The projector is
+\begin{equation}
+P_J
+=
+(2J+1)
+\int_{SU(2)}
+\chi_J(g)\,U(g)\,\dd g.
+\label{eq:isotypicprojector}
+\end{equation}
+For a normal state $\omega_J$ on the multiplicity space,
+\begin{equation}
+Q_{J,\omega_J}(O)
+=
+(\id_{V_J}\otimes\omega_J)
+(P_JOP_J)
+\in\operatorname{End}(V_J)
+\label{eq:finiteUCP}
+\end{equation}
+is unital, completely positive, and $SU(2)$ covariant.
+
+The finite product need not coincide with the continuum product.  For a Stinespring representation
+\begin{equation}
+Q(a)=V^*\pi(a)V,
+\qquad
+K=1-VV^*,
+\end{equation}
+one has the exact leakage identity
+\begin{equation}
+Q(ab)-Q(a)Q(b)
+=
+V^*\pi(a)K\pi(b)V.
+\label{eq:leakage}
+\end{equation}
+This formula separates exact multiplicativity from controlled leakage and gives a finite diagnostic for any proposed CIVP-to-matrix reduction.
+
+\begin{criterion}[Finite-carrier certificate]
+\label{crit:finitecarrier}
+A physical derivation of $N_{\rm Berry}$ must specify the CIVP representation, the finite isotypic or deformed carrier selected from it, the polarization transport, and the nondegeneracy conditions ensuring that the relevant finite symbol band spans $\operatorname{End}(V_N)$.  The integer $N$ must be an output of this reduction, not an alias for $N_{\rm emb}$.
+\end{criterion}
+
+\section{Capelli--Harish--Chandra rank reconstruction}
+\label{sec:capelli}
+
+The finite carrier can also be probed through central/representation-theoretic data.  This branch is useful precisely because it is logically independent of the molecular support count.
+
+\subsection{Moment and Hankel rank for regular spectra}
+
+Let $x_1,\ldots,x_r$ be pairwise distinct spectral points and define
+\begin{equation}
+m_k
+=
+\frac1r\sum_{\alpha=1}^{r}x_\alpha^k.
+\label{eq:moments}
+\end{equation}
+Form the Hankel matrix
+\begin{equation}
+H^{(s)}=(m_{i+j})_{0\le i,j\le s}.
+\label{eq:hankel}
+\end{equation}
+
+\begin{theorem}[Regular spectral rank]
+\label{thm:hankelrank}
+For $r$ pairwise distinct points,
+\begin{equation}
+\rankop H^{(s)}=\min(r,s+1).
+\label{eq:hankelrank}
+\end{equation}
+Equivalently the principal Hankel minors satisfy
+\begin{equation}
+\Delta_{r-1}\neq0,
+\qquad
+\Delta_r=0.
+\label{eq:hankelminors}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Writing $V_{i\alpha}=x_\alpha^i$, one has
+\[
+H^{(s)}=\frac1rVV^{\mathsf T}.
+\]
+The Vandermonde matrix has rank $\min(r,s+1)$ for distinct spectral points.
+\end{proof}
+
+Ordinary moments see only distinct points at a singular spectrum.  Multiplicities require a stronger invariant.
+
+\subsection{Capelli transfer and multiplicity recovery}
+
+Let the centered spectral polynomial be
+\begin{equation}
+P_r(u)
+=
+\prod_x(u-x)^{m_x},
+\qquad
+\sum_xm_x=r.
+\label{eq:spectralpoly}
+\end{equation}
+For $\epsilon=\pm1$, define the rational transfer
+\begin{equation}
+R_\epsilon(u)
+=
+\frac{P_r(u+\epsilon)}{P_r(u)}.
+\label{eq:capellitransfer}
+\end{equation}
+Let $D_P=\sum_xm_x[x]$ be the root divisor and $\tau_a[x]=[x+a]$.
+
+\begin{theorem}[Finite-divisor reconstruction]
+\label{thm:divisorreconstruction}
+The divisor of the reduced rational function~\eqref{eq:capellitransfer} is
+\begin{equation}
+{\rm div}\,R_\epsilon
+=
+\tau_{-\epsilon}D_P-D_P.
+\label{eq:divR}
+\end{equation}
+The difference operator $\tau_{-\epsilon}-1$ is injective on finite divisors.  Therefore the reduced transfer $R_\epsilon$ determines the full root divisor, including multiplicities, and hence the rank $r$.
+\end{theorem}
+
+\begin{proof}
+A root of multiplicity $m_x$ produces a denominator pole of multiplicity $m_x$ at $x$ and a numerator zero of the same multiplicity at $x-\epsilon$, giving Eq.~\eqref{eq:divR}.  A nonzero finite divisor cannot be invariant under a nonzero integral translation, because the orbit of any point would then be infinite.  Hence the finite-divisor difference has trivial kernel.
+\end{proof}
+
+On one lattice orbit $x+\epsilon\mathbb Z$, let $d_n$ be the coefficient of ${\rm div}\,R_\epsilon$ at $x+n\epsilon$ and $m_n$ the root multiplicity there.  Then
+\begin{equation}
+d_n=m_{n+1}-m_n,
+\qquad
+m_n=-\sum_{j=n}^{\infty}d_j,
+\label{eq:multiplicityreconstruction}
+\end{equation}
+where the sum is finite.  This gives an explicit collision-safe rank reconstruction.
+
+The first divisor moment also reads
+\begin{equation}
+r
+=
+-\epsilon
+\sum_x
+x\,{\rm ord}_xR_\epsilon
+\label{eq:rankmoment}
+\end{equation}
+after the centered normalization used in the transfer chart.
+
+\subsection{Two central charts and a projective no-go}
+
+Forward and reverse cyclic central words furnish two finite-difference charts of the same centered spectral polynomial.  Schematically,
+\begin{equation}
+Z_r^{(\epsilon)}(t_\epsilon(u))
+=
+\frac{P_r(u+\epsilon)}{P_r(u)},
+\qquad
+\epsilon=\pm1.
+\label{eq:twocharts}
+\end{equation}
+The exact ordering maps are recorded in Appendix~\ref{app:capelli}; the point here is that both charts reconstruct the same finite divisor.
+
+A physical central family can still carry multiplicative normalization ambiguities.  If
+\begin{equation}
+C_k=A\,B^k z_k,
+\label{eq:centralreweight}
+\end{equation}
+then the cross ratio
+\begin{equation}
+\Xi_k(C)
+=
+\frac{C_{k+1}C_{k-1}}{C_k^2}
+=
+\frac{z_{k+1}z_{k-1}}{z_k^2}
+\label{eq:centralcrossratio}
+\end{equation}
+is normalization free on a connected nonzero interval.
+
+\begin{nogotheorem}[Projective central data do not universally fix rank]
+\label{thm:projectiveranknogo}
+A positive-degree central sequence known only modulo $C_k\mapsto A B^k C_k$ cannot in general determine the carrier rank.  For example, a determinant-character family $z_k=r m^k$ has the same projective ratios for different $r$ after the allowed reweighting.
+\end{nogotheorem}
+
+Thus one absolute rank-sensitive datum is necessary: a visible defining block, the degree of a full Capelli transfer, a zero-order multiplicity, a rotation-cover parity, or an equivalent invariant.
+
+\begin{criterion}[Capelli--CIVP finite-rank gate]
+\label{crit:capelligate}
+A noncircular CIVP extraction of $N$ through the central branch requires:
+\begin{enumerate}[label=(\roman*)]
+\item an $N$-independent raw family of central observables defined from CIVP data;
+\item a branch-correct finite deformation or isotypic carrier;
+\item a full Capelli/Harish--Chandra transfer or another absolute rank-sensitive datum;
+\item real-form, unitarity, and lattice admissibility;
+\item uniqueness of the admissible integer $N$.
+\end{enumerate}
+\end{criterion}
+
+The criterion is intentionally stronger than matching a few low-degree Casimirs.  The present CIVP construction does not yet supply the required all-order central family as a theorem; the Capelli branch is therefore a precise extraction target, not a completed physical identification.
+
+\section{A divisibility obstruction for raw supertranslations}
+\label{sec:divisible}
+
+The positive cone of additive supertranslation parameters is divisible: for every parameter $f$ and integer $n\ge2$, the parameter $f/n$ remains in the cone and $f=n(f/n)$.  This elementary fact is enough to rule out one tempting realization of a nontrivial Jones step.
+
+\begin{definition}
+A semigroup $S$ is \emph{divisible} if for every $g\in S$ and every integer $n\ge2$ there exists $h_n\in S$ with $h_n^n=g$.
+\end{definition}
+
+\begin{nogotheorem}[Divisible endomorphism obstruction]
+\label{thm:divisible}
+Let $M$ be a factor and let
+\begin{equation}
+\Theta:S\longrightarrow \operatorname{End}(M)
+\end{equation}
+be a semigroup homomorphism from a divisible semigroup into normal unital injective endomorphisms.  Assume every inclusion $\Theta_g(M)\subset M$ has finite Jones--Kosaki index, that these indices are multiplicative under composition, and that the standard subfactor index restriction below $4$ applies.  Then
+\begin{equation}
+\Ind(\Theta_g)=1
+\qquad
+(g\in S).
+\label{eq:divisible-index-one}
+\end{equation}
+\end{nogotheorem}
+
+\begin{proof}
+Fix $g$ and write $I=\Ind(\Theta_g)$.  For every $n$ choose $h_n$ with $h_n^n=g$.  Multiplicativity gives
+\begin{equation}
+I=\Ind(\Theta_{h_n})^n,
+\qquad
+\Ind(\Theta_{h_n})=I^{1/n}.
+\end{equation}
+If $I>1$, choose $n$ so large that $1<I^{1/n}<2$.  The Jones--Kosaki index spectrum has no finite subfactor index strictly between $1$ and $2$ \cite{Jones1983,Kosaki1986}.  This is impossible.  Hence $I=1$.
+\end{proof}
+
+\begin{corollary}
+A semigroup-homomorphic endomorphic realization of the positive CIVP supertranslation semigroup cannot carry a nontrivial multiplicative index such as $\varphi^2$.
+\end{corollary}
+
+The conclusion is deliberately narrow.  It does not say that the CIVP channel is reversible.  A Stinespring channel can remain irreversible through compression even when an endomorphic component has index one.  Nor does Theorem~\ref{thm:divisible} imply that a channel correspondence index must be multiplicative in the continuous supertranslation parameter.  The theorem excludes only the raw semigroup-homomorphic endomorphism route.
+
+This leaves two type-correct possibilities:
+\begin{enumerate}[leftmargin=2em]
+\item the canonical correspondence of a physically selected channel has finite statistical dimension; or
+\item the idempotent-complete category generated by the CIVP correspondences contains a discrete irreducible finite-index subcorrespondence.
+\end{enumerate}
+A noninvertible $A_4$/Fibonacci defect, if it appears, belongs to one of these discrete structures rather than to the continuous parameter itself.
+
+
+\section{Finite-matrix obstructions}
+\label{sec:fuzzy}
+
+Finite-dimensional deformations of spherical corner symmetry are useful regularizations \cite{DonnellyFreidelMoosavianSperanza2023}.  They should not, however, be identified automatically with the noninteger subfactor defect.
+
+Let $U_J:SU(2)\to U(V_J)$ be the irreducible spin-$J$ representation,
+\begin{equation}
+N=2J+1,
+\qquad
+A_N:=\operatorname{End}(V_J)\simeq\mathrm{Mat}_N(\mathbb C).
+\label{eq:fuzzy}
+\end{equation}
+
+\subsection{Invariant subalgebras}
+
+\begin{theorem}[Invariant-subalgebra dichotomy]
+\label{thm:subalg}
+Let $B\subset A_N$ be a unital $*$-subalgebra satisfying
+\begin{equation}
+U_J(g) B U_J(g)^*=B
+\qquad
+(g\in SU(2)).
+\end{equation}
+Then
+\begin{equation}
+B=\mathbb C1
+\quad\text{or}\quad
+B=A_N.
+\label{eq:subalg-dichotomy}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+The center $Z(B)$ is invariant.  Since $Z(B)$ is finite dimensional, $SU(2)$ acts on its minimal central projections through a finite permutation group.  Connectedness of $SU(2)$ forces this action to be trivial.  Hence $Z(B)$ commutes with the irreducible representation $U_J$, and Schur's lemma gives $Z(B)=\mathbb C1$.  Thus $B$ is a full matrix factor.
+
+After a unitary change of basis,
+\begin{equation}
+V_J\simeq\mathbb C^r\otimes\mathbb C^s,
+\qquad
+B\simeq \mathrm{Mat}_r(\mathbb C)\otimes1_s,
+\qquad
+rs=N.
+\end{equation}
+Normalization of $B$ by $U_J(g)$ implies that, up to a projective scalar, $U_J$ factorizes as $V(g)\otimes W(g)$.  Because $SU(2)$ is simply connected, the projective factors lift.  If both tensor factors have dimension greater than one, the resulting finite-dimensional $SU(2)$ representation is reducible; if one group action is trivial on a factor of dimension greater than one, the remaining representation appears with multiplicity and is again reducible.  Therefore $r=1$ or $s=1$, giving Eq.~\eqref{eq:subalg-dichotomy}.
+\end{proof}
+
+\begin{corollary}[Covariant expectation dichotomy]
+\label{cor:expectation-dichotomy}
+Let $E:A_N\to B$ be a trace-preserving conditional expectation satisfying
+\begin{equation}
+E\!\left(U_J(g)xU_J(g)^*\right)
+=
+U_J(g)E(x)U_J(g)^*.
+\end{equation}
+Then either $E=\id$ or
+\begin{equation}
+E_0(x)=\tau_N(x)1,
+\qquad
+\tau_N=\frac1N\Tr.
+\end{equation}
+\end{corollary}
+
+Define
+\begin{equation}
+\PP(E):=
+\sup\{\lambda>0:\ E(x)\ge\lambda x\ \text{for all }x\ge0\}.
+\label{eq:ppdef-matrix}
+\end{equation}
+
+\begin{theorem}[Exact scalar-expectation constant]
+\label{thm:scalarpp}
+For $E_0(x)=\tau_N(x)1$,
+\begin{equation}
+\PP(E_0)=\frac1N.
+\label{eq:scalarpp}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+For $x\ge0$, $x\le\Tr(x)1=N\tau_N(x)1$, so $E_0(x)\ge N^{-1}x$.  Taking $x$ to be a rank-one projection $p$ gives $E_0(p)=N^{-1}1$, and $E_0(p)\ge\lambda p$ forces $\lambda\le N^{-1}$.
+\end{proof}
+
+\begin{nogotheorem}[Irreducible fuzzy-sphere obstruction]
+\label{thm:fuzzynogo}
+No $SU(2)$-covariant trace-preserving conditional expectation on the irreducible fuzzy sphere satisfies
+\begin{equation}
+\frac13<\PP(E)<\frac12.
+\label{eq:gold-window}
+\end{equation}
+\end{nogotheorem}
+
+\begin{proof}
+By Corollary~\ref{cor:expectation-dichotomy} and Theorem~\ref{thm:scalarpp}, the only values are $1$ and $1/N$.  For $N=2,3$ the latter gives the excluded boundary values $1/2$ and $1/3$; for $N\ge4$ it is at most $1/4$.
+\end{proof}
+
+This no-go theorem does not obstruct a covariant UCP quantization map into $A_N$, because a quantum channel need not be a conditional expectation onto an invariant subalgebra.  It forbids only the identification of the same irreducible matrix carrier with the desired golden subfactor inclusion.
+
+\subsection{No consecutive matrix tower}
+
+\begin{nogotheorem}[No consecutive unital matrix embedding]
+\label{thm:matrixembedding}
+For $N>1$ there is no unital $*$-homomorphism
+\begin{equation}
+\mathrm{Mat}_N(\mathbb C)\longrightarrow\mathrm{Mat}_{N+1}(\mathbb C).
+\end{equation}
+\end{nogotheorem}
+
+\begin{proof}
+Every unital representation of the simple algebra $\mathrm{Mat}_N$ on $\mathbb C^m$ is a direct sum of copies of its unique $N$-dimensional irreducible representation.  Hence $m$ must be divisible by $N$.  The choice $m=N+1$ is impossible for $N>1$.
+\end{proof}
+
+The sequence of fuzzy spheres is therefore a regularization sequence, not a Jones tower.  Its matrix rank may feed a finite multiplicity problem, but the noninteger subfactor index must live elsewhere.
+
+
+\section{Conditional finite-index rigidity}
+\label{sec:index}
+
+\subsection{The Pimsner--Popa window}
+
+Finite index itself is not restricted to $II_1$ factors; conditional-expectation and correspondence formulations extend to general factor settings \cite{Kosaki1986,LongoRehren1995,LongoRoberts1997,FrankKirchberg1998}.  The sharp discrete Jones-spectrum argument used below is stated in the finite $II_1$ specialization, or in an equivalent setting in which the same minimal-index spectrum is known.  This specialization is a theorem gate, not an assumption about the type of the full glued CIVP algebra.
+
+Let $N\subset M$ be a finite-index inclusion of $II_1$ factors with normalized trace and trace-preserving conditional expectation $E:M\to N$.  The Pimsner--Popa optimal positivity constant is
+\begin{equation}
+\PP(E)
+=
+\sup\{\lambda>0:\ E(x)\ge\lambda x,\ x\in M_+\}.
+\label{eq:ppdef}
+\end{equation}
+For this setting,
+\begin{equation}
+\PP(E)^{-1}=[M:N].
+\label{eq:ppindex}
+\end{equation}
+The allowed Jones indices are \cite{Jones1983,PimsnerPopa1986}
+\begin{equation}
+[M:N]\in
+\left\{
+4\cos^2\frac{\pi}{m}:m=3,4,\ldots
+\right\}
+\cup[4,\infty).
+\label{eq:jones-spectrum}
+\end{equation}
+
+\begin{theorem}[Golden-window rigidity]
+\label{thm:goldwindow}
+If
+\begin{equation}
+\frac13<\PP(E)<\frac12,
+\end{equation}
+then
+\begin{equation}
+[M:N]=4\cos^2\frac{\pi}{5}
+=
+\frac{3+\sqrt5}{2}
+=
+\varphi^2,
+\qquad
+\PP(E)=\varphi^{-2}.
+\label{eq:goldindex}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Equation~\eqref{eq:ppindex} turns the window into $2<[M:N]<3$.  In the discrete set \eqref{eq:jones-spectrum}, the unique value in this open interval is the $m=5$ value.
+\end{proof}
+
+The strength of Theorem~\ref{thm:goldwindow} is that one need not compute the irrational number directly.  It is enough to prove a coarse positivity window for the \emph{correctly typed} expectation.
+
+\begin{theorem}[Two-witness certificate]
+\label{thm:twowitness}
+Suppose there exist $\epsilon_->0$, $x_+\in M_+$, and a normal positive functional $\omega$ with $\omega(x_+)>0$ such that
+\begin{align}
+E(x)&\ge\left(\frac13+\epsilon_-\right)x
+&&\text{for every }x\in M_+,
+\label{eq:lowerwitness}
+\\
+\frac{\omega(E(x_+))}{\omega(x_+)}
+&<\frac12.
+\label{eq:upperwitness}
+\end{align}
+Then $1/3<\PP(E)<1/2$.
+\end{theorem}
+
+\begin{proof}
+Equation~\eqref{eq:lowerwitness} gives $\PP(E)\ge1/3+\epsilon_->1/3$.  If $E(x)\ge\lambda x$ for every positive $x$, then applying $\omega$ to $x_+$ gives
+\begin{equation}
+\lambda\le
+\frac{\omega(E(x_+))}{\omega(x_+)},
+\end{equation}
+and Eq.~\eqref{eq:upperwitness} yields $\PP(E)<1/2$.
+\end{proof}
+
+This theorem converts the physical index problem into two explicit estimates: a uniform lower positivity bound and one upper witness.  Neither estimate refers to $\Lambda_{\rm obs}$.
+
+\subsection{Finite graph shadows}
+
+Finite-dimensional data can still be useful if they determine an inclusion graph or a commuting square rather than the subfactor itself.  Finite-dimensional commuting squares produce hyperfinite finite-index subfactors under well-defined hypotheses \cite{Kawahigashi2023}, and trace-compatible atomic $W^*$ representations can identify the Jones index with the squared norm of an inclusion graph under amenability/weak-injectivity assumptions \cite{Popa2023}.
+
+\begin{theorem}[ADE graph window]
+\label{thm:ade}
+Assume finite CIVP data produce a finite-depth finite-index $II_1$ subfactor with connected principal graph $G$.  If
+\begin{equation}
+2<\|G\|^2<3,
+\label{eq:graph-window}
+\end{equation}
+then
+\begin{equation}
+G=A_4,
+\qquad
+[M:N]=\|G\|^2=\varphi^2.
+\label{eq:a4}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+The bound $\|G\|<\sqrt3<2$ places the connected principal graph in the ADE small-index list.  For $A_n$,
+\begin{equation}
+\|A_n\|^2=4\cos^2\frac{\pi}{n+1}.
+\end{equation}
+The consecutive values $A_3,A_4,A_5$ give $2,\varphi^2,3$.  The first $D$ case, $D_4$, is at $3$, and later $D$ and exceptional cases lie above the interval.  Hence the strict interval selects $A_4$.  The standard small-index classification supplies the subfactor statement \cite{AfzalyMorrisonPenneys2023}.
+\end{proof}
+
+Theorem~\ref{thm:ade} is conditional on the full commuting-square/principal-graph hypotheses.  An arbitrary integer graph extracted from a matrix regularization is not enough.
+
+\subsection{$A_4$ consequences and what they do not imply}
+
+Order the even vertices of $A_4$ at depths $0,2$ and the odd vertices at depths $1,3$.  The incidence matrix is
+\begin{equation}
+B=
+\begin{pmatrix}
+1&0\\
+1&1
+\end{pmatrix}.
+\label{eq:B}
+\end{equation}
+The even part has Fibonacci fusion rule
+\begin{equation}
+\tau\otimes\tau\simeq1\oplus\tau,
+\qquad
+d_\tau=\varphi,
+\label{eq:fib-fusion}
+\end{equation}
+and fusion matrix
+\begin{equation}
+N_\tau=
+\begin{pmatrix}
+0&1\\
+1&1
+\end{pmatrix}.
+\label{eq:Ntau}
+\end{equation}
+One then has the exact integral identity
+\begin{equation}
+BB^{\mathsf T}
+=
+N_\tau^2
+=
+A:=
+\begin{pmatrix}
+1&1\\
+1&2
+\end{pmatrix},
+\label{eq:matrix-identity}
+\end{equation}
+with
+\begin{equation}
+\Spec(A)=\{\varphi^2,\varphi^{-2}\},
+\qquad
+\det A=1.
+\label{eq:Aspec}
+\end{equation}
+By Cayley--Hamilton,
+\begin{equation}
+A^2-3A+1=0,
+\end{equation}
+and
+\begin{equation}
+A^n=
+\begin{pmatrix}
+F_{2n-1}&F_{2n}\\
+F_{2n}&F_{2n+1}
+\end{pmatrix}.
+\label{eq:Apowers}
+\end{equation}
+
+These facts are downstream of the $A_4$ standard invariant.  They do not identify the matrix rank of a fuzzy sphere with the Jones index, do not identify a Jones-tower depth with a geometric shell, and do not determine a braiding or modular $T$ matrix.  In particular, the irrational value $\varphi^2$ cannot be an exact multiplicative step of a nonzero integer scalar capacity.
+
+\begin{nogotheorem}[No irrational integer ladder]
+If $q_n\in\mathbb Z_{>0}$, no nontrivial sequence satisfies
+\begin{equation}
+q_{n+1}=\varphi^2 q_n.
+\end{equation}
+\end{nogotheorem}
+
+\begin{proof}
+$\varphi^2$ is irrational, so $\varphi^2q_n\notin\mathbb Z$ for every nonzero integer $q_n$.
+\end{proof}
+
+Equation~\eqref{eq:matrix-identity}, not an irrational scalar integer ladder, is the correct integral shadow.
+
+
+
+
+\section{Finite-index structure, $A_4$, and the Fibonacci fiber}
+\label{sec:fib}
+
+The golden index, when it is forced by Theorem~\ref{thm:goldwindow} or
+Theorem~\ref{thm:ade}, carries more structure than one scalar equality.  It
+also carries less physical information than a complete chiral topological
+theory.  Both facts are important.
+
+For the $A_4$ standard invariant, the even part is generated by an object
+$\tau$ satisfying
+\begin{equation}
+\tau\otimes\tau\simeq 1\oplus\tau,
+\qquad
+d_\tau=\varphi.
+\label{eq:fibfusionmain}
+\end{equation}
+The charged-sector index is
+\begin{equation}
+I_\tau=d_\tau^2=\varphi^2,
+\end{equation}
+while the global dimension of the Fibonacci fusion category is
+\begin{equation}
+\mu_{\Fib}
+=
+1+d_\tau^2
+=
+1+\varphi^2
+=
+\varphi+2.
+\label{eq:fibglobaldim}
+\end{equation}
+These quantities must not be merged.
+
+The integral transfer identity~\eqref{eq:matrix-identity} gives a canonical
+integer shadow of the irrational Perron--Frobenius eigenvalue.  It also gives
+\begin{equation}
+\Tr(A^n)=L_{2n},
+\qquad
+\frac{I_*^n-I_*^{-n}}{\sqrt5}=F_{2n},
+\qquad
+I_*=\varphi^2,
+\label{eq:fiblucas}
+\end{equation}
+as arithmetic consequences.  They are consistency fingerprints of the
+$A_4$ branch, not independent evidence that a gravitational sector realizes
+that branch.
+
+\subsection{Fibonacci data as a local system over embadon configurations}
+
+For $N$ distinct embadons on $S^2$, the unordered configuration space
+\begin{equation}
+X_N=\Conf_N(S^2)/S_N
+\label{eq:fibconfig}
+\end{equation}
+has spherical braid-group fundamental group.  If a Fibonacci braiding sector
+is physically present, it can therefore be attached as a flat projective
+local system
+\begin{equation}
+\rho_{\Fib}:\pi_1(X_N)\longrightarrow PU(V_N^{\Fib}),
+\qquad
+E_N^{\Fib}
+=
+\widetilde X_N\times_{\rho_{\Fib}}V_N^{\Fib}.
+\label{eq:fiblocalsystem}
+\end{equation}
+This construction separates roles cleanly:
+\begin{equation}
+\boxed{
+\text{base }X_N:
+\text{ support/permutation statistics},
+\qquad
+\text{fiber }E_N^{\Fib}:
+\text{ braid/fusion/framing data}.
+}
+\label{eq:basefiberroles}
+\end{equation}
+
+\begin{nogotheorem}[Fibonacci fiber is not the molecular count]
+\label{thm:fibcountnogo}
+The existence of a Fibonacci fusion or braid fiber does not imply
+$N_{\rm emb}=I_\tau$, $N_{\rm emb}=d_\tau$, or any other identification of an
+integer support count with an irrational categorical invariant.
+\end{nogotheorem}
+
+If an extensive Fibonacci degree of freedom is attached independently to
+every embadon, its asymptotic state-space factor grows as
+$\varphi^{N_{\rm emb}}$, contributing an $O(q)$ term to the effective action
+after unit-weight locking.  Such a contribution is part of the primitive
+sequence $\cI_q^{\UV}$ and must not be counted again as a separate selector
+factor.  A subextensive registry can instead remain a spectator.
+
+Fusion rules also do not determine chirality.  Opposite Fibonacci braidings
+have the same fusion ring and quantum dimensions \cite{EdieMichell2021}.  A modular-$T$ or framing
+choice therefore remains independent of the Jones-index gate.  The nonchiral
+Drinfeld-center completion is canonical only after the fusion category has
+been specified.
+
+\subsection{Jones depth is not geometric depth}
+
+For a Jones tower with constant elementary index $I_*$,
+\begin{equation}
+[M_n:M_0]=I_*^n.
+\label{eq:jonestower}
+\end{equation}
+At $I_*=\varphi^2$, the tower depth is a canonical operator-algebraic grading.
+It is not a geometric shell number.  In particular, the entropy correction in
+Sec.~\ref{sec:entropy} excludes interpreting Eq.~\eqref{eq:jonestower} as a
+constant multiplicative ladder of horizon areas.
+
+\section{Invariant UV selector calculus}
+\label{sec:selector}
+
+The selector problem is separate from the index problem.  Suppose a complete reduction of gauge, corner, and permutation redundancies yields a positive fixed-sector amplitude
+\begin{equation}
+Z_q^{\UV}
+=
+\frac{\cI_q^{\UV}}{\Gamma(q+1)},
+\qquad
+\cI_q^{\UV}>0.
+\label{eq:Zq}
+\end{equation}
+The factorial in Eq.~\eqref{eq:Zq} is not postulated universally; it is present only when a residual indistinguishable-constituent quotient survives the same reduced measure.  Once Eq.~\eqref{eq:Zq} holds, the following statements are exact.
+
+\subsection{The primitive sequence and affine scheme freedom}
+
+A factorization
+\begin{equation}
+\cI_q^{\UV}=\zeta_\partial^q T_q
+\label{eq:factor}
+\end{equation}
+is not fundamental before a UV convention is fixed, because
+\begin{equation}
+\zeta_\partial\longmapsto e^c\zeta_\partial,
+\qquad
+T_q\longmapsto e^{-cq}T_q
+\label{eq:splitgauge}
+\end{equation}
+leaves $\cI_q^{\UV}$ unchanged.  More generally, a finite boundary-tension redefinition and an overall normalization act as
+\begin{equation}
+\cI_q^{\UV}\longmapsto C e^{a q}\cI_q^{\UV}.
+\label{eq:affine}
+\end{equation}
+
+Set
+\begin{equation}
+f_q:=\log\cI_q^{\UV},
+\qquad
+\kappa_q^{\UV}:=\Delta^2 f_q
+=
+\log
+\frac{\cI_{q+2}^{\UV}\cI_q^{\UV}}
+{(\cI_{q+1}^{\UV})^2}.
+\label{eq:kappa}
+\end{equation}
+
+\begin{theorem}[Complete affine selector invariant]
+\label{thm:affine}
+The sequence $\{\kappa_q^{\UV}\}$ is invariant under Eq.~\eqref{eq:affine}.  Conversely, if two positive sequences have identical $\kappa_q$ for every $q$ in an interval, then their logarithms differ by
+\begin{equation}
+a q+b.
+\label{eq:affinediff}
+\end{equation}
+Thus $\kappa_q$ is a complete invariant of selector shape modulo affine reweighting.
+\end{theorem}
+
+\begin{proof}
+The second difference annihilates affine functions.  Conversely,
+$\Delta^2(f-g)=0$ implies $\Delta(f-g)$ is constant, so $f-g=aq+b$.
+\end{proof}
+
+This is the selector analogue of quotienting a nuisance coordinate rather than assigning physical meaning to it.
+
+\subsection{Unique sector selection}
+
+Define the adjacent log-ratio
+\begin{equation}
+\rho_q
+:=
+\log\frac{Z_{q+1}^{\UV}}{Z_q^{\UV}}
+=
+\log\frac{\cI_{q+1}^{\UV}}{\cI_q^{\UV}}
+-\log(q+1),
+\label{eq:rho}
+\end{equation}
+and the discrete free energy
+\begin{equation}
+\Gamma_q:=-\log Z_q^{\UV}.
+\end{equation}
+Then
+\begin{equation}
+\Delta^2\Gamma_q
+=
+\log\frac{q+2}{q+1}
+-
+\kappa_q^{\UV}.
+\label{eq:freecurvature}
+\end{equation}
+
+\begin{theorem}[Unique-selector theorem]
+\label{thm:unique}
+Let $q$ range over an integer interval.  If
+\begin{equation}
+\Delta^2\Gamma_q>0
+\label{eq:strictconvex}
+\end{equation}
+throughout the interior and, for some $q_*$,
+\begin{equation}
+\rho_{q_*-1}>0,
+\qquad
+\rho_{q_*}<0,
+\label{eq:crossing}
+\end{equation}
+then $q_*$ is the unique maximizer of $Z_q^{\UV}$ on the interval.
+\end{theorem}
+
+\begin{proof}
+Strict discrete convexity makes $\Delta\Gamma_q$ strictly increasing, so $\rho_q=-\Delta\Gamma_q$ is strictly decreasing.  The sign change in Eq.~\eqref{eq:crossing} implies that $\Gamma_q$ decreases up to $q_*$ and increases after it.
+\end{proof}
+
+\begin{nogotheorem}[Bounded-growth obstruction]
+\label{thm:boundedgrowth}
+If
+\begin{equation}
+\frac{\cI_{q+1}^{\UV}}{\cI_q^{\UV}}\le C
+\label{eq:boundedgrowth}
+\end{equation}
+for all sufficiently large $q$, then
+\begin{equation}
+\frac{Z_{q+1}^{\UV}}{Z_q^{\UV}}
+\le
+\frac{C}{q+1}<1
+\end{equation}
+once $q+1>C$.  Hence a selector crossing at arbitrarily large capacity requires adjacent primitive growth of order at least $q$ near the crossing.
+\end{nogotheorem}
+
+This no-go theorem is useful because fixed finite-dimensional spectator degeneracies, whose adjacent growth is bounded, cannot by themselves move a selector to a macroscopically large $q$.
+
+
+\section{Topology-sensitive spectral stability}\label{sec:topology}
+
+A mechanism that removes a constant local vacuum-energy shift need not remove finite topology-sensitive spectral terms.  Khoury, Muntz, and Padilla provide an independent recent example: their global constraint cancels constant renormalized vacuum-energy shifts from the background equations, while nonzero-winding Casimir contributions survive and require additional spectral conditions \cite{KhouryMuntzPadilla2026}.  We import only this logical lesson, not their model-specific compactification conditions.
+
+For a finite topology/Casimir deformation, define
+\begin{equation}
+\Theta_q
+:=
+\delta_{\rm top}\log\cI_q^{\UV},
+\qquad
+\sigma_q^{\rm top}:=\Delta\Theta_q,
+\qquad
+\nu_q^{\rm top}:=\Delta^2\Theta_q.
+\label{eq:topresponses}
+\end{equation}
+Then identically
+\begin{equation}
+\delta_{\rm top}\rho_q=\sigma_q^{\rm top},
+\qquad
+\delta_{\rm top}\!\left(\Delta^2\Gamma_q\right)
+=
+-\nu_q^{\rm top}.
+\label{eq:topidentity}
+\end{equation}
+
+\begin{criterion}[Topology-stable selector]
+\label{crit:topstable}
+Suppose $q_*$ satisfies Theorem~\ref{thm:unique}.  Define
+\begin{equation}
+m_*:=\min\{\rho_{q_*-1},-\rho_{q_*}\}>0
+\end{equation}
+and
+\begin{equation}
+c_*:=\inf_q\Delta^2\Gamma_q>0.
+\end{equation}
+The sufficient bounds
+\begin{equation}
+\max\left\{
+|\sigma_{q_*-1}^{\rm top}|,
+|\sigma_{q_*}^{\rm top}|
+\right\}<m_*,
+\qquad
+\sup_q|\nu_q^{\rm top}|<c_*
+\label{eq:stabilitybounds}
+\end{equation}
+preserve both the selected sector and strict convexity.
+\end{criterion}
+
+The first inequality controls selector location; the second controls selector shape.  A constant topology term changes neither.  A term affine in $q$ can shift the crossing while leaving $\kappa_q$ unchanged.  A genuinely nonlinear finite spectral term can change both.
+
+
+\section{Entropy typing and the de Sitter output}
+\label{sec:entropy}
+
+The index sector and the area sector must also be kept type-safe at the thermodynamic level.
+
+In the de Sitter observer algebra constructed by Chandrasekaran, Longo, Penington, and Witten, the relevant algebra is Type $II_1$, and the semiclassical algebraic entropy agrees, up to a state-independent additive constant, with generalized entropy
+\begin{equation}
+S_{\rm gen}
+=
+\frac{A}{4G\hbar}
++
+S_{\rm out}
+=
+q_{\rm can}+S_{\rm out}
+\label{eq:Sgen}
+\end{equation}
+\cite{ChandrasekaranLongoPeningtonWitten2023}.  Separately, finite-statistics algebraic QFT relates logarithmic statistical dimensions and index-type quantities to additive thermodynamic increments in the hypotheses of that framework \cite{Longo2001}.  These results do not establish a CIVP-to-de-Sitter entropy identification.  They do fix its natural \emph{type}: if such a bridge exists, it is additive in entropy.
+
+Accordingly, the candidate physical bridge is
+\begin{equation}
+\Delta S_{\rm gen}
+=
+\log I_X.
+\label{eq:entropybridge}
+\end{equation}
+Equation~\eqref{eq:entropybridge} is an additional physical hypothesis, not a theorem of the present CIVP construction.  If also $\Delta S_{\rm out}=0$, then
+\begin{equation}
+\Delta q_{\rm can}=\log I_X.
+\label{eq:additiveQ}
+\end{equation}
+
+\begin{nogotheorem}[Additive/multiplicative area incompatibility]
+\label{thm:addmult}
+Let $\chi>0$ be constant.  There is no sequence with more than one nontrivial step satisfying simultaneously
+\begin{equation}
+Q_{n+1}-Q_n=\chi
+\label{eq:additive}
+\end{equation}
+and
+\begin{equation}
+\log\frac{Q_{n+1}}{Q_n}=\chi
+\label{eq:multiplicative}
+\end{equation}
+at every step.
+\end{nogotheorem}
+
+\begin{proof}
+At any step satisfying both equations,
+\begin{equation}
+Q_n+\chi=e^\chi Q_n,
+\qquad
+Q_n=\frac{\chi}{e^\chi-1}.
+\end{equation}
+The same condition at the next step requires the same value of $Q$, while Eq.~\eqref{eq:additive} gives $Q_{n+1}>Q_n$.
+\end{proof}
+
+Thus a finite-index entropy interpretation cannot simultaneously justify a constant multiplicative area ladder.  If Eq.~\eqref{eq:entropybridge} holds, the natural multiplicative carrier is instead the exponentiated state count
+\begin{equation}
+\Omega:=e^{S_{\rm gen}},
+\qquad
+\frac{\Omega_{n+1}}{\Omega_n}=I_X.
+\label{eq:Omega}
+\end{equation}
+
+The cosmological map itself remains simple.  Once an independently selected integer sector $q_*$ has been physically locked to $q_{\rm can}$,
+\begin{equation}
+\Lambda_{q_*}
+=
+\frac{3\pi}{q_*\ell_P^2}
+\label{eq:Lambdaoutput}
+\end{equation}
+is a kinematic de Sitter identity.  Without a derived $q_*$, Eq.~\eqref{eq:Lambdaoutput} is not a prediction of $\Lambda$.
+
+
+
+
+\section{Entropy--flux structure and the physical BMS shape quotient}
+\label{sec:bms}
+
+The molecular and finite-index sectors concern the scalar capacity and its
+internal locking.  Radiative data require a separate shape sector.  This
+separation prevents the scalar horizon capacity from being mistaken for a
+complete description of a radiative null boundary.
+
+For a gravitational supertranslation parameter $T$ on the unit sphere,
+define the trace-free Hessian
+\begin{equation}
+\mathcal D_{AB}[T]
+=
+D_AD_BT-\frac12\Omega_{AB}D^2T.
+\label{eq:shapehessian}
+\end{equation}
+For spherical harmonics,
+\begin{equation}
+\mathcal D_{AB}[Y_{\ell m}]=0
+\quad\Longleftrightarrow\quad
+\ell=0,1.
+\label{eq:shapekernel}
+\end{equation}
+Indeed,
+\begin{equation}
+\int_{S^2}
+\mathcal D_{AB}[Y_{\ell m}]
+\mathcal D^{AB}[Y_{\ell m}]
+\,\dd\Omega
+=
+\frac12(\ell-1)\ell(\ell+1)(\ell+2)
+\label{eq:shapenorm}
+\end{equation}
+for normalized harmonics.
+
+This gives the positive quotient
+\begin{equation}
+\cH_{\rm shape}^{\rm BMS}
+=
+\cH_{\rm soft}/(\cH_0\oplus\cH_1)
+\simeq
+\bigoplus_{\ell\ge2}\cH_\ell.
+\label{eq:shapequotient}
+\end{equation}
+The recent soft-dressing construction of
+Elkhidir, O'Connell, and Roiban provides an independent scattering setting in
+which observables are insensitive to the monopole and dipole parts of the
+supertranslation parameter and in which the dressing acts as the
+corresponding BMS transformation \cite{ElkhidirOConnellRoiban2026}.  We use
+that result only as an asymptotic shape diagnostic.  Equation~\eqref{eq:shapequotient}
+is not a theorem that every finite-corner charge with $\ell=0,1$ is
+unphysical.
+
+The scalar capacity and the radiative shape quotient are therefore distinct:
+\begin{equation}
+\boxed{
+q_{\rm can}\ {\rm controls\ the\ scalar\ area\ mode},
+\qquad
+[T]_{\rm shape}\in\cH_{\rm shape}^{\rm BMS}
+\ {\rm controls\ radiative\ shape}.
+}
+\label{eq:scalarshape}
+\end{equation}
+
+\subsection{Area as a corner charge}
+
+The corner symplectic structure contains the area and the relative boost or
+opening-angle variable as a canonical pair.  In a standard normalization, the
+corner term has the schematic form
+\begin{equation}
+I_{\rm corner}
+\supset
+\frac{A}{8\pi G}\,\Theta,
+\label{eq:cornerboost}
+\end{equation}
+up to the usual subtraction convention.  The molecular decomposition in
+Sec.~\ref{sec:embadon} refines the scalar area into atomic contributions,
+whereas the relative modes and the shape quotient carry independent angular
+information.
+
+This typing also clarifies entropy--flux balance.  A local null focusing
+equation depends on $T_{kk}$ and shear, while a constant pure-trace vacuum
+shift lies in the kernel described in Sec.~\ref{sec:tracefree}.  Radiative
+flux can therefore change generalized entropy or shape observables without
+being encoded by the global integration mode $\Lambda_{\rm int}$.
+
+\subsection{Finite-index entropy is not a radiative conservation law}
+
+Equation~\eqref{eq:entropybridge}, if physically realized, concerns an
+additive entropy increment of a finite-index defect.  It does not replace the
+local null flux law and does not imply conservation of a BMS charge.  In
+particular, the same scalar $\log\Ind$ may be a useful invariant of a defect
+while the radiative $\ell\ge2$ modes evolve independently.
+
+This is the reason for retaining both structures in the manuscript: the
+finite-index branch constrains an internal sector, while the BMS/flux branch
+provides an external shape-sensitive falsification channel.
+
+\section{Independent consistency and falsification sectors}
+\label{sec:consistency}
+
+The central closure theorem does not require the additional tests in this
+section.  They are retained because they distinguish several quantities that
+can otherwise be confused with the selector variables.
+
+\subsection{Euclidean de Sitter action and a latent volume ensemble}
+
+At tree level, the four-dimensional Euclidean de Sitter saddle has
+\begin{equation}
+-\frac{I_E}{\hbar}=q_{\rm dS}.
+\end{equation}
+Consequently the leading saddle factor is
+\begin{equation}
+Z_{\rm dS}\sim e^{q_{\rm dS}}.
+\label{eq:dsweight}
+\end{equation}
+Formally,
+\begin{equation}
+e^{Q}
+=
+\sum_{N=0}^{\infty}\frac{Q^N}{N!}
+\label{eq:poissonexpansion}
+\end{equation}
+is the exponential generating function of a Poisson count.  This admits a
+compound-Poisson representation of suitable Laplace-transformed volume
+statistics if the same gravitational measure justifies that interpretation.
+
+\begin{nogotheorem}[Latent Poisson count is not automatically the embadon count]
+\label{thm:latentcount}
+The integer $N$ in the formal expansion~\eqref{eq:poissonexpansion} cannot be
+identified with $N_{\rm emb}$ solely from the equality
+$e^Q=\sum_NQ^N/N!$.  Such an identification requires equality of the reduced
+measures and of the counted microscopic constituents.
+\end{nogotheorem}
+
+The theorem is simply the single-measure rule in another form.  A Euclidean
+saddle weight, an exact state degeneracy, and a molecular permutation quotient
+must not be multiplied together merely because each contains an exponential
+or factorial structure.
+
+\subsection{Black-hole capacity first law}
+
+For a stationary charged rotating black hole, define
+\begin{equation}
+q_H:=\frac{A_H}{4\ell_P^2}.
+\end{equation}
+The ordinary first law,
+\begin{equation}
+\delta M
+=
+T_H\,\delta S_H+\Omega_H\delta J+\Phi_H\delta Q_{\rm el},
+\end{equation}
+gives
+\begin{equation}
+T_H\,\delta q_H
+=
+\delta M-\Omega_H\delta J-\Phi_H\delta Q_{\rm el}
+\label{eq:capacityfirstlaw}
+\end{equation}
+in units with $S_H=q_H$ at leading semiclassical order.  This identity is a
+clean strong-field calibration of the scalar capacity variable.  It does not
+by itself imply the embadon unit-weight theorem or the UV selector.
+
+A future microscopic theory that claims one universal area capacity should
+reproduce both Eq.~\eqref{eq:capacityfirstlaw} and the molecular normalization
+without importing either normalization from observation.
+
+\subsection{Independent Hopf sector and role separation}
+
+The original construction also contains a protected topological sector on a
+compact spatial $S^3$.  Its mathematical content is independent of the
+finite-index selector and is retained here only with that separation.
+
+Let
+\begin{equation}
+U:S^3\longrightarrow SU(2)\simeq S^3
+\label{eq:Umap}
+\end{equation}
+be a smooth map.  Its degree is
+\begin{equation}
+Q_{\rm top}
+=
+\deg U
+=
+\frac{1}{24\pi^2}
+\int_{S^3}
+\Tr\!\left[(U^{-1}\dd U)^3\right]
+\in\mathbb Z.
+\label{eq:degreeU}
+\end{equation}
+Composing with the Hopf map
+\begin{equation}
+h:S^3\to S^2
+\end{equation}
+gives a map $n=h\circ U:S^3\to S^2$.
+
+\begin{theorem}[Degree--Hopf relation]
+\label{thm:degreehopf}
+With compatible orientations and the standard Hopf generator,
+\begin{equation}
+H(h\circ U)=\deg U.
+\label{eq:degreehopf}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+The Hopf map represents the generator of $\pi_3(S^2)\simeq\mathbb Z$.  The
+induced map on $\pi_3$ under precomposition by a degree-$k$ map of $S^3$
+multiplies the generator by $k$.
+\end{proof}
+
+\begin{remark}
+The integer $Q_{\rm top}$ is neither $q_{\rm can}$ nor $I_J$.  Its conservation
+or stability therefore cannot select the de Sitter capacity without an
+additional gravitational coupling theorem.
+\end{remark}
+
+This role separation also applies to phenomenological Hopf textures: projected
+rings or annuli do not establish a nonzero three-dimensional linking number.
+A physical Hopf interpretation requires a reconstructed three-dimensional map
+or equivalent linking data.
+
+\subsection{Why these sectors remain secondary}
+
+Equations~\eqref{eq:capacityfirstlaw} and \eqref{eq:degreehopf} are exact in
+their respective settings, but neither closes the molecular/index selector.
+They are retained because a complete theory must not use the same integer for
+several inequivalent charges.  Detailed halo, sky-survey, or ring
+phenomenology is outside the proof chain of the present article and would
+require its own statistical likelihood analysis.
+
+\section{Conditional closure and irreducible physical certificates}
+\label{sec:closure}
+
+We can now state the complete logical boundary without introducing a shell
+intercept or the observed cosmological constant.
+
+\begin{definition}[Five physical certificates]
+The closure requires exactly the following independent physical inputs.
+\begin{enumerate}[label=\textbf{C\arabic*.},leftmargin=3em]
+\item \textbf{$C_X$}: the glued CIVP data select a dualizable irreducible
+finite-index correspondence or defect $X$, with a canonical/minimal
+conditional expectation in the factor setting used for the index theorem;
+\item \textbf{$C_{\rm win}$}: the correctly typed expectation satisfies
+\begin{equation}
+\frac13<\PP<\frac12;
+\end{equation}
+\item \textbf{$C_U$}: the embadon weights in the same reduced physical measure
+are unit,
+\begin{equation}
+\gamma_i=1;
+\end{equation}
+\item \textbf{$C_E$}: the physical molecular divisor realizes the complete
+evaluation/jet frame of the physical index carrier, equivalently the residual
+complex is acyclic;
+\item \textbf{$C_{\UV}$}: one reduced ultraviolet measure produces a positive
+primitive sequence $\{\cI_q^{\UV}\}$ obeying strict selector convexity, one
+strict adjacent crossing, and the required topology-stability bounds.
+\end{enumerate}
+\end{definition}
+
+We use the mnemonic names
+\[
+C_X,\quad C_{\rm win},\quad C_U,\quad C_E,\quad C_{\UV}.
+\]
+The finite Berry/Capelli carrier is one possible mechanism for constructing
+the physical index space entering $C_E$; it is not a sixth equality inserted
+by hand.
+
+\begin{theorem}[Conditional molecular--index--selector closure]
+\label{thm:closure}
+Assume the five certificates above and the small-index classification
+hypotheses stated in Sec.~\ref{sec:index}.  Then
+\begin{equation}
+\Ind(X)=\varphi^2,
+\label{eq:closuregold}
+\end{equation}
+\begin{equation}
+q_{\rm can}=N_{\rm emb}=q_{\rm ind},
+\label{eq:closuretriple}
+\end{equation}
+and the reduced UV measure selects one integer sector $q_*$.  If the selected
+integer is the locked physical capacity, then
+\begin{equation}
+R_{q_*}
+=
+\ell_P\sqrt{\frac{q_*}{\pi}},
+\qquad
+\Lambda_{q_*}
+=
+\frac{3\pi}{q_*\ell_P^2}.
+\label{eq:closureds}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+$C_X$ and $C_{\rm win}$ allow Theorem~\ref{thm:goldwindow}, giving
+Eq.~\eqref{eq:closuregold}.  Certificate $C_U$ turns
+Eq.~\eqref{eq:weightedcapacity} into $q_{\rm can}=N_{\rm emb}$.
+Certificate $C_E$ and Theorem~\ref{thm:acyclic} give
+$N_{\rm emb}=q_{\rm ind}$.  Certificate $C_{\UV}$ and
+Theorem~\ref{thm:unique} select one integer $q_*$.  Equation~\eqref{eq:closureds}
+then follows from the exact de Sitter map~\eqref{eq:dsmap}.
+\end{proof}
+
+\begin{proposition}[Irreducible boundary]
+\label{prop:irreducible}
+Remove any one of
+$C_X,C_{\rm win},C_U,C_E,C_{\UV}$ while keeping the other four.  The
+corresponding conclusion of Theorem~\ref{thm:closure} is not determined by
+the remaining invariant data.
+\end{proposition}
+
+\begin{proof}
+Without $C_X$ there is no physical finite-index object.  Without
+$C_{\rm win}$ finite index need not take the golden value.  Without $C_U$ the
+support count leaves the positive weights in
+Eq.~\eqref{eq:weightedcapacity} free.  Without $C_E$ an integer-dimensional
+carrier does not determine the molecular support degree.  Without $C_{\UV}$,
+the transformation
+$\cI_q^{\UV}\mapsto e^{aq}\cI_q^{\UV}$ leaves the selector curvature
+unchanged while shifting every adjacent log-ratio by $a$; hence the location
+$q_*$ is undetermined.
+\end{proof}
+
+An optional sixth bridge can be studied after the defect has been
+constructed:
+\begin{equation}
+C_{\rm ent}:
+\qquad
+\Delta S_{\rm gen}=\log\Ind(X).
+\label{eq:Cent}
+\end{equation}
+It affects the entropy interpretation of the finite-index defect but is not
+needed for the capacity-selector theorem.
+
+\section{Discussion}
+\label{sec:discussion}
+
+The principal advantage of the present formulation is that the molecular,
+representation-theoretic, operator-algebraic, and statistical integers are
+generated independently before they are compared.
+
+The embadon construction is the microscopic origin of the support count and
+of the permutation quotient.  It also makes the first obstruction explicit:
+area is a weighted sum, not a count.  The unit-weight gate cannot be replaced
+by the statement that a molecular decomposition exists.
+
+The $\CP^1$ evaluation problem gives the cleanest exact locking statement in
+the paper.  Once an effective molecular divisor and an independent
+$q_{\rm ind}$-dimensional carrier are present, the equality
+$N_{\rm emb}=q_{\rm ind}$ is equivalent to vanishing of a collision-safe
+derived defect.  This equivalence survives collisions because the evaluation
+target contains jets.
+
+The finite-carrier problem and the finite-index problem are different.  The
+Berry--Kirillov construction naturally produces the off-by-one line degree
+$N-1$ and index $N$, while Capelli--Harish--Chandra data can reconstruct rank
+including multiplicities.  The fuzzy-matrix no-go theorems then show why the
+same $N$ cannot simply be read as a noninteger Jones index.
+
+The Jones/Fibonacci branch is correspondingly downstream.  Once the
+Pimsner--Popa or principal-graph window has been proved for the correct
+physical defect, the golden value is rigid.  Before that step, Fibonacci
+arithmetic is a fingerprint, not a selector.  Even after that step, braiding
+and chirality are additional data.
+
+The UV selector is also deliberately downstream of the molecular measure.
+Its $1/q!$ factor is physical only if the diagonal permutation quotient
+survives the same reduction that defines $\cI_q^{\UV}$.  The second
+difference $\kappa_q^{\UV}$ removes affine scheme freedom and therefore
+classifies selector shape, but the location of the maximum still requires the
+absolute linear datum of the reduced measure.
+
+Finally, trace-free locality and topology stability solve different
+problems.  A constant vacuum shift lies in the local trace-free kernel, while
+finite topology-sensitive Casimir terms can remain and modify
+$\cI_q^{\UV}$.  The stability inequalities in Sec.~\ref{sec:topology} test
+this residual sensitivity directly.
+
+The framework is falsifiable without redefinition.  Any of the following
+blocks the relevant conclusion: absence of a finite-index CIVP defect; failure
+of the Pimsner--Popa window; nonunit molecular weights; failure of the
+evaluation frame; or failure of strict UV selection/topology stability.  None
+of these failures can be repaired by fitting the observed value of
+$\Lambda$.
+
+\section{Conclusion}
+\label{sec:conclusion}
+
+We have assembled the molecular null-geometry, CIVP, holomorphic-index,
+finite-carrier, finite-index, and ultraviolet-selector constructions into one
+type-safe chain.
+
+The primary microscopic object is the positive atomic null area measure.  Its
+embadons define the unordered molecular support and the permutation quotient
+but do not by themselves quantize the total area.  Double-null gluing preserves
+the common atomic measure.  The independent $\CP^1$ carrier then supplies an
+exact collision-safe statement: the residual evaluation complex is acyclic
+if and only if the molecular divisor degree equals the index-space dimension.
+A separate unit-weight theorem is required to identify that count with
+geometric capacity.
+
+The finite carrier can be generated through Berry--Kirillov geometry and
+tested through Capelli--Harish--Chandra central data.  Neither this integer
+rank nor the divisible continuous supertranslation semigroup is the
+noninteger finite-index defect.  If a correctly extracted defect obeys the
+strict Pimsner--Popa window, the small-index spectrum forces
+$\Ind=\varphi^2$ and, under the standard hypotheses, the $A_4$/Fibonacci
+branch.  The Fibonacci structure may then live as an internal braid/fusion
+fiber over the molecular configuration space; it is not the macroscopic
+particle count.
+
+A single reduced UV measure supplies the only admissible sector weight.  The
+complete affine quotient invariant, strict convexity, crossing, and
+topology-response bounds determine when this measure selects one stable
+integer sector.  Finite-index entropy, if physically coupled, is additive and
+does not restore the discarded multiplicative area ladder.
+
+The result is therefore a conditional closure with five independent physical
+certificates, not a prediction of the observed cosmological constant.
+Establishing or falsifying those certificates in a fully reduced CIVP
+representation is the precise boundary of the construction.
+
+
+\appendix
+
+\section{General finite-difference quotient theorem}
+\label{app:differences}
+
+The affine selector invariant is the $r=1$ case of a general discrete
+statement.  Let $\mathcal S$ be the vector space of real sequences
+$f:\mathbb Z_{\ge0}\to\mathbb R$, with
+\begin{equation}
+(\Delta f)_q=f_{q+1}-f_q,
+\end{equation}
+and let $\mathcal P_r$ be the span of
+\begin{equation}
+\binom q0,\binom q1,\ldots,\binom qr.
+\end{equation}
+
+\begin{theorem}[Complete polynomial quotient]
+For every $r\ge0$,
+\begin{equation}
+\ker\Delta^{r+1}=\mathcal P_r.
+\label{eq:kernel-difference}
+\end{equation}
+Moreover $\Delta^{r+1}:\mathcal S\to\mathcal S$ is surjective.  Hence
+$\Delta^{r+1}f$ is a complete invariant of $f$ modulo a polynomial nuisance
+sequence of degree at most $r$.
+\end{theorem}
+
+\begin{proof}
+The binomial identity
+\begin{equation}
+\Delta\binom qj=\binom q{j-1}
+\end{equation}
+gives $\mathcal P_r\subset\ker\Delta^{r+1}$.  Conversely,
+$\Delta^{r+1}f=0$ implies that $\Delta^rf$ is constant; repeated discrete
+antidifferentiation reconstructs $f$ in the binomial basis with degree at most
+$r$.  For surjectivity, prescribe $r+1$ initial values and solve recursively
+for the next term from $\Delta^{r+1}f=g$.
+\end{proof}
+
+Thus $\Delta f$ is complete modulo a constant, while $\Delta^2 f$ is complete
+modulo $aq+b$.  Applied to $f_q=\log\cI_q^{\UV}$, this is precisely the affine
+selector quotient in Theorem~\ref{thm:affine}.
+
+\section{Effective divisors, evaluation jets, and the collision limit}
+\label{app:jets}
+
+For a nonreduced divisor
+\begin{equation}
+Z=\sum_{a=1}^s m_a z_a,
+\qquad
+N=\sum_am_a,
+\end{equation}
+the zero-dimensional scheme has local length $m_a$ at $z_a$.  In an affine
+coordinate $z$ near $z_a$, restriction to $Z$ records the jet
+\begin{equation}
+s(z_a),\;
+\partial s(z_a),\ldots,
+\partial^{m_a-1}s(z_a).
+\end{equation}
+Thus the target of the evaluation map has dimension
+\begin{equation}
+\dim H^0(Z,L|_Z)=N.
+\end{equation}
+For $L=\cO(q-1)$, the confluent evaluation matrix has columns formed by
+successive derivatives of the monomial basis
+$1,z,\ldots,z^{q-1}$.  At $N=q$, its determinant is the confluent
+Vandermonde determinant and is nonzero for distinct support points with the
+prescribed multiplicities.  This gives an elementary interpolation proof of
+the isomorphism in Eq.~\eqref{eq:evalequiv}.
+
+The derived proof is stronger because it remains coordinate independent:
+\begin{equation}
+0\to L(-Z)\to L\to L|_Z\to0
+\end{equation}
+gives
+\begin{equation}
+R\Gamma(L(-Z))
+\simeq
+\left[
+H^0(L)\to H^0(L|_Z)
+\right]
+\end{equation}
+on $\CP^1$ in the relevant degree range.  The collision limit therefore
+changes ordinary values into jets without changing the defect
+$q_{\rm ind}-N_{\rm emb}$.
+
+\section{Finite carrier, polarization transport, and Stinespring leakage}
+\label{app:carrier}
+
+\subsection{Fixed-polarization obstruction}
+
+A fixed complex structure $J$ on $S^2$ defines a holomorphic carrier
+$H^0(S^2_J,L)$.  A generic diffeomorphism $f$ changes $J$ to $f_*J$, so
+pullback maps
+\begin{equation}
+H^0(S^2_J,L)
+\longrightarrow
+H^0(S^2_{f_*J},f_*L)
+\end{equation}
+rather than acting inside one fixed holomorphic subspace.  Therefore a
+representation of the full superrotation group on one fixed $K_q$ requires
+additional polarization transport or a deformed algebra.  This is why the
+groupoid formulation in Sec.~\ref{sec:carrier} is not merely decorative.
+
+\subsection{Exact Stinespring defect}
+
+Let $Q:\mathcal A\to\mathcal B(\mathcal K)$ be UCP and
+\begin{equation}
+Q(a)=V^*\pi(a)V
+\end{equation}
+a Stinespring dilation with $V^*V=1$.  Writing $K=1-VV^*$,
+\begin{align}
+Q(ab)-Q(a)Q(b)
+&=
+V^*\pi(a)\pi(b)V
+-
+V^*\pi(a)VV^*\pi(b)V
+\nonumber\\
+&=
+V^*\pi(a)K\pi(b)V.
+\end{align}
+Thus $Q$ is multiplicative on a subalgebra precisely when the corresponding
+leakage matrix elements vanish.  This identity is useful when a finite
+matrix carrier is extracted from a nonmultiplicative CIVP channel.
+
+\subsection{Berry line and the off-by-one class}
+
+The spin-$J$ coherent-state orbit has stabilizer $U(1)$, hence is
+$SU(2)/U(1)\simeq\CP^1$.  For $N=2J+1$, the highest-weight character has
+weight $2J=N-1$, giving the associated holomorphic line
+\begin{equation}
+L_N\simeq\cO(N-1).
+\end{equation}
+The Borel--Weil space has
+\begin{equation}
+\dim H^0(\CP^1,L_N)=N,
+\end{equation}
+so the Berry Chern number and the analytic index differ by exactly one:
+\begin{equation}
+c_1(L_N)[\CP^1]=N-1,
+\qquad
+\ind\bar\partial_{L_N}=N.
+\end{equation}
+This is the same off-by-one structure that forbids identifying embadons with
+the zeros of one section.
+
+\section{Capelli transfer: reconstruction details}
+\label{app:capelli}
+
+The rank-reconstruction mechanism can be made completely explicit on each
+translation orbit of the root divisor.  Write
+\begin{equation}
+P_r(u)=\prod_{n\in\mathbb Z}(u-x-n\epsilon)^{m_n},
+\end{equation}
+with only finitely many nonzero $m_n$.  Then
+\begin{equation}
+R_\epsilon(u)
+=
+\frac{P_r(u+\epsilon)}{P_r(u)}
+\end{equation}
+has divisor coefficients
+\begin{equation}
+d_n=m_{n+1}-m_n.
+\end{equation}
+Since $m_n=0$ for $n\gg1$,
+\begin{equation}
+m_n=-\sum_{j=n}^{\infty}d_j.
+\label{eq:capellirecover}
+\end{equation}
+Equation~\eqref{eq:capellirecover} reconstructs every multiplicity after all
+pole--zero cancellations in the rational function have been performed.
+
+Summing over all translation orbits gives
+\begin{equation}
+r=\sum_nm_n.
+\end{equation}
+The reconstruction works at singular central characters where an ordinary
+moment Hankel matrix would see only distinct roots.  This is the reason the
+full Capelli transfer is a more robust rank certificate than the regular
+Hankel test.
+
+The forward and reverse cyclic central-word conventions amount to using
+$\epsilon=-1$ and $\epsilon=+1$, together with the corresponding shifted
+spectral coordinate.  Both produce a finite-difference chart of the same
+centered polynomial.  This structure is standard in the type-$A$ Capelli and
+Yangian setting; see, e.g., Ref.~\cite{Molev2003}.  The gravitational problem
+is not the algebraic reconstruction itself but the derivation of one
+$N$-independent raw central family from CIVP.
+
+\subsection{Weighted-projective completeness and its limitation}
+
+Suppose two nonvanishing central sequences $C_k$ and $\widetilde C_k$ have
+the same ratios
+\begin{equation}
+\frac{C_{k+1}C_{k-1}}{C_k^2}
+=
+\frac{\widetilde C_{k+1}\widetilde C_{k-1}}{\widetilde C_k^2}
+\end{equation}
+on a connected interval.  Taking logarithms of absolute values and phases on
+a consistent branch shows that their quotient obeys zero second difference,
+hence
+\begin{equation}
+\widetilde C_k=A B^k C_k.
+\end{equation}
+Thus the cross ratios completely classify the nonzero projective shape.  The
+rank no-go in Theorem~\ref{thm:projectiveranknogo} says only that this quotient
+class omits an absolute datum.
+
+\section{Formal Tate/Bott--Thurston image of the locking defect}
+\label{app:tate}
+
+The residual complex
+\begin{equation}
+\cE_{q,Z}
+=
+R\Gamma(\CP^1,L_q(-Z))
+\end{equation}
+has Euler characteristic
+\begin{equation}
+\chi(\cE_{q,Z})
+=
+q_{\rm ind}-N_{\rm emb}
+=
+\Delta_{\rm lock}.
+\label{eq:tateeuler}
+\end{equation}
+There is a second, formal central-extension image of the same integer defect.
+
+Osipov's formal Bott--Thurston construction identifies, over a
+$\mathbb Q$-algebra, the formal Bott--Thurston central extension with the
+twelve-fold Baer sum of the determinantal extension
+\cite{Osipov2022}.  In the normalization used here, define the formal
+transgression of the residual class by
+\begin{equation}
+T_{\rm Tate}([\cE])
+=
+12\,\chi(\cE)\,[\widehat{\rm Det}]
+=
+\chi(\cE)\,[\widehat{\rm BT}].
+\label{eq:Tate}
+\end{equation}
+Then
+\begin{equation}
+T_{\rm Tate}([\cE_{q,Z}])
+=
+12\Delta_{\rm lock}[\widehat{\rm Det}]
+=
+\Delta_{\rm lock}[\widehat{\rm BT}].
+\label{eq:Tatelock}
+\end{equation}
+
+\begin{proposition}[Formal central image]
+Within the stated formal normalization, if
+$[\widehat{\rm Det}]$ is nonzero in the relevant central-extension group,
+then
+\begin{equation}
+T_{\rm Tate}([\cE_{q,Z}])=0
+\quad\Longleftrightarrow\quad
+\Delta_{\rm lock}=0
+\quad\Longleftrightarrow\quad
+N_{\rm emb}=q_{\rm ind}.
+\end{equation}
+\end{proposition}
+
+This is a mathematical image of the same derived defect.  It is not a proof
+that the physical quantum-CIVP anomaly is the Bott--Thurston class.  The
+physical vertical map from the null representation to the formal extension
+must be specified before an anomaly-cancellation statement can be inferred.
+
+\section{The $A_4$ integral transfer and golden arithmetic}
+\label{app:A4}
+
+For
+\begin{equation}
+A=
+\begin{pmatrix}
+1&1\\
+1&2
+\end{pmatrix},
+\end{equation}
+the characteristic polynomial is
+\begin{equation}
+p_A(x)=x^2-3x+1,
+\end{equation}
+with roots $\varphi^{\pm2}$.  Cayley--Hamilton gives
+\begin{equation}
+A^{n+2}=3A^{n+1}-A^n.
+\label{eq:Arecurrence}
+\end{equation}
+Matching the Fibonacci recurrence at $n=1$ yields
+\begin{equation}
+A^n
+=
+\begin{pmatrix}
+F_{2n-1}&F_{2n}\\
+F_{2n}&F_{2n+1}
+\end{pmatrix},
+\end{equation}
+and hence
+\begin{equation}
+\Tr(A^n)=L_{2n}.
+\end{equation}
+Writing
+\begin{equation}
+\chi_*:=\log\varphi^2,
+\end{equation}
+one also has
+\begin{equation}
+\cosh\chi_*=\frac32,
+\qquad
+\sinh\chi_*=\frac{\sqrt5}{2},
+\qquad
+\tanh\frac{\chi_*}{2}=\frac1{\sqrt5}.
+\end{equation}
+These are arithmetic consequences of the same quadratic unit.
+
+The incidence matrix
+\begin{equation}
+B=
+\begin{pmatrix}
+1&0\\
+1&1
+\end{pmatrix}
+\end{equation}
+satisfies
+\begin{equation}
+BB^{\mathsf T}=A=N_\tau^2.
+\end{equation}
+Thus the two-step principal-graph transfer and the square of the Fibonacci
+fusion operator share the same integral matrix.  This exact identity is the
+appropriate integral bridge; no irrational integer-capacity multiplication is
+required.
+
+\section{Role-separation ledger}
+\label{app:types}
+
+For reference, the principal quantities have the following types and statuses.
+
+The geometric capacity
+\begin{equation}
+q_{\rm can}=A/(4\ell_P^2)
+\end{equation}
+is real and positive before locking.  The molecular number
+$N_{\rm emb}$ is the degree of an effective divisor.  The analytic index
+$q_{\rm ind}$ is an integer dimension.  The Berry rank $N_{\rm Berry}$ is a
+finite representation dimension.  The finite-index scalar $I_J$ is generally
+noninteger.  The categorical dimension $d_\tau$ and global dimension
+$\mu_{\Fib}$ are different invariants.  The Jones-tower depth is an integer
+grading and not a geometric shell count.  The BMS shape class is an
+equivalence class of angular functions modulo $\ell=0,1$, while
+$\Lambda_{\rm int}$ is a global $H^0$ integration mode of the trace-free
+equation.
+
+The exact or conditional relations established in the paper are:
+\begin{align}
+C_U
+&\Longrightarrow
+q_{\rm can}=N_{\rm emb},
+\\
+C_E
+&\Longrightarrow
+N_{\rm emb}=q_{\rm ind},
+\\
+\text{selected Berry carrier}
+&\Longrightarrow
+N_{\rm Berry}=q_{\rm ind},
+\\
+C_X+C_{\rm win}
+&\Longrightarrow
+I_J=\varphi^2,
+\\
+C_{\UV}
+&\Longrightarrow
+q_*\ {\rm unique},
+\\
+q_*=q_{\rm can}
+&\Longrightarrow
+\Lambda_{q_*}=\frac{3\pi}{q_*\ell_P^2}.
+\end{align}
+No other equality among these variables is assumed.
+
+\section*{Acknowledgments}
+
+The authors acknowledge the body of work on gravitational corner symmetries,
+null quantization, quantum channels, finite-index operator algebras,
+determinantal processes, and formal central extensions on which the comparison
+made here is based.
+
+\section*{Data Availability}
+
+The results in this article are analytic.  No empirical data were created or
+analyzed.  A symbolic verification script checking the exact matrix
+identities, the Pimsner--Popa window numerics, the $\CP^1$ dimension formulas,
+the de Sitter capacity map, and the discrete selector identities is supplied
+with the manuscript.
+
+\begin{thebibliography}{99}
+
+\bibitem{FreidelGeillerPranzetti2020}
+L. Freidel, M. Geiller, and D. Pranzetti,
+JHEP \textbf{11}, 026 (2020), arXiv:2006.12527.
+
+\bibitem{DonnellyFreidelMoosavianSperanza2023}
+W. Donnelly, L. Freidel, S. F. Moosavian, and A. J. Speranza,
+JHEP \textbf{05}, 163 (2023), arXiv:2212.09120.
+
+\bibitem{CiambelliKowalskiVarrin2025}
+L. Ciambelli, J. Kowalski-Glikman, and L. Varrin,
+Phys. Lett. B \textbf{866}, 139544 (2025), arXiv:2406.07101.
+
+\bibitem{CiambelliFreidelLeigh2024}
+L. Ciambelli, L. Freidel, and R. G. Leigh,
+JHEP \textbf{12}, 028 (2024), arXiv:2407.11132.
+
+\bibitem{CiambelliKlinger2026}
+L. Ciambelli and M. S. Klinger,
+``Quantization of Gravity on Null Hypersurfaces,''
+arXiv:2607.07785 (2026).
+
+\bibitem{FreidelKirklin2026}
+L. Freidel and J. Kirklin,
+``Gravitational null rays: Covariant Quantization and the Dressing Time,''
+arXiv:2604.02228 (2026).
+
+\bibitem{CiambelliHeZurek2025}
+L. Ciambelli, T. He, and K. M. Zurek,
+JHEP \textbf{08}, 199 (2025), arXiv:2504.12282.
+
+\bibitem{Jones1983}
+V. F. R. Jones,
+Invent. Math. \textbf{72}, 1 (1983).
+
+\bibitem{PimsnerPopa1986}
+M. Pimsner and S. Popa,
+Ann. Sci. \'{E}c. Norm. Sup\'{e}r. \textbf{19}, 57 (1986).
+
+\bibitem{Kosaki1986}
+H. Kosaki,
+J. Funct. Anal. \textbf{66}, 123 (1986).
+
+\bibitem{LongoRehren1995}
+R. Longo and K.-H. Rehren,
+Rev. Math. Phys. \textbf{7}, 567 (1995), arXiv:hep-th/9411077.
+
+\bibitem{FrankKirchberg1998}
+M. Frank and E. Kirchberg,
+J. Operator Theory \textbf{40}, 87 (1998), arXiv:math/9804074.
+
+\bibitem{LongoRoberts1997}
+R. Longo and J. E. Roberts,
+K-Theory \textbf{11}, 103 (1997), arXiv:funct-an/9604008.
+
+\bibitem{Kawahigashi2023}
+Y. Kawahigashi,
+Int. Math. Res. Not. \textbf{2023}, 8419 (2023), arXiv:2111.14332.
+
+\bibitem{Popa2023}
+S. Popa,
+Enseign. Math. \textbf{69}, 149 (2023), arXiv:2112.15148.
+
+\bibitem{AfzalyMorrisonPenneys2023}
+N. Afzaly, S. Morrison, and D. Penneys,
+Mem. Am. Math. Soc. \textbf{284}, No. 1405 (2023), arXiv:1509.00038.
+
+\bibitem{Molev2003}
+A. I. Molev,
+``Yangians and their applications,''
+in \emph{Handbook of Algebra}, Vol. 3, 907--959 (Elsevier, 2003),
+arXiv:math/0211288.
+
+\bibitem{Lemoine2026}
+T. Lemoine,
+``Determinantal point processes on complex manifolds: Construction and limit
+theorems,'' arXiv:2211.06955 (2026 version).
+
+\bibitem{Eum2026}
+K. Eum,
+J. Geom. Phys. \textbf{221}, 105744 (2026), arXiv:2503.01524.
+
+\bibitem{Osipov2022}
+D. V. Osipov,
+``Formal Bott--Thurston cocycle and part of a formal Riemann--Roch theorem,''
+arXiv:2211.15932 (2022).
+
+\bibitem{KhouryMuntzPadilla2026}
+J. Khoury, B. Muntz, and A. Padilla,
+``A Lapse in the Cosmological Constant Problem with Bulk Dynamics,''
+arXiv:2608.12460 (2026).
+
+\bibitem{ElkhidirOConnellRoiban2026}
+A. Elkhidir, D. O'Connell, and R. Roiban,
+``Supertranslations are Soft Dressings,''
+arXiv:2608.07699 (2026).
+
+\bibitem{ChandrasekaranLongoPeningtonWitten2023}
+V. Chandrasekaran, R. Longo, G. Penington, and E. Witten,
+JHEP \textbf{02}, 082 (2023), arXiv:2206.10780.
+
+\bibitem{Longo2001}
+R. Longo,
+Commun. Math. Phys. \textbf{222}, 45 (2001), arXiv:math/0003082.
+
+\bibitem{EdieMichell2021}
+C. Edie-Michell,
+Int. Math. Res. Not. IMRN (2021), arXiv:1904.08909.
+
+\bibitem{Atiyah1957}
+M. F. Atiyah,
+Trans. Am. Math. Soc. \textbf{85}, 181 (1957).
+
+\end{thebibliography}
+
+\end{document}

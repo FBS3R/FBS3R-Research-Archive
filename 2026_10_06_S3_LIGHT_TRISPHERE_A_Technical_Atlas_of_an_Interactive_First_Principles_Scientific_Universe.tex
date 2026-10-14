@@ -1,0 +1,108 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{fontspec}
+\setmainfont{DejaVu Serif}[ItalicFont={DejaVu Serif},ItalicFeatures={FakeSlant=0.16},BoldItalicFont={DejaVu Serif Bold},BoldItalicFeatures={FakeSlant=0.16}]
+\setsansfont{DejaVu Sans}
+\setmonofont{DejaVu Sans Mono}[Scale=0.82]
+\usepackage{amsmath,mathtools}
+\usepackage{unicode-math}
+\setmathfont{latinmodern-math.otf}
+\usepackage[margin=23mm,headheight=15pt]{geometry}
+\usepackage{graphicx,booktabs,longtable,tabularx,array,enumitem,xcolor}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,fit}
+\usepackage{microtype,fancyhdr,float,pdflscape,needspace}
+\usepackage[unicode,colorlinks=true,linkcolor=blue!45!black,urlcolor=blue!45!black,citecolor=blue!45!black]{hyperref}
+\usepackage{xurl,bookmark}
+\usepackage[nameinlink,noabbrev]{cleveref}
+\usepackage{fvextra}
+\DefineVerbatimEnvironment{Code}{Verbatim}{breaklines=true,fontsize=\small,frame=single,rulecolor=\color{black!20}}
+\setlength{\tabcolsep}{4pt}
+\setlength{\parindent}{0pt}\setlength{\parskip}{5pt}
+\setlength{\emergencystretch}{3em}
+\setlist{nosep,leftmargin=*}
+\pagestyle{fancy}\fancyhf{}\lhead{\small S³ LIGHT-TRISPHERE}\rhead{\small Technical Preprint — Version 1}\cfoot{\thepage}
+\newcommand{\id}[1]{\expandafter\nolinkurl\expandafter{\detokenize{#1}}}
+\newcommand{\src}[1]{\textit{Implementation anchor:} \id{#1}.}
+\newcommand{\route}[2]{\href{https://4vmp5pkwz4-pixel.github.io/HCC/\##1}{#2}}
+\newcommand{\field}[2]{\par\textbf{#1.} #2\par}
+\hypersetup{pdftitle={S³ LIGHT-TRISPHERE: A Technical Atlas},pdfsubject={Architecture, scientific contracts and machine access},pdfauthor={Boris Batenin and Andrei Preece}}
+\makeatletter\renewcommand{\@pnumwidth}{2.2em}\renewcommand{\@tocrmarg}{3em}\makeatother
+\begin{document}
+\begin{titlepage}
+\vspace*{18mm}
+{\Large\sffamily Technical Preprint — Version 1\par}
+\vspace{14mm}
+{\Huge\bfseries S³ LIGHT-TRISPHERE\par}
+\vspace{8mm}
+{\LARGE A Technical Atlas of an\\ Interactive First-Principles\\ Scientific Universe\par}
+\vspace{12mm}
+{\large Architecture, Scientific Contracts, Laboratories, Typed Instruments, Provenance, Navigation and Machine Access\par}
+\vspace{12mm}
+{\Large\bfseries Boris Batenin and Andrei Preece\par}
+\vspace{3mm}
+{\large Independent Researchers\par}
+\vspace{3mm}
+{\large Berlin, 2026\par}
+\vfill
+{\large Source build 4.352.0\par}
+\id{geometry-evidence-2026.10.02.1}\par
+Repository snapshot: \id{a9a219c6de92e1a9db2ad3f898ccdd626c7af3db}\par
+Manuscript date: 4 October 2026\par
+\vspace{8mm}
+\textbf{Scope.} An architectural and operational map of the executable Atlas. Mathematical identities, catalogue entries, reduced models, conditional reconstructions and proposed bridges retain distinct evidential status. This manuscript does not replace the interactive system.
+\end{titlepage}
+\pagenumbering{roman}
+\begin{abstract}
+S³ LIGHT-TRISPHERE is an interactive three-dimensional scientific atlas organized into seven worlds, a registry of 133 laboratories and 145 typed computational instruments in release 4.352.0. It combines astronomical catalogue layers, mathematical constructions, reduced physical models, a conditional compact-three-sphere reconstruction and a golden-ratio scale ladder. Laboratories supply spatial contexts and inspectors; typed instruments supply declared inputs, domains, outputs and verification references. These entities are connected in two different ways: Invariant Nexus represents explicitly typed scientific relationships, while the quantity bus transfers compatible numerical quantities under declared conversion and refusal rules. Provenance, formulas, model boundaries, navigation routes and machine-readable descriptions make the system addressable by researchers, developers and autonomous agents.
+
+This preprint documents that architecture, the human navigation model, representative laboratory computations, source classifications, exports, validation mechanisms and the WebXR control layer. It provides complete laboratory and instrument indexes, a principal formula register, source-tag records and reproducible machine-access examples. The generated release manifest supplies the catalogue census. Scientific contracts separate native mathematical structure, parameter semantics, provenance and display conventions, while explicit status fields distinguish declared metadata from unresolved entries. Source provenance, numerical verification and empirical validation retain distinct meanings. The document provides an architectural and operational map of the Atlas, whose executable calculations, parameter exploration, spatial navigation and device-dependent interaction form the working research environment.
+\end{abstract}
+\tableofcontents\clearpage\listoffigures\listoftables\clearpage
+\pagenumbering{arabic}
+\input{sections/01}
+\input{sections/02}
+\input{sections/03}
+\input{sections/04}
+\input{sections/05}
+\input{sections/06}
+\input{sections/07}
+\input{sections/08}
+\input{sections/09}
+\input{sections/10}
+\input{sections/11}
+\input{sections/12}
+\input{sections/13}
+\input{sections/14}
+\input{sections/15}
+\input{sections/16}
+\input{sections/17}
+\input{sections/18}
+\input{sections/19}
+\input{sections/20}
+\input{sections/21}
+\input{sections/22}
+\input{sections/23}
+\input{sections/24}
+\input{sections/25}
+\input{sections/26}
+\input{sections/27}
+\input{sections/28}
+\input{sections/29}
+\input{sections/30}
+\input{sections/31}
+\clearpage\appendix
+\input{appendices/worlds}
+\input{appendices/laboratories}
+\input{appendices/instruments}
+\input{appendices/relations}
+\input{appendices/formulas}
+\input{appendices/exports}
+\input{appendices/sources}
+\input{appendices/routes}
+\input{appendices/interactions}
+\input{appendices/api}
+\input{appendices/validation}
+\input{appendices/screenshots}
+\clearpage\section*{References and source records}\addcontentsline{toc}{section}{References and source records}
+\input{references.tex}
+\end{document}

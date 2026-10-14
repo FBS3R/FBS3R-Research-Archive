@@ -1,0 +1,1425 @@
+\documentclass[aps,prd,reprint,nofootinbib,superscriptaddress]{revtex4-2}
+
+\usepackage{amsmath,amssymb,amsfonts,amsthm,mathtools}
+\usepackage{bm}
+\usepackage{microtype}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,linkcolor=blue!55!black,citecolor=red!55!black,urlcolor=blue!60!black]{hyperref}
+\hypersetup{
+  pdfauthor={Andrei Preece and Boris Batenin},
+  pdftitle={Null Beltrami Geometry on the Round Three-Sphere: Global Hopf Classification, Bateman Links, and an Exact Sextic Twistor-Cohomology Bridge}
+}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\CP}{\mathbb{CP}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\cU}{\mathcal{U}}
+\newcommand{\cI}{\mathcal{I}}
+\newcommand{\cZ}{\mathcal{Z}}
+\newcommand{\PT}{\mathcal{PT}}
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\Div}{\operatorname{div}}
+\newcommand{\Curl}{\operatorname{curl}}
+\newcommand{\Lk}{\operatorname{Lk}}
+\newcommand{\Span}{\operatorname{span}}
+\newcommand{\Sym}{\operatorname{Sym}}
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\eps}{\varepsilon}
+
+\begin{document}
+
+\title{Null Beltrami Geometry on the Round Three-Sphere: Global Hopf Classification, Bateman Links, and an Exact Sextic Twistor-Cohomology Bridge}
+
+\author{Andrei Preece}
+\email{andre.preece@web.de}
+\affiliation{Independent Researcher, Berlin, Germany}
+
+\author{Boris Batenin}
+\email{batenin@web.de}
+\affiliation{Independent Researcher, Berlin, Germany}
+
+\date{October 7, 2026}
+
+\begin{abstract}
+We classify null complex curl eigenfields on the unit round three-sphere, determine the exact nodal-link dynamics of a factorized Bateman family, and construct an exact chain from Beltrami eigenmodes to time-harmonic Maxwell data together with a classified cohomological bridge from helicity-one Penrose data to Hamiltonian nonlinear-graviton deformations.  For a null Beltrami field $F=E+iB$ on $S^3$, the normalized Poynting direction is geodesic and shear-free away from the zero set.  A transverse-symbol analysis gives $V=\pm T+rW$ on the real blow-up of every regular nodal arc, hence a locally Lipschitz continuation and a $C^0$ geodesic foliation.  Because one-dimensional nodal pieces are polar in dimension three, the removable-singularity theorem of Baird and Wood upgrades the foliation to real analyticity; residual structural points are removed by their isolated-singularity alternative.  The global foliation is therefore Hopf, and for $\lambda>0$ every nonzero null Beltrami eigenfield is, up to an orientation-preserving round isometry, $F=p(z_1,z_2)(X_2+iX_3)$ with $p$ homogeneous holomorphic of degree $m\ge0$ and $\lambda=m+2$.  For the standard Bateman variables, each compactified spatial map $\Psi_t:\widehat{\mathbb R^3}\to S^3$ is a diffeomorphism, and the Bateman basis field is carried by $d\Psi_t$ into the canonical Hopf CR line.  Thus factorized fields have exact planar nodal circles whose link evolves by ambient isotopy and preserves Hopf linking.  On $\mathcal U\simeq\operatorname{Tot}(\mathcal O(1)\oplus\mathcal O(1)\to\mathbb{CP}^1)$, the fibre-polynomial degree-$m$ sectors satisfy $\dim H^1(\mathcal U,\mathcal O(-4))_m=(m+1)(m+3)$ and $\dim H^1(\mathcal U,\mathcal O(2))_m=(m+1)(m-3)$ for $m\ge4$.  Multiplication by any nonzero sextic $s\in H^0(\mathbb{CP}^1,\mathcal O(6))$ induces a surjection from the Maxwell sector onto the Hamiltonian-gravity sector with kernel dimension $6(m+1)$; the kernel is supported on the degree-six divisor of $s$.  Every zeroth-order line-bundle bridge of this type is multiplication by a sextic, so the construction exhausts that class while proving that no canonical base-symmetric nonzero choice exists without additional data.  Finally, a signature-separation argument shows that the nonflat real Lorentzian Kerr--Schild II/D sector cannot be identified with a real self-dual nonlinear-graviton slice.
+\end{abstract}
+
+\maketitle
+
+\section{Introduction and statement of scope}
+
+Null electromagnetic and Beltrami structures naturally couple differential geometry, topology, and complex analysis. On the round sphere, the curl operator has a discrete spectrum and the Hopf fibration furnishes canonical eigenfields. In Minkowski space, Bateman's construction converts pairs of complex scalar functions into null Maxwell fields, while stereographic and conformal geometry expose an underlying $S^3$. In twistor theory, self-dual vacuum gravity is encoded by deformations of a complex threefold preserving a fibration over $\CP^1$ and a relative $\cO(2)$-valued holomorphic symplectic form \cite{Penrose1976,HitchinKarlhede1987}.
+
+The purpose of this paper is to isolate what can be proved rigorously in a common framework and, in the Beltrami sector, to close the nodal-set removability problem by combining quantitative transverse asymptotics with potential-theoretic removable singularities for conformal geodesic foliations. The results fall into three groups.
+
+\begin{enumerate}
+\item For null Beltrami eigenfields on the unit round $S^3$, the normalized Poynting congruence is geodesic and shear-free wherever the field is nonzero. A quantitative transverse-symbol analysis gives a locally Lipschitz continuation across each regular constant-order nodal arc. Potential-theoretic removability for conformal geodesic foliations then upgrades this continuation to real analyticity. The residual multiplicity-change, endpoint, intersection, and isolated points are removable by the Baird--Wood isolated-singularity alternative. Consequently every positive-eigenvalue null Beltrami mode is, up to an orientation-preserving isometry, a Hopf--Beltrami polynomial mode.
+\item For a factorized Bateman polynomial, the nodal set in every spatial slice is a finite Hopf link of exact planar circles. The time evolution is induced by an ambient isotopy of $\R^3$.
+\item The polynomial sector of the Hamiltonian twistor deformation space $H^1(\cU,\cO(2))$ is computed explicitly, and local symplectic \v{C}ech gluing produces the standard local nonlinear-graviton geometry. This complex construction is kept separate from the real Lorentzian Kerr--Schild classification.
+\end{enumerate}
+
+All claims used in the global Beltrami classification are proved below or quoted with their precise hypotheses. Section~\ref{sec:interpretation} collects the broader geometric interpretation while explicitly separating theorem-level consequences from conjectural physical extrapolation.
+
+\section{\texorpdfstring{Round $S^3$}{Round S3}, conventions, and the null Beltrami system}
+
+Let $(S^3,g)$ be the unit round three-sphere with fixed orientation. For a vector field $Y$, the curl operator is defined by
+\[
+(\Curl Y)^\flat=*\dd(Y^\flat),
+\]
+and $\Div Y$ is the Riemannian divergence. We identify $S^3\simeq SU(2)$ and choose a positively oriented left-invariant orthonormal frame $\{X_1,X_2,X_3\}$ with
+\begin{equation}
+[X_i,X_j]=-2\epsilon_{ijk}X_k,
+\qquad
+\Curl X_i=+2X_i.
+\label{eq:leftframe}
+\end{equation}
+A right-invariant frame $\{Y_1,Y_2,Y_3\}$ is normalized by
+\begin{equation}
+[Y_i,Y_j]=+2\epsilon_{ijk}Y_k,
+\qquad
+\Curl Y_i=-2Y_i.
+\label{eq:rightframe}
+\end{equation}
+Set
+\[
+z_1=q_1+iq_2,\qquad z_2=q_3+iq_4,
+\qquad |z_1|^2+|z_2|^2=1,
+\]
+and define the horizontal complex field
+\begin{equation}
+X:=X_2+iX_3,\qquad \bar X=X_2-iX_3.
+\label{eq:Xdef}
+\end{equation}
+Then
+\begin{equation}
+[X,\bar X]=4iX_1.
+\label{eq:Xcomm}
+\end{equation}
+
+With the phase of $X_2,X_3$ fixed by \eqref{eq:Xdef}, these fields may be written on the standard CR sphere as
+\begin{align}
+X_1&=i\!\left(z_1\partial_{z_1}+z_2\partial_{z_2}
+-\bar z_1\partial_{\bar z_1}-\bar z_2\partial_{\bar z_2}\right),
+\label{eq:X1coords}\\
+X&=2\!\left(z_2\partial_{\bar z_1}-z_1\partial_{\bar z_2}\right),
+\qquad
+\bar X=2\!\left(\bar z_2\partial_{z_1}-\bar z_1\partial_{z_2}\right).
+\label{eq:Xcoords}
+\end{align}
+Thus $X$ is a tangential $(0,1)$ CR vector field and $X_1$ generates the Hopf circle action $z\mapsto e^{it}z$ with period $2\pi$.
+
+We consider a smooth complex vector field
+\[
+F=E+iB\in\Gamma(T_\C S^3)
+\]
+satisfying
+\begin{align}
+\Curl F&=\lambda F, & \Div F&=0,\nonumber\\
+F\cdot F&=0, & \lambda&\in\R\setminus\{0\}.
+\label{eq:nullbeltrami}
+\end{align}
+Since $\lambda$ is real,
+\begin{equation}
+\Curl E=\lambda E,
+\qquad
+\Curl B=\lambda B,
+\qquad
+\Div E=\Div B=0.
+\label{eq:realbeltrami}
+\end{equation}
+The null condition gives
+\begin{equation}
+|E|=|B|=:\rho,
+\qquad E\cdot B=0.
+\label{eq:nullrelations}
+\end{equation}
+On
+\[
+U:=S^3\setminus Z(F),
+\]
+put
+\begin{equation}
+e_1=\rho^{-1}E,
+\qquad e_2=\rho^{-1}B,
+\qquad V=e_1\times e_2=\frac{E\times B}{\rho^2}.
+\label{eq:poynting}
+\end{equation}
+Thus $\{e_1,e_2,V\}$ is a positively oriented orthonormal frame on $U$.
+
+\subsection{Geodesic and shear-free equations}
+
+\begin{lemma}[Null Beltrami congruence]
+\label{lem:congruence}
+On $U$, the field $V$ obeys
+\begin{equation}
+\nabla_VV=0,
+\qquad
+\operatorname{Sym}\bigl(\nabla V|_{V^\perp}\bigr)
+=-V(\log\rho)\,\id_{V^\perp}.
+\label{eq:congruence}
+\end{equation}
+In particular, the congruence is geodesic and shear-free, and
+\begin{equation}
+\Div V=-2V(\log\rho).
+\label{eq:divV}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+From \eqref{eq:realbeltrami} and $E=\rho e_1$, $B=\rho e_2$,
+\begin{align}
+\Curl e_a&=\lambda e_a-\nabla(\log\rho)\times e_a,\nonumber\\
+\Div e_a&=-e_a(\log\rho),\qquad a=1,2.
+\label{eq:eBeltrami}
+\end{align}
+Write
+\[
+\nabla\log\rho=\alpha e_1+\beta e_2+\gamma V.
+\]
+Introduce connection coefficients by
+\begin{align*}
+\nabla_{e_1}e_1&=a e_2+bV,&
+\nabla_{e_1}e_2&=-a e_1+cV,\\
+\nabla_{e_2}e_1&=d e_2+eV,&
+\nabla_{e_2}e_2&=-d e_1+fV,\\
+\nabla_Ve_1&=g e_2+hV,&
+\nabla_Ve_2&=-g e_1+jV.
+\end{align*}
+Using $\Curl Y=\sum_{a=1}^3 e_a\times\nabla_{e_a}Y$ in the oriented frame and comparing with \eqref{eq:eBeltrami} gives
+\[
+b=f=\gamma,\qquad a=\beta,\qquad d=-\alpha,\qquad e=-c.
+\]
+The divergence equations in \eqref{eq:eBeltrami} imply $h=j=0$. Hence
+\[
+\nabla_VV=-h e_1-j e_2=0,
+\]
+while
+\[
+\nabla_{e_1}V=-\gamma e_1-c e_2,
+\qquad
+\nabla_{e_2}V=c e_1-\gamma e_2.
+\]
+The symmetric part on $V^\perp$ is therefore $-\gamma\id$, and $\gamma=V(\log\rho)$. Taking the trace yields \eqref{eq:divV}.
+\end{proof}
+
+\begin{remark}
+Lemma \ref{lem:congruence} does \emph{not} imply that $V$ is Killing unless $V(\rho)=0$. The global rigidity used below concerns shear-free geodesic congruences, not Killing fields.
+\end{remark}
+
+\begin{lemma}[Frobenius--Beltrami identity]
+\label{lem:frobenius}
+Let $\alpha=F^\flat$. Then
+\begin{equation}
+\alpha\wedge d\alpha=0
+\label{eq:frobenius}
+\end{equation}
+identically on $S^3$.
+\end{lemma}
+\begin{proof}
+From $\Curl F=\lambda F$ and the convention $(\Curl F)^\flat=*d\alpha$ one has $d\alpha=\lambda *\alpha$. Hence
+\[
+\alpha\wedge d\alpha
+=\lambda\alpha\wedge *\alpha
+=\lambda\,g_{\C}(F,F)\,\mathrm{vol}_g=0.
+\]
+On $S^3\setminus Z(F)$ this is the Frobenius integrability condition for the complex rank-two distribution $\ker\alpha$. At a zero the rank jumps, so \eqref{eq:frobenius} is understood as a singular integrable Pfaff identity rather than as a regular rank-two distribution.
+\end{proof}
+
+\section{Leading symbols and isolated zeros}
+
+Because \eqref{eq:realbeltrami} is elliptic after applying the Hodge Laplacian, $E$ and $B$ are real analytic on the analytic manifold $S^3$. Let $x_0\in Z(F)$ be an arbitrary zero, and use normal coordinates $y$ centered at $x_0$. Write
+\begin{equation}
+F(y)=P_k(y)+P_{k+1}(y)+\cdots,
+\qquad P_k\not\equiv0,
+\label{eq:Taylor}
+\end{equation}
+where $P_j$ is homogeneous of degree $j$ and $k\ge1$.
+
+\begin{lemma}[Leading-symbol factorization]
+\label{lem:leading}
+The leading term has the form
+\begin{align}
+P_k(y)&=C(c\cdot y)^k c,\nonumber\\
+C&\in\C^*,\qquad c\in\C^3\setminus\{0\},\qquad c\cdot c=0.
+\label{eq:leadfactor}
+\end{align}
+up to a real orthogonal change of normal coordinates.
+\end{lemma}
+
+\begin{proof}
+At order $k-1$, the variable-coefficient curl and divergence operators reduce to their Euclidean principal parts, so
+\[
+\Curl_{\R^3}P_k=0,
+\qquad
+\Div_{\R^3}P_k=0.
+\]
+Hence $P_k=\nabla\Phi_{k+1}$ for a homogeneous polynomial $\Phi_{k+1}$ of degree $k+1$, and $\Delta\Phi_{k+1}=0$. The leading term of $F\cdot F=0$ gives
+\[
+\nabla\Phi_{k+1}\cdot\nabla\Phi_{k+1}=0.
+\]
+Thus $\Phi_{k+1}:\R^3\to\C$ is a polynomial harmonic morphism. By the Bernstein theorem of Baird and Wood \cite{BairdWood1988}, every global harmonic morphism $\R^3\to\C$ has complex type. After a rigid rotation,
+\[
+\Phi_{k+1}(y)=A(y_1+iy_2)^{k+1}.
+\]
+Differentiating yields \eqref{eq:leadfactor} with $c$ a constant complex null vector.
+\end{proof}
+
+Write $c=a+ib$ with $a,b\in\R^3$. Then
+\begin{equation}
+a\perp b,
+\qquad |a|=|b|>0,
+\label{eq:abnull}
+\end{equation}
+and the real zero set of the linear form $c\cdot y$ is the axis
+\begin{equation}
+L=(\Span\{a,b\})^\perp.
+\label{eq:axis}
+\end{equation}
+Thus $L\cap S^2$ consists of two antipodal directions.
+
+\begin{corollary}[Universal generic-ray limit]
+\label{cor:raylimit}
+At every zero $x_0\in Z(F)$, write $c=a+ib$ as in Lemma~\ref{lem:leading}. For every unit normal-coordinate direction $u$ with $c\cdot u\ne0$,
+\begin{equation}
+\lim_{r\to0^+}V(ru)=\frac{a\times b}{|a|^2}=:V_0,
+\label{eq:raylimit}
+\end{equation}
+and the limit is independent of $u$.
+\end{corollary}
+\begin{proof}
+Along such a ray,
+\[
+F(ru)=r^k\zeta(u)c+O(r^{k+1}),
+\qquad \zeta(u)=C(c\cdot u)^k\ne0.
+\]
+For every $\zeta\in\C^*$, nullity of $c=a+ib$ gives
+\[
+\frac{\Re(\zeta c)\times\Im(\zeta c)}{|\Re(\zeta c)|^2}
+=\frac{a\times b}{|a|^2},
+\]
+which proves the claim.
+\end{proof}
+
+\subsection{Removal of isolated singularities}
+
+Baird and Wood classified conformal foliations by geodesics of three-dimensional space forms, including isolated singularities \cite{BairdWood1991}. Their Theorem 4.1 implies, on a sufficiently small geodesically convex ball with its centre removed, the dichotomy: a conformal geodesic foliation is either radial or extends smoothly through the centre.
+
+\begin{theorem}[Removability of isolated zeros]
+\label{thm:isolated}
+Let $F$ satisfy \eqref{eq:nullbeltrami}, and let $x_0$ be an isolated zero. Then the normalized Poynting field $V$ in \eqref{eq:poynting} extends smoothly through $x_0$ as a unit vector field.
+\end{theorem}
+
+\begin{proof}
+Choose a geodesically convex ball $B_\eps(x_0)$ with
+\[
+Z(F)\cap B_\eps(x_0)=\{x_0\}.
+\]
+By Lemma \ref{lem:congruence}, the integral curves of $V$ on the punctured ball form a smooth conformal foliation by geodesics. The Baird--Wood alternative therefore applies.
+
+It remains to exclude the radial case. By Corollary~\ref{cor:raylimit}, along every admissible ray through $x_0$ the Poynting direction tends to the same line $[V_0]$, independent of the ray. A radial foliation instead has limiting unoriented tangent line $[u]$ along the ray $ru$. Choosing two non-collinear admissible directions contradicts radiality. Hence the foliation extends smoothly through $x_0$.
+
+The extension is initially an unoriented line subbundle $\ell\subset TB_\eps$. Since the ball is contractible, $\ell$ is trivial. Choose a smooth unit section agreeing with $V$ at one point of the punctured ball. The punctured ball is connected, so the sign agrees with $V$ everywhere there, giving the required smooth extension.
+\end{proof}
+
+\section{Removal of the one-dimensional nodal set and global Hopf classification}
+\label{sec:globalremoval}
+
+Gerner's structure theorem for real-analytic Beltrami fields \cite{Gerner2021} gives precise control of the zero set. Since $|E|=|B|$, one has
+\begin{equation}
+Z(F)=Z(E)=Z(B).
+\label{eq:zerosame}
+\end{equation}
+On compact $S^3$, Gerner's Corollary 2.1 implies
+\begin{equation}
+Z(F)=\cI\sqcup K,
+\qquad |\cI|<\infty,
+\label{eq:Gernerdecomp}
+\end{equation}
+where $\cI$ is the set of isolated zeros, while $K$, if nonempty, is a finite union of tame knots and real-analytically embedded one-dimensional submanifolds with $C^1$ endpoints, diffeomorphic to $[0,1]$, meeting in at most finitely many points. Theorem~\ref{thm:isolated} already removes $\cI$. We now remove $K$ without assuming divisibility of the full analytic germ.
+
+\subsection{Transverse leading symbol on regular nodal arcs}
+\label{subsec:transverse}
+
+Let $\gamma\subset K$ be a connected regular real-analytic nodal arc, parametrized by arclength $s$, and suppose that the transverse order of vanishing of $F$ is the constant integer $k\ge1$ along $\gamma$. Let
+\[
+T(s)=\dot\gamma(s)
+\]
+and choose a real-analytic orthonormal frame $\{e_1(s),e_2(s)\}$ of the normal bundle along the arc, oriented so that $\{e_1,e_2,T\}$ is positive. In the associated Fermi coordinates $(x_1,x_2,s)$ put
+\[
+z=x_1+ix_2,
+\qquad r=(x_1^2+x_2^2)^{1/2}.
+\]
+The field has a transverse expansion
+\begin{equation}
+F=P_k(x_1,x_2;s)+O(r^{k+1}),
+\label{eq:transverseexpansion}
+\end{equation}
+where $P_k$ is homogeneous of degree $k$ in $(x_1,x_2)$ and depends real-analytically on $s$.
+
+\begin{theorem}[Transverse leading-symbol theorem]
+\label{thm:transverse}
+On every connected regular nodal arc on which the transverse order $k$ is constant, exactly one of the following alternatives holds:
+\begin{align}
+P_k&=(k+1)A(s)z^k\bigl(e_1(s)+ie_2(s)\bigr),
+\label{eq:Pkplus}\\
+P_k&=(k+1)B(s)\bar z^k\bigl(e_1(s)-ie_2(s)\bigr),
+\label{eq:Pkminus}
+\end{align}
+where the active coefficient $A$ or $B$ is real analytic and nowhere zero on the arc. Consequently,
+\begin{equation}
+\lim_{r\to0^+}V(r\cos\theta,r\sin\theta,s)
+=\begin{cases}
++T(s),&\text{in \eqref{eq:Pkplus}},\\
+-T(s),&\text{in \eqref{eq:Pkminus}},
+\end{cases}
+\label{eq:Vtransverselimit}
+\end{equation}
+locally uniformly in $\theta$.
+\end{theorem}
+
+\begin{proof}
+In Fermi coordinates the metric is Euclidean on the core $r=0$, while connection terms and the longitudinal derivative $\partial_s$ preserve transverse degree. The transverse derivatives $\partial_1,\partial_2$ lower it by one. Therefore the order-$r^{k-1}$ part of $\Curl F=\lambda F$ is
+\begin{equation}
+\partial_2P_k^3=0,
+\quad
+\partial_1P_k^3=0,
+\quad
+\partial_1P_k^2-\partial_2P_k^1=0,
+\label{eq:transversecurl}
+\end{equation}
+where $P_k=P_k^1e_1+P_k^2e_2+P_k^3T$. Since $P_k^3$ is homogeneous of positive degree, $P_k^3\equiv0$. Thus
+\begin{equation}
+P_k^1=\partial_1\phi_{k+1},
+\qquad
+P_k^2=\partial_2\phi_{k+1}
+\label{eq:transversepotential}
+\end{equation}
+for a homogeneous polynomial $\phi_{k+1}$ of degree $k+1$. The order-$r^{k-1}$ part of $\Div F=0$ gives
+\[
+(\partial_1^2+\partial_2^2)\phi_{k+1}=0,
+\]
+so
+\begin{equation}
+\phi_{k+1}=A(s)z^{k+1}+B(s)\bar z^{k+1}.
+\label{eq:2Dharmonic}
+\end{equation}
+The leading term of $F\cdot F=0$ is $(P_k^1)^2+(P_k^2)^2=0$. Substitution yields
+\begin{equation}
+4(k+1)^2A(s)B(s)|z|^{2k}=0,
+\label{eq:ABzero}
+\end{equation}
+so $A(s)B(s)\equiv0$. The ring of real-analytic functions on a connected interval has no zero divisors; hence one coefficient vanishes identically. Constancy of the transverse order makes the active coefficient nowhere zero. This proves \eqref{eq:Pkplus}--\eqref{eq:Pkminus}.
+
+In the plus case put $n_+=e_1+ie_2$ and $\zeta=(k+1)A(s)r^ke^{ik\theta}$. Then
+\begin{equation}
+F=\zeta n_+ +O(r^{k+1}).
+\label{eq:transverseFlead}
+\end{equation}
+For every nonzero complex scalar $\zeta$,
+\begin{equation}
+\Re(\zeta n_+)\times\Im(\zeta n_+)=|\zeta|^2T,
+\qquad
+|\Re(\zeta n_+)|^2=|\zeta|^2.
+\label{eq:phasecancel}
+\end{equation}
+Therefore $V=T+O(r)$ locally uniformly in $\theta$. The minus case gives $V=-T+O(r)$.
+\end{proof}
+
+\subsection{Quantitative continuation and polar removability}
+
+The $O(r)$ information in Theorem~\ref{thm:transverse} is stronger than mere pointwise convergence.
+
+\begin{lemma}[Lipschitz continuation and the central geodesic]
+\label{lem:lipschitz}
+On a regular constant-order arc as above, define
+\[
+V_{\rm ext}|_\gamma=\sigma T,
+\qquad \sigma=+1\ \text{in \eqref{eq:Pkplus}},\quad
+\sigma=-1\ \text{in \eqref{eq:Pkminus}}.
+\]
+Then, after shrinking the tubular neighbourhood if necessary, $V_{\rm ext}$ is locally Lipschitz. More precisely, on the real blow-up of the normal plane,
+\begin{equation}
+V_{\rm ext}=\sigma T(s)+rW(r,\theta,s),
+\label{eq:blowupV}
+\end{equation}
+with $W$ smooth up to $r=0$. Its local flow defines a $C^0$ foliation by geodesics, and $\gamma$ itself is one of the geodesic leaves.
+\end{lemma}
+
+\begin{proof}
+We treat the plus branch. The normalized Poynting direction is invariant under multiplication of a null field by any nonzero complex scalar: if $\eta=u+iv$, then
+\[
+E'=uE-vB,\qquad B'=vE+uB
+\]
+gives $E'\times B'=|\eta|^2E\times B$ and $|E'|^2=|\eta|^2|E|^2$. For $r>0$ multiply \eqref{eq:transverseFlead} by
+\[
+\eta(r,\theta,s)=\frac{e^{-ik\theta}}{(k+1)A(s)r^k}.
+\]
+The rescaled field has the form
+\[
+\widetilde F=n_+(s)+rR(r,\theta,s),
+\]
+where $R$ is smooth on the real blow-up. Since the Poynting denominator of $n_+$ is nonzero, the Poynting map is smooth near $n_+$; hence $V$ is smooth in $(r,\theta,s)$ up to $r=0$ and is independent of $\theta$ there. Hadamard's lemma in the boundary variable $r$ yields \eqref{eq:blowupV}.
+
+Set $G=rW$.  For $r>0$, with $x_1=r\cos\theta$ and $x_2=r\sin\theta$,
+\begin{align}
+\partial_{x_1}G
+&=\cos\theta\,(W+r\partial_rW)-\sin\theta\,\partial_\theta W,\nonumber\\
+\partial_{x_2}G
+&=\sin\theta\,(W+r\partial_rW)+\cos\theta\,\partial_\theta W.
+\label{eq:Lipschitzderivatives}
+\end{align}
+The right-hand sides, as well as $\partial_sG=r\partial_sW$, are uniformly bounded on a sufficiently small compact blow-up chart because $W\in C^1$.  Extending $G$ by $G(0,s)=0$ therefore gives a locally Lipschitz function in the Cartesian variables.  Since $T(s)$ is analytic, \eqref{eq:blowupV} makes $V_{\rm ext}$ locally Lipschitz and nonvanishing.  Its ODE consequently has unique local integral curves with continuous dependence on initial data.
+
+The curve $\gamma$, with the orientation chosen by $\sigma T$, is an integral curve of $V_{\rm ext}$. Let $q_j\to p\in\gamma$ with $q_j\notin\gamma$, and let $c_j$ be the $V_{\rm ext}$-integral curve through $q_j$. By uniqueness, after restricting to a sufficiently small flow neighbourhood, $c_j$ cannot meet the central integral curve. Hence it remains in the original nonsingular region and is a unit-speed geodesic by Lemma~\ref{lem:congruence}. Its initial data $(q_j,V(q_j))$ converge to $(p,\sigma T(p))$. Smooth dependence of the geodesic flow gives convergence to the geodesic with those limiting initial data, while continuous dependence for the Lipschitz first-order flow gives convergence to the $V_{\rm ext}$-integral curve through $p$. The limits coincide, so $\gamma$ is itself a geodesic.
+
+Choose an open two-disc $D$ through $p$ transverse to $V_{\rm ext}$ and a sufficiently short interval $(-\tau,\tau)$.  The flow map $\mathcal F:D\times(-\tau,\tau)\to S^3$ is continuous and, after shrinking $D$ and $\tau$, injective by uniqueness and transversality.  Invariance of domain makes $\mathcal F$ a homeomorphism onto an open neighbourhood of $p$.  Thus the local Lipschitz flow supplies a genuine $C^0$ foliated chart, and every leaf in that chart is a geodesic.
+\end{proof}
+
+\begin{lemma}[Nodal arcs are polar]
+\label{lem:polar}
+Every compact smooth curve segment in a smooth three-dimensional Riemannian manifold is locally polar (equivalently, has zero Newtonian capacity).
+\end{lemma}
+
+\begin{proof}
+It suffices to work in a tubular coordinate neighbourhood, since smooth Riemannian metrics are locally uniformly equivalent. Let $r$ be distance to the curve and fix $0<\eps<R$. Use the logarithmic cutoff
+\[
+u_\eps(r)=\begin{cases}
+1,&0\le r\le\eps,\\
+\dfrac{\log(R/r)}{\log(R/\eps)},&\eps<r<R,\\
+0,&r\ge R.
+\end{cases}
+\]
+After smoothing the corners, the Dirichlet energy is bounded by
+\[
+C\int_\eps^R\frac{1}{r^2\log^2(R/\eps)}\,r\,dr
+=\frac{C}{\log(R/\eps)}\longrightarrow0.
+\]
+Thus the relative Newtonian capacity vanishes, which is the local polar property used in the removable-singularity theorem.
+\end{proof}
+
+\begin{proposition}[Analytic removal along a constant-order arc]
+\label{prop:polarremove}
+The Poynting foliation extends real-analytically and conformally across every regular constant-order nodal arc.
+\end{proposition}
+
+\begin{proof}
+Choose a sufficiently small tubular open set $U$ meeting the zero set only in the chosen arc. By Lemma~\ref{lem:lipschitz}, the extended field defines a $C^0$ foliation of $U$ by geodesics; on $U\setminus\gamma$ it is smooth and conformal by Lemma~\ref{lem:congruence}. By Lemma~\ref{lem:polar}, $\gamma$ is polar. Baird and Wood's Theorem 2.18 \cite{BairdWood1991} therefore upgrades the foliation to $C^\infty$, in fact real analytic, and conformal on all of $U$. The analytic line field has a unique local unit orientation agreeing with the original $V$ on the dense nonsingular set, so $V$ itself extends real-analytically.
+\end{proof}
+
+\subsection{Multiplicity jumps and singular points of the nodal skeleton}
+
+\begin{lemma}[Isolation of transverse-order jumps]
+\label{lem:orderjumps}
+Along a regular real-analytic nodal arc, the transverse order is locally constant away from a discrete set.
+\end{lemma}
+
+\begin{proof}
+Write the normal Taylor series as $F=\sum_{j\ge1}P_j(x_1,x_2;s)$ and expand each $P_j$ into its finitely many monomial coefficients, which are real-analytic functions of $s$. Near any fixed $s_0$, let $j_0$ be the smallest degree for which at least one such coefficient is not identically zero. All lower-degree coefficients vanish identically on a small interval. Choose a non-identically-zero degree-$j_0$ coefficient $a(s)$. Outside its discrete zero set one has transverse order exactly $j_0$. Hence the points where the order can differ from the locally generic value form a discrete subset.
+\end{proof}
+
+\begin{theorem}[Global removability of the nodal set]
+\label{thm:globalremoval}
+Let $F$ satisfy \eqref{eq:nullbeltrami}. The unoriented Poynting foliation on $S^3\setminus Z(F)$ extends uniquely to a real-analytic conformal foliation by geodesics on all of $S^3$. The oriented unit field $V$ extends real-analytically as well.
+\end{theorem}
+
+\begin{proof}
+First remove every regular constant-order portion of $K$ by Proposition~\ref{prop:polarremove}. By Lemma~\ref{lem:orderjumps}, a point at which the transverse order changes is isolated within the regular analytic locus. In a sufficiently small deleted geodesically convex ball around such a point, all adjacent constant-order portions have already been analytically removed, so the extended foliation is smooth and conformal on the entire deleted ball. Baird and Wood's Theorem 4.1 \cite{BairdWood1991} says that this foliation is either radial or extends smoothly through the centre.  Any such smooth conformal extension is real analytic by their Remark 2.12(ii).
+
+The radial alternative is impossible at \emph{any} zero of $F$, not only at an originally isolated one. Indeed Lemma~\ref{lem:leading} applies to the first nonzero full Taylor symbol at an arbitrary zero, and Corollary~\ref{cor:raylimit} gives the same limiting line $[V_0]$ along every generic ray, independent of $u$. A radial foliation would instead have limiting line $[u]$. Two non-collinear admissible rays give a contradiction. Thus every multiplicity-jump point is removable.
+
+Gerner's compact zero-set description leaves only finitely many structural points at which the one-dimensional analytic pieces have $C^1$ endpoints or meet other pieces; tame-knot components require no additional structural point.  Order-jump points may form a locally discrete set on the regular locus and may accumulate only at the structural boundary of an analytic arc.  After each such interior point has been removed locally as above, a deleted ball about a structural point is nevertheless smooth and conformally foliated: every point of that deleted ball is either originally nonsingular or belongs to a regular portion already covered by an analytic extension.  Choose the ball small enough to contain no other structural point.  The same Theorem 4.1 and the universal leading-symbol argument exclude radiality and remove the centre.  The originally isolated zeros $\cI$ are removed by Theorem~\ref{thm:isolated}.
+
+The local analytic extensions agree on overlaps because they agree with the original foliation on the dense open set $S^3\setminus Z(F)$. Hence they patch to a global real-analytic conformal foliation by geodesics. Its real line bundle is orientable because $H^1(S^3;\mathbb Z_2)=0$.  The connectedness of the original nonsingular complement, proved below by Alexander duality, then fixes the global sign by requiring agreement with the original Poynting orientation. This yields a global analytic unit field $V$.
+\end{proof}
+
+\subsection{Hopf rigidity, chirality, and unconditional classification}
+
+Since $Z(F)$ is compact and has topological dimension at most one, Alexander duality yields
+\begin{equation}
+\widetilde H_0(S^3\setminus Z(F))
+\cong \check H^2(Z(F))=0,
+\label{eq:Alexander}
+\end{equation}
+so $S^3\setminus Z(F)$ is connected.
+
+Baird and Wood's global Bernstein theorem, Theorem 2.15 of Ref.~\cite{BairdWood1991}, states that every smooth conformal foliation of the round $S^3$ by geodesics is, up to isometry, the standard Hopf foliation of their Example 2.8(ii).  At the level of oriented unit fields, the two $SO(4)$-orbits are the left- and right-invariant Hopf chiralities in \eqref{eq:leftframe}--\eqref{eq:rightframe}.  This is the same rigidity phenomenon used in the unit-vector-field formulation of Higuchi, Kay, and Wood \cite{HiguchiKayWood2001}.
+
+\begin{lemma}[Chirality]
+\label{lem:chirality}
+For a global oriented Hopf congruence arising from a null Beltrami eigenfield, the left-invariant family yields
+\[
+\lambda=m+2,\qquad m\ge0,
+\]
+whereas the right-invariant family yields $\lambda=-(m+2)$. Hence $\lambda>0$ selects the left-invariant chirality.
+\end{lemma}
+
+\begin{proof}
+After an orientation-preserving isometry suppose first that the oriented Poynting field is $V=X_1$. At every nonzero point, nullity and $E\times B=|E|^2X_1$ force $F$ into the positive horizontal isotropic line spanned by $X=X_2+iX_3$. Define globally
+\begin{equation}
+f=\frac12\,g_\C(F,\bar X).
+\label{eq:fglobal}
+\end{equation}
+Then $F=fX$ on $S^3\setminus Z(F)$ and also on $Z(F)$, where both sides vanish. Hence the identity is global. Since $\Curl X=2X$,
+\begin{align}
+\Curl(fX)
+&=\nabla f\times X+2fX\nonumber\\
+&=(2f-iX_1f)X+i(Xf)X_1.
+\end{align}
+Thus
+\begin{equation}
+Xf=0,
+\qquad
+X_1f=i(\lambda-2)f.
+\label{eq:CRsystem}
+\end{equation}
+The $X_1$-flow has period $2\pi$, hence $m:=\lambda-2\in\mathbb Z$. Since $X^*=-\bar X$ and $[X,\bar X]=4iX_1$,
+\begin{equation}
+\|\bar Xf\|_{L^2}^2
+=-\langle f,X\bar Xf\rangle
+=4m\|f\|_{L^2}^2,
+\label{eq:L2identity}
+\end{equation}
+so $m\ge0$. For the right-invariant family put $Y=Y_2+iY_3$.  Then
+$\Curl Y=-2Y$ and $[Y,\bar Y]=-4iY_1$.  If the oriented Poynting field is $Y_1$, nullity gives $F=fY$, and
+\begin{equation}
+\Curl(fY)=(-2f-iY_1f)Y+i(Yf)Y_1.
+\end{equation}
+Hence $Yf=0$ and $Y_1f=i(\lambda+2)f$.  Using $Y^*=-\bar Y$ gives
+\begin{equation}
+\|\bar Yf\|_{L^2}^2=-4(\lambda+2)\|f\|_{L^2}^2,
+\end{equation}
+so $\lambda+2\le0$.  Periodicity of the $Y_1$ flow implies $-(\lambda+2)=m\in\mathbb Z_{\ge0}$, i.e. $\lambda=-(m+2)$.
+\end{proof}
+
+\begin{theorem}[Global classification of null Beltrami modes on the round $S^3$]
+\label{thm:classification}
+Let $F\not\equiv0$ be a smooth complex vector field on the unit round $S^3$ satisfying
+\[
+\Curl F=\lambda F,
+\qquad \Div F=0,
+\qquad F\cdot F=0,
+\qquad \lambda>0.
+\]
+Then $F$ is real analytic and there exist an orientation-preserving isometry $\Phi\in SO(4)$, an integer $m\ge0$, and a nonzero homogeneous holomorphic polynomial $p(z_1,z_2)$ of degree $m$ such that
+\begin{equation}
+\boxed{\quad
+\Phi_*F=p(z_1,z_2)(X_2+iX_3),
+\qquad
+\lambda=m+2.
+\quad}
+\label{eq:classification}
+\end{equation}
+Conversely, every field of the form \eqref{eq:classification} is a null curl eigenfield with eigenvalue $m+2$.
+\end{theorem}
+
+\begin{proof}
+Analyticity follows from elliptic regularity for the Hodge system associated with the nonzero curl eigenvalue. By Theorem~\ref{thm:globalremoval}, the Poynting foliation extends real-analytically to all of $S^3$. Baird--Wood Theorem 2.15 makes it a Hopf foliation. After an orientation-preserving isometry it is either the left- or right-invariant Hopf family; Lemma~\ref{lem:chirality} and $\lambda>0$ select $V=X_1$ and give $m=\lambda-2\ge0$.
+
+By \eqref{eq:Xcoords}, the equation $Xf=0$ is precisely the tangential Cauchy--Riemann equation on the standard CR sphere.  A smooth CR function on $S^3$ extends holomorphically to the unit ball in $\C^2$ \cite{Rudin1980}; denote the extension by $P$.  The second equation in \eqref{eq:CRsystem} integrates along the Hopf action to
+\begin{equation}
+f(e^{it}z_1,e^{it}z_2)=e^{imt}f(z_1,z_2).
+\label{eq:Hopfweight}
+\end{equation}
+By uniqueness of the holomorphic extension, the same identity holds for $P$ in the ball.  Expanding $P(z)=\sum_{\alpha\in\mathbb N^2}c_\alpha z^\alpha$, Eq.~\eqref{eq:Hopfweight} forces $c_\alpha=0$ unless $|\alpha|=m$.  Since $m\ge0$ is an integer, only finitely many terms remain: $P$ is a homogeneous holomorphic polynomial $p$ of degree $m$.  Thus $f=p|_{S^3}$ and \eqref{eq:classification} follows. The converse follows from \eqref{eq:X1coords}--\eqref{eq:Xcoords}, the displayed curl calculation, and the isotropy of $X_2+iX_3$.
+\end{proof}
+
+\begin{corollary}[Zero divisor and a posteriori germ factorization]
+\label{cor:zeros}
+Write
+\[
+p=C\prod_{j=1}^{r}\ell_j^{\mu_j},
+\qquad
+\ell_j=a_jz_1+b_jz_2,
+\qquad
+\sum_{j=1}^{r}\mu_j=m,
+\]
+with pairwise nonproportional linear forms. Then
+\begin{equation}
+Z(F)=\bigsqcup_{j=1}^{r}\bigl\{\ell_j=0\bigr\}\cap S^3.
+\label{eq:zerohopf}
+\end{equation}
+Each component is a Hopf fibre and hence a great circle; there are no isolated zeros. The divisor contains exactly $m$ Hopf fibres when multiplicities are counted.
+
+Moreover, near the $j$th fibre one may choose a complex analytic transverse coordinate $\zeta$ with $\ell_j=u\zeta$ for an analytic unit $u$. Consequently
+\begin{equation}
+F=\zeta^{\mu_j}L,
+\qquad L|_{\zeta=0}\ne0,
+\qquad L\cdot L=0.
+\label{eq:posteriorfactor}
+\end{equation}
+Thus the full-germ divisibility that was previously posed as an input follows a posteriori from the global classification and is not needed for its proof.
+\end{corollary}
+
+\begin{proof}
+Every homogeneous binary polynomial factors completely over $\C$. For a nonzero linear form $\ell$, the set $\{\ell=0\}\cap S^3$ is one fibre of the Hopf map, and distinct projective linear factors give disjoint fibres. Since $X_2+iX_3$ never vanishes, the zero divisor is exactly that of $p$. Locally a nonzero differential of $\ell$ in the normal direction makes $\ell$ an analytic transverse coordinate up to multiplication by a nonvanishing analytic factor, giving \eqref{eq:posteriorfactor}.
+\end{proof}
+
+\section{Bateman nodal links in Minkowski space}
+\label{sec:bateman}
+
+We now turn to an independent, fully closed result. In Minkowski coordinates $(t,x,y,z)$ let
+\begin{align}
+D&=r^2-(t-i)^2,\nonumber\\
+\alpha&=\frac{r^2-t^2-1+2iz}{D},
+&\beta&=\frac{2(x-iy)}{D}.
+\label{eq:bateman}
+\end{align}
+where $r^2=x^2+y^2+z^2$. These are standard Bateman variables used in constructions of null electromagnetic fields \cite{Kedia2013,IrvineBouwmeester2008}. They obey
+\begin{equation}
+|\alpha|^2+|\beta|^2=1.
+\label{eq:S3identity}
+\end{equation}
+Let
+\begin{equation}
+G:=\nabla\alpha\times\nabla\beta,
+\qquad
+F_M=p(\alpha,\beta)G.
+\label{eq:FM}
+\end{equation}
+
+\subsection{Nonvanishing of the Bateman basis}
+
+A direct differentiation gives
+\begin{align}
+G&=\frac{4}{D^3}
+\begin{pmatrix}
+q^2-u^2\\
+-i(q^2+u^2)\\
+2qu
+\end{pmatrix},
+\label{eq:Gexplicit}\\
+q&=t-z-i,\qquad u=x-iy.
+\nonumber
+\end{align}
+
+\begin{lemma}
+\label{lem:Gnonzero}
+$G(t,\mathbf x)\neq0$ for every real $(t,\mathbf x)$.
+\end{lemma}
+
+\begin{proof}
+The denominator never vanishes: $\Im D=2t$, and at $t=0$ one has $D=r^2+1$. If the numerator in \eqref{eq:Gexplicit} vanished, then $q^2-u^2=q^2+u^2=0$, hence $q=0$, impossible because $\Im q=-1$.
+\end{proof}
+
+Hence
+\begin{align}
+\cZ(t)&:=\{\mathbf x:F_M(t,\mathbf x)=0\}\nonumber\\
+&=\{\mathbf x:p(\alpha(t,\mathbf x),\beta(t,\mathbf x))=0\}.
+\label{eq:zeroequiv}
+\end{align}
+
+\subsection{The compactified spatial diffeomorphism}
+
+Define
+\begin{equation}
+\Psi_t:\R^3\longrightarrow S^3\subset\C^2,
+\qquad
+\Psi_t(\mathbf x)=(\alpha(t,\mathbf x),\beta(t,\mathbf x)).
+\label{eq:Psi}
+\end{equation}
+Equation \eqref{eq:S3identity} makes this well defined.
+
+\begin{lemma}[Compactified Bateman diffeomorphism]
+\label{lem:Psidiff}
+For each fixed $t\in\R$, $\Psi_t$ extends to a smooth diffeomorphism
+\begin{equation}
+\Psi_t:\widehat{\R^3}\xrightarrow{\cong}S^3,
+\qquad
+\Psi_t(\infty)=(1,0).
+\label{eq:Psicompact}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Let $\xi=\mathbf x/r^2$ and $\varrho^2=|\xi|^2=1/r^2$ near spatial infinity. Substitution into \eqref{eq:bateman} gives
+\begin{align}
+\alpha(\xi)
+&=\frac{1-(t^2+1)\varrho^2+2i\xi_3}
+{1+(1-t^2+2it)\varrho^2},\\
+\beta(\xi)
+&=\frac{2(\xi_1-i\xi_2)}
+{1+(1-t^2+2it)\varrho^2}.
+\label{eq:inversion}
+\end{align}
+These are real analytic at $\xi=0$, with value $(1,0)$. Their differential there is
+\begin{equation}
+\dd\alpha=2i\,\dd\xi_3,
+\qquad
+\dd\beta=2(\dd\xi_1-i\dd\xi_2),
+\label{eq:dPsiInfinity}
+\end{equation}
+which is a real-linear isomorphism from $\R^3$ onto $T_{(1,0)}S^3$.
+
+For the inverse, write $\alpha=a+ib$, $\beta=c+id$ and put $s=r^2-t^2+1$. Away from $(1,0)$,
+\begin{equation}
+s=\frac{2(1-tb)}{1-a},
+\label{eq:sInverse}
+\end{equation}
+and
+\begin{equation}
+x=\frac{cs-2td}{2},
+\qquad
+y=-\frac{ds+2tc}{2},
+\qquad
+z=\frac{bs+2ta}{2}.
+\label{eq:PsiInverse}
+\end{equation}
+Thus $\Psi_t:S^3\setminus\{(1,0)\}\to\R^3$ has a smooth inverse, while \eqref{eq:dPsiInfinity} proves nondegeneracy at infinity.
+\end{proof}
+
+\begin{lemma}[Bateman--Hopf CR-line conjugacy]
+\label{lem:BatemanHopfConjugacy}
+For every fixed $t\in\mathbb R$ there is a nowhere-vanishing complex scalar function $\chi_t$ on $\mathbb R^3$ such that
+\begin{equation}
+(d\Psi_t)_{\mathbb C}G=\chi_t\,X,
+\qquad X=X_2+iX_3.
+\label{eq:BatemanHopfConjugacy}
+\end{equation}
+Consequently,
+\begin{equation}
+(d\Psi_t)_{\mathbb C}\bigl[p(\alpha,\beta)G\bigr]
+=\chi_t\,p(z_1,z_2)X.
+\label{eq:BatemanHopfConjugacyP}
+\end{equation}
+Thus $\Psi_t$ identifies the complex line field of the Bateman basis with the canonical Hopf CR line and identifies the Bateman nodal divisor with the zero divisor of the corresponding Hopf--Beltrami polynomial mode.
+\end{lemma}
+
+\begin{proof}
+By definition of the complexified gradient and cross product,
+\[
+ d\alpha(G)=d\beta(G)=0.
+\]
+Since $\Psi_t=(\alpha,\beta)$, the vector $(d\Psi_t)_{\mathbb C}G$ therefore lies in the common kernel of $dz_1$ and $dz_2$ inside $T_{\mathbb C}S^3$.  On the standard CR sphere this common kernel is one-dimensional and is spanned by
+\[
+X=2\bigl(z_2\partial_{\bar z_1}-z_1\partial_{\bar z_2}\bigr).
+\]
+Lemma~\ref{lem:Gnonzero} and the fact that $\Psi_t$ is a diffeomorphism imply that $(d\Psi_t)_{\mathbb C}G$ never vanishes, so the proportionality factor $\chi_t$ is nowhere zero.  Multiplying by $p(\alpha,\beta)=p\circ\Psi_t$ gives \eqref{eq:BatemanHopfConjugacyP}.
+\end{proof}
+
+\subsection{Exact circles and ambient isotopy}
+
+Let
+\begin{equation}
+p(u,v)=\prod_{k=1}^m(a_ku+b_kv)
+\label{eq:factorp}
+\end{equation}
+with pairwise distinct projective roots, and assume
+\begin{equation}
+[a_k:b_k]\ne[0:1]
+\qquad\text{for all }k.
+\label{eq:compactroots}
+\end{equation}
+Thus $a_k\ne0$ and
+\begin{equation}
+w_k:=-\frac{b_k}{a_k}=u_k+iv_k.
+\label{eq:wk}
+\end{equation}
+The $k$th component is given by $\alpha-w_k\beta=0$. Separating real and imaginary parts gives
+\begin{align}
+z&=v_kx-u_ky,\label{eq:plane}\\
+(x-u_k)^2+(y-v_k)^2+z^2
+&=1+|w_k|^2+t^2.\label{eq:sphere}
+\end{align}
+The plane in \eqref{eq:plane} passes through the centre $(u_k,v_k,0)$ of the sphere in \eqref{eq:sphere}; hence the intersection is a great circle of that Euclidean sphere.
+
+\begin{theorem}[Bateman nodal-link dynamics]
+\label{thm:Bateman}
+Under \eqref{eq:factorp}--\eqref{eq:compactroots}, with pairwise distinct projective roots, the nodal set of \eqref{eq:FM} at every $t\in\R$ is
+\begin{equation}
+\cZ(t)=\bigsqcup_{k=1}^m\gamma_k(t),
+\qquad \gamma_k(t)\cong S^1,
+\label{eq:nodalcircles}
+\end{equation}
+where $\gamma_k(t)$ is the planar circle
+\begin{equation}
+C_k=(u_k,v_k,0),
+\qquad
+R_k(t)=\sqrt{1+|w_k|^2+t^2},
+\label{eq:circledata}
+\end{equation}
+lying in \eqref{eq:plane}. The family $\cZ(t)$ evolves by an ambient isotopy of $\R^3$. With orientations induced from the standard Hopf fibration,
+\begin{equation}
+\Lk(\gamma_j(t),\gamma_k(t))=+1
+\qquad(j\ne k)
+\label{eq:linking}
+\end{equation}
+for all $t$; without chosen orientations, $|\Lk|=1$.
+\end{theorem}
+
+\begin{proof}
+On $S^3$, each equation $a_kz_1+b_kz_2=0$ defines a Hopf fibre $\Gamma_k$. Distinct projective roots give disjoint fibres. The point $(1,0)$ belongs to such a fibre precisely when $a_k=0$, excluded by \eqref{eq:compactroots}; hence each $\Psi_t^{-1}(\Gamma_k)$ is a compact embedded circle in $\R^3$. Equations \eqref{eq:plane}--\eqref{eq:sphere} give \eqref{eq:circledata}.
+
+For a fixed final time $T$, define
+\begin{equation}
+\Phi_t:=\Psi_t^{-1}\circ\Psi_0,
+\qquad
+H(s,\mathbf x):=\Phi_{sT}(\mathbf x),
+\qquad 0\le s\le1.
+\label{eq:ambient}
+\end{equation}
+By Lemma \ref{lem:Psidiff}, $\Phi_t$ is a smooth family of diffeomorphisms of $\widehat{\R^3}$ fixing infinity, so its restriction to $\R^3$ is an ambient isotopy. It carries $\gamma_k(0)$ to $\gamma_k(T)$. Linking number is invariant under ambient isotopy, while distinct standard Hopf fibres have linking number $+1$ under the common Hopf orientation.
+\end{proof}
+
+
+\subsection{From Beltrami eigenmodes to null Maxwell fields on the Einstein cylinder}
+\label{subsec:beltramiMaxwell}
+
+The spatial eigenvalue problem above also has an exact four-dimensional Maxwell interpretation.  Let
+\(\mathcal E=\mathbb R_\tau\times S^3\) carry the Einstein-cylinder metric
+\(-d\tau^2+g\).  With the Riemann--Silberstein convention
+\(\mathcal F=\mathcal E+i\mathcal B\), the source-free Maxwell equations are
+\begin{equation}
+ \partial_\tau\mathcal F=-i\,\Curl\mathcal F,
+ \qquad \Div\mathcal F=0.
+\label{eq:RSMaxwellCylinder}
+\end{equation}
+
+\begin{proposition}[Beltrami--Maxwell lift]
+\label{prop:BeltramiMaxwellLift}
+If $F_0$ satisfies \eqref{eq:nullbeltrami}, then
+\begin{equation}
+ \mathcal F(\tau,x)=e^{-i\lambda\tau}F_0(x)
+\label{eq:BeltramiMaxwellLift}
+\end{equation}
+is a source-free null Maxwell field on the Einstein cylinder.  On every standard Minkowski conformal diamond it pulls back to a null vacuum Maxwell field.  The corresponding helicity-one field is represented, under the Penrose transform on the associated flat twistor domain, by a class of homogeneity $-4$.
+\end{proposition}
+
+\begin{proof}
+Equation \eqref{eq:RSMaxwellCylinder} follows immediately from
+$\Curl F_0=\lambda F_0$ and $\Div F_0=0$.  Multiplication by the phase
+$e^{-i\lambda\tau}$ preserves $\mathcal F\cdot\mathcal F=0$, so nullity is preserved for all $\tau$.  Vacuum Maxwell theory in four dimensions is conformally invariant; the standard conformal embedding of Minkowski space into the Einstein cylinder therefore transports the field to each Minkowski diamond \cite{KopinskiNatario2017}.  The helicity-one Penrose transform is represented by $H^1(\cO(-4))$ on the corresponding flat twistor region \cite{WardWells1990}.
+\end{proof}
+
+\begin{remark}
+Proposition~\ref{prop:BeltramiMaxwellLift} is an exact spacetime bridge, but by itself it does not identify the Einstein-cylinder frequency label with the fibre-polynomial grading introduced below.  The equality
+$\dim H^1(\cU,\cO(-4))_m=(m+1)(m+3)$ with the multiplicity of the curl eigenvalue $m+2$ is recorded in Eq.~\eqref{eq:Maxwelldim}; no stronger grading identification is needed for the cohomological results of this paper.
+\end{remark}
+
+\section{A polynomial \texorpdfstring{$\cO(2)$}{O(2)} Hamiltonian twistor sector}
+\label{sec:twistor}
+
+This section is logically independent of the global Beltrami classification. It describes a local complex self-dual vacuum deformation sector.
+
+Let
+\begin{equation}
+\cU:=\CP^3\setminus\{A=B=0\}.
+\label{eq:Udef}
+\end{equation}
+Projection $[A:B:C:W]\mapsto[A:B]$ identifies
+\begin{equation}
+\cU\cong\operatorname{Tot}\bigl(\cO(1)\oplus\cO(1)\to\CP^1\bigr).
+\label{eq:totalspace}
+\end{equation}
+Let $\pi:\cU\to\CP^1$ be the projection and $d_\pi$ the relative differential.
+
+\subsection{Relative \texorpdfstring{$\cO(2)$}{O(2)} symplectic form}
+
+There is a canonical nowhere-degenerate relative two-form
+\begin{equation}
+\omega\in H^0\!\left(
+\cU,\Lambda^2T^*_{\cU/\CP^1}\otimes\pi^*\cO(2)
+\right).
+\label{eq:omegaGlobal}
+\end{equation}
+On $U_A=\{A\ne0\}$ let
+\[
+\lambda=B/A,
+\qquad c=C/A,
+\qquad w=W/A,
+\]
+and on $U_B=\{B\ne0\}$ let
+\[
+\mu=A/B,
+\qquad c'=C/B,
+\qquad w'=W/B.
+\]
+Then
+\begin{equation}
+\omega_A=A^2d_\pi c\wedge d_\pi w,
+\qquad
+\omega_B=B^2d_\pi c'\wedge d_\pi w'.
+\label{eq:omegaCharts}
+\end{equation}
+Since $c'=c/\lambda$, $w'=w/\lambda$, and $B=\lambda A$, the two expressions agree on the overlap.
+
+\subsection{Polynomial \v{C}ech cohomology}
+
+The fibrewise polynomial degree-$m$ part of $H^1(\cU,\cO(2))$ is
+\begin{equation}
+H^1(\cU,\cO(2))_m
+\cong
+\Sym^m(\C^2)^*\otimes H^1(\CP^1,\cO(2-m)).
+\label{eq:gradedH1}
+\end{equation}
+Since
+\begin{equation}
+\dim H^1(\CP^1,\cO(2-m))=m-3
+\qquad(m\ge4),
+\label{eq:H1base}
+\end{equation}
+we obtain
+\begin{equation}
+\dim H^1(\cU,\cO(2))_m=(m+1)(m-3),
+\qquad m\ge4.
+\label{eq:H1dim}
+\end{equation}
+
+For a nonzero homogeneous polynomial $p_m(C,W)$ and integers
+\begin{equation}
+r,s\ge1,
+\qquad r+s=m-2,
+\label{eq:rs}
+\end{equation}
+define on $U_A\cap U_B$
+\begin{equation}
+h_{m;r,s}:=\frac{p_m(C,W)}{A^rB^s}.
+\label{eq:hCech}
+\end{equation}
+This has homogeneous weight $+2$. In the $A^2$ trivialization its scalar coefficient is
+\begin{equation}
+\widehat h_A=p_m(c,w)\lambda^{-s}.
+\label{eq:hhat}
+\end{equation}
+The Laurent powers $\lambda^{-s}$ for $s=1,\ldots,m-3$ represent the standard basis of $H^1(\CP^1,\cO(2-m))$. Thus, for fixed nonzero $p_m$, the classes $[h_{m;r,s}]$ with $s=1,\ldots,m-3$ are linearly independent and nontrivial. Allowing a basis of $\Sym^m(\C^2)^*$ gives the full dimension \eqref{eq:H1dim}.
+
+\subsection{Maxwell cohomology and the exact sextic bridge}
+\label{subsec:sexticbridge}
+
+The same Leray decomposition gives the fibre-polynomial helicity-one sector
+\begin{equation}
+H^1(\cU,\cO(-4))_m
+\cong
+\Sym^m(\C^2)^*\otimes H^1(\CP^1,\cO(-m-4)),
+\label{eq:Maxwellgraded}
+\end{equation}
+and hence
+\begin{equation}
+\dim H^1(\cU,\cO(-4))_m=(m+1)(m+3).
+\label{eq:Maxwelldim}
+\end{equation}
+The homogeneity $-4$ is the standard Penrose-transform weight for a helicity-one massless field \cite{WardWells1990}.  Notice that \eqref{eq:Maxwelldim} equals $(m+2)^2-1$, the multiplicity of the positive curl eigenvalue $m+2$ on the unit round $S^3$ \cite{Baer2019}.  We use only this dimension identity here; no identification of gradings is required for the proofs below.
+
+\begin{theorem}[Exact sextic cohomological bridge]
+\label{thm:sexticbridge}
+Multiplication of line-bundle valued \v{C}ech cocycles induces a canonical bilinear pairing
+\begin{multline}
+\mu_m:\ H^1(\cU,\cO(-4))_m\otimes
+H^0(\CP^1,\cO(6))\\
+\longrightarrow H^1(\cU,\cO(2))_m.
+\label{eq:universalmu}
+\end{multline}
+Fix $0\ne s\in H^0(\CP^1,\cO(6))$, and let $D_s\subset\CP^1$ be its degree-six zero divisor, counted with multiplicity.  For every $m\ge4$, the map
+\begin{equation}
+\mu_{s,m}:[f]\longmapsto[\pi^*s\,f]
+\label{eq:musm}
+\end{equation}
+is surjective and fits into a short exact sequence
+\begin{multline}
+0\longrightarrow
+\Sym^m(\C^2)^*\otimes
+H^0\!\left(D_s,\cO_{D_s}(2-m)\right)\\
+\longrightarrow H^1(\cU,\cO(-4))_m
+\xrightarrow{\ \mu_{s,m}\ }
+H^1(\cU,\cO(2))_m
+\longrightarrow0.
+\label{eq:sexticexact}
+\end{multline}
+In particular,
+\begin{equation}
+\dim\ker\mu_{s,m}=6(m+1).
+\label{eq:sextickernel}
+\end{equation}
+For $m\le3$ the target polynomial sector vanishes.
+\end{theorem}
+
+\begin{proof}
+Multiplication by $s$ gives an exact sequence on the base
+\begin{equation}
+0\to\cO(-m-4)\xrightarrow{\,\times s\,}\cO(2-m)
+\to\cO_{D_s}(2-m)\to0.
+\label{eq:basesequence}
+\end{equation}
+For $m\ge4$, both $H^0(\CP^1,\cO(-m-4))$ and $H^0(\CP^1,\cO(2-m))$ vanish, while a sheaf supported on the zero-dimensional divisor $D_s$ has no $H^1$.  The long exact cohomology sequence therefore reduces to
+\begin{multline}
+0\longrightarrow H^0(D_s,\cO_{D_s}(2-m))
+\longrightarrow H^1(\cO(-m-4))\\
+\xrightarrow{\times s}H^1(\cO(2-m))\longrightarrow0.
+\label{eq:baseexactH1}
+\end{multline}
+Tensoring with $\Sym^m(\C^2)^*$ and using the Leray decompositions \eqref{eq:Maxwellgraded} and \eqref{eq:gradedH1} proves \eqref{eq:sexticexact}.  Since $D_s$ has scheme-theoretic length six, the restriction of any line bundle to $D_s$ has six-dimensional space of global sections.  Equation \eqref{eq:sextickernel} follows.
+
+Equivalently, Serre duality identifies the dual of the base map with multiplication
+\[
+H^0(\CP^1,\cO(m-4))\xrightarrow{\times s}
+H^0(\CP^1,\cO(m+2)),
+\]
+which is injective because a nonzero homogeneous polynomial is not a zero divisor.  This gives a second proof of surjectivity.
+\end{proof}
+
+\begin{corollary}[Exact meaning of the noncanonicity]
+\label{cor:sexticnoncanonical}
+The universal pairing \eqref{eq:universalmu} is natural under changes of homogeneous coordinates on the base.  A particular degree-preserving zeroth-order bridge $\mu_{s,m}$, however, requires the additional sextic datum $s$.  The parameter space
+\begin{equation}
+H^0(\CP^1,\cO(6))\cong\Sym^6(\C^2)^*
+\label{eq:sexticrep}
+\end{equation}
+is a seven-dimensional nontrivial irreducible $SL(2,\C)$ representation and contains no nonzero invariant vector.  Hence no nonzero base-$SL(2,\C)$-invariant \emph{choice} of a multiplier $s$ exists.  The canonical object is the bilinear pairing \eqref{eq:universalmu}, not a preferred Maxwell-to-gravity linear map.
+\end{corollary}
+
+\begin{corollary}[Exhaustion of zeroth-order bundle bridges]
+\label{cor:zerothorderexhaustion}
+Every holomorphic line-bundle morphism over the identity of the base
+\begin{equation}
+\cO(-4)\longrightarrow\cO(2)
+\label{eq:bundlebridge}
+\end{equation}
+is multiplication by a unique sextic section $s\in H^0(\CP^1,\cO(6))$.  Consequently, the seven-dimensional family $\{\mu_{s,m}\}$ exhausts all fibre-degree-preserving cohomological bridges induced by zeroth-order base line-bundle morphisms.  Within this class no nonzero $SL(2,\C)$-invariant bridge exists.
+\end{corollary}
+
+\begin{proof}
+A morphism in Eq.~\eqref{eq:bundlebridge} is a global section of
+\begin{equation}
+\operatorname{Hom}(\cO(-4),\cO(2))\cong\cO(6).
+\end{equation}
+Thus it is multiplication by a unique $s\in H^0(\CP^1,\cO(6))$.  Pullback to $\cU$ and passage to \v{C}ech cohomology gives precisely $\mu_{s,m}$.  The final assertion follows from Corollary~\ref{cor:sexticnoncanonical}.
+\end{proof}
+
+\begin{remark}
+Theorem~\ref{thm:sexticbridge} closes the weight-$+6$ question at the level of the polynomial sheaf cohomology used in this paper: every Hamiltonian $\cO(2)$ class of degree $m\ge4$ has a Maxwell $\cO(-4)$ lift after choosing any nonzero sextic.  It does \emph{not} assert that the resulting nonlinear metric is the Weyl double copy of the corresponding Maxwell spacetime field.  That stronger representative-level and spacetime-level statement is a different problem.
+\end{remark}
+
+\subsection{Hamiltonian \v{C}ech gluing}
+
+For a \v{C}ech representative $h_{AB}\in\Gamma(U_A\cap U_B,\cO(2))$, write $\widehat h_A=A^{-2}h_{AB}$ in the $A^2$ trivialization. Define the vertical Hamiltonian vector field by
+\begin{equation}
+\iota_{X_{AB}}\omega_A=-A^2d_\pi\widehat h_A.
+\label{eq:HamiltonianDef}
+\end{equation}
+Equivalently,
+\begin{equation}
+X_{AB}
+=\frac{\partial\widehat h_A}{\partial c}\frac{\partial}{\partial w}
+-\frac{\partial\widehat h_A}{\partial w}\frac{\partial}{\partial c}.
+\label{eq:Xhlocal}
+\end{equation}
+The flow preserves $\omega$ wherever it is defined. For a general polynomial Hamiltonian, global completeness is not guaranteed, but holomorphic ODE theory gives a local flow near any chosen compact family of twistor lines for sufficiently small parameter $\eps$.
+
+\begin{theorem}[Local Hamiltonian nonlinear-graviton sector]
+\label{thm:twistor}
+Let $h_{AB}$ be a sufficiently small \v{C}ech Hamiltonian as above. On a sufficiently small neighbourhood of a compact family of flat twistor lines, the deformed transition function
+\begin{equation}
+g_{AB}^{(\eps)}
+=\exp(\eps X_{AB})\circ g_{AB}^{(0)}
+\label{eq:gluing}
+\end{equation}
+defines a local holomorphic deformation preserving the fibration over $\CP^1$ and the relative $\cO(2)$-valued symplectic form. The family of rational curves
+\[
+L_x\cong\CP^1,
+\qquad
+N_{L_x/\PT}\cong\cO(1)\oplus\cO(1),
+\]
+persists for small $\eps$. Its four-complex-dimensional moduli space carries the corresponding local complex Ricci-flat self-dual (or anti-self-dual, with the opposite orientation convention) metric.
+\end{theorem}
+
+\begin{proof}
+Equation \eqref{eq:HamiltonianDef} implies $\mathcal L_{X_{AB}}\omega=0$, so \eqref{eq:gluing} is a local holomorphic symplectomorphism. Stability of the rational curves with normal bundle $\cO(1)\oplus\cO(1)$ follows from Kodaira deformation theory. The nonlinear-graviton correspondence, refined by preservation of the fibration and relative $\cO(2)$ symplectic form, then selects the Ricci-flat self-dual conformal representative \cite{Penrose1976,HitchinKarlhede1987}.
+\end{proof}
+
+A Riemannian hyperk\"ahler real form is obtained by choosing a fixed-point-free antiholomorphic involution
+\begin{equation}
+\sigma:\PT\to\PT,
+\qquad \sigma^2=\id,
+\label{eq:reality}
+\end{equation}
+covering the antipodal map on $\CP^1$, compatible with the canonical real structure on $\cO(2)$ and satisfying, at the cohomology level,
+\begin{equation}
+\sigma^*[h]=\overline{[h]}.
+\label{eq:realh}
+\end{equation}
+The involution is fixed-point-free on twistor space: the real four-manifold is therefore not a fixed-point subset of $\PT$.  It is reconstructed as the moduli space of $\sigma$-real rational sections $L_x\cong\CP^1$ with normal bundle $\cO(1)\oplus\cO(1)$, as in the hyperk\"ahler twistor correspondence \cite{HitchinKarlhede1987}.
+
+\section{Lorentzian Kerr--Schild consistency sector}
+\label{sec:kerr}
+
+The complex nonlinear-graviton construction above should not be identified with a generic Lorentzian Kerr--Schild ansatz. For comparison, consider a real single Kerr--Schild metric on flat background,
+\begin{equation}
+g_{\mu\nu}=\eta_{\mu\nu}-2\mathcal H\,l_\mu l_\nu,
+\label{eq:KS}
+\end{equation}
+where $l$ is null and geodesic. For nonflat four-dimensional vacuum solutions with an expanding Kerr--Schild congruence, the algebraic type is II or D; the twist-free branch is type D, while twisting solutions are type II or D \cite{McIntosh1989}.  The higher-dimensional Kerr--Schild analysis gives the corresponding type-II-or-more-special restriction for a geodesic Kerr--Schild vector and the expanding vacuum type II/D result in higher dimensions \cite{Ortaggio2009}. By contrast, a four-dimensional VSI spacetime has Weyl type III, N, or O and admits an aligned nonexpanding, nontwisting geodesic Kundt direction \cite{Coley2004}. Hence
+\begin{align}
+&\text{nonflat expanding vacuum single-KS}\nonumber\\[-2pt]
+&\hspace{1.1cm}\Longrightarrow\ \text{Petrov II/D}
+\Longrightarrow\ \text{not VSI}.
+\label{eq:KSnotVSI}
+\end{align}
+For genuine type II/D the standard complex quadratic Weyl invariant is nonzero (up to conventional normalization), so the two real quadratic contractions
+\[
+K_1=C_{abcd}C^{abcd},
+\qquad
+K_2=C_{abcd}{}^\star C^{abcd}
+\]
+cannot both vanish identically.
+
+\begin{proposition}[Signature separation]
+\label{prop:signatureseparation}
+A real Lorentzian four-metric whose complexified Weyl tensor is self-dual or anti-self-dual is conformally flat.  If it is also Ricci-flat, it is locally flat.  Consequently, a nonflat real expanding vacuum single Kerr--Schild metric of Petrov type II or D cannot be identified with a real self-dual/anti-self-dual slice of the Riemannian hyperk\"ahler nonlinear-graviton sector of Theorem~\ref{thm:twistor}.
+\end{proposition}
+\begin{proof}
+For a real Lorentzian metric the two chiral Weyl spinors are related by complex conjugation.  If one chiral part vanishes, its conjugate vanishes as well, so the full Weyl tensor is zero.  This is the standard reason that nontrivial real self-dual conformal structures occur in Riemannian or neutral signature, whereas Lorentzian self-duality requires complex fields \cite{AtiyahDunajskiMason2017}.  If the metric is Ricci-flat, vanishing Weyl curvature makes the full Riemann tensor vanish locally.
+\end{proof}
+
+\section{Geometric architecture: proved sectors and classified bridges}
+\label{sec:interpretation}
+
+The preceding results fit naturally into a common geometric picture, but only after keeping distinct the structures that are mathematically identified by the theorems from those connected merely by research-level correspondences.  In particular, the round three-sphere used in the Beltrami classification is not a fixed real slice of the fixed-point-free twistor real structure, and the Maxwell Penrose transform is not identified here with the Hamiltonian nonlinear-graviton deformation map.
+
+\subsection{Two geometric blocks}
+
+The gravitational twistor block used in Sec.~\ref{sec:twistor} is the specialized Ricci-flat self-dual/hyperk\"ahler datum
+\begin{equation}
+\mathfrak T_{\rm grav}
+=\bigl(\PT,\pi,\omega,\sigma,\{L_x\}\bigr),
+\label{eq:Tgrav}
+\end{equation}
+where $\pi:\PT\to\CP^1$ is holomorphic, $\omega$ is a fibrewise non-degenerate relative $\cO(2)$-valued holomorphic symplectic form, $\sigma$ is a fixed-point-free antiholomorphic involution covering the antipodal map, and the curves $L_x\cong\CP^1$ have normal bundle $\cO(1)\oplus\cO(1)$.  The complexified space-time is the moduli space of such curves; the Riemannian real form is the moduli space of $\sigma$-real sections.  Null separation in the complexified moduli space is encoded by intersection of the corresponding twistor lines, while preservation of the relative symplectic form selects the Ricci-flat representative of the self-dual conformal class \cite{Penrose1976,HitchinKarlhede1987}.  No universal integral formula for the metric is assumed.
+
+Independently, the Beltrami/contact block is
+\begin{equation}
+\mathfrak C_{\rm Bel}=(S^3,g,\theta_1,X_1),
+\label{eq:Cbel}
+\end{equation}
+where $g$ is the unit round metric, $\theta_1=X_1^\flat$, and
+\begin{equation}
+ d\theta_1=2\,\theta_2\wedge\theta_3,
+ \qquad
+ \theta_1\wedge d\theta_1=2\,\mathrm{vol}_{S^3}.
+\label{eq:contactform}
+\end{equation}
+Thus $X_1$ is the Reeb field and its closed trajectories form the Hopf fibration.  The orientation-preserving isometry group of the round metric is $SO(4)$; the proof of Theorem~\ref{thm:classification} uses this round-isometry group, not the full CR or contact automorphism group.
+
+\subsection{Penrose cohomology and the classified sextic bridge}
+
+Proposition~\ref{prop:BeltramiMaxwellLift} first supplies an exact spacetime bridge from every null Beltrami eigenmode to a time-harmonic null Maxwell field on the Einstein cylinder and, by conformal transport and the Penrose transform, to helicity-one twistor data of homogeneity $-4$ \cite{KopinskiNatario2017,WardWells1990}.  Independently, Sec.~\ref{sec:twistor} represents infinitesimal Hamiltonian nonlinear-graviton deformations by $\cO(2)$-valued \v{C}ech classes.  These are different geometric mechanisms, but Theorem~\ref{thm:sexticbridge} gives their exact degree-preserving cohomological relation on the total space $\cU$ used here:
+\begin{align}
+H^1(\cU,\cO(-4))_m
+&\xrightarrow{\ \times s\ }H^1(\cU,\cO(2))_m,
+\label{eq:architectureSextic}\\[-1mm]
+&\hspace{-8mm}0\ne s\in H^0(\CP^1,\cO(6)).\nonumber
+\end{align}
+For every $m\ge4$ this map is surjective, with kernel dimension $6(m+1)$.  Thus the weight shift $-4\mapsto+2$ is not an unexplained formal arrow: it is the ordinary cup product with a sextic base section.  What is noncanonical is the choice of $s$.  Corollaries~\ref{cor:sexticnoncanonical} and \ref{cor:zerothorderexhaustion} show more precisely that sextic multiplication exhausts all zeroth-order line-bundle bridges $\cO(-4)\to\cO(2)$, while no nonzero $SL(2,\C)$-invariant member of this seven-dimensional family exists.  Thus a preferred zeroth-order linear bridge cannot be selected without extra geometric data.
+
+This theorem is deliberately weaker than a Weyl double-copy statement.  Multiplication of cohomology classes does not by itself prove that a chosen Maxwell spacetime representative and the nonlinear metric generated from $[sf]$ satisfy a representative-level double-copy relation.  Special twistor realizations of the Weyl double copy and hopfion-related gravitational examples remain compatible with, but are not required by, the exact sequence above \cite{SabharwalDalhuisen2019,White2021}.
+
+The threshold
+\begin{align}
+H^1(\cU,\cO(2))_m&=0, &&m\le3,\nonumber\\
+\dim H^1(\cU,\cO(2))_m&=(m+1)(m-3), &&m\ge4
+\label{eq:thresholdinterpretation}
+\end{align}
+continues to refer only to this polynomial Hamiltonian \v{C}ech sector and is not a universal prohibition on lower gravitational multipoles.
+
+\subsection{Singular Pfaff system and removable Poynting foliation}
+
+Let $\alpha=F^\flat$.  The Beltrami and null equations imply the invariant identity
+\begin{equation}
+\alpha\wedge d\alpha
+=\lambda\,\alpha\wedge *\alpha
+=\lambda\,g^{-1}(\alpha,\alpha)\,\mathrm{vol}_{S^3}
+=0.
+\label{eq:architecturePfaff}
+\end{equation}
+On $S^3\setminus Z(F)$ this is an ordinary integrable complex rank-two Pfaff distribution.  At $Z(F)$ the one-form vanishes and the kernel rank jumps, so the correct object is a singular integrable Pfaff system.  The global result proved in Sec.~\ref{sec:globalremoval} is correspondingly precise: it removes the singularities of the conformal geodesic \emph{Poynting foliation} on the round $S^3$.  It is not a theorem excluding curvature singularities or proving geodesic completeness for arbitrary four-dimensional Einstein metrics.
+
+The classification therefore has the invariant forms
+\begin{align}
+\Phi_*F&=p(z_1,z_2)(X_2+iX_3),\nonumber\\
+(\Phi^{-1})^*\alpha&=p(z_1,z_2)\,\theta_+,
+\qquad \lambda=m+2,
+\label{eq:architectureBeltrami}
+\end{align}
+for an orientation-preserving round isometry $\Phi\in SO(4)$ and a homogeneous holomorphic polynomial $p$ of degree $m\ge0$.
+
+\subsection{Bateman dynamics and exact Hopf-line conjugacy}
+
+Theorem~\ref{thm:Bateman} is a statement about the exact nodal geometry and topology of the factorized Bateman family.  The compactified maps $\Psi_t:\widehat{\R^3}\to S^3$ are diffeomorphisms, the nodal components are exact planar circles with fixed centers and radii
+\begin{equation}
+R_k(t)^2=1+|w_k|^2+t^2,
+\end{equation}
+and the family is carried by an ambient isotopy of $\R^3$.  Hence the oriented pairwise linking numbers remain $+1$.
+
+Lemma~\ref{lem:BatemanHopfConjugacy} strengthens this from a nodal correspondence to an exact line-field statement: $(d\Psi_t)_{\mathbb C}G$ is a nowhere-zero scalar multiple of the canonical Hopf CR field $X$.  Thus $\Psi_t$ sends the complex line of $p(\alpha,\beta)G$ to that of $p(z_1,z_2)X$ and sends their zero divisors exactly to one another.  This does not identify their metric normalizations or energy densities; it is an exact geometric conjugacy of the relevant complex line fields and nodal divisors.
+
+\subsection{Lorentzian Kerr--Schild sector and maximal closure of the bridge structure}
+
+The Lorentzian sector of Sec.~\ref{sec:kerr} is an independent real-signature classification block.  Proposition~\ref{prop:signatureseparation} makes the separation from the self-dual nonlinear-graviton sector structural rather than merely terminological: a nonflat real Lorentzian Ricci-flat metric cannot be genuinely self-dual or anti-self-dual.  Thus the expanding Petrov-II/D Kerr--Schild branch cannot be the same real slice as the Riemannian hyperk\"ahler sector.
+
+Within the categories actually used in this paper, the architecture is therefore closed by four positive theorems and two exact separation statements:
+\begin{enumerate}
+\item the global null-Beltrami/Hopf classification on the round $S^3$;
+\item the Bateman compactification, ambient-isotopy theorem, and Hopf CR-line conjugacy;
+\item the Beltrami-to-Maxwell lift, the local or formal Hamiltonian nonlinear-graviton construction, and the exact sextic surjection from Maxwell $\cO(-4)$ cohomology;
+\item the Lorentzian expanding-vacuum single-Kerr--Schild Petrov/VSI classification;
+\item the complete classification of zeroth-order bundle bridges as sextic multipliers, together with the absence of a preferred base-$SL(2,\C)$-symmetric choice without extra data;
+\item the signature no-go preventing a nonflat real Lorentzian vacuum from being a real self-dual nonlinear-graviton slice.
+\end{enumerate}
+What remains outside this closure is a stronger \emph{physical} double-copy assertion relating distinguished spacetime representatives, amplitudes, or observables.  Such a claim is not needed for any theorem in this paper and is not promoted here to an unproved functor.
+
+\section{Conclusions}
+
+Four mathematically distinct sectors have been established and deliberately kept separate where no theorem identifies them.
+
+First, the null Beltrami classification on the round $S^3$ is unconditional.  The leading symbol at an arbitrary zero has complex type; regular constant-order nodal arcs yield the quantitative blow-up expansion $V=\pm T+rW$.  This supplies a locally Lipschitz $C^0$ geodesic foliation across the arc.  Polar removability and the Baird--Wood isolated-singularity alternative then give a global analytic conformal geodesic foliation, necessarily Hopf.  Consequently
+\begin{equation}
+F=p(z_1,z_2)(X_2+iX_3),\qquad \lambda=m+2
+\end{equation}
+up to an orientation-preserving round isometry, and the zero divisor is a finite union of Hopf fibres counted with polynomial multiplicity.
+
+Second, the Bateman nodal-link theorem is unconditional: the compactified spatial map is a diffeomorphism, the nodal components are exact Euclidean circles, and their Hopf linking is preserved by ambient isotopy.  No universal claim about energy non-dispersion is required for this result.
+
+Third, the twistor sector is sharpened by an exact cohomological result.  Besides the local or formal Hamiltonian nonlinear-graviton construction, the polynomial Maxwell and gravity sectors obey
+\begin{align}
+\dim H^1(\cU,\cO(-4))_m&=(m+1)(m+3),\nonumber\\
+\dim H^1(\cU,\cO(2))_m&=(m+1)(m-3),\qquad m\ge4.
+\end{align}
+For every nonzero sextic $s\in H^0(\CP^1,\cO(6))$, multiplication by $s$ is surjective from the first sector onto the second and has kernel dimension $6(m+1)$.  The kernel is geometrically supported on the degree-six divisor of $s$.  The universal bilinear cup product is canonical.  Moreover, every zeroth-order line-bundle morphism $\cO(-4)\to\cO(2)$ is multiplication by a unique sextic, so this seven-dimensional family exhausts that entire class of bridges; a particular nonzero member cannot be selected in a base-$SL(2,\C)$-invariant way without extra data.
+
+Fourth, the real expanding vacuum single-Kerr--Schild sector on a flat background remains an independent Lorentzian classification statement: the nonflat branch is Petrov II/D and non-VSI.  In addition, Lorentzian reality itself supplies a no-go theorem: a real Lorentzian self-dual or anti-self-dual Ricci-flat metric is locally flat.  Thus the nonflat Kerr--Schild sector cannot be identified with a real self-dual nonlinear-graviton slice.
+
+The remaining distinction is therefore not a missing mathematical arrow inside the framework developed here.  It is the stronger physical question of when particular Maxwell representatives and particular gravitational representatives satisfy a Weyl/double-copy relation.  Our exact sextic sequence classifies the cohomological weight bridge, while the signature theorem classifies the real-sector obstruction.  No cosmological bounce, BKL-suppression mechanism, or specific observational prediction is inferred from these results.
+
+\section*{AI-use disclosure}
+OpenAI ChatGPT (GPT-5.6 Sol, accessed October 2026) was used substantively during the research and preparation of this manuscript for literature synthesis, exploratory algebraic and logical cross-checking, and drafting and revision of mathematical exposition. The authors specified the mathematical questions and constraints, independently checked the primary sources cited for external theorems, reproduced and verified the derivations retained in the manuscript, and reviewed and revised all AI-assisted text. No AI system is an author; the human authors take full responsibility for the accuracy, originality, and conclusions of the work.
+
+\section*{Data Availability Statement}
+No data were created or analyzed in this study.
+
+\begin{thebibliography}{99}
+
+\bibitem{BairdWood1988}
+P.~Baird and J.~C.~Wood,
+``Bernstein theorems for harmonic morphisms from $\R^3$ and $S^3$,''
+\emph{Math. Ann.} \textbf{280}, 579--603 (1988),
+ doi:10.1007/BF01450078.
+
+\bibitem{BairdWood1991}
+P.~Baird and J.~C.~Wood,
+``Harmonic morphisms and conformal foliations by geodesics of three-dimensional space forms,''
+\emph{J. Austral. Math. Soc. Ser. A} \textbf{51}, 118--153 (1991),
+doi:10.1017/S1446788700033358.
+
+\bibitem{HiguchiKayWood2001}
+A.~Higuchi, B.~S.~Kay, and C.~M.~Wood,
+``The energy of unit vector fields on the 3-sphere,''
+\emph{J. Geom. Phys.} \textbf{37}, 137--155 (2001),
+doi:10.1016/S0393-0440(00)00034-6.
+
+\bibitem{Gerner2021}
+W.~Gerner,
+``Zero Set Structure of Real Analytic Beltrami Fields,''
+\emph{J. Geom. Anal.} \textbf{31}, 9928--9950 (2021),
+doi:10.1007/s12220-021-00633-0.
+
+\bibitem{IrvineBouwmeester2008}
+W.~T.~M.~Irvine and D.~Bouwmeester,
+``Linked and knotted beams of light,''
+\emph{Nature Physics} \textbf{4}, 716--720 (2008),
+doi:10.1038/nphys1056.
+
+\bibitem{Kedia2013}
+H.~Kedia, I.~Bialynicki-Birula, D.~Peralta-Salas, and W.~T.~M.~Irvine,
+``Tying Knots in Light Fields,''
+\emph{Phys. Rev. Lett.} \textbf{111}, 150404 (2013),
+doi:10.1103/PhysRevLett.111.150404.
+
+
+\bibitem{Penrose1976}
+R.~Penrose,
+``Nonlinear gravitons and curved twistor theory,''
+\emph{Gen. Relativ. Gravit.} \textbf{7}, 31--52 (1976),
+doi:10.1007/BF00762011.
+
+\bibitem{HitchinKarlhede1987}
+N.~J.~Hitchin, A.~Karlhede, U.~Lindstr\"om, and M.~Ro\v{c}ek,
+``Hyper-K\"ahler metrics and supersymmetry,''
+\emph{Commun. Math. Phys.} \textbf{108}, 535--589 (1987),
+doi:10.1007/BF01214418.
+
+\bibitem{Rudin1980}
+W.~Rudin,
+\emph{Function Theory in the Unit Ball of $\mathbb C^n$}
+(Springer, New York, 1980).
+
+
+
+\bibitem{SabharwalDalhuisen2019}
+S.~Sabharwal and J.~W.~Dalhuisen,
+``Anti-self-dual spacetimes, gravitational instantons and knotted zeros of the Weyl tensor,''
+\emph{J. High Energy Phys.} \textbf{07}, 004 (2019),
+doi:10.1007/JHEP07(2019)004.
+
+\bibitem{White2021}
+C.~D.~White,
+``Twistorial Foundation for the Classical Double Copy,''
+\emph{Phys. Rev. Lett.} \textbf{126}, 061602 (2021),
+doi:10.1103/PhysRevLett.126.061602.
+
+\bibitem{McIntosh1989}
+C.~B.~G.~McIntosh,
+``Kerr--Schild spacetimes revisited,''
+in \emph{Conference on Mathematical Relativity},
+CMA Proceedings Vol.~19, edited by R.~Bartnik
+(Australian National University, Canberra, 1989), pp.~201--206.
+
+\bibitem{Coley2004}
+A.~Coley, R.~Milson, V.~Pravda, and A.~Pravdov\'a,
+``Vanishing scalar invariant spacetimes in higher dimensions,''
+\emph{Class. Quantum Grav.} \textbf{21}, 5519--5542 (2004),
+doi:10.1088/0264-9381/21/23/014.
+
+\bibitem{Ortaggio2009}
+M.~Ortaggio, V.~Pravda, and A.~Pravdov\'a,
+``Higher dimensional Kerr--Schild spacetimes,''
+\emph{Class. Quantum Grav.} \textbf{26}, 025008 (2009),
+doi:10.1088/0264-9381/26/2/025008.
+
+
+\bibitem{KopinskiNatario2017}
+J.~Kopi\'{n}ski and J.~Nat\'{a}rio,
+``On a remarkable electromagnetic field in the Einstein Universe,''
+\emph{Gen. Relativ. Gravit.} \textbf{49}, 81 (2017),
+doi:10.1007/s10714-017-2242-7.
+
+\bibitem{WardWells1990}
+R.~S.~Ward and R.~O.~Wells, Jr.,
+\emph{Twistor Geometry and Field Theory}
+(Cambridge University Press, Cambridge, 1990),
+doi:10.1017/CBO9780511524493.
+
+\bibitem{Baer2019}
+C.~B\"ar,
+``The curl operator on odd-dimensional manifolds,''
+\emph{J. Math. Phys.} \textbf{60}, 031501 (2019),
+doi:10.1063/1.5082528.
+
+\bibitem{AtiyahDunajskiMason2017}
+M.~Atiyah, M.~Dunajski, and L.~J.~Mason,
+``Twistor theory at fifty: from contour integrals to twistor strings,''
+\emph{Proc. R. Soc. A} \textbf{473}, 20170530 (2017),
+doi:10.1098/rspa.2017.0530.
+
+\end{thebibliography}
+
+\end{document}

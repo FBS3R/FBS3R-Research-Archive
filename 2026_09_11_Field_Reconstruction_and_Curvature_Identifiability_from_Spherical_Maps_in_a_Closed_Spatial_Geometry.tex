@@ -1,0 +1,1209 @@
+% Physical Review D submission source; compiled September 10, 2026.
+% Final author sign-off is required before submission; see package checklist.
+\documentclass[aps,prd,reprint,amsmath,amssymb,nofootinbib,
+longbibliography]{revtex4-2}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsthm,bm,booktabs,listings}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\spanof}{span}
+\newcommand{\HH}{\mathcal H}
+\newcommand{\dd}{\mathrm d}
+\newcommand{\ee}{\varepsilon}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\ip}[2]{\left\langle#1,#2\right\rangle}
+\lstset{basicstyle=\ttfamily\scriptsize,breaklines=true,columns=fullflexible,
+  keepspaces=true,showstringspaces=false,language=Python}
+\begin{document}
+\title{Field reconstruction and curvature identifiability from spherical maps
+in a closed spatial geometry}
+\author{Andrei Preece}
+\email{andre.preece@web.de}
+\affiliation{Independent Researcher, Germany}
+\author{Boris Batenin}
+\email{batenin@web.de}
+\affiliation{Independent Researcher, Germany}
+\date{September 10, 2026}
+
+\begin{abstract}
+An angular map, a resolved spatial volume, and a statistical model of a field
+contain different information about a closed universe. We distinguish these
+inverse problems for scalar fields with the exact harmonic cutoff
+$0\leq n\leq L$ on a round three-sphere. For $q$ concentric spherical maps,
+we determine the null space explicitly as a product of $q$ radial factors
+times the band of degree $L-q$. Its dimension is $N_{L-q}$, where
+$N_j=(j+1)(j+2)(2j+3)/6$ and $N_j=0$ for $j<0$.
+The resulting rank bound also applies to any $q$ linear scalar channels
+equivariant under rotations about the observer. A resolved layer of angular
+half-width $\ee$ is injective, but its squared singular values separate into
+the powers $\ee^{2k}$ with multiplicities $(L-k+1)^2$; we give the exact
+leading coefficient of the weakest mode. We then prove that a single map
+has zero local Fisher information about its angular radius after unrestricted
+positive isotropic band powers are profiled out. In contrast, two shells with
+independently known radial distances determine the curvature radius from
+their highest angular sector, provided that sector is nonzero and the
+spectral cutoff is exact. We derive its noise information and a contamination
+bound. These are conditional results for specified observation operators,
+not a detection of spatial curvature or a derivation of cosmic acceleration.
+\end{abstract}
+\maketitle
+
+\section{Introduction}
+\label{sec:intro}
+
+The geometry of a compact spatial slice does not specify which aspects of
+that geometry are identifiable from the observations available to one
+observer. In particular, access to a two-dimensional sky is not access to
+an open three-dimensional region. This distinction is essential when a
+geometrical cosmology is formulated through mode counting, analytic
+continuation, or a proposed correspondence between a global field and an
+observable domain.
+
+Our earlier conditional reconstruction manuscripts \cite{P09,P10}
+distinguish an assumed round $S^3$ geometry from a measured
+topology and propose restriction and transfer operators as the next step.
+A companion working manuscript \cite{CapDraft} treats finite-band scalar
+fields on three-dimensional caps. Here we address the different problem
+of observation on spherical surfaces, and distinguish recovery of a field
+at fixed geometry from identification of the geometry itself.
+No dark-energy, phase-evolution, or Fibonacci-scale postulate is needed
+for the results below.
+
+The ingredients have substantial precedents. Polynomial factorization on
+latitudes is an established method of spherical interpolation
+\cite{Castell}; Gaussian quadrature supplies exact finite integration rules
+\cite{DLMFQuad}; spherical concentration operators quantify the stability
+of restricted observations \cite{Simons}. Cosmological inference is known
+to depend on assumptions about the primordial spectrum \cite{Kinney},
+including in recent topology calculations \cite{Samandar}. Relative
+responses to a common random realization can evade a sample-variance
+limit under suitable assumptions \cite{Abramo}.
+
+Our contribution is a complete calculation within one explicitly defined
+$S^3$ observation model: the lost field subspace, its recovery by resolved
+radial information, an exact statistical degeneracy, and a conditional
+two-shell curvature reconstruction. The factorization and quadrature
+arguments are applications of established mathematics. We do not claim
+that their underlying principles, spectral discreteness, or cancellation
+of common realization amplitudes are newly discovered physical laws.
+The precise combined results are offered for independent mathematical
+and physical assessment; a search of related literature is not proof of
+historical priority.
+
+\section{Geometry, field space, and observation model}
+\label{sec:model}
+
+On a fixed round spatial slice of radius $R>0$, use observer-centered
+coordinates
+\begin{equation}
+ \dd s^2=R^2(\dd\theta^2+\sin^2\theta\,\dd\Omega^2),
+ \qquad 0\leq\theta\leq\pi .
+\end{equation}
+Write $\dd\sigma=\dd\Omega/(4\pi)$ and normalize the spatial measure to one:
+\begin{equation}
+ \dd\mu=\frac{\dd V}{2\pi^2R^3}
+ =\frac{2}{\pi}\sin^2\theta\,\dd\theta\,\dd\sigma .
+ \label{eq:measure}
+\end{equation}
+Let $Y_{\ell m}$ be orthonormal in $L^2(S^2,\dd\sigma)$; thus $Y_{00}=1$.
+Using real spherical harmonics avoids reality constraints on coefficients.
+The complex convention gives the same dimensions and spectra.
+
+Let $\HH_n$ be the scalar eigenspace of $-\Delta$ with eigenvalue
+$n(n+2)/R^2$. Its dimension is $(n+1)^2$. Our field space is the
+\emph{complete} band
+\begin{align}
+ \HH_{\leq L}&=\bigoplus_{n=0}^L\HH_n,\\
+ N_L&=\sum_{n=0}^L(n+1)^2
+ =\frac{(L+1)(L+2)(2L+3)}6 .
+ \label{eq:dimension}
+\end{align}
+Set $\HH_{\leq j}=\{0\}$ and $N_j=0$ for $j<0$.
+The cutoff is an assumption about the field, not a consequence of
+compactness. Compactness alone leaves infinitely many eigenmodes.
+
+An orthonormal basis is
+\begin{align}
+ Q_{n\ell m}(\theta,\Omega)&=r_{n\ell}(\theta)Y_{\ell m}(\Omega),\\
+ r_{n\ell}(\theta)&=a_{n\ell}(\sin\theta)^\ell
+ C_{n-\ell}^{\ell+1}(\cos\theta),\\
+ a_{n\ell}^2&=
+ \frac{2^{2\ell}(n-\ell)!(n+1)(\ell!)^2}{(n+\ell+1)!},
+ \quad 0\leq\ell\leq n\leq L.
+ \label{eq:radial}
+\end{align}
+The normalization follows by Gegenbauer orthogonality with weight
+$(1-t^2)^{\ell+1/2}$ \cite{DLMFPoly}. In particular,
+$r_{n0}=C_n^1$ and $r_{LL}=a_{LL}\sin^L\theta$.
+
+Since Gegenbauer polynomials of degrees zero through $L-\ell$ form a
+polynomial basis, every field has the unique representation
+\begin{equation}
+ u=\sum_{\ell=0}^L\sum_{m=-\ell}^{\ell}
+ (\sin\theta)^\ell p_{\ell m}(\cos\theta)Y_{\ell m},
+ \qquad \deg p_{\ell m}\leq L-\ell .
+ \label{eq:poly}
+\end{equation}
+This elementary separation is the basis of the proofs.
+
+All surface maps below are scalar values of the \emph{same} field on one
+spatial slice, with complete angular coverage and a known common center.
+Their norm uses $\dd\sigma$, not physical surface area. Real cosmological
+maps generally lie on a past light cone and involve source evolution,
+line-of-sight integrals, lensing, and selection effects. Those operations
+must be included in a forward model before an observational application.
+
+\section{An exact ceiling on information in angular channels}
+\label{sec:rank}
+
+Let $T$ be a linear observation operator with $q$ scalar sky maps as its
+output. Suppose it commutes with the $SO(3)$ rotations fixing the observer.
+In each angular sector, the field contains $L-\ell+1$ independent radial
+coefficients, whereas the output contains at most $q$.
+
+\begin{theorem}[Angular-channel rank bound]
+\label{thm:ceiling}
+For an operator with these assumptions,
+\begin{align}
+ \rank T&\leq\sum_{\ell=0}^L(2\ell+1)
+       \min\{q,L-\ell+1\}\\
+ &=N_L-N_{L-q} .
+ \label{eq:ceiling}
+\end{align}
+Consequently at least $N_{L-q}$ field directions are unidentifiable.
+\end{theorem}
+
+\begin{proof}
+The restriction of the field representation to rotations about the observer
+is
+\begin{equation}
+ \HH_{\leq L}\cong\bigoplus_{\ell=0}^L
+ \left(\mathbb R^{L-\ell+1}\otimes V_\ell\right),
+ \qquad \dim V_\ell=2\ell+1.
+\end{equation}
+An equivariant linear map acts in this sector by a radial matrix
+$T_\ell:\mathbb R^{L-\ell+1}\to\mathbb R^q$, tensor the identity on
+$V_\ell$. The rank of this matrix is at most the smaller dimension.
+For $q\leq L$, the deficit is
+$\sum_{\ell=0}^{L-q}(2\ell+1)(L-q-\ell+1)=N_{L-q}$.
+For $q\geq L+1$ the deficit is zero.
+\end{proof}
+
+This statement includes finitely many radially averaged maps and any
+known rotationally invariant transfer functions. Widening a radial
+window does not increase the number of output channels. Increasing the
+angular pixel count beyond that required to represent the band cannot
+remove this radial rank deficit. A sky mask or an additional deterministic
+compression of such outputs cannot increase their rank.
+
+\subsection{Concentric shells attain the ceiling}
+
+Choose distinct $\chi_j\in(0,\pi)$, $1\leq j\leq q$, and define
+\begin{equation}
+ B_q u=\{u(\chi_j,\cdot)\}_{j=1}^q,
+ \qquad P_q(t)=\prod_{j=1}^q(t-\cos\chi_j).
+\end{equation}
+Arbitrary fixed positive weights may be used for the output maps; the
+kernel does not depend on them.
+
+\begin{theorem}[Complete shell null space]
+\label{thm:kernel}
+The observation kernel is exactly
+\begin{equation}
+ \boxed{\ker B_q=P_q(\cos\theta)\,\HH_{\leq L-q}.}
+ \label{eq:kernel}
+\end{equation}
+Its dimension is $N_{L-q}$ and its rank is $N_L-N_{L-q}$.
+Thus $L+1$ distinct nonpolar shells are necessary and sufficient to
+recover every field in the complete band.
+\end{theorem}
+
+\begin{proof}
+Project a zero shell map onto $Y_{\ell m}$. Since $\sin\chi_j\ne0$,
+Eq.~\eqref{eq:poly} gives $p_{\ell m}(\cos\chi_j)=0$ for all $j$.
+Distinct roots imply that $p_{\ell m}$ is divisible by $P_q$, or is zero
+when its degree is less than $q$. The quotient has degree at most
+$L-q-\ell$, so the collection of quotients is precisely the polynomial
+representation of $\HH_{\leq L-q}$. Conversely every product in
+Eq.~\eqref{eq:kernel} belongs to $\HH_{\leq L}$ and vanishes on all the
+shells. Multiplication by $P_q(\cos\theta)$ is injective on the quotient
+space: a product zero everywhere has its second factor zero on the open
+set where $P_q\ne0$, hence zero as a finite harmonic sum. The dimension
+and rank follow.
+\end{proof}
+
+For a single shell, the rank is only $(L+1)^2$, compared with
+$N_L\sim L^3/3$ for the spatial field. The constant mode is included in
+these counts. Deleting a measured monopole or dipole gives a different
+operator with additional missing information.
+
+The necessity of $L+1$ shells is stronger than a comparison of total
+input and output dimensions: the monopole sector alone contains $L+1$
+radial degrees of freedom. Angular modes cannot replace those measurements
+when the operator preserves observer-centered rotations.
+
+\begin{corollary}[Normal-derivative data]
+\label{cor:jets}
+If at shell $j$ one measures the derivatives of orders
+$0,\ldots,s_j-1$ in the normal direction and $q=\sum_j s_j$, then
+\begin{equation}
+ \ker B_{\rm jet}=
+ \prod_j(\cos\theta-\cos\chi_j)^{s_j}\HH_{\leq L-q}.
+ \label{eq:jets}
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+At a nonpolar radius $\theta\mapsto\cos\theta$ is a local coordinate
+change with nonzero derivative. The factor $\sin^\ell\theta$ is smooth
+and nonzero. Multiplication by that factor and the coordinate change
+preserve the order of vanishing. A zero normal jet therefore imposes
+the indicated root multiplicity on each $p_{\ell m}$. Apply polynomial
+division as before. The physical normal derivative $R^{-1}\partial_\theta$
+changes nonzero scaling factors, not the kernel.
+\end{proof}
+
+\subsection{An exact, optimally conditioned shell design}
+
+\begin{proposition}[Gaussian shell isometry]
+\label{prop:isometry}
+Take $q=L+1$ shells with
+\begin{equation}
+ \chi_j=\frac{j\pi}{L+2},\qquad
+ w_j=\frac{2}{L+2}\sin^2\chi_j,
+ \quad j=1,\ldots,L+1.
+ \label{eq:design}
+\end{equation}
+Then for every $u\in\HH_{\leq L}$,
+\begin{equation}
+ \sum_j w_j\int_{S^2}|u(\chi_j,\Omega)|^2\dd\sigma
+ =\norm{u}_{L^2(\mu)}^2 .
+ \label{eq:isometry}
+\end{equation}
+Every singular value of this weighted observation operator is one.
+\end{proposition}
+
+\begin{proof}
+Angular orthogonality reduces the integrand to
+$\sum_{\ell m}(1-t^2)^\ell|p_{\ell m}(t)|^2$, a real polynomial of degree
+at most $2L$. Equation~\eqref{eq:measure} induces the normalized weight
+$(2/\pi)\sqrt{1-t^2}\,\dd t$. The nodes and weights in
+Eq.~\eqref{eq:design} are its $(L+1)$-point Gauss--Chebyshev rule of the
+second kind, exact through degree $2L+1$ \cite{DLMFQuad}. This proves
+the norm identity. Polarization gives the inner-product identity.
+\end{proof}
+
+This is an application of Gaussian quadrature, not a new quadrature rule.
+Its significance here is that the minimum shell count and perfect
+conditioning can be attained simultaneously if the full radial range is
+available and the geometry is known. These shells are not claimed to be
+accessible cosmological survey surfaces.
+
+\section{A resolved thin layer: uniqueness and its cost}
+\label{sec:thin}
+
+Fix $\chi_0\in(0,\pi)$ and let
+$0<\ee<\min\{\chi_0,\pi-\chi_0\}$. In this section the data resolve
+the radial coordinate throughout the layer, rather than averaging it
+into one map. Let $w\geq0$ be an integrable weight on $[-1,1]$, with
+$\int w\dd s=1$, positive almost everywhere on some interval. Define
+\begin{equation}
+ \norm{A_\ee u}^2=
+ \int_{-1}^1 w(s)\int_{S^2}
+ |u(\chi_0+\ee s,\Omega)|^2\dd\sigma\,\dd s.
+ \label{eq:layernorm}
+\end{equation}
+Use the full spatial norm \eqref{eq:measure} on the input.
+All following asymptotics hold at fixed $L$, $\chi_0$, and $w$ as
+$\ee\to0^+$. They are not uniform large-bandwidth statements.
+
+\begin{theorem}[Complete thin-layer spectrum]
+\label{thm:thin}
+The operator $A_\ee$ is injective. Its squared singular values within
+angular sector $\ell$ can be ordered as
+\begin{equation}
+ \lambda_{\ell k}(\ee)=\Theta(\ee^{2k}),
+ \quad k=0,\ldots,L-\ell,
+ \label{eq:powers}
+\end{equation}
+each repeated $2\ell+1$ times. In the complete spectrum, the scaling
+power $\ee^{2k}$ has multiplicity $(L-k+1)^2$.
+For $L\geq1$, the unique weakest branch has $\ell=0$, $k=L$ and
+\begin{equation}
+ \lambda_{\min}(\ee)\sim
+ \frac{\sin^{2L}\chi_0\,h_L(w)}{J_L(\cos\chi_0)}\,\ee^{2L},
+ \label{eq:mincoefficient}
+\end{equation}
+where
+\begin{align}
+ h_L(w)&=\min_{b_0,\ldots,b_{L-1}}
+ \int_{-1}^1w(s)\left|s^L+\sum_{j<L}b_js^j\right|^2\dd s,\\
+ J_L(c)&=\frac2\pi\int_{-1}^1(t-c)^{2L}\sqrt{1-t^2}\,\dd t.
+ \label{eq:hJ}
+\end{align}
+For $L=0$, $\lambda_{\min}=1$ and the same coefficient formula applies.
+\end{theorem}
+
+\begin{proof}
+Use in sector $\ell$ the basis
+$\sin^\ell\theta(\cos\theta-c)^i$, $0\leq i\leq M=L-\ell$,
+where $c=\cos\chi_0$. Denote its full spatial Gram matrix by $F_\ell$.
+It is fixed and positive definite. Its observation Gram matrix obeys
+\begin{equation}
+ G_\ell(\ee)=D_\ee M_\ell(\ee)D_\ee,
+ \quad D_\ee=\diag(1,\ee,\ldots,\ee^M).
+ \label{eq:gramfactor}
+\end{equation}
+Indeed, uniform Taylor expansion on $s\in[-1,1]$ gives
+\begin{equation}
+ \begin{aligned}
+ \bigl[M_\ell(0)\bigr]_{ij}
+ &=\sin^{2\ell}\chi_0(-\sin\chi_0)^{i+j}\mu_{i+j},\\
+ \mu_r&=\int_{-1}^1s^rw(s)\dd s .
+ \end{aligned}
+ \label{eq:momentlimit}
+\end{equation}
+The limiting moment matrix is positive definite because a nonzero
+polynomial cannot vanish on an interval. Continuity therefore gives
+fixed positive upper and lower matrix bounds on $M_\ell(\ee)$ for
+sufficiently small $\ee$. Comparing the Rayleigh quotient
+$a^*G_\ell a/(a^*F_\ell a)$ with $a^*D_\ee^2a/(a^*a)$ and applying
+the finite-dimensional min--max principle proves Eq.~\eqref{eq:powers}.
+At each fixed admissible $\ee$, the same polynomial argument proves
+positive definiteness and injectivity. Summing $2\ell+1$ over
+$0\leq\ell\leq L-k$ gives $(L-k+1)^2$.
+
+For the weakest branch only $\ell=0$ contributes at exponent $2L$.
+The reciprocal eigenvalues are those of
+$F_0^{1/2}G_0^{-1}F_0^{1/2}$. From Eq.~\eqref{eq:gramfactor},
+\begin{equation}
+ \ee^{2L}G_0^{-1}\longrightarrow
+ [M_0(0)^{-1}]_{LL}e_Le_L^*.
+\end{equation}
+Its nonzero eigenvalue after multiplication by $F_0^{1/2}$ on both sides
+is $[M_0(0)^{-1}]_{LL}[F_0]_{LL}$.
+The Schur complement formula for the monic orthogonal polynomial gives
+$( [\mu_{i+j}]^{-1})_{LL}=1/h_L(w)$. Equation~\eqref{eq:momentlimit}
+then yields
+$[M_0(0)^{-1}]_{LL}=\sin^{-2L}\chi_0/h_L(w)$, while
+$[F_0]_{LL}=J_L(c)$. Taking the reciprocal proves
+Eq.~\eqref{eq:mincoefficient}.
+\end{proof}
+
+For the uniform weight $w=1/2$, the leading coefficient of the Legendre
+polynomial gives
+\begin{equation}
+ h_L(1/2)=\frac{2^{2L}}{(2L+1)\binom{2L}{L}^2}.
+ \label{eq:legendre}
+\end{equation}
+The spatial moment can be evaluated without quadrature:
+\begin{equation}
+ J_L(c)=\sum_{r=0}^L\binom{2L}{2r}c^{2L-2r}
+ \frac{\binom{2r}{r}}{4^r(r+1)}.
+ \label{eq:catalan}
+\end{equation}
+At the equator and $L=1$, for example,
+$\lambda_{\min}\sim4\ee^2/3$. The exponents describe multiplicities of
+asymptotic orders, not exact degeneracies between different $\ell$.
+
+The inverse norm grows as
+\begin{equation}
+ \norm{A_\ee^+}\sim
+ \left[\frac{J_L(\cos\chi_0)}{\sin^{2L}\chi_0h_L(w)}\right]^{1/2}
+ \ee^{-L}.
+ \label{eq:inversecost}
+\end{equation}
+Here the pseudoinverse acts on the finite-dimensional signal range.
+Thus the infinite precision needed in the zero-width limit is quantified,
+even though any positive resolved thickness gives uniqueness.
+In the limit, exactly $(L+1)^2$ singular-value branches remain of order
+one, matching the rank of one shell.
+
+The normalization in Eq.~\eqref{eq:layernorm} matters. For the actual
+unrenormalized spatial norm restricted to a uniform thin layer,
+\begin{equation}
+ \int_{\chi_0-\ee}^{\chi_0+\ee}\frac2\pi\sin^2\theta\dd\theta
+ \int|u|^2\dd\sigma,
+\end{equation}
+every exponent increases by one. The weakest coefficient is multiplied
+by $4\sin^2\chi_0/\pi$ relative to Eq.~\eqref{eq:mincoefficient} with
+$w=1/2$. A physically specified noise model must determine which norm
+describes the experiment.
+
+\subsection{Noise and indistinguishability}
+\label{sec:noise}
+
+For finitely many real signal coefficients with Gaussian additive noise
+$\mathcal N$ of positive-definite covariance, the Fisher matrix is
+$F=T^*\mathcal N^{-1}T$. Hence $\ker F=\ker T$. If $v\in\ker T$ has
+unit norm, the fields $u+av$ and $u-av$ have identical data distributions.
+For any estimator, their maximum mean squared error is at least $a^2$:
+the average of their two risks equals the risk about their midpoint plus
+$a^2$. No assertion about exact reconstruction can overcome this null
+space without additional information.
+
+For resolved-layer data, project the observations onto an orthonormal
+basis of the finite-dimensional signal range and assume coefficient
+noise of variance $\sigma^2$. This specifies the otherwise ambiguous
+notion of white continuum noise. The Cram\'er--Rao variance in the weakest
+direction is $\sigma^2/\lambda_{\min}$ and therefore grows as
+$\ee^{-2L}$. A different noise covariance uniformly bounded above and
+below, independently of $\ee$, preserves the powers but changes the
+coefficients.
+
+\section{A single map cannot identify its radius with free band powers}
+\label{sec:degeneracy}
+
+Now let the input be a zero-mean $SO(4)$-isotropic real Gaussian field.
+In the orthonormal basis \eqref{eq:radial}, its coefficients satisfy
+\begin{equation}
+ \mathbb E[x_{n\ell m}x_{n'\ell'm'}]
+ =P_n\delta_{nn'}\delta_{\ell\ell'}\delta_{mm'},
+ \qquad P_n>0.
+ \label{eq:prior}
+\end{equation}
+There is one unrestricted band power per spatial degree $n$.
+For a shell at angular radius $\chi$, the sky covariance is diagonal:
+\begin{align}
+ C_\ell(\chi,P)&=\sum_{n=\ell}^L M_{\ell n}(\chi)P_n,\\
+ M_{\ell n}(\chi)&=r_{n\ell}(\chi)^2,\quad n\geq\ell,
+ \label{eq:mixing}
+\end{align}
+and $M_{\ell n}=0$ for $n<\ell$.
+
+\begin{theorem}[Exact local statistical degeneracy]
+\label{thm:degeneracy}
+Fix $\chi_0\in(0,\pi)$ and any strictly positive vector $P^{(0)}$.
+There is an open interval around $\chi_0$ on which
+\begin{equation}
+ P(\chi)=M(\chi)^{-1}M(\chi_0)P^{(0)}>0
+ \label{eq:degcurve}
+\end{equation}
+and the entire Gaussian sky distribution is unchanged.
+The Fisher information for $\chi$ after profiling over all $P_n$ is
+identically zero at every such interior parameter point.
+If an independently fixed radial distance $d$ defines $\chi=d/R$,
+the same local nonidentifiability applies to $R$.
+\end{theorem}
+
+\begin{proof}
+The matrix $M$ is upper triangular with diagonal
+\begin{equation}
+ M_{\ell\ell}=a_{\ell\ell}^2\sin^{2\ell}\chi>0.
+\end{equation}
+It is therefore invertible and smooth for all $0<\chi<\pi$.
+Equation~\eqref{eq:degcurve} preserves $C=MP$ exactly. Positivity is
+preserved in a sufficiently small interval by continuity and the finite
+number of strictly positive components. A zero-mean Gaussian field is
+determined by its covariance, so this equality concerns the full map
+likelihood, not just a single realization or an approximate fit.
+
+For the Fisher statement, the derivative $M'(\chi)P$ lies in the span
+of the band-power derivative columns of $M$. Thus the score for $\chi$
+is a linear combination of the nuisance-parameter scores. Its residual
+after projection onto their span vanishes. Equivalently,
+$P'=-M^{-1}M'P$ is a tangent vector of constant likelihood in
+Eq.~\eqref{eq:degcurve}. The change of variable $\chi=d/R$ preserves
+the degeneracy.
+\end{proof}
+
+This result is local in the interior of the positive-power cone. It does
+not assert that every positive sky spectrum is realizable at every radius.
+At a boundary where some $P_n=0$, positivity can constrain a variation.
+A restricted primordial spectrum, dynamics, cross-correlated channels,
+or external distance information can change the problem. Known additive
+noise independent of $\chi$ does not remove the equality of distributions.
+A parameter-independent mask or other deterministic processing also
+preserves it.
+
+There is a further exact ambiguity even with fixed band powers:
+$M(\pi-\chi)=M(\chi)$. This follows from the parity of Gegenbauer
+polynomials. An angular-radius prior restricting the domain can remove
+this antipodal pair, but not the local free-spectrum degeneracy above.
+
+For $L=1$, the model is particularly transparent:
+\begin{equation}
+ C_0=P_0+4\cos^2\chi\,P_1,
+ \qquad C_1=\frac43\sin^2\chi\,P_1.
+\end{equation}
+Changing $\chi$ can be compensated by
+$P_1=3C_1/(4\sin^2\chi)$ and
+$P_0=C_0-3C_1\cot^2\chi$, while these remain positive.
+
+The theorem concerns a pure shell-value model on a fixed complete finite
+band. It is not a no-go theorem for curvature measurements using the
+actual cosmic microwave background (CMB), whose acoustic transfer
+functions, polarization, and cosmological priors supply other structure.
+It does show why a spectral gap or a projected angular spectrum alone
+cannot establish curvature without specifying the allowed source spectra.
+
+\section{Two shells can identify curvature without reconstructing the field}
+\label{sec:twoshell}
+
+Suppose two geodesic radii $0<d_1<d_2$ on the same slice are independently
+calibrated in common length units. Let
+\begin{equation}
+ \kappa=\frac{d_2}{d_1}>1,\qquad
+ \chi=\frac{d_1}{R},\qquad R>\frac{d_2}{\pi}.
+ \label{eq:branch}
+\end{equation}
+The branch condition places both shells before the antipode. It is
+necessary for the geometric interpretation used here.
+
+\begin{theorem}[Conditional two-shell curvature reconstruction]
+\label{thm:radius}
+Assume the exact cutoff $L\geq1$ and a nonzero projection of the field
+onto the angular sector $\ell=L$ about the common observer. Let $b_j$
+be the real vector of its $2L+1$ measured coefficients on shell $j$.
+Then
+\begin{equation}
+ b_2=g(R)b_1,\qquad
+ g(R)=\left[\frac{\sin(d_2/R)}{\sin(d_1/R)}\right]^L.
+ \label{eq:ratio}
+\end{equation}
+The measured ratio
+$g=\ip{b_1}{b_2}/\norm{b_1}^2$ determines exactly one radius in
+Eq.~\eqref{eq:branch}, whenever $0<g^{1/L}<\kappa$.
+This determination requires neither the unknown realization coefficients
+nor the positive band power $P_L$.
+\end{theorem}
+
+\begin{proof}
+Only $n=L$ contributes to angular degree $\ell=L$ in the complete band.
+Equation~\eqref{eq:radial} therefore gives
+$b_j=a_{LL}\sin^L(d_j/R)x_L$, where $x_L$ is the common nonzero vector.
+This proves Eq.~\eqref{eq:ratio} and the amplitude cancellation.
+
+It remains to prove uniqueness, not just write an inversion equation.
+Define $f_\kappa(x)=\sin(\kappa x)/\sin x$ on $0<x<\pi/\kappa$.
+Its logarithmic derivative is
+\begin{equation}
+ \frac{f_\kappa'(x)}{f_\kappa(x)}
+ =\kappa\cot(\kappa x)-\cot x<0.
+ \label{eq:monotonic}
+\end{equation}
+To establish the inequality, put $h(x)=x\cot x$.
+Then $h'(x)=[\sin x\cos x-x]/\sin^2x<0$ on $(0,\pi)$:
+the numerator is zero at zero and has derivative $-2\sin^2x$.
+Since $\kappa x>x$, $h(\kappa x)<h(x)$, proving
+Eq.~\eqref{eq:monotonic}. Finally,
+$f_\kappa(0^+)=\kappa$ and $f_\kappa((\pi/\kappa)^-)=0$.
+Every admissible ratio therefore has exactly one $x$, and $R=d_1/x$.
+\end{proof}
+
+In the isotropic Gaussian model with $P_L>0$, the required vector is
+nonzero with probability one. Deterministic fields can have a zero
+projection in that sector even if they contain other degree-$L$ modes;
+the theorem explicitly excludes this case.
+
+For $\kappa=2$, there is a closed form:
+\begin{equation}
+ \boxed{R=\frac{d_1}{\arccos\left(g^{1/L}/2\right)}},
+ \qquad 0<g^{1/L}<2.
+ \label{eq:closedform}
+\end{equation}
+The same ratio can be written from exact ensemble covariances as
+$g=C_L^{12}/C_L^{11}$, and
+$(C_L^{12})^2=C_L^{11}C_L^{22}$. In the ideal noiseless model it already
+holds realization by realization, so it does not require an ensemble
+estimate. The cancellation uses the same principle of relative response
+to a common realization that appears in multitracer inference
+\cite{Abramo}; the sine-ratio inversion is specific to the present
+highest-sector shell model.
+
+For $L\geq2$, two shells still leave $N_{L-2}$ field directions
+undetermined at the recovered radius. Thus identification of one
+geometrical parameter is compatible with failure of full field
+reconstruction. For $L=1$, two shells also suffice for the field once
+the geometry has been determined.
+
+\subsection{Noise information and the nearly flat limit}
+
+Write the two observed top-sector vectors as
+\begin{equation}
+ y_1=a+z_1,\qquad y_2=g(R)a+z_2,
+ \qquad z_j\sim\mathcal N(0,\sigma_j^2 I),
+ \label{eq:twonoise}
+\end{equation}
+with independent noises and an unrestricted deterministic nuisance vector
+$a\ne0$. Taking the Schur complement over $a$ gives the information
+\begin{equation}
+ I_g=\frac{\norm{a}^2}{\sigma_2^2+g^2\sigma_1^2},
+ \qquad
+ I_R=\frac{[g'(R)]^2\norm{a}^2}{\sigma_2^2+g^2\sigma_1^2}.
+ \label{eq:Ifisher}
+\end{equation}
+For completeness, before profiling the blocks are
+$I_{gg}=\norm{a}^2/\sigma_2^2$,
+$I_{ga}=g a^T/\sigma_2^2$, and
+$I_{aa}=(\sigma_1^{-2}+g^2\sigma_2^{-2})I$.
+These produce Eq.~\eqref{eq:Ifisher} directly. This is a conditional
+noise calculation, not a forecast for a real survey or a claim about
+the bias of the simple ratio estimator in noise.
+
+Let $K=R^{-2}$ denote the positive sectional curvature, distinct from
+the cosmological parameter $\Omega_K$. For fixed calibrated distances,
+\begin{equation}
+ \ln g=L\ln\kappa-\frac{L(d_2^2-d_1^2)}6K+O(K^2).
+ \label{eq:flat}
+\end{equation}
+Thus the ratio tends to its flat-space value $\kappa^L$, and
+$\partial_R\ln g=L(d_2^2-d_1^2)/(3R^3)+O(R^{-5})$.
+At fixed nonzero reference signal $a$ and noise levels, $I_R$ decreases
+as $R^{-6}$. The information for $K$ can remain finite at $K=0$ under
+this normalization, but finite precision cannot imply a relative
+precision on an arbitrarily small curvature. If the physical source
+amplitude changes with $R$, it must also be included in the forecast.
+
+\subsection{What breaks the reconstruction}
+\label{sec:leakage}
+
+The exact upper spectral edge is central. If modes with $n>L$ are
+present, they contribute to $\ell=L$ with different radial factors and
+the common-vector relation need not hold. Applying an angular low-pass
+filter does not impose the required three-dimensional spectral cutoff.
+Let the two noiseless maps be
+\begin{equation}
+ y_1=a+e_1,\qquad y_2=g a+e_2,
+\end{equation}
+where $e_j$ includes any such contamination. Define
+$\widehat g=\ip{y_1}{y_2}/\norm{y_1}^2$. Then the exact identity
+\begin{equation}
+ \widehat g-g=\frac{\ip{y_1}{e_2-ge_1}}{\norm{y_1}^2}
+\end{equation}
+implies, if $\norm{e_j}\leq\eta_j\norm{a}$ and $\eta_1<1$,
+\begin{equation}
+ |\widehat g-g|\leq\frac{\eta_2+g\eta_1}{1-\eta_1}.
+ \label{eq:leakbound}
+\end{equation}
+This bound requires externally justified contamination bounds; it cannot
+be used to infer them from the two maps alone. On a compact interval of
+admissible $R$, monotonicity converts a ratio error into a radius error
+using the minimum of $g'(R)>0$ on that interval.
+
+Unknown relative calibration is another exact obstruction: if the maps
+have an unknown gain ratio $b$, the observable ratio is $b\,g(R)$ and
+one ratio cannot determine both parameters. Source evolution between
+two light-cone shells can produce the same problem. Finally, $d_1$ and
+$d_2$ must not be obtained by assuming the curvature that is being tested.
+Known $\kappa$ alone gives $\chi$; one independently known absolute
+distance is needed to turn it into a dimensionful radius.
+
+\section{Relation to cosmological reconstruction}
+\label{sec:cosmology}
+
+Theorems~\ref{thm:kernel}, \ref{thm:thin}, \ref{thm:degeneracy}, and
+\ref{thm:radius} answer different questions. At fixed geometry, finitely
+many maps have an exact field null space. A resolved layer removes that
+null space with a calculable loss of stability as its width decreases.
+With unknown geometry, a freely adjustable positive spectrum can erase
+single-map sensitivity to radius exactly. A second calibrated response
+to the same highest-sector realization can restore that sensitivity
+without restoring all field coefficients.
+
+No assumed volume fraction is an information fraction in these statements.
+For example, the cap fraction
+\begin{equation}
+ f(\chi)=\frac{\chi-\sin\chi\cos\chi}{\pi}
+\end{equation}
+does not determine the rank or the noise-conditioned singular values
+of a sky-transfer operator. Nor does analytic continuation from an open
+volume imply continuation from one embedded two-sphere: the explicit
+kernel \eqref{eq:kernel} is a counterexample.
+
+For a physical application, a scalar channel at fixed angular degree
+has a transfer matrix of the form
+\begin{equation}
+ y_{\alpha,\ell m}=\sum_{n=\ell}^L
+ T_{\alpha\ell n}(R,\vartheta)x_{n\ell m}+z_{\alpha,\ell m},
+ \label{eq:physicalT}
+\end{equation}
+where $\vartheta$ includes evolution, calibration, and source parameters.
+At fixed parameters, Theorem~\ref{thm:ceiling} supplies an exact upper
+bound for $q$ such scalar channels. The actual rank may be lower.
+For parameter identification, one must additionally differentiate the
+likelihood and remove nuisance directions, as in
+Theorem~\ref{thm:degeneracy}. An invertible field map at fixed $R$
+does not by itself prove that $R$ is identifiable.
+
+The CMB, polarization, and galaxy observations do not have the unmodified
+shell transfer used in Theorem~\ref{thm:radius}. Their source fields,
+removed low multipoles, and redshift-dependent transfer functions must
+be treated explicitly. In particular, neither a sharp cutoff nor its
+location has been established by the supplied manuscripts. The present
+reconstruction is therefore a conditional benchmark for developing such
+an experiment, not an observational determination of the Universe's
+radius, topology, dark-energy content, or initial state.
+
+\section{Verification and research methods}
+\label{sec:verification}
+
+The analytic arguments are finite-dimensional proofs. Numerical checks
+are independent consistency tests of formulas and normalizations, not
+substitutes for those proofs. Appendix~\ref{app:code} contains the full
+Python program used here, with no input files and no third-party packages.
+It uses exact rational row reduction for shell and confluent ranks,
+and 160-digit decimal arithmetic for moment matrices, normalization,
+singular values, and covariance degeneracies.
+
+The resolved-layer Gram matrices are evaluated by finite trigonometric
+moment sums. For uniform radial weight,
+\begin{equation}
+ \begin{aligned}
+ \langle\cos^n\theta\rangle_{\rm layer}
+ &=2^{-n}\sum_{j=0}^n\binom nj
+ \cos[(n-2j)\chi_0]\\
+ &\quad\times\operatorname{sinc}[(n-2j)\ee],\\
+ \langle\cos^{2r}\theta\rangle_{\mu}
+ &=\frac{\binom{2r}{r}}{4^r(r+1)},\\
+ \langle\cos^{2r+1}\theta\rangle_{\mu}&=0 .
+ \end{aligned}
+ \label{eq:verificationmoments}
+\end{equation}
+with $\operatorname{sinc}(0)=1$. These expressions avoid a quadrature
+resolution error as the layer narrows. Full-norm Cholesky whitening
+and symmetric Jacobi diagonalization then give the squared singular
+values. No astronomical observations or likelihood chains are used.
+
+The executed program completed 774 assertions. Exact shell ranks were
+checked for $0\leq L\leq8$ and $1\leq q\leq L+2$, and confluent ranks
+for $0\leq L\leq6$. Gaussian-shell moments through their required degree
+agreed with independent semicircle moments to better than $10^{-125}$.
+The local positive-spectrum degeneracy was checked for $1\leq L\leq7$,
+at $\chi=0.9$ and $0.90001$ radians, with covariance residuals below
+$10^{-125}$.
+
+For the thin-layer tests, $\chi_0=1.1$ radians and $w=1/2$.
+Slopes from widths $0.04$ and $0.02$ agreed with all predicted powers
+through $L=6$ within $0.012$. Table~\ref{tab:thin} reports the weakest
+coefficient and its independently computed finite-width ratio.
+Two-shell inversions with $d_1=3$, $d_2=6$, and $R=10$ in common length
+units recovered $R$ to relative error below $10^{-100}$ for
+$L=1,2,4,7$. The Fisher Schur complement was also checked with exact
+fractions. These high-precision arithmetic residuals are not error bars
+on a physical measurement.
+
+\begin{table}[t]
+\caption{Synthetic thin-layer check. $c_L$ is the coefficient in
+Eq.~\eqref{eq:mincoefficient}; the last column is
+$\lambda_{\min}(0.01)/(c_L\,0.01^{2L})$.}
+\label{tab:thin}
+\begin{ruledtabular}
+\begin{tabular}{ccc}
+$L$ & $c_L$ & Finite-width ratio\\
+0 & 1 & 1.000000000 \\
+1 & 0.58091171 & 0.999970550 \\
+2 & 0.11781344 & 1.000037077 \\
+3 & 0.018139078 & 1.000061991 \\
+4 & 0.0024629588 & 1.000082387 \\
+5 & 0.00031074507 & 1.000101175 \\
+6 & 3.7342137e-05 & 1.000119207 \\
+\end{tabular}
+\end{ruledtabular}
+\end{table}
+
+
+\subsection{AI-assisted research disclosure}
+OpenAI ChatGPT, accessed through Codex Work Mode on September 9, 2026,
+was used substantively for literature synthesis, derivation assistance,
+proof checking, and generation and execution of the verification program.
+The backend model version was not exposed in the session metadata. Boris
+Batenin supplied the source manuscripts, defined the research direction,
+and requested explicit proofs and executable checks. Verification of the
+AI-assisted outputs in this workflow consists of the analytic derivations
+and reproducible numerical consistency tests described in this section;
+the packaged program was rerun and completed the 774 assertions reported
+above. The named authors retain responsibility for the scientific content
+and the final submitted text.
+
+\section{Discussion}
+
+The sharply stated result is an observability distinction. A finite set
+of angular channels can have a provable field null space while retaining
+information about a geometric parameter. Conversely, a map with infinitely
+precise angular coefficients can contain no local information about its
+radius when its source spectrum is free. These conclusions follow from
+the operator and nuisance space, not from spatial compactness alone.
+
+The strongest route to a physical test is to replace the ideal shell
+responses by a calibrated light-cone transfer calculation, assess its
+nuisance-projected Fisher information, and bound leakage from modes
+outside any effective band. The exact null space, thin-layer coefficient,
+Gaussian-shell isometry, and two-shell monotonicity provide separate
+checks on that calculation. Failure of a proposed transfer model to pass
+one of these checks can reveal an information assumption before it is
+mistaken for a cosmological prediction.
+
+\begin{acknowledgments}
+OpenAI ChatGPT also assisted with English drafting and LaTeX preparation.
+Its substantive research use is disclosed in Sec.~\ref{sec:verification}.
+No AI system is listed as an author.
+\end{acknowledgments}
+
+\section*{Data Availability}
+No observational or experimental data were generated or analyzed in this
+study. The synthetic calculations supporting the reported consistency
+checks are reproducible from the complete Python verification program in
+Appendix~\ref{app:code}. The program requires only the Python standard
+library, prints the numerical results, and writes a local JSON report.
+
+\appendix
+\section{Complete verification program}
+\label{app:code}
+Copy the following listing into \texttt{shell\_verification.py} and run
+\texttt{python3 shell\_verification.py}. Assertion failures stop the
+program. The fixed tolerances test only the finite cases stated in
+Sec.~\ref{sec:verification}; the all-$L$ claims are proved in the text.
+\begin{lstlisting}
+"""Synthetic checks for the spherical-shell manuscript;
+no observational input."""
+from decimal import Decimal as D, localcontext
+from fractions import Fraction as Q
+from math import comb, factorial
+from pathlib import Path
+import json
+
+PI = D('3.14159265358979323846264338327950288419716939937510'
+       '58209749445923078164062862089986280348253421170679'
+       '82148086513282306647093844609550582231725359408128'
+       '4811174502841027019385')
+
+
+def trig(x, sine=False):
+    term = total = x if sine else D(1)
+    for r in range(1, 400):
+        j = 2*r + int(sine)
+        term *= -x*x / D(j*(j-1))
+        total += term
+        if abs(term) < D('1e-155'):
+            return total
+    raise ArithmeticError('trigonometric series')
+
+
+def mul(a, b):
+    return [[sum(x*y for x, y in zip(row, col))
+             for col in zip(*b)] for row in a]
+
+
+def trans(a):
+    return [list(c) for c in zip(*a)]
+
+
+def chol(a):
+    n = len(a)
+    b = [[D(0)]*n for _ in range(n)]
+    for i in range(n):
+        for j in range(i+1):
+            v = a[i][j] - sum(b[i][k]*b[j][k] for k in range(j))
+            b[i][j] = v.sqrt() if i == j else v/b[j][j]
+    return b
+
+
+def invlower(a):
+    n = len(a)
+    b = [[D(0)]*n for _ in range(n)]
+    for j in range(n):
+        for i in range(n):
+            b[i][j] = (D(i == j) - sum(a[i][k]*b[k][j]
+                         for k in range(i)))/a[i][i]
+    return b
+
+
+def eig(a):
+    a = [r[:] for r in a]
+    n = len(a)
+    if n == 1:
+        return [a[0][0]]
+    for _ in range(400*n*n):
+        p, q = max(((i, j) for i in range(n) for j in range(i+1, n)),
+                   key=lambda ij: abs(a[ij[0]][ij[1]]))
+        off = a[p][q]
+        if abs(off) < D('1e-125'):
+            return sorted((a[i][i] for i in range(n)), reverse=True)
+        tau = (a[q][q]-a[p][p])/(2*off)
+        t = D(1 if tau >= 0 else -1)/(abs(tau)+(1+tau*tau).sqrt())
+        c = 1/(1+t*t).sqrt()
+        s = t*c
+        for k in range(n):
+            if k not in (p, q):
+                kp, kq = a[k][p], a[k][q]
+                a[k][p] = a[p][k] = c*kp-s*kq
+                a[k][q] = a[q][k] = s*kp+c*kq
+        a[p][p] -= t*off
+        a[q][q] += t*off
+        a[p][q] = a[q][p] = D(0)
+    raise ArithmeticError('Jacobi convergence')
+
+
+def N(L):
+    return (L+1)*(L+2)*(2*L+3)//6 if L >= 0 else 0
+
+
+def semicircle(n):
+    return (D(comb(n, n//2))/D(n//2+1)/D(2)**n
+            if n % 2 == 0 else D(0))
+
+
+def interval_moment(n, chi, eps):
+    ans = D(0)
+    for k in range(n+1):
+        m = n-2*k
+        sinc = trig(m*eps, True)/(m*eps) if m else D(1)
+        ans += D(comb(n, k))*trig(m*chi)*sinc
+    return ans/D(2)**n
+
+
+def moment(ell, r, center, base):
+    return sum(D(comb(r, j))*(-center)**(r-j)
+               * D(comb(ell, a))*(-1)**a*base(j+2*a)
+               for j in range(r+1) for a in range(ell+1))
+
+
+def matrices(L, ell, chi, eps):
+    c = trig(chi)
+    m = L-ell+1
+    full = [[moment(ell, i+j, c, semicircle) for j in range(m)]
+            for i in range(m)]
+    obs = [[moment(ell, i+j, c,
+             lambda n: interval_moment(n, chi, eps)) for j in range(m)]
+           for i in range(m)]
+    return obs, full
+
+
+def spectrum(L, ell, chi, eps):
+    obs, full = matrices(L, ell, chi, eps)
+    b = invlower(chol(full))
+    return eig(mul(mul(b, obs), trans(b)))
+
+
+def rational_rank(a):
+    a = [list(map(Q, row)) for row in a]
+    row = 0
+    for col in range(len(a[0])):
+        pivot = next((r for r in range(row, len(a)) if a[r][col]), None)
+        if pivot is None:
+            continue
+        a[row], a[pivot] = a[pivot], a[row]
+        v = a[row][col]
+        a[row] = [x/v for x in a[row]]
+        for r in range(len(a)):
+            if r != row:
+                v = a[r][col]
+                a[r] = [x-v*y for x, y in zip(a[r], a[row])]
+        row += 1
+        if row == len(a):
+            break
+    return row
+
+
+def gegen(k, lam, t):
+    if k == 0:
+        return D(1)
+    old, cur = D(1), 2*lam*t
+    for j in range(1, k):
+        old, cur = cur, (2*(j+lam)*t*cur-(j+2*lam-1)*old)/(j+1)
+    return cur
+
+
+def radial(n, ell, chi):
+    norm2 = (D(2)**(2*ell)*D(factorial(n-ell)*(n+1)*factorial(ell)**2)
+             / D(factorial(n+ell+1)))
+    return norm2.sqrt()*trig(chi, True)**ell*gegen(n-ell, ell+1, trig(chi))
+
+
+def mixing(L, chi):
+    return [[radial(n, ell, chi)**2 if n >= ell else D(0)
+             for n in range(L+1)] for ell in range(L+1)]
+
+
+def upper_solve(a, b):
+    x = [D(0)]*len(b)
+    for i in reversed(range(len(b))):
+        x[i] = (b[i]-sum(a[i][j]*x[j] for j in range(i+1, len(b))))/a[i][i]
+    return x
+
+
+def verify():
+    checks = 0
+    thin, rank_rows, curvature_rows = [], [], []
+    max_isometry = D(0)
+    max_covariance_residual = D(0)
+    with localcontext() as ctx:
+        ctx.prec = 160
+        for L in range(9):
+            for q in range(1, L+3):
+                nodes = [Q(2*j-q+1, q+1) for j in range(q)]
+                rank = sum((2*ell+1)*rational_rank(
+                    [[t**k for k in range(L-ell+1)] for t in nodes])
+                    for ell in range(L+1))
+                assert rank == N(L)-N(L-q)
+                checks += 1
+            rank_rows.append([L, N(L), N(L)-N(L-1), N(L)-N(L-2)])
+
+            # Gaussian quadrature is checked against independent
+            # semicircle moments.
+            angles = [D(j)*PI/D(L+2) for j in range(1, L+2)]
+            weights = [D(2)/D(L+2)*trig(a, True)**2 for a in angles]
+            for ell in range(L+1):
+                for r in range(2*(L-ell)+1):
+                    observed = sum(w*trig(a, True)**(2*ell)*trig(a)**r
+                                   for a, w in zip(angles, weights))
+                    full = sum(D(comb(ell, k))*(-1)**k*semicircle(r+2*k)
+                               for k in range(ell+1))
+                    error = abs(observed-full)
+                    max_isometry = max(max_isometry, error)
+                    assert error < D('1e-125')
+                    checks += 1
+
+        # Confluent ranks, including degrees lower than total jet count.
+        for L in range(7):
+            for ell in range(L+1):
+                rows = []
+                for t, multiplicity in [(Q(-1, 3), 2), (Q(2, 5), 3)]:
+                    for derivative in range(multiplicity):
+                        rows.append([Q(factorial(k), factorial(k-derivative))
+                                     * t**(k-derivative)
+                                     if k >= derivative else Q(0)
+                                     for k in range(L-ell+1)])
+                assert rational_rank(rows) == min(5, L-ell+1)
+                checks += 1
+
+        for L in range(7):
+            counts = {k: 0 for k in range(L+1)}
+            largest_slope_error = D(0)
+            for ell in range(L+1):
+                first = spectrum(L, ell, D('1.1'), D('.04'))
+                second = spectrum(L, ell, D('1.1'), D('.02'))
+                for k, (v1, v2) in enumerate(zip(first, second)):
+                    slope = (v1/v2).ln()/D(2).ln()
+                    largest_slope_error = max(
+                        largest_slope_error, abs(slope-2*k))
+                    assert abs(slope-2*k) < D('.08')
+                    counts[k] += 2*ell+1
+                    checks += 1
+            assert counts == {k: (L-k+1)**2 for k in counts}
+            checks += 1
+            c = trig(D('1.1'))
+            h = D(2)**(2*L)/D((2*L+1)*comb(2*L, L)**2)
+            full_LL = moment(0, 2*L, c, semicircle)
+            coefficient = trig(D('1.1'), True)**(2*L)*h/full_LL
+            ratio = spectrum(L, 0, D('1.1'), D('.01'))[-1]/(
+                coefficient*D('.01')**(2*L))
+            assert abs(ratio-1) < D('.01')
+            checks += 1
+            thin.append({'L': L, 'coefficient': str(coefficient),
+                         'ratio_at_0.01': str(ratio),
+                         'max_slope_error': str(largest_slope_error)})
+
+        for L in range(1, 8):
+            p0 = [D(1)/D(n+1)**2 for n in range(L+1)]
+            m0, m1 = mixing(L, D('.9')), mixing(L, D('.90001'))
+            cov = [sum(a*b for a, b in zip(row, p0)) for row in m0]
+            p1 = upper_solve(m1, cov)
+            assert min(p1) > 0
+            residual = max(abs(sum(a*b for a, b in zip(row, p1))-c)
+                           for row, c in zip(m1, cov))
+            max_covariance_residual = max(max_covariance_residual, residual)
+            assert residual < D('1e-125')
+            checks += 1
+
+        # Closed-form kappa=2 curvature reconstruction and
+        # independent top-mode ratio.
+        for L in (1, 2, 4, 7):
+            R, d1, d2 = D(10), D(3), D(6)
+            g = (trig(d2/R, True)/trig(d1/R, True))**L
+            assert abs(g-radial(L, L, d2/R)/radial(L, L, d1/R)) < D('1e-125')
+            eta = g**(D(1)/D(L))
+            # Invert cos by bisection; no trigonometric inverse dependency.
+            lo, hi = D(0), PI/2
+            for _ in range(450):
+                mid = (lo+hi)/2
+                if 2*trig(mid) > eta:
+                    lo = mid
+                else:
+                    hi = mid
+            recovered = d1/((lo+hi)/2)
+            assert abs(recovered/R-1) < D('1e-100')
+            curvature_rows.append(
+                {'L': L, 'g': str(g), 'R_recovered': str(recovered)})
+            checks += 1
+
+        # Strict monotonicity, including the branch near the antipode.
+        for kap in (D('1.2'), D(2), D('3.7')):
+            for j in range(1, 100):
+                x = PI*D(j)/(100*kap)
+                derivative = (kap*trig(kap*x)/trig(kap*x, True)
+                              - trig(x)/trig(x, True))
+                assert derivative < 0
+                checks += 1
+
+        # Exact fractional Fisher Schur complement for deterministic
+        # nuisance amplitudes.
+        g, v1, v2, norm2 = Q(7, 5), Q(2), Q(3), Q(11)
+        direct = norm2/v2-(g*g*norm2/v2**2)/(1/v1+g*g/v2)
+        assert direct == norm2/(v2+g*g*v1)
+        checks += 1
+
+        report = {'status': 'PASS', 'checks': checks, 'decimal_digits': 160,
+                  'rank_table': rank_rows, 'thin_shell': thin,
+                  'max_isometry_residual': str(max_isometry),
+                  'max_covariance_residual': str(max_covariance_residual),
+                  'two_shell_reconstruction': curvature_rows}
+    Path('shell_verification.json').write_text(json.dumps(report, indent=2))
+    print(json.dumps(report, indent=2))
+
+
+if __name__ == '__main__':
+    verify()
+\end{lstlisting}
+
+\begin{thebibliography}{99}
+\bibitem{P09} A. Preece and B. Batenin,
+\emph{Conditional Reconstruction of a Quasi-Local Observable Domain
+within Compact $S^3$ Geometry}, supplied unpublished manuscript,
+file dated June 6, 2026.
+\bibitem{P10} A. Preece and B. Batenin,
+\emph{Conditional Reconstruction of a Quasi-Local Observable Domain
+within Compact $S^3$ Geometry}, supplied unpublished manuscript,
+file dated June 10, 2026 (internal date June 9, version 29).
+\bibitem{CapDraft} A. Preece and B. Batenin,
+\emph{Observability hierarchy for band-limited scalar fields on closed
+spatial slices}, unpublished working manuscript, September 9, 2026.
+\bibitem{Castell} W. zu Castell, N. La\'in Fern\'andez, and Y. Xu,
+\emph{Polynomial Interpolation on the Unit Sphere II},
+\href{https://doi.org/10.1007/s10444-005-7510-5}
+{Adv. Comput. Math. \textbf{26}, 155 (2007)};
+\href{https://arxiv.org/abs/math/0407448}{arXiv:math/0407448}.
+\bibitem{DLMFQuad} NIST Digital Library of Mathematical Functions,
+\emph{Quadrature}, Sec.~3.5,
+\url{https://dlmf.nist.gov/3.5}, accessed September 10, 2026.
+\bibitem{Simons} F. J. Simons, F. A. Dahlen, and M. A. Wieczorek,
+\emph{Spatiospectral concentration on a sphere},
+\href{https://doi.org/10.1137/S0036144504445765}
+{SIAM Rev. \textbf{48}, 504 (2006)}.
+\bibitem{Kinney} W. H. Kinney,
+\emph{How to fool cosmic microwave background parameter estimation},
+\href{https://doi.org/10.1103/PhysRevD.63.043001}
+{Phys. Rev. D \textbf{63}, 043001 (2001)}.
+\bibitem{Samandar} J. Noltmann \emph{et al.} (COMPACT Collaboration),
+\emph{Cosmic topology. Part IIc. Detectability with non-standard primordial
+power spectrum},
+\href{https://arxiv.org/abs/2602.15527}
+{arXiv:2602.15527 [astro-ph.CO] (2026)}.
+\bibitem{Abramo} L. R. Abramo and K. E. Leonard,
+\emph{Why multi-tracer surveys beat cosmic variance},
+\href{https://doi.org/10.1093/mnras/stt465}
+{Mon. Not. R. Astron. Soc. \textbf{432}, 318 (2013)};
+\href{https://arxiv.org/abs/1302.5444}{arXiv:1302.5444 [astro-ph.CO]}.
+\bibitem{DLMFPoly} NIST Digital Library of Mathematical Functions,
+\emph{Definitions of classical orthogonal polynomials}, Sec.~18.3,
+\url{https://dlmf.nist.gov/18.3}, accessed September 10, 2026.
+\end{thebibliography}
+\end{document}

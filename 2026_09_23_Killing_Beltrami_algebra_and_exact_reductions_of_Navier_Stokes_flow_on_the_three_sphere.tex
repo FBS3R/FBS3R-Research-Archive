@@ -1,0 +1,2601 @@
+\documentclass[
+ aps,
+ prd,
+ reprint,
+ amsmath,
+ amssymb,
+ nofootinbib,
+ superscriptaddress
+]{revtex4-2}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{bm}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{microtype}
+\usepackage{hyperref}
+\usepackage{orcidlink}
+\usepackage[nameinlink,capitalize]{cleveref}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue,
+  citecolor=blue,
+  urlcolor=blue
+}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\Sthree}{S^3_R}
+\newcommand{\Vol}{\operatorname{Vol}}
+\newcommand{\PP}{\mathbb P}
+\newcommand{\RR}{\mathbb R}
+\newcommand{\cK}{\mathfrak K}
+\newcommand{\cKp}{\mathfrak K_+}
+\newcommand{\cKm}{\mathfrak K_-}
+\newcommand{\cV}{\mathcal V}
+\newcommand{\cH}{\mathcal H}
+\newcommand{\cL}{\mathcal L}
+\newcommand{\Eul}{\mathsf E}
+\newcommand{\ad}{\operatorname{ad}}
+\newcommand{\curl}{\operatorname{curl}}
+\newcommand{\divg}{\operatorname{div}_g}
+\newcommand{\gradg}{\operatorname{grad}_g}
+\newcommand{\Def}{\operatorname{Def}}
+\newcommand{\dd}{\,\mathrm d}
+\newcommand{\Id}{\mathrm{Id}}
+\newcommand{\rank}{\operatorname{rank}}
+
+\begin{document}
+
+\title{Killing--Beltrami algebra and exact reductions of Navier--Stokes flow on the three-sphere}
+
+\author{Boris~Batenin\,\orcidlink{0009-0000-7027-8583}}
+\email{batenin@web.de}
+\affiliation{Independent Researcher, Berlin, Germany}
+
+\author{Andrei~Preece\,\orcidlink{0009-0004-5978-795X}}
+\email{andre.preece@web.de}
+\affiliation{Independent Researcher, Berlin, Germany}
+
+% APS submission-form action still required:
+% designate exactly one corresponding author in the APS submission server.
+
+\begin{abstract}
+We identify an exact $SO(4)$-equivariant interaction algebra for incompressible
+Navier--Stokes flow with Ebin--Marsden viscosity on the round three-sphere.
+The central identity determines the polarized interaction of every Killing
+field with every signed curl eigenspace: on $E_{k,\sigma}$, the two simple
+factors of the Killing algebra act by Lie derivatives with distinct
+chirality-dependent coefficients. This intertwining law organizes a
+shell-diagonal skew dynamics, a canonical generally nonflat metric connection
+over $SO(4)$, exact viscous finite-dimensional reductions, and a rigidity
+theorem stating that every finite exact reduction containing the full Killing
+algebra is a union of complete signed curl shells. We also obtain a
+quadratic-Casimir representation of the Stokes operator and viscous
+dissipation in terms of six Killing convective responses. Compact homogeneity
+then yields sharp projector norms for finite $SO(4)$-invariant vector sectors,
+with sharp spectral concentration consequences. The maximal
+torus gives a separate infinite-dimensional pressure-linear sector. These
+geometric and spectral statements are intrinsic to the round three-sphere and
+are logically independent of the conditional singularity-transfer
+construction that motivated the analysis.
+\end{abstract}
+
+\maketitle
+
+
+
+
+\section{Introduction and main results}
+\label{sec:intro}
+
+Geometric formulations of incompressible fluid dynamics on Riemannian
+manifolds make the interaction between viscosity, isometries, and curvature
+structural rather than perturbative. We use the deformation-tensor
+(Ebin--Marsden) viscosity on the round three-sphere $S^3_R$, following the
+geometric framework of Ebin and Marsden and subsequent formulations of
+Navier--Stokes flow on Riemannian manifolds
+\cite{EbinMarsden1970,ChanCzubakDisconzi2017,SamavakiTuomela2020}.
+The signed curl spectrum on the round sphere is classical
+\cite{IkedaTaniguchi1978}. The geometric and spectral program from which the
+present work grew was developed by Batenin and Preece in a Zenodo preprint
+\cite{PreeceBatenin2026}; that work combines an intrinsic theory of exact
+spectral closure on $S^3_R$ with a separate conditional transfer of a forced
+singular branch.
+
+Two pieces of prior literature are important for positioning the results
+below. Samavaki and Tuomela proved that, for the same deformation-tensor
+viscosity on a compact Riemannian manifold, the component of an unforced
+solution along any Killing field is conserved
+\cite{SamavakiTuomela2020}. The bilinear Killing cancellation used below is
+the polarized form of that geometric cancellation and is therefore not our
+principal novelty. More recently, Heslin and Preston constructed explicit
+nonstationary Euler solutions on curved manifolds, including the round
+three-sphere \cite{HeslinPreston2026}. Thus neither conservation of Killing
+momentum nor the mere existence of exact Killing/eigenfield waves is the
+distinguishing point of the present article.
+
+The new organizing mechanism is the exact polarized Killing--Beltrami
+interaction. Let
+\[
+ \mathfrak K=\mathfrak K_+\oplus\mathfrak K_-
+ \simeq\mathfrak{su}(2)_+\oplus\mathfrak{su}(2)_-
+\]
+be the six-dimensional Killing algebra, with
+$\mathfrak K_\tau=E_{0,\tau}$, and let
+$v\in E_{k,\sigma}$ be a signed curl eigenfield. We prove
+\begin{equation}
+ \boxed{
+ 2Q(K_\tau,v)
+ =
+ \frac{k+2-2\tau\sigma}{k+2}[K_\tau,v].
+ }
+ \label{eq:intro-intertwining}
+\end{equation}
+The two simple factors therefore act on the same signed shell with the
+different coefficients
+\begin{equation}
+ \frac{k}{k+2},
+ \qquad
+ \frac{k+4}{k+2}.
+ \label{eq:intro-chiral-coeffs}
+\end{equation}
+This is not merely an exact-solution ansatz: it is a complete intertwining law
+for the polarized convective action of the Killing algebra on every signed
+curl shell.
+
+Several results follow from the same identity. First, the Killing action on
+the orthogonal complement is shell diagonal and skew-adjoint. It transfers
+neither $L^2$ energy nor helicity between signed shells; all inter-shell
+nonlinear transfer is carried by the high--high term $Q(v,v)$. Second, on
+each $E_{k,\sigma}$ the map $m\mapsto D_{k,\sigma}(m)=2Q(m,\cdot)$ fails in a
+controlled way to be a Lie-algebra representation. Its defect is exactly the
+curvature of a canonical metric connection on
+\[
+ SO(4)\times E_{k,\sigma}\longrightarrow SO(4),
+\]
+and the physical Killing precession is the parallel transport of this
+connection. The curvature coefficients decay as $k^{-1}$, but the
+representation generators grow like $k$; consequently the natural operator
+norm of the curvature does not flatten in the ultraviolet.
+
+Third, the intertwining formula produces finite-dimensional exact
+Navier--Stokes reductions
+\[
+ \mathfrak K_\tau\oplus E_{k,\sigma},
+ \qquad
+ \mathfrak K\oplus E_{k,\sigma},
+\]
+with explicit triangular viscous evolution. More importantly, we prove a
+converse rigidity theorem: if a finite-dimensional exact reducing space
+contains the full Killing algebra, then every nonzero higher spectral
+component is a complete signed curl shell.
+
+Fourth, if $T_a^\tau=Q(K_a^\tau,\cdot)$ for an $L^2$-orthonormal Killing
+basis, then
+\begin{equation}
+ \boxed{
+ A=-2V_R\sum_{\tau=\pm}\sum_{a=1}^3(T_a^\tau)^2,
+ }
+ \label{eq:intro-casimir}
+\end{equation}
+so the Stokes operator and viscous dissipation are represented by the
+quadratic Casimir of the six convective Killing responses.
+
+Compact homogeneity supplies the complementary spectral statement
+\begin{equation}
+ \|\Pi_W\|_{L^2\to L^\infty}
+ =
+ \sqrt{\frac{N}{3V_R}},
+ \qquad
+ \|\Pi_W\|_{L^1\to L^\infty}
+ =
+ \frac{N}{3V_R},
+ \label{eq:intro-projectors}
+\end{equation}
+for every finite-dimensional $SO(4)$-invariant vector sector $W$ of dimension
+$N$, with sharp constants.
+
+The exterior-parametrix arithmetic, Mellin shift hierarchy, interaction
+picture, and polynomial recursion are not used in the proofs below and are
+outside the scope of the present article. Likewise, the conditional forced
+singularity transfer is not used to prove any intrinsic result here.
+
+
+\section{Geometric and spectral setting}
+\label{sec:setting}
+
+Let $(\Sthree,g)$ be the round three-sphere of radius $R$ and let
+\begin{align*}
+ \partial_t u+\nabla_u u-\nu\cL_g u+\gradg p&=f,\\
+ \divg u&=0,\\
+ \cL_g u&=2\,\operatorname{div}_g\Def_g u .
+\end{align*}
+Write
+\begin{align*}
+ A&=-\PP\cL_g,\\
+ B(u,v)&=\PP\nabla_u v,\\
+ Q(u,v)&=\frac12\{B(u,v)+B(v,u)\}.
+\end{align*}
+Thus the projected equation is
+\begin{equation}
+ \partial_tu+\nu Au+Q(u,u)=\PP f.
+ \label{eq:NSproj}
+\end{equation}
+
+The spectral conventions used here agree with Ref.~\cite{PreeceBatenin2026}; in particular, the signed curl decomposition
+\[
+ L^2_\sigma(T\Sthree)
+ =
+ \widehat{\bigoplus}_{k\ge0,\ \sigma=\pm}E_{k,\sigma},
+\]
+with
+\begin{align}
+ \curl u&=\mu_{k,\sigma}u,
+ & \mu_{k,\sigma}&=\sigma\frac{k+2}{R},
+ \label{eq:curlspec}\\
+ Au&=\kappa_k u,
+ & \kappa_k&=\frac{k(k+4)}{R^2},
+ \label{eq:stokespec}\\
+ \dim E_{k,\sigma}&=d_k=(k+1)(k+3).
+ \label{eq:dim}
+\end{align}
+Moreover,
+\begin{equation}
+ E_{k,+}\simeq V_{(k+2)/2}\boxtimes V_{k/2},
+ \qquad
+ E_{k,-}\simeq V_{k/2}\boxtimes V_{(k+2)/2}
+ \label{eq:irreps}
+\end{equation}
+under
+$SO(4)\simeq(SU(2)_+\times SU(2)_-)/\{\pm1\}$.
+The $k=0$ shells are the two simple Killing factors:
+\[
+ \cK=\cKp\oplus\cKm,
+ \qquad
+ \cK_\tau:=E_{0,\tau},
+ \qquad \dim\cK_\tau=3.
+\]
+
+For later comparison, Ref.~\cite{PreeceBatenin2026} also records
+\begin{equation}
+ Q(\cK,\cK)=0,
+ \qquad
+ Q(E_{k,\sigma},E_{k,\sigma})=0,
+ \label{eq:diagonalzero}
+\end{equation}
+and introduces the complete-shell leakage scalar
+\[
+ \mathfrak R(S)=
+ \sum_{\alpha,\beta\in S}\sum_{\gamma\notin S}
+ \left\|\Pi_\gamma
+ Q\big|_{E_\alpha\times E_\beta}\right\|_{\mathrm{HS}}^2.
+\]
+For a supplied finite union
+$W_S=\bigoplus_{\alpha\in S}E_\alpha$,
+Ref.~\cite{PreeceBatenin2026} proves
+\begin{equation}
+ W_S\text{ is exact reducing}
+ \quad\Longleftrightarrow\quad
+ \mathfrak R(S)=0.
+ \label{eq:Rcriterion}
+\end{equation}
+
+We derive consequences of these intrinsic facts.  No result
+below uses the generic-order inner solver, renormalized matching hypothesis,
+or annular-cycle stability hypothesis required by the relative singular
+transfer in Ref.~\cite{PreeceBatenin2026}.
+
+
+The new statements use only intrinsic inputs on the round sphere:
+the metric, curl and Leray projection for the Killing--Beltrami interaction;
+the Stokes spectrum and irreducibility for Killing-saturated classification;
+the torus reduction and Jacobi spectrum for the maximal-torus sector; and
+compact homogeneity with irreducible isotropy for the projector identities.
+
+
+
+
+
+\section{The Killing--Beltrami interaction algebra}
+\label{sec:KB}
+
+We first isolate the identity that drives the new finite-dimensional
+closures.
+
+\begin{lemma}[Polarized vector identity]
+For smooth vector fields $u,v$ on an oriented Riemannian three-manifold,
+\begin{equation}
+ \nabla_u v+\nabla_v u
+ =
+ \gradg\langle u,v\rangle
+ -u\times\curl v-v\times\curl u.
+ \label{eq:polarvec}
+\end{equation}
+If additionally $\divg u=\divg v=0$, then
+\begin{equation}
+ \curl(u\times v)=-[u,v].
+ \label{eq:curlcross}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Both identities are tensorial versions of the standard three-dimensional
+vector-calculus formulas.  For \eqref{eq:polarvec}, pair both sides with an
+arbitrary vector field and use
+$\dd(v^\flat)(X,Y)=\langle\nabla_Xv,Y\rangle-
+\langle\nabla_Yv,X\rangle$ together with the definition
+$(\curl v)^\flat=*\dd(v^\flat)$.
+For \eqref{eq:curlcross}, use
+$(u\times v)^\flat=*(u^\flat\wedge v^\flat)$ and the Cartan identity;
+the divergence terms vanish, leaving
+$\nabla_vu-\nabla_uv=-[u,v]$.
+\end{proof}
+
+\begin{lemma}[Killing fields preserve curl shells]
+Let $K$ be Killing and let $v$ be divergence-free.  Then
+\begin{equation}
+ \curl[K,v]=[K,\curl v].
+ \label{eq:curlnatural}
+\end{equation}
+Consequently, if $v\in E_{k,\sigma}$, then
+$[K,v]\in E_{k,\sigma}$.
+\end{lemma}
+
+\begin{proof}
+The flow of a Killing field consists of orientation-preserving isometries
+in the identity component.  The Hodge star, exterior derivative, musical
+maps, and hence curl are natural under such isometries.  Differentiating
+that equivariance at the identity gives \eqref{eq:curlnatural}.  If
+$\curl v=\mu_{k,\sigma}v$, then
+$\curl[K,v]=\mu_{k,\sigma}[K,v]$.
+\end{proof}
+
+\begin{theorem}[Exact Killing--Beltrami polarization]
+\label{thm:KBidentity}
+Let
+\[
+ K_\tau\in\cK_\tau,\qquad
+ v\in E_{k,\sigma},\qquad
+ \tau,\sigma\in\{\pm1\}.
+\]
+Then
+\begin{equation}
+ \boxed{
+ Q(K_\tau,v)=
+ \frac{\mu_{k,\sigma}-\mu_{0,\tau}}
+      {2\mu_{k,\sigma}}
+ [K_\tau,v].
+ }
+ \label{eq:KBmu}
+\end{equation}
+Equivalently,
+\begin{equation}
+ \boxed{
+ 2Q(K_\tau,v)
+ =
+ \frac{k+2-2\tau\sigma}{k+2}[K_\tau,v].
+ }
+ \label{eq:KBk}
+\end{equation}
+In particular,
+\begin{align}
+ 2Q(K_\sigma,v)&=\frac{k}{k+2}[K_\sigma,v],
+ \label{eq:samechir}\\
+ 2Q(K_{-\sigma},v)&=\frac{k+4}{k+2}[K_{-\sigma},v].
+ \label{eq:oppchir}
+\end{align}
+\end{theorem}
+
+\begin{proof}
+Set
+\[
+ \alpha=\mu_{0,\tau}=\frac{2\tau}{R},
+ \qquad
+ \beta=\mu_{k,\sigma}=\frac{\sigma(k+2)}{R}.
+\]
+By \eqref{eq:polarvec},
+\[
+ \nabla_{K_\tau}v+\nabla_vK_\tau
+ =
+ \gradg\langle K_\tau,v\rangle
+ +(\alpha-\beta)K_\tau\times v.
+\]
+After Leray projection,
+\begin{equation}
+ Q(K_\tau,v)=\frac{\alpha-\beta}{2}
+ \PP(K_\tau\times v).
+ \label{eq:preKB}
+\end{equation}
+Since curl annihilates gradients,
+\[
+ \curl\PP(K_\tau\times v)
+ =
+ \curl(K_\tau\times v)
+ =
+ -[K_\tau,v].
+\]
+By the previous lemma,
+$[K_\tau,v]$ belongs to the $\beta$-curl eigenspace.
+Since $H^1(S^3)=0$, curl has no kernel on the divergence-free subspace, so
+\[
+ \PP(K_\tau\times v)
+ =
+ -\frac1\beta[K_\tau,v].
+\]
+Substitution into \eqref{eq:preKB} gives
+\[
+ Q(K_\tau,v)=\frac{\beta-\alpha}{2\beta}[K_\tau,v],
+\]
+which is \eqref{eq:KBmu}.  Inserting the explicit eigenvalues gives
+\eqref{eq:KBk}--\eqref{eq:oppchir}.
+\end{proof}
+
+\begin{remark}
+The two chiralities are dynamically inequivalent once $k\ge1$: the Killing
+factor with the same curl sign acts with coefficient $k/(k+2)$, whereas the
+opposite factor acts with coefficient $(k+4)/(k+2)$.  This asymmetry is what
+later allows the full Killing algebra to separate the two signed shells even
+though the Stokes operator assigns them the same eigenvalue.
+\end{remark}
+
+
+
+\section{Exact modal coefficients with one Killing input}
+
+The interaction formula determines not only the target shell but also the
+Hilbert--Schmidt coefficient used in Ref.~\cite{PreeceBatenin2026}.
+
+Let
+\[
+ V_R:=\Vol(S^3_R)=2\pi^2R^3.
+\]
+Choose a pointwise orthonormal Killing frame
+$X_1,X_2,X_3$ in one simple factor $\cK_\tau$; then
+$\|X_a\|_{L^2}^2=V_R$ and, up to orientation,
+\[
+ [X_a,X_b]=\frac{2}{R}\varepsilon_{abc}X_c.
+\]
+Thus $K_a:=V_R^{-1/2}X_a$ is $L^2$-orthonormal in $\cK_\tau$.
+
+For the action of $\cK_\tau$ on $E_{k,\sigma}$ define
+\begin{equation}
+ j_\tau(k,\sigma)
+ :=
+ \frac{k+1+\tau\sigma}{2}.
+ \label{eq:jtausigma}
+\end{equation}
+This is exactly the appropriate $SU(2)_\tau$ spin from \eqref{eq:irreps}.
+
+\begin{theorem}[Closed formula for the Killing--shell structure coefficient]
+\label{thm:modalC}
+Let
+\[
+ C_{(0,\tau),(k,\sigma)}^{(m,\rho)}
+ =
+ \left\|
+ \Pi_{m,\rho}Q
+ \big|_{\cK_\tau\times E_{k,\sigma}}
+ \right\|_{\mathrm{HS}}^2.
+\]
+Then
+\begin{equation}
+ C_{(0,\tau),(k,\sigma)}^{(m,\rho)}=0
+ \qquad
+ \text{unless }(m,\rho)=(k,\sigma),
+ \label{eq:Czero}
+\end{equation}
+and
+\begin{equation}
+\boxed{
+\begin{aligned}
+ C_{(0,\tau),(k,\sigma)}^{(k,\sigma)}
+ &=
+ \frac{d_k}{R^2V_R}
+ \frac{(k+2-2\tau\sigma)^2}{(k+2)^2}\\
+ &\quad\times
+ j_\tau(k,\sigma)\bigl(j_\tau(k,\sigma)+1\bigr).
+\end{aligned}}
+\label{eq:Cexact}
+\end{equation}
+In particular this coefficient vanishes for all $k=0$, consistently with
+$Q(\cK,\cK)=0$.
+\end{theorem}
+
+\begin{proof}
+The target statement \eqref{eq:Czero} follows from
+\cref{thm:KBidentity}.  Put
+\[
+ c_{k,\sigma,\tau}
+ =
+ \frac{k+2-2\tau\sigma}{2(k+2)}.
+\]
+Then $Q(K_a,v)=c_{k,\sigma,\tau}[K_a,v]$.
+On the spin-$j=j_\tau(k,\sigma)$ representation, the normalized Casimir
+identity gives
+\[
+ -\sum_{a=1}^3 [X_a,[X_a,\cdot]]
+ =
+ \frac{4}{R^2}j(j+1)\Id.
+\]
+The Lie-derivative action of each $X_a$ is skew-adjoint in $L^2$ because
+$X_a$ is Killing.  If $\{v_i\}_{i=1}^{d_k}$ is an $L^2$-orthonormal basis
+of $E_{k,\sigma}$, then
+\[
+ \sum_{a,i}\|[X_a,v_i]\|_2^2
+ =
+ \frac{4}{R^2}j(j+1)d_k.
+\]
+Replacing $X_a$ by $K_a=X_a/\sqrt{V_R}$ and multiplying by
+$c_{k,\sigma,\tau}^2$ yields \eqref{eq:Cexact}.
+\end{proof}
+
+\begin{corollary}[Two explicit chiral values]
+For $k\ge1$,
+\begin{align}
+ C_{(0,\sigma),(k,\sigma)}^{(k,\sigma)}
+ &=
+ \frac{d_k}{R^2V_R}
+ \frac{k^2(k+4)}{4(k+2)},
+ \label{eq:Csame}\\
+ C_{(0,-\sigma),(k,\sigma)}^{(k,\sigma)}
+ &=
+ \frac{d_k}{R^2V_R}
+ \frac{k(k+4)^2}{4(k+2)}.
+ \label{eq:Copp}
+\end{align}
+\end{corollary}
+
+
+
+
+\section{Killing momentum and shellwise skew dynamics}
+\label{sec:zero-backreaction}
+
+Samavaki and Tuomela proved conservation of the Killing component for
+the deformation-tensor Navier--Stokes equation
+\cite{SamavakiTuomela2020}. The identity below is its polarized bilinear
+form; we include it because it couples the exact shell algebra to the full
+phase space.
+
+\begin{theorem}[Polarized Killing cancellation]
+\label{thm:zeroback}
+For every pair of smooth divergence-free vector fields $u,v$ on $\Sthree$,
+\begin{equation}
+ \boxed{
+ \Pi_{\cK}Q(u,v)=0.
+ }
+ \label{eq:zeroback}
+\end{equation}
+Equivalently, every Killing field $K\in\cK$ satisfies
+\begin{equation}
+ \langle Q(u,v),K\rangle_{L^2}=0.
+ \label{eq:zerobackweak}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Since $u$ and $v$ are divergence-free and $\Sthree$ is closed,
+integration by parts gives
+\[
+ \langle \nabla_u v,K\rangle_{L^2}
+ =
+ -\int_{\Sthree}\langle v,\nabla_uK\rangle\,\dd V,
+\]
+and similarly with $u,v$ interchanged.  Therefore
+\[
+ 2\langle Q(u,v),K\rangle_{L^2}
+ =
+ -\int_{\Sthree}
+ \Bigl(
+ \langle v,\nabla_uK\rangle+
+ \langle u,\nabla_vK\rangle
+ \Bigr)\,\dd V.
+\]
+The integrand vanishes pointwise by the Killing equation
+\[
+ \langle\nabla_XK,Y\rangle+\langle\nabla_YK,X\rangle=0.
+\]
+Thus \eqref{eq:zerobackweak} holds for every $K\in\cK$, proving
+\eqref{eq:zeroback}.
+\end{proof}
+
+\begin{corollary}[Exact evolution of Killing momentum]
+\label{cor:Kmomentum}
+Let $u$ solve the projected forced Navier--Stokes equation
+\eqref{eq:NSproj}, and put
+\[
+ m(t)=\Pi_{\cK}u(t),\qquad
+ v(t)=(I-\Pi_{\cK})u(t).
+\]
+Then
+\begin{equation}
+ \boxed{
+ \dot m(t)=\Pi_{\cK}F(t).
+ }
+ \label{eq:mdot}
+\end{equation}
+In particular, for unforced flow the full six-dimensional Killing component
+is conserved exactly.
+
+The orthogonal component satisfies
+\begin{equation}
+ \boxed{
+ \partial_t v+\nu Av+Q(v,v)+D(m(t))v=F_\perp,
+ }
+ \label{eq:globalhigh}
+\end{equation}
+where $F_\perp=(I-\Pi_{\cK})F$ and
+\begin{equation}
+ D(m)v:=2Q(m,v).
+ \label{eq:Dglobaldef}
+\end{equation}
+If
+\[
+ v=\sum_{k\ge1,\ \sigma=\pm}v_{k,\sigma},
+ \qquad
+ m=m_++m_-,
+\]
+then the action is the shell-diagonal operator
+\begin{equation}
+\boxed{
+\begin{aligned}
+ D(m)v
+ &=
+ \sum_{k\ge1,\ \sigma=\pm}
+ \Biggl[
+ \frac{k}{k+2}[m_\sigma,v_{k,\sigma}]\\
+ &\hspace{2.5em}
+ +
+ \frac{k+4}{k+2}[m_{-\sigma},v_{k,\sigma}]
+ \Biggr].
+\end{aligned}}
+\label{eq:Dglobal}
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+The Stokes operator is self-adjoint, $\ker A=\cK$, hence
+$\Pi_{\cK}Au=0$.  Projecting \eqref{eq:NSproj} to $\cK$ and applying
+\cref{thm:zeroback} gives \eqref{eq:mdot}.  Expanding
+$Q(m+v,m+v)$, using $Q(m,m)=0$ and \cref{thm:zeroback}, gives
+\eqref{eq:globalhigh}.  Formula \eqref{eq:Dglobal} follows shell by shell
+from \cref{thm:KBidentity}.
+\end{proof}
+
+\begin{remark}[No single Killing drift represents the full operator]
+The coefficients in \eqref{eq:Dglobal} depend on $(k,\sigma)$.
+Consequently there is in general no single Killing field $Y_m\in\cK$ such
+that $D(m)v=[Y_m,v]$ simultaneously on every signed shell.  The correct
+global object is the shell-diagonal skew operator $D(m)$.
+
+If $\Pi_{\cK}F\in L^1([0,T);\cK)$, then $m(t)$ remains bounded up to $T$.
+Under that assumption any $L^\infty$ singularity must therefore occur in
+$v(t)\in\cK^\perp$.
+\end{remark}
+
+
+\begin{corollary}[Affine Killing foliation]
+\label{cor:affinefoliation}
+Assume $\Pi_{\cK}F=0$.  For every $m_0\in\cK$, the affine leaf
+\begin{equation}
+ \boxed{
+ \cH_{m_0}:=m_0+\cK^\perp
+ }
+ \label{eq:affineleaf}
+\end{equation}
+is invariant under the full projected Navier--Stokes flow.
+More generally, for arbitrary forcing,
+\begin{equation}
+ m(t)=m_0+\int_0^t\Pi_{\cK}F(s)\,\dd s,
+ \label{eq:forcedleaf}
+\end{equation}
+and the flow carries the initial leaf $\cH_{m_0}$ into the translated leaf
+$\cH_{m(t)}$.
+\end{corollary}
+
+\begin{proof}
+This is exactly \eqref{eq:mdot}.  If the Killing component of the force
+vanishes, $m(t)=m_0$; otherwise its evolution is the explicit affine
+translation \eqref{eq:forcedleaf}.
+\end{proof}
+
+
+\begin{remark}[Killing-momentum fibers are not Marsden--Weinstein reduced spaces]
+\label{rem:notMW}
+Define the linear Killing-momentum map
+\begin{equation}
+ \mathcal J:L^2_\sigma(T\Sthree)\longrightarrow\cK^*,
+ \qquad
+ \langle\mathcal J(u),K\rangle
+ :=
+ \langle u,K\rangle_{L^2}.
+ \label{eq:linearJ}
+\end{equation}
+After the $L^2$ identification $\cK^*\simeq\cK$,
+$\mathcal J(u)=\Pi_{\cK}u$, and therefore
+\begin{equation}
+ \mathcal J^{-1}(m)=m+\cK^\perp.
+ \label{eq:Jfiber}
+\end{equation}
+Thus the affine leaves are exactly level sets of six conserved linear
+functionals when $\Pi_{\cK}F=0$.
+
+This statement should not be confused with Marsden--Weinstein symplectic
+reduction \cite{MarsdenWeinstein1974}.  Classical reduction starts from a
+symplectic Hamiltonian phase space and produces the quotient
+$J^{-1}(\mu)/H_\mu$ by the stabilizer of the momentum value.  The viscous
+Navier--Stokes equation is dissipative, and the affine set
+$\mathcal J^{-1}(m)$ is not itself such a quotient.  In the inviscid Euler
+limit the conserved Killing quantities admit the usual Hamiltonian/Noether
+interpretation, but no symplectic-reduction claim is needed for
+\cref{cor:affinefoliation}.
+\end{remark}
+
+\begin{theorem}[Shellwise unitary Killing precession]
+\label{thm:shellwiseprecession}
+For every $m\in\cK$, the operator $D(m)=2Q(m,\cdot)$ has the following
+properties on the smooth divergence-free spectral core:
+\begin{align}
+ D(m)E_{k,\sigma}&\subset E_{k,\sigma},
+ \label{eq:Dpreserves}\\
+ [D(m),A]&=0,
+ \qquad
+ [D(m),\curl]=0,
+ \label{eq:Dcommutes}\\
+ D(m)^*&=-D(m).
+ \label{eq:Dskew}
+\end{align}
+Consequently the nonautonomous propagator $U_m(t,s)$ solving
+\[
+ \partial_t U_m(t,s)+D(m(t))U_m(t,s)=0,
+ \qquad U_m(s,s)=\Id,
+\]
+is unitary on $L^2$, preserves every signed curl shell, and preserves every
+spectral Sobolev norm defined by a function of $A$.
+
+If $v$ solves \eqref{eq:globalhigh}, then each signed-shell energy satisfies
+\begin{equation}
+\boxed{
+\begin{aligned}
+ \frac12\frac{\dd}{\dd t}\|v_{k,\sigma}\|_2^2
+ &+\nu\kappa_k\|v_{k,\sigma}\|_2^2\\
+ &+\left\langle
+   \Pi_{k,\sigma}Q(v,v),v_{k,\sigma}
+  \right\rangle\\
+ &=
+ \left\langle F_{k,\sigma},v_{k,\sigma}\right\rangle.
+\end{aligned}}
+\label{eq:shellenergy}
+\end{equation}
+In particular, the Killing component produces no transfer of energy between
+signed curl shells; all inter-shell nonlinear energy transfer is carried by
+$Q(v,v)$.
+\end{theorem}
+
+\begin{proof}
+The shell invariance \eqref{eq:Dpreserves} is formula \eqref{eq:Dglobal}.
+Since $A$ and $\curl$ are scalar on each signed shell, \eqref{eq:Dcommutes}
+follows.  On each shell, \eqref{eq:Dglobal} is a real linear combination of
+Lie derivatives $[K,\cdot]$ generated by Killing fields.  Such Lie
+derivatives are skew-adjoint in $L^2$, proving \eqref{eq:Dskew}.  Standard
+finite-shell approximation and closure then give a unitary propagator
+preserving each spectral subspace and every $A$-Sobolev norm.
+
+Project \eqref{eq:globalhigh} onto $E_{k,\sigma}$ and take the $L^2$ inner
+product with $v_{k,\sigma}$.  The Killing-drift contribution vanishes by
+skew-adjointness, while $Av_{k,\sigma}=\kappa_kv_{k,\sigma}$, yielding
+\eqref{eq:shellenergy}.
+\end{proof}
+
+\begin{corollary}[High-mode energy balance independent of Killing precession]
+\label{cor:highenergy}
+For sufficiently regular solutions,
+\begin{equation}
+ \boxed{
+ \frac12\frac{\dd}{\dd t}\|v\|_2^2
+ +\nu\langle Av,v\rangle
+ =
+ \langle F_\perp,v\rangle.
+ }
+ \label{eq:highenergy}
+\end{equation}
+The conserved or forced Killing momentum can rotate high modes inside their
+shells but contributes neither positive nor negative work to the high-mode
+energy.
+\end{corollary}
+
+\begin{proof}
+Sum \eqref{eq:shellenergy} over all signed shells and use the usual
+Euler cancellation $\langle Q(v,v),v\rangle=0$.
+\end{proof}
+
+
+
+
+\section{Nonabelian shell connection and curvature}
+\label{sec:holonomy}
+
+Fix a signed shell $E_{k,\sigma}$ with $k\ge1$ and write
+\[
+ a_k=\frac{k}{k+2},
+ \qquad
+ b_k=\frac{k+4}{k+2}.
+\]
+For $m=m_\sigma+m_{-\sigma}\in\cK$,
+\[
+ D_{k,\sigma}(m)
+ =
+ a_k\,\ad_{m_\sigma}
+ +
+ b_k\,\ad_{m_{-\sigma}}
+ \quad\text{on }E_{k,\sigma}.
+\]
+
+\begin{theorem}[Exact Lie-algebra representation defect]
+\label{thm:representationdefect}
+For $m,n\in\cK$,
+\begin{align}
+ [D_{k,\sigma}(m),D_{k,\sigma}(n)]
+ &=
+ a_k^2\ad_{[m_\sigma,n_\sigma]}
+ \notag\\
+ &\quad+
+ b_k^2\ad_{[m_{-\sigma},n_{-\sigma}]},
+ \label{eq:DcommD}\\
+ \Omega_{k,\sigma}(m,n)
+ &:=
+ [D_{k,\sigma}(m),D_{k,\sigma}(n)]
+ -
+ D_{k,\sigma}([m,n])
+ \notag\\
+ &=
+ -\frac{2k}{(k+2)^2}\ad_{[m_\sigma,n_\sigma]}
+ \notag\\
+ &\quad+
+ \frac{2(k+4)}{(k+2)^2}
+ \ad_{[m_{-\sigma},n_{-\sigma}]}.
+ \label{eq:Omega}
+\end{align}
+Thus $m\mapsto D_{k,\sigma}(m)$ is generally not a representation of
+$\mathfrak{so}(4)$.
+\end{theorem}
+
+\begin{proof}
+The two simple Killing factors commute:
+$[\cK_+,\cK_-]=0$, and their induced Lie-derivative actions commute on
+$E_{k,\sigma}$.  Therefore
+\[
+\begin{aligned}
+ &[a_k\ad_{m_\sigma}+b_k\ad_{m_{-\sigma}},
+   a_k\ad_{n_\sigma}+b_k\ad_{n_{-\sigma}}]\\
+ &\qquad=
+ a_k^2\ad_{[m_\sigma,n_\sigma]}
+ +
+ b_k^2\ad_{[m_{-\sigma},n_{-\sigma}]}.
+\end{aligned}
+\]
+Subtract
+\[
+ D_{k,\sigma}([m,n])
+ =
+ a_k\ad_{[m_\sigma,n_\sigma]}
+ +
+ b_k\ad_{[m_{-\sigma},n_{-\sigma}]},
+\]
+and use
+$a_k(a_k-1)=-2k/(k+2)^2$ and
+$b_k(b_k-1)=2(k+4)/(k+2)^2$.
+\end{proof}
+
+The defect has a precise geometric realization.  Let
+$G=SO(4)$ and consider the trivial Hermitian bundle
+\[
+ \mathscr E_{k,\sigma}=G\times E_{k,\sigma}\longrightarrow G.
+\]
+For a left-invariant vector field $X^L$ generated by
+$X\in\mathfrak{so}(4)\simeq\cK$, define
+\begin{equation}
+ \nabla^{k,\sigma}_{X^L}
+ :=
+ X^L + D_{k,\sigma}(X).
+ \label{eq:connection}
+\end{equation}
+
+\begin{theorem}[Curvature of the shell-precession connection]
+\label{thm:connectioncurvature}
+The connection \eqref{eq:connection} is metric and its curvature on
+left-invariant directions is exactly
+\begin{equation}
+ \boxed{
+ R^{k,\sigma}(X^L,Y^L)
+ =
+ \Omega_{k,\sigma}(X,Y).
+ }
+ \label{eq:curvatureOmega}
+\end{equation}
+If $g(t)\in SO(4)$ has left-trivialized velocity
+\[
+ (L_{g(t)^{-1}})_*\dot g(t)=m(t),
+\]
+then parallel transport in $\mathscr E_{k,\sigma}$ is exactly the
+Killing-precession equation
+\begin{equation}
+ \dot U(t)+D_{k,\sigma}(m(t))U(t)=0.
+ \label{eq:paralleltransport}
+\end{equation}
+Consequently, if $g(t)$ is a closed loop, the shell evolution is the
+nonabelian holonomy of this connection.
+\end{theorem}
+
+\begin{proof}
+Metricity follows from the skew-adjointness of every
+$D_{k,\sigma}(X)$.  Since the coefficients are left-invariant,
+\[
+\begin{aligned}
+ R(X^L,Y^L)
+ &=
+ [\nabla_{X^L},\nabla_{Y^L}]
+ -
+ \nabla_{[X^L,Y^L]}\\
+ &=
+ [D(X),D(Y)]-D([X,Y]).
+\end{aligned}
+\]
+which is \eqref{eq:curvatureOmega}.  The parallel-transport equation for a
+connection written in left trivialization is precisely
+\eqref{eq:paralleltransport}.
+\end{proof}
+
+\begin{remark}[What holonomy does and does not say]
+For a sufficiently small group loop spanning directions $X,Y$, the leading
+nontrivial holonomy term is proportional to the curvature
+$\Omega_{k,\sigma}(X,Y)$, with the sign fixed by loop orientation and the
+parallel-transport convention.  For a finite loop, the holonomy is a
+path-ordered exponential; it is not in general
+$\exp(\int\Omega)$.
+
+Likewise, periodicity of the Lie-algebra-valued function $m(t)$ alone does
+not make the reconstructed $SO(4)$ path $g(t)$ closed.  Thus the curvature
+theorem gives an exact geometric interpretation of shell precession but not,
+without an additional averaging argument, a theorem that rapid Killing
+forcing suppresses nonlinear triadic resonance.
+\end{remark}
+
+\begin{theorem}[Coefficient flattening without operator-norm flattening]
+\label{thm:noUVflattening}
+Algebraically,
+\begin{equation}
+ D_{k,\sigma}(m)
+ =
+ \ad_m+
+ \frac{2}{k+2}
+ \bigl(\ad_{m_{-\sigma}}-\ad_{m_\sigma}\bigr).
+ \label{eq:Dminusad}
+\end{equation}
+Thus the scalar coefficients approach those of the ordinary adjoint action.
+However, the natural operator norms on the changing representation spaces
+do not flatten.
+
+Let $X_1^\tau,X_2^\tau,X_3^\tau$ be a pointwise-orthonormal Killing frame
+in $\cK_\tau$, normalized by
+\[
+ [X_a^\tau,X_b^\tau]=\frac{2}{R}\varepsilon_{abc}X_c^\tau .
+\]
+On $E_{k,\sigma}$ the $SU(2)_\tau$ spin is
+$j_\tau=(k+1+\tau\sigma)/2$, so
+\begin{equation}
+ \|\ad_{X_3^\tau}\|_{\mathrm{op},E_{k,\sigma}}
+ =
+ \frac{2j_\tau}{R}.
+ \label{eq:generatoropnorm}
+\end{equation}
+Consequently, for a unit generator in the same chiral factor,
+\begin{equation}
+ \boxed{
+ \|D_{k,\sigma}(X^\sigma)-\ad_{X^\sigma}\|_{\mathrm{op}}
+ =
+ \frac{2}{R},
+ }
+ \label{eq:noDflatten}
+\end{equation}
+for every $k\ge1$.  For a unit generator in the opposite factor,
+\begin{equation}
+ \|D_{k,\sigma}(X^{-\sigma})-\ad_{X^{-\sigma}}\|_{\mathrm{op}}
+ =
+ \frac{2k}{(k+2)R}
+ \longrightarrow \frac{2}{R}.
+ \label{eq:noDflattenopp}
+\end{equation}
+
+Likewise, for pointwise-orthonormal
+$X_1^\tau,X_2^\tau$ in one simple factor, the curvature satisfies
+\begin{align}
+ \|\Omega_{k,\sigma}(X_1^\sigma,X_2^\sigma)\|_{\mathrm{op}}
+ &=
+ \frac{4k}{(k+2)R^2}
+ \longrightarrow \frac{4}{R^2},
+ \label{eq:curvnormsame}\\
+ \|\Omega_{k,\sigma}(X_1^{-\sigma},X_2^{-\sigma})\|_{\mathrm{op}}
+ &=
+ \frac{4k(k+4)}{(k+2)^2R^2}
+ \longrightarrow \frac{4}{R^2}.
+ \label{eq:curvnormopp}
+\end{align}
+Thus the $O(k^{-1})$ curvature coefficients are exactly compensated by the
+$O(k)$ growth of the representation generators.  The shell connection is
+not asymptotically flat in this natural operator norm.
+\end{theorem}
+
+\begin{proof}
+In the spin-$j$ representation of the Lie algebra normalized by
+$[X_a,X_b]=(2/R)\varepsilon_{abc}X_c$, a Cartan generator has eigenvalues
+$2im/R$, $m=-j,\ldots,j$.  Hence
+\eqref{eq:generatoropnorm}.  Substitution into \eqref{eq:Dminusad} gives
+\eqref{eq:noDflatten}--\eqref{eq:noDflattenopp}.
+
+For curvature, take $X_1^\tau,X_2^\tau$ from one simple factor.  Then
+$[X_1^\tau,X_2^\tau]=(2/R)X_3^\tau$.  Combining
+\eqref{eq:Omega} with \eqref{eq:generatoropnorm}, using
+$j_\sigma=(k+2)/2$ in the same chiral factor and
+$j_{-\sigma}=k/2$ in the opposite factor, gives
+\eqref{eq:curvnormsame}--\eqref{eq:curvnormopp}.
+\end{proof}
+
+\begin{remark}
+A coefficient-level or suitably rescaled semiclassical curvature does decay
+like $k^{-1}$.  This is distinct from operator-norm flatness on
+$E_{k,\sigma}$ and should not be interpreted as rigid-body convergence of the
+unscaled shell dynamics.
+\end{remark}
+
+
+
+\section{Exact Killing--Beltrami reductions}
+
+\begin{theorem}[Killing plus one signed shell]
+\label{thm:KplusE}
+For every $k\ge0$ and $\sigma,\tau\in\{\pm1\}$,
+\begin{equation}
+ \cK_\tau\oplus E_{k,\sigma}
+ \label{eq:halfKclosure}
+\end{equation}
+is an exact Navier--Stokes reducing space.  Likewise,
+\begin{equation}
+ \boxed{
+ \cK\oplus E_{k,\sigma}
+ =
+ E_{0,+}\oplus E_{0,-}\oplus E_{k,\sigma}
+ }
+ \label{eq:fullKclosure}
+\end{equation}
+is exact reducing.
+For $k\ge1$ these are genuinely multi-shell closures.
+\end{theorem}
+
+\begin{proof}
+The Stokes operator preserves each summand.  By
+\eqref{eq:diagonalzero},
+\[
+ Q(\cK_\tau,\cK_\tau)=0,
+ \qquad
+ Q(\cK,\cK)=0,
+ \qquad
+ Q(E_{k,\sigma},E_{k,\sigma})=0.
+\]
+By \cref{thm:KBidentity},
+\[
+ Q(\cK_\tau,E_{k,\sigma})\subset E_{k,\sigma},
+ \qquad
+ Q(\cK,E_{k,\sigma})\subset E_{k,\sigma}.
+\]
+Therefore the polarized quadratic term has no leakage from either space.
+\end{proof}
+
+\begin{corollary}[New zeros of the complete-shell leakage scalar]
+Let
+\[
+\begin{aligned}
+ S_{\tau;k,\sigma}
+ &:=
+ \{(0,\tau),(k,\sigma)\},\\
+ S_{K;k,\sigma}
+ &:=
+ \{(0,+),(0,-),(k,\sigma)\}.
+\end{aligned}
+\]
+Then
+\[
+ \mathfrak R(S_{\tau;k,\sigma})=0,
+ \qquad
+ \boxed{\mathfrak R(S_{K;k,\sigma})=0.}
+\]
+\end{corollary}
+
+
+
+\section{Exact viscous nonstationary solutions}
+
+Fix $k\ge1$ and $\sigma\in\{\pm1\}$.  Decompose a Killing field as
+\[
+ K=K_\sigma+K_{-\sigma},
+ \qquad
+ K_{\pm\sigma}\in\cK_{\pm\sigma}.
+\]
+Define
+\begin{equation}
+ D_{k,\sigma}(K)v
+ :=
+ \frac{k}{k+2}[K_\sigma,v]
+ +
+ \frac{k+4}{k+2}[K_{-\sigma},v].
+ \label{eq:Ddef}
+\end{equation}
+By \cref{thm:KBidentity},
+\begin{equation}
+ D_{k,\sigma}(K)v=2Q(K,v).
+ \label{eq:DQ}
+\end{equation}
+Notice that
+\[
+ D_{k,\sigma}(K)=
+ \ad_{\widetilde K},
+ \qquad
+ \widetilde K=
+ \frac{k}{k+2}K_\sigma+
+ \frac{k+4}{k+2}K_{-\sigma},
+\]
+so $D_{k,\sigma}(K)$ is skew-adjoint on $L^2$.
+
+\begin{theorem}[Triangular exact dynamics]
+\label{thm:triangular}
+Let
+\[
+ u(t)=K(t)+v(t),
+ \qquad K(t)\in\cK,\quad v(t)\in E_{k,\sigma},
+\]
+and let the projected force be
+$F=F_{\cK}+F_k$ in the same space.  Then \eqref{eq:NSproj} is exactly
+equivalent to
+\begin{align}
+ \dot K&=F_{\cK},
+ \label{eq:KODE}\\
+ \dot v+\nu\kappa_k v+D_{k,\sigma}(K)v&=F_k.
+ \label{eq:vODE}
+\end{align}
+Thus the original quadratic PDE becomes a triangular finite-dimensional
+system: the Killing component is independent and the shell component is
+linear once $K(t)$ is known.
+\end{theorem}
+
+\begin{proof}
+Expand
+\[
+ Q(K+v,K+v)=Q(K,K)+2Q(K,v)+Q(v,v).
+\]
+The first and last terms vanish by \eqref{eq:diagonalzero}; the middle term
+is \eqref{eq:DQ}.  Also $AK=0$ and $Av=\kappa_kv$.
+Orthogonality of the Stokes eigenspaces gives
+\eqref{eq:KODE}--\eqref{eq:vODE}.
+\end{proof}
+
+\begin{corollary}[Closed unforced formula]
+For unforced data $K(0)=K_0$, $v(0)=v_0$,
+\begin{equation}
+ \boxed{
+ u(t)=
+ K_0+
+ e^{-\nu k(k+4)t/R^2}
+ e^{-tD_{k,\sigma}(K_0)}v_0.
+ }
+ \label{eq:exactsolution}
+\end{equation}
+Moreover,
+\begin{equation}
+ \boxed{
+ \|v(t)\|_2=
+ e^{-\nu k(k+4)t/R^2}\|v_0\|_2.
+ }
+ \label{eq:vdecay}
+\end{equation}
+In the inviscid limit the shell component evolves by a one-parameter
+isometry representation and has constant $L^2$ norm.
+\end{corollary}
+
+\begin{proof}
+In the unforced case $K(t)=K_0$.  Since $D_{k,\sigma}(K_0)$ is
+time-independent and skew-adjoint, \eqref{eq:vODE} integrates to
+\eqref{eq:exactsolution}; skew-adjointness gives \eqref{eq:vdecay}.
+\end{proof}
+
+\begin{remark}[Relation to exact Euler waves]
+Recent work of Heslin and Preston constructs exact nonstationary Euler
+solutions on curved manifolds, including the round three-sphere, by perturbing
+rigid motions with suitable eigenfields \cite{HeslinPreston2026}. Exact
+Navier--Stokes solutions generated by Beltrami structures have also been
+studied in Euclidean settings \cite{Baron2025}.  Formula \eqref{eq:exactsolution}
+is a viscous exact closure for the Ebin--Marsden viscosity used here.  The
+present derivation is internal to the Preece--Batenin spectral data and does
+not require importing the Heslin--Preston construction.
+\end{remark}
+
+
+
+\section{Rigidity of Killing-saturated reductions}
+
+The previous theorem gives examples.  We now prove a converse that changes the
+status of the complete-shell criterion in an important subclass.
+
+\begin{theorem}[Shell completeness forced by the full Killing algebra]
+\label{thm:Ksaturated}
+Let $W$ be a finite-dimensional exact Navier--Stokes reducing space of smooth
+divergence-free vector fields on $\Sthree$, and assume
+\begin{equation}
+ \cK=E_{0,+}\oplus E_{0,-}\subset W.
+ \label{eq:containsK}
+\end{equation}
+Then there exists a finite set
+$S\subset\mathbb N_0\times\{\pm\}$ containing $(0,+)$ and $(0,-)$ such that
+\begin{equation}
+ \boxed{
+ W=\bigoplus_{(k,\sigma)\in S}E_{k,\sigma}.
+ }
+ \label{eq:Wshellunion}
+\end{equation}
+That is, every nonzero higher component is forced to be a \emph{complete
+signed curl shell}.
+\end{theorem}
+
+\begin{proof}
+Because $W$ is reducing, $AW\subset W$.  The operator $A$ is self-adjoint and
+has the distinct eigenvalues
+$\kappa_k=k(k+4)/R^2$ indexed by $k$; the $\kappa_k$ eigenspace is
+\[
+ F_k:=E_{k,+}\oplus E_{k,-}.
+\]
+Since $W$ is finite-dimensional, spectral interpolation in the finite set of
+eigenvalues appearing in $W$ yields
+\[
+ W=\bigoplus_k W_k,\qquad W_k:=W\cap F_k.
+\]
+By assumption $W_0=F_0=\cK$.
+
+Fix $k\ge1$ with $W_k\ne0$.  Put
+\[
+ a=\frac{k}{k+2},\qquad b=\frac{k+4}{k+2};
+\]
+then $a,b$ are nonzero and $a\ne b$.
+
+Take $X\in\cKp$.  Since $\cKp\subset W$ and $W$ is quadratically closed,
+the operator
+\[
+ D_X:=2Q(X,\cdot)
+\]
+preserves $W_k$.  By \cref{thm:KBidentity},
+\begin{equation}
+ D_X
+ =
+ a\,\rho_+(X)\oplus b\,\rho_-(X)
+ \quad\text{on }F_k=E_{k,+}\oplus E_{k,-},
+ \label{eq:DXblocks}
+\end{equation}
+where $\rho_\pm(X)=[X,\cdot]$ on $E_{k,\pm}$.
+
+If $X,Y\in\cKp$ and $Z=[X,Y]$, then $[D_X,D_Y]$ also preserves $W_k$ and
+\[
+ [D_X,D_Y]
+ =
+ a^2\rho_+(Z)\oplus b^2\rho_-(Z).
+\]
+Since $\mathfrak{su}(2)$ is perfect, every $Z\in\cKp$ is a linear
+combination of commutators.  Linear combinations of $D_Z$ and the preceding
+commutator isolate
+\[
+ \rho_+(Z)\oplus0,
+ \qquad
+ 0\oplus\rho_-(Z),
+\]
+because the coefficient matrix
+$\bigl(\begin{smallmatrix}a&b\\a^2&b^2\end{smallmatrix}\bigr)$ is invertible.
+
+Hence $W_k$ is invariant under the block-supported $\cKp$ actions.
+The quadratic Casimir of the first block equals a positive scalar times the
+orthogonal projector onto $E_{k,+}$ and vanishes on $E_{k,-}$; similarly for
+the second block.  Therefore
+\[
+ W_k=(W_k\cap E_{k,+})\oplus(W_k\cap E_{k,-}).
+\]
+Call these intersections $L_{k,+}$ and $L_{k,-}$.
+
+Now use the $\cKm$ part of the contained Killing algebra.  By
+\cref{thm:KBidentity}, its action on each $E_{k,\sigma}$ again has a nonzero
+coefficient.  Therefore each $L_{k,\sigma}$ is invariant under both simple
+factors $\cKp$ and $\cKm$.  Thus $L_{k,\sigma}$ is an $SO(4)$-submodule of
+$E_{k,\sigma}$.  By irreducibility \eqref{eq:irreps},
+\[
+ L_{k,\sigma}=0
+ \quad\text{or}\quad
+ L_{k,\sigma}=E_{k,\sigma}.
+\]
+Doing this for every $k$ proves \eqref{eq:Wshellunion}.
+\end{proof}
+
+\begin{corollary}[Complete classification of Killing-saturated finite reductions]
+\label{cor:Ksaturatedclassification}
+A finite-dimensional smooth subspace $W$ satisfying $\cK\subset W$ is an
+exact reducing space if and only if
+\[
+ W=W_S=
+ \bigoplus_{\alpha\in S}E_\alpha
+\]
+for a finite shell set $S$ containing $(0,+),(0,-)$ and satisfying
+\begin{equation}
+ \boxed{\mathfrak R(S)=0.}
+ \label{eq:KsatR}
+\end{equation}
+Thus, inside the Killing-saturated category, the complete-shell leakage
+criterion is both a test and an exhaustive classification.
+\end{corollary}
+
+\begin{proof}
+The forward implication is \cref{thm:Ksaturated} followed by the criterion of Ref.~\cite{PreeceBatenin2026} \eqref{eq:Rcriterion}.  The reverse implication is exactly
+\eqref{eq:Rcriterion}.
+\end{proof}
+
+\begin{corollary}[One-shell rigidity]
+Fix $k\ge1$ and $\sigma$.  If
+\[
+ \cK\subset W\subset\cK\oplus E_{k,\sigma}
+\]
+and $W$ is exact reducing, then
+\[
+ W=\cK
+ \quad\text{or}\quad
+ W=\cK\oplus E_{k,\sigma}.
+\]
+\end{corollary}
+
+
+
+
+\section{Casimir representation of Stokes dissipation}
+\label{sec:casimir}
+
+Let $X_a^+$, $X_a^-$, $a=1,2,3$, be the standard left- and right-invariant
+global Killing frames on the round three-sphere, normalized so that each
+triple is pointwise orthonormal.  Set
+\[
+ V_R=\Vol(\Sthree),\qquad
+ K_a^\pm=V_R^{-1/2}X_a^\pm.
+\]
+Then the six $K_a^\pm$ are $L^2$-orthonormal in $\cK$.
+Define
+\[
+ T_a^\pm:=Q(K_a^\pm,\cdot).
+\]
+
+\begin{theorem}[Exact quadratic Casimir identity]
+\label{thm:Tcasimir}
+On smooth divergence-free vector fields,
+\begin{equation}
+ \boxed{
+ A=-2V_R\sum_{\tau=\pm}\sum_{a=1}^3(T_a^\tau)^2.
+ }
+ \label{eq:Tcasimir}
+\end{equation}
+Equivalently, for every $u\in H^1_\sigma(T\Sthree)$,
+\begin{equation}
+ \boxed{
+ \langle Au,u\rangle_{L^2}
+ =
+ 2V_R\sum_{\tau=\pm}\sum_{a=1}^3
+ \|Q(K_a^\tau,u)\|_2^2.
+ }
+ \label{eq:Tcasimirform}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+It is enough to work on a signed shell $E_{k,\sigma}$ and then sum
+orthogonally.  By \cref{thm:modalC}, the Hilbert--Schmidt trace per unit
+vector in the shell is
+\[
+ \sum_{\tau=\pm}\frac{
+ C_{(0,\tau),(k,\sigma)}^{(k,\sigma)}
+ }{d_k}.
+\]
+Using \eqref{eq:Csame}--\eqref{eq:Copp},
+\[
+\begin{aligned}
+ \sum_{\tau=\pm}\frac{C_\tau}{d_k}
+ &=
+ \frac{1}{R^2V_R}
+ \left[
+ \frac{k^2(k+4)}{4(k+2)}
+ +
+ \frac{k(k+4)^2}{4(k+2)}
+ \right]\\
+ &=
+ \frac{k(k+4)}{2R^2V_R}
+ =
+ \frac{\kappa_k}{2V_R}.
+\end{aligned}
+\]
+By $SO(4)$-equivariance the positive operator
+$\sum_{\tau,a}(T_a^\tau)^*T_a^\tau$ is scalar on the irreducible
+$E_{k,\sigma}$, and its scalar is therefore $\kappa_k/(2V_R)$.
+Hence
+\[
+ A=2V_R\sum_{\tau,a}(T_a^\tau)^*T_a^\tau.
+\]
+Each $T_a^\tau$ is skew-adjoint: on every signed shell it is a real scalar
+multiple of the Lie derivative $[K_a^\tau,\cdot]$, and Killing Lie
+derivatives are skew-adjoint in $L^2$.  Thus
+$(T_a^\tau)^*=-T_a^\tau$, yielding \eqref{eq:Tcasimir}.
+\end{proof}
+
+There is also a simpler relation with the ordinary isometry Casimir.
+Define
+\begin{equation}
+ \Delta_{\mathrm{iso}}
+ :=
+ -\sum_{\tau=\pm}\sum_{a=1}^3
+ \mathcal L_{X_a^\tau}^2.
+ \label{eq:Diso}
+\end{equation}
+
+\begin{theorem}[Correct Stokes--isometry-Casimir relation]
+\label{thm:stokesiso}
+On divergence-free vector fields on the round three-sphere,
+\begin{equation}
+ \boxed{
+ \Delta_{\mathrm{iso}}=2\,\curl^2,
+ \qquad
+ A=\frac12\Delta_{\mathrm{iso}}-\frac{4}{R^2}\Id.
+ }
+ \label{eq:stokesiso}
+\end{equation}
+If instead the $L^2$-normalized fields $K_a^\tau$ are used to define
+$\Delta_K=-\sum_{\tau,a}\mathcal L_{K_a^\tau}^2$, then
+\begin{equation}
+ \boxed{
+ A=\frac{V_R}{2}\Delta_K-\frac{4}{R^2}\Id.
+ }
+ \label{eq:stokesisoL2}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+On $E_{k,\sigma}$ the two $SU(2)$ spins are
+\[
+ j_+=\frac{k+1+\sigma}{2},
+ \qquad
+ j_-=\frac{k+1-\sigma}{2}.
+\]
+With the normalization of the pointwise-unit frames, the two Casimirs have
+eigenvalues $4j_\pm(j_\pm+1)/R^2$.  Their sum is
+\[
+ \frac4{R^2}
+ \left(j_+(j_++1)+j_-(j_-+1)\right)
+ =
+ \frac{2(k+2)^2}{R^2}.
+\]
+Since $\curl^2$ has eigenvalue $(k+2)^2/R^2$ and
+$A$ has eigenvalue $k(k+4)/R^2=((k+2)^2-4)/R^2$, the identities follow
+on every signed shell and hence spectrally on their direct sum.
+\end{proof}
+
+\begin{corollary}[Exact dissipation as six convective responses]
+\label{cor:dissipation}
+For $u\in H^1_\sigma(T\Sthree)$,
+\begin{equation}
+ \boxed{
+ 2\nu\|\Def u\|_2^2
+ =
+ \nu\langle Au,u\rangle
+ =
+ 2\nu V_R
+ \sum_{\tau=\pm}\sum_{a=1}^3
+ \|Q(K_a^\tau,u)\|_2^2.
+ }
+ \label{eq:dissipation}
+\end{equation}
+Consequently, if the dissipation tends to infinity along a sequence of
+times, then the maximum of these six response norms tends to infinity along
+a subsequence.
+\end{corollary}
+
+
+\begin{remark}[What the six-response identity does not imply]
+Equation \eqref{eq:dissipation} is an exact global $L^2$ identity.  It does
+not by itself imply microlocal anisotropy, spatial polarization of a
+singular core, or concentration along a preferred geometric axis.  The
+rigorous conclusion is only the finite-sum statement in the corollary:
+unbounded dissipation forces at least one of the six global response norms
+to become unbounded along a subsequence.
+\end{remark}
+
+\begin{proof}
+Integration by parts in
+$A=-\PP(2\,\operatorname{div}\Def)$ gives
+$\langle Au,u\rangle=2\|\Def u\|_2^2$.
+Now apply \eqref{eq:Tcasimirform}.  The final statement follows because
+there are only six nonnegative summands.
+\end{proof}
+
+
+
+\section{The entire maximal-torus sector is pressure-linear}
+
+Reference~\cite{PreeceBatenin2026} proves that every smooth
+$T^2=U(1)_\theta\times U(1)_z$ invariant divergence-free field has the form
+\[
+ u=\alpha(s)\partial_\theta+\beta(s)\partial_z,
+ \qquad s=r^2/R^2,
+\]
+and that its nonlinear term is absorbed exactly into pressure.
+
+Let $\cV_{T^2}$ denote the full infinite-dimensional space of these fields.
+
+\begin{theorem}[Infinite-dimensional pressure-linearity]
+\label{thm:T2Qzero}
+For all $u,v\in\cV_{T^2}$,
+\begin{equation}
+ \boxed{Q(u,v)=0.}
+ \label{eq:T2Qzero}
+\end{equation}
+Hence the projected Navier--Stokes equation is exactly linear on the entire
+maximal-torus invariant sector.
+\end{theorem}
+
+\begin{proof}
+The torus reduction of Ref.~\cite{PreeceBatenin2026} gives $Q(w,w)=0$ for every
+$w\in\cV_{T^2}$.  Since $\cV_{T^2}$ is a vector space, polarization yields
+\[
+ 2Q(u,v)=Q(u+v,u+v)-Q(u,u)-Q(v,v)=0.
+\]
+\end{proof}
+
+Reference~\cite{PreeceBatenin2026} also diagonalizes the Stokes operator with Jacobi modes
+\begin{align}
+ e_n^\theta&=P_n^{(1,0)}(1-2s)\partial_\theta,\\
+ e_n^z&=P_n^{(0,1)}(1-2s)\partial_z,
+\end{align}
+and
+\begin{equation}
+\begin{aligned}
+ H_n&:=\operatorname{span}\{e_n^\theta,e_n^z\},\\
+ A|_{H_n}&=\lambda_n\Id,
+ \qquad
+ \lambda_n=\frac{4n(n+2)}{R^2}.
+\end{aligned}
+\label{eq:T2lambda}
+\end{equation}
+The $\lambda_n$ are strictly increasing.
+
+\begin{theorem}[Finite toric classification]
+\label{thm:T2class}
+A finite-dimensional subspace $W\subset\cV_{T^2}$ is exact reducing if and
+only if
+\begin{equation}
+ \boxed{
+ W=\bigoplus_{n\in F}L_n,
+ \qquad
+ L_n\subset H_n,
+ }
+ \label{eq:T2finiteclass}
+\end{equation}
+for some finite set $F\subset\mathbb N_0$ and arbitrary linear subspaces
+$L_n$ of the two-dimensional eigenspaces $H_n$.
+\end{theorem}
+
+\begin{proof}
+By \cref{thm:T2Qzero}, quadratic closure is automatic.  Thus $W$ is reducing
+if and only if $AW\subset W$.  Since $A$ is self-adjoint and the eigenvalues
+\eqref{eq:T2lambda} are distinct, every finite-dimensional $A$-invariant
+subspace splits into its intersections with the eigenspaces $H_n$, giving
+\eqref{eq:T2finiteclass}.  Conversely any such direct sum is $A$-invariant.
+\end{proof}
+
+\begin{corollary}[Global smooth toric dynamics]
+For smooth $T^2$-invariant initial data and smooth $T^2$-invariant forcing,
+the smooth solution remains smooth for every finite time for which the force
+is smooth.  In the unforced case,
+\begin{equation}
+ \|u(t)-\Pi_{H_0}u_0\|_{H^s}
+ \le
+ e^{-12\nu t/R^2}
+ \|u_0-\Pi_{H_0}u_0\|_{H^s}
+ \label{eq:T2decay}
+\end{equation}
+for every spectral Sobolev index $s$.  Thus finite-time singularity is
+impossible in the entire infinite-dimensional maximal-torus sector.
+\end{corollary}
+
+\begin{proof}
+The sector is a pair of scalar Jacobi heat equations.  The first positive
+eigenvalue is $\lambda_1=12/R^2$, while $H_0$ is the stationary
+two-dimensional Killing subspace.  The spectral formula gives
+\eqref{eq:T2decay}, and Duhamel's formula handles smooth forcing.
+\end{proof}
+
+
+
+\section{A homogeneous addition theorem for vector projectors}
+
+The exact projector estimate in Ref.~\cite{PreeceBatenin2026} is not special to the
+canonical band.  The correct principle is homogeneity plus irreducible
+isotropy.
+
+\begin{theorem}[Homogeneous-bundle evaluation theorem]
+\label{thm:homogeneousprojector}
+Let $M=G/H$ be a compact homogeneous Riemannian manifold and let
+$\mathcal E\to M$ be a rank-$r$ real Euclidean homogeneous vector bundle
+whose isotropy representation on a fiber is irreducible.  Let
+$W\subset C^\infty(\mathcal E)$ be a finite-dimensional $G$-invariant
+subspace and let $\Pi_W$ be the $L^2$-orthogonal projector.  If
+$N=\dim W$ and $V=\Vol(M)$, then
+\begin{align}
+ \boxed{
+ \|\Pi_W\|_{L^2\to L^\infty}
+ =
+ \sqrt{\frac{N}{rV}},
+ }
+ \label{eq:generalL2}\\
+ \boxed{
+ \|\Pi_W\|_{L^1\to L^\infty}
+ =
+ \frac{N}{rV}.
+ }
+ \label{eq:generalL1}
+\end{align}
+Both constants are sharp.
+\end{theorem}
+
+\begin{proof}
+Let $K_W(x,y):\mathcal E_y\to\mathcal E_x$ be the projector kernel and
+$E_x:W\to\mathcal E_x$ the evaluation map.  Then
+\[
+ K_W(x,y)=E_xE_y^*,
+ \qquad
+ K_W(x,x)=E_xE_x^*.
+\]
+At a fixed point $x$, $K_W(x,x)$ commutes with the isotropy action of $H$.
+By irreducibility and self-adjointness it is a scalar:
+\[
+ K_W(x,x)=c\,\Id_{\mathcal E_x}.
+\]
+Transitivity makes $c$ independent of $x$.  Taking the operator trace,
+\[
+ N=\operatorname{tr}\Pi_W
+ =\int_M\operatorname{tr}K_W(x,x)\dd V
+ =rcV,
+\]
+so $c=N/(rV)$.
+
+For $L^2\to L^\infty$,
+\[
+ |(\Pi_Wf)(x)|\le\|E_x\|\|f\|_2=\sqrt c\,\|f\|_2.
+\]
+Equality is attained by
+$f=E_x^*\xi/\|E_x^*\xi\|_2$ for any unit $\xi$.
+
+For $L^1\to L^\infty$,
+\[
+ \|K_W(x,y)\|_{\mathrm{op}}
+ \le\|E_x\|\|E_y\|=c,
+\]
+giving the upper bound.  The diagonal value is exactly $c$; a vector-valued
+approximate identity concentrated at $y=x$ and polarized along an eigenvector
+of $K_W(x,x)$ approaches this value.  Hence the bound is sharp.
+\end{proof}
+
+\begin{corollary}[Every finite $SO(4)$-invariant vector sector on $S^3$]
+\label{cor:anySO4projector}
+Let $W$ be any finite-dimensional $SO(4)$-invariant subspace of smooth
+divergence-free vector fields on $\Sthree$.  Then, with $N=\dim W$,
+\begin{align}
+ \boxed{
+ \|\Pi_W\|_{2\to\infty}
+ =
+ \sqrt{\frac{N}{3V_R}},
+ }\\
+ \boxed{
+ \|\Pi_W\|_{1\to\infty}
+ =
+ \frac{N}{3V_R}.
+ }
+\end{align}
+\end{corollary}
+
+\begin{proof}
+Apply \cref{thm:homogeneousprojector} to the tangent bundle of the round
+three-sphere.  The isotropy group is $SO(3)$ acting irreducibly on the
+three-dimensional tangent space.
+\end{proof}
+
+
+
+\section{Sharp spectral uncertainty and adaptive shell sparsity}
+
+\begin{corollary}[Sharp $L^2$ concentration-volume inequality]
+\label{cor:uncertainty}
+If $0\ne w\in W$ and $W$ is as in
+\cref{cor:anySO4projector}, then
+\begin{equation}
+ \boxed{
+ \frac{\|w\|_2^2}{\|w\|_\infty^2}
+ \ge
+ \frac{3V_R}{\dim W}.
+ }
+ \label{eq:L2uncertainty}
+\end{equation}
+The constant is sharp for every such $W$.
+\end{corollary}
+
+\begin{proof}
+The inequality is \cref{cor:anySO4projector} applied to $w=\Pi_Ww$.
+Sharpness follows from the reproducing-kernel extremizer
+$E_x^*\xi$ used in \cref{thm:homogeneousprojector}.
+\end{proof}
+
+\begin{corollary}[Sharp uncertainty inside one signed curl shell]
+For $w\in E_{k,\sigma}$,
+\begin{equation}
+ \boxed{
+ \frac{\|w\|_2^2}{\|w\|_\infty^2}
+ \ge
+ \frac{3V_R}{(k+1)(k+3)}.
+ }
+ \label{eq:shelluncertainty}
+\end{equation}
+Equality is attained.  Any extremizer is still a curl eigenfield and hence
+generates the exact unforced Navier--Stokes trajectory
+\[
+ u(t)=e^{-\nu k(k+4)t/R^2}w.
+\]
+\end{corollary}
+
+Now let $S$ be an arbitrary finite set of signed shell labels and put
+\[
+ W_S=\bigoplus_{(k,\sigma)\in S}E_{k,\sigma},
+ \qquad
+ N_S=\sum_{(k,\sigma)\in S}(k+1)(k+3).
+\]
+
+\begin{theorem}[Adaptive rank barrier]
+\label{thm:adaptiverank}
+For any integrable divergence-free field $v$,
+if
+\begin{equation}
+ \|\Pi_{W_S}v\|_\infty\ge\eta\|v\|_\infty,
+ \qquad 0<\eta\le1,
+ \label{eq:capture}
+\end{equation}
+then
+\begin{equation}
+ \boxed{
+ N_S\ge
+ 3V_R\,\eta\,\frac{\|v\|_\infty}{\|v\|_1}.
+ }
+ \label{eq:adaptiverank}
+\end{equation}
+No contiguity or low-frequency assumption on $S$ is required.
+\end{theorem}
+
+\begin{proof}
+By \cref{cor:anySO4projector},
+\[
+ \|\Pi_{W_S}v\|_\infty
+ \le
+ \frac{N_S}{3V_R}\|v\|_1.
+\]
+Combine this with \eqref{eq:capture} and rearrange.
+\end{proof}
+
+\begin{theorem}[Derivative-budget shell-count barrier]
+\label{thm:derivativeshell}
+Let $S$ be a finite set of $M$ signed curl shells and assume
+$\Delta_1 v\in L^1$, where $\Delta_1=\curl^2$ on coexact one-forms.
+Then
+\begin{equation}
+ \boxed{
+ \|\Pi_{W_S}v\|_\infty
+ \le
+ \frac{R^2}{3V_R}
+ \left[
+   \sum_{(k,\sigma)\in S}
+   \left(1-\frac1{(k+2)^2}\right)
+ \right]
+ \|\Delta_1v\|_1.
+ }
+ \label{eq:weightedM}
+\end{equation}
+Hence, if
+$\|\Pi_{W_S}v\|_\infty\ge\eta\|v\|_\infty$, then
+\begin{equation}
+ \boxed{
+ M
+ \ge
+ \frac{3V_R\,\eta}{R^2}
+ \frac{\|v\|_\infty}{\|\Delta_1v\|_1}.
+ }
+ \label{eq:Mderivative}
+\end{equation}
+This lower bound is independent of the maximum frequency of the selected shells.
+\end{theorem}
+
+\begin{proof}
+On $E_{k,\sigma}$,
+\[
+ \Delta_1=\frac{(k+2)^2}{R^2}\Id.
+\]
+Therefore
+\[
+ \Pi_{k,\sigma}v
+ =
+ \frac{R^2}{(k+2)^2}\Pi_{k,\sigma}\Delta_1v.
+\]
+The exact $L^1\to L^\infty$ projector norm gives
+\begin{align*}
+ \|\Pi_{k,\sigma}v\|_\infty
+ &\le
+ \frac{R^2}{(k+2)^2}
+ \frac{(k+1)(k+3)}{3V_R}
+ \|\Delta_1v\|_1\\
+ &=
+ \frac{R^2}{3V_R}
+ \left(1-\frac1{(k+2)^2}\right)
+ \|\Delta_1v\|_1.
+\end{align*}
+Summing over $S$ proves \eqref{eq:weightedM}.  Since every weight in the
+sum is strictly less than one, the peak-capture condition implies
+\eqref{eq:Mderivative}.
+\end{proof}
+
+
+
+
+
+
+\begin{theorem}[Fractional $L^1$ shell barrier]
+\label{thm:fractionalbarrier}
+Let $s>0$ and let $\Delta_1=\curl^2$ on divergence-free one-forms.
+For any finite signed-shell set $S$,
+\begin{equation}
+ \boxed{
+ \|\Pi_{W_S}v\|_\infty
+ \le
+ \frac{R^s}{3V_R}
+ \left[
+   \sum_{(k,\sigma)\in S}
+   \frac{(k+1)(k+3)}{(k+2)^s}
+ \right]
+ \|\Delta_1^{s/2}v\|_1.
+ }
+ \label{eq:fractionalbarrier}
+\end{equation}
+Consequently, if
+$\|\Pi_{W_S}v\|_\infty\ge\eta\|v\|_\infty$, then
+\begin{equation}
+ \boxed{
+ \sum_{(k,\sigma)\in S}
+ \frac{(k+1)(k+3)}{(k+2)^s}
+ \ge
+ \frac{3V_R\,\eta}{R^s}
+ \frac{\|v\|_\infty}{\|\Delta_1^{s/2}v\|_1}.
+ }
+ \label{eq:fractionalcapture}
+\end{equation}
+For $s=2$ this recovers the weighted estimate
+\eqref{eq:weightedM}.
+\end{theorem}
+
+\begin{proof}
+On $E_{k,\sigma}$,
+\[
+ \Delta_1^{s/2}
+ =
+ \left(\frac{k+2}{R}\right)^s\Id.
+\]
+Hence
+\[
+ \Pi_{k,\sigma}v
+ =
+ \left(\frac{R}{k+2}\right)^s
+ \Pi_{k,\sigma}\Delta_1^{s/2}v.
+\]
+Using the exact projector norm
+\[
+ \|\Pi_{k,\sigma}\|_{L^1\to L^\infty}
+ =
+ \frac{(k+1)(k+3)}{3V_R}
+\]
+and summing over $S$ gives \eqref{eq:fractionalbarrier}.
+The capture inequality follows by rearrangement.
+\end{proof}
+
+\begin{corollary}[Explicit global $L^1$ Bessel-potential embedding for $s>3$]
+\label{cor:globalfractional}
+If $s>3$ and $\Delta_1^{s/2}v\in L^1$, then
+\begin{equation}
+ \boxed{
+ \|v\|_\infty
+ \le
+ \frac{2R^s}{3V_R}
+ \bigl[\zeta(s-2)-\zeta(s)\bigr]
+ \|\Delta_1^{s/2}v\|_1.
+ }
+ \label{eq:globalfractional}
+\end{equation}
+Thus an $L^\infty$ blow-up sequence with bounded
+$\|\Delta_1^{s/2}v\|_1$ is impossible for every $s>3$.
+\end{corollary}
+
+\begin{proof}
+Put $j=k+2$.  Since
+\[
+ \frac{(k+1)(k+3)}{(k+2)^s}
+ =
+ \frac{j^2-1}{j^s}
+ =
+ j^{2-s}-j^{-s},
+\]
+the sum over both signs and all $k\ge0$ is
+\[
+ 2\sum_{j=2}^\infty(j^{2-s}-j^{-s})
+ =
+ 2\bigl[\zeta(s-2)-\zeta(s)\bigr],
+\]
+which converges exactly when $s>3$.  Apply
+\eqref{eq:fractionalbarrier} to an increasing sequence of finite shell sets;
+the right-hand side is summable in $L^\infty$, so the shell expansion
+converges absolutely there and gives \eqref{eq:globalfractional}.
+\end{proof}
+
+\begin{remark}[Interpretation of the threshold]
+The condition $s>3$ is the summability threshold of this $L^1$ shell
+argument in spatial dimension three.  It is an $L^1$ Bessel-potential
+statement, not the usual $L^2$ Sobolev condition $H^s\hookrightarrow L^\infty$.
+No claim of endpoint optimality at $s=3$ is made.
+\end{remark}
+
+
+\begin{proposition}[Exact pole of the supercritical embedding constant]
+\label{prop:zetapole}
+Write the constant in \eqref{eq:globalfractional} as
+\begin{equation}
+ C_s(R)
+ :=
+ \frac{2R^s}{3V_R}
+ \bigl[\zeta(s-2)-\zeta(s)\bigr]
+ =
+ \frac{R^{s-3}}{3\pi^2}
+ \bigl[\zeta(s-2)-\zeta(s)\bigr].
+ \label{eq:Csdef}
+\end{equation}
+Then
+\begin{equation}
+ \boxed{
+ \lim_{s\downarrow3}(s-3)C_s(R)
+ =
+ \frac{1}{3\pi^2}.
+ }
+ \label{eq:Csresidue}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+Put $s=3+\varepsilon$.  Since
+\[
+ \varepsilon\,\zeta(1+\varepsilon)\longrightarrow1,
+ \qquad
+ \varepsilon\,\zeta(3+\varepsilon)\longrightarrow0,
+ \qquad
+ R^\varepsilon\longrightarrow1,
+\]
+formula \eqref{eq:Csresidue} follows from \eqref{eq:Csdef}.
+\end{proof}
+
+\begin{remark}[The pole is not an endpoint Trudinger theorem]
+The residue \eqref{eq:Csresidue} describes the divergence of the constants
+in the family of estimates for $s>3$.  It does not permit one to set
+$s=3$ in \eqref{eq:globalfractional}, because both the spectral series and
+the norm $\|\Delta_1^{s/2}v\|_1$ vary with $s$.  In particular no
+$W^{3,1}\to\mathrm{BMO}$ embedding, no Trudinger--Moser exponential
+inequality, and no sharp endpoint constant follow from the zeta-pole
+calculation alone.  Such endpoint statements require an independent
+harmonic-analysis theorem.
+\end{remark}
+
+
+
+
+\section{Exact shell-helicity balances}
+\label{sec:helicity}
+
+For $v_{k,\sigma}\in E_{k,\sigma}$ define its signed shell helicity
+\begin{equation}
+\begin{aligned}
+ \mathscr H_{k,\sigma}(v)
+ &:=
+ \langle v_{k,\sigma},\curl v_{k,\sigma}\rangle\\
+ &=
+ \mu_{k,\sigma}\|v_{k,\sigma}\|_2^2,
+ \qquad
+ \mu_{k,\sigma}=\sigma\frac{k+2}{R}.
+\end{aligned}
+\label{eq:shellhelicity}
+\end{equation}
+
+\begin{theorem}[Killing transparency and shell-helicity balance]
+\label{thm:shellhelicity}
+For every shell,
+\begin{equation}
+ \boxed{
+ \langle D(m)v_{k,\sigma},
+         \curl v_{k,\sigma}\rangle=0.
+ }
+ \label{eq:Dhelicityzero}
+\end{equation}
+Along a sufficiently regular solution of the high-mode equation,
+\begin{equation}
+\boxed{
+\begin{aligned}
+ \frac12\frac{\dd}{\dd t}\mathscr H_{k,\sigma}
+ &+
+ \nu\kappa_k\mathscr H_{k,\sigma}\\
+ &+
+ \mu_{k,\sigma}
+ \left\langle
+   \Pi_{k,\sigma}Q(v,v),v_{k,\sigma}
+ \right\rangle\\
+ &=
+ \mu_{k,\sigma}
+ \left\langle
+   F_{k,\sigma},v_{k,\sigma}
+ \right\rangle .
+\end{aligned}}
+\label{eq:shellhelicitybalance}
+\end{equation}
+Thus Killing precession transfers neither energy nor helicity between signed
+curl shells.
+\end{theorem}
+
+\begin{proof}
+Since $D(m)$ is skew-adjoint and commutes with curl,
+\[
+\begin{aligned}
+ \langle Dv,\curl v\rangle
+ &=
+ -\langle v,D\curl v\rangle\\
+ &=
+ -\langle v,\curl Dv\rangle\\
+ &=
+ -\langle\curl v,Dv\rangle.
+\end{aligned}
+\]
+so the real scalar equals its own negative and is zero.  The balance
+\eqref{eq:shellhelicitybalance} is obtained by multiplying the shell-energy
+identity \eqref{eq:shellenergy} by the scalar $\mu_{k,\sigma}$.
+\end{proof}
+
+\begin{theorem}[High-mode helicity law on every affine Killing leaf]
+\label{thm:totalhighhelicity}
+Let
+\[
+ \mathscr H(v)=\langle v,\curl v\rangle.
+\]
+Then
+\begin{equation}
+ \boxed{
+ \frac12\frac{\dd}{\dd t}\mathscr H(v)
+ +
+ \nu\langle Av,\curl v\rangle
+ =
+ \langle F_\perp,\curl v\rangle.
+ }
+ \label{eq:totalhighhelicity}
+\end{equation}
+In particular, for inviscid unforced dynamics on a fixed affine leaf,
+$\mathscr H(v)$ is conserved exactly.
+\end{theorem}
+
+\begin{proof}
+Sum \eqref{eq:shellhelicitybalance} over all signed shells.  It remains to
+show that the nonlinear sum vanishes:
+\[
+ \langle Q(v,v),\curl v\rangle=0.
+\]
+Because $\curl v$ is divergence-free, the Leray projection can be removed.
+Using the three-dimensional identity
+\[
+ \nabla_vv
+ =
+ \gradg\!\left(\frac12|v|^2\right)
+ -
+ v\times\curl v,
+\]
+the gradient term integrates to zero against $\curl v$, while the cross
+product is pointwise orthogonal to $\curl v$.  Hence the nonlinear
+contribution is zero.  The Killing contribution already vanishes by
+\eqref{eq:Dhelicityzero}.
+\end{proof}
+
+\begin{proposition}[Signed helicity dissipation and absolute chiral damping]
+\label{prop:helicitydissipation}
+The viscous term in the high-mode helicity law is
+\begin{equation}
+ \boxed{
+ \nu\langle Av,\curl v\rangle
+ =
+ \frac{\nu}{R}
+ \sum_{k\ge1}\kappa_k(k+2)
+ \left(
+   \|v_{k,+}\|_2^2-\|v_{k,-}\|_2^2
+ \right).
+ }
+ \label{eq:signedhelicitydiss}
+\end{equation}
+It is therefore sign-indefinite as a functional of a mixed-chirality field.
+
+Nevertheless viscosity is not antidissipative on the negative-helicity
+sector.  With nonlinear transfer and forcing suppressed, every shell obeys
+\begin{equation}
+\begin{aligned}
+ \left.\frac{\dd}{\dd t}\mathscr H_{k,\sigma}\right|_{\nu}
+ &=
+ -2\nu\kappa_k\mathscr H_{k,\sigma},\\
+ \left.\frac{\dd}{\dd t}|\mathscr H_{k,\sigma}|\right|_{\nu}
+ &=
+ -2\nu\kappa_k|\mathscr H_{k,\sigma}|.
+\end{aligned}
+\label{eq:absolutechiraldecay}
+\end{equation}
+Thus viscosity drives both positive and negative shell helicities toward
+zero.
+
+If
+\begin{equation}
+ \mathscr H_{\rm abs}(v)
+ :=
+ \sum_{k,\sigma}
+ |\mu_{k,\sigma}|\|v_{k,\sigma}\|_2^2,
+ \label{eq:absolutehelicity}
+\end{equation}
+then its purely viscous contribution satisfies
+\begin{equation}
+ \boxed{
+ \left.\frac{\dd}{\dd t}\mathscr H_{\rm abs}(v)\right|_{\nu}
+ =
+ -2\nu
+ \sum_{k,\sigma}
+ \kappa_k|\mu_{k,\sigma}|\|v_{k,\sigma}\|_2^2
+ \le0.
+ }
+ \label{eq:absolutehelicitydecay}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+Insert
+$Av_{k,\sigma}=\kappa_kv_{k,\sigma}$ and
+$\curl v_{k,\sigma}=\sigma(k+2)R^{-1}v_{k,\sigma}$
+into the inner product.  Equation \eqref{eq:absolutechiraldecay} follows
+from the shell balance with only the viscous term retained, and summation
+gives \eqref{eq:absolutehelicitydecay}.
+\end{proof}
+
+\begin{remark}
+The sign-indefiniteness of \eqref{eq:signedhelicitydiss} reflects the signed
+definition of total helicity, not a viscous instability of one chirality.
+Likewise, a fixed sign of an azimuthal physical-space swirl does not by
+itself determine the spectral imbalance between $E_{k,+}$ and $E_{k,-}$.
+No chiral singularity-selection mechanism is inferred here.
+\end{remark}
+
+\begin{remark}[No chiral selection rule is inferred]
+The conservation law constrains the signed sum of nonlinear shell transfers,
+but it does not by itself forbid direct interactions between
+$E_{k,+}$ and $E_{\ell,-}$.  A claimed ``chiral valve'' would require an
+explicit Clebsch--Gordan analysis of the polarized map
+$Q(E_{k,+},E_{\ell,-})$ and its target representations.  No such additional
+selection rule is assumed here.
+\end{remark}
+
+
+
+
+\section{Sharp limitations of stronger classification and entropy claims}
+\label{sec:limitations}
+
+
+\begin{theorem}[Grassmannian families of exact pressure-linear reductions]
+\label{thm:grassmannreductions}
+Fix a signed curl shell $E_{k,\sigma}$.  Every linear subspace
+$L\subset E_{k,\sigma}$ is an exact reducing space:
+\begin{equation}
+ AL\subset L,
+ \qquad
+ Q(L,L)=0.
+ \label{eq:grassmannexact}
+\end{equation}
+Consequently, for every $1\le d\le d_k=(k+1)(k+3)$, the whole Grassmannian
+\begin{equation}
+ \mathrm{Gr}(d,E_{k,\sigma})
+ \label{eq:grassmannfamily}
+\end{equation}
+consists of $d$-dimensional exact Navier--Stokes reductions.
+
+Likewise every subspace $H\subset\cK$ is exact, because
+$A|_{\cK}=0$ and $Q(\cK,\cK)=0$.
+\end{theorem}
+
+\begin{proof}
+The Stokes operator is scalar on $E_{k,\sigma}$:
+$A=\kappa_k\Id$.  Moreover
+$Q(E_{k,\sigma},E_{k,\sigma})=0$ by the Beltrami cancellation and
+polarization.  Both assertions therefore restrict to every subspace
+$L\subset E_{k,\sigma}$.  The Killing statement is identical with
+$\kappa_0=0$ and the pressure-linearity of the full Killing algebra.
+\end{proof}
+
+\begin{corollary}[No finite atlas of all reductions in dimension at most eight]
+\label{cor:nosmallatlas}
+For every $1\le d\le8$ there are continuous families of exact
+$d$-dimensional reducing spaces on $\Sthree$.  Hence no finite list of
+isometry types of the form ``Killing, toric, one shell, resonant sector''
+can be an exhaustive classification of all exact reductions with
+$\dim W\le8$ without additional hypotheses.
+\end{corollary}
+
+\begin{proof}
+Choose $k$ with $d_k\ge d$ and apply
+\cref{thm:grassmannreductions}.  The Grassmannian
+$\mathrm{Gr}(d,E_{k,\sigma})$ has positive dimension whenever
+$0<d<d_k$; for $d=8$ one may take any $k\ge2$, for which $d_k>8$.
+\end{proof}
+
+\begin{proposition}[The nonlinear-coherence ratio is not a spectral dichotomy]
+\label{prop:gammalimitation}
+Whenever the denominator is nonzero, define
+\begin{equation}
+ \Gamma(u)
+ :=
+ \frac{\|Q(u,u)\|_2}
+ {\|u\|_2\,\|\Def u\|_2}.
+ \label{eq:Gamma}
+\end{equation}
+Then $\Gamma(u)=0$ for every non-Killing field in any pressure-linear sector,
+including every signed curl shell and the entire maximal-torus sector.
+Therefore $\Gamma\to0$ does not imply concentration in one Beltrami shell.
+
+Indeed there exist finite sums $u_M$ in the maximal-torus sector with
+$\Gamma(u_M)=0$ and with nonzero energy in $M$ distinct Stokes levels.
+After equalizing the level energies, the Shannon entropy of the coarsened
+Stokes-level distribution is exactly $\log M$.
+\end{proposition}
+
+\begin{proof}
+If $Q(u,u)=0$ and $\Def u\ne0$, then \eqref{eq:Gamma} vanishes.
+For the second statement choose nonzero toric eigenmodes from $M$ distinct
+Jacobi levels and rescale them to equal $L^2$ energies.  The toric sector is
+pressure-linear, so the numerator remains zero.  Orthogonality of distinct
+Stokes eigenspaces gives level probabilities $1/M$ and hence entropy
+$\log M$.
+\end{proof}
+
+\begin{remark}
+Thus neither $\Gamma(u)\to0$ nor a lower bound
+$\Gamma(u)\ge\gamma_0>0$ supplies, by itself, a theorem asserting exactly two
+possible forms of spectral escape.  In particular, entropy divergence still
+requires a separate energy-spreading hypothesis, and shell-count divergence
+requires the derivative-budget assumptions stated in the companion note.
+\end{remark}
+
+The rigidity theorem does not classify arbitrary finite-dimensional reducing
+spaces outside the Killing-saturated category. The following resonance-slope
+statement records one precise limitation of a narrower graph ansatz.
+\label{sec:resonance-analysis}
+
+A proposed strengthening introduces a family of three-dimensional graph
+subalgebras $H_c\subset\cK$ and, for a given wave number $k$, a cancellation
+condition
+\[
+ c=c_*(k):=\frac{k}{k+4}.
+\]
+Even when such a family has been constructed in a specified ansatz, the
+monotonicity of $c_*(k)$ proves only the following narrow statement.
+
+\begin{proposition}[Single-slope incompatibility across distinct levels]
+\label{prop:singleslope}
+Assume a fixed graph subalgebra $H_c$ can preserve a nonzero partial
+subspace in level $k$ only when $c=c_*(k)=k/(k+4)$.  Then the same fixed
+$H_c$ cannot satisfy that cancellation condition simultaneously for two
+distinct levels $k_1\ne k_2$.
+\end{proposition}
+
+\begin{proof}
+The function
+\[
+ c_*(k)=\frac{k}{k+4}
+\]
+is strictly increasing for $k\ge0$, since
+\[
+ c_*'(k)=\frac4{(k+4)^2}>0.
+\]
+Hence $c_*(k_1)=c_*(k_2)$ implies $k_1=k_2$.
+\end{proof}
+
+\begin{remark}[Why this is not a global classification theorem]
+\label{rem:notglobalclass}
+The preceding proposition says nothing by itself about
+$Q(L_i,L_j)$ for $i\ne j$, about graph subalgebras outside the chosen
+one-parameter family, about invariant spaces that are not of graph type, or
+about toric reductions that mix spectral data differently.  Therefore
+monotonicity of $c_*(k)$ cannot imply that \emph{all} finite-dimensional
+Navier--Stokes reducing spaces are exhausted by a listed collection.
+The exhaustive statement proved here is instead
+\cref{cor:Ksaturatedclassification}, and it requires the full six-dimensional
+Killing algebra $\cK\subset W$.
+\end{remark}
+
+
+
+Spectral escape likewise does not force Shannon entropy of the shell-energy
+distribution to diverge. The following counterexample separates pointwise
+concentration from energy equipartition.
+\label{sec:entropy}
+
+The projector bounds force rank or bandwidth to grow if a finite
+$SO(4)$-invariant model is required to capture a fixed fraction of an
+$L^\infty$ peak.  They do \emph{not} force Shannon entropy of the
+$L^2$ shell-energy distribution to diverge.
+
+For a nonzero field $u$, define
+\[
+ p_{k,\sigma}(u)
+ =
+ \frac{\|\Pi_{k,\sigma}u\|_2^2}{\|u\|_2^2},
+ \qquad
+ \mathcal S_{\mathrm{spec}}(u)
+ =
+ -\sum_{k,\sigma}p_{k,\sigma}\log p_{k,\sigma}.
+\]
+
+\begin{theorem}[Bounded energy and unbounded peak do not force entropy growth]
+\label{thm:entropycounter}
+There exists a sequence of smooth divergence-free fields $u_n$ on
+$\Sthree$ such that
+\begin{equation}
+ \|u_n\|_2=1,
+ \qquad
+ \|u_n\|_\infty\longrightarrow\infty,
+ \qquad
+ \boxed{
+ \mathcal S_{\mathrm{spec}}(u_n)\longrightarrow0.
+ }
+ \label{eq:entropycounter}
+\end{equation}
+Therefore no lower bound of the form
+\[
+ \mathcal S_{\mathrm{spec}}(u)
+ \gtrsim \log\|u\|_\infty
+\]
+can follow from bounded $L^2$ energy and spectral projector estimates alone.
+\end{theorem}
+
+\begin{proof}
+Choose an $L^2$-unit Killing field $K$ and, for each $n\ge1$, an $L^2$-unit
+extremizer $w_n\in E_{n,+}$ for the sharp projector inequality.  Then
+\[
+ \|w_n\|_\infty
+ =
+ \sqrt{\frac{(n+1)(n+3)}{3V_R}}
+ \asymp n.
+\]
+Let $\varepsilon_n=n^{-1}$ and define
+\[
+ u_n=\sqrt{1-\varepsilon_n}\,K+\sqrt{\varepsilon_n}\,w_n.
+\]
+The two terms are $L^2$-orthogonal, so $\|u_n\|_2=1$.  By the reverse
+triangle inequality,
+\[
+ \|u_n\|_\infty
+ \ge
+ \sqrt{\varepsilon_n}\|w_n\|_\infty-\|K\|_\infty
+ \asymp n^{1/2}-O(1)\to\infty.
+\]
+The shell-energy distribution has only two nonzero probabilities,
+$1-\varepsilon_n$ and $\varepsilon_n$.  Hence
+\[
+\begin{aligned}
+ \mathcal S_{\mathrm{spec}}(u_n)
+ &=
+ -(1-\varepsilon_n)\log(1-\varepsilon_n)\\
+ &\quad
+ -\varepsilon_n\log\varepsilon_n\\
+ &=
+ O\!\left(\frac{\log n}{n}\right)\to0.
+\end{aligned}
+\]
+\end{proof}
+
+\begin{remark}
+This example also shows why the adaptive rank barrier does not imply a
+frequency-independent lower bound on the \emph{number} of active shells.
+A single shell has rank $\asymp k^2$ and can move to arbitrarily high
+frequency.  Thus concentration alone permits a tradeoff between shell count
+and maximum frequency; packet-specific rates for that tradeoff require additional similarity
+assumptions and are not part of the present article.
+\end{remark}
+
+A true entropy statement requires an additional energy-spreading hypothesis.
+
+\begin{proposition}[Conditional entropy lower bound]
+\label{prop:conditionalentropy}
+Suppose a set $S$ of $M$ signed shells carries total energy probability
+$q=\sum_{\alpha\in S}p_\alpha\ge\delta>0$ and
+\[
+ p_\alpha\le\frac{C}{M}
+ \qquad(\alpha\in S).
+\]
+Then, whenever $M\ge C$,
+\begin{equation}
+ \boxed{
+ \mathcal S_{\mathrm{spec}}(u)
+ \ge
+ \delta\log\frac{M}{C}.
+ }
+ \label{eq:conditionalentropy}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+For $\alpha\in S$,
+$-\log p_\alpha\ge\log(M/C)$.  Therefore
+\[
+ \mathcal S_{\mathrm{spec}}(u)
+ \ge
+ \sum_{\alpha\in S}-p_\alpha\log p_\alpha
+ \ge
+ q\log(M/C)
+ \ge
+ \delta\log(M/C).
+\]
+\end{proof}
+
+
+
+\section{Scope and independence from the singularity-transfer problem}
+\label{sec:scope}
+
+Every theorem in the present article is an intrinsic statement about
+Navier--Stokes geometry, exact reduction, or spectral projection on the round
+three-sphere.  No theorem here assumes the existence of a finite-time
+singular similarity packet.
+
+The motivating Zenodo preprint of Batenin and Preece
+\cite{PreeceBatenin2026} additionally formulates a conditional transfer of a
+forced singular branch to the sphere.  That transfer construction and its
+packet-specialized analytic machinery are outside the scope of this article.
+In particular, none of the Killing--Beltrami interaction,
+connection-curvature, rigidity, Casimir, toric, projector,
+Bessel-potential, energy, or helicity results depends on the inner-solver,
+renormalized matching, or annular-cycle stability hypotheses of the transfer
+construction.
+
+\section{Conclusion}
+
+The central structure on the round three-sphere is the exact chiral
+Killing--Beltrami intertwining law. It organizes shellwise skew dynamics, a
+canonical nonflat connection, exact viscous reductions, a converse rigidity
+theorem for Killing-saturated spaces, and the Casimir representation of
+Stokes dissipation.
+
+This organization also separates the present contribution from established
+results. Conservation of the Killing component belongs to the existing
+geometric Navier--Stokes theory \cite{SamavakiTuomela2020}, and exact
+nonstationary Euler solutions on the round three-sphere have independent
+precedents \cite{HeslinPreston2026}. The distinct contribution here is the
+full chiral Killing--Beltrami interaction law and the rigidity, connection,
+and Casimir structures that follow from it.
+
+Compact homogeneity adds the sharp projector theory and quantitative
+spectral concentration bounds. These statements are intrinsic. Any
+specialization to the relative singularity construction of
+Ref.~\cite{PreeceBatenin2026} requires additional packet assumptions and is
+not asserted here.
+
+\begin{acknowledgments}
+OpenAI ChatGPT was used substantively to test candidate
+derivations, audit logical dependencies, organize literature, and assist with
+\LaTeX{} preparation. The tool was directed through explicit mathematical
+prompts and instructed to distinguish proved statements from conditional or
+conjectural extensions. Retained outputs were checked against explicit
+derivations, the Zenodo source preprint, and the cited literature. The human
+authors remain responsible for final verification and for all scientific
+content of the submitted manuscript.
+\end{acknowledgments}
+
+% APS strongly encourages a CRediT-style Author Contributions paragraph.
+% Add it here after the confirmed author list is available.
+
+\section*{Data Availability}
+This is a purely mathematical work and no data were created or analyzed in
+this study.
+
+
+\begin{thebibliography}{99}
+
+\bibitem{PreeceBatenin2026}
+B.~Batenin and A.~Preece,
+``Finite-dimensional spectral closure and a relative forced singular branch
+for Navier--Stokes on the round three-sphere,''
+Zenodo, Version 1.0 (2026), doi:10.5281/zenodo.22858542.
+
+\bibitem{MarsdenWeinstein1974}
+J.~E. Marsden and A.~Weinstein,
+``Reduction of symplectic manifolds with symmetry,''
+Rep. Math. Phys. \textbf{5}, 121--130 (1974),
+doi:10.1016/0034-4877(74)90021-4.
+
+\bibitem{EbinMarsden1970}
+D.~G. Ebin and J.~Marsden,
+``Groups of diffeomorphisms and the motion of an incompressible fluid,''
+Ann. Math. \textbf{92}, 102--163 (1970),
+doi:10.2307/1970699.
+
+\bibitem{ChanCzubakDisconzi2017}
+C.~H. Chan, M.~Czubak, and M.~M. Disconzi,
+``The formulation of the Navier--Stokes equations on Riemannian manifolds,''
+J. Geom. Phys. \textbf{121}, 335--346 (2017),
+doi:10.1016/j.geomphys.2017.07.015.
+
+
+\bibitem{SamavakiTuomela2020}
+M.~Samavaki and J.~Tuomela,
+``Navier--Stokes equations on Riemannian manifolds,''
+J. Geom. Phys. \textbf{148}, 103543 (2020),
+doi:10.1016/j.geomphys.2019.103543.
+
+\bibitem{IkedaTaniguchi1978}
+A.~Ikeda and Y.~Taniguchi,
+``Spectra and eigenforms of the Laplacian on $S^n$ and $P^n(\mathbb C)$,''
+Osaka J. Math. \textbf{15}, 515--546 (1978).
+
+\bibitem{HeslinPreston2026}
+P.~Heslin and S.~C. Preston,
+``Exact non-stationary solutions of the Euler equations in two and three
+dimensions,''
+arXiv:2602.13929 (2026).
+
+\bibitem{Baron2025}
+A.~Baron,
+``Exact solutions to the three-dimensional Navier--Stokes equations based on
+the stream function approach,''
+Phys. Fluids \textbf{37}, 017159 (2025),
+doi:10.1063/5.0245978.
+
+\end{thebibliography}
+
+
+
+% FINAL AUTHOR ACTIONS BEFORE APS UPLOAD:
+% - designate exactly one corresponding author in the APS submission server;
+% - confirm the AI-use disclosure truthfully describes the authors' own verification;
+% - confirm funding/CRediT statements if applicable;
+% - confirm Physical Review submission history and any referee requests in cover letter.
+\end{document}
