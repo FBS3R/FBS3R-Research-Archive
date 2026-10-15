@@ -1,3 +1,4 @@
+<img width="1024" height="1024" alt="photo_2025-02-26 21 38 31" src="https://github.com/user-attachments/assets/1392d291-1e16-4b3f-ab67-2987077392a2" />
 # IV. HCC-S³
 
 **FB(S³)R** · Fractal • Bindu • S³ • Reality
