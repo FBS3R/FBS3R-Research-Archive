@@ -24,7 +24,7 @@ This section examines the passage from formal distinctions to physically realise
 
 > How does information emerge from physically realised distinguishability on a compact carrier?
 
-## Orpheus Praxis — YouTube Channel
+## [Orpheus Praxis — YouTube Channel](https://www.youtube.com/@fractalbindureality)
 
 **Orpheus Praxis** is an independent educational YouTube channel offering intellectual ASMR audio podcasts on mathematics, physics, cosmology, and the foundations of reality. Combining accessible scientific storytelling with interdisciplinary inquiry, the channel explores established theories, empirical discoveries, and contemporary research through logic, critical thinking, and verifiable scientific knowledge. Scientific models are presented as tools for understanding, open to examination and revision rather than belief.
 
