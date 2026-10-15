@@ -1,3 +1,4 @@
+<img width="1024" height="1024" alt="photo_2025-02-26 21 38 35" src="https://github.com/user-attachments/assets/3094778c-5e2f-40e8-9f2b-0aa0a23658ad" />
 # I. Logic & Mathematics
 
 **FB(S³)R** · Fractal • Bindu • S³ • Reality
