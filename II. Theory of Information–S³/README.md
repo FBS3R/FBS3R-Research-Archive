@@ -1,3 +1,4 @@
+<img width="1024" height="1024" alt="photo_2025-02-26 21 38 20" src="https://github.com/user-attachments/assets/347f6b71-195e-434c-ac33-9b2a653a89f5" />
 # II. Theory of Information–S³
 
 **FB(S³)R** · Fractal • Bindu • S³ • Reality
