@@ -24,6 +24,12 @@ This section explores the conceptual and physical foundations of the programme: 
 
 > Why do these questions arise at all, and what conceptual foundations make physical theories possible?
 
+## Orpheus Praxis — YouTube Channel
+
+**Orpheus Praxis** is an independent educational YouTube channel offering intellectual ASMR audio podcasts on mathematics, physics, cosmology, and the foundations of reality. Combining accessible scientific storytelling with interdisciplinary inquiry, the channel explores established theories, empirical discoveries, and contemporary research through logic, critical thinking, and verifiable scientific knowledge. Scientific models are presented as tools for understanding, open to examination and revision rather than belief.
+
+**Audio Podcast Playlist:** [III. Ontology & Physics](https://www.youtube.com/playlist?list=PLGyr1XUx_oMs)
+
 ## Research publications
 
 Individual works will be indexed here with links to their original PDF and TeX files in **[All Preprints](../All%20Preprints/)**.

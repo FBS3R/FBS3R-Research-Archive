@@ -23,6 +23,12 @@
 
 > On what geometric carrier can physical structure consistently emerge?
 
+## Orpheus Praxis — YouTube Channel
+
+**Orpheus Praxis** is an independent educational YouTube channel offering intellectual ASMR audio podcasts on mathematics, physics, cosmology, and the foundations of reality. Combining accessible scientific storytelling with interdisciplinary inquiry, the channel explores established theories, empirical discoveries, and contemporary research through logic, critical thinking, and verifiable scientific knowledge. Scientific models are presented as tools for understanding, open to examination and revision rather than belief.
+
+**Audio Podcast Playlist:** [IV. HCC-S³](https://www.youtube.com/playlist?list=PLNGYx_EzvgFo)
+
 ## Research publications
 
 Individual works will be indexed here with links to their original PDF and TeX files in **[All Preprints](../All%20Preprints/)**.
