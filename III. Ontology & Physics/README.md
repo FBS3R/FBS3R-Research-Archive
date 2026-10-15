@@ -1,3 +1,4 @@
+<img width="1024" height="1024" alt="photo_2025-02-26 21 38 46" src="https://github.com/user-attachments/assets/2d437e43-94b0-4b23-97eb-5f09aea5b5be" />
 # III. Ontology & Physics
 
 **FB(S³)R** · Fractal • Bindu • S³ • Reality
