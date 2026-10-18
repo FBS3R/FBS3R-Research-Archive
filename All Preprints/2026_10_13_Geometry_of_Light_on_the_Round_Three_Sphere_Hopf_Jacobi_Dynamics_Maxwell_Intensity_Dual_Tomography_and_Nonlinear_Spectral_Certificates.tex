@@ -1,0 +1,1784 @@
+\documentclass[10pt,letterpaper]{article}
+\usepackage[margin=0.82in]{geometry}
+\usepackage{fontspec}
+\usepackage{unicode-math}
+\setmainfont{Latin Modern Roman}
+\setmathfont{Latin Modern Math}
+\usepackage{amsmath,amsthm,mathtools}
+\usepackage{microtype}
+\usepackage{hyperref}
+\usepackage{booktabs,longtable,tabularx,array}
+\usepackage{enumitem}
+\hypersetup{hidelinks}
+\allowdisplaybreaks[2]
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{definition}[theorem]{Definition}
+\renewcommand\proofname{Proof}
+\newcommand{\curl}{\operatorname{curl}}
+\newcommand{\grad}{\operatorname{grad}}
+\newcommand{\Div}{\operatorname{div}}
+\newcommand{\FS}{\mathrm{FS}}
+\newcommand{\pnorm}[1]{\lVert #1\rVert}
+\title{Geometry of Light on the Round Three-Sphere:\\[3pt]\large Hopf--Jacobi Dynamics, Maxwell Intensity, Dual Tomography, and Nonlinear Spectral Certificates}
+\author{Research working draft for the Batenin--Preece programme\\\small Mathematical manuscript; authorship and independent review pending}
+\date{October 10, 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+
+We develop an algebraically parameterized geometry-of-light research framework on the fixed round three-sphere. Smooth null Beltrami fields built from homogeneous binary forms provide a common mathematical input for two distinct dynamical equations: source-free Maxwell evolution and exact pressure-balanced viscous flow. For the latter, we establish both an unforced multispectral toroidal Jacobi family and a symmetry-protected nonresonant Hopf–Killing family, distinguishing spectral degeneracy from vanishing projected nonlinear interaction. We derive energy, helicity, enstrophy, pressure-beat and Noether identities, a signed-curl spectral variance, and physical-time Fubini–Study/Fisher formulas for reducing viscous histories. A positive moment–Hankel hierarchy gives finite-rank spectral certificates with stated conditioning limits. In an externally controlled fixed-Hopf sector, projective forcing has a Berry-geometric cost and permits a smooth exchange of linked nodal fibres. Our new cross-domain reconstruction theorem shows that (m + 1)(2m + 1) calibrated equal-time intensity or pressure-deficit samples recover the degree-m binary form up to global phase and therefore recover its Hopf nodal divisor. A separate finite energy–helicity Prony procedure resolves occupied absolute curl shells and both chirality weights. An explicit counterexample proves that integrated energy–helicity histories alone cannot identify nodal topology, even without noise. The manuscript includes reproducible algebraic verification and sharply typed transfer gates from OpenAI Math. Polynomial optical knots, stellar representations and moment inversion have substantial prior art; the worldwide novelty of the joint construction remains unestablished. We make no claim of Maxwell–Navier–Stokes physical identity, universal PDE regularity, quantum-gravity closure or observed cosmological topology.
+
+\end{abstract}
+
+\section{Scope, conventions, and motivation}
+
+An exact solution of a nonlinear PDE in a selected invariant family is not a regularity theorem for arbitrary initial data. Our aim is instead a reproducible atlas in which spectral, pressure, dynamical, topological, and projective data are connected by explicit mathematical arrows. The initial motivation is the fixed-Hopf null curl-eigenfield family of Batenin and Preece \cite{ref4}, a recent unreviewed preprint. Earlier work on Beltrami mechanics, Majorana stars and Berry geometry must be separated from any particular hydrodynamic packaging \cite{ref5,ref6,ref7}. Contemporary work on smooth forcing in flat Navier–Stokes systems has a different setting and goal \cite{ref10}. Fix the unit-round or radius-R sphere
+
+
+
+\begin{equation}
+\tag{1}\label{eq:1}
+S_R^3=\{(z_1,z_2)\in\mathbb C^2:|z_1|^2+|z_2|^2=1\},\qquad g_R=R^2g_1.
+\end{equation}
+
+The z coordinates are dimensionless. We use the positive Hodge Laplacian \(\Delta_H\) = d\(\delta \) + \(\delta \)d on one-forms, transferred to vector fields by musical isomorphisms. For divergence-free velocity u,
+
+
+
+\begin{equation}
+\tag{2}\label{eq:2}
+\partial_tu+\nabla_u u=-\operatorname{grad}P-\nu\Delta_Hu+f,\qquad\operatorname{div}u=0,\quad\nu>0.
+\end{equation}
+
+On divergence-free fields \(\Delta_H u\) = \(\operatorname{curl}^2u\). This is a specified curved-space viscosity convention, not a claim that all definitions of the viscous stress tensor on curved manifolds are identical.
+
+
+\section{An unforced multispectral toroidal sector}
+
+\subsection{Jacobi eigenbasis on $S_R^3$}
+
+Away from the two collapsed coordinate circles, write
+
+
+
+\begin{equation}
+\tag{3}\label{eq:3}
+z_1=\sqrt{1-x}\,e^{i\phi},\qquad z_2=\sqrt{x}\,e^{i\psi},\qquad 0<x<1.
+\end{equation}
+
+so that
+
+
+
+\begin{equation}
+\tag{4}\label{eq:4}
+g_R=R^2\left[\frac{dx^2}{4x(1-x)}+(1-x)d\phi^2+x\,d\psi^2\right],\qquad dV=\frac{R^3}{2}\,dx\,d\phi\,d\psi.
+\end{equation}
+
+Let A(x), B(x) be smooth polynomials. The field
+
+
+
+\begin{equation}
+\tag{5}\label{eq:5}
+u=A(x)\partial_\phi+B(x)\partial_\psi.
+\end{equation}
+
+is globally smooth, tangent to the Clifford tori x = const, and divergence-free. Its integral curves have constant x; the angular speeds are A and B. We fix the outward-boundary orientation induced by the standard real coordinates $(\operatorname{Re}z_1,\operatorname{Im}z_1,\operatorname{Re}z_2,\operatorname{Im}z_2)$. In these Hopf coordinates its positive volume form is $-dx\wedge d\phi\wedge d\psi$, up to the positive scale \(R^3/2\). This orientation is consistent with the positive-curl quaternion frame $X_1=iq$, $X_2=jq$, $X_3=kq$ used below. The unsigned volume element remains $\frac{R^3}{2}\,dx\,d\phi\,d\psi$. Define $J_n^A=P_n^{(0,1)}(1-2x)$ and $J_n^B=P_n^{(1,0)}(1-2x)$ using Jacobi polynomials, with $J_0^A=J_0^B=1$. Set
+
+
+
+\begin{equation}
+\tag{6}\label{eq:6}
+U_n^A=J_n^A(x)\partial_\phi,\quad U_n^B=J_n^B(x)\partial_\psi,\quad\kappa_n=\frac{2(n+1)}R.
+\end{equation}
+
+\begin{lemma}[Curl and Hodge eigenidentities]
+
+For all n \(\ge \)0,
+
+
+\begin{equation}
+\tag{7}\label{eq:7}
+\operatorname{curl}U_n^A=+\kappa_n U_n^B,\quad\operatorname{curl}U_n^B=+\kappa_n U_n^A,\quad\Delta_HU_n^{A,B}=\kappa_n^2 U_n^{A,B}.
+\end{equation}
+
+The fields $U_n^A\pm U_n^B$ have curl eigenvalue $\pm\kappa_n$.
+
+
+\end{lemma}
+
+\begin{proof}
+If $\alpha=u^\flat=R^2[(1-x)A\,d\phi+xB\,d\psi]$, direct application of $\star d$ gives
+
+
+\begin{equation}
+\tag{8}\label{eq:8}
+\operatorname{curl}u=+\frac2R(xB)^\prime\partial_\phi-\frac2R((1-x)A)^\prime\partial_\psi.
+\end{equation}
+
+The Jacobi derivative identities
+
+
+
+\begin{equation}
+\tag{9}\label{eq:9}
+((1-x)J_n^A)^\prime=-(n+1)J_n^B,\qquad (xJ_n^B)^\prime=(n+1)J_n^A.
+\end{equation}
+
+yield the first claims. Applying curl twice gives the last claim by the divergence-free Hodge identity.
+
+
+\end{proof}
+
+\begin{theorem}[Unforced multi-rate Jacobi solution]
+
+For any integer $N\ge0$ and arbitrary real coefficients $a_n,b_n$, define
+
+
+\begin{equation}
+\tag{10}\label{eq:10}
+\begin{aligned} A(t,x)&=\sum_{n=0}^N a_ne^{-\gamma_nt}J_n^A(x),&B(t,x)&=\sum_{n=0}^N b_ne^{-\gamma_nt}J_n^B(x),\\ \gamma_n&=\nu\kappa_n^2=\frac{4\nu(n+1)^2}{R^2}.\end{aligned}
+\end{equation}
+
+
+
+Then for all $t\ge0$ the globally smooth velocity $u(t)=A\partial_\phi+B\partial_\psi$ and pressure
+
+
+
+\begin{equation}
+\tag{11}\label{eq:11}
+P(t,x)=C(t)-\frac{R^2}2\int_0^x[A(t,y)^2-B(t,y)^2]\,dy.
+\end{equation}
+
+solve Eq.~\eqref{eq:2} with exactly zero force f = 0. Arbitrarily many distinct nonzero eigenvalues $\kappa_n^2$ may be present.
+
+
+\end{theorem}
+
+\begin{proof}
+The velocity is invariant under both angular circle actions; it is divergence-free by the invariant volume density in Eq.~\eqref{eq:4}. Its convective acceleration is purely in the x direction. In the angle \(\chi \) defined by $x=\sin^2\chi$, the only relevant Christoffel symbols are \(\Gamma \chi \) \(\phi \phi \) = sin \(\chi \) cos \(\chi \) and \(\Gamma \chi \) \(\psi \psi \) = \(- \)sin \(\chi \) cos \(\chi \). Hence
+
+
+\begin{equation}
+\tag{12}\label{eq:12}
+\nabla_uu=\sin\chi\cos\chi(A^2-B^2)\partial_\chi,\qquad\partial_xP=-\frac{R^2}2(A^2-B^2).
+\end{equation}
+
+which implies \(\nabla \)uu = \(- \)grad P. Lemma 2.1 and the exponentials give \(\partial \)tu = \(- \nu \Delta \)Hu; adding these two identities proves the full nonlinear equation. All fields are smooth at x = 0, 1 because x = |z2|2 and \(\partial \phi \), \(\partial \psi \) extend as globally smooth Killing fields, vanishing appropriately at the collapsed circles.
+
+
+\end{proof}
+
+\subsection{Integral characteristics and pressure beat spectroscopy}
+
+The Jacobi norm identities give
+
+
+
+\begin{equation}
+\tag{13}\label{eq:13}
+\int_0^1(1-x)J_n^AJ_k^A\,dx=\int_0^1xJ_n^BJ_k^B\,dx=\frac{\delta_{nk}}{2(n+1)}.
+\end{equation}
+
+2 R |u|2dV , H = R u \(\cdot \) curl udV , Z = R | curl u|2dV , and QK = R gR(u, K)dV , the solution of Theorem 2.2 has
+
+
+\begin{corollary}[Energy, helicity, enstrophy, and Killing projections]
+
+Writing E = 1
+
+
+\begin{equation}
+\tag{14}\label{eq:14}
+E(t)=\frac{\pi^2R^5}2\sum_{n=0}^N\frac{a_n^2+b_n^2}{n+1}e^{-2\gamma_nt}.
+\end{equation}
+
+
+\begin{equation}
+\tag{15}\label{eq:15}
+H(t)=+4\pi^2R^4\sum_{n=0}^N a_nb_ne^{-2\gamma_nt}.
+\end{equation}
+
+
+\begin{equation}
+\tag{16}\label{eq:16}
+Z(t)=4\pi^2R^3\sum_{n=0}^N(n+1)(a_n^2+b_n^2)e^{-2\gamma_nt}.
+\end{equation}
+
+
+\begin{equation}
+\tag{17}\label{eq:17}
+Q_{\partial_\phi}=\pi^2R^5a_0e^{-\gamma_0t},\qquad Q_{\partial_\psi}=\pi^2R^5b_0e^{-\gamma_0t}.
+\end{equation}
+
+In particular dE/dt = \(- \nu \)Z and dQK/dt = \(- \)4\(\nu \)QK/R2 for the displayed Killing fields. The individual mode helicity polarizations +2anbn/(a2 n + b2 n) are invariant whenever their denominators are nonzero.
+
+
+\end{corollary}
+
+\begin{proof}
+Insert the volume element and the pointwise norm |u|2 = R2[(1\(- \)x)A2 +xB2] into the definitions and apply Eq.~\eqref{eq:13}. Curl acts by the off-diagonal matrix of Lemma 2.1, immediately yielding Eq.~\eqref{eq:15}. The Killing projections select only n = 0 by Jacobi orthogonality against constants. Differentiating Eq.~\eqref{eq:14} gives the energy identity using \(\gamma \)n = \(\nu \kappa \)2 n.
+
+The pressure is not an independent spectral mode. Expanding Eq.~\eqref{eq:11} shows mixed exponents exp[\(- \)(\(\gamma \)n + \(\gamma \)k)t], with cross terms even when \(\kappa \)n \(\ne \)= \(\kappa \)k:
+
+
+\(- \) 2 R2 \(\partial \)xP =
+
+
+
+\begin{equation}
+\tag{18}\label{eq:18}
+-\frac2{R^2}\partial_xP=\sum_{n,k=0}^Ne^{-(\gamma_n+\gamma_k)t}\left[a_na_kJ_n^AJ_k^A-b_nb_kJ_n^BJ_k^B\right].
+\end{equation}
+
+The pressure therefore registers the nonlinear cross-mode geometry while the velocity experiences no nonlinear spectral transfer. Equal sums \(\gamma \)n + \(\gamma \)k cause possible spectral aliasing, and some cross coefficients can cancel. Consequently pressure measurements are not claimed to uniquely reconstruct all an, bn in this sector.
+
+
+Orientation audit. The signed-curl formulas and the quaternion frame must use the same outward- boundary orientation. Reversing the orientation in only one sector changes the signed eigenvalue of that sector and invalidates the stated hybrid resonance. With the orientation fixed above, the positive toroidal branch is the sum of the two Jacobi generators rather than their difference. The unsigned energy and enstrophy formulas are unchanged, whereas the signed helicity and its reconstruction formula reverse sign relative to the opposite convention.
+
+
+\end{proof}
+
+\section{A distinct pressure-observable Hopf sector}
+
+We now turn to a different exact family. It meets the toroidal one in simple Hopf/Killing cases but should not be confused with the entire Jacobi family. Fix a global oriented orthonormal Hopf frame (X1, X2, X3) on \(S_R^3\), with the common outward-boundary positive curl convention fixed in Sec. 2, and a homogeneous polynomial
+
+
+
+\begin{equation}
+\tag{19}\label{eq:19}
+p(z_1,z_2)=\sum_{k=0}^mc_kz_1^{m-k}z_2^k,\qquad b_k=\frac{c_k}{\sqrt{\binom mk}},\qquad r=\|b\|.
+\end{equation}
+
+For m \(\ge \)1 define U [p] = Re[p(X2 + iX3)]. The selected Hopf identities are div U [p] = 0 and curl U [p] = \(\lambda \)mU [p], \(\lambda \)m = (m + 2)/R. They can be checked directly in the global frame for these polynomials.
+
+
+Explicit frame and atlas projection. For reproducibility set R = 1 and identify a unit quaternion with the ambient vector q = (a, b, c, d), where z1 = a + ib, z2 = c + id. The oriented orthonormal quaternion frame is
+
+
+
+\begin{equation}
+\tag{20}\label{eq:20}
+X_1=(-b,a,-d,c),\qquad X_2=(-c,d,a,-b),\qquad X_3=(-d,-c,b,a).
+\end{equation}
+
+Consequently U [p] = (\(\Re \)p)X2 \(- \)(\(\Im \)p)X3 and the toroidal components are \(\partial \phi \) = (\(- \)b, a, 0, 0), \(\partial \psi \) = (0, 0, \(- \)d, c). All are tangent to S3. The atlas integrates the resulting tangent vector field on S3 and displays the spatial stereographic projection
+
+
+
+\begin{equation}
+\tag{21}\label{eq:21}
+\Pi(q)=\frac{(b,c,d)}{1-a},\qquad q\ne(1,0,0,0).
+\end{equation}
+
+with only a fixed visual scale factor. The projection is exact away from its pole, while individual plotted integral curves are approximated by normalized fourth-order Runge–Kutta steps. In particular a graphically observed crossing of projected traces is not asserted to prove a linking invariant. The kinetic metric satisfies Z
+
+
+
+\begin{equation}
+\tag{22}\label{eq:22}
+\int_{S_R^3}|U[p]|^2\,dV=C_m\|b\|^2,\qquad C_m=\frac{2\pi^2R^3}{m+1}.
+\end{equation}
+
+\begin{lemma}[Realization of coefficient dynamics by solenoidal forcing]
+
+For an arbitrary C1 coefficient path b(t) \(\ne \)= 0 at a fixed m, the fields
+
+
+\begin{equation}
+\tag{23}\label{eq:23}
+u(t)=U[p(t)],\quad P(t)=-\tfrac12|u(t)|^2,\quad f(t)=U[\dot p(t)+\gamma p(t)],\quad\gamma=\nu\lambda_m^2.
+\end{equation}
+
+solve Eq.~\eqref{eq:2} exactly, with div f = 0. The pressure-deficit profile 2(Pmax \(- \)P) = |p(t, z)|2 is constant along Hopf fibres and determines b(t)b(t)\(\dagger \) when m is known, as established for the preceding pressure- tomography family.
+
+
+\end{lemma}
+
+\begin{proof}
+A real Beltrami eigenfield obeys \(\nabla \)uu = grad(|u|2/2), with all curvature effects included in the Riemannian cross-product identity. Thus the pressure cancels nonlinear advection. Since \(\Delta_H u\) = \(\lambda \)2 mu, the chosen force is exactly the remaining term \(\partial \)tu + \(\nu \lambda \)2 mu. Every coefficient derivative remains in the solenoidal curl-eigenspace. For m \(\ge \)1 the polynomial has a projective root and hence Pmax = 0 in this pressure gauge. The fixed-degree polynomial intensity determines the rank-one coefficient projector by polarization of the homogeneous Hermitian polynomial; see also the numerical reconstruction in the companion research package.
+
+\end{proof}
+
+\subsection{Projective metric, Berry connection, and pressure-only control bound}
+
+Define the normalized rank-one matrix \(\rho \) = bb\(\dagger \)/r2. It is determined by the normalized pressure deficit, although the complex global phase of b is not. Its Fubini–Study speed is
+
+
+
+\begin{equation}
+\tag{24}\label{eq:24}
+v_{\mathrm{FS}}^2=\tfrac12\operatorname{Tr}[(\dot\rho)^2]=\|\dot\zeta\|^2-|\zeta^\dagger\dot\zeta|^2,\quad\rho=\zeta\zeta^\dagger,\ \|\zeta\|=1.
+\end{equation}
+
+The connection on unit coefficient lifts is a(t) = Im(\(\zeta \dagger \) ˙\(\zeta \)). The quantity \(\beta \) = R T 0 a(t)dt mod 2\(\pi \) is gauge invariant for a smooth periodic lift \(\zeta \)(0) = \(\zeta \)(T); its sign depends on the Berry connection convention, but the distance to 2\(\pi \)Z does not.
+
+
+\begin{theorem}[Exact pressure-observable actuation decomposition]
+
+For any nonzero C1 coefficient path, write b(t) = r(t)ei\(\theta \)(t)\(\zeta \)(t), with \(\| \zeta \| \)= 1. The squared L2 norm of the exact force in Lemma 3.1 obeys the identity \(\| \)f(t)\(\| \)2 L2(\(S_R^3\)) Cm = ( ˙r + \(\gamma \)r)2 + r2v2 FS + r2( ˙\(\theta \) + a)2. (25)
+
+
+\begin{equation}
+\tag{25}\label{eq:25}
+\frac{\|f(t)\|_{L^2(S_R^3)}^2}{C_m}=(\dot r+\gamma r)^2+r^2v_{\mathrm{FS}}^2+r^2(\dot\theta+a)^2.
+\end{equation}
+
+Suppose additionally that r(t) = r > 0 is constant and the pressure projector \(\rho \)(t) is periodic with period T, while the full physical velocity also closes, u(T) = u(0). Then
+
+
+
+\begin{equation}
+\tag{26}\label{eq:26}
+\int_0^T\|f(t)\|_{L^2}^2dt\ge C_mr^2\left[\gamma^2T+\frac{L_{\mathrm{FS}}^2+\operatorname{dist}(\beta,2\pi\mathbb Z)^2}{T}\right].
+\end{equation}
+
+where LFS = R T 0 vFS(t)dt. For a prescribed constant-speed projective loop the bound is achieved by an appropriate phase lift chosen so that the vertical connection velocity is constant and of minimum possible absolute winding. More generally the exact lower bound for a prescribed time-parametrized loop replaces L2 FS/T by R T 0 v2 FSdt.
+
+
+\end{theorem}
+
+\begin{proof}
+The isometry Eq.~\eqref{eq:22} applied to the force gives \(\| \)f\(\| \)2 = Cm\(\| \)˙b + \(\gamma \)b\(\| \)2. Decompose the coefficient derivative into the radial part, the component along i\(\zeta \), and the complex-horizontal component. The three real directions are orthogonal, giving Eq.~\eqref{eq:25}. For a periodic projective curve choose a periodic normalized representative \(\zeta \)(t) on the time circle, which exists because every complex line bundle over S1 is trivial. Velocity closure implies ei\(\theta \)(T) = ei\(\theta \)(0), so R T 0 ˙\(\theta \)dt = 2\(\pi \)n. Therefore Z T
+
+T \(\ge \)dist(\(\beta \), 2\(\pi \)Z)2
+
+
+0 ( ˙\(\theta \) + a)2dt \(\ge \)(2\(\pi \)n + \(\beta \))2
+
+
+T .
+
+
+A separate Cauchy–Schwarz inequality gives R T 0 v2 FSdt \(\ge \)L2 FS/T. Equality requires constant projective speed and constant vertical connection velocity, both achieved by time reparametrization and a smooth phase adjustment with the minimizing integer winding. The physical phase cannot simply be quotiented away in Eq.~\eqref{eq:2}; its rotation changes u although not the pressure. This is the reason the Berry term carries a real forcing cost.
+
+
+\end{proof}
+
+\subsection{An exactly saturating two-link braid}
+
+For m = 2, let
+
+
+
+\begin{equation}
+\tag{27}\label{eq:27}
+p_t(z_1,z_2)=\frac{z_1^2-e^{2\pi it/T}z_2^2}{\sqrt2},\qquad 0\le t\le T.
+\end{equation}
+
+Its projective roots are z1/z2 = \(\pm \)e\(\pi \)it/T . Both roots remain distinct and exchange over a closed cycle; their inverse Hopf fibres remain linked with linking number +1 under the standard orientation. The coefficient lift b = (1, 0, \(- \)e2\(\pi \)it/T )/ \(\sqrt{} \)
+
+
+2 is physically periodic and normalized. Direct evaluation gives
+
+
+LFS = \(\pi \), \(\beta \) = \(\pi \) (mod 2\(\pi \)), Z T
+
+
+
+\begin{equation}
+\tag{28}\label{eq:28}
+L_{\mathrm{FS}}=\pi,\quad\beta=\pi\pmod{2\pi},\quad\int_0^T\|f\|_{L^2}^2dt=C_2\left(\gamma^2T+\frac{2\pi^2}T\right),\quad\gamma=\frac{16\nu}{R^2}.
+\end{equation}
+
+Thus this exact Navier–Stokes protocol saturates the Berry–Fubini–Study forcing lower bound. It is a forced protocol, not a claim that an unforced viscous flow can braid its pressure zeros. The braid is a loop in the configuration space of distinct unordered roots; all pairwise spatial Hopf linking numbers remain unchanged.
+
+
+\section{Curvature viscosity bridge and Noether charges}
+
+The operator in Eq.~\eqref{eq:2} is the Hodge Laplacian, whereas the Ebin–Marsden deformation-tensor dissipation considered in other work on round S3 is a different physical choice. They must not silently be conflated \cite{ref8,ref9}. We fix the convention
+
+
+
+\begin{equation}
+\tag{29}\label{eq:29}
+A_{\mathrm{EM}}=-2\operatorname{div}\operatorname{Def}=\Delta_H-2\operatorname{Ric}=\Delta_H-\frac4{R^2}I.
+\end{equation}
+
+on divergence-free vector fields. Here Def u is the symmetric covariant velocity gradient. Since Ric = 2gR/R2, the curvature shift is scalar on the entire round sphere.
+
+
+\begin{theorem}[Exact pressure-balanced viscosity conjugacy]
+
+Assume a smooth solenoidal field (uH, PH) on \(S_R^3\) satisfies \(\nabla \)uHuH = \(- \)grad PH, \(\partial \)tuH + \(\nu \Delta \)HuH = fH, (30)
+
+
+\begin{equation}
+\tag{30}\label{eq:30}
+\nabla_{u_H}u_H=-\operatorname{grad}P_H,\qquad\partial_tu_H+\nu\Delta_Hu_H=f_H.
+\end{equation}
+
+for some solenoidal fH. Put c = 4\(\nu \)/R2 and s(t) = ect. Then
+
+
+
+\begin{equation}
+\tag{31}\label{eq:31}
+u_{\mathrm{EM}}=su_H,\qquad P_{\mathrm{EM}}=s^2P_H,\qquad f_{\mathrm{EM}}=sf_H.
+\end{equation}
+
+solves the corresponding incompressible Navier–Stokes equation with AEM in place of \(\Delta_H\). The result applies to each of Secs. 2 and 3 with the pressure balanced as above; it does not apply in general to solutions whose quadratic convection has a non-gradient part.
+
+
+\end{theorem}
+
+\begin{proof}
+Since s depends only on time, \(\nabla \)suH(suH) = s2\(\nabla \)uHuH = \(- \)grad(s2PH). Further,
+
+\(\partial \)t(suH) + \(\nu \)AEM(suH) = s \(\partial \)tuH + \(\nu \Delta \)HuH  + (s\(\prime\) \(- \)cs)uH = sfH.
+
+
+The solenoidal constraint is unchanged. This proves the claim.
+
+
+\end{proof}
+
+\begin{corollary}[Spectral decay, pressure beats and persistent Killing field]
+
+In the unforced toroidal family of Sec. 2, replace every rate \(\gamma \)n with
+
+
+\begin{equation}
+\tag{32}\label{eq:32}
+\gamma_n^{\mathrm{EM}}=\frac{4\nu n(n+2)}{R^2}=\gamma_n^H-\frac{4\nu}{R^2}.
+\end{equation}
+
+The pressure remains Eq.~\eqref{eq:11} with these new rates; its nonlinear beat exponents become \(\gamma \)EM n + \(\gamma \)EM k . The n = 0 components are preserved, and, for a finite modal sum,
+
+
+
+\begin{equation}
+\tag{33}\label{eq:33}
+u_{\mathrm{EM}}(t)\longrightarrow u_\infty=a_0\partial_\phi+b_0\partial_\psi,\quad\|u_{\mathrm{EM}}(t)-u_\infty\|_2\le e^{-12\nu t/R^2}\|u(0)-u_\infty\|_2.
+\end{equation}
+
+Thus the Hodge and Ebin–Marsden models have the same exact toroidal mode shapes but different asymptotic dynamics.
+
+
+\end{corollary}
+
+\begin{proof}
+The squared curl eigenvalues are \(\kappa \)2 n = 4(n+1)2/R2. Subtracting 4/R2 gives Eq.~\eqref{eq:32}. All Jacobi modes are L2-orthogonal in their respective angular components. For n \(\ge \)1, n(n + 2) \(\ge \)3, giving the stated bound.
+
+\end{proof}
+
+\begin{proposition}[Six exact Killing-momentum balance laws]
+
+For any smooth divergence-free solution, not only those in the special sectors above, and each Killing field K on the round \(S_R^3\), define QK = R gR(u, K) dV . Then
+
+
+\begin{equation}
+\tag{34}\label{eq:34}
+\begin{aligned}\frac{dQ_K^H}{dt}&=-\frac{4\nu}{R^2}Q_K^H+\int_{S_R^3}g_R(f_H,K)\,dV,\\ \frac{dQ_K^{\mathrm{EM}}}{dt}&=\int_{S_R^3}g_R(f_{\mathrm{EM}},K)\,dV.\end{aligned}
+\end{equation}
+
+The six-dimensional real Killing space has two su(2) factors. Thus without forcing all six charges decay for Hodge viscosity, but are conserved for Ebin–Marsden viscosity. This is a concrete instance of the known Killing-field conservation mechanism for deformation-tensor viscosity; no claim of historical priority is made.
+
+
+\end{proposition}
+
+\begin{proof}
+Using compactness and div u = 0, integration by parts gives Z gR(\(\nabla \)uu, K) dV = \(- \) Z uiuj\(\nabla \)iKj dV = 0
+
+by the Killing equation. The pressure term also pairs to zero. The positive Hodge Laplacian is self-adjoint and \(\Delta_H\)K = 4K/R2 on the round sphere, whereas AEMK = 0. Pairing the two equations with K proves the result.
+
+
+\end{proof}
+
+\section{Duration-optimized projective forcing}
+
+Both viscosity conventions admit exactly the fixed-degree Hopf/Beltrami control construction of Sec. 3, with decay parameter
+
+
+
+\begin{equation}
+\tag{35}\label{eq:35}
+\gamma_m^H=\frac{\nu(m+2)^2}{R^2},\qquad\gamma_m^{\mathrm{EM}}=\frac{\nu m(m+4)}{R^2}.
+\end{equation}
+
+This follows immediately from \(\Delta_H\)U = \(\lambda \)2 mU and Eq.~\eqref{eq:29}. All Berry and pressure-projector identities remain identical except for the scalar radial damping coefficient.
+
+
+\begin{corollary}[Optimal cycle time and minimal integrated forcing]
+
+For a specified projective loop of constant spatial polynomial degree m \(\ge \)1, constant coefficient radius r > 0, Fubini–Study length LFS, and Berry holonomy \(\beta \), put D = q
+
+L2 FS + dist(\(\beta \), 2\(\pi \)Z)2.
+
+
+If the loop is nontrivial (D > 0) and one can choose its time parameterization and physical lift, then among all cycle durations T > 0 for which the full velocity closes,
+
+
+
+\begin{equation}
+\tag{36}\label{eq:36}
+T_* =\frac{D}{\gamma},\qquad \min_{T>0}\int_0^T\|f(t)\|_{L^2}^2dt=2C_mr^2\gamma D.
+\end{equation}
+
+where \(\gamma \) is either positive rate in Eq.~\eqref{eq:35}. No assertion is made about changing the projective curve itself, or unrestricted actuator geometry.
+
+
+\end{corollary}
+
+\begin{proof}
+Reparameterize the fixed projective curve at constant Fubini–Study speed and choose the physical phase with constant minimum-magnitude vertical connection velocity. Then Theorem 3.2 is saturated:
+
+A(T) = Cmr2(\(\gamma \)2T + D2/T).
+
+
+By the arithmetic–geometric mean inequality (or differentiation), A(T) \(\ge \)2Cmr2\(\gamma \)D, with equality at T = D/\(\gamma \).
+
+
+\end{proof}
+
+\begin{corollary}[Exact viscosity contrast for the quadratic braid]
+
+For the degree-two braid in Eq.~\eqref{eq:27}, r = 1 and D = \(\pi \) \(\sqrt{} \)
+
+2. Consequently,
+
+
+
+\begin{equation}
+\tag{37}\label{eq:37}
+\begin{aligned}T_*^H&=\frac{\pi\sqrt2 R^2}{16\nu},&T_*^{\mathrm{EM}}&=\frac{\pi\sqrt2 R^2}{12\nu},\\ \frac{A_{\min}^H}{A_{\min}^{\mathrm{EM}}}&=\frac{16}{12}=\frac43,&A_{\min}&=2\pi\sqrt2 C_2\gamma.\end{aligned}
+\end{equation}
+
+The ratio distinguishes two specified curved-space viscous models; it is not a universal physical constant or a measured property of a fluid.
+
+
+Limitations. The curvature-shift conjugacy does not identify the Hopf projective sector with the Jacobi toroidal sector and does not control non-invariant perturbations. Its Noether component is known in the geometric fluid literature. The time-optimal forcing calculation is a constrained variational statement, not a solution of a quantum isoholonomic speed-limit problem and not a cosmological prediction.
+
+
+\end{corollary}
+
+\section{An exact hybrid Hopf–Jacobi interaction identity}
+
+The preceding two invariant families are not generally closed under addition. Nevertheless, they admit an exact controlled superposition theorem. We use the L2 Leray projector P onto divergence-free vector fields on \(S_R^3\). By \(\Phi \)q we mean the unique zero-mean solution of \(\Delta \)geom\(\Phi \)q = div q, with q = Pq + \(\nabla \Phi \)q; here \(\Delta \)geom = div grad is the nonpositive scalar Laplacian. No boundary conditions are needed on the closed sphere.
+
+
+\begin{theorem}[Exact hybrid forcing and nonlinear leakage]
+
+Let v(t) be an arbitrary smooth doubly rotational field of Eq.~\eqref{eq:5}, and let w(t) = U [p(t)] belong to a fixed positive-curl Hopf eigenspace, curl w = \(\lambda \)mw, \(\lambda \)m = (m + 2)/R. Choose either A = \(\Delta_H\) (Hodge) or A = \(\Delta_H\) \(- \)4/R2 (Ebin–Marsden). Write Fv = \(\partial \)tv + \(\nu \)Av, Fw = \(\partial \)tw + \(\nu \)Aw. (38)
+
+
+\begin{equation}
+\tag{38}\label{eq:38}
+F_v=\partial_tv+\nu Av,\qquad F_w=\partial_tw+\nu Aw.
+\end{equation}
+
+Then U = v + w is an exact solution of incompressible Navier–Stokes with solenoidal force
+
+
+
+\begin{equation}
+\tag{39}\label{eq:39}
+F=F_v+F_w+\mathbb P\bigl[w\times(\lambda_m v-\operatorname{curl}v)\bigr].
+\end{equation}
+
+and pressure P = Pv + Pw \(- \)v \(\cdot \) w \(- \Phi \)q, q = w \(\times \) (\(\lambda \)mv \(- \)curl v), (40)
+
+
+
+\begin{equation}
+\tag{40}\label{eq:40}
+P=P_v+P_w-v\cdot w-\Phi_q,\qquad q=w\times(\lambda_m v-\operatorname{curl}v).
+\end{equation}
+
+where \(\nabla \)vv = \(- \)grad Pv and Pw = \(- \)|w|2/2. The identity holds for any differentiable coefficient trajectories and either viscosity convention. It does not assert that the uncontrolled sum solves the equations.
+
+
+\end{theorem}
+
+\begin{proof}
+On every oriented Riemannian three-manifold, the cross-product identity gives
+
+\(\nabla \)vw + \(\nabla \)wv = grad(v \(\cdot \) w) \(- \)v \(\times \) curl w \(- \)w \(\times \) curl v = grad(v \(\cdot \) w) + q.
+
+
+The two self-advection terms are gradients by the toroidal and Beltrami hypotheses. The time derivative and the selected viscous operator are linear. Splitting q = Pq + grad \(\Phi \)q and collecting gradient terms proves Eqs. (39)–(40). Since the cross product, Leray projection, and coefficient paths are smooth, the result has the stated regularity.
+
+
+\end{proof}
+
+\begin{proposition}[Noether selection for hybrid leakage]
+
+For every one of the six Killing fields K of the round \(S_R^3\), Z
+
+
+\begin{equation}
+\tag{41}\label{eq:41}
+\int_{S_R^3}\langle\mathbb Pq,K\rangle\,dV=0.
+\end{equation}
+
+Thus the additional force in Eq.~\eqref{eq:39} cannot directly inject a Killing momentum. It may, however, excite other solenoidal modes.
+
+
+\end{proposition}
+
+\begin{proof}
+The Killing equation makes \(\nabla \)K antisymmetric. Integration by parts, using ÷v = ÷w = 0, yields Z \(\langle \nabla \)vw + \(\nabla \)wv, K\(\rangle \)dV = \(- \) Z (viwj + wivj)\(\nabla \)iKj dV = 0.
+
+The integral of K against any scalar gradient vanishes. Using the cross-term identity and orthogonality of the Leray decomposition gives the result.
+
+
+\end{proof}
+
+\section{Spectral detuning, an arithmetic resonance, and a forced-action bound}
+
+
+2, Vn,\(- \)= (UA n \(- \)UB n )/ \(\sqrt{} \)
+
+
+Define Vn,+ = (UA n + UB n )/ \(\sqrt{} \)
+
+
+2. Then curl Vn,\(\sigma \) = \(\sigma \kappa \)nVn,\(\sigma \) and \(\| \)Vn,\(\sigma \| \)2 2 = dn, where dn = \(\pi \)2R5/(n + 1). Write v = P n,\(\sigma \) cn,\(\sigma \)Vn,\(\sigma \) with finitely many real coefficients. The spectral detuning functional at \(\lambda \) is
+
+
+
+\begin{equation}
+\tag{42}\label{eq:42}
+D_\lambda(v)^2=\|(\operatorname{curl}-\lambda)v\|_2^2=\sum_{n,\sigma}d_n|c_{n,\sigma}|^2(\sigma\kappa_n-\lambda)^2.
+\end{equation}
+
+It is a nonnegative spectral diagnostic, not a new topological invariant or a conserved charge in viscous dynamics.
+
+
+\begin{theorem}[Sharp pointwise polynomial envelope and detuning estimate]
+
+For the normalized coefficients bk = ck/ qm k  of the fixed-degree polynomial p, one has \(\| \)w\(\| \)L\(\infty \le \| \)b\(\| \)Cm+1. Consequently the additional projected nonlinear force satisfies
+
+
+\begin{equation}
+\tag{43}\label{eq:43}
+\|\mathbb Pq\|_2\le\|b\|\,D_{\lambda_m}(v).
+\end{equation}
+
+For unforced radial Hodge (respectively Ebin–Marsden) coefficient evolution b(t) = e\(- \Gamma \)mtb(0) and cn,\(\sigma \)(t) = e\(- \gamma \)ntcn,\(\sigma \)(0), this entails the finite total interaction-cost estimate
+
+
+Z \(\infty \)
+
+
+0 \(\| \)Pq(t)\(\| \)2 2 dt
+
+
+
+\begin{equation}
+\tag{44}\label{eq:44}
+\int_0^\infty\|\mathbb Pq(t)\|_2^2dt\le\|b(0)\|^2\sum_{n,\sigma}\frac{d_n|c_{n,\sigma}(0)|^2(\sigma\kappa_n-\lambda_m)^2}{2(\Gamma_m+\gamma_n)}.
+\end{equation}
+
+All terms with vanishing numerator are interpreted as zero; in the present m \(\ge \)1 case \(\Gamma \)m > 0 under either convention.
+
+
+\end{theorem}
+
+\begin{proof}
+The globally orthonormal frame gives |w| = |p|. The finite-dimensional Cauchy–Schwarz inequality yields
+
+|p(z)|2 \(\le \| \)b\(\| \)2 m X
+
+
+!
+
+
+m k
+
+
+|z1|2(m\(- \)k)|z2|2k = \(\| \)b\(\| \)2.
+
+
+k=0
+
+
+As the Leray projection is an orthogonal contraction on L2, \(\| \)Pq\(\| \)2 \(\le \| \)w\(\| \infty \| \)(\(\lambda \)m \(- \)curl)v\(\| \)2. The signed Jacobi modes are mutually orthogonal and have the displayed norms. Substitution of the exponential solutions, squaring and integrating term by term gives Eq.~\eqref{eq:44}.
+
+
+\end{proof}
+
+\begin{corollary}[Exact even-degree Hopf–Jacobi resonance]
+
+A positive-curl Hopf polynomial field of degree m \(\ge \)1 shares a signed toroidal Jacobi curl eigenvalue if and only if m is even. In that case n = m/2 and \(\sigma \) = +, since
+
+
+\begin{equation}
+\tag{45}\label{eq:45}
+\lambda_m=\frac{m+2}R=\frac{2(n+1)}R=\kappa_n.
+\end{equation}
+
+For any superposition of positive-curl fields in that common eigenspace, the additional hybrid forcing Pq vanishes, and the unforced radial decay of the sum is an exact full nonlinear solution. For odd m, the spectral detuning satisfies D\(\lambda \)m(v) \(\ge \)R\(- \)1\(\| \)v\(\| \)2 (46)
+
+
+
+\begin{equation}
+\tag{46}\label{eq:46}
+D_{\lambda_m}(v)\ge R^{-1}\|v\|_2.
+\end{equation}
+
+for every toroidal finite expansion. This inequality does not imply a nonzero lower bound on the projected force in Eq.~\eqref{eq:43}: Leray projection can annihilate special cross terms.
+
+
+\end{corollary}
+
+\begin{proof}
+The positive toroidal curl values are even positive multiples of R\(- \)1, while \(\lambda \)mR = m + 2 is an integer. Equality is equivalent to m = 2n. At equality curl(v + w) = \(\lambda \)m(v + w), so its full nonlinear acceleration is the gradient grad(|v + w|2/2). When m is odd, every difference |\(\sigma \kappa \)n \(- \lambda \)m| \(\ge \)R\(- \)1, and Eq.~\eqref{eq:42} gives the claimed estimate.
+
+\end{proof}
+
+\section{Exact spectral-variance diagnostic for the hybrid family}
+
+The interaction term in Theorem 6.1 is controlled by spectral detuning, but the latter does not measure the true Leray-projected forcing from below. A different, fully observable quantity characterizes the Beltrami compatibility locus without making such an incorrect inference. For any nonzero smooth solenoidal U write
+
+
+E(U) = 1
+
+
+
+\begin{equation}
+\tag{47}\label{eq:47}
+E(U)=\tfrac12\|U\|_2^2,\quad H(U)=\langle U,\operatorname{curl}U\rangle_2,\quad Z(U)=\|\operatorname{curl}U\|_2^2,\quad V(U)=Z(U)-\frac{H(U)^2}{2E(U)}.
+\end{equation}
+
+\begin{theorem}[Helicity-defect identity and exact two-frequency separation]
+
+On a closed oriented Riemannian three-manifold, every nonzero smooth divergence-free U satisfies
+
+
+\begin{equation}
+\tag{48}\label{eq:48}
+V(U)=\left\|\operatorname{curl}U-\frac{H(U)}{2E(U)}U\right\|_2^2\ge0.
+\end{equation}
+
+Equality holds if and only if U is a curl eigenfield. On the round \(S_R^3\), take U = v +w, where v is a single signed Jacobi eigenfield with curl v = \(\kappa \)v, w a fixed-degree Hopf polynomial eigenfield with curl w = \(\lambda \)w, and \(\kappa \) \(\ne \)= \(\lambda \). Then the two fields are L2-orthogonal and, setting A = \(\| \)v\(\| \)2 2 > 0, B = \(\| \)w\(\| \)2 2 > 0,
+
+
+
+\begin{equation}
+\tag{49}\label{eq:49}
+V(U)=\frac{AB}{A+B}(\kappa-\lambda)^2>0.
+\end{equation}
+
+In contrast, if \(\kappa \) = \(\lambda \) then U is itself a curl eigenfield and V (U) = 0, even though \(\langle \)v, w\(\rangle \)need not vanish. For separate radial viscous attenuation, A(t) = A0e\(- \)2\(\gamma \)vt and B(t) = B0e\(- \)2\(\gamma \)wt in the nonresonant case, so Eq.~\eqref{eq:49} gives the exact time-resolved measurable defect.
+
+
+\end{theorem}
+
+\begin{proof}
+Complete the square in the L2 Hilbert space: \(\| \)curl U \(- \mu \)U\(\| \)2 2 = Z \(- \)2\(\mu \)H +2\(\mu \)2E; the minimizing real scalar is \(\mu \) = H/(2E). Equality means curl U = \(\mu \)U pointwise for smooth fields. On the closed three-sphere curl is self-adjoint on the divergence-free domain, so eigenfields of distinct eigenvalues are orthogonal. Thus 2E = A + B, H = \(\kappa \)A + \(\lambda \)B, Z = \(\kappa \)2A + \(\lambda \)2B, and substitution gives Eq.~\eqref{eq:49}. When the eigenvalues coincide, linearity of curl proves the last equality without requiring orthogonality. Exponential attenuation follows from the Hodge or Ebin–Marsden spectral rates already established.
+
+\end{proof}
+
+\begin{corollary}[A dimensionless spectral coherence observable]
+
+For Z(U) > 0, the ratio
+
+
+\begin{equation}
+\tag{50}\label{eq:50}
+\chi(U)=\frac{|H(U)|}{\sqrt{2E(U)Z(U)}}\in[0,1].
+\end{equation}
+
+measures the degree of spectral alignment, with \(\chi \) = 1 exactly for nonzero curl eigenfields. For two distinct nonzero modes the spectral defect V is positive, hence \(\chi \) < 1 even if the signed-curl eigenvalues are close. The quantity V is not asserted to be conserved: only its exact zero locus is preserved by common- eigenvalue radial evolution. This observable is a direct consequence of the classical Cauchy–Schwarz inequality; any priority claim concerns its integration into the specified Hopf–Jacobi construction, not the underlying inequality.
+
+
+Interpretation and limits. The spatial zeros of pm visualize the Hopf component w; when v is added they need not be zeros of U = v + w. Streamlines can be obtained by integrating the explicit four-dimensional tangent vector field and then applying stereographic projection. That geometric computation is separate from the Leray projection appearing in the force. A vanishing variance implies a single Beltrami eigenvalue but does not, in arbitrary fields, establish novel algebraic topology, a physical knot experiment, or global Navier–Stokes regularity.
+
+
+\end{corollary}
+
+\section{Commutation-protected nonresonant closure and a diagnostic counterexample}
+
+
+The previous even-degree Hopf–Jacobi matching condition is sufficient for exact unforced nonlinear closure, but it is not necessary. An exact second mechanism is supplied by commuting solenoidal curl eigenfields. In particular, spectral variance measures departure from a single curl eigenspace; it need not measure the nonlinear force. This distinction changes which conclusions the HCC phase-space diagnostic may legitimately display.
+
+
+\begin{theorem}[Leray–Lie bracket criterion on a homology three-sphere]
+
+Let (M3, g) be a closed oriented Riemannian manifold with H1 dR(M) = 0. Let u, v be smooth real divergence-free fields satisfying
+
+
+\begin{equation}
+\tag{51}\label{eq:51}
+\operatorname{curl}u=\lambda u,\qquad\operatorname{curl}v=\kappa v.
+\end{equation}
+
+with real constant signed eigenvalues. If P is the L2 Leray projector, then
+
+
+
+\begin{equation}
+\tag{52}\label{eq:52}
+\mathbb P(\nabla_uv+\nabla_vu)=(\lambda-\kappa)\mathbb P(u\times v).
+\end{equation}
+
+
+\begin{equation}
+\tag{53}\label{eq:53}
+\operatorname{curl}(u\times v)=-[u,v].
+\end{equation}
+
+Here [u, v] = \(\nabla \)uv \(- \nabla \)vu is the Lie bracket. Consequently, if \(\lambda \) \(\ne \)= \(\kappa \),
+
+
+
+\begin{equation}
+\tag{54}\label{eq:54}
+\mathbb P(\nabla_uv+\nabla_vu)=0\quad\Longleftrightarrow\quad[u,v]=0.
+\end{equation}
+
+When \(\lambda \) = \(\kappa \), the left-hand side vanishes regardless of the bracket.
+
+
+\end{theorem}
+
+\begin{proof}
+The metric cross-product identity gives
+
+
+\begin{equation}
+\tag{55}\label{eq:55}
+\nabla_uv+\nabla_vu=\operatorname{grad}\langle u,v\rangle-u\times\operatorname{curl}v-v\times\operatorname{curl}u=\operatorname{grad}\langle u,v\rangle+(\lambda-\kappa)u\times v.
+\end{equation}
+
+The first identity follows by applying P. On a three-manifold, curl(u\(\times \)v) = \(\nabla \)vu\(- \nabla \)uv+u div v\(- \)v div u = \(- \)[u, v], proving the second. For \(\lambda \) \(\ne \)= \(\kappa \), the projected mixed term vanishes if and only if u \(\times \) v lies in the gradient subspace. If its curl vanishes, the metric-dual one-form is closed; the hypothesis H1 dR(M) = 0 makes it exact. Conversely every gradient has vanishing curl. The equal-eigenvalue case is immediate from the first identity.
+
+
+\end{proof}
+
+\begin{corollary}[An exact unforced two-rate Navier–Stokes family]
+
+Under the hypotheses of Theorem 9.1, assume additionally [u, v] = 0 and that Au = \(\rho \lambda \)u, Av = \(\rho \kappa \)v, with A = \(\Delta_H\) or (on round \(S_R^3\)) A = \(\Delta_H\) \(- \)4R\(- \)2I. Then U(t) = a e\(- \nu \rho \lambda \)tu + b e\(- \nu \rho \kappa \)tv (56)
+
+
+\begin{equation}
+\tag{56}\label{eq:56}
+U(t)=ae^{-\nu\rho_\lambda t}u+be^{-\nu\rho_\kappa t}v.
+\end{equation}
+
+is an exact smooth unforced incompressible Navier–Stokes solution for t \(\ge \)0. For the Hodge operator \(\rho \lambda \) = \(\lambda \)2 and \(\rho \kappa \) = \(\kappa \)2. For any time t, let \(\Phi \) be the zero-mean solution grad \(\Phi \) = u \(\times \) v, which exists on M because the fields commute. A compatible pressure is
+
+
+
+\begin{equation}
+\tag{57}\label{eq:57}
+P(t)=-\tfrac12|U(t)|^2-(\lambda-\kappa)ab e^{-\nu(\rho_\lambda+\rho_\kappa)t}\Phi.
+\end{equation}
+
+up to an arbitrary function of time.
+
+
+\end{corollary}
+
+\begin{proof}
+Theorem 9.1 shows that the cross acceleration is a gradient, while each diagonal Beltrami self-acceleration is a gradient. The exact \(\Phi \) exists by Eq.~\eqref{eq:53} and vanishing H1. The time derivative in Eq.~\eqref{eq:56} cancels the spectral viscosity term and Eq.~\eqref{eq:57} cancels the full remaining gradient. Divergence vanishes by linearity.
+
+\end{proof}
+
+\subsection{A fixed-Hopf family with a commuting opposite-chirality Killing field}
+
+Set z1 = a + ib, z2 = c + id and use the quaternion frame of Eq.~\eqref{eq:20}. Define the globally smooth Killing fields K+ = \(\partial \phi \) + \(\partial \psi \), K\(- \)= \(\partial \phi \) \(- \partial \psi \), (58)
+
+
+
+\begin{equation}
+\tag{58}\label{eq:58}
+K_+=\partial_\phi+\partial_\psi,\qquad K_-=\partial_\phi-\partial_\psi.
+\end{equation}
+
+with the orientation of Lemma 2.1, so that curl K+ = 2K+/R and curl K\(- \)= \(- \)2K\(- \)/R. Write Z = X2 + iX3 for the fixed-Hopf complex null frame. Direct differentiation of the displayed real four-vector fields yields [K+, Z] = 2iZ, [K\(- \), Z] = 0, (59)
+
+
+
+\begin{equation}
+\tag{59}\label{eq:59}
+[K_+,Z]=2iZ,\qquad[K_-,Z]=0.
+\end{equation}
+
+where [\(\cdot \), \(\cdot \)] acts complex-linearly on Z. Thus for homogeneous p(z1, z2) = Pm j=0 cjzm\(- \)j 1 zj 2,
+
+
+
+\begin{equation}
+\tag{60}\label{eq:60}
+[K_+,U[p]]=\operatorname{Re}(i(m+2)pZ).
+\end{equation}
+
+
+\begin{equation}
+\tag{61}\label{eq:61}
+[K_-,U[p]]=\operatorname{Re}\left(i\sum_{j=0}^m(m-2j)c_jz_1^{m-j}z_2^jZ\right).
+\end{equation}
+
+All commutators use real vector fields; the real-part notation applies only to their coefficient representa- tion.
+
+
+\begin{theorem}[Complete fixed-degree K\(- \)centralizer in the fixed-Hopf polynomial sector]
+
+For a nonzero homogeneous holomorphic polynomial p of degree m \(\ge \)0, let wp = U [p] = Re(pZ). Then
+
+
+\begin{equation}
+\tag{62}\label{eq:62}
+[K_-,w_p]=0\quad\Longleftrightarrow\quad m=2k\text{ and }p(z_1,z_2)=c(z_1z_2)^k,\quad c\in\mathbb C\setminus\{0\}.
+\end{equation}
+
+Moreover [K+, wp] \(\ne \)= 0 for every nonzero p of degree m \(\ge \)0.
+
+
+\end{theorem}
+
+\begin{proof}
+The Hopf frame X2, X3 is real-linearly independent at each point, so Re(qZ) = 0 as a real field if and only if the complex coefficient q vanishes. In Eq.~\eqref{eq:61}, the monomials are linearly independent on S3 (homogeneity extends their identity to C2), hence (m \(- \)2j)cj = 0 for every j. A nonzero coefficient is possible only when m = 2j, and then p = c(z1z2)j. Conversely such a monomial has zero K\(- \)weight. Eq.~\eqref{eq:60} has strictly positive weight m + 2, so the K+ commutator cannot vanish identically.
+
+\end{proof}
+
+\begin{corollary}[Explicit nonresonant, multi-decay exact solutions outside the toroidal subspace]
+
+For any integer k \(\ge \)1, take pk = c(z1z2)k, c \(\ne \)= 0, and wk = Re(pkZ); then
+
+
+\begin{equation}
+\tag{63}\label{eq:63}
+\operatorname{curl}w_k=\frac{2k+2}R w_k,\quad\operatorname{curl}K_-=-\frac2R K_-,\quad[K_-,w_k]=0.
+\end{equation}
+
+Consequently, for arbitrary real a, b, the following is an exact unforced Hodge-viscous solution:
+
+
+
+\begin{equation}
+\tag{64}\label{eq:64}
+U_k(t)=a e^{-4\nu t/R^2}K_-+b e^{-(2k+2)^2\nu t/R^2}w_k.
+\end{equation}
+
+The Ebin–Marsden convention instead fixes the Killing component and damps the polynomial part with rate \(\nu \)[(2k + 2)2 \(- \)4]/R2. The two components have different signed curl eigenvalues and different Hodge damping rates; their nonlinear Leray forcing vanishes identically. The field w1 has a nonzero x-component on an open set, so this family is not confined to the previously analyzed doubly rotational toroidal sector.
+
+
+\end{corollary}
+
+\begin{proof}
+The polynomial curl eigenidentity is Eq.~\eqref{eq:22} and the curl construction preceding it; the commutation follows from Theorem 9.3. Apply Corollary 9.2. For w1, in ambient real coordinates the derivative of x = c2 + d2 is nonzero as a polynomial on S3, for example at q = ( 1
+
+2) it equals \(- \)1
+
+
+2, 1
+
+
+2, 1
+
+
+2, 1
+
+
+2 with the specified frame and p = z1z2, so the field is not toroidal.
+
+
+\end{proof}
+
+\begin{proposition}[Closed polynomial pressure without Poisson inversion]
+
+With the notation of Corollary 9.4, let a(t) = ae\(- \)4\(\nu \)t/R2 and b(t) = be\(- \)(2k+2)2\(\nu \)t/R2 in the Hodge convention, and set s = z1z2. The exact cross-product primitive is
+
+
+\begin{equation}
+\tag{65}\label{eq:65}
+K_-\times_{g_R}w_k=\frac{R^2}{k+1}\operatorname{grad}_{g_R}\operatorname{Im}(cs^{k+1}).
+\end{equation}
+
+Consequently a globally regular pressure, requiring no inversion of the scalar Laplacian, is
+
+
+
+\begin{equation}
+\tag{66}\label{eq:66}
+P_k(t,q)=-\tfrac12|U_k(t,q)|_{g_R}^2+\frac{(2k+4)R}{k+1}a(t)b(t)\operatorname{Im}[c(z_1z_2)^{k+1}].
+\end{equation}
+
+Both identities extend smoothly through the collapsed Clifford circles.
+
+
+\end{proposition}
+
+\begin{proof}
+At unit radius the quaternion frame identities yield K\(- \times \) X2 = grad Im(z1z2) and K\(- \times \) X3 = \(- \)grad Re(z1z2). Writing wk = Re(csk)X2 \(- \)Im(csk)X3, we obtain
+
+K\(- \times \) wk = Re(csk) grad Im s + Im(csk) grad Re s = 1 k + 1 grad Im(csk+1).
+
+
+Rescaling gR = R2g1 and the orthonormal Hopf vectors X(R) i = R\(- \)1X(1) i gives the factor R2 in Eq.~\eqref{eq:65}. Finally, \(\nabla \)UkUk = grad(|Uk|2/2) + a(t)b(t)(\(\lambda \)K\(- - \lambda \)wk)K\(- \times \) wk with \(\lambda \)K\(- - \lambda \)wk = \(- \)(2k + 4)/R. Substituting Eq.~\eqref{eq:65} yields \(\nabla \)UkUk = \(- \)grad Pk. Equation (66) follows.
+
+
+\end{proof}
+
+\subsection{Strictly positive helicity variance with zero projected nonlinear force}
+
+The two signed curl eigenvalues in Eq.~\eqref{eq:64} are distinct, so K\(- \)and wk are L2 orthogonal. Direct integration gives
+
+
+
+\begin{equation}
+\tag{67}\label{eq:67}
+N_K=\|K_-\|_2^2=2\pi^2R^5,\qquad N_w=\|w_k\|_2^2=2\pi^2R^3|c|^2\frac{(k!)^2}{(2k+1)!}.
+\end{equation}
+
+For nonzero a, b, let A(t) = a2NKe\(- \)8\(\nu \)t/R2 and B(t) = b2Nwe\(- \)2(2k+2)2\(\nu \)t/R2. The exact energy, helicity and enstrophy are
+
+
+
+\begin{equation}
+\tag{68}\label{eq:68}
+E(t)=\tfrac12(A+B).
+\end{equation}
+
+
+\begin{equation}
+\tag{69}\label{eq:69}
+H(t)=\frac1R[-2A+(2k+2)B].
+\end{equation}
+
+
+\begin{equation}
+\tag{70}\label{eq:70}
+Z(t)=\frac1{R^2}[4A+(2k+2)^2B].
+\end{equation}
+
+In contrast with the vanishing nonlinear projected force, the spectral helicity deficit is
+
+
+
+\begin{equation}
+\tag{71}\label{eq:71}
+V(U_k(t))=\frac{A(t)B(t)}{A(t)+B(t)}\frac{(2k+4)^2}{R^2}>0,\qquad\mathbb P(\nabla_{U_k}U_k)=0.
+\end{equation}
+
+The equality and inequality hold for each finite t with nonzero initial amplitudes. This gives a concrete counterexample to an invalid inference positive spectral variance implies nonzero nonlinear leakage. The previously established resonance criterion remains sufficient for compatibility but is not necessary.
+
+
+Scientific provenance and relation to the external catalogue. The cross-product identity, Poincaré lemma on S3, and spectral variance are classical. Exact viscous Beltrami flows have a substantial earlier literature \cite{ref15,ref16}. This section identifies a reproducible joint specialization within the cited fixed-Hopf polynomial family. The historical novelty of this specialization has not been established by a global prior-art audit. OpenAI Math result family 376 treats forced flat fluid computations and supplies no theorem that would imply general unforced regularity on a curved sphere. OpenAI Math result family 350 concerns nodal sets for other metric classes; it does not prove stability of the fixed-round Hopf centralizer under metric perturbation. None of these statements establishes a physical cosmic S3 topology.
+
+
+\section{Exact finite-time minimum-energy control within each reducing family}
+
+
+The possibility of prescribing arbitrary modal trajectories makes exact optimal-control statements possible within each family separately. They should not be silently added across the hybrid family, which has the extra cross forcing of Theorem 6.1.
+
+
+\begin{theorem}[Endpoint control Gramian]
+
+Let c : [0, T] \(\to \)Rd (or Cd) solve ˙c + \(\gamma \)c = h(t) with fixed c(0) = c0, c(T) = cT and \(\gamma \) \(\ge \)0. For any Hilbert-space weight D > 0,
+
+
+\begin{equation}
+\tag{72}\label{eq:72}
+\min_h\int_0^T D\|h(t)\|^2dt=\frac{D\|c_T-e^{-\gamma T}c_0\|^2}{W_\gamma(T)},\quad W_\gamma(T)=\begin{cases}\frac{1-e^{-2\gamma T}}{2\gamma},&\gamma>0,\\T,&\gamma=0.\end{cases}
+\end{equation}
+
+Equality is achieved by h\(\ast \)(t) = e\(- \gamma \)(T\(- \)t)(cT \(- \)e\(- \gamma \)T c0)/W\(\gamma \)(T). In the toroidal sector the full forcing cost is the sum over independent signed modes with D = dn and \(\gamma \) = \(\gamma \)n; in the polynomial Hopf sector D = Cm, d = m + 1 complex coefficients and \(\gamma \) = \(\Gamma \)m. The cost is for all freely accessible solenoidal coefficients, not a restricted physical actuator geometry.
+
+
+\end{theorem}
+
+\begin{proof}
+Duhamel’s formula reads cT \(- \)e\(- \gamma \)T c0 = R T 0 e\(- \gamma \)(T\(- \)t)h(t)dt. Apply Cauchy–Schwarz and compute the squared kernel norm W\(\gamma \)(T). Equality is attained precisely for h proportional to the kernel. Modal orthogonality and the isometric polynomial coefficient map supply the weights.
+
+\end{proof}
+
+\section{Finite spectral tomography and its hard limits}
+
+For an unforced Jacobi solution, the energy and helicity contain only distinct decay nodes qn = e\(- \)2\(\gamma \)n\(\Delta \)when \(\nu \), R, \(\Delta \)> 0 are known. The two scalar observations are complementary to the pressure measurements, whose mixed sums need not be unique.
+
+
+\begin{theorem}[Modewise energy–helicity reconstruction]
+
+Fix N, \(\Delta \)> 0, \(\nu \) > 0, R > 0 and either viscosity operator. Given exact noiseless values (E(j\(\Delta \)), H(j\(\Delta \))) for j = 0, . . . , N, one uniquely reconstructs, for every n = 0, . . . , N,
+
+Sn = a2 n + b2 n, Pn = anbn.
+
+
+More precisely, invert the known Vandermonde matrix Vjn = qj n to obtain the mode amplitudes en, hn of energy and helicity; then
+
+
+
+\begin{equation}
+\tag{73}\label{eq:73}
+S_n=\frac{2(n+1)}{\pi^2R^5}e_n,\qquad P_n=\frac{h_n}{4\pi^2R^4},\qquad\{a_n^2,b_n^2\}=\left\{\frac{S_n\pm\sqrt{S_n^2-4P_n^2}}{2}\right\}.
+\end{equation}
+
+The sign of anbn is recovered, but the global sign (an, bn) 7\(\to \)(\(- \)an, \(- \)bn) and their exchange are unresolved in general. Modewise consistency requires S2 n \(\ge \)4P 2 n, equivalently |hn| \(\le \)2\(\kappa \)nen. This is a finite- dimensional uniqueness result, not a stability bound for noisy measurements.
+
+
+\end{theorem}
+
+\begin{proof}
+The decay nodes are strictly distinct because \(\gamma \)n increases with n for both viscosity conventions. The determinant of the square Vandermonde matrix is Q j<k(qk\(- \)qj) \(\ne \)= 0. The explicit energy and helicity identities of Corollary 2.3 apply at every time with the chosen rates; inversion yields en, hn. Solving the quadratic equation with roots a2 n, b2 n establishes Eq.~\eqref{eq:73}. The final inequality is 2|anbn| \(\le \)a2 n + b2 n.
+
+\end{proof}
+
+\begin{remark}[Distinguishing phase, topology, and observability]
+
+The scalar values E, H do not determine general velocity fields; their sufficiency above depends on the complete finite Jacobi ansatz and known modal nodes. Nor is the coefficient-space Berry phase a newly discovered quantum-gravitational holonomy. The braid exchanges zeros of a polynomial: these need not be material fluid-particle trajectories. No observation here establishes global S3 cosmic topology.
+
+\end{remark}
+
+\section{A dynamical spectral–statistical–projective identity}
+
+The preceding variance diagnostic is formed from the signed curl generator. A different, physically time-resolved projective observable comes from the squared-curl viscosity generator. This distinction is essential: equal Hodge frequencies need not imply equal helicity or equal signed curl eigenvalues. Let \{ej\}N j=1 be a fixed orthonormal real basis of smooth divergence-free eigenfields of curl on the round \(S_R^3\), curl ej = \(\lambda \)jej. Define a finite spectral history
+
+
+
+\begin{equation}
+\tag{74}\label{eq:74}
+U(t)=\sum_{j=1}^N c_je^{-\nu(\lambda_j^2-c_R)t}e_j,\quad c_R=0\ \text{(Hodge)},\quad c_R=4/R^2\ \text{(Ebin--Marsden)}.
+\end{equation}
+
+We consider this history as a Navier–Stokes solution only if its nonlinear Leray projection vanishes at every time. This condition holds for the commuting family of Corollary 9.4 and for the pressure-balanced
+
+
+toroidal sector, but not for arbitrary choices of the ej. Regardless of PDE closure, Eq.~\eqref{eq:74} is a valid spectral heat orbit. Set W(t) = \(\| \)U(t)\(\| \)2 2 > 0, M2r(t) = P j \(\lambda \)2r j c2 je\(- \)2\(\nu \)(\(\lambda \)2 j\(- \)cR)t for r = 1, 2; in particular M2 = \(\| \)curl U\(\| \)2 2 and M4 = \(\| \Delta \)HU\(\| \)2 2. Let [U(t)] denote its ray in the real projective Hilbert space, embedded in the complex Fubini–Study space with metric convention dFS([x], [y]) = arccos |\(\langle \)bx, by\(\rangle \)|.
+
+
+\begin{theorem}[Viscous projective-speed / logarithmic-energy curvature identity]
+
+For every nonzero history (74) with \(\nu \) > 0, the physical-time projective speed is exactly
+
+
+\begin{equation}
+\tag{75}\label{eq:75}
+\begin{aligned}v_{\mathrm{FS}}(t)^2&=\nu^2\left(\frac{M_4}{W}-\frac{M_2^2}{W^2}\right)=\frac14\frac{d^2}{dt^2}\log W(t)\\&=\frac{\nu^2}{W^2}\sum_{i<j}A_i(t)A_j(t)(\lambda_i^2-\lambda_j^2)^2.\end{aligned}
+\end{equation}
+
+where Aj(t) = c2 je\(- \)2\(\nu \)(\(\lambda \)2 j\(- \)cR)t. The mean Hodge frequency \(\lambda \)2 = M2/W satisfies
+
+
+
+\begin{equation}
+\tag{76}\label{eq:76}
+\frac{d}{dt}\left(\frac{M_2}W\right)=-2\nu\left(\frac{M_4}W-\frac{M_2^2}{W^2}\right)=-\frac2\nu v_{\mathrm{FS}}^2\le0.
+\end{equation}
+
+The speed vanishes exactly when all nonzero modes have the same absolute curl eigenvalue |\(\lambda \)j|; their signed eigenvalues may differ. This is a statement about the stated linear reducing family, not the unrestricted Navier–Stokes phase flow.
+
+
+W(t) and A = \(\Delta_H\) \(- \)cRI. The linear equation ˙U = \(- \nu \)AU implies ˙\(\psi \) = \(- \nu \)(A \(- \langle \)A\(\rangle \psi \))\(\psi \), which is orthogonal to \(\psi \). Hence the Fubini–Study speed is \(\| \)˙\(\psi \| \)2 = \(\nu \)2Var\(\psi \)(A). Shifting an operator by a scalar leaves its variance unchanged, giving the first expression in (75); expanding the weighted variance gives the pairwise expression. Directly, ˙W = \(- \)2\(\nu \)(M2 \(- \)cRW) and ¨W = 4\(\nu \)2(M4\(- \)2cRM2+c2 RW), so (log W)\(\prime\)\(\prime\) = 4\(\nu \)2(M4/W \(- \)M2 2 /W 2). Quotient differentiation gives (76). All weights are nonnegative, so equality holds precisely on a single \(\lambda \)2 eigenshell.
+
+
+\end{theorem}
+
+\begin{proof}
+Write \(\psi \)(t) = U(t)/ p
+
+\end{proof}
+
+\begin{corollary}[Classical Fisher information and viscosity-independent projective shape]
+
+The mode- energy proportions qj(t) = Aj(t)/W(t) constitute a probability distribution with classical time-parameter Fisher information
+
+
+\begin{equation}
+\tag{77}\label{eq:77}
+I_{\mathrm{Fisher}}(t)=\sum_{j:q_j>0}q_j(\partial_t\log q_j)^2=4v_{\mathrm{FS}}(t)^2.
+\end{equation}
+
+The Hodge and Ebin–Marsden versions of a given pressure-balanced mode family obey UEM(t) = e4\(\nu \)t/R2UH(t) and therefore determine identical projective rays and identical qj(t). Their unnormalized energies and their Killing charges nevertheless differ.
+
+
+\end{corollary}
+
+\begin{proof}
+\(\partial \)t log qj = \(- \)2\(\nu \)(\(\lambda \)2 j \(- \lambda \)2) gives the Fisher identity. The common scalar shift in each modal decay exponent cancels on projectivization.
+
+\end{proof}
+
+\begin{corollary}[Complete logistic and geodesic reduction of the commuting Hopf–Killing pair]
+
+For k \(\ge \)1 in Corollary 9.4, assume a, b \(\ne \)= 0 and write the positive modal squared norms at t = 0 as A0, B0. Put
+
+
+\begin{equation}
+\tag{78}\label{eq:78}
+\alpha=-2/R,\quad\beta=2(k+1)/R,\quad\delta\gamma=\nu(\beta^2-\alpha^2)=\frac{4\nu k(k+2)}{R^2}>0.
+\end{equation}
+
+The higher-frequency energy fraction q(t) = B(t)/(A(t) + B(t)) and the projective mixing angle \(\theta \)(t) = arctan p
+
+
+B(t)/A(t) satisfy
+
+
+
+\begin{equation}
+\tag{79}\label{eq:79}
+\frac{q(t)}{1-q(t)}=\frac{B_0}{A_0}e^{-2\delta\gamma t},\quad\dot q=-2\delta\gamma q(1-q),\quad\tan\theta(t)=\sqrt{B_0/A_0}\,e^{-\delta\gamma t}.
+\end{equation}
+
+With V = M2 \(- \)H2/W the signed-curl helicity defect, the physically evolving ray obeys
+
+
+
+\begin{equation}
+\tag{80}\label{eq:80}
+v_{\mathrm{FS}}^2=\nu^2(\alpha+\beta)^2\frac{V}W=\frac{4\nu^2k^2}{R^2}\frac VW.
+\end{equation}
+
+Its image is a meridional Fubini–Study geodesic, and its total length is exactly
+
+
+
+\begin{equation}
+\tag{81}\label{eq:81}
+L_{\mathrm{FS}}([0,\infty))=\arctan\sqrt{B_0/A_0},\qquad\nu>0.
+\end{equation}
+
+Thus the infinite-time projective path length depends on the initial mixture, not on the numerical value of positive viscosity. At \(\nu \) = 0 the orbit is constant and the infinite-time limit does not commute with \(\nu \) ↓0.
+
+
+\end{corollary}
+
+\begin{proof}
+The two modes are L2 orthogonal since \(\alpha \) \(\ne \)= \(\beta \). Their real normalized coefficients, including their fixed initial signs, describe a single meridian in the projective line. Squared coefficients evolve at rates 2\(\nu \)(\(\alpha \)2 \(- \)cR) and 2\(\nu \)(\(\beta \)2 \(- \)cR), yielding (79). Since V /W = q(1 \(- \)q)(\(\beta \) \(- \alpha \))2 and v2 FS = \(\delta \gamma \)2q(1 \(- \)q), the factorization \(\beta \)2 \(- \alpha \)2 = (\(\beta \) \(- \alpha \))(\(\beta \) + \(\alpha \)) gives (80). Integration of | ˙\(\theta \)| gives (81).
+
+\end{proof}
+
+\begin{proposition}[Energy–helicity inversion and a directly falsifiable time invariant]
+
+In the same two-mode sector, W = 2E and H = \(\alpha \)A + \(\beta \)B recover both instantaneous modal energies without velocity-field tomography:
+
+
+\begin{equation}
+\tag{82}\label{eq:82}
+A=\frac{\beta W-H}{\beta-\alpha},\qquad B=\frac{H-\alpha W}{\beta-\alpha}.
+\end{equation}
+
+For A, B > 0, the following observable is constant along the stipulated exact flow:
+
+
+
+\begin{equation}
+\tag{83}\label{eq:83}
+I_{\mathrm{rate}}(t)=e^{2\delta\gamma t}\frac{H(t)-\alpha W(t)}{\beta W(t)-H(t)}=\frac{B_0}{A_0}.
+\end{equation}
+
+The two subtractions in (82) are ill-conditioned when either energy fraction approaches zero: a relative error in a small modal energy can grow like the inverse of its fractional weight. Consequently, numerical reconstruction must reject or flag nearly extinct modes. Violation of (83), beyond the observational uncertainty and conditioning, rules out the exact two-mode ansatz with these fixed parameters. Conversely agreement does not establish the ansatz uniquely amongst arbitrary fields.
+
+
+\end{proposition}
+
+\begin{proposition}[Finite-difference error amplification in energy-only projective tomography]
+
+Let \(\ell \)(t) = log W(t), and approximate v2 FS(t) = \(\ell \)\(\prime\)\(\prime\)(t)/4 by Dh = (\(\ell \)(t + h) \(- \)2\(\ell \)(t) + \(\ell \)(t \(- \)h))/(4h2). If measured values of \(\ell \)have absolute errors at most \(\varepsilon \) and \(\ell \)has four bounded derivatives on [t \(- \)h, t + h], then
+
+
+\begin{equation}
+\tag{84}\label{eq:84}
+|D_h-v_{\mathrm{FS}}(t)^2|\le\frac{2\varepsilon}{h^2}+\frac{h^2}{48}\sup_{|s-t|\le h}|\ell^{(4)}(s)|.
+\end{equation}
+
+Thus exact energy-only identifiability need not be numerically stable: taking h \(\to \)0 at fixed noise increases uncertainty. This is a local deterministic estimate and makes no appeal to an unrelated inverse-boundary or deletion-trace theorem.
+
+
+\end{proposition}
+
+\begin{proof}
+The centered second difference has fourth-order derivative remainder bounded by h2 sup |\(\ell \)(4)|/12; division by 4 gives the bias. Three point errors contribute at most (1 + 2 + 1)\(\varepsilon \)/(4h2) = \(\varepsilon \)/h2.
+
+Nodal topology and interpretation. For pk = c(z1z2)k the constituent Hopf eigenfield wk has nodal divisor consisting of the two linked Hopf fibres z1 = 0 and z2 = 0, each of multiplicity k; their Gauss linking number is +1 under the orientation used above. Decay does not move this divisor. It is not the nodal set of the full velocity Uk, since a nonzero Killing component generically persists on those fibres. Hence the exact chain here is a typed correspondence between a constituent nodal label, dissipative modal mixing, moment reconstruction and projective geometry, not a claim that fluid vortex lines braid spontaneously.
+
+
+Prior art. The normalized heat/imaginary-time flow, spectral variance, Fubini–Study metric and Fisher information are standard constructions; see, e.g., work on imaginary-time Riemannian gradient descent and quantum geometry. The specific pressure-balanced \(S_R^3\) sector is the paper’s specialization. This section asserts its derived identities, not first historical discovery of the underlying geometric- statistical relations.
+
+
+\end{proof}
+
+\section{Nonlinear leakage, projective speed and finite spectral moment certificates}
+
+
+We extend the energy–projective argument in Sec. 12 in two independent directions. The first identity is valid for arbitrary smooth unforced solutions, without pressure-balanced reduction. The second characterizes the additional positivity and finite-rank conditions satisfied by the exactly reducing histories. These are distinct logical statements: satisfying the scalar moment constraints is not sufficient to solve the nonlinear PDE.
+
+
+\subsection{Exact nonlinear Leray leakage from a projective–energetic residual}
+
+\begin{theorem}[Nonlinear leakage identity for all smooth unforced solutions]
+
+Let (M, g) be a closed smooth Riemannian manifold, and A a fixed self-adjoint, nonnegative elliptic viscous operator on solenoidal fields. On any time interval of existence of a sufficiently smooth unforced Navier–Stokes solution with W = \(\| \)u\(\| \)2 2 > 0, write
+
+
+\begin{equation}
+\tag{85}\label{eq:85}
+\dot u=-\nu Au-N,\qquad N=\mathbb P(\nabla_uu),\qquad\langle N,u\rangle=0.
+\end{equation}
+
+Let \(\psi \) = u/ \(\sqrt{} \)
+
+
+
+\begin{equation}
+\tag{86}\label{eq:86}
+\mu_A=\frac{\langle u,Au\rangle}{W},\qquad\sigma_A^2=\frac{\|Au\|_2^2}{W}-\mu_A^2\ge0.
+\end{equation}
+
+Then, pointwise in time, \(\| \)N\(\| \)2 2 W = v2 FS \(- \)1
+
+
+
+\begin{equation}
+\tag{87}\label{eq:87}
+\frac{\|N\|_2^2}W=v_{\mathrm{FS}}^2-\tfrac12(\log W)^{\prime\prime}+\nu^2\sigma_A^2\ge0.
+\end{equation}
+
+An independent observable for the nonlinear viscous spectral-transfer contraction is
+
+
+
+\begin{equation}
+\tag{88}\label{eq:88}
+\tfrac14(\log W)^{\prime\prime}-\nu^2\sigma_A^2=\frac\nu W\langle N,Au\rangle.
+\end{equation}
+
+If \(\sigma \)A > 0 and vvisc = \(\nu \sigma \)A, this gives
+
+
+
+\begin{equation}
+\tag{89}\label{eq:89}
+\|N\|_2\ge\sqrt W\,\frac{|\frac14(\log W)^{\prime\prime}-\nu^2\sigma_A^2|}{v_{\mathrm{visc}}}.
+\end{equation}
+
+Vanishing of the right-hand side of Eq.~\eqref{eq:88} does not alone imply N = 0; by contrast Eq.~\eqref{eq:87} does. If \(\sigma \)A = 0, the energy-curvature discrepancy vanishes even when the nonlinear projected field does not.
+
+
+\end{theorem}
+
+\begin{proof}
+For smooth solenoidal u on a closed manifold the energy cancellation gives \(\langle \)u, N\(\rangle \)= 0. Write J = \(\langle \)u, Au\(\rangle \), K = \(\| \)Au\(\| \)2 2 and T = \(\langle \)N, Au\(\rangle \). Differentiation yields
+
+
+\begin{equation}
+\tag{90}\label{eq:90}
+W^\prime=-2\nu J,\qquad J^\prime=-2\nu K-2T,\qquad W^{\prime\prime}=4\nu^2 K+4\nu T.
+\end{equation}
+
+Thus (log W)\(\prime\)\(\prime\)/4 = \(\nu \)2(K/W \(- \)J2/W 2) + \(\nu \)T/W, proving Eq.~\eqref{eq:88}. Direct differentiation of \(\psi \) and energy cancellation give
+
+
+
+\begin{equation}
+\tag{91}\label{eq:91}
+\dot\psi=-\nu(A-\mu_A)\psi-\frac N{\sqrt W},\quad v_{\mathrm{FS}}^2=\nu^2\sigma_A^2+\frac{2\nu T}{W}+\frac{\|N\|_2^2}{W}.
+\end{equation}
+
+Eliminating T proves Eq.~\eqref{eq:87}. Cauchy–Schwarz together with \(\langle \)N, u\(\rangle \)= 0 yields |T| = |\(\langle \)N, (A\(- \mu \)A)u\(\rangle \)| \(\le \) \(\| \)N\(\| \)2 \(\sqrt{} \)
+
+
+W\(\sigma \)A, proving Eq.~\eqref{eq:89}. All differentiations use the assumed regularity.
+
+
+\end{proof}
+
+\begin{remark}[Scope and experimental meaning]
+
+For Hodge viscosity on round \(S_R^3\) one may take A = \(\Delta_H\); for the nonnegative Ebin–Marsden operator on the exact round sphere, A = \(\Delta_H\) \(- \)4R\(- \)2I. Equation (87) holds for either choice on any smooth existence interval. It does not derive a uniform bound for N from initial data and does not prove global regularity. The time-dependent projective state must be observed or computed; the energy alone cannot determine vFS in arbitrary flows.
+
+\end{remark}
+
+\subsection{A hierarchy of positive finite-rank moment certificates}
+
+\begin{theorem}[Hankel spectral-rank hierarchy for reducing sectors]
+
+Let u(t) be a pressure-balanced reducing history of Sec. 12, and aggregate all orthogonal modes with the same distinct positive decay rate \(\rho \)1 < \(\cdot \) \(\cdot \) \(\cdot \) < \(\rho \)r, \(\rho \)j \(\ge \)0, writing
+
+
+\begin{equation}
+\tag{92}\label{eq:92}
+W(t)=\sum_{j=1}^r a_je^{-2\nu\rho_jt},\qquad a_j>0.
+\end{equation}
+
+For integers n \(\ge \)1 define the continuous-time moment Hankel matrix
+
+
+
+\begin{equation}
+\tag{93}\label{eq:93}
+\mathcal H_n(t)_{ij}=\frac{(-1)^{i+j}W^{(i+j)}(t)}{(2\nu)^{i+j}},\qquad0\le i,j<n.
+\end{equation}
+
+Then Hn(t) is positive semidefinite of rank min(n, r), and
+
+
+
+\begin{equation}
+\tag{94}\label{eq:94}
+\det\mathcal H_r(t)=\left(\prod_{j=1}^ra_je^{-2\nu\rho_jt}\right)\prod_{1\le i<j\le r}(\rho_i-\rho_j)^2>0.
+\end{equation}
+
+For any sampling interval h > 0, the discrete data Wk = W(kh) and qj = e\(- \)2\(\nu \rho \)jh \(\in \)(0, 1] obey
+
+
+
+\begin{equation}
+\tag{95}\label{eq:95}
+G_n=[W_{i+j}]_{i,j=0}^{n-1}\succeq0,\qquad\operatorname{rank}G_n=\min(n,r).
+\end{equation}
+
+with G+ n = [Wi+j+1] \(\succeq \)0, Gn\(- \)G+ n \(\succeq \)0 and the discrete complete-monotonicity inequalities (\(- \)1)d\(\Delta \)dWk \(\ge \) 0. More precisely,
+
+
+
+\begin{equation}
+\tag{96}\label{eq:96}
+\det G_r=\left(\prod_{j=1}^ra_j\right)\prod_{i<j}(q_i-q_j)^2.
+\end{equation}
+
+The signs and ranks are necessary for Eq.~\eqref{eq:92}, but not sufficient to certify the original fluid PDE from scalar measurements.
+
+
+\end{theorem}
+
+\begin{proof}
+Let Vij = \(\rho \)i j and D(t) = diag(aje\(- \)2\(\nu \rho \)jt). Then Hn = V D(t)V \(\top \), and for n = r the square Vandermonde determinant gives Eq.~\eqref{eq:94}. For the sampled version replace \(\rho \)j with qj, proving the same factorization. The shifted and difference matrices have diagonal weights ajqj and aj(1 \(- \)qj) respectively, and are therefore positive semidefinite. Finally (\(- \)1)d\(\Delta \)dWk = P j ajqk j (1 \(- \)qj)d \(\ge \)0.
+
+\end{proof}
+
+\begin{corollary}[Finite-energy-history Prony recovery and a chirality obstruction]
+
+In exact noiseless data, the first 2r values W0, . . . , W2r\(- \)1 determine all qj and their positive aggregate weights aj uniquely, provided r is known. Indeed, for the monic polynomial Q(z) = zr + Pr\(- \)1 \(\ell \)=0 c\(\ell \)z\(\ell \), solve
+
+
+\begin{equation}
+\tag{97}\label{eq:97}
+\sum_{\ell=0}^{r-1}W_{i+\ell}c_\ell=-W_{i+r},\qquad0\le i<r.
+\end{equation}
+
+Its simple roots are qj, and an ordinary Vandermonde solve gives aj. The values W0, . . . , W2r additionally detect the exact finite rank by the first vanishing larger Hankel determinant. However, this procedure only identifies distinct squared-curl rate shells, not curl chirality, eigenspace orientation, field phase or Hopf-link topology. Opposite-chirality eigenfields with equal |\(\lambda \)| and equal norm have identical Wk for all times but opposite helicities.
+
+
+\end{corollary}
+
+\begin{proof}
+The annihilating polynomial obeys Pr \(\ell \)=0 c\(\ell \)Wk+\(\ell \)= P j ajqk j Q(qj) = 0 with cr = 1. The coefficient matrix Gr is positive definite, hence invertible. Distinct nodes and positive weights imply uniqueness. Equal \(\lambda \)2 have equal viscous rates for both operators under consideration and therefore cannot be separated by any energy-only time history, regardless of the number of samples.
+
+\end{proof}
+
+\begin{theorem}[Viscosity-shift invariant normalized Hankel hierarchy]
+
+On the pressure-balanced round- sphere families, with the same initial field, the Hodge and Ebin–Marsden energies satisfy WEM(t) = e8\(\nu \)t/R2WH(t). At equal sampling times kh, define dimensionless normalized data
+
+
+\begin{equation}
+\tag{98}\label{eq:98}
+R_k=\frac{W_k}{W_0}\left(\frac{W_0}{W_1}\right)^k,\qquad k\ge0.
+\end{equation}
+
+Then each Rk and each Hankel minor of [Ri+j] are exactly identical for the two viscosity conventions. Their Hankel matrices remain positive semidefinite and have the same rank min(n, r). The condition Gn \(- \)G+ n \(\succeq \)0 applies to the unnormalized nonnegative-decay data but need not apply to [Rk], since normalization can move nodes above one.
+
+
+\end{theorem}
+
+\begin{proof}
+If s = e8\(\nu \)h/R2 then W EM k = skW H k and W EM 0 = W H 0 . Substitution gives cancellation of every sk in Eq.~\eqref{eq:98}. Moreover Rk = P j(aj/W0)(qj/¯q)k where ¯q = W1/W0 > 0; the positive Vandermonde factorization applies to these rescaled positive nodes without requiring qj/¯q \(\le \)1.
+
+\end{proof}
+
+\begin{proposition}[Rigorous sample-noise detection gate]
+
+Suppose each of the sampled energies W0, . . . , W2n\(- \)2 has an absolute perturbation no greater than \(\varepsilon \). Then the perturbed n \(\times \) n Hankel matrix eGn satisfies
+
+
+\begin{equation}
+\tag{99}\label{eq:99}
+\|\widetilde G_n-G_n\|_2\le n\varepsilon,\qquad|\sigma_j(\widetilde G_n)-\sigma_j(G_n)|\le n\varepsilon.
+\end{equation}
+
+Consequently, if the smallest positive singular value of a rank-r ideal Gn exceeds 2n\(\varepsilon \), thresholding at n\(\varepsilon \) recovers rank r. This is a sufficient noise gate, not a uniform stability theorem as the spectral nodes collide or amplitudes vanish.
+
+
+\end{proposition}
+
+\begin{proof}
+Each of the n2 entries of the perturbation matrix has absolute value at most \(\varepsilon \), so its Frobenius norm is at most n\(\varepsilon \), which bounds its spectral norm. Apply the singular-value perturbation inequality.
+
+Novelty and applicability gate. The Hankel/Prony methods are classical \cite{ref1,ref2}; the basic spectral- rank mechanism occurs in other heat-equation inverse problems, including a 2026 preprint \cite{ref3}. The precise claims of this section concern their typed application to our exact round-S3 Navier–Stokes reducing sectors, the dual viscosity normalization, the independent nonlinear Leray residual identity, and the explicit chirality no-go. This is not a claim that all these underlying ideas were discovered here. The moment inequalities remain necessary but not sufficient for PDE closure, and finite-dimensional moment identification is not a quantum Yang–Mills mass-gap argument.
+
+
+\end{proof}
+
+\section{Geometry of light as a typed, algebraically parameterized reconstruction system}
+
+
+This section extends the preceding nonlinear and phase-space certificates by a joint but carefully nonidentified optical–hydrodynamic reconstruction. It does not assert a new fundamental interaction. In particular, source-free Maxwell fields and viscous incompressible fluid flows are distinct physical equations, even if their initial data can be constructed from the same polynomial.
+
+
+\subsection{One polynomial, two equations, one nodal divisor}
+
+Let X2, X3 be a globally orthonormal pair in a positively oriented Hopf frame on the fixed round \(S_R^3\), chosen consistently with the positive-curl convention. Let p \(\in \)Symm(C2) be nonzero and homogeneous of degree m, and suppose the null-Beltrami construction obeys
+
+
+
+\begin{equation}
+\tag{100}\label{eq:100}
+F_p=p(z_1,z_2)(X_2+iX_3),\quad\operatorname{curl}F_p=\lambda_mF_p,\quad\lambda_m=(m+2)/R,\quad F_p\cdot F_p=0.
+\end{equation}
+
+Here, the existence, orientation and global classification of such fields are part of the hypotheses inherited from the separately cited null-Beltrami construction; the present argument proves the consequences below, not that external classification afresh. Define E = Re Fp, B = Im Fp and the normalized equal-time optical intensity
+
+
+
+\begin{equation}
+\tag{101}\label{eq:101}
+I_p:=\tfrac12(|E|^2+|B|^2)=|p|^2,\qquad|E|=|B|,\qquad E\cdot B=0.
+\end{equation}
+
+The same E defines a distinct, fluid evolution u(t) = e\(- \nu \lambda \)2 mtE for Hodge viscosity, or e\(- \nu \)(\(\lambda \)2 m\(- \)4/R2)tE for Ebin–Marsden viscosity, because its convection is a gradient. On this exact family the fluid pressure, modulo an arbitrary function of time, is
+
+
+
+\begin{equation}
+\tag{102}\label{eq:102}
+P(t,z)-P_0(t)=-\tfrac12a(t)^2I_p(z),\qquad u(t)=a(t)E.
+\end{equation}
+
+The optical field evolves by Maxwell’s equations, not by the viscous factor a(t). Equation (102) compares an equal-time intensity with a pressure profile from a different PDE; its precise common input is p.
+
+
+\begin{theorem}[Exact finite intensity/pressure tomography on the Hopf base]
+
+Write p(z1, z2) = Pm k=0 ckzm\(- \)k 1 zk 2. Assume its degree m and the nonzero intensity normalization are known. Choose any m + 1 distinct latitudes xa \(\in \)(0, 1) and 2m + 1 equidistant azimuthal angles \(\delta \)b = 2\(\pi \)b/(2m + 1). The (m + 1)(2m + 1) exact numbers Ip(xa, \(\delta \)b) determine the full Hermitian rank-one matrix (ckcl)m k,l=0, and hence determine p up to one global U(1) phase. They determine the associated divisor on CP1
+
+and its Hopf-fibre lift, with multiplicities. The identical reconstruction applies to the pressure deficit \(- \)2(P \(- \)P0)/a(t)2 at fixed finite t, provided the pressure offset P0(t) and amplitude a(t) are known (or independently calibrated).
+
+
+\end{theorem}
+
+\begin{proof}
+In Hopf coordinates z1 = \(\sqrt{} \)1 \(- \)x ei\(\phi \) and z2 = \(\sqrt{} \)x ei(\(\phi \)+\(\delta \)), write
+
+
+\begin{equation}
+\tag{103}\label{eq:103}
+p=e^{im\phi}\sum_{k=0}^mc_k(1-x)^{(m-k)/2}x^{k/2}e^{ik\delta}.
+\end{equation}
+
+Its intensity is a trigonometric polynomial in \(\delta \) of degree at most m, so the specified 2m + 1 samples recover every Fourier coefficient without aliasing. For d \(\ge \)0, its dth coefficient is
+
+
+
+\begin{equation}
+\tag{104}\label{eq:104}
+\widehat I_d(x)=x^{d/2}(1-x)^{d/2}\sum_{\ell=0}^{m-d}c_{\ell+d}\overline{c_\ell}\,x^\ell(1-x)^{m-d-\ell}.
+\end{equation}
+
+After division by the nonzero prefactor, the right side is a degree-m \(- \)d polynomial. Evaluation at m + 1 distinct latitudes determines its Bernstein coefficients uniquely. Varying d recovers the upper triangular entries cl+dcl; Hermitian symmetry gives the others. Since p \(\ne \)= 0, the matrix is positive rank one and factors as cc\(\ast \), uniquely modulo c 7\(\to \)ei\(\theta \)c. The fundamental theorem of algebra for homogeneous binary forms determines the unordered projective roots, counted with multiplicity. Their Hopf preimages are the nodal fibres. Equation (102) gives the pressure statement. No uniform numerical condition-number bound follows merely from invertibility.
+
+
+\end{proof}
+
+\subsection{Temporal dual tomography and its information-theoretic blind spots}
+
+The preceding theorem reconstructs spatial structure. A separate temporal certificate reconstructs signed-curl population only on a finite pressure-balanced reducing family; it does not reconstruct general Maxwell fields or general turbulent fluids.
+
+
+\begin{theorem}[Finite joint energy–helicity Prony reconstruction]
+
+Let an exact reducing solution have a real orthogonal decomposition into r distinct absolute curl-eigenshells \(\ell \)j > 0 with squared norms Aj,+, Aj,\(- \ge \)0. Suppose the viscosity \(\nu \) > 0, radius R, time step h > 0, viscosity convention cR \(\in \)\{0, 4/R2\}, and the number of occupied shells r are known. Set Aj = Aj,+ + Aj,\(- \)> 0 and Bj = \(\ell \)j(Aj,+ \(- \)Aj,\(- \)). From 2r exact samples of W(kh) = 2E(kh) and r exact samples of the helicity H(kh) one uniquely recovers, up to permutation, the nodes \(\ell \)j and both chiral weights Aj,\(\pm \), provided the nodes are distinct. Specifically,
+
+
+\begin{equation}
+\tag{105}\label{eq:105}
+\begin{gathered}W(kh)=\sum_{j=1}^r A_jq_j^k,\qquad H(kh)=\sum_{j=1}^rB_jq_j^k,\\q_j=\exp[-2\nu(\ell_j^2-c_R)h],\qquad A_{j,\pm}=\tfrac12(A_j\pm B_j/\ell_j).\end{gathered}
+\end{equation}
+
+The reconstruction requires compatibility conditions |Bj| \(\le \ell \)jAj; they are a falsification test for the claimed sector.
+
+
+\end{theorem}
+
+\begin{proof}
+The positive Hankel matrix [W((a+b)h)]r\(- \)1 a,b=0 is a Vandermonde–diagonal–Vandermonde product of rank r. The 2r moments determine the monic annihilating polynomial of its r distinct positive nodes by a nonsingular r \(\times \) r Hankel solve. Its simple roots give the qj; logarithms yield the \(\ell \)2 j because \(\nu \), cR, h are known and \(\ell \)j > 0. Vandermonde inversion of the first r energy samples gives the Aj. The identical matrix inverted against the first r helicity samples gives Bj. Solving the two linear equations Aj = Aj,+ + Aj,\(- \)and Bj = \(\ell \)j(Aj,+ \(- \)Aj,\(- \)) gives the result. When nodes approach one another, the inverse is ill-conditioned; this theorem claims exact algebraic identifiability, not uniformly stable recovery.
+
+\end{proof}
+
+\begin{proposition}[No-go for topology from integrated time traces alone]
+
+For every m \(\ge \)2, the two binary forms p = zm 1 , q = \(\sqrt{} \)m zm\(- \)1 1 z2 (106)
+
+
+\begin{equation}
+\tag{106}\label{eq:106}
+p=z_1^m,\qquad q=\sqrt m\,z_1^{m-1}z_2.
+\end{equation}
+
+have the same integral intensity on the unit round S3, belong to the same signed curl shell under (100), and therefore generate identical normalized energy, helicity and viscosity-only spectral time histories in the corresponding single-shell fluid construction. Nevertheless their projective root divisors are not equivalent: p has one root of multiplicity m, whereas q has two roots of multiplicities (m \(- \)1, 1). Hence integrated energy–helicity spectroscopy alone cannot reconstruct the Hopf nodal configuration, even with perfect noiseless data. Spatial intensity or pressure information is indispensable for this task.
+
+
+\end{proposition}
+
+\begin{proof}
+The Hopf-coordinate integral identity on round S3 gives
+
+
+\begin{equation}
+\tag{107}\label{eq:107}
+\int_{S^3}\left|\sum_{k=0}^mc_kz_1^{m-k}z_2^k\right|^2dV=\frac{2\pi^2}{m+1}\sum_{k=0}^m\frac{|c_k|^2}{\binom mk}.
+\end{equation}
+
+For the displayed p and q the sum is one in both cases. They have the same m and therefore the same \(\lambda \)m, while their projective roots have the different stated partitions. The modal energy and helicity traces then differ at most by the common convention-dependent overall normalization, which is equal for these forms. This exhibits the noninjectivity.
+
+
+\end{proof}
+
+\begin{corollary}[Typed geometry-of-light reconstruction diagram]
+
+Within the hypotheses above there is a jointly compatible typed family of maps
+
+
+\begin{equation}
+\tag{108}\label{eq:108}
+[p]\in\mathbb{CP}^m\longmapsto I_p,\qquad\operatorname{Div}(p),
+\end{equation}
+
+
+\begin{equation}
+\tag{109}\label{eq:109}
+\operatorname{Hopf}^{-1}(\operatorname{Div}(p)).
+\end{equation}
+
+After fixing the signed-curl, viscosity, force and pressure conventions, a separate map yields the five quantities u(t), P(t), W(t), H(t), Z(t).
+
+
+The first map is injective through exact full spatial intensity; the map to integrated time traces is not. Every cross-sector equivalence requires an explicit, source-tracked geometric transformation and a test. None of these statements asserts an equivalence between a viscous flow and a Maxwell spacetime solution, a detection of cosmic S3, a general unforced Navier–Stokes theorem, or a quantum-gravitational relation.
+
+
+Priority and OpenAI Math transfer gates. Polynomial Maxwell knots and links predate this work, e.g. the exact solutions in de Klerk et al. and Bode; the Majorana/Husimi zero correspondence and optical stellar representations also predate it. The finite trigonometric/Bernstein and Hankel–Prony inversions are standard mathematical techniques. The present claim is a joint certified application and a precise nonidentifiability obstruction in the declared round-S3 model; worldwide priority of that joint packaging has not been independently established. Family 350 of openai/math obstructs automatic transfer of round metric nodal conclusions to nearby nonround metrics. Family 376 concerns forced flat-domain Navier–Stokes computation and cannot close the unforced S3 problem. Family 365 concerns boundary inverse data on a different geometric domain; its hypotheses do not apply to spatial intensity samples on a closed S3. These three are useful typed refusals, not missing proofs that can be imported verbatim.
+
+
+\end{corollary}
+
+\section{Catalogue transfer gates and relation to Millennium problems}
+
+Prior work on nonvanishing Beltrami eigenfields and the Jacobi/contact framework on the round sphere must also be credited \cite{ref13}; thus the parity of curl eigenvalues alone is not asserted as a historically new discovery. For comparison, recent work has proved uniqueness/minimality results for the static Hopf map in a Faddeev–Skyrme regime \cite{ref14}; this is distinct from the forced hydrodynamic construction here.
+
+
+The public openai/math catalogue (accessed October 10, 2026) groups 719 manuscripts into 372 families; its supporting artifacts have differing verification scopes. Selected family numbers below are research leads, not imported lemmas without hypotheses.
+
+
+
+\begin{table}[htbp]
+\centering\footnotesize
+\caption{Catalogue transfer gates for the selected OpenAI Mathematics families.}
+\begin{tabularx}{\linewidth}{@{}p{0.09\linewidth}p{0.29\linewidth}X@{}}
+\toprule
+Family & Relevant direction & Exact obstruction or required transfer \\
+\midrule
+376 & Universal computation in forced Navier--Stokes & Flat three-torus / flat-domain smooth forcing and prescribed control: no automatic $S^3$, unforced, or Clay regularity conclusion.\\
+350 & Nodal sets under near-round metrics & Counterexamples on metrics arbitrarily close to round $S^3$: protect exact-round assumptions; no uniform high-frequency nodal transfer.\\
+130 & Fast discrete Fourier transform & Exact complex arithmetic/unrestricted coefficients: no bit-complexity or curved-harmonic FFT bound without a new reduction.\\
+365 & Metric--connection inverse boundary data & Requires a genuine boundary and Dirichlet--Neumann map: a closed $S^3$ has no physical boundary from which that theorem follows.\\
+290 & Modular spectral recovery & Requires specified von Neumann factor, state and modular flow; coefficient-space Berry phase supplies none automatically.\\
+362 & Relativistic Vlasov--Maxwell & One-species nonnegative charge cannot be nontrivial on closed $S^3$ with smooth global Gauss law and no neutralizing background.\\
+260 & Spacetime Penrose rigidity & Asymptotic-flatness/end and trapping hypotheses not met by closed FLRW spatial $S^3$.\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+The core new conclusions of Secs. 6–11 come from explicit geometric identities and finite-dimensional Hilbert-space arguments; they do not assume that the catalogue manuscripts solve an unspecified transfer gap. A finite exact reducing family neither proves global regularity for arbitrary three-dimensional Navier–Stokes initial data nor settles the classical Yang–Mills quantum mass-gap problem. The positive spectral gap 2/R of classical curl on the round sphere is not a quantum Yang–Mills mass gap, and a Berry geometric phase does not prove the Hodge conjecture, P \(\ne \)= NP, or the Riemann hypothesis. Formalization of these new hybrid theorems in Lean has not been performed.
+
+
+\section{A coupled but nonidentified research atlas}
+
+The two exact families have sharply different dynamical mechanisms. The viscosity-shift theorem relates their respective Hodge and Ebin–Marsden versions without identifying the two invariant families. In the unforced toroidal family, \{an, bn\} decay at unequal rates \(\gamma \)n; the velocity is multi-eigenvalue and the nonlinear pressure contains \(\gamma \)n +\(\gamma \)k beat rates. In the fixed-Hopf family, coefficients at the same m decay radially without forcing, and motion in CPm requires external control. The shared invariant language is given by curl/Hodge spectral eigenvalues, exact pressure constraints, helicity/energy integrals, and finite-dimensional phase spaces. The former has a real linear Jacobi phase space and nonunique scalar pressure inversion; the latter admits rank-one pressure tomography and projective/Berry geometry. These should be visualized as separate nodes of a stratified atlas rather than a spurious universal isomorphism.
+
+
+\section{Validation and open mathematical questions}
+
+The accompanying V4 verify\_mathematics.py checks 126 exact symbolic identities: for n = 0, . . . , 8, the Jacobi curl-pair relations, Hodge eigenvalues, norms, and pairwise orthogonality. A three-mode numerical instance tests the reduced Navier–Stokes components, and the quadratic Hopf-braid example
+
+
+verifies equality in Eq.~\eqref{eq:26} to machine precision. The V5 scripts verify\_commuting\_hopf.py and verify\_commuting\_hopf\_numeric.mjs independently check all centralizer weights, signed curls, Lie brackets, explicit cross-product primitive and the complete inviscid nonlinear pressure balance for normalized quaternions; the symbolic tests reduce polynomial residuals modulo \(\| \)q\(\| \)2 \(- \)1. These are useful reproducibility tests, not independent formal proof certificates. The curvature-viscosity bridge was checked independently for multi-rate modal solutions and cyclic projective forcing; see the companion verification script. Remaining research tasks include (i) nonlinear stability against non-invariant perturbations, (ii) pressure-only recovery with rate aliasing, (iii) actuator- limited optimization, and (iv) sharp lower, rather than upper, bounds on the cross-sector projected forcing. No statement here solves the unrestricted smoothness or blowup problem, certifies novelty against the entire literature, or proves that the universe is topologically S3.
+
+
+\section*{Declarations}
+
+This is a research working draft generated with AI assistance and requires independent expert review, author approval, attribution verification, and literature-priority evaluation before scholarly submission. No numerical or experimental measurements are claimed. A manuscript source file, exact symbolic tests, interactive research visualization, and a novelty audit accompany the draft.
+
+
+\begin{thebibliography}{99}
+\bibitem{ref1} G. Plonka, Prony methods for recovery of structured functions, GAMM-Mitteilungen (2014), https://doi.org/10.1002/gamm.201410011.
+
+\bibitem{ref2} D. Batenkov and collaborators, On the accuracy of Prony’s method for recovery of exponential sums with closely spaced exponents, Applied and Computational Harmonic Analysis (2024), https://doi.org/10.1016/j.acha.2024.101687.
+
+\bibitem{ref3} Z. Deng, X. Yang, and A. Qian, A Moment–Hankel Rank Method for Identifying the Number of Point Sources in the Heat Equation, arXiv:2606.21815 (2026), https://arxiv.org/abs/2606.21815.
+
+\bibitem{ref4} B. Batenin and A. Preece, Null Beltrami Geometry on the Round Three-Sphere: Hopf Classification, Bateman Links, Twistor Cohomology, and Structural Obstructions, Zenodo v3.1 (2026), https://doi.org/10.5281/zenodo.23214269.
+
+\bibitem{ref5} V. I. Arnold and B. A. Khesin, Topological Methods in Hydrodynamics (Springer, 1998).
+
+\bibitem{ref6} P. Bruno, Quantum Geometric Phase in Majorana’s Stellar Representation, Phys. Rev. Lett. 108, 240402 (2012), https://doi.org/10.1103/PhysRevLett.108.240402.
+
+\bibitem{ref7} H. D. Liu and L. B. Fu, Representation of Berry Phase by the Trajectories of Majorana Stars, Phys. Rev. Lett. 113, 240403 (2014), https://doi.org/10.1103/PhysRevLett.113.240403.
+
+\bibitem{ref8} M. Samavaki and J. Tuomela, Navier–Stokes equations on Riemannian manifolds, J. Geom. Phys. 148, 103543 (2020), https://doi.org/10.1016/j.geomphys.2019.103543.
+
+\bibitem{ref9} C. H. Chan, M. Czubak and M. M. Disconzi, The formulation of the Navier–Stokes equations on Riemannian manifolds, J. Geom. Phys. 121, 335–346 (2017), https://doi.org/10.1016/j. geomphys.2017.07.015.
+
+\bibitem{ref10} OpenAI Mathematics, Universal computation in forced Navier–Stokes flows, result family 376 (2026), https://github.com/openai/math/blob/main/lean/docs/376.md. 25
+
+\bibitem{ref11} OpenAI Mathematics, Yau’s nodal bounds: surfaces and higher dimensions, family 350, formalization scope (2026), https://github.com/openai/math/blob/main/lean/docs/350.md.
+
+\bibitem{ref12} OpenAI Mathematics, Exact Fourier transforms below n logn, family 130, formalization scope (2026), https://github.com/openai/math/blob/main/lean/docs/130.md.
+
+\bibitem{ref13} D. Peralta-Salas and R. Slobodeanu, Contact structures and Beltrami fields on the torus and the sphere, Indiana Univ. Math. J. 72, 699–730 (2023), https://doi.org/10.1512/iumj.2023.72.9066.
+
+\bibitem{ref14} A. Guerra, X. Lamy, and K. Zemas, Global Minimality of the Hopf Map in the Faddeev–Skyrme Model with Large Coupling Constant, Commun. Math. Phys. 407, 171 (2026), https://doi.org/10.1007/s00220-026-05702-5.
+
+\bibitem{ref15} A. Baron, On a class of Beltrami vector fields and associated exact solutions to the Navier–Stokes equations, Phys. Fluids 37, 097132 (2025), https://doi.org/10.1063/5.0287737.
+
+\bibitem{ref16} O. Bogoyavlenskij, Exact Beltrami flows in a spherical shell, Z. Naturforsch. A 76, 1007–1018 (2021), https://doi.org/10.1515/zna-2021-0236.
+
+\bibitem{ref17} Equating quantum imaginary time evolution, Riemannian gradient flows, and stochastic implementations, Phys. Rev. Research (2026), https://journals.aps.org/prresearch/abstract/10.1103/ht2m-1j91.
+
+\bibitem{ref18} R. Cheng, Quantum Geometric Tensor (Fubini–Study Metric) in Simple Quantum System, arXiv:1012.1337 (2010), https://arxiv.org/abs/1012.1337.
+
+\bibitem{ref19} OpenAI Mathematics, family 087, symplectic Mahler-type inequalities and widths, https://github.com/openai/math/blob/main/lean/docs/087.md.
+
+\bibitem{ref20} OpenAI Mathematics, family 144, smooth volume-preserving dynamics on a flat torus, https://github.com/openai/math/blob/main/lean/docs/144.md.
+
+\bibitem{ref21} OpenAI Mathematics, family 269, Laughlin-gap statements on the two-sphere, https://github.com/openai/math/blob/main/lean/docs/269.md.
+
+\bibitem{ref22} OpenAI Mathematics, family 347, Hamiltonian fixed-point counterexamples, https://github.com/openai/math/blob/main/lean/docs/347.md.
+
+\bibitem{ref23} OpenAI Mathematics, family 374, stability of Brenier maps on Euclidean convex bodies, https://github.com/openai/math/blob/main/lean/docs/374.md.
+
+\bibitem{ref24} Clay Mathematics Institute, The Millennium Prize Problems, https://www.claymath.org/millennium-problems/.
+
+\bibitem{ref25} A. J. J. de Klerk, R. I. van der Veen, J. W. Dalhuisen, and D. Bouwmeester, Knotted optical vortices in exact solutions to Maxwell’s equations, Phys. Rev. A 95, 053820 (2017), https://doi.org/10.1103/PhysRevA.95.053820.
+
+\bibitem{ref26} B. Bode, Stable Knots and Links in Electromagnetic Fields, Commun. Math. Phys. 387, 1757–1770 (2021), https://doi.org/10.1007/s00220-021-04219-3.
+
+\bibitem{ref27} Majorana constellations for optical scalar beams and vector fields, Phys. Rev. A 110, 063716 (2024), https://doi.org/10.1103/PhysRevA.110.063716.
+
+\end{thebibliography}
+\clearpage
+\begin{table}[htbp]
+\centering\small
+\caption{The mathematical status of the proposed connections.}
+\begin{tabularx}{\linewidth}{@{}p{0.20\linewidth}XX@{}}
+\toprule
+Sector & Exact derived structure & Limitation\\\midrule
+Toroidal $S^3$ & Jacobi multi-rate unforced solutions; pressure beat exponents; energy/helicity formulas & Not a classification of all flows; pressure inversion not unique\\
+Commuting Hopf--Killing & Opposite-curl nonresonant exact flow; polynomial pressure; positive helicity defect with zero force & Only an explicit invariant centralizer, not all commuting eigenfields\\
+Fixed Hopf & Prescribed polynomial path; pressure projectors; exact force cost & Phase control requires forcing\\
+Cyclic braids & No-collision Hopf-link exchanges; Berry forcing bound & Braiding is not turbulence or general fluid-particle braiding\\
+OpenAI Math 376 & Smooth forced flat-domain computation mechanisms & No direct proof transfer or claim of shared theorem\\
+\bottomrule
+\end{tabularx}
+\end{table}
+\end{document}
