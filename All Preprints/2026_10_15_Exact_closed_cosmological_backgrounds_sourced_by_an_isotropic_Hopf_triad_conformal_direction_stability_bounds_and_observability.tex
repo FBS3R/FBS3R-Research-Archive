@@ -1,0 +1,218 @@
+\documentclass[aps,prd,reprint,longbibliography,nofootinbib,superscriptaddress]{revtex4-2}
+\usepackage{amsmath,amssymb,amsfonts,bm,mathtools}
+\usepackage{graphicx,booktabs}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\newcommand{\dd}{\mathrm d}
+\newcommand{\vol}{\operatorname{Vol}}
+\newcommand{\Hopf}{\operatorname{Hopf}}
+\newcommand{\Ric}{\operatorname{Ric}}
+\begin{document}
+\title{Exact closed cosmological backgrounds sourced by an isotropic Hopf triad: conformal-direction stability bounds and observability}
+\author{Andrei Preece}
+\author{Boris Batenin}
+\affiliation{Independent research collaboration}
+\date{October 15, 2026}
+\begin{abstract}
+We study a specified Einstein--sigma--Faddeev--Skyrme effective field theory consisting of three maps from a spatial three-sphere to a two-sphere. An orthogonal triad of Hopf maps produces a homogeneous and isotropic stress tensor although each individual map has a preferred fiber direction. The quadratic and quartic field sectors scale, respectively, as inverse square and inverse fourth powers of the FLRW scale factor. We derive an exact nonsingular closed cosmological bounce for a bounded region of positive couplings and, independently, compute the full matter energy along a family of spatial conformal deformations of the triad. A nonnegative second variation at the bounce exists only inside an explicit coupling window; along every indefinitely expanding branch the same matter variation ultimately becomes negative. These are directional matter-energy statements, not a proof of linear or nonlinear gravitational stability. We also identify the exact background degeneracies with curvature and radiation, and explain the additional geometric observable needed to resolve the former. Prior Einstein--Skyrme bounce solutions and Hopf-map stability results are explicitly distinguished from the particular three-map construction and the conditional statements established here.
+\end{abstract}
+\maketitle
+
+\section{Scope and relation to previous work}
+Nonlinear sigma and Skyrme-type fields offer controlled sources for compact-universe cosmologies. Exact self-gravitating Skyrmion solutions, including bouncing Bianchi-IX geometries, were obtained in Refs.~\cite{AyonBeato2016,Canfora2019}; cosmological properties of Skyrme matter were studied in Ref.~\cite{Canfora2014}. Independently, the energy and stability of Hopf maps in Faddeev--Skyrme models have a substantial literature, notably Refs.~\cite{Ward1999,Speight2007,Guerra2026}. Consequently neither the existence of a Skyrme cosmological bounce nor a general stability theorem for Hopf maps is claimed here as a discovery.
+
+Our question is narrower: can a \emph{triad of three separately valued Hopf fields} give an exactly isotropic source in a closed FLRW metric, and what is the precise relation between its background bounce condition and the sign of one explicitly specified spatial conformal variation? We fix the action and normalizations at the outset. No quantum information metric or microscopic determination of Newton's constant is assumed.
+
+\section{Action and geometric source}
+Write $S^3\simeq SU(2)$ with its unit round metric $\gamma=\sum_{i=1}^3\theta_i^2$, in a left-invariant orthonormal coframe with $\dd\theta_a=-2\theta_b\wedge\theta_c$ for each cyclic triple $(a,b,c)$. Let $e_a$ denote the standard imaginary quaternion units and introduce three unit-vector maps
+\begin{equation}\label{maps}
+ n_a(q)=q e_a q^{-1}\in S^2,\qquad a=1,2,3.
+\end{equation}
+Each $n_a$ is a Hopf fibration, up to isometries and orientation conventions. Let $F_a=n_a^*\omega_{S^2}$, where the area form of the unit target sphere satisfies $\int_{S^2}\omega_{S^2}=4\pi$. Consider the \emph{postulated} effective action, with independent positive constants $\kappa$ and $\lambda$,
+\begin{widetext}
+\begin{equation}\label{action}
+ S=\int\dd^4x\sqrt{-g}\left\{\frac{R-2\Lambda}{16\pi G}
+ -\frac{\kappa}{2}\sum_{a=1}^3g^{\mu\nu}\partial_\mu n_a\cdot\partial_\nu n_a
+ -\frac{\lambda}{4}\sum_{a=1}^3 F_{a,\mu\nu}F_a{}^{\mu\nu}\right\}.
+\end{equation}
+\end{widetext}
+We use metric signature $(-,+,+,+)$, assume $G>0$, $\Lambda>0$, $\kappa>0$, $\lambda>0$, and take $g=-\dd t^2+a(t)^2\gamma$, $a(t)>0$. The maps are time independent in these spatial group coordinates.
+
+The quaternionic adjoint action gives $E_i n_a=2q(e_i\times e_a)q^{-1}$. Therefore
+\begin{equation}\label{isotropy}
+ \sum_a|\dd n_a|_\gamma^2=24,\qquad
+ F_a=4\theta_b\wedge\theta_c,\qquad
+ \sum_a|F_a|_\gamma^2=48,
+\end{equation}
+\begin{equation}\label{tensorid}
+ \sum_a(F_a)_{ik}(F_a)_j{}^k=32\gamma_{ij},\qquad
+ \sum_a(\dd n_a)_i\cdot(\dd n_a)_j=8\gamma_{ij}.
+\end{equation}
+The last equality follows from $\sum_a(\delta_{ij}-\delta_{ia}\delta_{ja})=2\delta_{ij}$ multiplied by $4$. Although a single Hopf map yields a rank-two spatial derivative tensor, the sum is isotropic. The fields satisfy their Euler--Lagrange equations in this symmetric configuration. For the sigma sector this follows from harmonicity of the Hopf map. For the quartic sector, $\delta F_a$ is vertical (parallel to $\theta_a$), whereas the contraction $n_a^*(\iota_{\delta n_a}\omega_{S^2})$ is horizontal; their pairing in the first variation therefore vanishes. All three fields are separate map-valued fields, not an assertion that their sum represents an arbitrary microscopic Skyrme field.
+
+\section{Exact stress tensor and bouncing branch}
+The static matter source is a perfect fluid. From Eq.~\eqref{tensorid} the quadratic and quartic sectors give
+\begin{align}\label{rho}
+\rho_2&=\frac{12\kappa}{a^2},&p_2&=-\frac{4\kappa}{a^2},\\
+\rho_4&=\frac{24\lambda}{a^4},&p_4&=\frac{8\lambda}{a^4}.
+\end{align}
+In particular $p_2/\rho_2=-1/3$ and $p_4/\rho_4=1/3$. Each sector separately obeys $\dot\rho+3H(\rho+p)=0$ for $H=\dot a/a$. Defining
+\begin{equation}\label{const}
+ h^2=\frac\Lambda3,\quad \eta=32\pi G\kappa,\quad
+ D=64\pi G\lambda,\quad C=1-\eta,
+\end{equation}
+the Einstein equations become
+\begin{equation}\label{friedmann}
+ \dot a^2=h^2 a^2-C+\frac{D}{a^2},\qquad
+ \ddot a=h^2 a-\frac{D}{a^3}.
+\end{equation}
+These are exact equations \emph{within the action}~\eqref{action}, rather than emergent gravitational dynamics inferred from information theory.
+
+\textit{Proposition 1 (nonsingular branch).} If
+\begin{equation}\label{bouncewindow}
+ 0<\eta<1,\qquad 0<4h^2D<C^2,
+\end{equation}
+there is a regular, time-reflection-symmetric bouncing solution
+\begin{equation}\label{bounce}
+ a(t)^2=\frac{C+\sqrt{C^2-4h^2D}\,\cosh[2h(t-t_0)]}{2h^2}.
+\end{equation}
+Conversely, for strictly positive couplings, a nondegenerate upper-root bounce in this closed FLRW sector requires Eq.~\eqref{bouncewindow}. At equality $4h^2D=C^2$ the two turning points coalesce and the nondegenerate bounce disappears.
+
+\textit{Proof.} Set $x=a^2$ in Eq.~\eqref{friedmann}; then $\dot x^2=4(h^2x^2-Cx+D)$. Its two positive distinct turning points exist precisely when $C>0$ and $C^2>4h^2D$. The upper root corresponds to positive acceleration. Integration of the separated equation gives Eq.~\eqref{bounce}; direct substitution checks both equations in Eq.~\eqref{friedmann}. $\square$
+
+\section{A directional conformal variation and its exact energy}
+On a fixed spatial slice define the material energy of the triad using Eq.~\eqref{action} and the round spatial metric $a^2\gamma$. We deform the maps, \emph{not} the metric, by composition with a one-parameter family of conformal diffeomorphisms $\phi_s:S^3\to S^3$,
+\begin{equation}\label{conformal}
+ \phi_s^*\gamma=\omega_s^2\gamma,
+ \qquad \omega_s=(\cosh s+f\sinh s)^{-1},
+\end{equation}
+where $f:S^3\to[-1,1]$ is a unit Cartesian coordinate on the embedded unit three-sphere. Write $n_a^{(s)}=n_a\circ\phi_s$. Because $\phi_s$ acts conformally,
+\begin{equation}\label{edens}
+ \sum_a|\dd n_a^{(s)}|_\gamma^2=24\omega_s^2,\qquad
+ \sum_a|F_a^{(s)}|_\gamma^2=48\omega_s^4.
+\end{equation}
+Two exact spherical averages are
+\begin{equation}\label{omegaintegrals}
+ \langle\omega_s^2\rangle_{S^3}=\operatorname{sech}^2(s/2),\qquad
+ \langle\omega_s^4\rangle_{S^3}=\cosh s.
+\end{equation}
+The second identity follows from the change-of-variables formula $\phi_s^*\dd V_\gamma=\omega_s^3\dd V_\gamma$ and the vanishing average of $f$. The first can be evaluated using the normalized coordinate measure $(2/\pi)\sqrt{1-u^2}\,\dd u$ on $[-1,1]$.
+
+\textit{Proposition 2 (exact conformal-direction energy).} Along this family,
+\begin{equation}\label{energy}
+ \frac{E(s,a)}{2\pi^2}=12\kappa a\operatorname{sech}^2(s/2)
+ +\frac{24\lambda}{a}\cosh s,
+\end{equation}
+\begin{equation}\label{hessian}
+ \frac{E_{ss}(0,a)}{2\pi^2}=-6\kappa a+\frac{24\lambda}{a}.
+\end{equation}
+In this explicitly selected direction the second variation is nonnegative exactly when
+\begin{equation}\label{criterion}
+ a^2\le\frac{4\lambda}{\kappa}.
+\end{equation}
+For any solution~\eqref{bounce} with unbounded expansion and constant finite couplings, the inequality fails at sufficiently large $|t-t_0|$.
+
+\textit{Proof.} Substituting Eq.~\eqref{edens} into the spatial energy and integrating with Eq.~\eqref{omegaintegrals} yields Eq.~\eqref{energy}; twice differentiating gives Eq.~\eqref{hessian}. Equation~\eqref{criterion} is equivalent to its nonnegativity. Since $a(t)\to\infty$ on Eq.~\eqref{bounce}, it cannot hold at all times. $\square$
+
+The result is \emph{not} a theorem of instability of a coupled Einstein--matter system. Deforming $n_a$ while freezing the FLRW metric generally introduces anisotropic matter stresses and does not satisfy the full linearized Einstein constraints. Our second variation tests the static matter-energy functional along one admissible field deformation on a fixed slice. It supplies a necessary diagnostic for that restricted energetic stability question, not a sufficient criterion for dynamical stability.
+
+\section{Exact intersection of the two conditions}
+Introduce the dimensionless quartic combination $\zeta=h^2D=64\pi G\lambda h^2$. Let $b=h^2a_{\min}^2$ denote the positive upper turning root, so
+\begin{equation}\label{broot}
+ b=\frac{C+\sqrt{C^2-4\zeta}}2,\qquad
+ \zeta=b(C-b),\qquad \frac C2<b<C.
+\end{equation}
+Using Eqs.~\eqref{criterion} and \eqref{const}, the nonnegative conformal second variation at the bounce is equivalent to $b\le C-\eta/2$.
+
+\textit{Proposition 3 (joint parameter window).} An expanding nondegenerate bounce with a nonnegative spatial conformal-direction second variation at $t_0$ exists in the model precisely when
+\begin{equation}\label{wedge}
+ \boxed{\ 0<\eta<\frac12,\qquad
+ \frac\eta2-\frac{3\eta^2}{4}\le\zeta
+ <\frac{(1-\eta)^2}{4}.\ }
+\end{equation}
+Indeed, the interval $C/2<b\le C-\eta/2$ is nonempty iff $\eta<C$, or $\eta<1/2$. The map $b\mapsto b(C-b)$ is strictly decreasing on this interval. Its endpoint values give the two bounds in Eq.~\eqref{wedge}.
+
+For the strict interior of the window the unique positive time at which the sign is lost is
+\begin{equation}\label{tcrit}
+ t_{\rm crit}=\frac1{2h}\operatorname{arcosh}\left[
+ \frac{8h^2\lambda/\kappa-C}{\sqrt{C^2-4\zeta}}
+ \right],
+\end{equation}
+with $E_{ss}(0,a(t))<0$ at $|t-t_0|>t_{\rm crit}$. At the lower boundary of Eq.~\eqref{wedge}, $t_{\rm crit}=0$.
+
+A useful physical reformulation is that Eq.~\eqref{criterion} implies
+\begin{equation}\label{price}
+ \frac{\rho_4}{\rho_2}=\frac{2\lambda}{\kappa a^2}\ge\frac12,
+ \qquad \frac{p_2+p_4}{\rho_2+\rho_4}\ge-\frac19.
+\end{equation}
+Thus a conformally nonnegative triad cannot occur when its quartic sector is merely a negligible perturbation of the quadratic sector. Neither inequality is a statement about unmodeled sources or arbitrary initial data.
+
+\begin{figure}[t]
+\includegraphics[width=0.72\linewidth]{Hopf_Triad_Parameter_Window.pdf}
+\caption{Exact joint window in Eq.~\eqref{wedge} for positive couplings. The upper curve is excluded (degenerate turning root); the lower curve is included (vanishing conformal Hessian at the bounce). The example is an interior parameter point. These boundaries concern only the specified field ansatz and spatial conformal matter direction.}
+\label{fig:window}
+\end{figure}
+
+\section{Background-level observational degeneracies}
+Consider separately conserved dust and radiation as additional sources. For redshift $1+z=a_0/a$, the FLRW Hubble function is
+\begin{widetext}
+\begin{equation}\label{hubz}
+ \frac{H^2(z)}{H_0^2}=\Omega_m(1+z)^3+
+ (\Omega_{r,\mathrm{std}}+\Omega_{\mathrm H4})(1+z)^4+
+ (\Omega_K+\Omega_{\mathrm H2})(1+z)^2+\Omega_\Lambda,
+\end{equation}
+\end{widetext}
+where $\Omega_{\mathrm H2}=32\pi G\kappa/(H_0^2a_0^2)$, $\Omega_{\mathrm H4}=64\pi G\lambda/(H_0^2a_0^4)$ and $\Omega_K=-1/(H_0^2a_0^2)$. Therefore background expansion alone measures the sums, not their individual components. The ambiguity in the curvature-like pair can in principle be resolved by transverse distances. Under exact FLRW kinematics~\cite{Clarkson2008}, and setting $c=1$,
+\begin{equation}\label{curvtest}
+ \Omega_K=\frac{[H(z)D_M'(z)]^2-1}{[H_0D_M(z)]^2},
+\end{equation}
+where $D_M$ is transverse comoving distance. This identity is kinematical and does not require the Hopf field equations; it does require the FLRW metric assumptions and consistently calibrated distances. No fit to cosmological data is performed here. Perturbations and anisotropic stress would provide additional, model-dependent discriminants.
+
+\section{Topological scope and limitations}
+The Hopf invariant of each $n_a$ is nonzero; however, topology \emph{alone} does not provide a positive energy gap for the purely quadratic sigma sector in three dimensions. A degree-one concentration map $c_\epsilon:S^3\to S^3$ which is constant outside a radius-$\epsilon$ ball leaves $\Hopf(n_a\circ c_\epsilon)$ unchanged, while
+\begin{equation}\label{collapse}
+ \int_{S^3}|\dd(n_a\circ c_\epsilon)|_\gamma^2\,\dd V_\gamma
+ =O(\epsilon)\longrightarrow0.
+\end{equation}
+The quartic term controls this particular concentration mechanism differently. This is not a statement that inhomogeneous concentrated maps remain solutions of the homogeneous Einstein equations. In addition, the joint window~\eqref{wedge} tests a single conformal matter direction; it says nothing by itself about all scalar, vector, tensor, or gauge-invariant gravitational perturbations.
+
+The present effective action introduces $\kappa$ and $\lambda$ independently. It predicts neither their microscopic values nor Newton's constant. The observed curvature and radiation densities are not identified with Hopf sectors without an actual parameter-estimation and perturbation analysis. Although topological mapping makes the model geometrically transparent, the exact bounce~\eqref{bounce} has known analogues and does not establish a new universal gravitational law.
+
+\section{Conclusions}
+A specific three-map Hopf triad provides an isotropic $a^{-2}+a^{-4}$ source for a closed FLRW background. In that clearly identified effective theory we find a closed-form bouncing branch, compute a conformal matter-energy variation exactly, and identify the precise region in which this variation is nonnegative at the minimum radius. For an expanding branch, the same sign is inevitably lost at late times. The two results are compatible only in the window~\eqref{wedge}, whereas the background expansion is degenerate with curvature and radiation as in Eq.~\eqref{hubz}.
+
+The principal tests required before treating this model as a viable cosmology are a constrained perturbation calculation, a comparative study against prior Einstein--Skyrme solutions, and an observational analysis using independent distance and growth data. These tasks and any priority assessment are separate from the algebraic and variational identities established here.
+
+\begin{acknowledgments}
+The authors acknowledge prior work on Einstein--Skyrme cosmologies and stability of the Hopf map, cited below. No external funding or institutional support is asserted in this draft.
+\end{acknowledgments}
+
+\section*{Data availability}
+This work reports analytical results and no original experimental or observational datasets. The algebraic checks of the bounce equation, its conformal second variation, and the parameter window are included as a standalone Python/SymPy script in the accompanying manuscript archive. Source expressions and verification code are available with the manuscript; no external dataset is required to reproduce the principal equations.
+
+\section*{Disclosure of AI assistance}
+OpenAI ChatGPT (GPT-6; accessed October 2026) assisted with organizing and drafting the manuscript, literature discovery, symbolic consistency checks and LaTeX preparation, under instructions to preserve the effective-theory assumptions, distinguish existing literature, and verify algebra. A separate SymPy script checks selected identities. The named human authors must independently inspect the derivations, verify the underlying work, confirm authorship and affiliations, and approve the final text before submission. No AI system is listed as an author.
+
+\appendix
+\section{Spherical conformal integrals}
+For $u=f(q)$ the normalized measure induced from round $S^3$ is $\frac2\pi(1-u^2)^{1/2}\dd u$. Then
+\begin{equation}
+ \langle\omega_s^p\rangle=\frac2\pi\int_{-1}^1\frac{\sqrt{1-u^2}\,\dd u}{(\cosh s+u\sinh s)^p}.
+\end{equation}
+At $p=2$, the standard elementary integral, obtained by $u=\cos\theta$ or differentiating $\int_{-1}^1\sqrt{1-u^2}/(A+Bu)\,\dd u$, gives $\operatorname{sech}^2(s/2)$. At $p=4$, using $\phi_s^*\dd V_\gamma=\omega_s^3\dd V_\gamma$ and the inverse conformal map gives $\langle\omega_s^4\rangle=\cosh s-\langle f\rangle\sinh s=\cosh s$. The resulting expansion $\langle\omega_s^2\rangle=1-s^2/4+O(s^4)$ independently confirms Eq.~\eqref{hessian}.
+\section{Turning-point consistency checks}
+With $x=a^2$ and $\Delta=\sqrt{C^2-4h^2D}$, write $x=(C+\Delta\cosh2hu)/(2h^2)$, $u=t-t_0$. Then
+\begin{equation}
+ \dot x=\frac{\Delta}{h}\sinh(2hu).
+\end{equation} Substitution gives $\dot x^2=4(h^2x^2-Cx+D)$ by $\cosh^2-\sinh^2=1$. Inverting $x(t_{\rm crit})=4\lambda/\kappa$ recovers Eq.~\eqref{tcrit}.
+
+
+\begin{thebibliography}{99}
+\bibitem{Ward1999} R. S. Ward, ``Hopf solitons on $S^3$ and $\mathbb R^3$,'' Nonlinearity \textbf{12}, 241--246 (1999), \href{https://doi.org/10.1088/0951-7715/12/2/005}{doi:10.1088/0951-7715/12/2/005}.
+\bibitem{Speight2007} J. M. Speight and M. Svensson, ``On the strong coupling limit of the Faddeev--Hopf model,'' Commun. Math. Phys. \textbf{272}, 751--773 (2007), \href{https://doi.org/10.1007/s00220-007-0240-4}{doi:10.1007/s00220-007-0240-4}.
+\bibitem{AyonBeato2016} E. Ay\'on-Beato, F. Canfora, and J. Zanelli, ``Analytic self-gravitating Skyrmions, cosmological bounces and AdS wormholes,'' Phys. Lett. B \textbf{752}, 201--205 (2016), \href{https://doi.org/10.1016/j.physletb.2015.11.065}{doi:10.1016/j.physletb.2015.11.065}.
+\bibitem{Canfora2014} F. Canfora, A. Giacomini, and S. A. Pavluchenko, ``Cosmological dynamics of gravitating hadron matter,'' Phys. Rev. D \textbf{90}, 043516 (2014), \href{https://doi.org/10.1103/PhysRevD.90.043516}{doi:10.1103/PhysRevD.90.043516}.
+\bibitem{Canfora2019} F. Canfora, N. Dimakis, A. Giacomini, and A. Paliathanasis, ``Bianchi IX cosmologies in the Einstein--Skyrme system in a sector with nontrivial topological charge,'' Phys. Rev. D \textbf{99}, 044035 (2019), \href{https://doi.org/10.1103/PhysRevD.99.044035}{doi:10.1103/PhysRevD.99.044035}.
+\bibitem{Guerra2026} A. Guerra, X. Lamy, and K. Zemas, ``Global minimality of the Hopf map in the Faddeev--Skyrme model with large coupling constant,'' Commun. Math. Phys. \textbf{407}, 171 (2026), \href{https://doi.org/10.1007/s00220-026-05702-5}{doi:10.1007/s00220-026-05702-5}.
+\bibitem{Clarkson2008} C. Clarkson, B. Bassett, and T. H.-C. Lu, ``A general test of the Copernican principle,'' Phys. Rev. Lett. \textbf{101}, 011301 (2008), \href{https://doi.org/10.1103/PhysRevLett.101.011301}{doi:10.1103/PhysRevLett.101.011301}.
+\end{thebibliography}
+\end{document}
