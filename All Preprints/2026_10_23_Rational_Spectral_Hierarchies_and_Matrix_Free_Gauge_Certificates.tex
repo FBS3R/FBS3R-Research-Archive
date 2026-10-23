@@ -1,0 +1,190 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[margin=21mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,amsmath,amssymb,amsthm,mathtools,booktabs,array,hyperref,xcolor,xurl}
+\hypersetup{colorlinks=true,urlcolor=blue!55!black,linkcolor=blue!40!black,citecolor=blue!45!black}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\C}{\mathcal C}
+\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\Fib}{\mathrm F}
+\newcommand{\coef}[1]{[\, #1\,]}
+\newcommand{\xs}{\boldsymbol{x}}
+\title{\bfseries Rational Spectral Hierarchies and Matrix-Free Gauge Certificates\\[3pt]
+\large Exact temporal-mask transfer on Fibonacci-constrained quantum chains}
+\author{Andrei Preece and Boris Batenin\\[-1pt]
+\small AI-assisted mathematical research; independent peer review pending}
+\date{23 October 2026}
+\begin{document}\maketitle
+\begin{abstract}
+A constrained quantum chain has a Hilbert-space dimension growing as a Fibonacci number, yet fixed-order spectral moments can be computed without constructing its Hamiltonian matrix. We derive a finite temporal-mask transfer identity for an open PXP chain, prove that the generating function of every even adjacency moment $\Tr H_n^{2m}$ has denominator dividing $(1-z-z^2)^{m+1}$ with a degree bound on its numerator, and give explicit rational functions at orders four, six, and eight. The algorithm is linear in chain length for each fixed moment order, including inhomogeneous couplings and local diagonal fields. A complementary Zeckendorf-indexed phase-response identity produces an exact $O(n)$ weighted fourth-moment certificate under arbitrary static diagonal disorder. All displayed integer coefficients are reproducible from a short independent verifier. Results are established for the stated finite-dimensional models; no experimental result or universal claim of scientific priority is implied.
+\end{abstract}
+
+\section{Constrained dynamics and exact addresses}
+Let $F_0=0,F_1=1,F_{j+2}=F_{j+1}+F_j$, and let
+\begin{equation}\label{eq:words}
+\C_n=\{s\in\{0,1\}^n:s_j s_{j+1}=0\},\qquad |\C_n|=F_{n+2}.
+\end{equation}
+The graph whose edges flip exactly one permitted bit is the Fibonacci cube \cite{hsu,klavzar}; its adjacency operator $A_n$ is the standard open-chain PXP Hamiltonian with unit couplings and no diagonal field \cite{turner}. More generally, on $\ell^2(\C_n)$ we consider
+\begin{equation}\label{eq:H}
+H_n(J,\mu)=\sum_{j=1}^n J_j P_{j-1}X_jP_{j+1}
++\sum_{j=1}^n\mu_j N_j,
+\end{equation}
+where end-point projectors are identities, $P_j=1-N_j$, and $J_j,\mu_j$ are arbitrary real coefficients. All exact computational certificates below use integer coefficients.
+
+\begin{proposition}[Zeckendorf addresses]\label{prop:rank}
+The map
+\begin{equation}\label{eq:rank}
+r(s)=\sum_{j=1}^n s_j F_{n-j+2}
+\end{equation}
+is a bijection $\C_n\to\{0,1,\dots,F_{n+2}-1\}$. Every permitted flip at $j$ changes this address by exactly $\pm F_{n-j+2}$. Hence a Hamiltonian--vector product for Eq.~\eqref{eq:H} requires $O(nF_{n+2})$ local operations and $O(F_{n+2})$ vector storage.
+\end{proposition}
+\begin{proof}
+Legal words beginning in $0$ form a block of $F_{n+1}$ words. Words beginning in $10$ follow it and have $F_n$ legal suffixes. The first nonzero Zeckendorf weight is $F_{n+1}$, exactly the offset between these blocks. Induction gives the contiguous ranks. A single flipped digit changes only one term in \eqref{eq:rank}.
+\end{proof}
+The combinatorial address is classical; the computational conclusion concerns only the specified sparse Hamiltonian.
+
+\section{Gauge-sensitive fourth moments in linear time}
+For $i<j-1$ the number of configuration-space squares using flips at $i,j$ is
+\begin{equation}\label{eq:plaquettes}
+Q_{ij}(n)=F_i F_{j-i-1}F_{n-j+1}.
+\end{equation}
+Indeed, with $i,j$ occupied, their neighbors are forced to zero; the remaining left, middle, and right intervals are independent Fibonacci words. Counting subcubes of Fibonacci cubes more generally is classical \cite{cubepoly}.
+
+Let $H_{n,\varphi}$ have an arbitrary phase-independent real diagonal $V_s$, and raising matrix elements
+\begin{equation}\label{eq:string}
+\langle s+e_i|H_{n,\varphi}|s\rangle
+=J_i\exp\Bigl(i\varphi\sum_{j>i}s_j\Bigr),
+\end{equation}
+for a legal raising flip at $i$; lowering is its Hermitian conjugate. Write $w_i=J_i^2$.
+\begin{theorem}[Exact weighted flux certificate]\label{th:flux}
+Define $R_1=R_2=0$ and
+\begin{equation}\label{eq:recurrence}
+R_j=R_{j-1}+R_{j-2}+w_{j-2}F_{j-2}\quad(j\ge3),\qquad
+S_n=\sum_{j=3}^n w_jF_{n-j+1}R_j.
+\end{equation}
+Then
+\begin{equation}\label{eq:flux}
+\boxed{\Tr H_{n,\varphi}^{4}-\Tr H_{n,0}^{4}
+=8(\cos\varphi-1) S_n.}
+\end{equation}
+This identity holds for arbitrary real static diagonal energies $V_s$, provided the diagonal and the hopping magnitudes are kept fixed across phase settings. $S_n$ uses $O(n)$ arithmetic operations and $O(n)$ Fibonacci storage.
+\end{theorem}
+\begin{proof}
+A nonzero phase contribution to a closed four-step walk requires a square: two-step reversals cancel, and a diagonal step leaves too few flips to enclose a nontrivial loop. The anyonic string \eqref{eq:string} has oriented circulation $\pm\varphi$ around each square. Its eight oriented closed traversals contribute $8w_iw_j(\cos\varphi-1)$, so the total equals $8(\cos\varphi-1)\sum_{i<j-1}w_iw_j Q_{ij}(n)$. Define
+$R_j^*=\sum_{i=1}^{j-2}w_iF_i F_{j-i-1}$.
+Fibonacci addition gives $R_j^*=R_{j-1}^*+R_{j-2}^*+w_{j-2}F_{j-2}$ with the stated initial conditions. Thus $R_j^*=R_j$ and the sum factorizes as \eqref{eq:recurrence}.
+\end{proof}
+This certificate is independent of $\hbar$: it reconstructs a dimensionless flux, not the absolute quantum-action scale.
+
+\section{A temporal-mask transfer theorem for all fixed moments}
+Fix an integer $k\ge1$. Time indices $t\in\mathbb Z/k\mathbb Z$ are cyclic. A \emph{local temporal trajectory} is $\sigma=(\sigma_0,\ldots,\sigma_{k-1})\in\{0,1\}^k$. Define its flip set
+\begin{equation}\label{eq:flip}
+D(\sigma)=\{t:\sigma_{t+1}\ne\sigma_t\},\qquad
+x_{D(\sigma)}=\prod_{t\in D(\sigma)}x_t.
+\end{equation}
+Every nonconstant periodic binary trajectory has at least two flips. In the commutative squarefree algebra
+\begin{equation}\label{eq:ring}
+\mathcal R_k=\mathbb Z[x_0,\ldots,x_{k-1}]/(x_0^2,\ldots,x_{k-1}^2)
+\end{equation}
+let $T_j$ be the $2^k\times 2^k$ matrix indexed by temporal trajectories with entries
+\begin{equation}\label{eq:transfer}
+(T_j)_{\alpha\beta}
+=\boldsymbol1\{\alpha_t\beta_t=0\ \forall t\}
+\left[J_j^{|D(\beta)|}x_{D(\beta)}
+\prod_{t\notin D(\beta)}\bigl(1+\mu_j\beta_t x_t\bigr)\right].
+\end{equation}
+Here $0$ denotes the all-zero trajectory and $\boldsymbol1$ is the all-ones column vector. The displayed formula has an ordinary interpretation for the full real polynomial algebra; passage to \eqref{eq:ring} merely discards products with repeated time labels.
+
+\begin{theorem}[Exact coefficient transfer]\label{th:transfer}
+For $H_n(J,\mu)$ in Eq.~\eqref{eq:H},
+\begin{equation}\label{eq:tracecoefficient}
+\boxed{\Tr H_n(J,\mu)^k
+=\coef{x_0x_1\cdots x_{k-1}}
+\,e_{0}^{\mathsf T}T_1T_2\cdots T_n\boldsymbol1.}
+\end{equation}
+For fixed $k$ this has $O(n)$ arithmetic-operation complexity and memory independent of the Hilbert-space dimension $F_{n+2}$, with constants exponential in $k$. Arbitrary inhomogeneous $J_j,\mu_j$ are allowed.
+\end{theorem}
+\begin{proof}
+Expand $\Tr H^k$ as an ordered product of $k$ matrix elements and impose equality of the initial and final configurations. At site $j$, the $k$ successive occupation bits form a cyclic word $\beta$. If the bit flips at time $t$, the only local event is the $J_j$ hopping term; if it remains occupied, one may select the diagonal term $\mu_jN_j$. Requiring exactly one Hamiltonian term at each time is equivalent to extracting $x_0\cdots x_{k-1}$. The factor $\boldsymbol1\{\alpha_t\beta_t=0\}$ enforces blockade between adjacent spatial sites at every time. The fictitious empty trajectory on the left gives $e_0^{\mathsf T}$; the free right boundary gives $\boldsymbol1$. Thus there is a weight-preserving bijection between contributions to the two sides of \eqref{eq:tracecoefficient}. At fixed $k$, the transfer and its squarefree coefficient states have finite size, independent of $n$.
+\end{proof}
+
+\section{Rational hierarchy and explicit sixth/eighth moments}
+Let $M_{m,n}=\Tr A_n^{2m}$ for the homogeneous zero-field adjacency $A_n=H_n(1,0)$; put $M_{m,0}=0$ for $m\ge1$ and $D(z)=1-z-z^2$.
+\begin{theorem}[Universal denominator and numerator-degree bound]\label{th:denom}
+For each fixed integer $m\ge1$ there exists $P_m(z)\in\mathbb Z[z]$ such that
+\begin{equation}\label{eq:universal}
+\boxed{\sum_{n\ge0}M_{m,n}z^n
+=\frac{P_m(z)}{D(z)^{m+1}},\qquad \deg P_m\le3m+2.}
+\end{equation}
+In particular the entire infinite moment sequence is uniquely determined by its first $3m+3$ values, which have finite exact certificates via Theorem~\ref{th:transfer}.
+\end{theorem}
+\begin{proof}
+For $k=2m$ set $T=T(x)$ in \eqref{eq:transfer} with $J=1,\mu=0$ and write $T=T_0+U$. The constant term $T_0$ has only two nonzero columns, corresponding to the all-zero and all-one temporal trajectories. Their induced $2\times2$ transition matrix is
+$\bigl(\begin{smallmatrix}1&1\\1&0\end{smallmatrix}\bigr)$, giving $T_0^3=T_0^2+T_0$. Hence
+\begin{equation}\label{eq:resolvent}
+R_0=(I-zT_0)^{-1}
+=I+\frac{zT_0+z^2(T_0^2-T_0)}{D(z)}.
+\end{equation}
+Every entry of $U$ is divisible by a squarefree monomial of degree at least two: a nonconstant cyclic trajectory flips an even, positive number of times. Therefore, upon extracting $x_0\cdots x_{2m-1}$, the exact finite resolvent identity is
+\begin{equation}\label{eq:finite}
+(I-zT)^{-1}\equiv\sum_{r=0}^{m}R_0(zUR_0)^r
+\pmod{\text{terms of time-degree }>2m}.
+\end{equation}
+Each summand has at most $r+1$ factors $D(z)^{-1}$, so multiplying by $D(z)^{m+1}$ clears its denominator. From \eqref{eq:resolvent}, the numerator degree after clearing denominators is at most
+$2(r+1)+r+2(m-r)=2m+2+r\le3m+2$.
+Finally $\sum_{n\ge0} z^n T^n=(I-zT)^{-1}$ as formal series. Applying $e_0^{\mathsf T}(\cdot)\boldsymbol1$ and extracting the full temporal coefficient proves \eqref{eq:universal}. All coefficients are integral because the transfer \eqref{eq:transfer} is integral.
+\end{proof}
+
+\begin{corollary}[Universal finite-order recurrence in chain length]
+For $n>3m+2$, the full sequence satisfies the exact constant-coefficient recurrence
+\begin{equation}\label{eq:chain-rec}
+\sum_{j=0}^{2m+2}\coef{z^j}\bigl(1-z-z^2\bigr)^{m+1} M_{m,n-j}=0.
+\end{equation}
+Hence the order-six and order-eight moments obey recurrences of orders eight and ten, respectively, with integer coefficients.
+\end{corollary}
+
+\begin{corollary}[Explicit rational moments]\label{cor:moment}
+The first three nonzero even orders satisfy
+\begin{align}\label{eq:4th}
+\sum_{n\ge0}\Tr A_n^4z^n&=\frac{2z+2z^2+18z^3-4z^4}{D(z)^3},\\[3pt]
+\sum_{n\ge0}\Tr A_n^6z^n&=\frac{2z+8z^2+130z^3+40z^4+350z^5-156z^6+36z^7}{D(z)^4},\label{eq:6th}\\[3pt]
+\sum_{n\ge0}\Tr A_n^8z^n&=\frac{2z+22z^2+716z^3+1146z^4+8236z^5-206z^6+13114z^7-8308z^8+3152z^9-568z^{10}}{D(z)^5}.\label{eq:8th}
+\end{align}
+\end{corollary}
+\begin{proof}
+Theorem~\ref{th:denom} gives respective numerator bounds $8,11,14$. Compute the first $9,12,15$ coefficients of the three trace sequences using the finite combinatorial recurrence in Theorem~\ref{th:transfer}. Multiplying their truncated series by $D(z)^3,D(z)^4,D(z)^5$ gives precisely the polynomials displayed; all subsequent coefficients vanish by the proved degree bound. The complete exact-integer recurrence and coefficient comparisons are included in the companion verifier.
+\end{proof}
+
+\begin{table}[t]\centering\small
+\caption{Selected exact moments. These are traces of finite integer matrices, not empirical measurements.}
+\begin{tabular}{r r r r r}\toprule
+$n$ & $F_{n+2}$ & $\Tr A_n^4$ & $\Tr A_n^6$ & $\Tr A_n^8$\\\midrule
+1&2&2&2&2\\
+2&3&8&16&32\\
+3&5&42&190&866\\
+4&8&112&752&5296\\
+5&13&296&2860&30096\\
+6&21&684&8356&115636\\
+8&55&3208&56840&1206848\\
+10&144&13156&305460&8789188\\
+\bottomrule\end{tabular}
+\end{table}
+
+\paragraph{Exact verification.}
+The supplied \texttt{verify.py} is standard-library Python. It compares the temporal transfer with independently propagated sparse Hamiltonian basis vectors, checks Zeckendorf ranks and plaquette products, tests the weighted linear flux recursion, and verifies the entire finite determining range for Eqs.~\eqref{eq:4th}--\eqref{eq:8th}, plus later values. Every comparison uses integer equality, with no tolerances or stochastic fitting. Complexity is linear in $n$ for any fixed moment order in an arithmetic-operation model; it is \emph{not} linear in bit complexity when the exact moment integers grow exponentially in length.
+
+\section{Scope and relation to prior work}
+Fibonacci cubes and their cube polynomials were studied by Hsu and by Klav\v{z}ar--Mollard \cite{hsu,cubepoly}. The PXP constraint and experimentally motivated many-body-scar setting are standard \cite{turner}. Temporal transfer matrices, nilpotent coefficient extraction, and matrix-product methods have broader precedents in combinatorics and statistical mechanics. The contribution established here is the particular coefficient identity, its explicit denominator-degree certificate and derived moment formulas, together with the weighted gauge-response kernel for the specified Hamiltonians; global historical priority has not been assessed exhaustively. AI-driven searches for matrix algorithms, including AlphaTensor, AlphaEvolve and the 2026 OpenAI mathematical manuscript collection, motivate the systematic pursuit of exact structural certificates \cite{alphatensor,alphaevolve,openaimath}, but no results from those systems are invoked as unproved lemmas. The proofs require only the combinatorial and linear-algebraic definitions given here.
+
+\begin{thebibliography}{99}\small
+\bibitem{hsu} W.-J. Hsu, C. V. Page and J.-S. Liu, ``Fibonacci cubes---a class of self-similar graphs,'' \emph{Fibonacci Quarterly} 31 (1993).
+\bibitem{cubepoly} S. Klav\v{z}ar and M. Mollard, ``Cube polynomial of Fibonacci and Lucas cubes,'' \emph{Acta Applicandae Mathematicae} 117 (2012), 93--105.
+\bibitem{klavzar} S. Klav\v{z}ar, M. Mollard and M. Petkov\v{s}ek, ``The degree sequence of Fibonacci and Lucas cubes,'' \emph{Discrete Mathematics} 311 (2011), 1310--1322.
+\bibitem{turner} C. J. Turner et al., ``Weak ergodicity breaking from quantum many-body scars,'' \emph{Nature Physics} 14 (2018), 745--749.
+\bibitem{alphatensor} A. Fawzi et al., ``Discovering faster matrix multiplication algorithms with reinforcement learning,'' \emph{Nature} 610 (2022), 47--53.
+\bibitem{alphaevolve} Google DeepMind, ``AlphaEvolve: A Gemini-powered coding agent for designing advanced algorithms,'' 2025, \url{https://deepmind.google/blog/alphaevolve-a-gemini-powered-coding-agent-for-designing-advanced-algorithms/}.
+\bibitem{openaimath} OpenAI, \emph{Mathematical manuscripts and proof artifacts}, 2026, \url{https://github.com/openai/math}; formalized and unformalized results are explicitly distinguished in the repository.
+\end{thebibliography}
+\end{document}

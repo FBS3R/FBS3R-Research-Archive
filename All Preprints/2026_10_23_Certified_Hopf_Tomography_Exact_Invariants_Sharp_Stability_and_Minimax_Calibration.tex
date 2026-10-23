@@ -1,0 +1,1578 @@
+\documentclass[aps,prd,onecolumn,notitlepage,11pt,superscriptaddress,longbibliography]{revtex4-2}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm,bm,graphicx,booktabs,array,hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{corollary}{Corollary}
+\newtheorem{remark}{Remark}
+\newcommand{\Sph}{\mathbb S}
+\newcommand{\E}{\mathbb E}
+\newcommand{\Prob}{\mathbb P}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\TT}{\mathbb{T}}
+\newcommand{\SSph}{\mathbb{S}}
+\newcommand{\conv}{\operatorname{conv}}
+\newtheorem{lemma}{Lemma}
+\begin{document}
+\title{Certified Hopf Tomography: Exact Invariants, Sharp Stability, and Minimax Calibration}
+\author{Andrei Preece}
+\affiliation{Independent researcher}
+\author{Boris Batenin}
+\affiliation{Independent researcher}
+\date{23 October 2026}
+\begin{abstract}
+We give a unified, exact-rational certification framework for the homotopy
+class of piecewise-linear maps from a cubically triangulated three-sphere
+to the Bloch sphere. Verified components include oriented preimage linking,
+polynomial analytic-to-discrete transfer for explicit Hopf templates,
+finite-shot uncertainty bounds, Fourier-tail and correlated-noise control,
+sharp simplexwise isotropic and anisotropic robustness radii, and
+structured two-loop reconstruction under a stated polynomial prior.
+We derive exact affine and direction-only calibration criteria, a spatial
+gauge-charge correction, and explicit finite-dimensional rational
+calibration designs. The final construction gives a sharp minimax left
+inverse for one-redundancy systems under bounded, possibly unequal,
+componentwise observation errors. For the stated six-reference example,
+its exact induced norm improves from $127525/31104$ to
+$14563561/3950208$; optimality holds among all linear left inverses of
+that fixed $12\times11$ calibration matrix. All reported data are synthetic;
+continuum transfer, physical noise assumptions, and laboratory calibration
+must be established independently for experimental claims.
+\end{abstract}
+\maketitle
+
+\section{Scope and prior art}
+The Hopf invariant labels homotopy classes of maps $\Sph^3\to\Sph^2$ with an orientation convention. It can be interpreted as linking of preimages of regular values and, when a suitable lift exists, as an integer winding number. In qubit systems the observable $\bm n(\bm k)\cdot\bm\sigma$ is the Bloch-vector direction of a two-band state. Experimental tomography of Hopf-insulator models has already been demonstrated with NV-center quantum simulation \cite{Yuan2017} and, subsequently, by electrical-circuit realization of a Hopf insulator with invariant four \cite{Wang2023}. Finite-sampling obstructions and interpolation-based homotopy certification have been addressed in magnetic textures in Ref.~\cite{Klemm2026}. The present contribution is a concrete \emph{finite-shot statistical wrapper}, an explicit global spherical mesh, and a quantified model-discrepancy specialization validated on reproducible synthetic data. These ingredients are assembled here as a research prototype, with no unverified claim that each component is new to mathematics or the physical literature.
+
+Caution about experimental domain: a Brillouin zone is usually $\mathbb T^3$, not $\Sph^3$. A homotopy certificate on $\mathbb T^3$ still works, but an absolute integer Hopf invariant requires the appropriate vanishing of weak Chern classes (or supplementary topological conventions); nonzero weak invariants introduce a modulo ambiguity \cite{Jankowski2024}. Our explicit numerical tests take the controlled three-sphere $\Sph^3$ as their \emph{parameter space}. This does not imply a three-spherical physical cosmos.
+
+\section{A measurement-level homotopy certificate}
+Let $X$ be a compact metric space, $n,n_0:X\to\Sph^2\subset\mathbb R^3$ continuous, and $S=\{x_1,\ldots,x_M\}\subset X$ an $h$-net: each $x\in X$ has $d(x,x_i)\le h$ for some site. Assume global Lipschitz bounds $\operatorname{Lip}(n)\le L$ and $\operatorname{Lip}(n_0)\le L_0$. Let $\widehat n_i$ be measured vectors, and suppose the event $\mathcal E=\{\norm{\widehat n_i-n(x_i)}\le\varepsilon_i,\forall i\}$ holds.
+
+\begin{theorem}[Gauge-free finite-resolution topological certificate]\label{th:generic}
+With $r_i=\norm{\widehat n_i-n_0(x_i)}$ and $\varepsilon=\max_i\varepsilon_i$, the condition
+\begin{equation}\label{eq:generic}
+\boxed{\max_i r_i+\varepsilon+(L+L_0)h<2}
+\end{equation}
+ensures $n\simeq n_0$. On an oriented three-sphere, their Hopf invariants are equal.
+\end{theorem}
+\begin{proof}
+For any $x$ choose $x_i$ with $d(x,x_i)\le h$. Repeated triangle inequalities give
+\begin{align}
+\norm{n(x)-n_0(x)}&\le\norm{n(x)-n(x_i)}+\norm{n(x_i)-\widehat n_i}+\norm{\widehat n_i-n_0(x_i)}+\norm{n_0(x_i)-n_0(x)}\\
+&\le (L+L_0)h+\varepsilon_i+r_i<2.
+\end{align}
+Because two unit vectors can be antipodal only if their Euclidean distance is exactly $2$, the pointwise interpolation $(1-t)n_0(x)+tn(x)$ is nonzero for every $(t,x)\in[0,1]\times X$. Its normalization is a continuous homotopy, giving the assertion.
+\end{proof}
+
+\begin{theorem}[Validated discrepancy regularity]\label{th:res}
+If instead an independently established bound $\operatorname{Lip}(n-n_0)\le K_\Delta$ is available, it suffices that
+\begin{equation}\label{eq:res}
+\boxed{\max_i r_i+\varepsilon+K_\Delta h<2.}
+\end{equation}
+The conclusion is the same as in Theorem~\ref{th:generic}. No assumption that $K_\Delta\ll L+L_0$ is made: its value must be \emph{separately justified}.
+\end{theorem}
+\begin{proof}
+Apply the Lipschitz bound directly to $n-n_0$ and repeat the antipodal-avoidance argument.
+\end{proof}
+
+\begin{remark}
+A cell-dependent version applies to a finite cover $X=\bigcup C_i$ with $\sup_{x\in C_i}d(x,x_i)\le h_i$: require $r_i+\varepsilon_i+K_i h_i<2$ for every cell, where $K_i$ is a certified local discrepancy bound. This can greatly reduce conservative global uniform-resolution requirements, but unverified local derivative estimates do not constitute certificates.
+\end{remark}
+
+\subsection{Independent Pauli-shot confidence}
+For each $x_i$ measure each Pauli component $\sigma_a$, $a\in\{x,y,z\}$, on $N$ independently prepared qubits using calibrated measurements yielding outcomes $\pm1$. The three empirical means $\widehat n_i$ estimate the true Bloch vector $n(x_i)$. Hoeffding's inequality and a union bound over $3M$ mean estimates imply
+\begin{equation}
+\Prob\left[\max_{i,a}|\widehat n_{i,a}-n_a(x_i)|>t\right]\le6M\exp(-Nt^2/2).
+\end{equation}
+Set the target failure probability $\delta\in(0,1)$ and take
+\begin{equation}\label{eq:shot}
+\boxed{\varepsilon_{\rm shot}=\sqrt{\frac{6\ln(6M/\delta)}{N}}.}
+\end{equation}
+Then $\mathcal E$ holds with probability at least $1-\delta$. In particular, if the data-dependent inequality \eqref{eq:generic} or \eqref{eq:res} passes, the chance of a false topology claim is \emph{at most $\delta$} under the assumptions (not a Bayesian posterior confidence for a selected model). Calibration or state-preparation biases must be added to the error budget; they are not accounted for by Hoeffding noise. Sites and shot numbers are fixed in advance; adaptive optional stopping requires a time-uniform confidence sequence instead.
+
+\subsection{Analytically certified sphere mesh}
+Identify $\Sph^3$ with unit quaternions and write
+\begin{equation}
+q(\eta,\phi,\psi)=(\cos\eta\cos\phi,\cos\eta\sin\phi,\sin\eta\cos\psi,\sin\eta\sin\psi),
+\end{equation}
+where $0\le\eta\le\pi/2$ and both angles are periodic. Sample $\eta_j=j\pi/(2n_\eta)$ and each phase at $2\pi j/n_\phi$, giving $M=(n_\eta+1)n_\phi^2$ sites (including harmless repeated poles). By a triangle inequality splitting $\eta$ and angular displacements, the chordal cover radius is bounded \emph{for every point, not just test samples}, by
+\begin{equation}\label{eq:cover}
+\boxed{h\le\frac{\pi}{4n_\eta}+2\sin\frac{\pi}{2n_\phi}.}
+\end{equation}
+The formula is used as an \emph{upper bound}, so duplicate points do not invalidate it.
+
+\section{Explicit Hopf-charge templates and certified acceleration}
+View unit quaternions as the Lie group $SU(2)$. Fix an oriented Hopf map
+\begin{equation}
+h_1(q)=q\,\mathbf i\,q^{-1}\in\Sph^2\subset\operatorname{Im}\mathbb H,
+\end{equation}
+with the convention $H(h_1)=+1$. For any integer $d$, define $n_d(q)=h_1(q^d)$, including $q^0=1$.
+\begin{proposition}\label{prop:degree}
+With the stated orientation, $H(n_d)=d$ and $\operatorname{Lip}(n_d)\le2|d|$ in Euclidean chord metrics.
+\end{proposition}
+\begin{proof}
+The $d$-fold power map of $SU(2)$ induces multiplication by $d$ on $H^3(SU(2);\mathbb Z)$ because its normalized degree-three cohomology generator is primitive under group multiplication. Hence $\deg(q\mapsto q^d)=d$, and precomposition multiplies the Hopf invariant by $d$. For the Lipschitz bound, quaternion multiplication by unit elements is norm-preserving and the telescoping identity yields $\norm{q^d-p^d}\le |d|\norm{q-p}$ (also for inverse powers). Since $\norm{h_1(q)-h_1(p)}\le2\norm{q-p}$, the result follows. See also the established explicit constructions discussed in Ref.~\cite{HopfBackground}.
+\end{proof}
+
+To test stronger discrepancy information, define a synthetic, globally smooth controlled perturbation
+\begin{equation}\label{eq:twist}
+n(q)=R_z(aq_0)n_d(q),\qquad a=0.12,
+\end{equation}
+where $q_0$ is the first quaternion component and $R_z$ is an ordinary target-sphere rotation about the third axis. This \emph{is not} an arbitrary perturbation model for a laboratory device. The exact construction supplies independently known inequalities
+\begin{align}
+\operatorname{Lip}(n)&\le2|d|+a,\\
+\operatorname{Lip}(n-n_d)&\le a(2|d|+1).\label{eq:deltaLip}
+\end{align}
+Indeed $\norm{R_z(\theta)-I}\le|\theta|$ and $|\theta(q)-\theta(p)|\le a\norm{q-p}$. The second inequality can be much stronger than bounding the two fields separately.
+
+\section{A structural no-go for finite point sampling}
+\begin{proposition}[No-go without regularity]\label{prop:nogo}
+For every finite set $S\subset\Sph^3$, every smooth $n_0:\Sph^3\to\Sph^2$, and every integer $k$, there exists a smooth $n_k:\Sph^3\to\Sph^2$ such that $n_k=n_0$ on $S$ but $H(n_k)=H(n_0)+k$.
+\end{proposition}
+\begin{proof}
+Choose an embedded closed ball $B$ disjoint from the finite set. Because $B$ is contractible, $n_0|_B$ is homotopic relative to a collar of the boundary to a field constant on a smaller interior ball, with all modifications supported in $B$. On that interior ball, collapsed boundary $B^3/\partial B^3\cong\Sph^3$, glue an arbitrary degree-$k$ Hopf representative, restoring the base point near the boundary. The local sum operation on $\pi_3(\Sph^2)\cong\mathbb Z$ changes the Hopf class by $k$, without altering values outside $B$. Smooth approximation relative to the boundary gives the claimed smooth field. This well-known sampling obstruction is discussed in more detail in Ref.~\cite{Klemm2026}.
+\end{proof}
+
+This is why the regularity hypotheses in Theorems~\ref{th:generic}--\ref{th:res} are not optional. In particular, $10^{12}$ precise measurements on finitely many isolated points do not by themselves determine a continuum topological invariant if a hidden arbitrarily narrow defect remains admissible.
+
+\section{Gap-protected two-band Hamiltonian formulation}
+If a calibrated two-band effective Hamiltonian has the form $\mathcal H(x)=\bm b(x)\cdot\bm\sigma$, let $\bm b_0$ be a reference satisfying $g_0=\inf_x\norm{\bm b_0(x)}>0$. A bound
+\begin{equation}\label{eq:gap}
+\sup_x\norm{\bm b(x)-\bm b_0(x)}\le E<g_0
+\end{equation}
+ensures a nonclosing gap for the entire interpolation $\bm b_t=(1-t)\bm b_0+t\bm b$, since $\norm{\bm b_t}\ge g_0-E$. Consequently the normalizations $\bm b/\norm{\bm b}$ and $\bm b_0/\norm{\bm b_0}$ are homotopic, and the minimal two-band energy splitting obeys $\Delta_{\rm min}\ge2(g_0-E)$. The finite site-and-Lipschitz bound from Theorem~\ref{th:generic}, with $\bm b$ replacing $n$, supplies such an $E$ if $\bm b$ itself is reliably calibrated by spectroscopy. For a known lower spectral gap $g$ and a Lipschitz bound $B$ on $\bm b$, the normalized Bloch texture obeys $\operatorname{Lip}(\bm b/\norm{\bm b})\le B/g$; this follows from $\norm{\bm b-\bm c}^2=(\norm{\bm b}-\norm{\bm c})^2+\norm{\bm b}\norm{\bm c}\norm{\widehat b-\widehat c}^2$.
+
+This formulation explicitly links a physical gap, apparatus derivative bounds, and a mathematical homotopy. It does not claim that a simulated Pauli sample is equivalent to a spectroscopy measurement without a measurement model.
+
+\section{Reproducible synthetic finite-shot demonstration}
+The companion Python file \texttt{verify\_hopf.py} evaluates quaternion textures, independently generated binomial Pauli-outcome counts, an analytic grid-cover bound, and both certificate variants. All simulations use $N=4000$ shots per axis per site, $\delta=0.01$, $a=0.12$, and deterministic seed $20261022$. The \emph{number of successful program assertions is not a proof}; the formal proof is in the preceding sections.
+\begin{table}[h]
+\caption{Fixed-seed synthetic trials. ``Gen.'' is the left-hand side of Eq.~\eqref{eq:generic}; ``Res.'' uses Eq.~\eqref{eq:res}. The strict passing threshold is $2$. The last line deliberately uses too coarse a mesh for the generic certificate.}
+\begin{ruledtabular}
+\begin{tabular}{rrrrrr}
+$H(n_d)$ & Sites $M$ & $h$ bound & Gen. & Res. & Total Pauli shots\\
+\hline
+$-2$&9408&0.18354&1.80782&0.42760&112,896,000\\
+$-1$&2048&0.30823&1.56899&0.41003&24,576,000\\
+$0$&2048&0.30823&0.33710&0.33710&24,576,000\\
+$1$&2048&0.30823&1.56228&0.40332&24,576,000\\
+$2$&9408&0.18354&1.80916&0.42893&112,896,000\\
+$3$&30400&0.12215&1.81403&0.43614&364,800,000\\
+$3$ (coarse)&2048&0.30823&4.03098&0.55410&24,576,000
+\end{tabular}
+\end{ruledtabular}
+\end{table}
+
+\begin{figure}[h]
+\centering\includegraphics[width=0.92\linewidth]{FIG_1_CERTIFICATE_COMPARISON.pdf}
+\caption{Six certified nontrivial/trivial synthetic texture cases plus a deliberately under-resolved $H=3$ case. The structured certificate requires independently validated discrepancy regularity and cannot simply replace the generic bound on unconstrained data.}
+\end{figure}
+\begin{figure}[h]
+\centering\includegraphics[width=0.85\linewidth]{FIG_2_RESOURCE_COMPARISON.pdf}
+\caption{Same physical synthetic texture class and coarse grid: the generic method abstains, while the validated structural method certifies $H=3$. The dense generic method costs $30{,}400/2{,}048=14.84375$ times as many sites and total Pauli shots at fixed shots per site.}
+\end{figure}
+
+An additional independent regression program \texttt{crosscheck.py} ran 75,000 random grid-coverage spot checks against the analytic bound, checked that five incorrect reference classes fail the generic certificate on the dense $H=3$ synthetic data, and validated one deterministic two-band gap certificate. These spot checks do not replace the covering-radius proof.\par\smallskip\noindent
+The error guarantee is $\ge99\%$ \emph{conditional} coverage of the true Bloch sample means and regularity assumptions. It is not a $99\%$ empirical success rate, which would require many independent experimental trials. Likewise, $\approx365$ million simulated measurement outcomes for the dense $H=3$ benchmark are generated as binomial counts rather than individually realized in a laboratory. This motivates reducing site budgets through validated structural derivatives and adaptive coverage, not pretending the current baseline is experimentally optimized.
+
+\section{An explicit lower bound: hidden Hopf charge under a global Lipschitz ceiling}
+The preceding finite-sampling obstruction becomes quantitative once a
+regularity class is specified. Throughout this section $\Sph^3$ has
+its unit round metric and $\Sph^2$ its unit round metric, with the
+Euclidean chordal metric used to bound field differences.
+
+\begin{theorem}[A localized Hopf bubble with an explicit Lipschitz ceiling]\label{th:bubble}
+For $0<r\le\pi/2$ there exists a continuous map
+$b_r:\Sph^3\to\Sph^2$, equal to a constant outside a geodesic
+$r$-ball, with $|H(b_r)|=1$ and
+\begin{equation}\label{eq:bubble}
+\operatorname{Lip}(b_r)\le\frac{\pi^2}{r}.
+\end{equation}
+The sign can be chosen by reversing one domain orientation.
+\end{theorem}
+\begin{proof}
+In geodesic polar coordinates $(\rho,u)$ around a point of $\Sph^3$,
+put $f(\rho)=\pi(1-\rho/r)$ and define
+$g(\rho,u)=(\cos f(\rho),\sin f(\rho)u)\in\Sph^3$ for
+$\rho\le r$. Outside the ball take $g=(1,0,0,0)$.
+At $\rho=0$ the angular coordinate disappears because $\sin f=0$;
+likewise, the boundary is mapped to a single point. The quotient
+$B^3/\partial B^3\to\Sph^3$ has degree $\pm1$.
+Radial expansion of $g$ is bounded by $\pi/r$.
+Angular expansion is bounded by
+$\sin f(\rho)/\sin\rho\le (\pi\rho/r)/(2\rho/\pi)
+=\pi^2/(2r)$, using $\sin\rho\ge 2\rho/\pi$ for
+$\rho\in[0,\pi/2]$. Compose $g$ with the standard Hopf map,
+whose operator norm on the unit round spheres is $2$.
+The resulting Lipschitz constant is bounded by
+$\max(2\pi/r,\pi^2/r)=\pi^2/r$.
+The Hopf invariant is the degree of $g$ times the Hopf invariant
+of the standard Hopf fibration, so its magnitude is one.
+\end{proof}
+
+\begin{theorem}[Information-theoretic obstruction for finitely many queries]\label{th:quantitative-nogo}
+Let $L\ge2\pi$, $r=\pi^2/L$, and let
+\begin{equation}\label{eq:ballvolume}
+V(r)=2\pi(r-\sin r\cos r),\qquad
+V(\Sph^3)=2\pi^2.
+\end{equation}
+Any deterministic, possibly adaptive, protocol that makes $N$ point
+queries and satisfies
+\begin{equation}\label{eq:lower-sites}
+\boxed{N V(r)<2\pi^2}
+\end{equation}
+cannot distinguish every Lipschitz-$L$ null-Hopf map from every
+Lipschitz-$L$ map of Hopf charge $\pm1$, even when point queries are
+exact. Moreover, under a balanced prior of a constant field and an
+independently, uniformly centered bubble of the same fixed sign,
+\emph{any randomized adaptive protocol} has average decision error
+at least
+\begin{equation}\label{eq:minimax}
+\boxed{\;P_{\rm err}\ge\tfrac12
+  \max\!\left(0,1-\frac{N V(r)}{2\pi^2}\right).\;}
+\end{equation}
+The conclusion extends to arbitrary observation noise whose
+conditional output law depends only on the field at the queried point.
+\end{theorem}
+\begin{proof}
+For deterministic adaptive queries, run the protocol against the
+constant field and record the resulting $N$ positions. Their union
+of $r$-balls has volume no greater than $N V(r)$. When
+\eqref{eq:lower-sites} holds, choose a center outside this union and
+install the field from Theorem~\ref{th:bubble} there. The entire
+query transcript is unchanged; adaptivity cannot help before a first
+hit. For randomized algorithms and the stated prior, couple the noisy
+outputs under the constant and bubble hypotheses until a site enters
+the hidden ball. The constant-field query trajectory, conditioned on
+its internal and measurement randomness, is independent of the
+uniform bubble center. A union bound gives hit probability at most
+$N V(r)/(2\pi^2)$. On the complementary event the transcripts are
+identical, yielding the Bayes-error bound \eqref{eq:minimax}.
+\end{proof}
+
+For small $r$, $V(r)=4\pi r^3/3+O(r^5)$; thus universal
+sample complexity is at least of order $L^3$ in this Lipschitz class.
+This is a quantitative representative of the well-known localized
+homotopy-bubble obstruction, not a claim of priority for the concept
+of finite-sampling impossibility. Quantitative Lipschitz homotopy
+has a substantial mathematical literature \cite{Berdnikov2022,Klemm2026}.
+\begin{figure}[t]
+\includegraphics[width=.82\linewidth]{FIG_3_LIPSCHITZ_LOWER_BOUND.pdf}
+\caption{Exact sphere-ball volume gives finite-site impossibility
+thresholds. The dashed slope-$3$ curve is only a visual asymptotic
+comparison, not a measured complexity law.}
+\label{fig:bubble}
+\end{figure}
+
+\section{Reference-free finite-shot reconstruction of the homotopy class}
+The original manuscript compares observations against a trusted
+representative $n_0$. For a model-free topological reconstruction, one
+must instead construct a continuous interpolant directly from data.
+\begin{theorem}[Normalized partition-of-unity reconstruction]\label{th:free}
+Let $X$ be a compact metric space and $n:X\to\Sph^2$ an unknown
+$L$-Lipschitz map. At finitely many sites $x_i$ let $b_i\in\mathbb R^3$
+obey $\|b_i-n(x_i)\|\le\varepsilon_i$ simultaneously.
+Let $w_i:X\to[0,1]$ be a continuous partition of unity with
+$\operatorname{supp}(w_i)\subseteq\{x:d(x,x_i)<h_i\}$.
+Set
+\begin{equation}
+ v(x)=\sum_i w_i(x)b_i,\qquad
+ \rho=\sup_x\sum_i w_i(x)(\varepsilon_i+Lh_i).
+\end{equation}
+If $\boxed{\rho<1}$, the map $\widetilde n=v/\|v\|$ is
+well-defined and continuous, and $\widetilde n\simeq n$.
+For $X=\Sph^3$, $H(\widetilde n)=H(n)$.
+\end{theorem}
+\begin{proof}
+Every term in the weighted convex combination differs from $n(x)$
+by at most $\varepsilon_i+Lh_i$. Hence
+$\|v(x)-n(x)\|\le\rho<1$, so $\|v(x)\|>0$ and
+$\langle v(x),n(x)\rangle\ge1-\rho>0$.
+The normalized straight-line interpolation between $n$ and $v$
+never vanishes and yields a homotopy to $\widetilde n$.
+\end{proof}
+
+For independently prepared Pauli shots and a fixed measurement
+schedule, choose sitewise failure budgets $\delta_i$ with
+$\sum_i\delta_i\le\delta$ and set
+$\varepsilon_i=\sqrt{6\ln(6/\delta_i)/N_i}$.
+Then the theorem is simultaneously valid with probability at least
+$1-\delta$, conditional on the physical calibration and regularity
+hypotheses. This theorem \emph{reconstructs a map of the correct
+homotopy class}; the extraction of its explicit integer Hopf label
+requires a separate topological computation. The cochain algorithm
+of Musin and Shamazov, updated on October 17, 2026, is directly
+relevant to that missing computational step \cite{MusinShamazov2026}.
+
+In a synthetic $H=3$ test we use the explicit Hopf-coordinate mesh
+of Sec.~II with $n_\eta=30$, $n_\phi=48$ ($M=71{,}424$ sites).
+The analytic chordal covering bound is $h=0.0916181$.
+Positive continuous bump weights supported on chordal balls of
+radius $1.1h$ form a partition of unity. With $L=6$,
+$N_i=4000$ binomial Pauli shots per axis/site and $\delta=.01$,
+we get $\varepsilon=0.162358$ and
+\begin{equation}
+\boxed{\rho\le\varepsilon+6(1.1h)=0.767038<1.}
+\end{equation}
+Thus the interpolated continuous field is in the same homotopy class
+as the generated $H=3$ map, with a $99\%$ frequentist soundness
+bound. This consumes $857{,}088{,}000$ \emph{simulated} shots
+and is not an efficient laboratory protocol.
+A separate software test checks interpolation at 300 random
+points; such spot tests are regressions, not the basis of the
+global theorem.
+
+\subsection{Predeclared nonuniform shot and confidence allocation}
+If a fixed design prescribes admissible Euclidean errors
+$\tau_i>0$, Hoeffding requires
+$N_i\ge 6\tau_i^{-2}\ln(6/\delta_i)$.
+Ignoring integer rounding, minimizing the total number of shots
+under $\sum_i\delta_i=\delta$ gives the exact Lagrange
+multiplier solution
+\begin{equation}\label{eq:opt-delta}
+\boxed{\delta_i=\delta\frac{\tau_i^{-2}}{\sum_j\tau_j^{-2}}.}
+\end{equation}
+With 100 predetermined tolerances ranging from $0.12$ to $0.45$,
+the synthetic design requires 120,291 shots by this allocation versus
+123,552 for the uniform $\delta_i=\delta/100$ policy
+(a $2.64\%$ reduction; one shot here means one scalar Pauli outcome).
+Design-dependent thresholds or adaptive sampling must be fixed
+from an independent pilot or handled by valid sequential inference.
+
+\section{Fourier--Nyquist certification for short-range two-band Hamiltonians}
+A physical band structure provides more information than an
+arbitrary Lipschitz texture: hopping locality constrains the
+Fourier support. This permits a much stronger \emph{conditional}
+measurement-compression theorem on the Brillouin torus $\mathbb T^3$.
+
+Let $h:\mathbb T^3\to\mathbb R^3$ be a continuous two-band
+Hamiltonian vector, $H(k)=h(k)\cdot\bm\sigma$, and write
+$h=h_{\le K}+t$, where $h_{\le K}$ has Fourier modes
+$m\in[-K,K]^3\cap\mathbb Z^3$ and the Fourier tail has certified
+coefficient bound
+$\sum_{m\notin[-K,K]^3}\|\widehat t_m\|\le T$.
+This is an \emph{independently established locality assumption},
+not a property inferred from $M$ samples alone.
+Sample the vector $h$ on the $(2K+1)^3$ Cartesian grid.
+At each node $k_j$ the measured $y_j$ obeys
+$\|y_j-h(k_j)\|\le\varepsilon$.
+Let $I_K$ denote tensor-product trigonometric interpolation.
+
+\begin{theorem}[Bandlimited topological discrimination with controlled tails]\label{th:fourier}
+Let a reference $h_0$ have Fourier support inside $[-K,K]^3$ and
+strict gap parameter $g_0=\inf_k\|h_0(k)\|>0$.
+Define the observed residual $p=I_K(y-h_0)$ and the exactly
+computable upper bound
+$C=\sum_{m\in[-K,K]^3}\|\widehat p_m\|$.
+With $n=2K+1$ and $\Lambda=n^{3/2}$,
+\begin{equation}\label{eq:fourier}
+\boxed{\|h-h_0\|_\infty\le
+ C+\Lambda\varepsilon+(1+\Lambda)T=:E.}
+\end{equation}
+If $\boxed{E<g_0}$, the Hamiltonians $h\cdot\bm\sigma$ and
+$h_0\cdot\bm\sigma$ are gapped throughout a linear homotopy,
+and their Bloch maps define the same homotopy class on $\mathbb T^3$.
+The true spectral band gap is at least $2(g_0-E)$.
+\end{theorem}
+\begin{proof}
+The trigonometric cardinal interpolation basis $\ell_j$ has
+$\sum_j|\ell_j(k)|^2=1$ for every $k$ by discrete Fourier
+orthogonality. Hence
+$\sum_j|\ell_j(k)|\le\sqrt n$ in one dimension
+and $\|I_K\|_{\infty\to\infty}\le\Lambda=n^{3/2}$ on the
+three-torus. Writing $h=h_{\le K}+t$ and denoting nodal
+measurement errors by $e$, we have
+\begin{equation}
+ h-h_0=p+t-I_Kt-I_Ke.
+\end{equation}
+Thus $\|h-h_0\|_\infty\le \|p\|_\infty+(1+\Lambda)T+
+\Lambda\varepsilon\le E$, since
+$\|p\|_\infty\le C$. For $s\in[0,1]$,
+$\|(1-s)h_0+sh\|\ge g_0-E>0$, so normalization gives
+a homotopy of sphere-valued Bloch maps, preserving all homotopy
+invariants and weak Chern classes.
+\end{proof}
+
+A naive application of this theorem to tomography of only the
+normalized Bloch vector $h/\|h\|$ is \emph{invalid}: normalization
+generally destroys finite Fourier bandwidth. One must infer the
+calibrated \emph{unnormalized Hamiltonian coefficients}, including
+spectroscopic energy-scale information. The tail bound and sensor
+error must remain valid off-grid.
+
+\section{Exact band gap and winding sectors of a canonical Hopf lattice}
+Consider the established Moore--Ran--Wen representative
+\cite{Moore2008,MRWScaling2021}
+\begin{align}
+ u(k,m)&=(\sin k_x,\sin k_y,\sin k_z,
+                 \cos k_x+\cos k_y+\cos k_z-m),\\
+ z&=(u_1+i u_2,u_3+i u_4)^\mathsf T,\qquad
+ h_0=z^\dagger\bm\sigma z.
+\end{align}
+The three components of $h_0$ are trigonometric polynomials with
+coordinatewise bandwidth $K\le2$, hence a $5^3=125$ site grid
+reconstructs the exact $h_0$ in the absence of noise.
+
+\begin{proposition}[Exact global gap and topological sectors]\label{prop:exact-gap}
+For every $m\notin\{-3,-1,1,3\}$ the reference is gapped and
+\begin{equation}\label{eq:gap-mrw}
+\boxed{g_0(m)=\inf_k\|h_0(k,m)\|
+ =\min_{s\in\{-3,-1,1,3\}}(s-m)^2.}
+\end{equation}
+With orientation of $\mathbb T^3$ given by
+$dk_x\wedge dk_y\wedge dk_z$ and boundary orientation of
+$\Sph^3$, the normalized spinor map
+$\hat u:\mathbb T^3\to\Sph^3$ has degree
+\begin{equation}\label{eq:degree-mrw}
+\deg(\hat u)=-\sum_{\substack{(c_x,c_y,c_z)\in\{\pm1\}^3\\
+                              c_x+c_y+c_z>m}}c_xc_yc_z.
+\end{equation}
+The values in increasing $m$-intervals are
+$0,-1,+2,-1,0$. The Bloch Hopf class is this degree times
+that of the fixed Hopf projection under the chosen convention.
+The nonvanishing global spinor $z/\|z\|$ also proves vanishing
+of all weak first Chern classes for this representative.
+\end{proposition}
+\begin{proof}
+Write $c_i=\cos k_i\in[-1,1]$. Since
+$\|h_0\|=\|u\|^2$ exactly,
+\begin{equation}
+\|u\|^2=3-\sum_i c_i^2+(\sum_i c_i-m)^2
+=3+m^2+2\sum_{i<j}c_ic_j-2m\sum_i c_i.
+\end{equation}
+This expression is multi-affine in the three $c_i$, so its
+minimum on $[-1,1]^3$ occurs at a vertex, where it equals
+$(s-m)^2$ with $s=\sum c_i\in\{-3,-1,1,3\}$.
+For the winding number take the north pole $(0,0,0,1)$ as a
+regular value of $\hat u$. Its preimages are exactly the vertices
+$k_i\in\{0,\pi\}$ with $\sum c_i-m>0$. Their local oriented
+Jacobian signs are $-c_xc_yc_z$, giving \eqref{eq:degree-mrw}.
+The lattice-model phase diagram itself is established background;
+our use here is to provide an \emph{exact, non-numerical gap
+margin} for measurement-level certification.
+\end{proof}
+
+\begin{figure}[t]
+\includegraphics[width=.82\linewidth]{FIG_5_HOPF_GAP_PHASE.pdf}
+\caption{Exact bulk spectral band gap of the standard lattice
+Hamiltonian, twice the expression in Eq.~\eqref{eq:gap-mrw}.
+Critical points at $m=\pm1,\pm3$ are genuine gap closures.}
+\label{fig:gap}
+\end{figure}
+
+\medskip\noindent\textbf{A 125-site synthetic noisy certificate.}\par\smallskip
+Take $m=2$, $g_0=1$, Fourier-tail norm bound $T=0.01$ and
+nodewise \emph{Hamiltonian-vector} error $\varepsilon=0.025$.
+The synthetic tail is
+$(T/3)(\cos3k_x,\cos3k_y,\cos3k_z)$;
+its six Fourier coefficient norms sum to $T$.
+Using a 5-point grid in each variable gives
+$\Lambda=5^{3/2}=11.18034$.
+The measured coefficients have
+$C=0.16499990$ and consequently
+\begin{equation}\label{eq:numeric-sparse}
+\boxed{\begin{aligned}E&=0.56631180<g_0=1,\\
+\mathrm{gap}_{\rm true}&\ge0.86737640.\end{aligned}}
+\end{equation}
+All quantities are rounded conservatively in the audit; the
+inequality has a large margin, far exceeding floating point
+roundoff. The model's topological degree is $-1$, independently
+confirmed to numerical precision by a $64^3$ quadrature of the
+sphere-volume form. This is a \emph{synthetic robustness test}, not
+a measured topological phase. The method relies on a validated
+bandwidth/tail prior, which is why 125 samples are not in conflict
+with the arbitrary-Lipschitz lower bound.
+\begin{figure}[t]
+\includegraphics[width=.82\linewidth]{FIG_4_FOURIER_TOPOLOGICAL_MARGIN.pdf}
+\caption{Observed Fourier residual, worst-case uncertainty, and
+exact template gap for the synthetic 125-site certificate.}
+\label{fig:fourier}
+\end{figure}
+
+\paragraph{Two-point parametric compression, and its danger.}
+Inside \emph{this exact one-parameter family only}, two high-symmetry
+points already determine $m$:
+$h_{0,z}(0,0,0)=-(3-m)^2$ and
+$h_{0,z}(\pi,\pi,\pi)=-(3+m)^2$. Thus
+\begin{equation}\label{eq:twopoint}
+\boxed{m=\frac{h_{0,z}(0,0,0)-h_{0,z}(\pi,\pi,\pi)}{12}.}
+\end{equation}
+If the two measurements have errors each no larger than $\epsilon$,
+then $|\widehat m-m|\le\epsilon/6$.
+The topological phase is fixed if the interval
+$[\widehat m-\epsilon/6,\widehat m+\epsilon/6]$ avoids
+$\{-3,-1,1,3\}$. This is powerful \emph{model identification},
+not a universal two-point Hopf measurement: small off-family
+perturbations can be invisible at both special points.
+
+
+\section{A sharp trigonometric interpolation constant and a stricter topological certificate}
+The prior bound $\Lambda=n^{3/2}$ in Theorem~\ref{th:fourier}
+is easy to prove, but not optimal. For the odd equispaced
+one-dimensional grid of $n=2K+1$ nodes, classical work of
+Ehlich--Zeller identifies the exact maximum of the Lebesgue function
+at cell midpoints; see the account in Ref.~\cite{SorevikNome2015}.
+Define
+\begin{equation}
+\lambda_n=\frac1n\sum_{j=0}^{n-1}\csc\frac{(2j+1)\pi}{2n},\qquad
+\Lambda_{n,3}=\lambda_n^3.
+\label{eq:sharp-constant}
+\end{equation}
+The numerical value of the closed form is independently verified
+below, and the underlying interpolation identity is established in
+classical approximation theory; we do not claim this constant is new.
+
+\begin{theorem}[Sharp tensor-grid noise propagation]
+For every vector-valued nodal error field $e_j\in\mathbb R^d$
+with $\|e_j\|_2\le\epsilon$ on the full Cartesian $n^3$ grid,
+\begin{equation}
+\boxed{\|I_K e\|_\infty\le\Lambda_{n,3}\epsilon.}
+\end{equation}
+The coefficient is \emph{optimal}: for some choice of admissible
+node errors, equality holds at a triple of cell midpoints.
+Consequently, under the hypotheses of Theorem~\ref{th:fourier},
+\begin{equation}
+\boxed{\|h-h_0\|_\infty\le C+\Lambda_{n,3}\epsilon+
+(1+\Lambda_{n,3})T=:E_\mathrm{sharp}.}
+\label{eq:sharp-hopf}
+\end{equation}
+If $E_\mathrm{sharp}<g_0$, all gapped homotopy invariants of $h$
+and $h_0$ agree, and the full two-band energy gap is at least
+$2(g_0-E_\mathrm{sharp})$.
+\end{theorem}
+\begin{proof}
+The one-dimensional trigonometric cardinal functions are
+$\ell_j(x)=n^{-1}\sum_{m=-K}^{K}\exp[im(x-2\pi j/n)]$.
+The classical midpoint-maximization theorem gives
+$\sup_x\sum_j|\ell_j(x)|=\lambda_n$, exactly as in
+Eq.~\eqref{eq:sharp-constant}. Three-dimensional cardinal functions
+are products, so their absolute sums factor:
+$\sup_{\bm k}\sum_{\bm j}|\ell_{\bm j}(\bm k)|=\lambda_n^3$.
+This implies the vector norm estimate by the triangle inequality.
+Choose errors all parallel to one fixed unit vector, with signs
+matching the cardinal functions at a maximizing point, to attain
+equality. The decomposition $h-h_0=p+t-I_Kt-I_Ke$ from the prior
+theorem then proves Eq.~\eqref{eq:sharp-hopf} and the usual
+straight-line gap homotopy establishes the topological conclusion.
+\end{proof}
+
+For the previously saved synthetic $n=5$ test, the exact constant is
+$\lambda_5^3=7.866996548239\ldots$ rather than
+$\sqrt{125}=11.180339887499\ldots$. With the unchanged
+$C=0.164999903351\ldots$, $\epsilon=0.025$, $T=0.01$,
+$g_0=1$, one obtains
+\begin{equation}
+\boxed{E_\mathrm{old}=0.566311799414,\quad
+E_\mathrm{sharp}=0.450344782540.}
+\end{equation}
+The guaranteed lower bound on the two-band energy gap increases
+from $0.867376401172$ to $1.099310434920$, in the model's
+energy units, with the \emph{same} 125 synthetic nodes. The physical
+minimum energy gap has not been independently measured.
+\begin{figure}[t]
+\includegraphics[width=.95\linewidth]{FIG_6_SHARP_LEBESGUE.pdf}
+\caption{Exact three-dimensional interpolation norm $\lambda_n^3$
+versus the earlier, loose Cauchy--Schwarz upper bound $n^{3/2}$.
+The exact norm is a classical result; its application to the
+present Fourier--Hopf certificate sharpens the numerical margin.}
+\label{fig:sharp-lebesgue}
+\end{figure}
+\begin{figure}[t]
+\includegraphics[width=.94\linewidth]{FIG_7_REVISED_HOMOTOPY_MARGIN.pdf}
+\caption{Discrepancy certificate for the unchanged 125-node synthetic
+experiment. The improved constant, rather than new data, produces
+the stronger homotopy margin.}
+\label{fig:sharp-margin}
+\end{figure}
+
+\section{An operational finite-shot resource law under calibrated locality}
+\begin{theorem}[Finite-shot sufficient budget]
+Let $M=n^3$ be an odd Cartesian grid, let each measured Hamiltonian
+component be estimated from $N$ independent outcomes in $[-A,A]$
+with unbiased expectation, and let
+$\delta\in(0,1)$ be a fixed predeclared failure probability.
+Assume calibrated Hamiltonian-vector observations, a validated
+Fourier-tail bound $T$, a known positive reference gap $g_0$,
+and let $C$ be the residual computed from the resulting sample.
+Then with probability at least $1-\delta$,
+\begin{equation}
+\|h-h_0\|_\infty\le
+C+(1+\Lambda_{n,3})T+
+A\Lambda_{n,3}\sqrt{\frac{6\log(6M/\delta)}N}.
+\label{eq:shot-topological}
+\end{equation}
+If the right side is strictly smaller than $g_0$, the topological
+class agrees with the reference with confidence at least
+$1-\delta$. In particular, for a pre-specified admissible residual
+threshold $C\le C_{\max}$ and
+$B=g_0-C_{\max}-(1+\Lambda_{n,3})T>0$,
+\begin{equation}
+\boxed{N>\frac{6A^2\Lambda_{n,3}^2}{B^2}
+\log\left(\frac{6M}{\delta}\right)}
+\label{eq:resource-law}
+\end{equation}
+is sufficient for the measurement-error contribution to be below
+$B$. The total count of component outcomes is $3MN$.
+\end{theorem}
+\begin{proof}
+Hoeffding's inequality gives
+$\Pr(|\hat h_{j\mu}-h_{j\mu}|>a)
+\le2\exp(-Na^2/(2A^2))$ for every node $j$ and component
+$\mu=1,2,3$. A union bound over $3M$ observables with
+$a=A\sqrt{2\log(6M/\delta)/N}$ gives simultaneous
+vector error at most $\sqrt3 a$ with probability $1-\delta$.
+Apply Eq.~\eqref{eq:sharp-hopf} and rearrange.
+\end{proof}
+
+At exact finite Fourier bandwidth $T=0$ and with fixed positive
+remaining margin $B$, the classical estimate
+$\lambda_n=O(\log n)$ gives an asymptotic sufficient total outcome
+budget $O(n^3(\log n)^7)$ (the extra logarithm comes from the
+union confidence bound). The prior loose norm $n^{3/2}$
+instead yields $O(n^6\log n)$ for the same protocol. These are
+\emph{sufficient upper bounds}, not information-theoretic lower
+bounds or established universal optimal sampling laws. For $T>0$,
+the margin $B$ may vanish as $n$ grows, so the asymptotic comparison
+requires $T$ to decrease sufficiently fast.
+
+Using the saved $C,T,g_0$ and a conditional $A=1$, $\delta=0.01$,
+the strict sufficient bound requests 16,552 Pauli-component shots
+per grid site under the old constant versus 7,484 under the sharp
+one, when integer counts are rounded conservatively upward.
+The $125$ sites thus require respectively $6{,}207{,}000$ versus
+$2{,}806{,}500$ hypothetical measurement outcomes. These numbers
+are \emph{conditional resource forecasts}, not performed or
+observed quantum-device measurements.
+
+
+\section{Independent-shot Fourier concentration beyond deterministic Lebesgue bounds}
+\label{sec:stochastic}
+The sharp Lebesgue norm above is optimal against \emph{adversarial} nodal error; it need not govern the propagation of independent, zero-mean statistical errors. This distinction is relevant because the preceding measurement model explicitly assumes independent preparations. Classical concentration of random trigonometric polynomials is well studied (see, for example, Ref.~\cite{BenkeHendricks1993}); here we provide a finite-sample constant and connect it to a topological-gap certificate. We do not claim the underlying probabilistic estimates are new.
+
+Write $n=2K+1$, let the sampling sites be $x_j=2\pi j/n$ in each angular coordinate of $\mathbb T^3$, and use real trigonometric cardinal functions
+\begin{equation}
+\ell_j(x)=\frac1n\sum_{s=-K}^K e^{is(x-2\pi j/n)}
+=\frac{\sin[n(x-2\pi j/n)/2]}{n\sin[(x-2\pi j/n)/2]},\quad
+w_{j_1j_2j_3}(\bm x)=\prod_{a=1}^3\ell_{j_a}(x_a).
+\end{equation}
+At removable singularities the quotient is interpreted by continuity. By orthogonality of the discrete Fourier basis,
+\begin{equation}\label{eq:cardinal-frame}
+\boxed{\quad\sum_{j=0}^{n-1}\ell_j(x)^2=1,
+\qquad\sum_{\bm j}w_{\bm j}(\bm x)^2=1\quad}
+\end{equation}
+for \emph{every} point, not only sampled nodes. The $\ell_2$ identity contrasts with the adversarial $\ell_1$ amplification factor $\Lambda_{n,3}$.
+
+\begin{theorem}[Uniform Fourier concentration from independent bounded shots]\label{th:indshot}
+At every spatial node $\bm j$ and Cartesian component $a=1,2,3$, suppose $N$ independent bounded observations $X_{\bm j,a,s}\in[-A,A]$ have expectation $h_a(x_{\bm j})$. Assume observations are independent \emph{between spatial nodes for each component}; independence between distinct components is not required. Let $\widehat h_{\bm j,a}=N^{-1}\sum_s X_{\bm j,a,s}$ and $e_{\bm j,a}=\widehat h_{\bm j,a}-h_a(x_{\bm j})$. Choose an integer auxiliary grid resolution $m>3\pi K$ and $\delta\in(0,1)$. Then
+\begin{equation}\label{eq:uniform-fourier-stochastic}
+\boxed{\quad
+\mathbb P\left\{\norm{I_K e}_\infty\le
+\frac{A}{1-3\pi K/m}\sqrt{\frac{6\log(6m^3/\delta)}{N}}\right\}\ge 1-\delta.
+\quad}
+\end{equation}
+The auxiliary $m^3$ evaluation points are \emph{not} additional physical measurements. If $K=0$, the conclusion holds with $m=1$ and zero derivative factor.
+\end{theorem}
+\begin{proof}
+Equation~\eqref{eq:cardinal-frame} shows that, for any fixed $\bm x$, the sum $\sum_{\bm j}w_{\bm j}(\bm x)e_{\bm j,a}$ is a weighted average of independent bounded-shot means with total squared coefficient norm exactly one. Hoeffding's inequality therefore yields
+\begin{equation}
+\mathbb P\left(\big|[I_K e]_a(\bm x)\big|>t\right)\le
+2\exp\left(-\frac{Nt^2}{2A^2}\right).
+\end{equation}
+Take a \emph{virtual} equispaced grid of $m^3$ points and use a union bound across its three Cartesian components: with probability $\ge1-\delta$ every component is bounded on this grid by $t=A\sqrt{2\log(6m^3/\delta)/N}$. The periodic Bernstein inequality for a real trigonometric polynomial of coordinate degree at most $K$ gives $\norm{\partial_{x_a}p}_\infty\le K\norm p_\infty$. Every point of the torus lies at coordinate distance at most $\pi/m$ from a virtual grid point; hence
+$\norm p_\infty\le \max_{\rm grid}|p|+(3\pi K/m)\norm p_\infty$.
+Thus each component has supremum at most $t/(1-3\pi K/m)$, and the Euclidean three-vector has supremum at most $\sqrt3$ times that quantity. This proves Eq.~\eqref{eq:uniform-fourier-stochastic}.
+\end{proof}
+
+\begin{corollary}[Independent-shot topological certificate and sufficient resources]\label{co:indshot}
+Under the same assumptions and notation as Theorem~\ref{th:fourier}, let $T$ be an independently validated Fourier-tail norm and $C$ the absolute Fourier-coefficient residual obtained from the measured grid values. Set $B=g_0-C_{\max}-(1+\Lambda_{n,3})T$, where $g_0>0$ is a rigorously known reference gap and $C\le C_{\max}$ is the required data-dependent acceptance condition. For $B>0$, the sufficient per-component shot condition
+\begin{equation}\label{eq:resource-independent}
+\boxed{\quad N>
+\frac{6A^2}{B^2(1-3\pi K/m)^2}
+\log\left(\frac{6m^3}{\delta}\right),\qquad m>3\pi K\quad}
+\end{equation}
+ensures, with false-certification probability at most $\delta$, that a \emph{passing} reconstruction satisfies
+\begin{equation}\label{eq:stoch-certificate}
+\boxed{\quad
+\norm{h-h_0}_\infty\le C+(1+\Lambda_{n,3})T+
+\frac{A}{1-3\pi K/m}\sqrt{\frac{6\log(6m^3/\delta)}{N}}<g_0.\quad}
+\end{equation}
+It follows that the straight-line interpolation never closes the gap, so the relevant homotopy invariants agree. For any fixed $\kappa>3\pi$ and $m=\lceil\kappa K\rceil$, a fixed positive $B$, fixed $A$, and $T=0$, the total \emph{sufficient} number of component-shot outcomes obeys
+\begin{equation}\label{eq:stochastic-rate}
+\boxed{\quad S_{\rm suff}=3n^3N=O(n^3\log(n/\delta)).\quad}
+\end{equation}
+There is no assertion that this rate is minimax-optimal or valid for unrestricted many-body tomography.
+\end{corollary}
+\begin{proof}
+Use $h-h_0=(I_K\widehat h-h_0)+(h-I_Kh)-I_K e$, with $\|I_K\widehat h-h_0\|_\infty\le C$ and $\|h-I_Kh\|_\infty\le(1+\Lambda_{n,3})T$; apply Theorem~\ref{th:indshot} and the gap homotopy argument. Equation~\eqref{eq:resource-independent} makes the stochastic contribution strictly smaller than $B$. Choosing $m$ proportional to $K$ bounds $(1-3\pi K/m)^{-1}$ by a constant and gives $\log m^3=O(\log n)$, proving the rate.
+\end{proof}
+
+\begin{remark}[Instrument bias and correlated errors]
+If a deterministic nodal vector bias is only bounded by $b$ in Euclidean norm, the right side of Eq.~\eqref{eq:stoch-certificate} acquires $+\Lambda_{n,3}b$. Shared drift or adversarially coordinated shot errors need not obey the independent-node concentration argument. Indeed, choosing nodal errors parallel to a fixed vector with signs matching the interpolation cardinal functions at a maximizer gives $\|I_K e\|_\infty=\Lambda_{n,3}\max_j\|e_j\|_2$: the previous deterministic amplification factor remains necessary when independence cannot be justified. This is an explicit falsification control for the statistical improvement.
+\end{remark}
+
+\paragraph{Fixed numerical forecast, not a new experiment.}
+Using exactly the previously stored synthetic bookkeeping values $n=5$, $K=2$, $C=0.164999903351$, $T=0.01$, $g_0=A=1$, and $\delta=0.01$, choose $m=80$, a virtual resolution (no new device sites). The earlier deterministic-union confidence bound required $N=7{,}484$ component shots per site, whereas Eq.~\eqref{eq:resource-independent} requires $N=361$. The corresponding sufficient total resource forecasts change from $2{,}806{,}500$ to $135{,}375$ outcomes, a factor of about $20.73$ reduction under independent unbiased noise. These values are \emph{conditional forecasts}, not physical shot counts or actual success rates. The stored $C$ is from synthetic data; different measurements change $C$ and may fail the acceptance test. $A=1$ is a hypothetical calibrated component-outcome envelope and must be validated for any physical Hamiltonian scale before these shot totals can be used.
+\begin{figure}[t]
+\centering\includegraphics[width=.94\linewidth]{FIG_8_INDEPENDENT_SHOT_CONCENTRATION.pdf}
+\caption{Sufficient component-shot counts on odd Cartesian Fourier grids at fixed hypothetical margin $B=0.7$, $A=1$, $\delta=.01$ and $m=\lceil40K\rceil$: deterministic Lebesgue/union bound versus independent-shot uniform concentration. No physical measurements were used; the curves are design bounds, not empirical learning curves.}
+\label{fig:independent-shots}
+\end{figure}
+
+\section{Correlated whole-map measurements and effective Fourier leverage}
+\label{sec:correlated-v5}
+
+\subsection{What spatial correlation does and does not imply}
+The previous independent-node argument cannot be applied to a laboratory sequence with shared calibration drift. Conversely, a large off-diagonal covariance does not necessarily imply a large error after trigonometric interpolation. We distinguish (a) independence of \emph{repeated whole-map acquisitions}, (b) spatial dependence \emph{within one acquisition}, and (c) systematic bias. The first is an explicit statistical assumption; the second is handled by a covariance proxy, while the third must be bounded separately. A covariance matrix alone does not provide exponential concentration without an additional tail or joint sub-Gaussian assumption.
+
+Let $n=2K+1$ and $J=n^3$. Denote the $J$ real tensor-cardinal coefficients at $x\in\mathbb T^3$ by $w(x)\in\mathbb R^J$. They obey
+\begin{equation}\label{eq:v5-frame}
+\sum_j w_j(x)=1,\qquad \sum_j w_j(x)^2=1,\qquad
+\sup_x\sum_j|w_j(x)|=\Lambda_{n,3}.
+\end{equation}
+For each field component $a=1,2,3$, the $s$th independently repeated \emph{complete} map has centered nodal error $\xi_{s,a}\in\mathbb R^J$. We allow arbitrary cross-site dependence and assume, for a \emph{validated} positive semidefinite matrix $\Sigma_a$,
+\begin{equation}\label{eq:v5-subg}
+\mathbb E\exp(tu^\mathsf T\xi_{s,a})
+ \le\exp\!\left(\tfrac12 t^2 u^\mathsf T\Sigma_a u\right)
+\quad(\forall t\in\mathbb R,\ u\in\mathbb R^J),
+\end{equation}
+and independence over the acquisition index $s$. No independence between components is required. The sample mean of $N$ full-map errors is $e_a=N^{-1}\sum_s\xi_{s,a}$. A calibrated deterministic spatial bias $b_j\in\mathbb R^3$ is assumed to obey $\sup_j\|b_j\|_2\le b_*$. The independently calibrated covariance \emph{proxy} may come from a physical Gaussian noise model or a justified matrix concentration model; a sample covariance without a confidence envelope is insufficient.
+
+Define the \emph{effective interpolation variance}
+\begin{equation}\label{eq:v5-V}
+\boxed{V_{\rm eff}=\max_{a=1,2,3}\sup_{x\in\mathbb T^3}
+                w(x)^\mathsf T\Sigma_a w(x).}
+\end{equation}
+The supremum may be replaced by a certified computable upper bound $V_+$. The example below evaluates it in closed form.
+
+\begin{theorem}[Covariance-resolved, uniform Fourier confidence bound]\label{th:v5-correlated}
+Let Eq.~\eqref{eq:v5-subg} hold for independent replicated whole-map acquisitions. Choose an integer virtual-grid size $m>3\pi K$ and $\delta_s\in(0,1)$. Then
+\begin{equation}\label{eq:v5-uniform}
+\boxed{\Pr\!\left[
+\|I_K e\|_\infty
+\le \frac{\sqrt{6V_+\log(6m^3/\delta_s)/N}}{1-3\pi K/m}
+\right]\ge1-\delta_s.}
+\end{equation}
+The spatial noise may be fully correlated within each repeated map. Cross-component correlation need not be specified.
+\end{theorem}
+\begin{proof}
+For each $x,a$, the scalar $w(x)^\mathsf Te_a$ is sub-Gaussian with proxy $w(x)^\mathsf T\Sigma_aw(x)/N\le V_+/N$ by independence of the $N$ full-map repeats. Thus
+$\Pr(|w(x)^\mathsf Te_a|>t)\le2\exp[-Nt^2/(2V_+)]$.
+On the auxiliary $m^3$-site grid, a union bound over three components gives
+$t=\sqrt{2V_+\log(6m^3/\delta_s)/N}$.
+The periodic Bernstein derivative inequality bounds each component between auxiliary sites by the factor $(1-3\pi K/m)^{-1}$ as in Theorem~\ref{th:indshot}. The Euclidean norm of the three components contributes the factor $\sqrt3$. Combining the three factors yields Eq.~\eqref{eq:v5-uniform}.
+\end{proof}
+
+\begin{corollary}[Validated tail, bias, and topology-preserving certificate]\label{co:v5-topology}
+Assume that $h:\mathbb T^3\to\mathbb R^3$ has a Fourier truncation $P_Kh$ to $|r_i|\le K$ with independently verified $\|h-P_Kh\|_\infty\le T_K$. Let the calibrated reference $h_0$ have $g_0=\inf_x\|h_0(x)\|_2>0$, and let $C_{\rm data}\ge\|I_K\widehat h-h_0\|_\infty$ be verified directly from the measured mean grid. Define
+\begin{equation}\label{eq:v5-margin}
+\boxed{M_*=g_0-C_{\rm data}-(1+\Lambda_{n,3})T_K-\Lambda_{n,3}b_*.}
+\end{equation}
+If $M_*>0$ and
+\begin{equation}\label{eq:v5-budget}
+\boxed{N>\frac{6V_+\log(6m^3/\delta_s)}{M_*^2(1-3\pi K/m)^2},}
+\end{equation}
+then, except on an event of probability at most $\delta_s$, every \emph{passing} certificate satisfies $\|h-h_0\|_\infty<g_0$, hence their straight-line interpolation is gapped and their defined homotopy invariants agree. If the covariance proxy itself is obtained from a separate calibration with failure probability $\delta_c$, the total false-certification probability is bounded by $\delta_s+\delta_c$.
+\end{corollary}
+\begin{proof}
+Write $\widehat h=h|_{\rm sites}+b+e$. By interpolation of the Fourier-truncated field,
+$\|h-I_K(h|_{\rm sites})\|_\infty\le(1+\Lambda_{n,3})T_K$.
+The tensor Lebesgue operator bounds $\|I_Kb\|_\infty\le\Lambda_{n,3}b_*$. Hence
+\[
+\|h-h_0\|_\infty\le C_{\rm data}+(1+\Lambda_{n,3})T_K+\Lambda_{n,3}b_*+\|I_Ke\|_\infty.
+\]
+Apply Theorem~\ref{th:v5-correlated}. A strict positive gap persists throughout the convex path. A union bound handles any independently certified covariance proxy; statistical independence of the two bad events is not required.
+\end{proof}
+
+\begin{remark}[Selection after observing data]
+$C_{\rm data}$ may be evaluated \emph{after} the measurements, because the stochastic error event is uniform over every point and does not depend on a preselected candidate reference. However, changing the noise covariance model or calibration priors after viewing a failed experiment invalidates the claimed pre-registered error budget. In particular, positive measured correlations alone do not establish the matrix moment-generating-function bound~\eqref{eq:v5-subg}.
+\end{remark}
+
+\subsection{A pair of maximally contrasting spatial correlations}
+Let $\sigma>0$ and choose a tensor-grid cell midpoint $x_*$ where the Lebesgue norm is attained. Set $s_j=\operatorname{sgn}w_j(x_*)$. Consider the positive semidefinite rank-one mixtures
+\begin{equation}\label{eq:v5-sigma}
+\Sigma^{\rm common}_\rho=\sigma^2[(1-\rho)I+\rho\bm1\bm1^\mathsf T],\quad
+\Sigma^{\rm signed}_\rho=\sigma^2[(1-\rho)I+\rho ss^\mathsf T],\quad0\le\rho\le1.
+\end{equation}
+The first describes one common-mode random offset over all $J$ spatial sites. The second describes a spatially signed coherent fluctuation exactly aligned with the worst Fourier-leverage pattern. By Eq.~\eqref{eq:v5-frame},
+\begin{equation}\label{eq:v5-contrast}
+\boxed{V_{\rm common}=\sigma^2,\qquad
+V_{\rm signed}=\sigma^2[1-\rho+\rho\Lambda_{n,3}^{\,2}].}
+\end{equation}
+The first identity uses $w^\mathsf T\bm1=1$ even when the raw covariance has an eigenvalue proportional to $J$. The second uses $\|w\|_2^2=1$ and $|s^\mathsf Tw|\le\Lambda_{n,3}$, with equality at $x_*$. This distinction shows why raw covariance magnitude and even $\|\Sigma\|_{\rm op}$ can be unnecessarily pessimistic. The covariance structures are explicit \emph{mathematical noise models}; realistic devices require an independently validated spatial covariance proxy.
+
+\begin{figure}[t]
+\centering\includegraphics[width=.92\linewidth]{FIG_9_CORRELATED_NOISE_BUDGET.pdf}
+\caption{Conditional sufficient shot budgets for five analytically specified full-map Gaussian covariance models on the 125-point grid, using the same $C$, $T$, $g_0$, $\delta$, and virtual resolution as the previous synthetic v4 benchmark. The worst-case sign-aligned mode has much larger effective leverage than a spatially constant common mode. No device measurements enter.}\label{fig:v5-correlated}
+\end{figure}
+
+\subsection{Independent computational replication}
+We generated $2{,}500$ independently repeated synthetic Gaussian sample-mean maps \emph{per covariance regime}, with $N=256$ virtual acquisitions per reconstruction. Each map used an exactly specified Gaussian law with covariance $\Sigma/N$, evaluated at 28 spatial probe locations, including the maximizing midpoint. The empirical-to-analytic variance ratios of the midpoint interpolant were $1.0113$, $1.0081$, $1.0285$, $0.9834$, and $0.9886$ in the five regimes, respectively. No sample exceeded the conservative scalar uniform bound; this is a numerical regression check, not a proof of $99\%$ physical coverage. The corresponding 99\% sufficient \emph{per-component per-node} budgets were $361$, $361$, $2{,}555$, $11{,}330$, and $22{,}299$. Full data generation, fixed random seed, covariance specifications, checks, and complete output records are bundled in \texttt{verify\_correlated\_tail\_v5.py} and \texttt{RESULTS\_V5.json}. Gaussian sample noise is unbounded; a physical Pauli-shot model needs a separate calibrated joint sub-Gaussian proxy.
+
+\section{Unknown high-frequency tails: certified locality or no universal answer}
+\label{sec:v5-tail}
+
+\begin{proposition}[Exact coefficient-envelope tail]\label{prop:v5-tail}
+Let $h(k)=\sum_{r\in\mathbb Z^3}\widehat h_re^{ir\cdot k}$ be a continuous vector Hamiltonian on $\mathbb T^3$ whose Fourier coefficient vectors obey an \emph{independently established} envelope
+$\|\widehat h_r\|_2\le B e^{-a\|r\|_1}$ for constants $B>0,a>0$.
+For the cube truncation $P_K h=\sum_{|r_i|\le K}\widehat h_r e^{ir\cdot k}$,
+\begin{equation}\label{eq:v5-tail}
+\boxed{\|h-P_Kh\|_\infty\le
+T_K^{\rm exp}=B\!\left[
+\left(\frac{1+u}{1-u}\right)^3
+-\left(\frac{1+u-2u^{K+1}}{1-u}\right)^3\right],\quad u=e^{-a}.}
+\end{equation}
+\end{proposition}
+\begin{proof}
+Absolute Fourier convergence and the triangle inequality bound the
+remainder by the sum of Fourier-coefficient norms outside the cube.
+The one-dimensional geometric sums are
+\[
+\sum_{q\in\mathbb Z}u^{|q|}=\frac{1+u}{1-u},\qquad
+\sum_{q=-K}^{K}u^{|q|}=\frac{1+u-2u^{K+1}}{1-u}.
+\]
+Their tensor cubes give the exact \emph{envelope sum}. The inequality
+for the unknown field can be strict.
+\end{proof}
+
+\begin{figure}[t]
+\centering\includegraphics[width=.89\linewidth]{FIG_10_ANALYTIC_TAIL_ENVELOPE.pdf}
+\caption{A family of explicit, \emph{assumed} Fourier-decay certificates ($B=0.025$, varying $a$). Finite measured Fourier coefficients do not establish either $B$ or $a$. A physical hopping-locality calibration or independent analytic prior is required.}\label{fig:v5-tail}
+\end{figure}
+
+\begin{theorem}[Gap-preserving finite-sampling impossibility without tail priors]\label{th:v5-no-go}
+For any finite set $S\subset\mathbb T^3$ of momentum sites, there exist \emph{smooth}, spectrally gapped two-band Hamiltonians $h^{(0)},h^{(1)}:\mathbb T^3\to\mathbb R^3$ with identical values at every point of $S$, with $\|h^{(0)}(k)\|_2=\|h^{(1)}(k)\|_2=1$ for all $k$, with zero weak first-Chern classes, but with distinct absolute Hopf invariants $H(h^{(0)})=0$ and $H(h^{(1)})=1$ (up to a fixed orientation convention). Consequently, no algorithm using only finite exact point values, the positive band gap, and zero weak Chern classes can always recover the integer Hopf invariant if no bound on inter-site regularity or Fourier tails is imposed.
+\end{theorem}
+\begin{proof}
+Choose a small embedded closed three-ball $D\subset\mathbb T^3\setminus S$. Set the first normalized field $n^{(0)}=(0,0,1)$. Collapse the boundary of $D$ to a point, obtaining $D/\partial D\cong S^3$. There exists a smooth degree-one based map from $D$ to $S^3$ equal to a constant on a collar of $\partial D$; compose it with a unit Hopf map $S^3\to S^2$, and extend the result by the same constant outside $D$. This defines smooth $n^{(1)}$ with Hopf invariant one by precomposition with degree one. Because the map is supported on a ball, all weak Chern classes vanish. Both fields agree on $S$ and are everywhere unit norm. Define $h^{(j)}=n^{(j)}$, so the two-band Hamiltonians $h^{(j)}\cdot\sigma$ have exactly the same constant gap $2$ everywhere. The values on $S$ are identical but their Hopf integers are not. Such localized Hopf-bubble constructions and the general finite-sampling obstruction are already known in related contexts \cite{Klemm2026}; no claim of priority is made here.
+\end{proof}
+
+\begin{figure}[t]
+\centering\includegraphics[width=.89\linewidth]{FIG_11_TAIL_ALIASING_OBSTRUCTION.pdf}
+\caption{A simple Fourier-aliasing precursor: $\sin(nx)$ vanishes on every node $x_j=2\pi j/n$ while attaining unit amplitude between nodes. The graph alone is not a nontrivial Hopf map; Theorem~\ref{th:v5-no-go} supplies the independent topological construction.}\label{fig:v5-alias}
+\end{figure}
+
+\paragraph{Sensitivity to the independently assumed envelope.}
+On the earlier 125-node design with $B=0.025$, $K=2$, and
+$C_{\rm data}=0.164999903351$, an exponential decay rate $a=1.5$
+gives $T_K^{\rm exp}=0.00522100$ and a $99\%$ sufficient independent-map
+budget of 323 shots per node/component. A weaker rate $a=1.1$
+gives $T_K^{\rm exp}=0.03130468$ and budget 646; $a=0.7$ gives
+$T_K^{\rm exp}=0.27258268$ and no positive certified margin at all.
+These are parameter-sensitive \emph{hypothetical envelopes}, not decay
+constants measured for any device. They expose the necessity of
+calibrating locality independently of the Fourier sample values.
+
+\subsection{Why covariance and spectral locality are independent requirements}
+The covariance-resolved confidence theorem only controls what sampling \emph{does measure}. It does not constrain unmeasured spatial harmonics or deterministic biases. Conversely, exact exponential hopping decay constrains unresolved harmonics but does not provide a statistical confidence level for noisy node observations. A valid topology claim needs all three quantities simultaneously: a positive reference gap $g_0$, a calibrated spatial-error law with independently repeated acquisitions, and an independent Fourier-tail or regularity certificate. If $B$ or $a$ in Eq.~\eqref{eq:v5-tail} is estimated using only the same finite momentum samples, adversarial aliasing can invalidate the claimed bound. The shot-noise-to-drift transition identified experimentally in photonic reconstruction in 2026 reinforces the need to audit bias rather than extrapolate the $N^{-1/2}$ law indefinitely \cite{Vattay2026}.
+
+\subsection{What would constitute an experimental test on actual hardware?}
+A preregistered hardware study must provide \emph{raw repeated full-map acquisitions} or a justified acquisition model, timestamped drift controls, basis-dependent readout calibration, independent upper certificates for $\Sigma_a$ or a sub-Gaussian matrix proxy, an independent physical bound on the hopping envelope ($B,a$), an absolute Hamiltonian scale and a reference-gap certificate. Use a held-out set of momenta and a second data-collection session to test whether false-certification frequency is compatible with the declared risk. Experimental Bloch vectors without an absolute band-energy scale generally do not verify the Hamiltonian-vector gap inequality as written. The published NV-center Hopf tomography \cite{Yuan2017} and electrical-circuit realization \cite{Wang2023} provide relevant experimental platforms, but no eligible raw repeated full-map device dataset was imported in this work. The $2{,}500$-replicate tests above are \emph{synthetic computational experiments only}.
+
+\section{Audited second-order sampling and reference-free integer extraction}\label{sec:v6}
+
+This section critically incorporates four proposals provided for independent review on October 22, 2026. We retain the demonstrable sampling and finite-precision constructions, repair the normalization of the weak Chern indices, and explicitly reject unverified complexity and modular-helicity claims. The results are conditional mathematics; the measurement demonstrations remain synthetic.
+
+\subsection{A second-order sampling certificate without extra physical observations}
+
+\begin{theorem}[Tensor secant sampling bound]\label{th:v6secant}
+Let $p:\mathbb T^3\to\mathbb R^d$ be a real vector-valued trigonometric polynomial of coordinate degree at most $K\ge1$, and let $\mathcal G_m=(2\pi\mathbb Z_m/m)^3$, with $m>2K$. Then
+\begin{equation}\label{eq:v6secant}
+\boxed{\norm{p}_{\infty}\le \sec^3\!\left(\frac{\pi K}{m}\right)\max_{x\in\mathcal G_m}\norm{p(x)}_2.}
+\end{equation}
+The grid is \emph{virtual}: it is evaluated from the interpolating polynomial and does not require extra physical measurements.
+\end{theorem}
+\begin{proof}
+At a maximizer $x^*$ choose a unit vector $u=p(x^*)/\norm{p(x^*)}_2$, assuming the maximum is nonzero. The scalar polynomial $f(x)=u\cdot p(x)$ attains its positive supremum there. The sharp one-variable Bernstein inequality for a real trigonometric polynomial $g$ bounded by $M$ is $|g'|\le K\sqrt{M^2-g^2}$. Integration from a maximizing point to its nearest $m$-mesh node, at distance at most $\pi/m<\pi/(2K)$, gives $|g(\mathrm{node})|\ge M\cos(\pi K/m)$. Apply the one-dimensional estimate successively in coordinates $1,2,3$ to the same scalar $f$, holding the previously chosen nodes fixed, and then bound $|u\cdot p|\le\norm{p}_2$ on the complete grid. This proves the claim. The elementary Taylor version with multiplier $(1-\pi^2 K^2/(2m^2))^{-3}$ is also valid when its denominator is positive.
+\end{proof}
+
+For independent centered outcomes of magnitude at most $A$, $N$ shots per component and node, and the orthogonal trigonometric cardinal functions $w_j$ satisfying $\sum_jw_j(x)^2=1$, the scalar error $u\cdot I_Ke(x)$ is $A/\sqrt N$-sub-Gaussian for every fixed unit vector $u$. Combining Eq.~\eqref{eq:v6secant} with a \emph{certified} finite spherical covering, rather than assuming an unprovided $31$-direction configuration, makes the gain fully reproducible.
+
+\begin{theorem}[An explicit finite directional covering]\label{th:v6net}
+For an integer $q\ge2$, let $\mathcal U_q$ consist of all unit vectors parallel to nonzero primitive integer triples $(a,b,c)$ with $|a|,|b|,|c|\le q$, taking both signs. Let $2M_q=|\mathcal U_q|$ and $\gamma_q=1-3/(2q^2)>0$. Every unit vector $u\in\mathbb S^2$ has a direction $v\in\mathcal U_q$ with $u\cdot v\ge\gamma_q$. Consequently, for $m>2K$, with probability at least $1-\delta$,
+\begin{equation}\label{eq:v6shots}
+\boxed{\norm{I_Ke}_{\infty}\le \frac{A\sec^3(\pi K/m)}{\gamma_q}\sqrt{\frac{2\log(2M_qm^3/\delta)}{N}}.}
+\end{equation}
+If an independently validated discrepancy-and-tail margin $B>0$ remains to the topological gap, the following count is sufficient:
+\begin{equation}\label{eq:v6resources}
+\boxed{N>\frac{2A^2\sec^6(\pi K/m)}{\gamma_q^2 B^2}\log\frac{2M_qm^3}{\delta}.}
+\end{equation}
+\end{theorem}
+\begin{proof}
+Round each coordinate of $qu$ to the nearest integer to obtain a nonzero lattice vector $a\in[-q,q]^3$. With $t=a/q$, the coordinate rounding error gives $\norm{u-t}_2\le\sqrt3/(2q)$. Upon normalization $v=t/\norm{t}_2$, the triangle inequality gives $\norm{u-v}\le\sqrt3/q$, and hence $u\cdot v=1-\norm{u-v}^2/2\ge\gamma_q$. Every $v$ belongs to $\mathcal U_q$ after dividing its lattice representative by the greatest common divisor. At each of the $m^3$ virtual grid nodes, Hoeffding's inequality for the scalar projection along each member of $M_q$ antipodal pairs bounds its absolute error by $A\sqrt{2\log(2M_qm^3/\delta)/N}$ simultaneously with probability $1-\delta$. The covering inequality, followed by Theorem~\ref{th:v6secant}, proves Eq.~\eqref{eq:v6shots}; solving the strict margin inequality gives Eq.~\eqref{eq:v6resources}.
+\end{proof}
+
+For the inherited $n=5$, $K=2$, $A=1$, $\delta=0.01$ synthetic example, $B=0.74633013$, the \emph{explicit} choice $q=4$ has $M_4=289$ and permits $N=104$ shots per component and site at virtual $m=37$ (39,000 binary outcomes). The choice $q=6$ has $M_6=865$ and permits $N=98$ at $m=35$ (36,750 outcomes). These are sufficient analytic budgets, not laboratory measurements or minimax lower bounds. The previously supplied figure of $81$ shots relied on an unprovided directional covering; the accompanying code in fact returned $85$ for its assumed covering constant.
+
+\begin{figure}[t]
+\centering\includegraphics[width=.88\linewidth]{FIG_12_CERTIFIED_DIRECTION_NETS.pdf}
+\caption{Certified sufficient shot budgets from an explicitly enumerated integer-direction net. Changes in $q$ affect only post-processing directions; the original $5^3$ physical spatial nodes are unchanged.}\label{fig:v6nets}
+\end{figure}
+
+\subsection{A true reference-free gap certificate and correct Chern normalization}
+
+Suppose the observed trigonometric interpolant is $p=I_K\widehat h$, the unknown continuous Hamiltonian vector is $h$, and a \emph{validated} probabilistic bound $\norm{h-p}_\infty\le E$ holds with confidence at least $1-\delta$. Put $C_p=\sum_{\norm{\nu}_\infty\le K}\norm{\widehat p_\nu}_2$. For a virtual grid of size $m_g$, define $g_{\rm grid}=\min_{x\in\mathcal G_{m_g}}\norm{p(x)}_2$ and $\underline g=g_{\rm grid}-3\pi K C_p/m_g$.
+
+\begin{theorem}[Reference-free gap homotopy criterion]\label{th:v6gap}
+If $\underline g>E$, then with probability at least $1-\delta$, the actual two-band Hamiltonian $h\cdot\sigma$ has gap at least $2(\underline g-E)>0$, and $p/\norm p$ and $h/\norm h$ have the same homotopy class.
+\end{theorem}
+\begin{proof}
+The coordinate derivative of $p$ is bounded by $KC_p$. Every point of the continuous torus is within $\pi/m_g$ in each coordinate of a virtual node, giving $\inf\norm p\ge\underline g$. Along the pointwise straight-line homotopy $p_s=(1-s)p+sh$, $\norm{p_s}\ge\underline g-E>0$. Normalize $p_s$ to complete the proof.
+\end{proof}
+
+Define the Berry-vorticity vector associated with the \emph{normalized} interpolant $n=p/\norm p$ by
+\begin{equation}\label{eq:v6B}
+B_a=\frac{1}{8\pi}\epsilon_{abc}\,n\cdot(\partial_b n\times\partial_c n)=\frac{1}{8\pi}\epsilon_{abc}\frac{p\cdot(\partial_b p\times\partial_c p)}{\norm p^3}.
+\end{equation}
+The Fourier coefficients are $b_\nu=(2\pi)^{-3}\int_{\mathbb T^3}B(k)e^{-i\nu\cdot k}\,d^3k$. The weak Chern numbers are \emph{not} $2\pi b_{0,a}$ (as proposed in the supplied draft), but
+\begin{equation}\label{eq:v6chern}
+\boxed{c_{1,a}=\int_{\mathbb T^2_a}B_a\,d^2k=(2\pi)^2b_{0,a}\in\mathbb Z.}
+\end{equation}
+In the elementary model $p=(\sin k_x,\sin k_y,-1+\cos k_x+\cos k_y)$ independent of $k_z$, the $xy$-Chern number is $+1$ (the north pole has one positively oriented preimage). A numerical $180^2$ midpoint sum gives $(2\pi)^2b_{0,z}=1.0000000000$; the incorrect proposed factor $2\pi b_{0,z}$ gives $0.1591549431$.
+
+\subsection{Finite-error extraction of an integer, not unvalidated rounding}\label{subsec:v6helicity}
+
+If the three weak Chern numbers vanish, the vorticity is exact and the classical Whitehead integral can be evaluated in Coulomb gauge. For $\nu\neq0$ define $a_\nu=i\nu\times b_\nu/\norm\nu_2^2$. Then, in our orientation convention,
+\begin{equation}\label{eq:v6helicity}
+\boxed{H(n)=-(2\pi)^3\sum_{\nu\in\mathbb Z^3\setminus\{0\}}\frac{i\nu\cdot(b_\nu^*\times b_\nu)}{\norm\nu_2^2}\in\mathbb Z.}
+\end{equation}
+This formula by itself is classical and does not supply a finite-precision certificate. The following computable enclosure does.
+
+Set $g=\underline g>0$, $C=C_p$, $D_1=KC$, $D_2=K^2C$, and define the conservative explicit constants
+\begin{align}\label{eq:v6derivs}
+b_0^*&=\frac{CD_1^2}{4\pi g^3},\\
+b_1^*&=\frac{D_1^3+2CD_1D_2}{4\pi g^3}+\frac{3CD_1^3}{4\pi g^4}.
+\end{align}
+Direct differentiation of Eq.~\eqref{eq:v6B} proves $|B_a|\le b_0^*$ and $|\partial_jB_a|\le b_1^*$ for every $a,j$. For an integer $Q\ge1$, compute the discrete coefficient
+\begin{equation}
+q_\nu=\frac1{Q^3}\sum_{j\in\mathbb Z_Q^3}B(2\pi j/Q)e^{-2\pi i\nu\cdot j/Q}.
+\end{equation}
+Partition the torus into cubes centered at the sample locations and use the mean-value inequality to get the \emph{vector-valued} coefficient enclosure
+\begin{equation}\label{eq:v6quadrature}
+\boxed{\norm{q_\nu-b_\nu}_2\le E_\nu:=\frac{\pi\sqrt3}{Q}\bigl(3b_1^*+\norm\nu_1\,b_0^*\bigr).}
+\end{equation}
+For a spectral cutoff $R_c\ge1$, let $\widetilde H_{R_c,Q}$ be Eq.~\eqref{eq:v6helicity} restricted to $0<\norm\nu_2\le R_c$, replacing $b_\nu$ with $q_\nu$. Parseval gives
+\begin{equation}\label{eq:v6tail}
+\boxed{|H(n)-\widetilde H_{R_c,Q}|\le \underbrace{\frac{(2\pi)^3 9(b_1^*)^2}{R_c^3}}_{\rm true\ Fourier\ tail}+\underbrace{(2\pi)^3\sum_{0<\norm\nu\le R_c}\frac{(2\norm{q_\nu}_2+E_\nu)E_\nu}{\norm\nu_2}}_{\rm finite\ quadrature\ error}:=E_H.}
+\end{equation}
+Here the first term uses $\norm{\nabla B}_{L^2}^2\le9(2\pi)^3(b_1^*)^2$. In particular, the correctly normalized Chern number is certified as the nearest integer to $(2\pi)^2q_{0,a}$ if $|(2\pi)^2q_{0,a}-\mathrm{round}((2\pi)^2q_{0,a})|+(2\pi)^2E_0<1/2$. Once \emph{all three} are certified zero, if also
+\begin{equation}\label{eq:v6round}
+\boxed{\bigl|\widetilde H_{R_c,Q}-\mathrm{round}(\widetilde H_{R_c,Q})\bigr|+E_H<\tfrac12,}
+\end{equation}
+then the rounded value is the exact integer invariant of $n$ and, on the earlier statistical confidence event, of the unknown $h/\norm h$. If either test fails, the algorithm must report \emph{unresolved}, even if the raw FFT value happens to be close to an integer. The conservative bounds need not be practically economical; their virtue is logical soundness and finite termination for a fixed gapped trigonometric polynomial after sufficiently accurate arithmetic and sufficiently large $Q,R_c$.
+
+For $\bm c_1\neq0$, Eq.~\eqref{eq:v6helicity} with the constant Fourier mode omitted is \emph{not} automatically the secondary Pontryagin invariant modulo $2\gcd(c_1)$; additional cohomological framing and a valid relative construction are required. Accordingly we make no such certification claim here. The attached user-supplied FFT program numerically reproduced the conventional Moore--Ran--Wen phase integers $0,-1,2,-1,0$, but the original program did not bound aliasing or the cutoff error and therefore provided approximations, not proved integer answers.
+
+\begin{figure}[t]
+\centering\includegraphics[width=.82\linewidth]{FIG_13_CHERN_NORMALIZATION_AUDIT.pdf}
+\caption{Counterexample to a missing normalization factor in the submitted reference-free spectral theorem: the exact degree is one. Agreement of a numerical integral with an integer does not, by itself, constitute a finite-error proof.}\label{fig:v6chern}
+\end{figure}
+
+\subsection{Adaptive and bosonic proposals: admissible and inadmissible conclusions}
+
+A prior suggestion asserted $O(1)$ adaptive identification of an arbitrarily located Hopf bubble of vanishing radius. This is unjustified without an independently certified oracle that already reveals the bubble's location or local regularity. A hidden bubble can be placed between any insufficiently dense sampling locations. Adaptively chosen cells can nevertheless be handled with a fixed \emph{prior} error allocation $\delta_C=\delta\,16^{-\ell}/(2M_0)$ for each potential level-$\ell$ cell in an $8$-ary refinement of $M_0$ root cells: summing over the \emph{entire potential tree} gives $\sum_C\delta_C=\delta$. Individual conditional Hoeffding bounds then survive data-dependent cell selection without a naive post-selection correction, provided every potential measurement is calibrated and has its stated sampling law. This establishes validity, \emph{not} the claimed $O(1)$ spatial resource upper bound.
+
+For a positive-definite bosonic BdG Hamiltonian $\mathcal H_0$, set $D_0=\Sigma_z\mathcal H_0$ and suppose a paraunitary matrix $T_0$ diagonalizes $D_0$ at each momentum. If $\varepsilon=\sup_k\norm{\mathcal H(k)-\mathcal H_0(k)}_{\mathrm{op}}$, $\mu=\inf_k\lambda_{\min}(\mathcal H_0(k))$, $\kappa=\sup_k\norm{T_0(k)}_2^2$ and $\Delta$ is a uniform gap separating a specified subset of positive-frequency bands from its complement, then $\varepsilon<\min(\mu,\Delta/(2\kappa))$ keeps the straight-line interpolation positive and the chosen band cluster isolated. Positivity follows from Weyl's bound; spectral enclosure from diagonalizing $D_0$ and the Bauer--Fike estimate. Consequently, any \emph{well-defined} invariant of the continuously isolated eigensubbundle remains unchanged. This is a conditional perturbation lemma, not an automatic result for arbitrary non-Hermitian matrices or a proof that a particular Euler or symplectic Hopf invariant is realized by a given laboratory device.
+
+\subsection{Reproducibility and claims of priority}
+The independent audit enumerates all integer-direction sets, recomputes budgets without assumed spherical geometry, constructs a known nonzero-Chern test that falsifies the proposed normalization, and checks a finite family of independent random trigonometric polynomials. Numerical agreement does not substitute for analytic proofs. The secant bound and Whitehead helicity integral use established analysis and topology. Whether the combined error-budget specialization is publishably novel relative to the existing approximation, topological tomography, and inverse-problem literature requires independent priority review. No external laboratory data were analyzed for this section.
+
+\section{Geometric query lower bounds, anytime tomography, and positive bosonic spectral stability}\label{sec:v7}
+\subsection{An exact localized-Hopf Lipschitz constant for the specified radial construction}
+Consider the unit round $S^3$ with polar coordinates $(\rho,u)$ about a fixed center, and the radial collapse $g_r(\rho,u)=(\cos f(\rho),\sin f(\rho)u)$ for $\rho\le r$, constant outside, with $f(\rho)=\pi(1-\rho/r)$, $0<r\le\pi$. Let $h_1:S^3\to S^2$ be the standard Hopf map, for unit round source and target metrics, so $\operatorname{Lip}(h_1)=2$.
+\begin{theorem}[Exact constant of this radial Hopf bubble]\label{th:v7bubble}
+For the specified map $b_r=h_1\circ g_r$, one has
+\begin{equation}\boxed{\operatorname{Lip}(b_r)=2\pi/r,\quad 0<r\le\pi,\qquad |H(b_r)|=1.}\end{equation}
+The equality is for this \emph{particular construction}; it is not a global optimality statement over all maps representing the same homotopy class.
+\end{theorem}
+\begin{proof}
+The radial and angular singular values of $dg_r$ on $0<\rho<r$ are $\alpha=\pi/r$ and $|\sin(\alpha\rho)|/\sin\rho$, respectively, where $\alpha\ge1$. For $0<\rho\le r/2$, the function $t\cot t$ is decreasing on $(0,\pi)$ and hence $\sin(\alpha\rho)/\sin\rho\le\alpha$. For $r/2\le\rho\le r$, put $s=r-\rho$. Then $s\le\rho\le\pi-s$, so $\sin\rho\ge\sin s$ and $\sin(\alpha s)/\sin\rho\le\alpha$. Thus $\operatorname{Lip}(g_r)\le\alpha$, proving $\operatorname{Lip}(b_r)\le2\alpha$. The radial differential of $g_r$ has magnitude $\alpha$; choosing its radial tangent direction horizontal for the Hopf submersion gives $\norm{d(h_1\circ g_r)}=2\alpha$ at suitable interior points. Thus equality holds. The collapsed $r$-ball represents a degree $\pm1$ self-map of $S^3$; composition with the Hopf map therefore has Hopf invariant $\pm1$.
+\end{proof}
+\begin{corollary}[Hidden-charge point-query obstruction]\label{cor:v7minimax}
+Let the admissible field class include all rotations of $b_r$ with $r=2\pi/L$ and the constant map, for a common Lipschitz bound $L>2$. If a deterministic scheme makes $N$ point queries with only constant-map responses, it cannot distinguish the constant map from a suitable rotated bubble whenever
+\begin{equation}\boxed{N\,V(2\pi/L)<2\pi^2,\quad V(r)=2\pi(r-\sin r\cos r).}\end{equation}
+For the equally weighted binary hypothesis with a uniformly rotated bubble versus the constant map, a randomized, possibly adaptive point-query scheme has worst-case error at least
+\begin{equation}\boxed{P_{\rm err}\ge\tfrac12\max\{0,1-NV(2\pi/L)/(2\pi^2)\}.}\end{equation}
+The asymptotic volume-ratio improvement over the earlier $\pi^2/L$-radius construction is $\pi^3/8\approx3.87578$. The result concerns \emph{point queries only}; integral, coherent, or nonlocal observables fall outside this theorem.
+\end{corollary}
+\begin{proof}
+The round $S^3$ has volume $2\pi^2$, and its radius-$r$ ball has volume $V(r)$. By the union bound for randomly rotating a fixed ball, the probability that any of the $N$ points entered along the all-constant transcript lies inside its support is at most $NV(r)/(2\pi^2)$. If this number is below one, some position avoids the full transcript. On the complementary event the two hypotheses have identical observations, so with equal priors the conditional classification error is at least $1/2$. The volume-ratio limit follows from $V(r)\sim(4\pi/3)r^3$ as $r\to0$.
+\end{proof}
+\subsection{A conservative time-uniform Pauli confidence sequence}
+The upload proposes a faster purity-dependent law-of-iterated-logarithm radius without a complete crossing-probability proof. Rather than asserting its constants, the following simpler bound is \emph{fully justified} by a summable union allocation; sharper nonasymptotic boundaries are already studied in Ref.~\cite{Howard2021}.
+\begin{theorem}[Anytime-valid finite-shot homotopy decisions]\label{th:v7anytime}
+At $M$ predetermined nodes, suppose three Pauli components are measured through independent unbiased $\{\pm1\}$ shots for each node and axis, and define $\widehat n_i(t)$ by the first $t$ shots of each axis. For $\delta\in(0,1)$ put
+\begin{equation}\boxed{\varepsilon_t=\sqrt{\frac{6}{t}\log\left(\frac{\pi^2Mt^2}{\delta}\right)}.}\end{equation}
+Then $\Prob[\forall i=1,\ldots,M,\ \forall t\ge1:\ \norm{\widehat n_i(t)-n(x_i)}_2\le\varepsilon_t]\ge1-\delta$. Consequently, any stopping rule which certifies the strict inequality $\max_i\{\norm{\widehat n_i(t_i)-n_0(x_i)}_2+\varepsilon_{t_i}\}+(L+L_0)h<2$ is sound with false-certification probability at most $\delta$ under the stated sampling assumptions.
+\end{theorem}
+\begin{proof}
+Hoeffding gives $\Prob(|\widehat n_{ia}(t)-n_{ia}|>u)\le2e^{-tu^2/2}$. If the vector norm exceeds $\varepsilon_t$, then some Cartesian coordinate exceeds $\varepsilon_t/\sqrt3$. Thus the union over $3M$ means is at most $6M\exp(-t\varepsilon_t^2/6)=6\delta/(\pi^2t^2)$. Summing over all $t\ge1$ yields $\delta$. On this single simultaneous event, data-dependent stopping does not change the geometry argument of Theorem~\ref{th:generic}.
+\end{proof}
+\begin{remark}
+The identity $\sum_a\operatorname{Var}(\sigma_a)=2$ for a pure qubit is correct, but this fact by itself does \emph{not} prove the tighter fixed-time vector Bennett constant or the submitted $\log\log t$ sequential boundary. The numerical claim of $19.8\times$ adaptive savings has not been validated from measured or fully specified simulated stopping trajectories.
+\end{remark}
+\subsection{Reference-basis-free positive bosonic BdG band perturbation}
+Let $J=\operatorname{diag}(I_d,-I_d)$, $\mathcal H_0(k)$ be a continuously varying positive-definite Hermitian BdG energy matrix, and $\mathcal H(k)$ a Hermitian perturbation. The bosonic generator $J\mathcal H$ is similar to the Hermitian representative $K=\mathcal H^{1/2}J\mathcal H^{1/2}$, a standard fact of positive-energy bosonic BdG theory \cite{BosonicTopology2020}.
+\begin{theorem}[Basis-independent sufficient band-gap certificate]\label{th:v7bdg}
+Suppose the following uniform positivity margin holds:\begin{equation}\label{eq:v11-bdgmargin} E=\sup_k\norm{\mathcal H(k)-\mathcal H_0(k)}_{\mathrm{op}}<\mu:=\inf_k\lambda_{\min}(\mathcal H_0(k)).\end{equation} For each momentum let $\mu_k=\lambda_{\min}(\mathcal H_0(k))$ and $M_k=\lambda_{\max}(\mathcal H_0(k))$. Correspondingly indexed eigenvalues $\lambda_j$ of $J\mathcal H(k)$ and $J\mathcal H_0(k)$ satisfy
+\begin{equation}\boxed{|\lambda_j(k)-\lambda_{j,0}(k)|\le\Gamma_k(E):= E\,\frac{\sqrt{M_k+E}+\sqrt{M_k}}{\sqrt{\mu_k-E}+\sqrt{\mu_k}}.}\end{equation}
+If a chosen positive-frequency band cluster is separated in the reference by a uniform gap $\Delta_0>0$ and $2\sup_k\Gamma_k(E)<\Delta_0$, the band gap remains open along the entire straight-line interpolation. Any topological invariant \emph{defined for that isolated band bundle} is unchanged. No universal Hopf invariant is claimed for every bosonic BdG model.
+\end{theorem}
+\begin{proof}
+Weyl's inequality implies $\mathcal H_s=\mathcal H_0+s(\mathcal H-\mathcal H_0)\succ0$. The generator $J\mathcal H_s$ is similar to the Hermitian matrix $K_s=\mathcal H_s^{1/2}J\mathcal H_s^{1/2}$. Hermitian spectral variation satisfies $\max_j|\lambda_j(K_s)-\lambda_j(K_0)|\le\norm{K_s-K_0}_{\rm op}$. The standard operator-square-root estimate gives
+$\norm{\mathcal H_s^{1/2}-\mathcal H_0^{1/2}}\le sE/(\sqrt{\mu_k-sE}+\sqrt{\mu_k})$. Substituting into
+$K_s-K_0=(\mathcal H_s^{1/2}-\mathcal H_0^{1/2})J\mathcal H_s^{1/2}+\mathcal H_0^{1/2}J(\mathcal H_s^{1/2}-\mathcal H_0^{1/2})$
+yields $\norm{K_s-K_0}\le\Gamma_k(E)$, since $s\le1$. Weyl's inequality then bounds the separation of any two indexed adjacent bands from below by $\Delta_0-2\sup_k\Gamma_k(E)>0$.
+\end{proof}
+\subsection{Correct oriented positive-ray predicate}
+For a nondegenerate oriented target ray, let $D=\det(b_0,b_1,b_2)$
+and let $w_i$ denote the corresponding Cramer determinants.
+A positive-ray intersection of the affine triangle requires
+$w_iD>0$ for all three barycentric coefficients.
+The weaker condition that all the $w_i$ have a common sign is
+incorrect: the rational vectors $b_0=e_1$, $b_1=e_2$, $b_2=e_3$
+and a target ray pointing toward $-(1,1,1)$ supply an explicit
+opposite-hemisphere counterexample. A correct whole-sphere
+linking certificate additionally checks triangulation orientation,
+cycle closure and disjointness of the regular-value preimages
+\cite{Whitehead1947,MusinShamazov2026}.
+\begin{figure}[t]
+\centering\includegraphics[width=.83\linewidth]{FIG_14_LOCALIZED_BUBBLE_BOUND.pdf}
+\caption{Improved necessary point-query count for the explicit localized Hopf construction. The curve is a geometric obstruction, not a universal lower bound for nonlocal measurements or an experimental estimate.}\label{fig:v7bubble}
+\end{figure}
+\section{Exact, reference-free integer extraction from rational simplicial data}
+\label{sec:v8exact}
+
+The exact reconstruction below uses only rational vertex data,
+performs exact arithmetic for each topological predicate, and abstains
+whenever an input fails the documented conditions. Here \emph{reference-free} means that no reference field or expected Hopf integer is supplied to the extraction routine. An independent bound on the unknown physical field is still needed to transfer the recovered integer from the simplicial interpolant to a physical measurement.
+
+\subsection{The oriented cubical three-sphere and an exact ray predicate}
+Let $P=[-1,1]^4\subset\mathbb R^4$, whose oriented boundary $\partial P\cong\Sph^3$ is triangulated by consistent Freudenthal subdivisions of its eight cubic facets. Its vertices have rational coordinates and the orientation of every tetrahedron $[v_0,v_1,v_2,v_3]$ is fixed by $\det(v_0,v_1,v_2,v_3)>0$. The implementation verifies the opposite induced orientations of all paired triangular faces, global connectivity, Euler characteristic zero, and connected spherical links at every vertex. The topology $\partial P\cong\Sph^3$ follows from convexity of $P$, not merely from the observed Euler characteristic.
+
+At each vertex $v_i$ let $b_i\in\mathbb Q^3$ be the observed (or synthetically computed) vector, and on a tetrahedron $\sigma$ let
+\begin{equation}
+  b_{\rm PL}(x)=\sum_{i=0}^3\lambda_i(x)b_i,\qquad
+  n_{\rm PL}(x)=\frac{b_{\rm PL}(x)}{\|b_{\rm PL}(x)\|_2}.
+\end{equation}
+A \emph{required} finite test excludes $0$ from the convex hull of the four $b_i$ on every tetrahedron. The code uses exact one-, two-, three-, and four-point convex-combination tests; a zero is an error, never silently normalized away.
+
+For a triangular face $\tau=[v_0,v_1,v_2]$ and a rational unit target $p\in\Sph^2$, set
+\begin{equation}
+\begin{split}
+D&=\det(b_0,b_1,b_2),\\
+w_0&=\det(p,b_1,b_2),\quad
+w_1=\det(b_0,p,b_2),\quad
+w_2=\det(b_0,b_1,p).
+\end{split}
+\label{eq:v8ray}
+\end{equation}
+For nondegenerate $D\ne0$, an \emph{interior positive-ray intersection} occurs precisely when
+\begin{equation}
+\boxed{D\,w_i>0\quad(i=0,1,2),\qquad
+\lambda_i=\frac{w_i}{w_0+w_1+w_2}>0.}
+\label{eq:v8positive}
+\end{equation}
+Thus matching signs of $w_i$ alone is \emph{not} sufficient: the sign of $D$ is indispensable. A genericity check separately excludes targets lying in the span of two linearly independent edge-image vectors. On an oriented tetrahedron a regular inverse image must be absent or have exactly two face intersections of opposite induced signs; violations cause an explicit refusal.
+
+\subsection{Finite rational linking with checked cycle closure}
+Two distinct regular directions $p,q\in\Sph^2$ have disjoint oriented inverse-image links $L_p,L_q\subset\partial P$. The program checks every shared face's orientation balance and the in/out degree of every inverse-image vertex, then traverses the entire directed graph into closed polygonal components. For the examples below, the first coordinate of both $p$ and $q$ is less than $-1/3$, and the chosen analytic Hopf field and its PL interpolation omit these values on the upper facet $v_0=1$. Consequently both inverse images lie in the complementary three-ball, which admits the rational Schlegel projection
+\begin{equation}
+  (v_0,v_1,v_2,v_3)\mapsto
+  \frac{4}{3-v_0}(v_1,v_2,v_3)\in\mathbb R^3.
+\end{equation}
+This projective map sends line segments to line segments. For each of three separately chosen rational generic planar projections of the resulting links, every segment-segment crossing and over/under order is resolved by exact rational determinants.
+
+\begin{theorem}[Exact rational inverse-image linking certificate]\label{th:v8link}
+Let $\mathcal K$ be a verified oriented simplicial three-sphere with rational vertex values $b_i$, and assume that the affine interpolant excludes the origin on every three-simplex. Let $p\ne q$ be two regular rational targets whose inverse images form disjoint finite polygonal cycles in a certified three-ball chart, and let a rational planar projection have only transverse crossings away from segment endpoints. Then
+\begin{equation}\boxed{
+  H(n_{\rm PL})=\operatorname{Lk}(L_p,L_q)
+    =\frac12\sum_{c\in\operatorname{Cross}(L_p,L_q)}\operatorname{sign}(c)\in\mathbb Z.
+}\label{eq:v8link}
+\end{equation}
+The evaluation of the right-hand side by exact rational predicates has \emph{zero arithmetic rounding error}. An implementation must reject unverified manifold orientation, vanishing interpolant, nonregular inverse images, open or inconsistently oriented cycles, and degenerate projections.
+\end{theorem}
+\begin{proof}
+The strict convex-hull condition makes $n_{\rm PL}$ continuous on $\partial P\cong\Sph^3$. Regular preimages of distinct values are disjoint oriented closed one-manifolds, with piecewise-linear representatives obtained by solving the exact positive-ray equations on each tetrahedron. The classical Pontryagin inverse-image interpretation of the Hopf invariant gives $H(n_{\rm PL})=\operatorname{Lk}(L_p,L_q)$. The Schlegel chart is a homeomorphism away from the omitted facet, so it preserves linking up to its fixed orientation convention. For a generic projection of two disjoint oriented polygonal links, the linking number equals one-half the algebraic crossing count. All determinants and the half-integer test can be implemented in rational/integer arithmetic; consequently this computation has no \emph{floating-point} error. The conclusion does not extend to a distinct unknown field without a further homotopy certificate.
+\end{proof}
+
+\subsection{When does a physical field share the recovered integer?}
+Suppose an unknown unit-vector field $n$ on $\partial P$ has an independently established Lipschitz bound $L$ in the ambient Euclidean metric, and each vertex datum satisfies $\|b_i-n(v_i)\|\le\varepsilon$. If every tetrahedron has Euclidean diameter at most $h$, then
+\begin{equation}
+\sup_x\|b_{\rm PL}(x)-n(x)\|\le\varepsilon+Lh.
+\end{equation}
+Hence the directly checkable \emph{sufficient} condition
+\begin{equation}
+\boxed{\varepsilon+Lh<1}\label{eq:v8physical}
+\end{equation}
+identifies $H(n)$ with the exactly extracted $H(n_{\rm PL})$: the straight-line homotopy avoids zero. Unlike the rational arithmetic certificate, Eq.~\eqref{eq:v8physical} depends on an \emph{external experimental or theoretical regularity bound}. An absent or invalid bound means that the program has computed only the PL field's integer, not the unknown experiment's integer.
+
+For the \emph{analytic validation fields} $n(v)=h_1(v/\|v\|)$ and its orientation-reversed version, a substantially more effective \emph{exact} certificate uses the quadratic numerator $Q(v)=\|v\|^2n(v)$. On every tetrahedron with vertices $v_a$, define
+\begin{equation}
+  A_{ab}=b_0\cdot\frac{Q(v_a+v_b)-Q(v_a)-Q(v_b)}{2}.
+\end{equation}
+If all $A_{ab}>0$, then $b_0\cdot Q(\sum_a\lambda_av_a)>0$ and $b_0\cdot b_{\rm PL}(x)>0$ throughout that tetrahedron. Thus the PL interpolation and the exact analytic map both remain in the same open hemisphere and are homotopic, without relying on a coarse global Lipschitz estimate. These positivity predicates use integers exclusively in the present benchmark.
+
+\subsection{Exact benchmarks, negative controls, and limitations}
+For an $N=4$ subdivision of each original cube edge, the program constructs \emph{exactly} 544 vertices, 3616 edges, 6144 oriented triangles and 3072 oriented tetrahedra. Every vertex link is checked. The directions
+\begin{equation}
+ p=(-119,72,96)/169,\qquad q=(-538,-350,245)/687
+\end{equation}
+are rational unit vectors of a regular admissible pair for this benchmark. The two links each have 70 segments, one oriented component, zero face-balance defects, and exactly four transverse mutual crossings (three positive and one negative) in each of three rational projections, yielding $H=+1$. The reflection-reversed Hopf field yields $H=-1$, and a constant field yields $H=0$. An independent $N=6$ run reconstructs $H=+1$ with 1776 vertices and 10368 tetrahedra. For $N=4$, the exact quadratic homotopy test verifies 30720 positive Bernstein numerators; for $N=6$ it verifies 103680. These are \emph{analytic synthetic test fields}, not real laboratory measurements.
+
+\begin{figure}[t]
+\centering\includegraphics[width=.85\linewidth]{FIG_15_EXACT_PREIMAGE_LINKING.pdf}
+\caption{Actual reconstructed polygonal inverse images for the certified $N=4$ rational Hopf benchmark. The recovered integer is determined by exact signed crossings, not by numerically integrating an approximately integer-valued expression.}\label{fig:v8link}
+\end{figure}
+\begin{figure}[t]
+\centering\includegraphics[width=.90\linewidth]{FIG_16_EXACT_INTEGER_PIPELINE.pdf}
+\caption{Fail-closed verification protocol. Every algebraic or geometric degeneracy forces an explicit refusal rather than an unsupported integer. Transferring the PL integer to an unknown physical field additionally requires a calibrated error and regularity envelope.}\label{fig:v8pipeline}
+\end{figure}
+
+The implementation also rejects a reversed tetrahedron, a zero hidden in an affine simplex, and an unsupported physical-field error budget. A blind rational-vertex JSON input reproduces $H=+1$ without specifying the expected integer or reference field. This establishes a \emph{working exact integer extraction for the specified generic PL input class}; it does not establish computational optimality, a novel general Hopf formula, exact recovery from floating-point sensor output without error envelopes, or performance on real experimental data. Preimage linking and simplicial-cochain methods have extensive prior art \cite{Whitehead1947,MusinShamazov2026}. The distinguishing contribution of this revision is a fully executable strict predicate/abstention workflow that corrects the previous failed program and carries an independently verified analytic-homotopy witness.
+
+
+\section{Exact higher-charge reconstruction with an algebraic homotopy certificate}
+\label{sec:charge-two}
+
+The previous implementation produced certified PL charge only in $\{-1,0,+1\}$. We now supply a full higher-charge example in which (i) the continuous map has analytically known nonunit charge, (ii) the PL map has an independently computed integer via exact crossings, and (iii) \emph{a separate fully finite positivity certificate proves that the two maps are homotopic}. This last step is necessary: an exact invariant of the discretization alone need not equal that of the analytic or physical field.
+
+Let $Q=[-1,1]^4\subset\mathbb R^4\cong\mathbb C^2$, identify its oriented boundary with $\Sph^3$ by radial homeomorphism, and let $z_1=w+ix$, $z_2=y+iz$. Define
+\begin{equation}\label{eq:v9-map}
+ F_k(z_1,z_2)=(z_1^k,z_2),\qquad
+ n_k(z)=\frac{\mathcal H(F_k(z))}{|z_1|^{2k}+|z_2|^2},\qquad
+ \mathcal H(a,b)=(2\operatorname{Re}(a\bar b),2\operatorname{Im}(a\bar b),|a|^2-|b|^2).
+\end{equation}
+The field is everywhere defined on $\partial Q$; the only zero of $F_k$ in $Q$ is the origin. For $k=2$, its unnormalized numerator is the explicit polynomial
+\begin{equation}\label{eq:v9-polynomial}
+ \mathcal H(F_2)=\bigl(2[(w^2-x^2)y+2wxz],\;2[2wxy-(w^2-x^2)z],\;(w^2+x^2)^2-y^2-z^2\bigr).
+\end{equation}
+For computational chart convenience the code applies the orientation-preserving cyclic permutation $(H_x,H_y,H_z)\mapsto(H_z,H_x,H_y)$; this does not change its Hopf integer.
+
+\begin{theorem}[Analytic charge and the finite exact $N=5$ transfer witness]\label{th:v9transfer}
+For $k=2$ in Eq.~\eqref{eq:v9-map}, the analytic map has $|H(n_2)|=2$. On the standard oriented boundary-of-fourcube Freudenthal triangulation with five subdivisions per edge, let $P$ be the barycentric piecewise-linear interpolant of the rational vertex values $n_2(v)$ on the fixed unit cube. Then $P$ is nowhere zero, the normalized interpolant $P/\norm P_2$ is homotopic to $n_2$, and the exact inverse-image linking algorithm computes
+\begin{equation}\label{eq:v9integer}
+ H(n_2)=H(P/\norm P_2)=-2
+\end{equation}
+with the orientation conventions of our code. Precomposing with a reflection of $Q$ reverses the sign to $+2$. All claims are about this explicitly given analytic synthetic map, not arbitrary unknown fields.
+\end{theorem}
+\begin{proof}
+The complex polynomial $F_2:\mathbb C^2\to\mathbb C^2$ has an isolated zero at the origin and complex local multiplicity $2$: a sufficiently small regular target $(a,b)$ with $a\ne0$ has the two preimages $(\pm\sqrt a,b)$, both with positive real Jacobian sign. Hence its normalized boundary map $F_2/\norm{F_2}$ has degree $2$. The Hopf invariant under precomposition with a degree-$d$ self-map of $\Sph^3$ is multiplied by $d$, so the magnitude equals $2$.
+
+For the separate PL-to-analytic transfer we use barycentric coordinates $\lambda_i\ge0$, $\sum_{i=0}^{3}\lambda_i=1$, on each tetrahedron with vertices $v_i$. Write $q(\lambda)=\sum_i\lambda_i v_i$, $S_i=|z_1(v_i)|^4+|z_2(v_i)|^2$, $D=\mathrm{lcm}(S_0,S_1,S_2,S_3)$, and $P(\lambda)=\sum_i\lambda_i\mathcal H(F_2(v_i))/S_i$. The exact scalar polynomial
+\begin{equation}\label{eq:v9alignment}
+ G_\sigma(\lambda)=D\left\langle P(\lambda),\mathcal H(F_2(q(\lambda)))\right\rangle
+\end{equation}
+can be homogenized to total barycentric degree five by multiplication of its terms with suitable powers of $\sum_i\lambda_i=1$. The accompanying rational-integer verifier constructs this homogeneous polynomial exactly from the \emph{integer-scaled} vertex representation $V_i=Nv_i$, $F_{2,N}(V)=(z_1(V)^2,Nz_2(V))$, which equals $N^2F_2(v)$ and hence defines the same normalized unit-cube field. It multiplies the homogenized polynomial by $(\sum_i\lambda_i)^{d-5}$ for $d\in\{5,8,10\}$, and checks \emph{every} degree-$d$ monomial coefficient strictly positive. Such a coefficient check implies $G_\sigma(\lambda)>0$ on the entire closed simplex; no floating-point sampling or numerical root search is used.
+
+For the fixed-domain field, \emph{all} $36\cdot5^3=6000$ oriented tetrahedra pass already at homogeneous degree $d=5$. Separately, the native-cube normalization $F_2(z_1,z_2)=(z_1^2,z_2)$ on $\partial[-5,5]^4$ passes in $5856$ cells at $d=5$, another $96$ at $d=8$, and the remaining $48$ at $d=10$. These are two analytically distinct but degree-two families. No cell is left unresolved in either mode. Consequently $\langle P(q),n_2(q)\rangle>0$ at every point of $\partial Q$, so $P$ never vanishes and the straight-line path $(1-t)P+t n_2$ is nowhere zero. Normalization gives the desired homotopy. The exact rational inverse-image algorithm independently verifies closed, oriented preimage polygons and gives linking $-2$ in three rationally tilted projections. An orientation-reversing domain reflection gives $+2$. This establishes the signed conclusion without using the anticipated integer as an input to the linker.
+\end{proof}
+
+\begin{corollary}[A conservative universal resolution threshold for the polynomial family]\label{co:v9resolution}
+For any integer $k\ge1$, the vertex-sampled barycentric PL map associated with Eq.~\eqref{eq:v9-map} is homotopic to the analytic map on $\partial Q$ whenever
+\begin{equation}\label{eq:v9resolution}
+ \boxed{\quad N>4\sqrt3\,k\,2^{(k-1)/2}.\quad}
+\end{equation}
+For $k=2$ this yields the conservative sufficient threshold $N\ge20$, while the exact Bernstein witness of Theorem~\ref{th:v9transfer} improves the \emph{particular validated instance} to $N=5$. This result does not imply that the numerical algorithm succeeds at every smaller resolution.
+\end{corollary}
+\begin{proof}
+On each cubical boundary facet at least one of the four real coordinates has absolute value one. Hence $\norm{(z_1^k,z_2)}_2\ge1$. Along that facet the differential of $F_k$ has operator norm at most $k2^{(k-1)/2}$, since $|z_1|\le\sqrt2$. Normalization to the unit sphere has differential norm at most $1/\norm{F_k}\le1$, and the standard Hopf map from the unit three-sphere to the unit two-sphere has derivative norm at most $2$. Thus $n_k$ is Lipschitz on each facet with $L_k\le2k2^{(k-1)/2}$. Every Freudenthal tetrahedron in a boundary facet has Euclidean diameter at most $2\sqrt3/N$. On any cell, $\norm{P(q)-n_k(q)}\le L_k(2\sqrt3/N)<1$, since $P$ is a convex combination of the vertex images. This excludes a zero of $P$ and gives a nonvanishing straight-line homotopy. At no stage is a fixed global Lipschitz estimate asserted across arbitrary paths passing through different facets; the cellwise bound suffices.
+\end{proof}
+
+\begin{figure}[t]
+\centering\includegraphics[width=.82\linewidth]{FIG_17_EXACT_BERNSTEIN_CERTIFICATE.pdf}
+\caption{Complete finite algebraic proof of the analytic-to-PL homotopy for the charge-two benchmark. Bars count tetrahedra certified at the earliest displayed homogeneous Bernstein degree for two analytically distinct, explicitly labelled normalization conventions. Every monomial positivity check uses integer arithmetic.}\label{fig:v9bernstein}
+\end{figure}
+\begin{figure}[t]
+\centering\includegraphics[width=.79\linewidth]{FIG_18_CHARGE_TWO_REFINEMENT.pdf}
+\caption{Exact charge-two linking from independently constructed rational boundary-fourcube meshes. On $N=5$ the analytic transfer is additionally proved by a complete homogeneous-polynomial positivity witness. Repeated meshes employ the same fixed-domain analytic field. Their PL integer checks test refinement stability; full analytic transfer requires a positive witness or the conservative bound of Corollary~\ref{co:v9resolution}.}\label{fig:v9refinement}
+\end{figure}
+
+\subsection{Failure modes and independence checks}
+The independent Python verifier checks all $6000$ cell polynomials in each of the two normalization modes, evaluates the polynomial identity at $63$ predetermined rational barycentric points per mode against an independently implemented direct substitution, verifies a reflection-reversed positive-charge benchmark, and repeats the negative-charge linking on $N=7$ and $N=9$ meshes. As a separate blind-format control, the complete $N=5$ rational vertex data are exported to a standalone JSON file and the pre-existing \texttt{certified\_hopf\_linking\_v8.py} is invoked without an analytic reference field, returning $H=-2$ with closed oriented inverse-image cycles. The $N=4$ native-cube charge-two input is explicitly rejected because the PL interpolant has a zero in a tetrahedron. Thus insufficient spatial resolution is not silently repaired by integer rounding. Earlier unverified $k=3,4$ numerical prototypes exposed discretization/regularity issues. The subsequently audited rational-chart results are given in Section~\ref{sec:v10higher}; numerical integer agreement alone is never equated with a local straight-line homotopy witness.
+
+
+\section{Rational-chart certification of charges three and four}\label{sec:v10higher}
+\subsection{A singular-point-free chart for global inverse-image curves}
+The v8 linker projected a cubical boundary facet out of the domain; this restricted inverse-image cycles for larger charges. We instead puncture the boundary at the \emph{single point} $q_+=(N,0,0,0)$ in the coordinates $q=(w,\bm u)\in\partial[-N,N]^4$. Define the rational map
+\begin{equation}\label{eq:v10-chart}
+ \boxed{\quad \Psi_N(w,\bm u)=\frac{\bm u}{\|\bm u\|^2+2N(N-w)}\in\mathbb Q^3\quad}
+\end{equation}
+for rational input points away from $q_+$. Its denominator is positive off $q_+$. For every direction $\bm u=t\bm v$, $\|\bm v\|=1$, the cubical surface consists successively of a front-cap segment $w=N$, at most one side-wall segment with the largest coordinate $|u_j|=N$, and a back-cap segment $w=-N$. Along the front cap the radial coordinate is $1/t$, strictly decreasing with $t$. Along the side wall, as $w$ decreases, it is strictly decreasing because $t$ is fixed. Along the back cap it is $t/(t^2+4N^2)$, strictly increasing in $t$ on $0\le t\le\sqrt3N<2N$, hence decreases as one travels from the side wall to the back pole. These continuous pieces join without a jump and cover $(0,\infty)$ exactly once. Thus $\Psi_N$ is a homeomorphism $\partial[-N,N]^4\setminus\{q_+\}\to\mathbb R^3$; its inverse preserves each outward ray and its global orientation is calibrated against the charge-one benchmark. This is a \emph{rational radial chart}, not an assertion that the cube is round in its ambient metric.
+
+For two regular rational target rays $p,q\in\mathbb Q^3$ the algorithm identifies the oriented preimage inside each affine simplex using signed $3\times3$ determinants and the strict \emph{positive ray} condition. It then checks that each oriented preimage is a disjoint union of closed cycles. Each segment $s(t)=(1-t)a+tb$ on the boundary is sent to the rational curve $\Psi_N(s(t))$; this curve is in general \emph{not} a straight segment. Therefore replacing it with a chord without an explicit perturbation bound would be invalid.
+
+\begin{theorem}[Exact rational linking under certified chord approximation]\label{th:v10-link}
+Suppose an oriented triangulation of the cubical three-sphere passes the manifold, orientation and nonzero-field checks, and $p,q$ are regular values yielding disjoint, closed polygonal preimages avoiding the chart pole. Subdivide the preimages into finitely many affine parameter segments $s_i$, $t_j$; let $C_i,D_j$ be the straight chords joining the endpoints of $\Psi_N\circ s_i$ and $\Psi_N\circ t_j$. Let $e_i,f_j\ge0$ be rigorous uniform bounds for the respective pointwise deviations from those chords. If
+\begin{equation}\label{eq:v10-separation}
+\boxed{\operatorname{dist}(C_i,D_j)>e_i+f_j \quad\text{for every }(i,j),}
+\end{equation}
+then the linking number of the original oriented preimages equals that of the rational chord polygons in $\mathbb R^3$, which can be calculated by exact rational oriented-crossing signs. Any violated strict predicate forces an explicit \textsc{abstain} outcome.
+\end{theorem}
+\begin{proof}
+Linearly interpolate each smooth image segment to its chord, fixing the segment endpoints. By the uniform error bounds the moving point of each interpolating segment lies within $e_i$ or $f_j$, respectively, of its chord at the same parameter. The strict distance hypothesis guarantees that images of the \emph{two distinct components} cannot intersect at any intermediate time. Linking of disjoint oriented closed maps is invariant under this homotopy. Self-intersections of either individual intermediate curve are immaterial for the mutual Gauss linking degree, provided the two entire maps remain disjoint. A generic rational linear projection determines crossings from the signed determinant predicates; nontransverse coincidences are rejected.\end{proof}
+
+In the implementation the chord error is bounded by the standard interpolation inequality $\|g-\ell\|_\infty\le \|g''\|_\infty/8$ on each \emph{rescaled subinterval} and a rational upper bound for the second derivative of $\Psi_N\circ s$. Bounding boxes with directed integer rounding reject obviously separated pairs; uncertain pairs require an exact rational constrained segment-distance calculation. Both branches are conservative, not Monte Carlo. Three rationally perturbed projection directions must return the same integer.
+
+\subsection{Reproduced integer results for the polynomial family}
+Let $F_k(z_1,z_2)=(z_1^k,z_2)$ on the fixed domain $\partial[-1,1]^4$, $k\in\mathbb N$, and form the two-sphere map $n_k=\mathcal H(F_k)/\|F_k\|^2$ in the orientation adopted above. The polynomial map $F_k:\mathbb C^2\to\mathbb C^2$ has an isolated zero at the origin with \emph{positive complex local multiplicity} $k$. Its normalized boundary map has degree $k$, so composition with the Hopf fibration has Hopf invariant $-k$ in the cubical outward-orientation convention of the implementation, and a domain reflection changes its sign. These are established consequences of degree theory, not a novel classification of $\pi_3(S^2)$.
+
+The executable \texttt{verify\_v10\_higher\_charge.py} independently obtains the following integers from rational PL vertex data. Each test uses regular rational target directions, strict nonzero tests, closed oriented inverse images, chord separation and three exact rational projections:
+\begin{center}
+\begin{tabular}{lrrrr}
+\toprule
+Family & Subdivisions per facet & Tetrahedra & Inferred $H$ & Chord pairs certified\\
+\midrule
+$F_1$ & 4 & 3072 & $-1$ & 19600\\
+$F_2$ & 5 & 6000 & $-2$ & 94864\\
+$F_3$ & 5 & 6000 & $-3$ & 176336\\
+$F_3$ reflected & 5 & 6000 & $+3$ & 176336\\
+$F_4$ & 5 & 6000 & $-4$ & 705276\\
+$F_4$ reflected & 5 & 6000 & $+4$ & 705276\\
+\bottomrule
+\end{tabular}
+\end{center}
+Additional $N=7$ checker runs reproduced $H=-3$ and $H=-4$ on $16464$ tetrahedra. Two independent JSON tables with $1040$ rational three-component sample vectors were then passed to the extractor \emph{without} the analytic generating formula; the returned integers were $-3$ and $-4$. Expected charges are used solely as \emph{post-inference test assertions}. These are blind-input-format checks, not blinded laboratory trials. The supplied rational chart is valid for all regular preimage cycles avoiding its single pole, while external arbitrary inputs can legitimately trigger abstention.
+
+\begin{figure}[t]
+\centering\includegraphics[width=.82\linewidth]{FIG_19_RATIONAL_CUBICAL_STEREOGRAPHY.pdf}
+\caption{A rational global chart punctures the boundary of the fourcube at one point. Unlike excluding a cubical facet, it accommodates regular inverse-image loops traversing multiple facets. The geometry of the resulting curved segments is controlled by strict rational chord-error and separation bounds.}\label{fig:v10chart}
+\end{figure}
+\begin{figure}[t]
+\centering\includegraphics[width=.81\linewidth]{FIG_20_CERTIFIED_HIGHER_HOPF_CHARGES.pdf}
+\caption{Reproducible exact rational PL charges $\pm3$ and $\pm4$ at $N=5$, including orientation reversal. The plotted counts describe certified chord pairs; they are not quantum measurement budgets.}\label{fig:v10results}
+\end{figure}
+
+\subsection{Analytic-to-discrete transfer: what is and is not proved}
+\begin{proposition}[Class-level analytic--PL transfer for the tested charge family]\label{prop:v10-transfer}
+On an oriented cubical three-sphere, if the degree of $F_k$ is independently established as $k$ and an independently validated PL map $P$ has a certified Hopf invariant $-k$ in the same orientation convention, then the sphere-valued normalization $P/\|P\|$ is homotopic to the analytic map $n_k$. The reflection version has the opposite integer.
+\end{proposition}
+\begin{proof}
+The classification $[S^3,S^2]\cong\mathbb Z$ by Hopf invariant implies two continuous maps are homotopic if and only if their Hopf integers coincide. The analytic value follows from the local holomorphic degree, while the PL value follows from the independently certified rational-crossing calculation.\end{proof}
+
+This proof establishes \emph{existence} of a homotopy in the tested analytic family. It does not construct the straight-line homotopy at each point and therefore cannot replace a local Bernstein or Lipschitz positivity certificate when the analytic degree is \emph{unknown}. For unknown laboratory fields, a calibrated measurement/error and regularity bound remains essential before attributing a PL integer to the underlying physical system.
+
+\subsection{Falsification and correction of a proposed differential constant}
+A proposed bound $\|dn_2\|_{\rm op}=4/\sqrt3$ for the degree-two field on the entire cube boundary is false for the stated \emph{ambient Euclidean differential norm}: at $|z_1|^2=1/2$ and $|z_2|=1$, direct substitution into the horizontal-Wronskian formula yields $12/5>4/\sqrt3$. The proposed polynomial identity also fails at $t=1/2$, where its left-hand side is $-2$.
+
+\begin{proposition}[A corrected sufficient degree-two sampling bound]\label{prop:v10-lipschitz}
+For the analytic field $n_2=\mathcal H(z_1^2,z_2)/(|z_1|^4+|z_2|^2)$, the full ambient differential obeys $\|dn_2\|_{\rm op}\le5/2$ at every point of $\partial[-1,1]^4$. Its barycentrically interpolated vertex field on the standard Freudenthal tetrahedra is therefore homotopic to the analytic field whenever $N\ge9$.
+\end{proposition}
+\begin{proof}
+The horizontal complex differential identity, a consequence of the Hopf projection, is
+\begin{equation}\label{eq:v10-wronskian}
+\|dn_2(z)\|_{\mathrm{op}}^2=
+\frac{4|z_1|^{2}\bigl(4|z_2|^2+|z_1|^2\bigr)}{\bigl(|z_1|^4+|z_2|^2\bigr)^2}.
+\end{equation}
+On the region $|z_1|\ge1$ the bound $\|dn_2\|\le4/\sqrt3<5/2$ follows by setting $s=|z_2|^2/|z_1|^4$ and maximizing $4(4s+1)/(1+s)^2$. On the remaining cubical boundary region $|z_1|\le1$ we have $|z_2|\ge1$. Monotonicity in $|z_2|^2\ge1$ reduces the maximum to $|z_2|^2=1$. Setting $t=|z_1|^2\in[0,1]$, it is sufficient to prove
+\begin{equation}
+P(t)=25t^4+34t^2-64t+25>0.
+\end{equation}
+For the three rational intervals $[0,1/2]$, $[1/2,3/4]$, $[3/4,1]$ all five exact degree-four Bernstein coefficients are strictly positive, as independently output by the verifier. This yields $\|dn_2\|^2<25/4$ on this region. Every tetrahedron has Euclidean diameter at most $2\sqrt3/N$ and lies in one face; hence a convex combination of vertex samples differs from the analytic field by at most $(5/2)(2\sqrt3/N)<1$ at $N\ge9$. The straight-line interpolant cannot vanish, and normalization gives the homotopy.\end{proof}
+
+The last bound is independent of the rational-chart method and is a conservative \emph{fixed-domain} estimate; in particular it does not imply a universal resolution threshold linear in $k$ for arbitrary high-degree polynomial maps. Numerical evidence about balancing $\alpha_k z_1^k$ is not a proof of a uniform bound. In fact, the proposed $k=4$, $\alpha=1/4$, $N=5$ sample is rejected by the exact zero-in-simplex test. This negative control demonstrates why purported ``automatic fixes'' to discretization cannot replace strict checks.
+\begin{figure}[t]
+\centering\includegraphics[width=.81\linewidth]{FIG_21_HORIZONTAL_WRONSKIAN_AUDIT.pdf}
+\caption{The claimed $4/\sqrt3$ ambient bound is contradicted by a rational counterexample; a rigorously checked $5/2$ bound recovers the degree-two $N\ge9$ sufficient transfer threshold.}\label{fig:v10wronskian}
+\end{figure}
+
+
+\section{Linear-resolution certification for arbitrary positive charge}\label{sec:v11-linear}
+
+The preceding conservative resolution condition, Eq.~\eqref{eq:v9resolution}, grows exponentially with $k$ because it bounds the differential of the \emph{unnormalized} complex map $F_k$ before applying the Hopf projection. The horizontal complex derivative instead cancels precisely the radial component responsible for this overestimate. This leads to a bound linear in the charge $k$ for \emph{every} positive integer $k$, not merely the previously verified small-charge samples.
+
+\begin{theorem}[Linear, order-sharp charge-dependent regularity]\label{th:v11-linear}
+For every integer $k\ge1$, let $n_k$ be the smooth rational Bloch field on $X=\partial[-1,1]^4$ defined in Eq.~\eqref{eq:v9-map}. Its full ambient Euclidean differential on every open cubical facet satisfies
+\begin{equation}\label{eq:v11-sandwich}
+\boxed{\quad \sqrt{k^2+1}\ \le\ \sup_{q\in X}\|Dn_k(q)\|_{\rm op}\ \le\ k+2.\quad}
+\end{equation}
+The supremum in the lower bound may be interpreted using tangent directions inside the intersection of adjacent facets; its value is also the limit of facet-tangent derivatives at interior points. The bounds show that the differential scale is $\Theta(k)$ for this particular family.
+\end{theorem}
+\begin{proof}
+Set $a=|z_1|$, $b=|z_2|$, $U=a^k$. A standard computation for the Hopf projection (equivalently, the Fubini--Study horizontal Wronskian) gives the \emph{exact full ambient} differential norm
+\begin{equation}\label{eq:v11-wronskian}
+\|Dn_k\|_{\mathrm{op}}=\frac{2\sqrt{k^2a^{2k-2}b^2+a^{2k}}}{a^{2k}+b^2},\qquad (a,b)\ne(0,0),
+\end{equation}
+with the continuous derivative interpretation at $a=0$ and $k=1$. On $X$, at least one of $a,b$ is at least one, as a real cubical coordinate equals $\pm1$. By $\sqrt{A^2+B^2}\le A+B$ for nonnegative $A,B$,
+\begin{equation}\label{eq:v11-split}
+\|Dn_k\|\le T_1+T_2,
+\quad T_1=\frac{2ka^{k-1}b}{a^{2k}+b^2},\quad T_2=\frac{2a^k}{a^{2k}+b^2}.
+\end{equation}
+If $a\ge1$, use $2Ub\le U^2+b^2$ to obtain $T_1\le k/a\le k$ and $T_2\le2/U\le2$. If instead $a\le1$ and $b\ge1$, then $U\le1$ and $b\mapsto b/(U^2+b^2)$ decreases on $[1,\infty)$. Therefore
+\begin{equation}
+T_1\le\frac{2k a^{k-1}}{1+a^{2k}}\le k+1.
+\end{equation}
+For $k=1$, this follows from $2/(1+a^2)\le2$. For $k\ge2$, the interior maximum occurs at $a^{2k}=(k-1)/(k+1)$, where the last expression is $(k+1)a^{k-1}\le k+1$. Also $T_2\le2U/(1+U^2)\le1$. Both cases give $\|Dn_k\|\le k+2$.
+
+For the converse, take the edge-intersection point $(z_1,z_2)=(1,1)$ on the cube boundary, and vary the two free imaginary coordinates $x=\Im z_1$, $z=\Im z_2$ while keeping the two real coordinates equal to $1$. At $(x,z)=(0,0)$ the Bloch vector is $(1,0,0)$ and its infinitesimal transverse component satisfies $dn_{k,y}=k\,dx-dz$. The operator norm on these allowed two directions is exactly $\sqrt{k^2+1}$. Continuity along either incident open facet gives the same limiting lower bound. Thus no family-wide differential ceiling can be $o(k)$.
+\end{proof}
+
+\begin{corollary}[Linear mesh threshold and certified analytic-to-PL transfer]\label{co:v11-transfer}
+On the standard boundary-of-fourcube Freudenthal triangulation with $N$ equal edge subdivisions, form the barycentric interpolant $P_N$ of the exact vertex values $n_k(v)$. The strict, explicit sufficient condition
+\begin{equation}\label{eq:v11-resolution}
+\boxed{\quad N>2\sqrt3\,(k+2)\quad}
+\end{equation}
+implies $P_N(q)\ne0$ for every point of $X$, and $P_N/\|P_N\|\simeq n_k$ through the \emph{explicit normalized straight-line homotopy}. Consequently the exact integer Hopf invariant of the normalized PL field is the analytic integer ($-k$ in our cubical orientation convention). The number of tetrahedra is $48N^3=O(k^3)$, and the number of distinct vertices is $(N+1)^4-(N-1)^4=8N^3+8N$.
+\end{corollary}
+\begin{proof}
+Every Freudenthal tetrahedron lies in a single cubical facet and has Euclidean diameter at most $2\sqrt3/N$. Within it, $P_N(q)=\sum_i\lambda_i n_k(v_i)$ with $\lambda_i\ge0$ and $\sum_i\lambda_i=1$. By Theorem~\ref{th:v11-linear} and convexity,
+\begin{equation}\label{eq:v11-error}
+\|P_N(q)-n_k(q)\|\le\sum_i\lambda_i(k+2)\|v_i-q\|\le\frac{2\sqrt3(k+2)}{N}<1.
+\end{equation}
+Hence $P_N(q)\cdot n_k(q)>0$ and in particular $P_N(q)\ne0$. The straight line $(1-t)n_k+tP_N$ stays in the open hemisphere centered on $n_k(q)$ for each $q$, so its normalization gives an explicit global homotopy. The complex local degree of $F_k$ supplies the analytic integer. There are eight cubical three-facets and six Freudenthal tetrahedra in each of $N^3$ unit cells on a facet, yielding $48N^3$ cells; the difference of all lattice vertices and interior lattice vertices yields $8N^3+8N$ unique boundary vertices.
+\end{proof}
+
+\begin{corollary}[Conditional Pauli-shot transfer with an explicit resource bound]\label{co:v11-shots}
+Assume the unknown physical field is precisely $n_k$, or more generally a field with a separately established facetwise Lipschitz ceiling $k+2$ on the same cubical domain. Measure $m$ independent, calibrated $\pm1$ outcomes for \emph{each} of the three Pauli components at each of the $V=8N^3+8N$ vertices. Denote their empirical three-vectors by $b_v$, and use their barycentric interpolant $B_N$. Set $\mu=1-2\sqrt3(k+2)/N>0$. If
+\begin{equation}\label{eq:v11-shots}
+\boxed{\quad m>\frac{6}{\mu^2}\log\!\left(\frac{6V}{\delta}\right),\qquad 0<\delta<1,\quad}
+\end{equation}
+then with probability at least $1-\delta$ the everywhere-defined normalized field $B_N/\|B_N\|$ is homotopic to the physical field, and therefore has exactly the correct Hopf integer. An independent \emph{sound} exact integer extractor for the measured rational vertex means may then report that integer when all its strict regularity predicates pass; the inequality does not assert that a particular finite numerical linker always terminates or accepts.
+\end{corollary}
+\begin{proof}
+For a fixed vertex and Pauli component Hoeffding's inequality yields $\Pr(|\widehat b-n_{k,a}(v)|>t)\le2\exp(-mt^2/2)$. Let $\eta=\sqrt{6\log(6V/\delta)/m}<\mu$. Apply a union bound over the $3V$ components with $t=\eta/\sqrt3$, giving failure probability at most $6V\exp(-m\eta^2/6)=\delta$. On the complementary event $\max_v\|b_v-n_k(v)\|\le\eta<\mu$. The same barycentric error decomposition as in Eq.~\eqref{eq:v11-error} then gives the genuinely strict bound $\|B_N(q)-n_k(q)\|\le\eta+2\sqrt3(k+2)/N<1$ at every point. This supplies the normalized homotopy. Neither a spectral gap alone nor a synthetic statistical model validates the required physical regularity and calibration hypotheses for real data.
+\end{proof}
+
+\begin{remark}[Relation to the previous small-charge and fundamental limits]
+The new all-$k$ sufficient bound replaces the \emph{exponentially growing estimate} of Corollary~\ref{co:v9resolution}; it does not claim that the smaller exact charge-two witness at $N=5$ or the validated $k=2$ bound $N\ge9$ is superseded for that special case. The upper bound $O(k^3)$ is a sufficient uniform triangulation size, not an algorithmic or measurement lower bound for this restricted algebraic family. Linear optimality in Theorem~\ref{th:v11-linear} concerns the \emph{differential regularity growth}; the general hidden-Hopf-bubble lower bound concerns a much larger Lipschitz class. The two claims must not be conflated. The two-band operator $H_k=n_k\cdot\bm\sigma$ has eigenvalues $\pm1$ and constant gap $2$ for every $k$, illustrating that a fixed gap alone does not bound the topological integer. This is a synthetic construction, not a realization of a four-dimensional Yang--Mills mass gap or a three-dimensional Coulomb inverse theorem.
+\end{remark}
+
+\begin{center}
+\begin{tabular}{rrrrr}
+\toprule
+$k$ & Previous sufficient $N$ & Linear sufficient $N$ & $48N^3$ (new) & $\sqrt{k^2+1}$ lower slope\\
+\midrule
+1 & 7 & 11 & 63888 & $\sqrt2$\\
+2 & 20 & 14 & 131712 & $\sqrt5$\\
+3 & 42 & 18 & 279936 & $\sqrt{10}$\\
+4 & 79 & 21 & 444528 & $\sqrt{17}$\\
+5 & 139 & 25 & 750000 & $\sqrt{26}$\\
+10 & 1568 & 42 & 3556224 & $\sqrt{101}$\\
+\bottomrule
+\end{tabular}
+\end{center}
+\noindent\emph{All mesh numbers are independently rounded with exact integer-square comparisons in the supplementary verifier.} The earlier sufficient $k=1$ bound is better; for $k\ge2$ the new sufficient $N$ values improve the previous coarse general estimate. The $k=2$ special $N\ge9$ condition remains stronger than either coarse general formula.
+
+\begin{figure}[t]
+\centering\includegraphics[width=.86\linewidth]{FIG_22_LINEAR_CHARGE_RESOLUTION.pdf}
+\caption{Sufficient subdivisions versus topological charge on a logarithmic ordinate. The earlier exponentially growing \emph{sufficient bound} is compared against the new linear sufficient bound. Neither curve represents a proved minimal interpolation resolution, laboratory shot count, or computational complexity lower bound.}\label{fig:v11linear}
+\end{figure}
+
+\section{Bidegree Hopf tomography: near-sharp metric control and exact two-loop identification}\label{sec:v12-bidegree}
+
+The general geometric $O(L^4)$ distortion estimate for $S^3\to S^2$ and constructions achieving its order are classical: our polynomial subfamily below neither attains nor improves that universal exponent \cite{BerdnikovManinScalable,Manin2019}. What is new \emph{within the present certification protocol} is the explicit interaction of a bidegree parameterization, a rationally checkable cell-resolution guarantee, and a finite-shot two-loop estimator with a matching aliasing obstruction. The statements below do not assert first discovery of the topological map or the winding-number principle.
+
+Let $X=\partial[-1,1]^4\subset\mathbb C^2$, oriented as in the preceding integer-extraction sections, and let $p,q\ge1$ be integers. Define
+\begin{equation}\label{eq:v12-bidegree}
+ F_{p,q}(z_1,z_2)=(z_1^p,z_2^q),\qquad
+ n_{p,q}=\frac{(2\operatorname{Re}(F_1\overline{F_2}),\;2\operatorname{Im}(F_1\overline{F_2}),\;|F_1|^2-|F_2|^2)}{|F_1|^2+|F_2|^2}.
+\end{equation}
+The denominator never vanishes on $X$. Here $\|Dn\|_{\rm amb}$ denotes the operator norm of the full Euclidean differential in a neighborhood of each open cubical facet, so the bound also controls facet-tangent derivatives and simplex chord estimates.
+
+\begin{theorem}[Certified bidegree Hopf class and additive-one metric bracket]\label{th:v12-bidegree}
+With the cubical orientation fixed in the preceding reconstruction sections,
+\begin{equation}\label{eq:v12-class}
+\boxed{\quad H(n_{p,q})=-pq.\quad}
+\end{equation}
+Writing $a=|z_1|$, $b=|z_2|$, its exact ambient derivative norm is
+\begin{equation}\label{eq:v12-wronskian}
+\|Dn_{p,q}\|_{\rm amb}=
+\frac{2\sqrt{p^2a^{2p-2}b^{2q}+q^2a^{2p}b^{2q-2}}}{a^{2p}+b^{2q}},
+\end{equation}
+with the continuous interpretation at zero bases. Put
+\begin{equation}\label{eq:v12-L}
+ L_{p,q}^2=\max\{p^2+(q+1)^2,(p+1)^2+q^2\}.
+\end{equation}
+Then the following \emph{globally valid facetwise} inequalities hold:
+\begin{equation}\label{eq:v12-nearsharp}
+\boxed{\sqrt{p^2+q^2}\ \le\ \sup_X\|Dn_{p,q}\|_{\rm amb}\ \le\ L_{p,q}\ \le\sqrt{p^2+q^2}+1.}
+\end{equation}
+The lower bound is the limit of allowed facet-tangent derivatives at the intersection point $(z_1,z_2)=(1,1)$.
+\end{theorem}
+\begin{proof}
+Normalize $F_{p,q}$ to a map $X\simeq S^3\to S^3$; it has degree $pq$ because its Hopf-coordinate angular variables are sent to $(p\theta_1,q\theta_2)$ while the radial coordinate is monotonically reparameterized. Composition with the Hopf projection multiplies its invariant by that degree, and the existing cubical orientation introduces the minus sign of Eq.~\eqref{eq:v12-class}. For the metric assertion, differentiate the complex projective Hopf coordinate: its horizontal Wronskian is $F_2\,dF_1-F_1\,dF_2$. The map to the unit Bloch sphere has infinitesimal metric $2|F_2\,dF_1-F_1\,dF_2|/(|F_1|^2+|F_2|^2)$, proving Eq.~\eqref{eq:v12-wronskian} by orthogonality of the two complex input variables. Define
+\begin{equation}
+ A=\frac{2p\,a^{p-1}b^q}{a^{2p}+b^{2q}},\qquad
+ B=\frac{2q\,a^p b^{q-1}}{a^{2p}+b^{2q}};
+ \qquad\|Dn_{p,q}\|_{\rm amb}=\sqrt{A^2+B^2}.
+\end{equation}
+On $X$ either $a\ge1$ or $b\ge1$. If $a\ge1$, the arithmetic-geometric inequality $2a^pb^q\le a^{2p}+b^{2q}$ gives $A\le p/a\le p$. For the other term, if $b\ge1$ then $B\le q$; if $b\le1$ and $a\ge1$, monotonicity in $a^p\ge1\ge b^q$ yields
+$B\le2q b^{q-1}/(1+b^{2q})\le q+1$.
+The final inequality follows by differentiating the rational expression: for $q\ge2$ its maximum over $b\in[0,1]$ occurs at $b^{2q}=(q-1)/(q+1)$ with value $(q+1)b^{q-1}\le q+1$; for $q=1$ it is at most $2$. Thus $\|Dn\|^2\le p^2+(q+1)^2$ in this case. Exchanging the coordinates proves $\|Dn\|^2\le(p+1)^2+q^2$ when $b\ge1$. At $(1,1)$ the two independent permitted imaginary tangent variations induce differential Bloch phase $p\,d\operatorname{Im}z_1-q\,d\operatorname{Im}z_2$, whose Euclidean norm is $\sqrt{p^2+q^2}$. Finally $L_{p,q}^2=p^2+q^2+2\max(p,q)+1\le(\sqrt{p^2+q^2}+1)^2$.
+\end{proof}
+
+\begin{corollary}[Bidegree analytic-to-PL transfer and square-charge cost]\label{co:v12-grid}
+Use the same $N$-subdivision Freudenthal cubical boundary mesh as before. If
+\begin{equation}\label{eq:v12-N}
+\boxed{\quad N^2>12\max\{p^2+(q+1)^2,(p+1)^2+q^2\},\quad}
+\end{equation}
+then the barycentric interpolant of exact vertex Bloch vectors is nowhere zero and its normalization has Hopf integer $-pq$. Its mesh contains $48N^3$ tetrahedra and $8N^3+8N$ distinct vertices. For balanced $p=q=r$, the charge magnitude is $r^2$ while $N=O(r)$ and the sufficient triangulation budget is $O(|H|^{3/2})$. This does not state a minimax or output-sensitive complexity lower bound.
+\end{corollary}
+\begin{proof}
+Every tetrahedron has diameter at most $2\sqrt3/N$ and the field has derivative ceiling $L_{p,q}$. The simplex interpolation discrepancy is at most $2\sqrt3L_{p,q}/N<1$; therefore the normalized straight-line homotopy is nowhere singular. Count simplices and vertices as in Corollary~\ref{co:v11-transfer}.
+\end{proof}
+
+\subsection{Two closed equatorial loops replace the full three-dimensional grid under a structural promise}\label{subsec:v12-two-loops}
+Define two circles inside the cubical boundary,
+\begin{equation}\label{eq:v12-loops}
+ C_1(\theta)=(e^{i\theta},1),\qquad C_2(\theta)=(1,e^{i\theta}),\qquad0\le\theta<2\pi.
+\end{equation}
+For the complex transverse Bloch observable $u=n_x+i n_y$, exact substitution into Eq.~\eqref{eq:v12-bidegree} gives
+\begin{equation}\label{eq:v12-loop-phases}
+ u(C_1(\theta))=e^{ip\theta},\qquad u(C_2(\theta))=e^{-iq\theta},\qquad
+ \boxed{H(n_{p,q})=\operatorname{wind}(u\circ C_1)\,\operatorname{wind}(u\circ C_2).}
+\end{equation}
+This two-loop identity is \emph{not} valid for arbitrary maps $X\to S^2$; it is a consequence of the specified globally known polynomial form.
+
+\begin{theorem}[Exact finite-shot two-loop integer certificate]\label{th:v12-loopshots}
+Assume a priori that the unknown field belongs \emph{exactly} to the family $\{n_{p,q}:1\le p,q\le R\}$, with known integer $R\ge1$. Fix an integer $M>2R$ and sample the two loops at $\theta_j=2\pi j/M$, $j=0,\ldots,M-1$. At each site measure the two Pauli axes $x,y$ with $m$ \emph{independent calibrated} $\pm1$ outcomes per axis. Let $\widehat u_{\ell,j}$ be the empirical rational complex means and let $W_\ell$ be the integer winding of the resulting closed polygon around the origin, determined by an exact rational ray-crossing predicate. For $0<\delta<1$, if
+\begin{equation}\label{eq:v12-m}
+\boxed{\quad m>\frac{4}{\cos^2(\pi R/M)}\log\!\left(\frac{8M}{\delta}\right),\quad}
+\end{equation}
+then, with probability at least $1-\delta$, \emph{both} polygonal windings are unambiguously defined and
+\begin{equation}\label{eq:v12-recover}
+\boxed{\quad (W_1,W_2)=(p,-q),\qquad H=W_1W_2=-pq.\quad}
+\end{equation}
+There are $2M$ loop-site instances, and $4Mm$ individual Pauli outcomes. Taking $M=4R$ gives $m=O(\log(R/\delta))$ and a sufficient total budget $O(R\log(R/\delta))$. For the balanced subfamily $p=q=R$, this is $O(\sqrt{|H|}\log |H|)$ \emph{only because the global polynomial family is promised in advance}.
+\end{theorem}
+\begin{proof}
+At any of the $4M$ measured scalar means, Hoeffding's bound is $2e^{-mt^2/2}$. A union bound implies that every empirical complex-vertex error is at most $\eta$ except with probability at most $8M\exp(-m\eta^2/4)$. Under Eq.~\eqref{eq:v12-m} take $\eta=\sqrt{4\log(8M/\delta)/m}<\cos(\pi R/M)$. For a pure winding $e^{is\theta}$ with $|s|\le R<M/2$, each straight chord between neighboring ideal vertices subtends angle at most $2\pi R/M<\pi$, so the ideal polygon has norm at least $\cos(\pi R/M)>0$ everywhere and winding $s$. The linear interpolation of measured endpoints is at every point within distance $\eta$ of that ideal polygon. Consequently the interpolating straight-line homotopy avoids zero. Both measured polygons have exactly the ideal windings simultaneously. All their coordinates are rational sample means, so the winding integer can be computed with strict rational orientation predicates without floating-point rounding. The probability concerns only the declared independence and calibration model.
+\end{proof}
+
+\begin{proposition}[Exact phase aliasing and the essential structural promise]\label{prop:v12-alias}
+If only the two sampled loops of Eq.~\eqref{eq:v12-loops} are observed on an $M$-point uniform grid, fields $n_{p,q}$ and $n_{p+M,q}$ generate \emph{identical} noiseless data at every measured site, yet their Hopf charges differ by $Mq$. Therefore no estimator from these loop-grid observations alone can identify arbitrary, unbounded integer bidegrees, even when the two-band Hamiltonian has constant gap $2$. Moreover, if the global polynomial-family assumption is dropped, observing the full \emph{continuous} two loops does not certify a general $S^3\to S^2$ homotopy class: a localized Hopf bubble can be inserted in an open ball disjoint from both loops, leaving their observations unchanged while shifting the global Hopf charge by $\pm1$.
+\end{proposition}
+\begin{proof}
+For the first assertion, at each $\theta_j$ one has $e^{i(p+M)\theta_j}=e^{ip\theta_j}$, while the second loop is independent of $p$. Every $n_{p,q}\cdot\bm\sigma$ has eigenvalues $\pm1$. For the second assertion, the union of the two circles is a proper closed subset of the three-sphere; select a disjoint three-ball. On a smaller ball the smooth field can be contracted to a constant via a boundary-preserving local homotopy. Inserting a compactly supported representative of the generator of $\pi_3(S^2)\cong\mathbb Z$ changes its global Hopf class by one while agreeing outside that ball, as in the localized construction of Theorem~\ref{th:bubble}. No data on either loop can detect this modification.
+\end{proof}
+
+\begin{remark}[Model identification is not unrestricted topology certification]
+The loop theorem identifies the bidegree within a known synthetic parametric model; it must \emph{never} be used as an experimental certificate without an independent global bound showing that the physical field is homotopic to a fitted member. Replacing the structural promise by finite-sample goodness of fit is logically invalid because of Proposition~\ref{prop:v12-alias}. The full-mesh certificate of Corollary~\ref{co:v12-grid}, or an independent regularity/tail certificate from earlier sections, is then still required. The new reconstruction method does not settle the completeness of an LTI-SDP spectral-gap hierarchy, the interacting 3D Hohenberg--Kohn inverse problem, or any ProofAtlas global conjecture.
+\end{remark}
+
+\begin{figure}[t]
+ \centering\includegraphics[width=.85\linewidth]{FIG_23_BIDEGREE_TWO_LOOP_RESOURCE.pdf}
+ \caption{Two different \emph{sufficient} measurement-location budgets for the structured balanced field $n_{r,r}$: $2M=8r$ sites for the two-loop winding protocol with a priori model assumption ($M=4r$), versus the $8N^3+8N$ vertices of the global analytic-to-PL grid ($N^2>12L_{r,r}^2$). Different information guarantees make these curves incomparable as unrestricted minimax bounds.}\label{fig:v12-two-loop}
+\end{figure}
+
+\subsection{Reproduction and relation to existing topology algorithms}
+The companion \texttt{verify\_v12\_bidegree\_loops.py} tests 32,400 exact rational evaluations of Eq.~\eqref{eq:v12-wronskian} across 144 positive exponent pairs, 246 pairs of rational polygon-winding controls, a deliberate $M$-aliasing counterexample, and 100 fixed-seed synthetic Pauli replications for $R=6$, $M=24$, and $\delta=0.01$. Exact arithmetic certifies the tested rational predicates; finite regression tests are \emph{not} a proof of the continuum inequalities or a formal verifier of the full extraction algorithm. The universal quartic Hopf distortion bound predates this manuscript \cite{BerdnikovManinScalable,Manin2019}; for arbitrary simplicial input, independent cochain-based Hopf computation is developed by Musin and Shamazov \cite{MusinShamazov2026}. The contribution here is a self-contained conditional reconstruction protocol with explicit error budgets and an equally explicit impossibility boundary.
+
+
+\section{Conclusion}
+For a piecewise-linear Bloch field with independently justified spatial
+regularity and readout calibration, its integer Hopf invariant can be
+certified through exact rational linking and a nonvanishing homotopy
+margin. The resulting framework combines finite-shot concentration,
+Fourier error envelopes, sharp anisotropic simplex robustness,
+structured two-loop recovery, and pointwise affine or directional-only
+calibration. Its additional minimax linear-inverse construction
+identifies the exact worst-case error constant for a fixed redundant
+matrix, without forcing inconsistent noisy measurements to satisfy
+artificially exact equations. The analytic premises and physical
+observation model are essential: finite unstructured measurements
+alone do not determine the topology of an arbitrary continuum field.
+The present numerical examples are synthetic, not independent
+experimental evidence.
+
+\clearpage
+\appendix
+\section*{Supplementary mathematical derivations}
+\input{APPENDIX_A_chambers.tex}
+\input{APPENDIX_B_exact_radius.tex}
+\input{APPENDIX_C_anisotropic.tex}
+\clearpage
+\input{APPENDIX_D_affine_calibration.tex}
+\input{APPENDIX_E_spatial_gauge.tex}
+\input{APPENDIX_F_optimal_affine_reference.tex}
+% Master v17 reaches Appendix Z; extend alphabetically without losing historical labels.
+\setcounter{section}{0}\renewcommand{\thesection}{A\Alph{section}}
+\input{APPENDIX_G_direction_only_calibration.tex}
+\input{APPENDIX_H_ai_exact_matrix_design.tex}
+\input{APPENDIX_I_exact_rowwise_minimax.tex}
+
+\begin{acknowledgments}
+Substantial assistance from OpenAI ChatGPT (GPT-6, October 2026) was used
+for mathematical exploration, drafting, code and figure generation,
+and literature searches. The human authors are responsible for verifying
+the proofs, claims of priority, data provenance and appropriate
+research attribution before submission. The work reports synthetic
+mathematical examples; no independently recorded laboratory data were
+analysed. Formal Lean verification and external peer review are
+not claimed.
+\end{acknowledgments}
+
+\begin{thebibliography}{99}
+\bibitem{BenkeHendricks1993} G. Benke and W. J. Hendricks, ``Estimates for Large Deviations in Random Trigonometric Polynomials,'' SIAM J. Math. Anal., \url{https://doi.org/10.1137/0524063}.
+\bibitem{Moore2008} J. E. Moore, Y. Ran, and X.-G. Wen, ``Topological surface states in three-dimensional magnetic insulators,'' Phys. Rev. Lett. \textbf{101}, 186805 (2008), \url{https://doi.org/10.1103/PhysRevLett.101.186805}.
+\bibitem{Yuan2017} X.-X. Yuan \emph{et al.}, ``Observation of topological links associated with Hopf insulators in a solid-state quantum simulator,'' arXiv:1705.00781 (2017), \url{https://arxiv.org/abs/1705.00781}.
+\bibitem{Wang2023} Z. Wang, X.-T. Zeng, Y. Biao, Z. Yan, and R. Yu, ``Realization of a Hopf insulator in circuit systems,'' Phys. Rev. Lett. \textbf{130}, 057201 (2023), \url{https://doi.org/10.1103/PhysRevLett.130.057201}.
+\bibitem{Jankowski2024} W. J. Jankowski \emph{et al.}, ``Non-Abelian Hopf-Euler insulators,'' Phys. Rev. B \textbf{110}, 075135 (2024), \url{https://doi.org/10.1103/PhysRevB.110.075135}.
+\bibitem{Klemm2026} S. Klemm, ``Hopf states from discrete magnetization data: Sampling limits, homotopy certificates, and operational switching conditions,'' Zenodo preprint (September 24, 2026), \url{https://doi.org/10.5281/zenodo.22942038}.
+\bibitem{HopfBackground} Explicit quaternion-power representatives of $\pi_3(\Sph^2)$ (background discussion), \url{https://mathoverflow.net/questions/3107/construction-of-maps-fs3-to-s2-with-arbitrary-hopf-invariant}.
+\bibitem{Whitehead1947} J. H. C. Whitehead, ``An expression of Hopf's invariant as an integral,'' Proc. Natl. Acad. Sci. U.S.A. \textbf{33}, 117--123 (1947), \url{https://doi.org/10.1073/pnas.33.5.117}.
+\bibitem{BerdnikovManinScalable} A. Berdnikov and F. Manin, ``Scalable spaces,'' Invent. Math. \textbf{229}, 1055--1100 (2022), \url{https://doi.org/10.1007/s00222-022-01118-9}, Sect.~4.2 (classical quartic Hopf distortion discussion).
+\bibitem{Manin2019} F. Manin, ``Plato's cave and differential forms,'' \emph{Geom. Topol.} \textbf{23}, 3141--3202 (2019), \url{https://msp.org/gt/2019/23-6/gt-v23-n6-p09-s.pdf}; cites Gromov's quartic Hopf bound and construction.
+\bibitem{Berdnikov2022} A. Berdnikov, ``Lipschitz homotopies of mappings from 3-sphere to 2-sphere,'' J. Topol. \textbf{15}, 815--843 (2022), \url{https://doi.org/10.1112/topo.12239}.
+\bibitem{MusinShamazov2026} O. R. Musin and T. Shamazov, ``Computing the Hopf invariant,'' arXiv:2512.03201v2 (October 17, 2026), \url{https://arxiv.org/abs/2512.03201}.
+\bibitem{MRWScaling2021} S. Rufo, M. A. R. Griffith, N. Lopes, and M. A. Continentino, ``Anisotropic scaling for 3D topological models,'' Sci. Rep. \textbf{11}, 22524 (2021), \url{https://doi.org/10.1038/s41598-021-01888-x}.
+\bibitem{SorevikNome2015} T. S\o{}revik and M. A. Nome, ``Trigonometric interpolation on lattice grids,'' BIT Numerical Mathematics (2015), \url{https://doi.org/10.1007/s10543-015-0562-0}.
+\bibitem{TesfayePalumbo2026} I. Tesfaye and G. Palumbo, ``Symplectic Hopf Insulator: Delicate Topology in Bosonic Bogoliubov-de Gennes Systems,'' arXiv:2609.10541 (2026), data \url{https://doi.org/10.5281/zenodo.22691589}.
+\bibitem{Zheng2023} F. Zheng \emph{et al.}, ``Hopfion rings in a cubic chiral magnet,'' Nature \textbf{623}, 718--723 (2023), source data \url{https://doi.org/10.5281/zenodo.8281078}.
+\bibitem{Dirkse2020} B. Dirkse, M. Pompili, R. Hanson, M. Walter, and S. Wehner, ``Witnessing entanglement in experiments with correlated noise,'' research publication (2020), \url{https://research.tudelft.nl/en/publications/witnessing-entanglement-in-experiments-with-correlated-noise/}.
+\bibitem{ZhuZhao2022} L. Zhu and X. Zhao, ``On Bernstein inequalities for multivariate trigonometric polynomials,'' Czechoslovak Math. J. \textbf{72}, 449--459 (2022), \url{https://doi.org/10.21136/CMJ.2021.0531-20}.
+\bibitem{Vattay2026} ``Transition from statistical to hardware-limited scaling in photonic quantum state reconstruction,'' Phys. Rev. A \textbf{114}, 023709 (2026), \url{https://doi.org/10.1103/3gsc-krrq}.
+\bibitem{Lin2026} Q. Lin \emph{et al.}, ``Data for: Simulating Floquet non-Abelian topological insulator with photonic quantum walks,'' Dryad (2026), \url{https://doi.org/10.5061/dryad.3ffbg79vk}.
+\bibitem{TorusPontryagin2025} ``Computing the Pontryagin invariant of a map $T^3\to S^2$ with an integral formula,'' mathematical discussion (2025), \url{https://mathoverflow.net/questions/499502/computing-the-pontryagin-invariant-of-a-map-f-t3-to-s2-with-an-integral-for}.
+\bibitem{HopfBdG2026} I. Tesfaye and G. Palumbo, ``Symplectic Hopf Insulator,'' arXiv:2609.10541 (2026), \url{https://arxiv.org/abs/2609.10541}.
+\bibitem{Howard2021} S. R. Howard, A. Ramdas, J. McAuliffe, and J. Sekhon, ``Time-uniform, nonparametric, nonasymptotic confidence sequences,'' Ann. Statist. \textbf{49}, 1055--1080 (2021), \url{https://doi.org/10.1214/20-AOS1991}.
+\bibitem{BosonicTopology2020} H. Kondo, Y. Akagi, and H. Katsura, ``Non-Hermiticity and topological invariants of magnon Bogoliubov--de Gennes systems,'' Prog. Theor. Exp. Phys. \textbf{2020}, 12A104 (2020), \url{https://doi.org/10.1093/ptep/ptaa151}.
+\bibitem{ProofAtlas2026} ProofAtlas, ``Top 500 open problems in mathematics,'' edition dated October 7, 2026, \url{https://www.proofatlas.ai/open-problems/}.
+\bibitem{PhysicsCatalogue2026} J. G. M. McLaughlin, ``Physics Open Problems,'' 84-entry catalogue, provisional status checked July 20--21, 2026, \url{https://jgmcm.github.io/problems/} and \url{https://github.com/jgmcm/problems/tree/main/catalogue/problems}.
+\bibitem{OpenAIMath2026} OpenAI, ``Mathematics manuscript collection,'' repository README, retrieved October 22, 2026, \url{https://github.com/openai/math}.
+% Bibliography preserved from HOPF_EXACT_ROBUSTNESS_v11(1).tex
+\bibitem{A_chambers_Whitehead1947} J. H. C. Whitehead, ``An expression of Hopf's invariant as an integral,'' Proc. Natl. Acad. Sci. U.S.A. \textbf{33}, 117--123 (1947), \url{https://doi.org/10.1073/pnas.33.5.117}.
+\bibitem{A_chambers_Yuan2017} X.-X. Yuan \emph{et al.}, ``Observation of topological links associated with Hopf insulators in a solid-state quantum simulator,'' arXiv:1705.00781 (2017), \url{https://arxiv.org/abs/1705.00781}.
+\bibitem{A_chambers_Wang2023} Z. Wang \emph{et al.}, ``Realization of a Hopf insulator in circuit systems,'' Phys. Rev. Lett. \textbf{130}, 057201 (2023), \url{https://doi.org/10.1103/PhysRevLett.130.057201}.
+\bibitem{A_chambers_Klemm2026} S. Klemm, ``Hopf states from discrete magnetization data: Sampling limits, homotopy certificates, and operational switching conditions,'' Zenodo (2026), \url{https://doi.org/10.5281/zenodo.22942038}.
+\bibitem{A_chambers_MusinShamazov2026} O. R. Musin and T. Shamazov, ``Computing the Hopf invariant,'' arXiv:2512.03201 (2025--2026), \url{https://arxiv.org/abs/2512.03201}.
+
+% Bibliography preserved from HOPF_EXACT_ROBUSTNESS_v12(1).tex
+\bibitem{B_exact_radius_Whitehead1947} J. H. C. Whitehead, An expression of Hopf's invariant as an integral, Proc. Natl. Acad. Sci. USA \textbf{33}, 117--123 (1947).
+\bibitem{B_exact_radius_MusinShamazov2025} O. R. Musin and T. Shamazov, Computing the Hopf invariant, arXiv:2512.03201 (2025), \url{https://arxiv.org/abs/2512.03201}.
+\bibitem{B_exact_radius_MooreRanWen2008} J. E. Moore, Y. Ran, and X.-G. Wen, Topological surface states in three-dimensional magnetic insulators, Phys. Rev. Lett. \textbf{101}, 186805 (2008).
+\bibitem{B_exact_radius_PhysicsProblems2026} Physics Open Problems, \url{https://jgmcm.github.io/problems/}, entries \#058 and \#066 (2026).
+\bibitem{B_exact_radius_OpenAIMath2026} OpenAI, \url{https://github.com/openai/math}, continuously updated catalogue (accessed October 2026). Its README cautions that not all results are formalized and some may contain issues.
+
+% Bibliography preserved from HOPF_CANONICAL_v13.tex
+\bibitem{C_anisotropic_Whitehead1947} J. H. C. Whitehead, ``An expression of Hopf's invariant as an integral,'' Proc. Natl. Acad. Sci. USA \textbf{33}, 117--123 (1947).
+\bibitem{C_anisotropic_MooreRanWen2008} J. E. Moore, Y. Ran, and X.-G. Wen, ``Topological surface states in three-dimensional magnetic insulators,'' Phys. Rev. Lett. \textbf{101}, 186805 (2008).
+\bibitem{C_anisotropic_MusinShamazov2026} O. R. Musin and T. Shamazov, ``Computing the Hopf invariant,'' arXiv:2512.03201 (2025--2026), \url{https://arxiv.org/abs/2512.03201}.
+\bibitem{C_anisotropic_Klemm2026} S. Klemm, ``Hopf states from discrete magnetization data: Sampling limits, homotopy certificates, and operational switching conditions,'' Zenodo (2026), \url{https://doi.org/10.5281/zenodo.22942038}.
+\bibitem{C_anisotropic_Berdnikov2022} A. Berdnikov, ``Lipschitz homotopies of mappings from 3-sphere to 2-sphere,'' J. Topol. \textbf{15}, 815--843 (2022).
+\bibitem{C_anisotropic_Manin2019} F. Manin, ``Plato's cave and differential forms,'' Geom. Topol. \textbf{23}, 3141--3202 (2019).
+\bibitem{C_anisotropic_Physics2026} Physics Open Problems catalogue, \url{https://jgmcm.github.io/problems/}, problems 058 and 066 (accessed 22 October 2026).
+\bibitem{C_anisotropic_ProofAtlas2026} ProofAtlas, ``Top 500 open problems in mathematics,'' \url{https://www.proofatlas.ai/open-problems/} (edition October 2026).
+\bibitem{C_anisotropic_OpenAIMath2026} OpenAI Math, \url{https://github.com/openai/math} (accessed 22 October 2026).
+\bibitem{C_anisotropic_APSAI2026} American Physical Society, ``Updated AI policy for APS journals,'' June 17, 2026, \url{https://www.aps.org/about/news/2026/06/releases-updated-ai-policy-journals}.
+\bibitem{V15GSTGauge2017} ``Demonstration of qubit operations below a rigorous fault tolerance threshold with gate set tomography,'' Nature Communications (2017), \url{https://www.nature.com/articles/ncomms14485}; existing physical gate-set tomography gauge nonuniqueness.
+\bibitem{V15Noncontextual2026} ``Entanglement Certification Using Noncontextuality Inequalities,'' Physical Review X (2026), \url{https://journals.aps.org/prx/abstract/10.1103/dxpr-wp6l}; related tomography-gauge issues.
+\bibitem{V15ClassicalHopf} Graduate algebraic topology notes, ``Hopf invariants,'' Hamburg University (2024), \url{https://www.math.uni-hamburg.de/en/personen/richter/topo24-notes.pdf}; classical postcomposition law and the quaternion Hopf fibration.
+\bibitem{V16VanBaalWipf} P. van Baal and A. Wipf, ``Classical Gauge Vacua as Knots,'' \url{https://www.tpi.uni-jena.de/~wipf/publications/papers/knots.pdf}; SU(2) winding and the Hopf invariant.
+\bibitem{V16Sugiyama} T. Sugiyama, S. Imori, and F. Tanaka, ``Self-consistent quantum tomography with regularization,'' Phys. Rev. A \textbf{103}, 062615 (2021), \url{https://doi.org/10.1103/PhysRevA.103.062615}.
+\bibitem{V16Guslienko} K. Y. Guslienko, ``Magnetic Hopfions as Local Rotations of the Uniform Magnetization Background,'' phys. status solidi RRL \textbf{19}, 2500022 (2025), \url{https://doi.org/10.1002/pssr.202500022}.
+\bibitem{V17Nunn2010} J. Nunn, B. J. Smith, G. Puentes, J. S. Lundeen, and I. A. Walmsley, ``Optimal experiment design for quantum state tomography: Fair, precise, and minimal tomography, Phys. Rev. A \textbf{81}, 042109 (2010), \url{https://doi.org/10.1103/PhysRevA.81.042109}.
+\bibitem{V17TetraDetector2026} ``Limitations for adaptive quantum state tomography in the presence of detector noise, Phys. Rev. A (2026), \url{https://journals.aps.org/pra/abstract/10.1103/3q13-xpc8}; tetrahedral detector-calibration reference preparations.
+\bibitem{V16StoneNotes} M. Stone, \emph{Mathematics for Physics}, discussion of the SU(2) winding integral and Hopf map, \url{https://people.physics.illinois.edu/stone/bookmaster.pdf}.
+\bibitem{V18QubitChannel2023} ``Correcting coherent errors by random operation on actual quantum hardware,'' Entropy \textbf{25}, 324 (2023), Section 2 (the usual Bloch-affine channel model and four-state full-component calibration), \url{https://pmc.ncbi.nlm.nih.gov/articles/PMC9955775/}.
+\bibitem{V18Qibo2026} Qibo, ``Quantum process tomography,'' documentation (accessed 22 October 2026), \url{https://qibo.science/qibo/stable/api-reference/tomography.html}; four-probe ordinary full-Bloch process tomography.
+\bibitem{V19AlphaTensor} A. Fawzi et al., ``Discovering faster matrix multiplication algorithms with reinforcement learning,'' Nature \textbf{610}, 47--53 (2022), \url{https://doi.org/10.1038/s41586-022-05172-4}.
+\bibitem{V19FunSearch} B. Romera-Paredes et al., ``Mathematical discoveries from program search with large language models,'' Nature \textbf{625}, 468--475 (2024), \url{https://doi.org/10.1038/s41586-023-06924-6}.
+\bibitem{V19AlphaEvolve} Google DeepMind, ``AlphaEvolve: A Gemini-powered coding agent for designing advanced algorithms,'' May 14, 2025, \url{https://deepmind.google/blog/alphaevolve-a-gemini-powered-coding-agent-for-designing-advanced-algorithms/}.
+\bibitem{V19OAI107} OpenAI, ``Matrix multiplication with exponent at most $9/4$,'' formalization scope for family 107, \url{https://github.com/openai/math/blob/main/lean/docs/107.md} (2026); asymptotic arithmetic complexity, not a benchmark for $11\times11$ inversion.
+\end{thebibliography}
+\end{document}
