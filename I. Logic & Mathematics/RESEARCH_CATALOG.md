@@ -9,6 +9,14 @@
 
 📁 · [2025/02/06 · Beyond Duality: Truth, Falsehood, Emptiness of Being](../All%20Preprints/2025_02_06_Beyond%20Duality_Truth_Falsehood_Emptiness%20of%20Being/)
 
+📁 · [2025/02/27 · Fractal Structure of 3D Manifolds: Rigorous Proof of the Poincaré Conjecture](../All%20Preprints/2025_02_27_Fractal%20Structure%203D_Manifolds_Rigorous%20Proof_Poincare%20Conjecture/)
+
+📁 · [2025/03/05 · Rigorous Mathematical Proof of the Local Connectivity of the Mandelbrot Set](../All%20Preprints/2025_03_05_Rigorous%20Mathematical%20Proof%20of%20the%20Local%20Connectivity%20of%20the%20Mandelbrot%20Set/)
+
+📁 · [2025/03/29 · FB(S³)R: A Critique of the Law of Excluded Middle and Its Integration into a Unified Model of Absolute Analysis](../All%20Preprints/2025_03_29_FB%28S3%29R_A%20_Critique_of_the_Law_of_Excluded_Middle_and_Its_Integration_into_a_Unified_Model_of_Absolute_Analysis/)
+
+📁 · [2025/05/02 · Gödel Theorems: Criterion for Verifying the Completeness of Information](../All%20Preprints/2025_05_02_Godel_Theorems_Criterion_for_Verifying_the_Completeness_of_Information/)
+
 ---
 
 ## Explore the research archive
