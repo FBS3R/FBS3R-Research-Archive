@@ -47,6 +47,10 @@
 
 📁 · [2025/12/30 · The Ontological Crisis of Modern Cosmology](../All%20Preprints/2025_12_30_The_Ontological_Crisis_of_Modern_Cosmology_From_Phenomenology_to_Structural_Physics/)
 
+📁 · [2026/04/19 · Geometric Infrared Scale of Yang–Mills Theory on a Compact Three-Manifold: Discreteness, Spectral Threshold and Fibonacci Hierarchy](../All%20Preprints/2026_04_19_Geometric_Infrared_Scale_of_Yang_Mills_Theory_on_a_Compact_Three_Manifold_Discreteness_Spectral_Threshold_and_Fibonacci_Hierarchy/)
+
+📁 · [2026/04/20 · In the Nonexistent Mind](../All%20Preprints/2026_04_20_In_the_nonexistent_mind/)
+
 ---
 
 ## Explore the research archive
