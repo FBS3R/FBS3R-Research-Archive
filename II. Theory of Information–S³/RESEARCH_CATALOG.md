@@ -14,6 +14,7 @@
 📁 · [2025/05/09 · FB(S³)R and Biogenesis: Empirical Validation of a Novel Theoretical Framework](../All%20Preprints/2025_05_09_FBS3R_and_Biogenesis_Empirical_Validation_of_a_Novel_Theoretical_Framework/)
 
 📁 · [2025/06/05 · Critical Analysis of Schrödinger's Thought Experiment](../All%20Preprints/2025_06_05_Critical_Analysis_of_Schrodinger_Thought_Experiment/)
+
 ---
 
 ## Explore the research archive
