@@ -23,6 +23,12 @@
 
 📁 · [2026/04/21 · Hierarchical Bethe-Type States on Fibonacci Graphs over S³](../All%20Preprints/2026_04_21_Hierarchical_Bethe_Type_States_on_Fibonacci_Graphs_over_S3/)
 
+📁 · [2026/04/30 · A Hopf-Bundle Holonomy Representation of Spin-Singlet Bell Correlations](../All%20Preprints/2026_04_30_A_Hopf_Bundle_Holonomy_Representation_of_Spin_Singlet_Bell_Correlations_PRA/)
+
+📁 · [2026/05/02 · Local Balancing and Branch Decoherence in Projected GHZ Resources](../All%20Preprints/2026_05_02_Local_Balancing_and_Branch_Decoherence_in_Projected_GHZ_Resources/)
+
+📁 · [2026/05/07 · Computable Multibranch Transfer Kernels for Endpoint Quantum Usefulness](../All%20Preprints/2026_05_07_Computable_Multibranch_Transfer_Kernels_for_Endpoint_Quantum_Usefulness/)
+
 ---
 
 ## Explore the research archive
