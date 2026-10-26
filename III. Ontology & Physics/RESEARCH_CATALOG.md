@@ -12,11 +12,7 @@
 
 ## Publications
 
-### 2025
-
-#### 01 · [Being and Non-Being: Beyond Extremes](../All%20Preprints/2025_02_06_Being%20and%20Non-Being_Beyond%20Extremes/)
-
-**06 February 2025** · Ontology · Foundations of reality
+#### 2025/02/06 · [Being and Non-Being: Beyond Extremes](../All%20Preprints/2025_02_06_Being%20and%20Non-Being_Beyond%20Extremes/)
 
 📁 **[Open the original research folder](../All%20Preprints/2025_02_06_Being%20and%20Non-Being_Beyond%20Extremes/)**  
 *Manuscript and source materials in All Preprints.*
