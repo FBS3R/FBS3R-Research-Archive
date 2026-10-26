@@ -39,6 +39,14 @@
 
 📁 · [2025/07/23 · Heisenberg's Uncertainty Principle: The Fractal Nature of Uncertainty Across All Scales](../All%20Preprints/2025_07_23_Heisenberg_s_Uncertainty_Principle_The_Fractal_Nature_of_Uncertainty_Across_All_Scales/)
 
+📁 · [2025/07/25 · A Continuous Cyclic Model of the Universe](../All%20Preprints/2025_07_25_FBS3R_A_Continuous_Cyclic_Model_of_the_Universe/)
+
+📁 · [2025/10/05 · Dark Energy as an Epistemological Artifact](../All%20Preprints/2025_10_05_Dark_Energy_as_an_Epistemological_Artifact_A_Geometric_and_Wave_Functional_Alternative_on_the_Compact_3Sphere_S3_to_Dynamical_Dark_Energy/)
+
+📁 · [2025/12/08 · Suspension of Spheres and the Uniqueness of S³ as an Anisotropic Bridge of Non-Duality](../All%20Preprints/2025_12_08_Suspension_of_Spheres_and_the_Uniqueness_of_S3_as_an_Anisotropic_Bridge_of_Non_Duality/)
+
+📁 · [2025/12/30 · The Ontological Crisis of Modern Cosmology](../All%20Preprints/2025_12_30_The_Ontological_Crisis_of_Modern_Cosmology_From_Phenomenology_to_Structural_Physics/)
+
 ---
 
 ## Explore the research archive
