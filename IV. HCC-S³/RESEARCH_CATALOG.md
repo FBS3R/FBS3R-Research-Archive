@@ -19,6 +19,22 @@
 
 📁 · [2025/07/23 · Heisenberg's Uncertainty Principle: The Fractal Nature of Uncertainty Across All Scales](../All%20Preprints/2025_07_23_Heisenberg_s_Uncertainty_Principle_The_Fractal_Nature_of_Uncertainty_Across_All_Scales/)
 
+📁 · [2025/07/25 · A Continuous Cyclic Model of the Universe](../All%20Preprints/2025_07_25_FBS3R_A_Continuous_Cyclic_Model_of_the_Universe/)
+
+📁 · [2025/08/08 · Compact Topology, φ-Ladder, Modular Duality and PBH-Driven High-z UV Background](../All%20Preprints/2025_08_08_Compact_Topology_%CF%86_Ladder_Modular_Duality_and_a_PBH_Driven_High_z_UV_Background/)
+
+📁 · [2025/09/01 · Fractal S³ Cosmology: A Window-Anchored Gradient Account of the Hubble Tension](../All%20Preprints/2025_09_01_Fractal_S3_Cosmology_A_Window_Anchored_Gradient_Account_of_the_Hubble_Tension/)
+
+📁 · [2025/10/05 · Dark Energy as an Epistemological Artifact](../All%20Preprints/2025_10_05_Dark_Energy_as_an_Epistemological_Artifact_A_Geometric_and_Wave_Functional_Alternative_on_the_Compact_3Sphere_S3_to_Dynamical_Dark_Energy/)
+
+📁 · [2025/10/12 · Canonical Quantization of GR on R × S³](../All%20Preprints/2025_10_12_Canonical_Quantization_of_GR_on_R_S3_in_CMC_Gauge_and_a_Phase_Law_for_Cosmic_Acceleration_A_%CE%9B_Free_Testable_Cosmology_with_Discrete_Curvature_Spectrum/)
+
+📁 · [2025/10/12 · Geometric Acceleration on Compact S³ Without a Fundamental Λ](../All%20Preprints/2025_10_12_Geometric_Acceleration_on_Compact_S3_Without_a_Fundamental_%CE%9B_A_Phase_Wavefunctional_Mechanism/)
+
+📁 · [2025/12/30 · The Ontological Crisis of Modern Cosmology](../All%20Preprints/2025_12_30_The_Ontological_Crisis_of_Modern_Cosmology_From_Phenomenology_to_Structural_Physics/)
+
+📁 · [2026/02/17 · Noether Identities and Discrete φ-Embedding in Compact S³ Quantum Cosmology](../All%20Preprints/2026_02_17_Noether_Identities_and_Discrete_%CF%86_Embedding_in_Compact_S3_Quantum_Cosmology/)
+
 ---
 
 ## Explore the research archive
