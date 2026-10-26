@@ -7,6 +7,8 @@
 
 ## Publications
 
+📁 · [2025/05/07 · FB(S³)R: Local Flatness, Quantum Consistency, and the ΛCDM Limit](../All%20Preprints/2025_05_07_FBS3R_Local_Flatness_Quantum_Consistency%2C_and_the_%CE%9BCDM_Limit/)
+
 ---
 
 ## Explore the research archive
