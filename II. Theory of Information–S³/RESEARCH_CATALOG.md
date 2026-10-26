@@ -7,6 +7,12 @@
 
 ## Publications
 
+📁 · [2025/02/17 · Orpheus Praxis: Fractal Artificial Intelligence](../All%20Preprints/2025_02_17_Orpheus%20Praxis_Fractal%20Artificial%20Intelligence/)
+
+📁 · [2025/05/02 · Gödel Theorems: Criterion for Verifying the Completeness of Information](../All%20Preprints/2025_05_02_Godel_Theorems_Criterion_for_Verifying_the_Completeness_of_Information/)
+
+📁 · [2025/05/09 · FB(S³)R and Biogenesis: Empirical Validation of a Novel Theoretical Framework](../All%20Preprints/2025_05_09_FBS3R_and_Biogenesis_Empirical_Validation_of_a_Novel_Theoretical_Framework/)
+
 ---
 
 ## Explore the research archive
