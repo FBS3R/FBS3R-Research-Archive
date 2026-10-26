@@ -29,6 +29,18 @@
 
 📁 · [2026/02/17 · Noether Identities and Discrete φ-Embedding in Compact S³ Quantum Cosmology](../All%20Preprints/2026_02_17_Noether_Identities_and_Discrete_%CF%86_Embedding_in_Compact_S3_Quantum_Cosmology/)
 
+📁 · [2026/02/18 · Fractal Quantum Entanglement Density via Fibonacci Embedding](../All%20Preprints/2026_02_18_Fractal_Quantum_Entanglement_Density_via_Fibonacci_Embedding/)
+
+📁 · [2026/02/21 · The Vanishing of Diffeomorphism Hamiltonians](../All%20Preprints/2026_02_21_The_Vanishing_of_Diffeomorphism_Hamiltonians/)
+
+📁 · [2026/02/24 · Quasi-local Diffeomorphism Charges in a Closed S³ Universe](../All%20Preprints/2026_02_24_Quasi_local_diffeomorphism_charges_in_a_closed_S3_Universe/)
+
+📁 · [2026/04/19 · Geometric Infrared Scale of Yang–Mills Theory on a Compact Three-Manifold: Discreteness, Spectral Threshold and Fibonacci Hierarchy](../All%20Preprints/2026_04_19_Geometric_Infrared_Scale_of_Yang_Mills_Theory_on_a_Compact_Three_Manifold_Discreteness_Spectral_Threshold_and_Fibonacci_Hierarchy/)
+
+📁 · [2026/04/21 · Hierarchical Bethe-Type States on Fibonacci Graphs over S³](../All%20Preprints/2026_04_21_Hierarchical_Bethe_Type_States_on_Fibonacci_Graphs_over_S3/)
+
+📁 · [2026/04/25 · Compact S³ Cosmology, Quasi-local Diffeomorphism Charges and Discrete φ-Level Embedding](../All%20Preprints/2026_04_25_Compact_S3_Cosmology_Quasi_local_Diffeomorphism_Charges_and_Discrete_%CF%86_Level_Embedding/)
+
 ---
 
 ## Explore the research archive
