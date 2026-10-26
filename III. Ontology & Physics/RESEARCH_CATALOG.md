@@ -1,0 +1,37 @@
+# Research Catalogue
+
+### III. Ontology & Physics
+
+**FB(S³)R** · Fractal • Bindu • S³ • Reality  
+*Thematic publication index · Ontology, epistemology & philosophy of physics*
+
+> **One authoritative archive. Multiple paths to discovery.**  
+> Every publication listed here opens its original folder in **All Preprints**, where the manuscript and its current versions are maintained.
+
+---
+
+## Publications
+
+### 2025
+
+#### 01 · [Being and Non-Being: Beyond Extremes](../All%20Preprints/2025_02_06_Being%20and%20Non-Being_Beyond%20Extremes/)
+
+**06 February 2025** · Ontology · Foundations of reality
+
+📁 **[Open the original research folder](../All%20Preprints/2025_02_06_Being%20and%20Non-Being_Beyond%20Extremes/)**  
+*Manuscript and source materials in All Preprints.*
+
+---
+
+## Explore the research archive
+
+| Destination | Navigate |
+|:--|:--|
+| **Complete publication archive** | [All Preprints](../All%20Preprints/) |
+| **I. Logic & Mathematics** | [Research section I](../I.%20Logic%20%26%20Mathematics/) |
+| **II. Theory of Information–S³** | [Research section II](../II.%20Theory%20of%20Information%E2%80%93S%C2%B3/) |
+| **IV. HCC-S³** | [Research section IV](../IV.%20HCC-S%C2%B3/) |
+
+---
+
+*This is a thematic navigation catalogue. The publication files are not duplicated here.*
