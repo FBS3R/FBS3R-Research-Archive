@@ -21,6 +21,14 @@
 
 📁 · [2025/07/19 · Gauss's Theorem in the FB(S³)R Model: Electric Flux as a Probe of Curved Topology and Self-Similar Scaling](../All%20Preprints/2025_07_19_Gauss_s_theorem_in_the_FBS3R_model_electric_flux_as_a_probe_of_curved_topology_and_self_similar_scaling/)
 
+📁 · [2025/09/28 · Zeckendorf–φ Bounds for the Collatz Map](../All%20Preprints/2025_09_28_Zeckendorf_%CF%86_Bounds_for_the_Collatz_Map_Strict_Local_Theory_Two_Sufficient_Reductions_and_No_Go_Results/)
+
+📁 · [2025/10/12 · Canonical Quantization of GR on R × S³](../All%20Preprints/2025_10_12_Canonical_Quantization_of_GR_on_R_S3_in_CMC_Gauge_and_a_Phase_Law_for_Cosmic_Acceleration_A_%CE%9B_Free_Testable_Cosmology_with_Discrete_Curvature_Spectrum/)
+
+📁 · [2025/12/08 · Suspension of Spheres and the Uniqueness of S³ as an Anisotropic Bridge of Non-Duality](../All%20Preprints/2025_12_08_Suspension_of_Spheres_and_the_Uniqueness_of_S3_as_an_Anisotropic_Bridge_of_Non_Duality/)
+
+📁 · [2026/02/17 · Noether Identities and Discrete φ-Embedding in Compact S³ Quantum Cosmology](../All%20Preprints/2026_02_17_Noether_Identities_and_Discrete_%CF%86_Embedding_in_Compact_S3_Quantum_Cosmology/)
+
 ---
 
 ## Explore the research archive
