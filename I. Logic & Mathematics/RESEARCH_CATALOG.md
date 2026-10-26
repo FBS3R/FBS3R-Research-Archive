@@ -17,6 +17,9 @@
 
 📁 · [2025/05/02 · Gödel Theorems: Criterion for Verifying the Completeness of Information](../All%20Preprints/2025_05_02_Godel_Theorems_Criterion_for_Verifying_the_Completeness_of_Information/)
 
+📁 · [2025/06/25 · Dual Incompleteness as a Path to Completeness: Gödel, Rosser and the Fractal S³ Framework](../All%20Preprints/2025_06_25_Dual_Incompleteness_as_a_Path_to_Completeness_Goedel_Rosser_and_the_Fractal_S3_Framework/)
+
+📁 · [2025/07/19 · Gauss's Theorem in the FB(S³)R Model: Electric Flux as a Probe of Curved Topology and Self-Similar Scaling](../All%20Preprints/2025_07_19_Gauss_s_theorem_in_the_FBS3R_model_electric_flux_as_a_probe_of_curved_topology_and_self_similar_scaling/)
 ---
 
 ## Explore the research archive
