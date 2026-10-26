@@ -35,6 +35,18 @@
 
 📁 · [2026/02/17 · Noether Identities and Discrete φ-Embedding in Compact S³ Quantum Cosmology](../All%20Preprints/2026_02_17_Noether_Identities_and_Discrete_%CF%86_Embedding_in_Compact_S3_Quantum_Cosmology/)
 
+📁 · [2026/02/21 · The Vanishing of Diffeomorphism Hamiltonians](../All%20Preprints/2026_02_21_The_Vanishing_of_Diffeomorphism_Hamiltonians/)
+
+📁 · [2026/02/24 · Quasi-local Diffeomorphism Charges in a Closed S³ Universe](../All%20Preprints/2026_02_24_Quasi_local_diffeomorphism_charges_in_a_closed_S3_Universe/)
+
+📁 · [2026/04/15 · Compact Simply-Connected Cosmology and the Geometric Origin of Quantum Nonlocality: Bell Inequality Violations from S³ Topology and Fibonacci Geodesic Stratification](../All%20Preprints/2026_04_15_Compact_Simply_Connected_Cosmology_and_the_Geometric_Origin_of_Quantum_Nonlocality_Bell_Inequality_Violations_from_S3_Topology_and_Fibonacci_Geodesic_Stratification/)
+
+📁 · [2026/04/17 · Wave Function of the Void: Dual-Sector Quantum Cosmology on S³, Emergent Time, Entropy and Geometric Expansion](../All%20Preprints/2026_04_17_Wave_Function_of_the_Void_Dual_Sector_Quantum_Cosmology_on_S3_Emergent_Time_Entropy_and_Geometric_Expansion/)
+
+📁 · [2026/04/24 · Compact S³ Spectral Consistency Analysis of Ring-like Ultra-Large-Scale Structure at z ≈ 0.8](../All%20Preprints/2026_04_24_Compact_S3_Spectral_Consistency_Analysis_of_Ring_like_Ultra_Large_Scale_Structure_at_z0_8_ex/)
+
+📁 · [2026/04/25 · Compact S³ Cosmology, Quasi-local Diffeomorphism Charges and Discrete φ-Level Embedding](../All%20Preprints/2026_04_25_Compact_S3_Cosmology_Quasi_local_Diffeomorphism_Charges_and_Discrete_%CF%86_Level_Embedding/)
+
 ---
 
 ## Explore the research archive
