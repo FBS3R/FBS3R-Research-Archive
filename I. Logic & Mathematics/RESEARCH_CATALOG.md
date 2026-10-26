@@ -41,6 +41,14 @@
 
 📁 · [2026/04/25 · Compact S³ Cosmology, Quasi-local Diffeomorphism Charges and Discrete φ-Level Embedding](../All%20Preprints/2026_04_25_Compact_S3_Cosmology_Quasi_local_Diffeomorphism_Charges_and_Discrete_%CF%86_Level_Embedding/)
 
+📁 · [2026/04/30 · A Hopf-Bundle Holonomy Representation of Spin-Singlet Bell Correlations](../All%20Preprints/2026_04_30_A_Hopf_Bundle_Holonomy_Representation_of_Spin_Singlet_Bell_Correlations_PRA/)
+
+📁 · [2026/05/05 · Planck-Boundary Geometry of Compact S³ Cosmology](../All%20Preprints/2026_05_05_Planck_Boundary_Geometry_of_Compact_S3_Cosmology/)
+
+📁 · [2026/05/07 · Computable Multibranch Transfer Kernels for Endpoint Quantum Usefulness](../All%20Preprints/2026_05_07_Computable_Multibranch_Transfer_Kernels_for_Endpoint_Quantum_Usefulness/)
+
+📁 · [2026/05/13 · Compact S³/Γ Topological Residual Cosmology: Invariant Closure, Protected Sectors, and Perturbative Null Tests](../All%20Preprints/2026_05_13_Compact_S3_%CE%93_Topological_Residual_Cosmology_Invariant_Closure_Protected_Sectors_and_Perturbative_Null_Tests/)
+
 ---
 
 ## Explore the research archive
