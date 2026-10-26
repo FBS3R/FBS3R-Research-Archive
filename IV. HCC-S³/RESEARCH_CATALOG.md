@@ -47,6 +47,20 @@
 
 📁 · [2026/04/25 · Compact S³ Cosmology, Quasi-local Diffeomorphism Charges and Discrete φ-Level Embedding](../All%20Preprints/2026_04_25_Compact_S3_Cosmology_Quasi_local_Diffeomorphism_Charges_and_Discrete_%CF%86_Level_Embedding/)
 
+📁 · [2026/04/29 · Causal Self-Consistency of the Speed of Light in Fractal S³ Geometry](../All%20Preprints/2026_04_29_Causal_Self_Consistency_of_the_Speed_of_Light_in_Fractal_S3_Geometry/)
+
+📁 · [2026/04/29 · Geometric–Causal–Spectral Cosmology on a Compact Three-Sphere S³: Kernel, Causal Light Front, Density Tracking, and Redshift as a Density-Gradient Integral](../All%20Preprints/2026_04_29_Geometric_Causal_Spectral_Cosmology_on_a_Compact_Three_Sphere_S3_Kernel_Causal_Light_Front_Density_Tracking_and_Redshift_as_a_Density_Gradient_Integral/)
+
+📁 · [2026/05/04 · A Curvature-Scale Coincidence on Compact S³ and Two Dynamical Completion Tests](../All%20Preprints/2026_05_04_A_Curvature_Scale_Coincidence_on_Compact_S3_and_Two_Dynamical_Completion_Tests/)
+
+📁 · [2026/05/05 · Planck-Boundary Geometry of Compact S³ Cosmology](../All%20Preprints/2026_05_05_Planck_Boundary_Geometry_of_Compact_S3_Cosmology/)
+
+📁 · [2026/05/10 · Dark-Sector Residuals in Compact S³ FLRW Cosmology](../All%20Preprints/2026_05_10_Dark_Sector_Residuals_in_Compact_S3_FLRW_Cosmology/)
+
+📁 · [2026/05/11 · Benchmark Residual Invariants in Compact S³ Cosmology](../All%20Preprints/2026_05_11_Benchmark_residual_invariants_in_compact_S3_cosmology/)
+
+📁 · [2026/05/13 · Compact S³/Γ Topological Residual Cosmology: Invariant Closure, Protected Sectors, and Perturbative Null Tests](../All%20Preprints/2026_05_13_Compact_S3_%CE%93_Topological_Residual_Cosmology_Invariant_Closure_Protected_Sectors_and_Perturbative_Null_Tests/)
+
 ---
 
 ## Explore the research archive
