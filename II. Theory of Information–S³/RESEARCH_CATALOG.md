@@ -15,6 +15,14 @@
 
 📁 · [2025/06/05 · Critical Analysis of Schrödinger's Thought Experiment](../All%20Preprints/2025_06_05_Critical_Analysis_of_Schrodinger_Thought_Experiment/)
 
+📁 · [2026/02/18 · Fractal Quantum Entanglement Density via Fibonacci Embedding](../All%20Preprints/2026_02_18_Fractal_Quantum_Entanglement_Density_via_Fibonacci_Embedding/)
+
+📁 · [2026/04/15 · Compact Simply-Connected Cosmology and the Geometric Origin of Quantum Nonlocality: Bell Inequality Violations from S³ Topology and Fibonacci Geodesic Stratification](../All%20Preprints/2026_04_15_Compact_Simply_Connected_Cosmology_and_the_Geometric_Origin_of_Quantum_Nonlocality_Bell_Inequality_Violations_from_S3_Topology_and_Fibonacci_Geodesic_Stratification/)
+
+📁 · [2026/04/17 · Wave Function of the Void: Dual-Sector Quantum Cosmology on S³, Emergent Time, Entropy and Geometric Expansion](../All%20Preprints/2026_04_17_Wave_Function_of_the_Void_Dual_Sector_Quantum_Cosmology_on_S3_Emergent_Time_Entropy_and_Geometric_Expansion/)
+
+📁 · [2026/04/21 · Hierarchical Bethe-Type States on Fibonacci Graphs over S³](../All%20Preprints/2026_04_21_Hierarchical_Bethe_Type_States_on_Fibonacci_Graphs_over_S3/)
+
 ---
 
 ## Explore the research archive
