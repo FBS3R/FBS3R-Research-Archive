@@ -29,11 +29,6 @@ This section explores the conceptual and physical foundations of the programme: 
 **Orpheus Praxis** is an independent educational YouTube channel offering intellectual ASMR audio podcasts on mathematics, physics, cosmology, and the foundations of reality. Combining accessible scientific storytelling with interdisciplinary inquiry, the channel explores established theories, empirical discoveries, and contemporary research through logic, critical thinking, and verifiable scientific knowledge. Scientific models are presented as tools for understanding, open to examination and revision rather than belief.
 
 **Audio Podcast Playlist:** [III. Ontology & Physics](https://www.youtube.com/playlist?list=PLGyr1XUx_oMs)
-
-## Research publications
-
-1. **[Being and Non-Being: Beyond Extremes](../All%20Preprints/2025_02_06_Being%20and%20Non-Being_Beyond%20Extremes/)** — original preprint folder in **All Preprints**.
-
 ---
 
 [← Research archive](../) · [All Preprints](../All%20Preprints/) · [Logic & Mathematics](../I.%20Logic%20%26%20Mathematics/) · [Theory of Information–S³](../II.%20Theory%20of%20Information%E2%80%93S%C2%B3/) · [Ontology & Physics](../III.%20Ontology%20%26%20Physics/) · [HCC-S³](../IV.%20HCC-S%C2%B3/)
