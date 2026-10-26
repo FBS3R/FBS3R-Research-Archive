@@ -32,7 +32,7 @@ This section explores the conceptual and physical foundations of the programme: 
 
 ## Research publications
 
-Individual works will be indexed here with links to their original PDF and TeX files in **[All Preprints](../All%20Preprints/)**.
+1. **[Being and Non-Being: Beyond Extremes](../All%20Preprints/2025_02_06_Being%20and%20Non-Being_Beyond%20Extremes/)** — original preprint folder in **All Preprints**.
 
 ---
 
