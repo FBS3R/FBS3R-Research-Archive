@@ -38,6 +38,7 @@
 📁 · [2025/06/27 · FB(S³)R: Dependent Origination — A Mathematical Formalization of Interdependence in Quantum and Cosmological Systems](../All%20Preprints/2025_06_27_FBS3R_Dependent_Origination_A_Mathematical_Formalization_of_Interdependence_in_Quantum_and_Cosmological_Systems/)
 
 📁 · [2025/07/23 · Heisenberg's Uncertainty Principle: The Fractal Nature of Uncertainty Across All Scales](../All%20Preprints/2025_07_23_Heisenberg_s_Uncertainty_Principle_The_Fractal_Nature_of_Uncertainty_Across_All_Scales/)
+
 ---
 
 ## Explore the research archive
