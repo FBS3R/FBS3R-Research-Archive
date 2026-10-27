@@ -77,6 +77,16 @@
 
 📁 · [2026/07/02 · Hopf-Lifted Ricci-Type Flow on S³: A No-Go for Bounded and Engineered Forcing, and a Planck-Barrier Invariant Region](../All%20Preprints/2026_07_02_Hopf_Lifted_Ricci_Type_Flow_on_S3_A_No_Go_for_Bounded_and_Engineered_Forcing_and_a_Planck_Barrier_Invariant_Region/)
 
+📁 · [2026/07/03 · Causal Co-Scaling of Distance and Time in a Fractal S³ Reconstruction Model](../All%20Preprints/2026_07_03_Causal_Co_Scaling_of_Distance_and_Time_in_a_Fractal_S3_Reconstruction_Model/)
+
+📁 · [2026/07/05 · Supercritical Variational Curvature Barriers for Ricci-Type Flows on Compact S³](../All%20Preprints/2026_07_05_Supercritical_variational_curvature_barriers_for_Ricci_type_flows_on_compact_S3/)
+
+📁 · [2026/07/06 · Gravity as a Selector of Dependently Reconstructible Distinguishability on Compact S³](../All%20Preprints/2026_07_06_Gravity_as_a_Selector_of_Dependently_Reconstructible_Distinguishability_on_Compact_S3/)
+
+📁 · [2026/07/06 · Research Framework: Physical Distinguishability in HCC-S³](../All%20Preprints/2026_07_06_Research_Framework_Physical_Distinguishability_in_HCC_S3/)
+
+📁 · [2026/07/07 · Causal–Spectral Distinguishability Selection on a Conditional Round S³ Carrier](../All%20Preprints/2026_07_07_Causal_Spectral_Distinguishability_Selection_on_a_Conditional_Round_S3_Carrier/)
+
 ---
 
 ## Explore the research archive
