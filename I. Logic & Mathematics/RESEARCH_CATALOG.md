@@ -49,6 +49,12 @@
 
 📁 · [2026/05/13 · Compact S³/Γ Topological Residual Cosmology: Invariant Closure, Protected Sectors, and Perturbative Null Tests](../All%20Preprints/2026_05_13_Compact_S3_%CE%93_Topological_Residual_Cosmology_Invariant_Closure_Protected_Sectors_and_Perturbative_Null_Tests/)
 
+📁 · [2026/06/26 · Expanding Hopf-Lifted Ricci-Type Flows and Planck-Boundary Curvature Control in Compact S³ Sectors](../All%20Preprints/2026_06_26_Expanding_Hopf_Lifted_Ricci_Type_Flows_and_Planck_Boundary_Curvature_Control_in_Compact_S3_Sectors/)
+
+📁 · [2026/07/02 · Hopf-Lifted Ricci-Type Flow on S³: A No-Go for Bounded and Engineered Forcing, and a Planck-Barrier Invariant Region](../All%20Preprints/2026_07_02_Hopf_Lifted_Ricci_Type_Flow_on_S3_A_No_Go_for_Bounded_and_Engineered_Forcing_and_a_Planck_Barrier_Invariant_Region/)
+
+📁 · [2026/07/02 · Information as Dependently Reconstructible Distinguishability: Carriers, Invariance Theorems, and Operational Capacity on Compact S³ Geometry](../All%20Preprints/2026_07_02_Information_as_Dependently_Reconstructible_Distinguishability_Carriers_Invariance_Theorems_and_Operational_Capacity_on_Compact_S3_Geometry/)
+
 ---
 
 ## Explore the research archive
