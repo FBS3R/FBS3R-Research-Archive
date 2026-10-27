@@ -61,6 +61,22 @@
 
 📁 · [2026/05/13 · Compact S³/Γ Topological Residual Cosmology: Invariant Closure, Protected Sectors, and Perturbative Null Tests](../All%20Preprints/2026_05_13_Compact_S3_%CE%93_Topological_Residual_Cosmology_Invariant_Closure_Protected_Sectors_and_Perturbative_Null_Tests/)
 
+📁 · [2026/05/15 · Compact Spherical FLRW Residuals: Closure, Local ΛCDM Degeneracy, and Amplitude-Selection Boundaries](../All%20Preprints/2026_05_15_Compact_Spherical_FLRW_Residuals_Closure_Local_%CE%9BCDM_Degeneracy_and_Amplitude_Selection_Boundaries/)
+
+📁 · [2026/05/16 · Light as Causal Coherence Structure in Compact S³ Geometry: Null Relational Propagation and Compact Causal Accessibility](../All%20Preprints/2026_05_16_Light_as_Causal_Coherence_Structure_in_Compact_S3_Geometry_Null_Relational_Propagation_and_Compact_Causal_Accessibility/)
+
+📁 · [2026/05/17 · Invariant Residual–Transfer Completion: A Dynamical Audit Framework for Dark-Sector and Topology Claims](../All%20Preprints/2026_05_17_Invariant_Residual_Transfer_Completion_A_Dynamical_Audit_Framework_for_Dark_Sector_and_Topology_Claims/)
+
+📁 · [2026/05/19 · A Residual-First Standard for Dark-Sector Closure and Compact-Topology Tests](../All%20Preprints/2026_05_19_A_Residual_First_Standard_for_Dark_Sector_Closure_and_Compact_Topology_Tests/)
+
+📁 · [2026/05/19 · Einstein-Residual Closure Standard: Invariant Dark-Sector Audits, Normal Forms, and Topology-Likelihood Boundaries](../All%20Preprints/2026_05_19_Einstein_Residual_Closure_Standard_Invariant_Dark_Sector_Audits_Normal_Forms_and_Topology_Likelihood_Boundaries/)
+
+📁 · [2026/06/10 · Conditional Reconstruction of a Quasi-Local Observable Domain within Compact S³ Geometry](../All%20Preprints/2026_06_10_Conditional_Reconstruction_of_a_Quasi_Local_Observable_Domain_within_Compact_S3_Geometry/)
+
+📁 · [2026/06/26 · Expanding Hopf-Lifted Ricci-Type Flows and Planck-Boundary Curvature Control in Compact S³ Sectors](../All%20Preprints/2026_06_26_Expanding_Hopf_Lifted_Ricci_Type_Flows_and_Planck_Boundary_Curvature_Control_in_Compact_S3_Sectors/)
+
+📁 · [2026/07/02 · Hopf-Lifted Ricci-Type Flow on S³: A No-Go for Bounded and Engineered Forcing, and a Planck-Barrier Invariant Region](../All%20Preprints/2026_07_02_Hopf_Lifted_Ricci_Type_Flow_on_S3_A_No_Go_for_Bounded_and_Engineered_Forcing_and_a_Planck_Barrier_Invariant_Region/)
+
 ---
 
 ## Explore the research archive
