@@ -63,6 +63,20 @@
 
 📁 · [2026/07/08 · Hopfion Sectors and Topological Physical Information in HCC-S³: A Mathematical Investigation of Topologically Protected Distinguishability](../All%20Preprints/2026_07_08_Hopfion_Sectors_and_Topological_Physical_Information_in_HCC_S3_A_Mathematical_Investigation_of_Topologically_Protected_Distinguishability/)
 
+📁 · [2026/08/09 · Finite Dilation Operator Algebra of Homothetic B⁴/S³ Valuations and Homogeneous Closure Tests for Valuation Dark Energy](../All%20Preprints/2026_08_09_Finite_Dilation_Operator_Algebra_of_Homothetic_B4_S3_Valuations_and_Homogeneous_Closure_Tests_for_Valuation_Dark_Energy/)
+
+📁 · [2026/08/09 · Homothetic Valuation Spectrum of a Quasilocal B⁴ Filling and an Effective Residual Sector on Compact S³](../All%20Preprints/2026_08_09_Homothetic_Valuation_Spectrum_of_a_Quasilocal_B4_Filling_and_an_Effective_Residual_Sector_on_Compact_S3/)
+
+📁 · [2026/08/10 · Capacity-Fixed Trace-Free Gravity and S³ Valuation Closure: A Unified Invariant Sieve with DESI DR2 BAO Diagnostics](../All%20Preprints/2026_08_10_Capacity_Fixed_Trace_Free_Gravity_and_S3_Valuation_Closure_A_Unified_Invariant_Sieve_with_DESI_DR2_BAO_Diagnostics/)
+
+📁 · [2026/08/10 · Finite Dilation Algebra of Round Euclidean B⁴/S³ Valuation Profiles: Exact Invariants, Homogeneous Gravity Closure, and Executed Null Tests](../All%20Preprints/2026_08_10_Finite_Dilation_Algebra_of_Round_Euclidean_B4_S3_Valuation_Profiles_Exact_Invariants_Homogeneous_Gravity_Closure_and_Executed_Null_Tests/)
+
+📁 · [2026/08/10 · Finite Dilation Algebra of Round Euclidean B⁴/S³ Valuation Profiles: Exact Invariants and Executed Homogeneous Null Tests](../All%20Preprints/2026_08_10_Finite_Dilation_Algebra_of_Round_Euclidean_B4_S3_Valuation_Profiles_Exact_Invariants_and_Executed_Homogeneous_Null_Tests/)
+
+📁 · [2026/08/14 · Statistical Experiments, Observational Indistinguishability, and SETI Null Results](../All%20Preprints/2026_08_14_Statistical_Experiments_Observational_Indistinguishability_and_SETI_Null_Results/)
+
+📁 · [2026/08/17 · Acyclic CIVP–Index Locking, Molecular Corner Statistics, Entropy–Flux Structure, and Capacity Selection in Trace-Free de Sitter Gravity](../All%20Preprints/2026_08_17_Acyclic_CIVP_Index_Locking_Molecular_Corner_Statistics_Entropy_Flux_Structure_and_Capacity_Selection_in_Trace_Free_de_Sitter_Gravity/)
+
 ---
 
 ## Explore the research archive
