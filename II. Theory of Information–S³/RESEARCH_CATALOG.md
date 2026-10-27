@@ -45,6 +45,12 @@
 
 📁 · [2026/07/08 · Hopfion Sectors and Topological Physical Information in HCC-S³: A Mathematical Investigation of Topologically Protected Distinguishability](../All%20Preprints/2026_07_08_Hopfion_Sectors_and_Topological_Physical_Information_in_HCC_S3_A_Mathematical_Investigation_of_Topologically_Protected_Distinguishability/)
 
+📁 · [2026/08/11 · Capacity-Fixed Trace-Free Gravity and Non-Perturbative Edge-Partition Boundary Selection](../All%20Preprints/2026_08_11_Capacity_Fixed_Trace_Free_Gravity_and_Non_Perturbative_Edge_Partition_Boundary_Selection/)
+
+📁 · [2026/08/12 · Trace-Free Gravity and Horizon Capacity: Fibonacci Shell Closure and an Autonomous Edge-Hamiltonian Candidate for the Cosmological Constant](../All%20Preprints/2026_08_12_Trace_Free_Gravity_and_Horizon_Capacity_Fibonacci_Shell_Closure_and_an_Autonomous_Edge_Hamiltonian_Candidate_for_the_Cosmological_Constant/)
+
+📁 · [2026/08/14 · Statistical Experiments, Observational Indistinguishability, and SETI Null Results](../All%20Preprints/2026_08_14_Statistical_Experiments_Observational_Indistinguishability_and_SETI_Null_Results/)
+
 ---
 
 ## Explore the research archive
