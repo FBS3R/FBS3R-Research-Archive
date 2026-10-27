@@ -55,6 +55,14 @@
 
 📁 · [2026/07/02 · Information as Dependently Reconstructible Distinguishability: Carriers, Invariance Theorems, and Operational Capacity on Compact S³ Geometry](../All%20Preprints/2026_07_02_Information_as_Dependently_Reconstructible_Distinguishability_Carriers_Invariance_Theorems_and_Operational_Capacity_on_Compact_S3_Geometry/)
 
+📁 · [2026/07/02 · Suspension of Spheres and the Minimal Role of S³ in Spin, Hopf Geometry, and Irreversible Hierarchy](../All%20Preprints/2026_07_02_Suspension_of_Spheres_and_the_Minimal_Role_of_S3_in_Spin_Hopf_Geometry_and_Irreversible_Hierarchy/)
+
+📁 · [2026/07/03 · Dependently Reconstructible Distinguishability (DRD): A Functorial Theory of Information Carriers, Graded Spectral Capacities, and Causal Integration on Compact S³ Geometry](../All%20Preprints/2026_07_03_Dependently_Reconstructible_Distinguishability_DRD_A_Functorial_Theory_of_Information_Carriers_Graded_Spectral_Capacities_and_Causal_Integration_on_Compact_S3_Geometry/)
+
+📁 · [2026/07/05 · Supercritical Variational Curvature Barriers for Ricci-Type Flows on Compact S³](../All%20Preprints/2026_07_05_Supercritical_variational_curvature_barriers_for_Ricci_type_flows_on_compact_S3/)
+
+📁 · [2026/07/08 · Hopfion Sectors and Topological Physical Information in HCC-S³: A Mathematical Investigation of Topologically Protected Distinguishability](../All%20Preprints/2026_07_08_Hopfion_Sectors_and_Topological_Physical_Information_in_HCC_S3_A_Mathematical_Investigation_of_Topologically_Protected_Distinguishability/)
+
 ---
 
 ## Explore the research archive
