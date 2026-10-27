@@ -29,6 +29,8 @@
 
 📁 · [2026/05/07 · Computable Multibranch Transfer Kernels for Endpoint Quantum Usefulness](../All%20Preprints/2026_05_07_Computable_Multibranch_Transfer_Kernels_for_Endpoint_Quantum_Usefulness/)
 
+📁 · [2026/07/02 · Information as Dependently Reconstructible Distinguishability: Carriers, Invariance Theorems, and Operational Capacity on Compact S³ Geometry](../All%20Preprints/2026_07_02_Information_as_Dependently_Reconstructible_Distinguishability_Carriers_Invariance_Theorems_and_Operational_Capacity_on_Compact_S3_Geometry/)
+
 ---
 
 ## Explore the research archive
