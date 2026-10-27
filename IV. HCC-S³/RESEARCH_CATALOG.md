@@ -87,6 +87,22 @@
 
 📁 · [2026/07/07 · Causal–Spectral Distinguishability Selection on a Conditional Round S³ Carrier](../All%20Preprints/2026_07_07_Causal_Spectral_Distinguishability_Selection_on_a_Conditional_Round_S3_Carrier/)
 
+📁 · [2026/08/09 · Finite Dilation Operator Algebra of Homothetic B⁴/S³ Valuations and Homogeneous Closure Tests for Valuation Dark Energy](../All%20Preprints/2026_08_09_Finite_Dilation_Operator_Algebra_of_Homothetic_B4_S3_Valuations_and_Homogeneous_Closure_Tests_for_Valuation_Dark_Energy/)
+
+📁 · [2026/08/09 · Homothetic Valuation Spectrum of a Quasilocal B⁴ Filling and an Effective Residual Sector on Compact S³](../All%20Preprints/2026_08_09_Homothetic_Valuation_Spectrum_of_a_Quasilocal_B4_Filling_and_an_Effective_Residual_Sector_on_Compact_S3/)
+
+📁 · [2026/08/10 · Capacity-Fixed Trace-Free Gravity and S³ Valuation Closure: A Unified Invariant Sieve with DESI DR2 BAO Diagnostics](../All%20Preprints/2026_08_10_Capacity_Fixed_Trace_Free_Gravity_and_S3_Valuation_Closure_A_Unified_Invariant_Sieve_with_DESI_DR2_BAO_Diagnostics/)
+
+📁 · [2026/08/10 · Finite Dilation Algebra of Round Euclidean B⁴/S³ Valuation Profiles: Exact Invariants, Homogeneous Gravity Closure, and Executed Null Tests](../All%20Preprints/2026_08_10_Finite_Dilation_Algebra_of_Round_Euclidean_B4_S3_Valuation_Profiles_Exact_Invariants_Homogeneous_Gravity_Closure_and_Executed_Null_Tests/)
+
+📁 · [2026/08/10 · Finite Dilation Algebra of Round Euclidean B⁴/S³ Valuation Profiles: Exact Invariants and Executed Homogeneous Null Tests](../All%20Preprints/2026_08_10_Finite_Dilation_Algebra_of_Round_Euclidean_B4_S3_Valuation_Profiles_Exact_Invariants_and_Executed_Homogeneous_Null_Tests/)
+
+📁 · [2026/08/11 · Capacity-Fixed Trace-Free Gravity and Non-Perturbative Edge-Partition Boundary Selection](../All%20Preprints/2026_08_11_Capacity_Fixed_Trace_Free_Gravity_and_Non_Perturbative_Edge_Partition_Boundary_Selection/)
+
+📁 · [2026/08/12 · Trace-Free Gravity and Horizon Capacity: Fibonacci Shell Closure and an Autonomous Edge-Hamiltonian Candidate for the Cosmological Constant](../All%20Preprints/2026_08_12_Trace_Free_Gravity_and_Horizon_Capacity_Fibonacci_Shell_Closure_and_an_Autonomous_Edge_Hamiltonian_Candidate_for_the_Cosmological_Constant/)
+
+📁 · [2026/08/17 · Acyclic CIVP–Index Locking, Molecular Corner Statistics, Entropy–Flux Structure, and Capacity Selection in Trace-Free de Sitter Gravity](../All%20Preprints/2026_08_17_Acyclic_CIVP_Index_Locking_Molecular_Corner_Statistics_Entropy_Flux_Structure_and_Capacity_Selection_in_Trace_Free_de_Sitter_Gravity/)
+
 ---
 
 ## Explore the research archive
