@@ -51,6 +51,8 @@
 
 📁 · [2026/04/20 · In the Nonexistent Mind](../All%20Preprints/2026_04_20_In_the_nonexistent_mind/)
 
+📁 · [2026/05/24 · The Ontological Structure of the S³ Manifold](../All%20Preprints/2026_05_24_The_Ontological_Structure_of_the_S3_Manifold/)
+
 ---
 
 ## Explore the research archive
