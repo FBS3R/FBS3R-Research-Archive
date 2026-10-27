@@ -103,6 +103,10 @@
 
 📁 · [2026/08/17 · Acyclic CIVP–Index Locking, Molecular Corner Statistics, Entropy–Flux Structure, and Capacity Selection in Trace-Free de Sitter Gravity](../All%20Preprints/2026_08_17_Acyclic_CIVP_Index_Locking_Molecular_Corner_Statistics_Entropy_Flux_Structure_and_Capacity_Selection_in_Trace_Free_de_Sitter_Gravity/)
 
+📁 · [2026/09/11 · Field Reconstruction and Curvature Identifiability from Spherical Maps in a Closed Spatial Geometry](../All%20Preprints/2026_09_11_Field_Reconstruction_and_Curvature_Identifiability_from_Spherical_Maps_in_a_Closed_Spatial_Geometry/)
+
+📁 · [2026/10/06 · S³ LIGHT-TRISPHERE: A Technical Atlas of an Interactive First-Principles Scientific Universe](../All%20Preprints/2026_10_06_S3_LIGHT_TRISPHERE_A_Technical_Atlas_of_an_Interactive_First_Principles_Scientific_Universe/)
+
 ---
 
 ## Explore the research archive
