@@ -51,6 +51,12 @@
 
 📁 · [2026/08/14 · Statistical Experiments, Observational Indistinguishability, and SETI Null Results](../All%20Preprints/2026_08_14_Statistical_Experiments_Observational_Indistinguishability_and_SETI_Null_Results/)
 
+📁 · [2026/10/15 · Meta-Causal: The Geometry of Predictive Memory and the Limits of Reconstructibility](../All%20Preprints/2026_10_15_Meta_Causal_The_Geometry_Of_Predictive_Memory_And_The_Limits_Of_Reconstructibility/)
+
+📁 · [2026/10/23 · Certified Hopf Tomography: Exact Invariants, Sharp Stability, and Minimax Calibration](../All%20Preprints/2026_10_23_Certified_Hopf_Tomography_Exact_Invariants_Sharp_Stability_and_Minimax_Calibration/)
+
+📁 · [2026/10/23 · Rational Spectral Hierarchies and Matrix-Free Gauge Certificates](../All%20Preprints/2026_10_23_Rational_Spectral_Hierarchies_and_Matrix_Free_Gauge_Certificates/)
+
 ---
 
 ## Explore the research archive
