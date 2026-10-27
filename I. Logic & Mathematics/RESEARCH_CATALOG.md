@@ -77,6 +77,22 @@
 
 📁 · [2026/08/17 · Acyclic CIVP–Index Locking, Molecular Corner Statistics, Entropy–Flux Structure, and Capacity Selection in Trace-Free de Sitter Gravity](../All%20Preprints/2026_08_17_Acyclic_CIVP_Index_Locking_Molecular_Corner_Statistics_Entropy_Flux_Structure_and_Capacity_Selection_in_Trace_Free_de_Sitter_Gravity/)
 
+📁 · [2026/09/07 · Pregeometric Relational Dynamics and Universal Causal Structure: Spectral Constraints, Response Limits, Universal Null Calibration, and Functional Consistency of Light](../All%20Preprints/2026_09_07_Pregeometric_Relational_Dynamics_and_Universal_Causal_Structure_Spectral_Constraints_Response_Limits_Universal_Null_Calibration_and_Functional_Consistency_of_Light/)
+
+📁 · [2026/09/11 · Field Reconstruction and Curvature Identifiability from Spherical Maps in a Closed Spatial Geometry](../All%20Preprints/2026_09_11_Field_Reconstruction_and_Curvature_Identifiability_from_Spherical_Maps_in_a_Closed_Spatial_Geometry/)
+
+📁 · [2026/09/20 · Finite-Dimensional Spectral Closure and a Relative Forced Singular Branch for Navier–Stokes on the Round Three-Sphere](../All%20Preprints/2026_09_20_Finite_Dimensional_Spectral_Closure_and_a_Relative_Forced_Singular_Branch_for_Navier_Stokes_on_the_Round_Three_Sphere/)
+
+📁 · [2026/09/22 · Geometric Reduction, Killing-Response Reconstruction, and Spectral Tomography for Navier–Stokes Flow on the Round Three-Sphere](../All%20Preprints/2026_09_22_Geometric_Reduction_Killing_Response_Reconstruction_and_Spectral_Tomography_for_Navier_Stokes_Flow_on_the_Round_Three_Sphere/)
+
+📁 · [2026/09/23 · Killing–Beltrami Algebra and Exact Reductions of Navier–Stokes Flow on the Three-Sphere](../All%20Preprints/2026_09_23_Killing_Beltrami_algebra_and_exact_reductions_of_Navier_Stokes_flow_on_the_three_sphere/)
+
+📁 · [2026/10/06 · Holomorphic Hopf–Beltrami Maxwell Modes on the Round Three-Sphere: Exact Construction, Conformal Transport, and Penrose Representation](../All%20Preprints/2026_10_06_Holomorphic_Hopf_Beltrami_Maxwell_Modes_on_the_Round_Three_Sphere_Exact_Construction_Conformal_Transport_and_Penrose_Representation/)
+
+📁 · [2026/10/07 · Null Beltrami Geometry on the Round Three-Sphere: Global Hopf Classification, Bateman Links, and an Exact Sextic Twistor-Cohomology Bridge](../All%20Preprints/2026_10_07_Null_Beltrami_Geometry_on_the_Round_Three_Sphere_Global_Hopf_Classification_Bateman_Links_and_an_Exact_Sextic_Twistor_Cohomology_Bridge/)
+
+📁 · [2026/10/07 · Null Beltrami Geometry on the Round Three-Sphere: Hopf Classification, Bateman Links, Twistor Cohomology, and Structural Obstructions](../All%20Preprints/2026_10_07_Null_Beltrami_Geometry_on_the_Round_Three_Sphere_Hopf_Classification_Bateman_Links_Twistor_Cohomology_and_Structural_Obstructions/)
+
 ---
 
 ## Explore the research archive
