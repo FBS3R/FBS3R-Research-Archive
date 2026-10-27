@@ -107,6 +107,8 @@
 
 📁 · [2026/10/06 · S³ LIGHT-TRISPHERE: A Technical Atlas of an Interactive First-Principles Scientific Universe](../All%20Preprints/2026_10_06_S3_LIGHT_TRISPHERE_A_Technical_Atlas_of_an_Interactive_First_Principles_Scientific_Universe/)
 
+📁 · [2026/10/15 · Exact Closed Cosmological Backgrounds Sourced by an Isotropic Hopf Triad: Conformal-Direction Stability Bounds and Observability](../All%20Preprints/2026_10_15_Exact_closed_cosmological_backgrounds_sourced_by_an_isotropic_Hopf_triad_conformal_direction_stability_bounds_and_observability/)
+
 ---
 
 ## Explore the research archive
