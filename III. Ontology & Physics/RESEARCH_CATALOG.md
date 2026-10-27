@@ -53,6 +53,10 @@
 
 📁 · [2026/05/24 · The Ontological Structure of the S³ Manifold](../All%20Preprints/2026_05_24_The_Ontological_Structure_of_the_S3_Manifold/)
 
+📁 · [2026/07/06 · From Geometric Carrier to Physical Carrier: Distinguishability, Holonomy, and the Actualisation of Information in Compact S³ Geometry](../All%20Preprints/2026_07_06_From_Geometric_Carrier_to_Physical_Carrier_Distinguishability_Holonomy_and_the_Actualisation_of_Information_in_Compact_S3_Geometry/)
+
+📁 · [2026/07/19 · How Does a Three-Dimensional Manifold Become Alive?](../All%20Preprints/2026_07_19_How_Does_a_Three_Dimensional_Manifold_Become_Alive/)
+
 ---
 
 ## Explore the research archive
