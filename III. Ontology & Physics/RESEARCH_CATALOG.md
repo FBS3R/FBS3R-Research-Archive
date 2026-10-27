@@ -57,6 +57,8 @@
 
 📁 · [2026/07/19 · How Does a Three-Dimensional Manifold Become Alive?](../All%20Preprints/2026_07_19_How_Does_a_Three_Dimensional_Manifold_Become_Alive/)
 
+📁 · [2026/07/21 · Relational Theory of Expression: Quasilocal Manifestation, Reconstruction, and Operational Equivalence](../All%20Preprints/2026_07_21_Relational_Theory_of_Expression_Quasilocal_Manifestation_Reconstruction_and_Operational_Equivalence/)
+
 ---
 
 ## Explore the research archive
