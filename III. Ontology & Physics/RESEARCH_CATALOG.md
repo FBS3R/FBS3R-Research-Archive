@@ -69,6 +69,12 @@
 
 📁 · [2026/10/07 · Null Beltrami Geometry on the Round Three-Sphere: Hopf Classification, Bateman Links, Twistor Cohomology, and Structural Obstructions](../All%20Preprints/2026_10_07_Null_Beltrami_Geometry_on_the_Round_Three_Sphere_Hopf_Classification_Bateman_Links_Twistor_Cohomology_and_Structural_Obstructions/)
 
+📁 · [2026/10/13 · Geometry of Light on the Round Three-Sphere: Hopf–Jacobi Dynamics, Maxwell Intensity, Dual Tomography, and Nonlinear Spectral Certificates](../All%20Preprints/2026_10_13_Geometry_of_Light_on_the_Round_Three_Sphere_Hopf_Jacobi_Dynamics_Maxwell_Intensity_Dual_Tomography_and_Nonlinear_Spectral_Certificates/)
+
+📁 · [2026/10/17 · Pregeometric Relational Dynamics and Universal Causal Structure: A Permutation-Invariant Phase-Selection Witness, Quasilocality, Cone Locking, and the Boundary of Temporal Orientation](../All%20Preprints/2026_10_17_Pregeometric_Relational_Dynamics_And_Universal_Causal_Structure_A_Permutation_Invariant_Phase_Selection_Witness_Quasilocality_Cone_Locking_And_The_Boundary_Of_Temporal_Orientation/)
+
+📁 · [2026/10/17 · Pregeometric Relational Dynamics and Universal Causal Structure: Spectral Constraints, Response Limits, Universal Null Calibration, Functional Consistency of Light, and a Quantitative Reconstruction–Locality Interface](../All%20Preprints/2026_10_17_Pregeometric_Relational_Dynamics_And_Universal_Causal_Structure_Spectral_Constraints_Response_Limits_Universal_Null_Calibration_Functional_Consistency_Of_Light_And_A_Quantitative_Reconstruction_Locality_Interface/)
+
 ---
 
 ## Explore the research archive
