@@ -1,0 +1,169 @@
+\documentclass[aps,pra,twocolumn,nofootinbib,superscriptaddress,10pt]{revtex4-2}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,mathtools,microtype,booktabs,bm}
+\usepackage[colorlinks=true,urlcolor=blue,citecolor=blue,linkcolor=blue]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{corollary}{Corollary}
+\newcommand{\Cc}{\mathcal C}\newcommand{\HH}{\mathcal H}\newcommand{\Id}{\mathbb I}
+\newcommand{\Tr}{\operatorname{Tr}}\newcommand{\Lie}{\operatorname{Lie}}
+\newcommand{\opn}{\operatorname{osc}}
+\begin{document}
+\title{Measurement-Free Encoded-Qubit Control and a Two-Local Qutrit Obstruction\\in a Spin-2 AKLT Plaquette}
+\author{Andrei Preece}
+\author{Boris Batenin}
+\date{28 October 2026}
+\begin{abstract}
+A previous exact spin-2 AKLT plaquette program found a three-dimensional total-spin-zero ground code, a no-go for leakage-free bilinear exchanges, and a projective quantum-Zeno route to full encoded qutrit control. We now classify the \emph{complete} leakage-free logical image of arbitrary simultaneous two-site Hamiltonians, including anisotropic ones, on the $5^4$-dimensional four-spin system. An exact physical leakage map for all six isotropic pairs and all exchange powers through degree four has shape $255\times24$, rank six, and nullity 18. Its logical image is four-dimensional over the real numbers and commutes with one fixed geometric involution $R$, forbidding universal, strictly leakage-free two-local control of the full qutrit. Conversely, two explicit, noncommuting \emph{two-local} Hamiltonians, supported on a triangle of three pairs, preserve the code at all times and generate the full $\mathfrak u(2)\oplus\mathfrak u(1)$ logical algebra. A quadratic and a cubic polynomial in pair exchanges suffice, and degree three and three distinct pair supports are minimal within this class. The protected two-dimensional $R=+1$ eigenspace therefore admits universal single-qubit coherent control without intermediate code measurements or postselection. Exact rational physical-coordinate certificates, an independent verification script, and full singlet-sector dynamical tests are supplied. Operator norm and calibration bounds define necessary engineering tests; the required multichannel, diagonal-pair interactions have not been demonstrated, so neither physical speedup nor worldwide mathematical priority is claimed.
+\end{abstract}
+\maketitle
+\section{Motivation, related work, and scope}
+The spin-2 Affleck--Kennedy--Lieb--Tasaki (AKLT) model is a standard exactly specified parent Hamiltonian for valence-bond states~\cite{AKLT}. A four-site open plaquette provides an unusually small exact laboratory for the gap between compressed logical controllability and physically leakage-free control. Previous versions of the QPROVEX research artifact produced a 3D singlet code in a $625$-dimensional physical system, a no-go for linear exchange sums, a diagonal two-spin quartic phase gate, and a measurement-based Zeno approach for generating $\mathfrak u(3)$ \cite{V6,V8}. None of those results supplies hardware resources, a benchmarked quantum processor, or a finite-size certificate for the open bulk square-lattice gap problem~\cite{Problems,GPW}.
+
+Our focus is a sharper physical question: what entire encoded Lie algebra is reachable by $\emph{simultaneous}$, arbitrary two-site interactions that individually need \emph{not} preserve the code? This is stronger than classifying a single two-site term or switching between individually invariant pairs. The answer reveals a deterministic coherent gate opportunity but also a genuine logical obstruction. General spin-permutation polynomials~\cite{Swap} and encoded exchange gates~\cite{Exchange} are prior art; our instance-specific rational certificate is not claimed to have established global priority.
+
+\section{AKLT singlet code and pair-polynomial basis}
+Let the vertices be $0,1,2,3$, with the four edge bonds $E=\{01,02,13,23\}$. Write
+\begin{equation}
+H_{\square}=\sum_{ij\in E}P^{(4)}_{ij},\quad \HH=(V_2)^{\otimes4},\quad \dim\HH=625.
+\end{equation}
+Here $V_2$ is the five-dimensional spin-2 irrep and each $P^{(4)}$ projects the bond onto total spin four. The precise logical code is
+\begin{equation}
+\Cc=\ker H_\square\cap\ker\bm J^2,\quad \bm J=\sum_{i=0}^3\bm S_i,\quad \dim\Cc=3.
+\end{equation}
+Let $P$ project orthogonally onto $\Cc$ and $Q=\Id-P$. The whole physical $J=0$ sector is 5D: two singlet excitations complement $\Cc$. For each physical pair write $X_{ij}=\bm S_i\cdot\bm S_j$. Its five distinct eigenvalues are $-6,-5,-3,0,4$. Hence all rotationally invariant Hermitian operators supported on a pair have unique real polynomial representatives of degree at most four (modulo the degree-five minimal polynomial), by multiplicity-free $V_2\otimes V_2=\oplus_{J=0}^4V_J$ and Schur's lemma.
+
+The $90^{\circ}$ geometric site rotation and either diagonal transposition induce the same isometric involution on the code, given in a rational three-vector PEPS basis by
+\begin{equation}\label{eq:R}
+R=\begin{pmatrix}0&0&1\\0&1&0\\1&0&0\end{pmatrix},\quad R^2=\Id_3,\quad \dim\Cc_{+}=2,\ \dim\Cc_{-}=1.
+\end{equation}
+This basis is not orthonormal; all compression and operator norms in the exact checker use the positive physical Gram matrix $S$, not the Euclidean coefficient norm.
+
+\section{Complete two-local logical-image theorem}
+Consider the general real, SU(2)-invariant, two-local Hamiltonian
+\begin{equation}\label{eq:Hgen}
+H_{2\mathrm{loc}}=c\Id+\sum_{i<j}\sum_{d=1}^4c_{ij,d}X_{ij}^{d},\quad c_{ij,d}\in\mathbb R.
+\end{equation}
+The $24$ nonconstant coefficients map linearly to the three physical leakage vectors $QH_{2\mathrm{loc}}v_a$, $a=0,1,2$. Using the rational physical PEPS monomial basis and its exact spin-2 metric gives a sparse matrix $L\in\mathbb Q^{255\times24}$. The exact checker constructs \emph{all} $255$ physical residual rows and reports a full nonzero $6\times6$ minor, sufficient because the complement of the 3D code in the full $J=0$ sector is 2D.
+
+\begin{theorem}[Two-local image and qutrit no-go]\label{thm:nogo}
+The leakage map for the $24$ pair polynomials in Eq.~\eqref{eq:Hgen} has
+\begin{equation}\label{eq:ranks}
+\boxed{\operatorname{rank}L=6,\qquad\dim\ker L=18.}
+\end{equation}
+The real linear space of compressed operators obtained from the kernel, including the identity, has dimension exactly four. Every such compression $A=PHP\vert_\Cc$ obeys
+\begin{equation}\label{eq:commute}
+\boxed{[A,R]=0.}
+\end{equation}
+Moreover, if only the four \emph{edge} pairs $01,02,13,23$ are used, every leakage-free Hamiltonian is logically scalar. The same $R$-commutation obstruction holds for an arbitrary \emph{anisotropic} two-local Hermitian Hamiltonian $H$ satisfying $QHP=0$. Therefore strictly leakage-free two-local Hamiltonians cannot generate universal $SU(3)$ logical control on this qutrit, regardless of how many distinct pair channels are combined simultaneously.
+\end{theorem}
+\begin{proof}
+The spin-zero sector has dimension five; all SU(2)-invariant pair polynomials preserve total spin, so $L$ has image in $\mathrm{Hom}(\Cc,\Cc_{J=0}^{\perp})$, a six-dimensional space, proving $\operatorname{rank}L\le6$. Appendix~\ref{app:cert} supplies an explicitly nonzero rational $6\times6$ minor, proving equality and Eq.~\eqref{eq:ranks}. The checker forms a basis of the \emph{entire} 18-dimensional kernel over $\mathbb Q$, checks all its elements against every physical residual row (not merely the witness rows), verifies their $S$-self-adjoint compressions, and establishes $[A,R]=0$ for each. Their real compressed span has rank four. Restriction to all four edge bonds yields only scalar matrices; this result is likewise checked over the full rational edge-only nullspace.
+
+For the anisotropic extension let $G(g)=D_2(g)^{\otimes4}$, $g\in SU(2)$. A total-spin-zero state obeys $G(g)P=P$. If $QHP=0$ and $H$ is Hermitian, then $HP=PHP$. Consequently $G(g)HG(g)^\dagger P=HP$ for every $g$. The global Haar twirl $\bar H=\int G(g)HG(g)^\dagger dg$ has the \emph{same} action on the code and remains two-local, while each pair summand becomes an SU(2)-invariant polynomial of its $X_{ij}$. The first part of the theorem therefore applies to $PHP=P\bar HP$, proving Eq.~\eqref{eq:commute} without assuming isotropy of $H$. Since commuting with $R$ preserves its distinct $\pm1$ eigenspaces, no such control can mix all three logical states.\end{proof}
+
+\begin{corollary}[Minimal polynomial degree and support for noncommuting protected gates]\label{cor:minimum}
+For arbitrary sums of rotationally invariant two-local pair operators, restricting every polynomial to degree one yields only scalars, degree two produces only one nontrivial real logical axis, degree three yields two independent noncommuting axes, and degree four yields the full real four-dimensional space in Theorem~\ref{thm:nogo}. Restricting a Hamiltonian to any two distinct physical pairs yields a logically commuting space of dimension at most two, even at degree four. Three pair supports and cubic terms are therefore both necessary and sufficient for generating a nonabelian, strictly leakage-free encoded logical Lie algebra within this polynomial model.
+\end{corollary}
+\begin{proof}
+The exact rational kernel-image dimensions for degree ceilings $1,2,3,4$ are respectively $1,2,3,4$, with the identity included. For each of the $\binom62=15$ two-pair support sets, the kernel-image rank is at most two, including the identity, and its non-scalar part is proportional to the same $R$ where present. The three-pair construction below attains noncommutativity already at degree three.\end{proof}
+
+\section{Two explicit coherent gates: zero code checks}
+Define pair-polynomial interactions supported on just three physical pairs, namely two original edges and one diagonal, $01,02,03$:
+\begin{align}\label{eq:H2}
+H_2&=X_{03}^2-X_{01}^2-X_{02}^2-16(X_{01}+X_{02}),\\
+H_3&=X_{03}^3+\sum_{j=1,2}(X_{0j}^3+19X_{0j}^2+152X_{0j}).\label{eq:H3}
+\end{align}
+These are sums of \emph{two-site} operators, not three-body operators; $H_3$ contains cubic powers of scalar pair exchange. The coefficients are tuned so that the two independent physical leakage channels cancel exactly.
+
+\begin{theorem}[All-times protected qubit universality]\label{thm:controls}
+Both $H_2$ and $H_3$ are Hermitian and obey $QH_2P=QH_3P=0$ \emph{as exact equalities in the full 625-dimensional physical Hilbert space}. In the inherited rational PEPS basis, their logical actions are
+\begin{align}
+A=PH_2P\vert_\Cc&=\begin{pmatrix}69&14&0\\54&96&54\\0&14&69\end{pmatrix},\label{eq:A}\\
+B=PH_3P\vert_\Cc&=\begin{pmatrix}-453&-52&81\\-729/2&-642&-729/2\\81&-52&-453\end{pmatrix}.\label{eq:B}
+\end{align}
+The five real matrices $A,B,[A,B],[A,[A,B]],[B,[A,B]]$ are linearly independent and all commute with $R$. Including the correct factors of $i$ to make the physical generators skew-Hermitian gives
+\begin{equation}\label{eq:lie}
+\boxed{\Lie_{\mathbb R}(iA,iB)\simeq\mathfrak u(2)\oplus\mathfrak u(1).}
+\end{equation}
+Thus the two-dimensional encoded subspace $\Cc_+=\ker(R-\Id)$ supports universal \emph{single-qubit} coherent gates without postselection or intermediate projective checks. For any integrable real controls $u_2(t),u_3(t)$, the full Hamiltonian $H_{\square}+u_2(t)H_2+u_3(t)H_3$ preserves $\Cc$ at all times. It does not provide universal qutrit gates because $\Cc_-$ is never mixed with $\Cc_+$.
+\end{theorem}
+\begin{proof}
+Direct action on the three exact spin-zero PEPS vectors and orthogonal removal of their compressed components shows $QH_2v_a=QH_3v_a=0$ for each $a$, with no floating-point approximations. This yields the matrices in Eqs.~\eqref{eq:A}--\eqref{eq:B}. They are self-adjoint with respect to the positive Gram form $S$, and $[A,B]\ne0$. A rational rank test of the displayed five nested commutators gives rank five, proving Eq.~\eqref{eq:lie}; the upper bound five follows because the generators all commute with $R$ and act as skew-Hermitian matrices on $\Cc_+\oplus\Cc_-$. Every Hamiltonian term preserves $\Cc$, so the time-ordered propagator also does; no Zeno limit is needed.\end{proof}
+
+The two exact code spectra are
+\begin{align}
+\operatorname{spec}(A)&=\{69,\tfrac{165\pm3\sqrt{753}}2\},\\
+\operatorname{spec}(B)&=\{-534,-507\pm27\sqrt{77}\}.
+\end{align}
+The odd $R=-1$ logical line has respective energies $69$ and $-534$. The noncommuting even-line dynamics can therefore implement arbitrary $SU(2)$ transformations and phases relative to the odd line. A reference-free, simultaneous three-pair implementation must preserve the relative polynomial coefficients across different physical interaction channels; simply applying the component monomials as sequential pulses would generally \emph{not} preserve $\Cc$ at intermediate times.
+
+\section{A falsifiable hardware speedup contract}
+A mathematical reduction in projector count is not automatically a reduction in wall-clock gate time. Spin-2 pair exchange has $\|X\|=6$ and exact eigenvalue set $\{-6,-5,-3,0,4\}$. Evaluating the two pair polynomials on those five eigenvalues and applying the triangle inequality yields the rigorous operator-norm bounds
+\begin{equation}\label{eq:norm}
+\boxed{\|H_2\|\le196,\quad\|H_3\|\le2168.}
+\end{equation}
+If the control electronics can directly realize the \emph{whole} calibrated $H_2/196$ at a spectral-norm budget of one (in units $\hbar=1$), a relative $\pi$ phase between its two $R=+1$ eigenstates takes exactly
+\begin{equation}\label{eq:time}
+ t_{\pi}=\frac{196\pi}{3\sqrt{753}}\simeq7.47975.
+\end{equation}
+For a similarly normalized $H_3/2168$, the corresponding duration is $2168\pi/(54\sqrt{77})\simeq14.37375$. These are conditional \emph{Hamiltonian-time} calculations, not simulated hardware durations, and do not include synthesis of polynomial or diagonal-pair channels.
+
+\begin{proposition}[Detuning and calibration budget]\label{prop:noise}
+Let $H_0(t)$ preserve $\Cc$ and let $H(t)=H_0(t)+E(t)$ with self-adjoint $E(t)$ and a certified bound $\|E(t)\|\le e(t)$. Then for any initially encoded state and any time $T$,
+\begin{align}
+ \|[U(T)-U_0(T)]P\|&\le\int_0^T e(t)dt=:\epsilon_T,\\
+ \|QU(T)P\|^2&\le\epsilon_T^2,\label{eq:leakage_bound}\\
+ \|\mathcal U_T-\mathcal U_{0,T}\|_\diamond&\le2\epsilon_T.
+\end{align}
+For the normalized $H_2/196$ physical gate in Eq.~\eqref{eq:time}, if every nonzero monomial coefficient incurs an independent absolute perturbation no larger than its magnitude multiplied by a common relative calibration tolerance $\varepsilon$, a valid conservative physical bound is $\|E\|\le(300/196)\varepsilon$. Hence its total ideal-to-actual unitary error is at most $300\pi\varepsilon/(3\sqrt{753})\simeq11.4486\varepsilon$, and its leakage probability is at most the square of that expression.
+\end{proposition}
+\begin{proof}
+The first inequality follows directly from the unitary Duhamel identity. The leakage bound follows because $QU_0(T)P=0$; the diamond estimate follows from the two-sided trace-norm telescoping identity and stability under ancilla tensoring. Independently bounding each coefficient by $\varepsilon|c_{ij,d}|$ gives $\|E\|\le\varepsilon\sum|c_{ij,d}|\|X_{ij}^d\|$. For $H_2$ this sum is exactly $2(16\cdot6+36)+36=300$. Combining with Eq.~\eqref{eq:time} proves the final claim.\end{proof}
+
+\begin{table}[t]
+\caption{Structural comparison of the idealized single-block control regimes. Projection counts are \emph{not} physical latency measurements, and the two models implement different logical targets.}\label{tab:comparison}
+\begin{ruledtabular}\begin{tabular}{lcc}
+Item & Zeno V8 & V10 \\\hline
+Logical space & qutrit & qubit\\
+Code measurements & $m$ & 0\\
+Ideal leakage & bounded & zero\\
+Couplings & exchange+$P$ & degree 2--3\\
+Diagonal link & no & yes\\
+Measured fidelity & none & none
+\end{tabular}\end{ruledtabular}
+\end{table}
+The old V8 resource example required $m=1127$ ideal checks in the optimum of a \emph{hypothetical} $\delta=10^{-6}$ per-check instrument error budget. The new mechanism uses zero checks in its mathematical specification but requires simultaneous, selectively calibrated, multichannel polynomial pair Hamiltonians including the diagonal link. A physical advantage requires measuring: error per full logical gate, calibrated channel strength, synthesis depth, diagonal coupler latency, state preparation, decoding, and rejected-shot overhead. Mid-circuit measurement correction and fast FPGA decoding have already reached substantial experimental maturity~\cite{QEC2026,Readout}; without actual implementations a speedup factor cannot be responsibly inferred.
+
+\section{Position relative to the world's open-problem catalogues}
+The Physics Open Problems catalogue explicitly lists both the square-lattice spin-2 AKLT bulk-gap conjecture (problem 002) and a finite exact gap certificate target (problem 048)~\cite{Problems}. Neither is resolved by our finite four-spin result. The ProofAtlas catalogue includes distinct complexity and many-body frontiers; its ratings do not establish novelty. The October 2026 OpenAI mathematical research corpus discusses claimed subexponential algorithms for SAT~\cite{OpenAIMath}. Those algorithms do not shortcut the present exact $6\times24$ rational linear-algebra certificate; the computational bottleneck here is physical Hamiltonian engineering, not SAT search. Our work instead suggests a reproducible design criterion: first compute the full physical leakage kernel, then the \emph{actual} encoded Lie algebra, and only then compile gates with independently measured hardware-error budgets.
+
+The result is an independently checkable, model-specific control classification and a conditional roadmap to faster physical gates. Whether this particular classification is first in the literature requires an extensive priority search and specialist review; whether it yields real speedups requires laboratory evidence. Neither is asserted in this manuscript.
+
+\section{Conclusion}
+Two-local leakage-free qutrit controllability has a sharp obstruction even for anisotropic, simultaneous pair Hamiltonians. Nevertheless a three-pair quadratic--cubic scheme implements a universal coherent encoded \emph{qubit} without any intermediate projection. The exact $255\times24$ rank-six leakage certificate exposes the restriction, while the constructive Hamiltonians and five-generator rank certificate exhibit a practical mathematical escape from the measurement overhead. The remaining challenge is not computation of this small model, but engineering and validating its diagonal, multichannel spin-2 couplers and demonstrating a superior system-level error--latency--cost tradeoff.
+
+\section*{Data and AI assistance}
+The accompanying release provides the complete finite physical construction, a full rational checker, an independent certificate verifier with adversarial tamper tests, a singlet-sector time-evolution diagnostic, JSON witnesses, and file hashes. The mathematical exploration and drafting were AI-assisted. The author byline is inherited from preceding user-provided manuscripts and must be confirmed by the named contributors before submission. No hardware performance measurements, independent formal proof-assistant validation, thermodynamic-gap certificate, or refereed world-priority claim are supplied.
+
+\appendix
+\section{Finite exact physical witness}\label{app:cert}
+Order the six pairs lexicographically, and for each retain powers $X_{ij},X_{ij}^2,X_{ij}^3,X_{ij}^4$. For the three PEPS code vectors subtract their exact Gram-projected code components, then enumerate all nonzero physical monomial coordinates in the $J_z=0$ sector. The resulting $255\times24$ rational leakage matrix has exactly six independent rows. The row indices (zero based) $0,1,85,86,170,171$, together with columns $0,1,2,4,5,6$, give a $6\times6$ minor with determinant
+\begin{equation}\label{eq:minor}
+\boxed{\det M_6=\frac{375070500}{4354703137}\ne0.}
+\end{equation}
+All residuals are singlets because every pair polynomial is globally rotationally invariant, and the full spin-zero excited subspace has dimension two; hence six independent rows are also sufficient to saturate the leakage rank. The independent code loops reconstruct all 18 rational nullspace generators, verify their physical residual vectors vanish in all $255$ rows, and compute the logical image and its commutant $R$. Restricting to all four edges, all 15 choices of one or two pairs, and degree ceilings one through four yields the separate exact rank statements quoted in the main text. The two explicit controls $H_2,H_3$ are checked directly against the \emph{full} residual matrix; the numeric single-sector time evolution only supplements the exact proof.
+
+\begin{thebibliography}{12}
+\bibitem{AKLT} I. Affleck, T. Kennedy, E. H. Lieb, and H. Tasaki, ``Valence bond ground states in isotropic quantum antiferromagnets,'' Commun. Math. Phys. \textbf{115}, 477 (1988).
+\bibitem{V6} A. Preece and B. Batenin, \emph{Exact Exchange-Leakage Geometry of a Proof-Carrying Spin-2 AKLT Singlet Quantum Memory}, user-provided V6 technical draft, unreviewed (2026).
+\bibitem{V8} A. Preece and B. Batenin, \emph{A Sharp Two-Site Control Obstruction and Certified Zeno Universality for an AKLT Singlet Qutrit}, prior research draft, unreviewed (2026).
+\bibitem{Problems} J. McMahan \emph{et al.}, \emph{Physics Open Problems}, entries \#002 and \#048 (2026), \url{https://jgmcm.github.io/problems/}.
+\bibitem{GPW} W. Guo, N. Pomata, and T.-C. Wei, ``Nonzero spectral gap in several uniformly spin-2 and hybrid spin-1 and spin-2 AKLT models,'' Phys. Rev. Research \textbf{3}, 013255 (2021).
+\bibitem{Swap} G.-M. Zhang and X. Wang, ``Swapping and permutation operators as entanglement witnesses for quantum Heisenberg spin-s systems,'' arXiv:quant-ph/0601129 (2006).
+\bibitem{Exchange} A. J. Weinstein, M. D. Reed, A. M. Jones, et al., ``Universal logic with encoded spin qubits in silicon,'' Nature \textbf{615}, 817--822 (2023), \url{https://doi.org/10.1038/s41586-023-05777-3}.
+\bibitem{QEC2026} \emph{Demonstrating real-time and low-latency quantum error correction with superconducting qubits}, Nature Commun. (2026), \url{https://www.nature.com/articles/s41467-026-73331-6}.
+\bibitem{Readout} \emph{Readout Error Mitigation for Mid-Circuit Measurements and Feedforward}, PRX Quantum \textbf{7}, 010317 (2026).
+\bibitem{OpenAIMath} OpenAI mathematics corpus, ``History'', \url{https://github.com/openai/math/blob/main/history.md} (accessed 28 October 2026).
+\end{thebibliography}
+\end{document}
