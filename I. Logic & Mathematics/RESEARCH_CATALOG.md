@@ -105,6 +105,8 @@
 
 📁 · [2026/10/23 · Rational Spectral Hierarchies and Matrix-Free Gauge Certificates](../All%20Preprints/2026_10_23_Rational_Spectral_Hierarchies_and_Matrix_Free_Gauge_Certificates/)
 
+📁 · [2026/10/28 · Measurement-Free Encoded-Qubit Control and a Two-Local Qutrit Obstruction in a Spin-2 AKLT Plaquette](../All%20Preprints/2026_10_28_Measurement_Free_Encoded_Qubit_Control_and_a_Two_Local_Qutrit_Obstruction_in_a_Spin_2_AKLT_Plaquette/)
+
 ---
 
 ## Explore the research archive
