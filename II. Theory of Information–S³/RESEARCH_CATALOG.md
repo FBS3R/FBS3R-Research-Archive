@@ -59,6 +59,8 @@
 
 📁 · [2026/10/28 · Measurement-Free Encoded-Qubit Control and a Two-Local Qutrit Obstruction in a Spin-2 AKLT Plaquette](../All%20Preprints/2026_10_28_Measurement_Free_Encoded_Qubit_Control_and_a_Two_Local_Qutrit_Obstruction_in_a_Spin_2_AKLT_Plaquette/)
 
+📁 · [2026/11/09 · Exact Braid Algebra and Diamond-Norm Bounds for a Phenomenological Noisy Fibonacci Anyon Qubit](../All%20Preprints/2026_11_09_Exact_Braid_Algebra_and_Diamond_Norm_Bounds_for_a_Phenomenological_Noisy_Fibonacci_Anyon_Qubit/)
+
 ---
 
 ## Explore the research archive
