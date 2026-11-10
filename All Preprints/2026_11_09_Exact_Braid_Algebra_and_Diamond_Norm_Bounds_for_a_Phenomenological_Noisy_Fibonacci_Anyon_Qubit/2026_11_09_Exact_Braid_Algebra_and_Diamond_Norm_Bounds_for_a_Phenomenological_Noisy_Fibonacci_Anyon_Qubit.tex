@@ -1,0 +1,236 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern,microtype}
+\usepackage[margin=23mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools,booktabs}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  pdftitle={Exact Braid Algebra and Diamond-Norm Bounds for a Phenomenological Noisy Fibonacci-Anyon Qubit},
+  pdfauthor={Andrei Preece and Boris Batenin},
+  pdfsubject={Fibonacci anyons, braid relations, flagged noise, diamond-norm bounds},
+  pdfkeywords={Fibonacci anyons, braid algebra, diamond norm, Lean, quantum channels}
+}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{array}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Fibonacci anyons: braid algebra and noise bounds}
+\rhead{\thepage}
+\setlength{\headheight}{14pt}
+\setlist{nosep}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\Id}{\mathop{\mathrm{id}}}
+\newcommand{\one}{\mathbf{1}}
+\newcommand{\Cd}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Dn}{\|\cdot\|_\diamond}
+\title{\textbf{Exact Braid Algebra and Diamond-Norm Bounds for a Phenomenological Noisy Fibonacci-Anyon Qubit}}
+\author{Andrei Preece and Boris Batenin\\[4pt]Independent Researchers\\Berlin, 2026}
+\date{}
+\begin{document}
+\maketitle
+\begin{abstract}
+We give a finite-dimensional, reproducible model of three Fibonacci anyons constrained to total charge $\tau$. The braid operators are represented in the two-dimensional fusion-path basis using the standard $F$- and $R$-symbols. An explicit polynomial certificate proves the Yang--Baxter relation once two elementary scalar identities are supplied. We then define a physically motivated \emph{effective} quantum-noise model incorporating fusion-basis phase flips and flagged erasure from the logical space, and prove an \emph{exact} single-gate completely bounded trace-norm formula
+$\|\mathcal E_{q,\ell,U}-\mathcal V_U\|_\diamond=2[\ell+(1-\ell)q]$.
+More generally, an exact closed form is given for arbitrary stochastic logical Pauli errors with flagged leakage. A telescoping theorem supplies circuit-level upper bounds under compatible channel composition. The accompanying Lean sources formalize the fusion rules, polynomial braid certificate, golden-ratio $F$ identity, and abstract norm-composition bounds; the concrete complex-phase specialization and the superoperator diamond-norm instance remain proof obligations. No kernel-verification claim is made without a successful Lean build.
+\end{abstract}
+
+\section{Scope, notation, and physical assumptions}
+Fibonacci anyons form a unitary braided fusion category with simple charges $\{\one,\tau\}$ and fusion rule
+\begin{equation}\label{eq:fusion}
+\one\otimes x=x,\qquad \tau\otimes\tau=\one\oplus\tau.
+\end{equation}
+The resulting fusion-path spaces grow with Fibonacci numbers, a standard setting for topological quantum computation~\cite{bonesteel2005,hormozi2007,trebst2008}. The construction below concerns a \emph{single encoded qubit}, not a microscopic anyon Hamiltonian, a complete modular tensor category in Lean, or a demonstration of hardware-level fault tolerance.
+
+We work with linear maps between matrix algebras and take the unhalved diamond norm $\|T\|_\diamond=\|T\|_{\mathrm{cb},1}$. Thus the operationally normalized channel error is $\varepsilon(T,S)=\tfrac12\|T-S\|_\diamond$.
+
+\section{Fusion paths and the recoupling matrix}
+For three $\tau$ charges constrained to total $\tau$, the two computational basis states correspond to intermediate charges $\one$ and $\tau$. Put
+\begin{equation}\label{eq:f}
+\varphi=\frac{1+\sqrt5}{2},\qquad u=\varphi^{-1}=\frac{\sqrt5-1}{2},\qquad v=\varphi^{-1/2}=\sqrt{u},
+\end{equation}
+and define
+\begin{equation}
+F=\begin{pmatrix}u&v\\v&-u\end{pmatrix}.
+\end{equation}
+The identity $u^2+u=1$ and the choice $v^2=u$ imply $F^2=I_2$ and $F=F^\dagger$. In particular, $F$ is unitary. The labels of the two basis vectors have precise topological meaning as fusion channels; the matrix entries are not arbitrary free qubit parameters.
+
+Let $c_n(\one),c_n(\tau)$ denote the number of paths obtained by adjoining $n$ copies of $\tau$ to the vacuum. With $(c_0(\one),c_0(\tau))=(1,0)$, fusion gives
+\begin{equation}
+\binom{c_{n+1}(\one)}{c_{n+1}(\tau)}=
+\begin{pmatrix}0&1\\1&1\end{pmatrix}
+\binom{c_n(\one)}{c_n(\tau)}.
+\end{equation}
+Consequently $c_3(\tau)=2$ and $c_n(\tau)$ obeys the Fibonacci recurrence.
+
+\section{Braiding and an exact polynomial certificate}
+We adopt the chiral convention
+\begin{equation}\label{eq:r}
+a=R_{\one}^{\tau\tau}=e^{-4\pi i/5},\qquad
+b=R_{\tau}^{\tau\tau}=e^{3\pi i/5},\qquad
+R=\operatorname{diag}(a,b).
+\end{equation}
+The opposite chirality complex-conjugates both phases. The elementary braid generators are
+\begin{equation}\label{eq:braid}
+B_1=R,\qquad B_2=FRF^{-1}=FRF.
+\end{equation}
+As products of unitary matrices, both are unitary.
+
+\begin{theorem}[Three-strand braid relation]\label{thm:braid}
+The matrices in \eqref{eq:braid} obey $B_1B_2B_1=B_2B_1B_2$.
+\end{theorem}
+\begin{proof}
+For symbolic parameters $u,v,a,b$, set
+$H=u^2+v^2-1$ and $Q=u^2(a-b)^2+ab$. Direct expansion of
+$D=R(FRF)R-(FRF)R(FRF)$ yields the explicit certificate
+\begin{equation}\label{eq:certificate}
+D=\begin{pmatrix}
+(a-b)v^2Q-a(a^2u^2+b^2v^2)H & -uv(a-b)Q-2abuv(a-b)H\\
+-uv(a-b)Q-2abuv(a-b)H & -(a-b)v^2Q-b(a^2v^2+b^2u^2)H
+\end{pmatrix}.
+\end{equation}
+We already have $H=0$. Put $z=b/a=e^{-3\pi i/5}$. Because
+$2\cos(3\pi/5)=-u$, one has $z^2+uz+1=0$. From $u^2+u=1$ it follows that $u^3+2u^2=1$; hence
+\[
+u^2(1-z)^2+z
+=u^2(z^2-2z+1)+z
+=(1-u^2(u+2))z=0.
+\]
+Multiplication by $a^2$ gives $Q=u^2(a-b)^2+ab=0$. Substituting $H=Q=0$ in \eqref{eq:certificate} proves $D=0$.
+\end{proof}
+
+\begin{remark}
+The symbolic identity \eqref{eq:certificate} is checked exactly by SymPy and encoded as a conditional theorem in \texttt{Fibonacci/BraidAlgebra.lean}. The physical-phase lemma $Q=0$, while proved above on paper, has \emph{not} yet been discharged in the supplied Lean source. The analytic claim and Lean-kernel certification therefore have different verification statuses.
+\end{remark}
+
+\section{Effective dephasing and charge-leakage model}
+Let $\mathcal H_C=\Cd^2$, $\mathcal H_O=\Cd^2\oplus\Cd|L\rangle$, and $J:\mathcal H_C\hookrightarrow\mathcal H_O$ be the canonical embedding. The ideal braid channel for a unitary $U\in\{B_1,B_2\}$ (or an arbitrary braid word) is
+\begin{equation}
+\mathcal V_U(\rho)=JU\rho U^\dagger J^\dagger.
+\end{equation}
+We define two error parameters: $q\in[0,1]$ is a stochastic logical fusion-basis $Z$-flip after the braid, and $\ell\in[0,1]$ is an orthogonally flagged erasure/leakage event. With $Z=\operatorname{diag}(1,-1)$, define four $3\times2$ Kraus operators
+\begin{align}\label{eq:kraus}
+K_0&=\sqrt{(1-\ell)(1-q)}\,JU, &
+K_1&=\sqrt{(1-\ell)q}\,JZU,\\
+K_2&=\sqrt\ell\,|L\rangle\langle0|, &
+K_3&=\sqrt\ell\,|L\rangle\langle1|.
+\end{align}
+The noisy channel is $\mathcal E_{q,\ell,U}(\rho)=\sum_{j=0}^3K_j\rho K_j^\dagger$. This is completely positive, and
+\[
+\sum_{j=0}^3K_j^\dagger K_j
+=((1-\ell)(1-q)+(1-\ell)q+\ell)I_2=I_2,
+\]
+so it is trace-preserving. The orthogonal flag is a mathematical model for detected leakage from the computational fusion sector. This is \emph{phenomenological}: $q$ and $\ell$ are not inferred from a microscopic anyon bath, diffusion dynamics, or a measured hardware error rate. In particular, logical $Z$ dephasing is not claimed to be a generic local topologically protected perturbation.
+
+\section{An exact diamond-norm expression}
+\begin{theorem}[Exact one-gate error for flagged leakage and dephasing]\label{thm:exact}
+For any unitary $U$ on $\mathcal H_C$ and $q,\ell\in[0,1]$, the channels above satisfy
+\begin{equation}\boxed{
+\|\mathcal E_{q,\ell,U}-\mathcal V_U\|_\diamond
+=2\big[\ell+(1-\ell)q\big].}\label{eq:exact}
+\end{equation}
+Equivalently, the half-diamond error is $\varepsilon=\ell+(1-\ell)q$.
+\end{theorem}
+\begin{proof}
+Write $t=\ell+(1-\ell)q$ and let $\mathcal V_{ZU}(\rho)=JZU\rho U^\dagger ZJ^\dagger$, $\mathcal L(\rho)=\operatorname{Tr}(\rho)|L\rangle\langle L|$. Then
+\begin{equation}
+\mathcal E_{q,\ell,U}-\mathcal V_U
+=-t\mathcal V_U+(1-\ell)q\,\mathcal V_{ZU}+\ell\mathcal L.
+\end{equation}
+Each of $\mathcal V_U,\mathcal V_{ZU},\mathcal L$ is a quantum channel and therefore has diamond norm exactly one. The triangle inequality gives
+$\|\mathcal E-\mathcal V_U\|_\diamond\le t+(1-\ell)q+\ell=2t$.
+
+For a matching lower bound choose the legitimate density matrix $\rho_*=U^\dagger|+\rangle\langle+|U$, where $|\pm\rangle=(|0\rangle\pm|1\rangle)/\sqrt2$. The ideal output is $|+\rangle\langle+|$, while the noisy output is
+$(1-\ell)(1-q)|+\rangle\langle+|+(1-\ell)q|-\rangle\langle-|+\ell|L\rangle\langle L|$.
+In the orthonormal basis $\{|+\rangle,|-\rangle,|L\rangle\}$, their difference is diagonal with entries $-t,(1-\ell)q,\ell$. Its trace norm is $t+(1-\ell)q+\ell=2t$. Since the diamond norm dominates the induced trace norm on any particular density matrix, it is at least $2t$, completing the proof.
+\end{proof}
+
+\begin{remark}
+This is an exact expression for a channel $M_2(\Cd)\to M_3(\Cd)$. It should \emph{not} be substituted uncritically into a repeated-gate circuit on $M_2(\Cd)$: after leakage, the output space has changed. A valid circuit composition must include a compatible propagation or recovery rule for the flag.
+\end{remark}
+
+\section{Extension: arbitrary stochastic Pauli noise}
+The exact formula is not restricted to dephasing. Let $P_0=I$, $P_1=X$, $P_2=Y$, $P_3=Z$, and $p_\alpha\ge0$ with $\sum_{\alpha=0}^3p_\alpha=1$. Define a channel $\mathcal E_{\boldsymbol p,\ell,U}:M_2(\Cd)\to M_3(\Cd)$ by Kraus operators
+\[
+K_\alpha=\sqrt{(1-\ell)p_\alpha}\,JP_\alpha U\quad(0\le\alpha\le3),\qquad
+K_4=\sqrt\ell\,|L\rangle\langle0|,\quad
+K_5=\sqrt\ell\,|L\rangle\langle1|.
+\]
+\begin{theorem}[Exact Pauli-plus-erasure diamond distance]\label{thm:pauli}
+For any unitary $U$, any probability vector $\boldsymbol p$, and $0\le\ell\le1$,
+\begin{equation}\boxed{
+\|\mathcal E_{\boldsymbol p,\ell,U}-\mathcal V_U\|_\diamond
+=2\bigl[1-(1-\ell)p_0\bigr].}\label{eq:pauli}
+\end{equation}
+\end{theorem}
+\begin{proof}
+The ideal Pauli branch occurs with probability $(1-\ell)p_0$; all other branches carry nonnegative weights summing to $t=1-(1-\ell)p_0$. Subtracting $\mathcal V_U$ leaves the ideal channel with coefficient $-t$, plus CPTP Pauli branches whose weights sum to $(1-\ell)(1-p_0)$ and an erasure channel of weight $\ell$. Triangle inequality bounds the diamond norm by $2t$.
+
+For a matching lower bound, take an auxiliary qubit and the normalized Bell state $|\Phi^+\rangle=(|00\rangle+|11\rangle)/\sqrt2$, with input $(U^\dagger\otimes I)|\Phi^+\rangle$. The four states $(JP_\alpha\otimes I)|\Phi^+\rangle$ are orthonormal; any erasure output lies in the orthogonal flagged sector. Therefore the difference between output density operators has negative eigenvalue $-t$ on the ideal Bell state, positive eigenvalues $(1-\ell)p_\alpha$ for $\alpha\ne0$, and positive flagged eigenvalues summing to $\ell$. Its trace norm is exactly $2t$.
+\end{proof}
+\begin{remark}
+Equation~\eqref{eq:exact} is the special case $p_0=1-q$, $p_3=q$, $p_1=p_2=0$. Unlike that special case, the general Pauli lower bound uses a reference qubit. The result is a direct analytic proof, not a separately solved numerical SDP and not yet a kernel-formalized completely bounded norm theorem.
+\end{remark}
+
+\section{Compositional bounds for braid circuits}
+\begin{theorem}[Telescoping diamond bound]\label{thm:telescoping}
+Suppose $\mathcal E_j$ and $\mathcal U_j$ are CPTP maps with compatible input/output spaces for $j=1,\dots,n$. Then
+\begin{equation}\label{eq:tel}
+\|\mathcal E_n\circ\cdots\circ\mathcal E_1
+-\mathcal U_n\circ\cdots\circ\mathcal U_1\|_\diamond
+\le \sum_{j=1}^n\|\mathcal E_j-\mathcal U_j\|_\diamond.
+\end{equation}
+\end{theorem}
+\begin{proof}
+Insert and subtract intermediate products so that each summand differs at only a single gate. The diamond norm obeys the triangle inequality and is submultiplicative under composition. Every CPTP map has diamond norm one. Bounding each summand thus gives \eqref{eq:tel}.
+\end{proof}
+
+If compatible extended-space channels are built and each is separately proved to satisfy $\delta_j\le 2t_j$, then the operationally normalized circuit error satisfies
+\begin{equation}
+\varepsilon_{\mathrm{circuit}}\le\min\bigl\{1,\sum_{j=1}^n t_j\bigr\}.
+\end{equation}
+Any additional braid-compilation error relative to a target logical gate must be included by the triangle inequality. The results do not establish a topological threshold or a suppression law for $q$ or $\ell$ as a function of quasiparticle separation or temperature.
+
+\section{Lean sources and scope of formal verification}
+The accompanying source files implement five proof layers:
+\begin{enumerate}[label=\arabic*.]
+\item \texttt{Fusion.lean}: fusion outcomes, path recurrence, and the two-dimensional three-anyon fusion basis.
+\item \texttt{BraidAlgebra.lean}: explicit $2\times2$ matrix multiplication and a polynomial certificate for the braid relation under $H=Q=0$.
+\item \texttt{GoldenF.lean}: the golden-ratio $F$ specialization and the physical exponential phases; \emph{the exact physical-phase identity is an explicit theorem hypothesis}.
+\item \texttt{QuantumNoise.lean}: explicit three-level Kraus operators for dephasing and flagged leakage; normalization of the scalar weights.
+\item \texttt{DiamondComposition}, \texttt{NoiseCoefficients}, \texttt{PauliWeights}: normed-ring telescoping bounds and scalar Pauli-weight identities. A concrete mathematical instance identifying this norm with the completely bounded trace norm on superoperators is \emph{not supplied}.
+\end{enumerate}
+
+The exact quantum-channel theorems~\ref{thm:exact} and~\ref{thm:pauli} are proved above by finite-dimensional functional analysis, but neither has yet been formalized in Lean. The accompanying symbolic and numerical tests are executable using the supplied Python script. The Mac audit script requires a working installation of the pinned Lean toolchain to determine whether the Lean files type-check; no completed Lean build or kernel-axiom audit is included with these materials. The audit prints both complete theorem statements and kernel axiom dependencies; a successful build alone is not treated as proof of the intended scientific claims.
+
+\section{Novelty and limitations}
+The Fibonacci braid representation and universality are known results~\cite{bonesteel2005,hormozi2007,trebst2008}. Diamond-norm SDP methods are well-established~\cite{watrous2009,watrous2012}, and phase damping is a standard effective noise mechanism~\cite{dephasing2021}. Experimental digital demonstrations of Fibonacci-anyonic braiding exist~\cite{andersen2024}. The single-gate formula~\eqref{eq:exact} is an elementary but useful closed-form property of the explicit phenomenological flagged channel. No claim of world priority or new physical topological protection is made.
+
+For complete machine-checked verification, further steps include: (i) kernel proof of the exact physical complex-phase identity and possibly relevant hexagon/pentagon equations; (ii) a concrete CPTP and Kraus-completeness proof for the matrix channel in Lean; (iii) a trace-norm / diamond-norm formalization yielding theorem~\ref{thm:exact} without abstract assumptions; and (iv) a fully specified composable leakage dynamics, with verified hardware calibration if physical predictive claims are intended.
+
+\appendix
+\section{Reproducibility checklist}
+From the extracted project root with a network-enabled Lean 4.19.0 installation and Mathlib, run
+\begin{verbatim}
+python3 scripts/check_numeric.py
+zsh scripts/run_lean_audit_mac.zsh
+\end{verbatim}
+Inspect \path{results/numerical_report.json} and \path{results/lean_axioms.log}. The second output is generated \emph{only if a real Lean run takes place}. Review \texttt{\#check} statements in \path{Fibonacci/Audit.lean}; a theorem whose conclusion is merely \texttt{True} would not certify positivity or optimality. The supplied sources contain no \texttt{sorry} placeholders, but \emph{the absence of such tokens does not certify uncompiled source}.
+
+\begin{thebibliography}{9}
+\bibitem{bonesteel2005} N. E. Bonesteel, L. Hormozi, G. Zikos, S. H. Simon, ``Braid topologies for quantum computation,'' \emph{Phys. Rev. Lett.} \textbf{95}, 140503 (2005), doi:10.1103/PhysRevLett.95.140503.
+\bibitem{hormozi2007} L. Hormozi, G. Zikos, N. E. Bonesteel, S. H. Simon, ``Topological quantum compiling,'' \emph{Phys. Rev. B} \textbf{75}, 165310 (2007), doi:10.1103/PhysRevB.75.165310.
+\bibitem{trebst2008} S. Trebst, M. Troyer, Z. Wang, A. W. W. Ludwig, ``A short introduction to Fibonacci anyon models,'' \emph{Prog. Theor. Phys. Suppl.} \textbf{176}, 384--407 (2008).
+\bibitem{watrous2009} J. Watrous, ``Semidefinite programs for completely bounded norms,'' \emph{Theory Comput.} \textbf{5}, 217--238 (2009), doi:10.4086/toc.2009.v005a011.
+\bibitem{watrous2012} J. Watrous, ``Simpler semidefinite programs for completely bounded norms,'' \emph{Chicago J. Theor. Comput. Sci.} (2013); arXiv:1207.5726.
+\bibitem{dephasing2021} ``Time-varying quantum channel models for superconducting qubits,'' \emph{npj Quantum Information} (2021), doi:10.1038/s41534-021-00448-5.
+\bibitem{andersen2024} ``Non-Abelian braiding of Fibonacci anyons with a superconducting processor,'' \emph{Nature Physics} \textbf{20}, 1469--1475 (2024), doi:10.1038/s41567-024-02529-6.
+\end{thebibliography}
+\end{document}
