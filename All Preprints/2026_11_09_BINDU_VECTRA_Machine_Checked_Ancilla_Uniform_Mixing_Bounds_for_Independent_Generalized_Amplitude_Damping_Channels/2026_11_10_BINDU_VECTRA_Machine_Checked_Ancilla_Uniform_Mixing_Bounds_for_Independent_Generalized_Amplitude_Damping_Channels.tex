@@ -1,0 +1,83 @@
+\documentclass[aps,pra,reprint,superscriptaddress,amsmath,amssymb,floatfix,nofootinbib]{revtex4-2}
+\usepackage{mathtools,booktabs,hyperref}
+\hypersetup{colorlinks=true,citecolor=blue,linkcolor=blue,urlcolor=blue}
+\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\id}{\operatorname{id}}
+\newcommand{\R}{\mathcal{R}}
+\newcommand{\Hyb}{\mathcal{H}}
+\begin{document}
+\title{BINDU--VECTRA: Machine-Checked Ancilla-Uniform Mixing Bounds for Independent Generalized Amplitude-Damping Channels}
+\author{Andrei Preece}
+\affiliation{Independent researcher, Germany}
+\author{Boris Batenin}
+\affiliation{Independent researcher, Germany}
+\begin{abstract}
+We report the exact source-level Lean 4.19.0 formalization of a uniform Schatten-1 estimate for finite products of independent generalized amplitude-damping channels. The verified statement is quantified over an arbitrary number of sites, positive local pump and decay rates, nonnegative time, any finite-dimensional ancilla, and every complex input matrix. Its coefficient is the explicitly defined envelope $\min\{2,\sum_k(r_k+r_k^2)\}$ with $r_k=\exp[-(G_k+K_k)t/2]$. The proof removes the formerly conditional site-kernel and hybrid-step assumptions. Eight named target theorems have source-matched user-provided Lean build and axiom evidence; all required declarations depend only on \texttt{propext}, \texttt{Classical.choice}, and \texttt{Quot.sound}. A fresh independent kernel replay is required before an independently certified release can be declared. We do not claim formal verification of an exact diamond norm, its optimal mixing exponent, interacting Lindbladians, or the larger BINDU--VECTRA program.
+\end{abstract}
+\maketitle
+
+\section{Scope and mathematical setting}
+Let $N\ge0$ and let $G_k,K_k>0$ be the local pumping and decay rates at site $k$. Put
+\begin{equation}
+ r_k(t)=\exp\!\left[-\tfrac12(G_k+K_k)t\right],\qquad t\ge0.
+\end{equation}
+Write $\Phi_t^{(N)}$ for the $N$-site channel given by the local four-operator generalized amplitude-damping (GAD) Kraus families, and $\R^{(N)}$ for the product stationary-replacement channel. Both are defined at the native finite-product matrix indices in the source code; these names are mathematical shorthand for the corresponding Lean operators.
+
+The matrix trace norm used throughout is the spectral singular-value functional \texttt{schattenOneSpectralNorm}, built in the project from positive-semidefinite eigenspectral data. The user-provided Lean proof ledger and the exact definitions are included in the accompanying reproducibility archive.
+
+\section{Machine-checked theorem}
+Let $\mathcal A$ be any finite-dimensional ancilla and let $X$ be \emph{any} complex matrix acting on the $N$-site system and $\mathcal A$; $X$ need not be positive or Hermitian. Define the numerical envelope
+\begin{equation}
+ C_N(t)=\min\left\{2,\sum_{k=0}^{N-1}\bigl[r_k(t)+r_k(t)^2\bigr]\right\}.
+ \label{eq:envelope}
+\end{equation}
+The primary Lean theorem \texttt{bindu\_nQubit\_diamond\_envelope\_unconditional} states
+\begin{align}
+ &\left\|\bigl[(\Phi_t^{(N)}-\R^{(N)})\otimes\id_{\mathcal A}\bigr](X)\right\|_1\notag\\
+ &\hspace{14mm}\le C_N(t)\,\|X\|_1.
+ \label{eq:bound}
+\end{align}
+There is no additional \texttt{hstep}, \texttt{hExact}, \texttt{hsite}, or \texttt{hR} premise. Equation~\eqref{eq:bound} is a \emph{pointwise uniform finite-ancilla bound}, and is exactly the kind of assertion formalized by the source theorem. The separate supremum construction of a library-level diamond norm is not presented here as a ninth kernel-checked theorem.
+
+For the hybrid product channels $\Hyb_j$ that replace the first $j$ sites with their physical GAD factors and the remaining factors with stationary replacers, the source theorem \texttt{bindu\_global\_hybrid\_rplusr2\_unconditional} establishes for every site $k$ and every ancillary input $X$,
+\begin{equation}
+ \|[(\Hyb_{k+1}-\Hyb_k)\otimes\id_{\mathcal A}](X)\|_1
+ \le[r_k(t)+r_k(t)^2]\|X\|_1.
+ \label{eq:step}
+\end{equation}
+The equality of site-kernel and global native-index Kraus actions is part of the machine-checked proof chain, rather than an assumed tensor-index relabeling.
+
+\section{Eight target declarations and proof structure}
+The eight source-level declarations are the following:
+\begin{enumerate}
+\item \texttt{bindu\_site\_local\_family\_bridge}: exact Kraus-kernel/global-channel equivalence with arbitrary finite Kraus rank and arbitrary finite ancilla.
+\item \texttt{bindu\_site\_replacer\_kernel\_bridge}: exact physical stationary-replacer bridge.
+\item \texttt{bindu\_site\_pauli\_z\_kernel\_bridge}: identification of the local Pauli-$Z$ kernel action.
+\item \texttt{bindu\_local\_dephasing\_half\_Z}: local dephasing equals half identity plus half Pauli-$Z$ conjugation.
+\item \texttt{bindu\_site\_dephasing\_kernel\_bridge}: global dephasing bridge.
+\item \texttt{bindu\_global\_site\_identity\_unconditional}: sitewise physical-difference identity without an external \texttt{hsite} assumption.
+\item \texttt{bindu\_global\_hybrid\_rplusr2\_unconditional}: the one-site stabilized increment, Eq.~\eqref{eq:step}.
+\item \texttt{bindu\_nQubit\_diamond\_envelope\_unconditional}: the complete input-uniform estimate, Eq.~\eqref{eq:bound}.
+\end{enumerate}
+The proof depends on the physical Kraus families and imported finite-dimensional matrix lemmas. Quantification over arbitrary finite Kraus families in item 1 does \emph{not} extend the physical GAD theorem in item 8 to arbitrary interacting or non-Markovian channels.
+
+\section{Evidence, replay protocol and limitations}
+The frozen reviewer release has 53 project Lean modules in the exact import chain; 53 of 53 bytewise match the latest archived \texttt{CURRENT} source snapshot dated November 5, 2026. All 58 included verification files, including the toolchain and dependency pins, match their SHA-256 inventory. In the older 65-entry source inventory, 64 files were available and matched; the sole absent item was a historical, non-proof PDF. A code-level scan of these 53 modules detects no executable \texttt{sorry}, \texttt{admit}, \texttt{sorryAx}, new \texttt{axiom}, or \texttt{opaque} declarations.
+
+User-supplied macOS records from November 4 report successful target and fresh-source builds and a \texttt{\#print axioms} result limited to Lean's three standard foundational axioms for the eight declarations. This is \emph{prior recorded kernel evidence}; the archive packing and PDF generation are not a new kernel execution. The supplied \texttt{VERIFY\_CERTIFIED\_ONLY\_MAC.py} independently checks the pinned sources, calls the actual Lean kernel, records logs, and issues a new pass certificate only if all stages succeed.
+
+This publication edition deliberately excludes the 34-page research compendium, speculative and conditional theorems, the unclosed exact-GAD diamond-norm candidate, the older SDP sketch, and unverified claims of a universal physical law. No statement of exact GAD diamond norm or uniqueness of global priority is asserted here.
+
+\section*{Data and software availability}
+The archived source release includes SHA-256 source lists, a pin for Lean 4.19.0 and Mathlib v4.19.0, and read-only verification commands. A permanent public repository and DOI remain to be supplied prior to journal submission.
+
+\section*{AI-assistance disclosure}
+AI systems (ChatGPT and Gemini through Antigravity) were used in research organization, code engineering and manuscript preparation. Human authors must verify attribution, interpretations and final submission details. Kernel-generated successful Lean checks, rather than AI declarations, are the applicable proof standard.
+
+\begin{thebibliography}{9}
+\bibitem{GKS1976} V. Gorini, A. Kossakowski, and E. C. G. Sudarshan, J. Math. Phys. \textbf{17}, 821 (1976), doi:10.1063/1.522979.
+\bibitem{Lindblad1976} G. Lindblad, Commun. Math. Phys. \textbf{48}, 119 (1976), doi:10.1007/BF01608499.
+\bibitem{Watrous2018} J. Watrous, \emph{The Theory of Quantum Information} (Cambridge University Press, 2018), doi:10.1017/9781316848142.
+\bibitem{Kastoryano2012} M. J. Kastoryano, D. Reeb, and M. M. Wolf, J. Phys. A: Math. Theor. \textbf{45}, 075307 (2012), doi:10.1088/1751-8113/45/7/075307.
+\end{thebibliography}
+\end{document}
