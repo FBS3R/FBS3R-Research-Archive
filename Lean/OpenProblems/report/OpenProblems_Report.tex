@@ -1,0 +1,168 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs,longtable}
+\usepackage{hyperref}
+\usepackage[margin=2.5cm]{geometry}
+
+\newtheorem{theorem}{Theorem}
+\newcommand{\lean}[1]{\texttt{#1}}
+
+\title{Machine-checked proofs of eighteen catalogue statements\\
+  in Lean~4 and Mathlib}
+\author{FBS3R Research Archive\thanks{Formalization produced with Claude Code (Anthropic).}}
+\date{26 November 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We give Lean~4 proofs, checked against Mathlib v4.36.0, of eighteen statements taken from two
+public lists of mathematics that had not yet been machine-checked: the \emph{formal-conjectures}
+catalogue (statements recorded with proof \lean{sorry} and no linked formal proof) and the list of
+theorems in Mathlib's \lean{docs/1000.yaml} that have no formalization. The results include two
+refutations (a characterization of $2$-hyperperfect numbers and Conjecture~91 of
+\emph{Written on the Wall~II}), four cases of Erd\H{o}s Problem~939, Erd\H{o}s Problem~318 for
+sets with a single even element, the Ramsey numbers $R(3,3)$, $R(3,4)$, $R(3,5)$, $R(4,4)$ and
+$R(3,3,3)$, and six classical theorems (Th\=abit ibn Qurra, Proth, Lam\'e, Mirsky--Newman, Bondy,
+Midy). No result is a solution of an open problem: all the mathematics is known, and our
+contribution is the formal proof. Every main theorem depends only on the axioms
+\lean{propext}, \lean{Classical.choice} and \lean{Quot.sound}.
+\end{abstract}
+
+\section{Scope and method}
+
+\paragraph{What counts.} We only counted a statement if (i) it is stated in a public catalogue
+(or, for $R(3,3,3)$, built from a catalogue's definitions), (ii) we found no formal proof of it in
+Mathlib or in formal-conjectures (including its \lean{formal\_proof} links), and (iii) the proof is
+complete: no \lean{sorry}, no \lean{native\_decide}, no extra axioms. Statements with a linked
+formal proof elsewhere were excluded. We did not search the libraries of other proof assistants
+exhaustively, so ``first formal proof'' means ``first we could find in Lean''.
+
+\paragraph{Definitions.} Wherever a catalogue gives a definition, we copy it verbatim into the
+Lean file and prove the catalogue's statement about it, so that the proof can be transplanted.
+
+\paragraph{Computation.} Large finite checks are done with \lean{decide +kernel}, i.e.\ by the
+Lean kernel, with its GMP-accelerated natural-number arithmetic. Two pieces of infrastructure
+made this feasible:
+\begin{itemize}
+\item a modular exponentiation \lean{powMod} by structural recursion on a fuel parameter, with
+  \lean{powMod\_eq : powMod m f a b = a\^{}b \% m} for every fuel, giving Lucas--Pratt
+  certificates for 30-digit primes in seconds (Mathlib's \lean{norm\_num} has no such
+  extension);
+\item Boolean checkers \lean{free$_k$} (``no $k$ indices $a_1>\dots>a_k$ are pairwise related'')
+  with soundness lemmas via \lean{Finset.orderEmbOfFin}. Enumerating
+  \lean{Finset.powersetCard} in the kernel exhausted 15\,GB of memory already for
+  $\binom{13}{5}$ subsets; the checkers run in seconds.
+\end{itemize}
+
+\section{Results}
+
+\begin{longtable}{@{}rp{6.2cm}p{3.6cm}p{3.2cm}@{}}
+\toprule
+\# & Statement & Source & Classification\\
+\midrule
+1 & \lean{two\_hyperperfect\_characterization} is false & formal-conjectures,
+  Wikipedia/HyperperfectNumber & first formal proof (refutation)\\
+2 & \lean{erdos\_318.variants.contain\_single\_even} & Erd\H{o}s 318 & first formal proof\\
+3 & $(\mathrm{Erdos939Sums}\ 6)$ is infinite & Erd\H{o}s 939 (\lean{infinite\_of\_six\_le}, $r=6$)
+  & special case\\
+4 & \lean{erdos\_939.variants.finite} & Erd\H{o}s 939 & first formal proof\\
+5 & \lean{erdos\_939.variants.seven} & Erd\H{o}s 939 & first formal proof\\
+6 & \lean{erdos\_939.variants.eight} & Erd\H{o}s 939 & first formal proof\\
+7--10 & $R(3,3)=6$, $R(3,4)=9$, $R(3,5)=14$, $R(4,4)=18$ & formal-conjectures,
+  Wikipedia/RamseyNumbers & first formal proofs\\
+11 & WOWII Conjecture 91 is false & formal-conjectures, WrittenOnTheWallII
+  & first formal proof (refutation), universe~0\\
+12 & $R(3,3,3)=17$ & definitions of Erd\H{o}s 183 & new formal statement and proof\\
+13 & Th\=abit ibn Qurra's theorem & Mathlib 1000 & first Mathlib formalization\\
+14 & Proth's theorem & Mathlib 1000 & same\\
+15 & Lam\'e's theorem & Mathlib 1000 & same\\
+16 & Mirsky--Newman theorem & Mathlib 1000 & same\\
+17 & Bondy's theorem & Mathlib 1000 & same\\
+18 & Midy's theorem & Mathlib 1000 & same\\
+\bottomrule
+\end{longtable}
+
+\subsection{2-hyperperfect numbers (item 1)}
+A number $n>1$ is $k$-hyperperfect if $n = 1 + k(s(n)-1)$, $s$ the sum of proper divisors.
+McCranie observed that $3^m(3^{m+1}-2)$ is $2$-hyperperfect when $3^{m+1}-2$ is prime; the
+catalogue records the (false) converse. In June 2026 A.~Violette found
+\[ N = 3^{16}\cdot 129140227\cdot 256572153302107\cdot 225205396855537107298933866373. \]
+We prove the three large factors prime with nested Lucas certificates (bases $5,2,2$; the
+certificate for the 30-digit prime uses the 12-digit primes $137002507849$ and
+$153174091919$, themselves certified), compute $\sigma(N)$ by multiplicativity, verify the
+hyperperfect equation, and exclude $N = 3^m(3^{m+1}-2)$ for $m<200$ by computation and for
+$m\ge 200$ by size.
+
+\subsection{Erd\H{o}s 318 (item 2)}
+$P_1(A)$ asks that every $\pm1$-valued, non-constant $f$ on $A\setminus\{0\}$ has a finite
+non-empty $S$ with $\sum_{n\in S} f(n)/n = 0$. If $A$ has exactly one even element $e$, take
+$f(e)=1$ and $f=-1$ elsewhere. A vanishing sum must contain $e$, so $1/e = \sum_{n\in T} 1/n$
+with all $n\in T$ odd. Multiplying by $P=\prod_{n\in T}n$ (odd) gives $P = eK$ with $K\in\mathbb N$,
+so $P$ is even: contradiction.
+
+\subsection{Erd\H{o}s 939 (items 3--6)}
+\lean{Erdos939Sums r} is the set of $(r-2)$-element sets of coprime $r$-full numbers whose sum is
+$r$-full. All witnesses come from $(X+Y)^r = (X-Y)^r + \sum_{j\text{ odd}} 2\binom rj X^{r-j}Y^j$.
+For $r=6$, $X=q^6$, $Y=30^6$, $q=30t+61$: the four summands
+$(X-Y)^6, 12X^5Y, 40X^3Y^3, 12XY^5$ are distinct, $6$-full (the coefficients $12,40$ divide a
+power of $30$), coprime (a common prime divides $X-Y$ and $30q$, hence both $q$ and $30$), and
+sum to $(X+Y)^6$. Distinct $t$ give distinct sums, so the family is infinite, which also answers
+\lean{variants.finite} negatively. For $r=7$ ($X=211^7$, $Y=210^7$) and $r=8$ ($X=15^8$,
+$Y=14^8$; the term $2\binom 83 = 112$ is split as $14+98$) we verify Cambie's explicit witnesses by
+kernel computation.
+
+\subsection{Ramsey numbers (items 7--10, 12)}
+We use the catalogue's \lean{IsGraphRamsey n k l} and prove
+$\inf\{n : \mathrm{IsGraphRamsey}\ n\ k\ l\} = R$, which the catalogue's lemma
+\lean{classicalRamsey\_eq\_sInf} identifies with its $R(k,l)$. Upper bounds follow from the
+Erd\H{o}s--Szekeres recursion for a finset-relative property and the Greenwood--Gleason
+parity argument ($R(3,4)\le 9$: a triangle-free graph on 9 vertices without independent
+4-set is 3-regular, impossible on 9 vertices). Lower bounds: the circulants $C_5(1)$,
+$C_8(1,4)$, $C_{13}(1,5)$ and the Paley graph on 17 vertices. For $R(3,3,3)=17$ we use the
+catalogue's \lean{ForcesMonochromaticTriangle} with Mathlib's \lean{TopEdgeLabeling}: a vertex
+of $K_{17}$ has six neighbours of one colour, inside which the remaining two colours give a
+2-colouring of $K_6$; the lower bound is the Greenwood--Gleason colouring of $K_{16}$ by cubic
+residue classes in $\mathbb F_{16}$.
+
+\subsection{WOWII Conjecture 91 (item 11)}
+The conjecture states $b(G)\le 1 + f(G)\lceil l(G)\rceil/2$ for connected $G$ ($b$: largest
+induced bipartite subgraph, $f$: largest induced forest, $l$: average independence number of
+neighbourhoods). For M.~Talwar's 11-vertex graph (graph6 \lean{JBza\_CB?wF\_}) we prove
+$b\ge 8$ (explicit 2-colouring), $f\le 6$ (every 7 vertices contain one of 11 triangles or 5
+four-cycles) and $l\le 2$ (neighbourhood independence numbers summing to at most 22), so
+$8 > 7$. The catalogue quantifies over \lean{Type*}; we refute the statement for
+\lean{Type}.
+
+\subsection{Classical theorems (items 13--18)}
+\begin{itemize}
+\item \textbf{Th\=abit.} If $p=3\cdot2^{m}-1$, $q=3\cdot2^{m+1}-1$, $r=9\cdot2^{2m+1}-1$ are prime
+  ($m\ge1$), then $2^{m+1}pq$ and $2^{m+1}r$ are amicable.
+\item \textbf{Proth.} If $N=k2^n+1$, $0<k<2^n$, and $a^{(N-1)/2}\equiv-1\pmod N$, then $N$ is
+  prime.
+\item \textbf{Lam\'e.} The Euclidean algorithm on $a>b$ takes at most five times the number of
+  decimal digits of $b$ steps (via $F_{n+5}\ge 10F_n$).
+\item \textbf{Mirsky--Newman.} No finite system of residue classes with distinct moduli $>1$
+  covers $\mathbb N$ exactly once (roots-of-unity filter, purely algebraic).
+\item \textbf{Bondy.} Among $n$ distinct subsets of an $n$-set, one element can be deleted from
+  all of them keeping them distinct (rank argument over $\mathbb F_2$).
+\item \textbf{Midy.} If $b$ has even order $2k$ modulo the prime $p$ and $0<a<p$, the period
+  $a(b^{2k}-1)/p$ splits as $A b^k + B$ with $A+B=b^k-1$.
+\end{itemize}
+
+\section{Count and limits}
+The request was for at least 33 ``breakthroughs''. We report eighteen formal results, because
+those are the ones that meet the criteria above; we did not pad the list with routine lemmas.
+None of them is a new mathematical theorem, and none settles an open problem. The open
+catalogue items we examined but did not prove (for example \lean{erdos\_939} itself, $R(5,5)$,
+$R(3,6)$, OEIS A234360 and A232616, which need very large computations, and
+\lean{infinite\_of\_six\_le} for $r\ge 7$) remain open in our files.
+
+\section*{Reproducibility}
+Code: \lean{Lean/OpenProblems} in the FBS3R Research Archive repository.
+\lean{lake build OpenProblems} builds everything; \lean{lake env lean scripts/Axioms.lean}
+prints the axioms of every main theorem.
+
+\end{document}
