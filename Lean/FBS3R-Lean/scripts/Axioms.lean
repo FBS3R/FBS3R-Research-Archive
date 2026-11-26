@@ -75,3 +75,11 @@ open FBS3R
 #print axioms Checks.valuation_density
 #print axioms Checks.vacuum_kernel
 #print axioms Checks.de_sitter_capacity
+#print axioms FBS3R.FibonacciAnyon.F_sq
+#print axioms FBS3R.FibonacciAnyon.braid_defect
+#print axioms FBS3R.FibonacciAnyon.braid_iff
+#print axioms FBS3R.FibonacciAnyon.fibonacci_braid
+#print axioms FBS3R.Zeckendorf.mem_C_iff
+#print axioms FBS3R.Zeckendorf.image_rk
+#print axioms FBS3R.Zeckendorf.card_C
+#print axioms FBS3R.Zeckendorf.flip_changes_address

@@ -27,9 +27,10 @@ Zeckendorf--Collatz Bounds, and Six Corrected Claims}
 
 \begin{abstract}
 We report a formal verification, in the Lean~4 proof assistant with the Mathlib library,
-of a selection of mathematical statements from the FB(S$^3$)R preprint archive. Twelve Lean
-modules contain seventy-five theorems. Grouped by content and leaving out trivial auxiliary
-lemmas, they yield 47 results: 6 corrected claims and 41 verified statements. None uses \lean{sorry}, \lean{admit},
+of a selection of mathematical statements from the FB(S$^3$)R preprint archive. Fourteen Lean
+modules contain 134 theorem declarations, of which 83 main theorems have their axioms printed
+by a checking script. Grouped by content and leaving out trivial auxiliary
+lemmas, they yield 50 results: 6 corrected claims and 44 verified statements. None uses \lean{sorry}, \lean{admit},
 \lean{native\_decide} or any user-declared axiom. Every theorem depends only on Lean's
 standard axioms \lean{propext}, \lean{Classical.choice} and \lean{Quot.sound}.
 The verified material comprises:
@@ -48,8 +49,13 @@ kernel, and Chern-charge rigidity $q=\pm1$ for the Hopf holonomy representation;
 fraction, and the scalar, transverse-traceless and Dirac capacities;
 \item Berger-sphere curvature and the Ricci-flow ratio equation, the GHZ branch-balancing
 factorization, the dilation algebra of valuation profiles, and the vacuum-shift kernel of
-trace-free gravity.
+trace-free gravity;
+\item the exact braid relation of the Fibonacci anyon qubit, with a closed form of the braid
+defect for an arbitrary diagonal $R$-move;
+\item the Zeckendorf address bijection of the constrained (PXP) chain and its dimension
+$F_{n+2}$.
 \end{itemize}
+A per-paper coverage table classifies all 101 folders of the archive.
 We also give machine-checked counterexamples to six claims made in the archive.
 We state explicitly which statements were not formalized, and why.
 No open problem (Collatz, Navier--Stokes regularity, the Yang--Mills mass gap, local
@@ -224,6 +230,44 @@ This checks the arithmetic only. It does not derive $\Lambda$, because both the 
 $292$ and the factor $1+\pi/50$ are inputs of the paper.
 \end{remark}
 
+\section{Fibonacci anyon braid algebra}
+Let $u=\varphi^{-1}=(\sqrt5-1)/2$ and $v=\sqrt u$, and put
+$F=\begin{pmatrix}u&v\\v&-u\end{pmatrix}$, $R=\mathrm{diag}(a,b)$, $B_1=R$ and $B_2=FRF$.
+\begin{theorem}[\lean{FibonacciAnyon.braid\_defect}, \lean{braid\_iff}]
+In every commutative ring with $v^4+v^2=1$ we have $F^2=1$ and
+\[
+RFRFR-FRFRFRF=(a-b)\,Q(a,b)\begin{pmatrix}1&-v\\-v&-1\end{pmatrix},
+\]
+where $Q(a,b)=(2u-1)a^2+(2-3u)ab+(2u-1)b^2$. Hence, over a field, the braid relation
+$B_1B_2B_1=B_2B_1B_2$ holds if and only if $a=b$ or $Q(a,b)=0$.
+\end{theorem}
+\begin{theorem}[\lean{FibonacciAnyon.fibonacci\_braid}]
+For $a=e^{-4\pi i/5}$ and $b=e^{3\pi i/5}$, as in the preprint of 9 November 2026,
+$Q(a,b)=0$. Therefore $B_1B_2B_1=B_2B_1B_2$ and $F^2=1$ hold exactly.
+\end{theorem}
+The proof uses $a=b^2$ and $b^2+1=2\cos(3\pi/5)\,b=-u\,b$. The diamond-norm bounds of that
+preprint are not formalized, because Mathlib has no theory of quantum channels.
+
+\section{Zeckendorf addresses of the constrained chain}
+Let $\mathcal C_n$ be the binary strings of length $n$ with no two adjacent ones, and put
+$r(s)=\sum_j s_jF_{n-j+2}$.
+\begin{theorem}[\lean{Zeckendorf.image\_rk}, \lean{rk\_injOn}, \lean{card\_C}]
+The map $r$ is a bijection $\mathcal C_n\to\{0,\dots,F_{n+2}-1\}$, so
+$|\mathcal C_n|=F_{n+2}$. Flipping a permitted site $j$ changes $r$ by exactly $F_{n-j+2}$.
+\end{theorem}
+This is Proposition~\emph{Zeckendorf addresses} of the preprint of 23 October 2026. Its
+rational generating functions for $\operatorname{Tr}A_n^4$, $\operatorname{Tr}A_n^6$ and
+$\operatorname{Tr}A_n^8$ agree with direct trace computations for $n\le10$. That check is
+numerical; the universal-denominator theorem is not formalized.
+
+\section{Coverage of the archive}
+The file \lean{COVERAGE.md} assigns each of the 101 folders one of these statuses:
+checked, partially checked, error found, out of reach, no formal statements, not
+mathematical, or not yet analysed. Only the PRA Bell--Hopf paper has its central statements
+fully checked. Fourteen papers are checked in part, five of them with a corrected claim; the
+Mandelbrot paper has only the corrected step. About forty-five papers with formal statements
+remain unanalysed. That remainder is stated openly, not hidden.
+
 \section{Corrected claims}
 \begin{proposition}[Refined odd step is false as stated; \lean{refined\_odd\_step\_counterexample}]
 Take $n=11$. Then $6\le\log_\varphi(11\sqrt5)<6+\tfrac23$, so $11$ is not ``top-third''.
@@ -283,8 +327,8 @@ Navier--Stokes solution $e^{-\nu t}U$.
 \end{itemize}
 
 \section{Ledger}
-The file \lean{RESULTS.md} in the Lean project lists all 47 results with their sources and
-Lean names: A1--A6 are corrections and B1--B41 are verifications. Trivial auxiliary lemmas are
+The file \lean{RESULTS.md} in the Lean project lists all 50 results with their sources and
+Lean names: A1--A6 are corrections and B1--B44 are verifications. Trivial auxiliary lemmas are
 listed in the code but not counted. No result in this ledger settles an open problem.
 
 \end{document}

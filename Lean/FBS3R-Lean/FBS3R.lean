@@ -11,3 +11,5 @@ import FBS3R.ProjectorBounds
 import FBS3R.Miscellany
 import FBS3R.CausalSpectral
 import FBS3R.ArchiveChecks
+import FBS3R.FibonacciAnyon
+import FBS3R.ZeckendorfAddress

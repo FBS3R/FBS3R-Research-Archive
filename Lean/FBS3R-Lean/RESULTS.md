@@ -5,7 +5,8 @@
 (`weight_s2`, `helicity_sign`, `single_slope_injective`, `de_sitter_capacity`,
 `golden_scaling` — последняя уже есть в Mathlib) **в счёт не входят**.
 
-**Итог: 47 результатов = 6 найденных ошибок (раздел A) + 41 машинная верификация (раздел B).**
+**Итог: 50 результатов = 6 найденных ошибок (раздел A) + 44 машинные верификации (раздел B).**
+Покрытие по каждой из 101 папки репозитория — в `COVERAGE.md`.
 Ни один результат не решает открытую проблему (Коллатц, Навье–Стокс, Янг–Миллс, MLC).
 
 ## A. Найденные ошибки и исправления (6)
@@ -19,7 +20,7 @@
 | A5 | Mandelbrot MLC (2025-03-05) | «подмножество связного диска связно» | контрпример `{0,1} ⊆ [0,1]` | `Misc.subset_of_connected_not_connected` |
 | A6 | Hierarchical Bethe (2026-04-21) | Бине `F_n = (φ^{n+2}−ψ^{n+2})/√5` при `F₁=3` | формула даёт 2 при n=1; верно `φ^{n+3}`, `F_n = Fib(n+3)` | `Checks.paper_binet_wrong`, `F_binet` |
 
-## B. Машинно проверенные утверждения архива (41)
+## B. Машинно проверенные утверждения архива (44)
 
 | # | Препринт | Результат | Имя в Lean |
 |---|---|---|---|
@@ -64,8 +65,15 @@
 | B39 | GHZ balancing (2026-05-02) | факторизация `V = q·2r/(1+r²) = q/cosh(ln r)` | `Checks.design_factorization` |
 | B40 | GHZ balancing | `V ≤ q`, равенство ⇔ `r = 1` | `Checks.balance_penalty` |
 | B41 | Dilation algebra (2026-08-10), Trace-free (2026-08-12) | `p = −ε − (A/3)ε'`; `A^n` — собственные функции `A d/dA`; корни `P_val`; плотность валюации; ядро вакуумного сдвига `P_tr(T−ρ₀g) = P_tr(T)` | `work_identity`, `dilation_eigen`, `P_val_roots`, `valuation_density`, `vacuum_kernel` |
+| B42 | Fibonacci anyon braid (2026-11-09) | `F² = 1` и точное соотношение кос `B₁B₂B₁ = B₂B₁B₂` при `u = φ⁻¹`, `v = √u`, `R = diag(e^{−4πi/5}, e^{3πi/5})` | `FibonacciAnyon.fibonacci_braid`, `F_sq` |
+| B43 | Fibonacci anyon braid (новое) | замкнутая форма дефекта `RFRFR − FRFRFRF = (a−b)Q(a,b)·[[1,−v],[−v,−1]]`, критерий: соотношение кос ⇔ `a = b ∨ Q(a,b) = 0`, `Q = (2u−1)a² + (2−3u)ab + (2u−1)b²` | `FibonacciAnyon.braid_defect`, `braid_iff` |
+| B44 | Rational Spectral Hierarchies (2026-10-23) | адрес Цекендорфа `r(s) = Σ sⱼF_{n−j+2}` — биекция `𝒞ₙ → {0,…,F_{n+2}−1}`; `|𝒞ₙ| = F_{n+2}`; флип меняет адрес на `F_{n−j+2}` | `Zeckendorf.image_rk`, `rk_injOn`, `card_C`, `flip_changes_address`, `mem_C_iff` |
 
 ### Численная проверка (Python, не Lean)
 Trace-free gravity (2026-08-12): `q₀ = πφ⁵⁸⁴/(1+π/50) = 3.3072514607139791698…×10¹²²`
 воспроизводится; `Λ = 3π/(ℓ_P² q₀) ≈ 1.09×10⁻⁵² м⁻²`. Это проверка арифметики, а не вывод
 значения Λ: выбор `N_φ = 292` и множителя `1+π/50` статья вводит сама.
+
+Rational Spectral Hierarchies (2026-10-23): производящие функции `Σ Tr A_n^{2m} zⁿ` при `2m = 4, 6, 8`
+совпадают с прямым вычислением следов для `n ≤ 10` (`scripts/pxp_moments_check.py`). Это проверка, а не
+доказательство теоремы о знаменателе `(1−z−z²)^{m+1}`.

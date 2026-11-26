@@ -1,0 +1,125 @@
+# Покрытие всех работ репозитория (`All Preprints/`, 101 папка)
+
+Статусы (строго):
+
+* **✅ проверено** — центральные математические утверждения статьи доказаны в Lean 4 (без `sorry`, только `propext`, `Classical.choice`, `Quot.sound`).
+* **🟡 частично** — часть утверждений доказана в Lean, остальное не формализовано.
+* **❌ ошибка** — найдено и машинно проверено опровержение хотя бы одного утверждения (номера A1–A6 из `RESULTS.md`).
+* **⛔ вне досягаемости** — нужного аппарата нет в Mathlib (дифференциальная геометрия многообразий, операторы на `S³`, квантовые каналы, КТП), либо утверждение — открытая проблема.
+* **🔢 нет формальных утверждений** — в tex нет окружений theorem / proposition / lemma / corollary. Это физическая феноменология или подгонка параметров, проверять в Lean нечего.
+* **📝 нематематический текст** — философия, онтология, эссе. Формализация неприменима.
+* **⬜ не разобрано** — формальные утверждения есть, но в этом проходе я их не формализовал. Это честный остаток работы.
+
+Число в скобках — сколько окружений theorem / proposition / lemma / corollary в tex. «pdf» и «docx» означают, что исходника нет.
+
+| Папка | Статус | Что сделано / почему нет |
+|---|---|---|
+| 2025_02_06 Being and Non-Being | 📝 (pdf) | философия |
+| 2025_02_06 Beyond Duality | 📝 (pdf) | философия |
+| 2025_02_17 Orpheus Praxis (fractal AI) | 📝 (pdf) | концепция без формальных утверждений |
+| 2025_02_27 «Rigorous Proof» Poincaré | ⛔ (pdf) | Гипотезу Пуанкаре доказал Перельман. Чтобы формализовать предложенный «фрактальный» вывод, нужна топология 3-многообразий, а её в Mathlib нет. Корректность вывода не подтверждена. |
+| 2025_03_05 Mandelbrot MLC | ❌ (0) | **A5**: шаг «подмножество связного диска связно» ложен. MLC остаётся открытой, а статья доказательством не является. |
+| 2025_03_29 Excluded middle | 📝 (pdf) | философия логики |
+| 2025_05_02 Gödel / completeness | 📝 (pdf) | неформальный текст |
+| 2025_05_07 Local flatness, ΛCDM | 🔢 (0) | физическая модель |
+| 2025_05_09 Biogenesis | 🔢 (0) | эмпирика и интерпретация |
+| 2025_05_22/25/29 On Reincarnation I–III | 📝 (pdf) | философия |
+| 2025_06_05 Schrödinger thought experiment | 🔢 (0) | интерпретация |
+| 2025_06_23 Fractal Foliation, UV-finite gravity | ⬜ (7) | утверждения о нелокальных ядрах гравитации |
+| 2025_06_23 Fractal Gravity on nested shells | 🔢 (0) | модель |
+| 2025_06_24 Topology-induced nonlocal gravity | 🔢 (0) | модель |
+| 2025_06_25 Dual incompleteness (Gödel–Rosser) | 🔢 (0) | неформальное изложение |
+| 2025_06_27 Dependent origination | 🔢 (0) | модель |
+| 2025_07_19 Gauss's theorem in FBS3R | 🔢 (0) | модель |
+| 2025_07_23 Heisenberg fractal uncertainty | 🔢 (0) | модель |
+| 2025_07_25 Cyclic universe | 🔢 (0) | модель |
+| 2025_08_08 φ-ladder, PBH UV background | 🔢 (0) | модель |
+| 2025_09_01 Hubble tension | ⬜ (1) | феноменология |
+| 2025_09_28 Zeckendorf–φ bounds for Collatz | ❌ 🟡 (11) | **A1**: контрпример n = 11. Доказаны B1–B4: шаги, дрейф, no-go. **Коллатц не решён.** |
+| 2025_10_05 Dark energy as artifact | 🔢 (0) | модель |
+| 2025_10_12 Canonical quantization, CMC | 🔢 (0) | модель |
+| 2025_10_12 Geometric acceleration without Λ | 🔢 (0) | модель |
+| 2025_12_08 Suspension of spheres (non-duality) | 📝 (pdf) | ранняя версия; математика вошла в 2026_07_02 |
+| 2025_12_30 Ontological crisis of cosmology | 📝 (pdf) | эссе |
+| 2026_02_17 Noether identities, φ-embedding | ⬜ (7) | |
+| 2026_02_18 Fibonacci entanglement density | 🔢 (0) | модель |
+| 2026_02_21 Vanishing of diffeo Hamiltonians | 🔢 (0) | стандартная ОТО (связи) |
+| 2026_02_24 Quasi-local diffeo charges | 🔢 (0) | |
+| 2026_04_15 Bell from S³ topology | ❌ 🟡 (19) | **A2**: гипотезы стратификации несовместны. **A3**: Φ⁺ не даёт −cos θ. CHSH и Цирельсон доказаны (B25–B27). |
+| 2026_04_17 Wave function of the void | ⬜ (7) | |
+| 2026_04_19 Yang–Mills IR scale on S³ | ❌ 🟡 (10) | **A2**, **A4**: порога 3/R² нет в спектре. Доказано B30. **Массовая щель не доказана.** |
+| 2026_04_20 In the nonexistent mind | 📝 (docx) | эссе |
+| 2026_04_21 Hierarchical Bethe states | ❌ 🟡 (8) | **A6**: показатель в формуле Бине равен n+3. Нулевые моды доказаны (B36). |
+| 2026_04_24 Ring-like ULSS at z≈0.8 | ⬜ (6) | статистика наблюдений |
+| 2026_04_25 Quasi-local charges, φ-levels | ⬜ (7) | |
+| 2026_04_29 Speed of light, fractal S³ | 🔢 (0) | |
+| 2026_04_29 Geometric causal-spectral cosmology | ⬜ (10) | ядро совпадает с 2026_07_07, но эта версия отдельно не сверялась |
+| 2026_04_30 Hopf holonomy Bell (PRA) | ✅ (5) | B25–B29: CHSH ≤ 2 для любой ЛСП-модели, Цирельсон, S = −2√2, жёсткость Черна q = ±1, отображение Хопфа |
+| 2026_05_02 GHZ local balancing | 🟡 (6) | B39–B40: факторизация, V ≤ q |
+| 2026_05_04 Curvature-scale coincidence | 🔢 (0) | |
+| 2026_05_05 Planck boundary geometry | ⬜ (10) | |
+| 2026_05_07 Multibranch transfer kernels | ⬜ (10) | |
+| 2026_05_10 Dark-sector residuals | ⬜ (9) | |
+| 2026_05_11 Benchmark residual invariants | ⬜ (2) | |
+| 2026_05_13 Γ topological residual cosmology | ⬜ (9) | |
+| 2026_05_15 Spherical FLRW residuals | ⬜ (5) | |
+| 2026_05_16 Light as causal coherence | ⬜ (3) | |
+| 2026_05_17 Invariant residual transfer | ⬜ (1) | |
+| 2026_05_19 Residual-first standard | ⬜ (5) | |
+| 2026_05_19 Einstein residual closure | ⬜ (12) | |
+| 2026_05_24 Ontological structure of S³ | 📝 (0) | |
+| 2026_06_10 Conditional reconstruction | 🔢 (0) | |
+| 2026_06_26 Expanding Hopf-lifted Ricci flows | 🔢 (0) | |
+| 2026_07_02 Hopf-lifted Ricci-type flow no-go | 🟡 (7) | B37–B38: кривизны Бергера, ОДУ отношения. Сама теорема о потоке ⛔: потоков Риччи в Mathlib нет. |
+| 2026_07_02 Information as DRD carriers | ⬜ (9) | |
+| 2026_07_02 Suspension of spheres, Spin/Hopf | 🟡 (11) | B29: отображение Хопфа и U(1)-слои |
+| 2026_07_03 Causal co-scaling | ⬜ (1) | |
+| 2026_07_03 DRD functorial theory | ⬜ (24) | |
+| 2026_07_05 Supercritical curvature barriers | ⬜ (22) | вариационные барьеры для потоков ⛔ |
+| 2026_07_06 Geometric → physical carrier | 📝 (docx) | |
+| 2026_07_06 Gravity as DRD selector | ⬜ (74) | |
+| 2026_07_06 Research framework HCC-S³ | 📝 (docx) | план исследования |
+| 2026_07_07 Causal-spectral distinguishability | 🟡 (113) | B31–B35: объём шара, Γ, ёмкости (скалярная, TT, Дирака). Спектральные теоремы на S³ ⛔. |
+| 2026_07_08 Hopfion sectors | 📝 (docx) | исходника нет |
+| 2026_07_19 How a 3-manifold becomes alive | 📝 (docx) | |
+| 2026_07_21 Relational theory of expression | 📝 (docx) | |
+| 2026_08_09 Finite dilation operator algebra | ⬜ (68) | версия до 2026_08_10 |
+| 2026_08_09 Homothetic valuation spectrum | ⬜ (19) | |
+| 2026_08_10 Capacity-fixed trace-free gravity, DESI | ⬜ (15) | |
+| 2026_08_10 Finite dilation algebra … gravity closure | 🟡 (53) | B41: тождество работы, собственные функции, корни P_val, плотность |
+| 2026_08_10 Finite dilation algebra … null tests | 🟡 (48) | те же тождества B41 |
+| 2026_08_11 Trace-free gravity, edge partition | ⬜ (84) | |
+| 2026_08_12 Trace-free gravity, horizon capacity | 🟡 (85) | B41: ядро вакуумного сдвига. Арифметика q₀ проверена на Python. Значение Λ — подгонка (N_φ = 292). |
+| 2026_08_14 SETI null results | 🔢 (0) | |
+| 2026_08_17 Acyclic CIVP, molecular corners | ⬜ (24) | |
+| 2026_09_05 / 09_07 Pregeometric relational dynamics | 📝 (docx) | |
+| 2026_09_11 Field reconstruction from spherical maps | ⬜ (7) | |
+| 2026_09_20 Finite spectral closure, NS on S³ | ⬜ (44) | **Регулярность Навье–Стокса не доказана.** Конечномерные редукции не формализованы. |
+| 2026_09_22 Killing response, spectral tomography NS | ⬜ (89) | |
+| 2026_09_23 Killing–Beltrami algebra, NS on S³ | 🟡 (44) | B5–B24: дефект представления, коэффициенты, Казимир, Стокс, Лэмб, затухание, ζ-сумма и вычет, энтропия, проекторы. Операторы на S³ заменены абстрактной алгеброй. |
+| 2026_10_06 Holomorphic Hopf–Beltrami Maxwell modes | ⬜ (4) | |
+| 2026_10_06 S3 LIGHT TRISPHERE atlas | 🔢 (0) | описание ПО |
+| 2026_10_07 Null Beltrami geometry (2 версии) | ⬜ (24 / 39) | твисторные когомологии ⛔ |
+| 2026_10_13 Geometry of light on S³ | ⬜ (37) | |
+| 2026_10_15 Hopf-triad closed backgrounds | 🔢 (0) | |
+| 2026_10_15 Meta-causal predictive memory | 🔢 (0) | |
+| 2026_10_17 Pregeometric … permutation-invariant witness | ⬜ (5) | |
+| 2026_10_17 Pregeometric … spectral constraints | 📝 (docx) | |
+| 2026_10_23 Certified Hopf tomography | ⬜ (37) | |
+| 2026_10_23 Rational spectral hierarchies (PXP) | 🟡 (6) | **B44**: биекция адресов Цекендорфа и dim 𝒞ₙ = F_{n+2}. Производящие функции Tr A⁴, A⁶, A⁸ совпали на Python для n ≤ 10. Теорема о знаменателе ⬜. |
+| 2026_10_28 Two-local qutrit obstruction (AKLT) | ⬜ (4) | Нужна точная линейная алгебра в размерности 625 (ранг 6, ядро 18). В принципе это проверяемо, но в этом проходе не сделано. |
+| 2026_11_09 BINDU VECTRA (GAD channels) | см. README | независимая пересборка Lean-кода пакета (Lean 4.19), результат в README |
+| 2026_11_09 Exact braid algebra, Fibonacci anyon | 🟡 (4) | **B42**: F² = 1 и B₁B₂B₁ = B₂B₁B₂ точно. **B43**: критерий «braid ⇔ a = b ∨ Q(a,b) = 0», нового в статье нет. Оценки по алмазной норме ⛔: квантовых каналов в Mathlib нет. |
+| 2026_11_26 Machine-checked audit (эта работа) | — | собственная статья аудита |
+
+**Итог по 101 папке.**
+
+| Статус | Число папок | Комментарий |
+|---|---|---|
+| ✅ | 1 | |
+| 🟡 или ❌ с частичной проверкой | 14 | из них 5 с найденными ошибками; Мандельброт — только ❌ |
+| ⬜ | около 45 | это основной честный остаток |
+| ⛔ | 1 | Пуанкаре |
+| 🔢 / 📝 | остальные | |
+
+Ни одна открытая проблема не решена: ни Коллатц, ни Навье–Стокс, ни массовая щель Янга–Миллса, ни MLC.
