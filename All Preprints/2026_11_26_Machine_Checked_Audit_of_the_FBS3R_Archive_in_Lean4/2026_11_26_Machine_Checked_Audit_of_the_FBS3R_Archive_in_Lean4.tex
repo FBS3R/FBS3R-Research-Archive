@@ -18,7 +18,7 @@
 
 \title{A Machine-Checked Audit of the FB(S$^3$)R Archive in Lean~4:\\
 Killing--Beltrami Algebra, $\zeta$-Constants, Bell--Hopf Rigidity,\\
-Zeckendorf--Collatz Bounds, and Four Corrected Claims}
+Zeckendorf--Collatz Bounds, and Six Corrected Claims}
 \author{FB(S$^3$)R Research Archive}
 \date{26 November 2026}
 
@@ -27,8 +27,9 @@ Zeckendorf--Collatz Bounds, and Four Corrected Claims}
 
 \begin{abstract}
 We report a formal verification, in the Lean~4 proof assistant with the Mathlib library,
-of a selection of mathematical statements from the FB(S$^3$)R preprint archive. Ten Lean
-modules contain fifty principal theorems. None uses \lean{sorry}, \lean{admit},
+of a selection of mathematical statements from the FB(S$^3$)R preprint archive. Twelve Lean
+modules contain seventy-five theorems. Grouped by content and leaving out trivial auxiliary
+lemmas, they yield 47 results: 6 corrected claims and 41 verified statements. None uses \lean{sorry}, \lean{admit},
 \lean{native\_decide} or any user-declared axiom. Every theorem depends only on Lean's
 standard axioms \lean{propext}, \lean{Classical.choice} and \lean{Quot.sound}.
 The verified material comprises:
@@ -42,9 +43,14 @@ spectral identities, and the energy law of Killing precession;
 embedding constant;
 \item the CHSH bound for every local hidden-variable model, the Tsirelson bound for the singlet
 kernel, and Chern-charge rigidity $q=\pm1$ for the Hopf holonomy representation;
-\item the Zeckendorf height bounds for the Collatz map.
+\item the Zeckendorf height bounds for the Collatz map;
+\item the causal-spectral identities of the round carrier: geodesic-ball volume, the causal
+fraction, and the scalar, transverse-traceless and Dirac capacities;
+\item Berger-sphere curvature and the Ricci-flow ratio equation, the GHZ branch-balancing
+factorization, the dilation algebra of valuation profiles, and the vacuum-shift kernel of
+trace-free gravity.
 \end{itemize}
-We also give machine-checked counterexamples to four claims made in the archive.
+We also give machine-checked counterexamples to six claims made in the archive.
 We state explicitly which statements were not formalized, and why.
 No open problem (Collatz, Navier--Stokes regularity, the Yang--Mills mass gap, local
 connectivity of the Mandelbrot set) is claimed to be solved.
@@ -171,6 +177,53 @@ $F_{n+1}/F_n\to\varphi$.
 These are local bounds only. They do not imply the Collatz conjecture, and none of the
 preprints claims that they do.
 
+\section{Causal--spectral carrier identities}
+\begin{theorem}[\lean{CausalSpectral}]
+On the round sphere $S^3(R)$ the following hold.
+\begin{enumerate}
+\item $\int_0^s4\pi R^2\sin^2(\rho/R)\,d\rho=2\pi R^3\bigl(s/R-\tfrac12\sin(2s/R)\bigr)$,
+which equals $2\pi^2R^3$ at $s=\pi R$.
+\item The causal fraction $\Gamma(\tau)=(\tau-\tfrac12\sin2\tau)/\pi$ satisfies
+$\Gamma'=\tfrac2\pi\sin^2\tau$, $\Gamma(\tau)+\Gamma(\pi-\tau)=1$ and $\Gamma(\pi/2)=\tfrac12$.
+\item The scalar cutoff satisfies $n(n+2)\le x^2\iff n+1\le\sqrt{1+x^2}$, and
+$\sum_{n<M}(n+1)^2=M(M+1)(2M+1)/6$.
+\item $\sum_{k=2}^M2(k-1)(k+3)=M(M-1)(2M+11)/3$.
+\item $2\sum_{n=0}^M(n+1)(n+2)=2(M+1)(M+2)(M+3)/3$.
+\end{enumerate}
+\end{theorem}
+
+\section{Further verified statements}
+\begin{theorem}[\lean{Checks}]
+\begin{enumerate}
+\item (Hierarchical Bethe graphs.) In the maximally coupled block adjacency
+$\begin{pmatrix}A&\mathbf 1\mathbf 1^T\\\mathbf 1\mathbf 1^T&0\end{pmatrix}$ with a new block of
+size $k$, the kernel has dimension at least $k-1$.
+\item (Berger spheres.) With $x=a^2$ and $z=c^2$:
+\begin{itemize}
+\item $R=8/x-2z/x^2$ and $|\mathrm{Ric}|^2=4[2(2x-z)^2+z^2]/x^4$;
+\item $4|\mathrm{Ric}|^2-R^2=4(16x^2-24xz+11z^2)/x^4$, which tends to $64/a^4$ as $c\to0$;
+\item $\dot x=-2r_1x$ and $\dot z=-2r_3z$ imply $\dot u=8u(1-u)/x$ for $u=z/x$.
+\end{itemize}
+\item (GHZ balancing.) $\frac{2cs|\Gamma|}{c^2A+s^2B}=q\frac{2r}{1+r^2}=\frac{q}{\cosh\ln r}$,
+and $\frac{2r}{1+r^2}\le1$ with equality if and only if $r=1$.
+\item (Dilation algebra.)
+\begin{itemize}
+\item From $E=\varepsilon V$, $V=2\pi^2A^3$ and $dE=-p\,dV$ it follows that
+$p=-\varepsilon-\tfrac A3\varepsilon'$.
+\item $A\frac{d}{dA}A^n=nA^n$.
+\item The integer roots of $(z-1)z(z+1)(z+2)(z+3)$ are exactly $\{1,0,-1,-2,-3\}$.
+\item These are the exponents of the round valuation density.
+\end{itemize}
+\item (Trace-free gravity.) For every invertible $4\times4$ metric $g$:
+$P_{\mathrm{tr}}(T-\rho_0g)=P_{\mathrm{tr}}(T)$.
+\end{enumerate}
+\end{theorem}
+\begin{remark}[Numerical check]
+The value $q_0=\pi\varphi^{584}/(1+\pi/50)=3.30725146071398\ldots\times10^{122}$ is reproduced.
+This checks the arithmetic only. It does not derive $\Lambda$, because both the shell number
+$292$ and the factor $1+\pi/50$ are inputs of the paper.
+\end{remark}
+
 \section{Corrected claims}
 \begin{proposition}[Refined odd step is false as stated; \lean{refined\_odd\_step\_counterexample}]
 Take $n=11$. Then $6\le\log_\varphi(11\sqrt5)<6+\tfrac23$, so $11$ is not ``top-third''.
@@ -201,6 +254,13 @@ spectra are used elsewhere in the same archive. Either the operator must be spec
 threshold must be corrected.
 \end{proposition}
 
+\begin{proposition}[Binet formula of the Bethe-graph paper; \lean{paper\_binet\_wrong}]
+For $F_1=3$, $F_2=5$, $F_{n+1}=F_n+F_{n-1}$, the formula
+$F_n=(\varphi^{n+2}-\psi^{n+2})/\sqrt5$ gives $F_1=2$. The correct statement is
+$F_n=\mathrm{Fib}(n+3)=(\varphi^{n+3}-\psi^{n+3})/\sqrt5$ (\lean{F\_binet}). The ratio limit
+$F_{n-1}/F_n\to\varphi^{-1}$ is unaffected.
+\end{proposition}
+
 \begin{remark}[Mandelbrot local connectivity]
 The preprint of 5 March 2025 does not prove the MLC conjecture, which remains open. Two
 steps fail.
@@ -221,5 +281,10 @@ Navier--Stokes solution $e^{-\nu t}U$.
 \item The conditional Euclidean blow-up transfer, which depends on five external hypotheses.
 \item Cosmological, empirical and ontological claims, which are not mathematical theorems.
 \end{itemize}
+
+\section{Ledger}
+The file \lean{RESULTS.md} in the Lean project lists all 47 results with their sources and
+Lean names: A1--A6 are corrections and B1--B41 are verifications. Trivial auxiliary lemmas are
+listed in the code but not counted. No result in this ledger settles an open problem.
 
 \end{document}
