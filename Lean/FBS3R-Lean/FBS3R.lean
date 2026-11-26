@@ -6,3 +6,6 @@ import FBS3R.FibonacciStratification
 import FBS3R.SpectralEntropy
 import FBS3R.LambBeltrami
 import FBS3R.KillingPrecession
+import FBS3R.ABCFlow
+import FBS3R.ProjectorBounds
+import FBS3R.Miscellany

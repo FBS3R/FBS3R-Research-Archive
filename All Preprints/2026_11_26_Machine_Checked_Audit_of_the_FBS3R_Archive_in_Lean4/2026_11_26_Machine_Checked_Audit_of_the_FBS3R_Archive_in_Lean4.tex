@@ -1,0 +1,225 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\geometry{margin=2.5cm}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\lean}[1]{\texttt{#1}}
+\newcommand{\curl}{\operatorname{curl}}
+
+\title{A Machine-Checked Audit of the FB(S$^3$)R Archive in Lean~4:\\
+Killing--Beltrami Algebra, $\zeta$-Constants, Bell--Hopf Rigidity,\\
+Zeckendorf--Collatz Bounds, and Four Corrected Claims}
+\author{FB(S$^3$)R Research Archive}
+\date{26 November 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We report a formal verification, in the Lean~4 proof assistant with the Mathlib library,
+of a selection of mathematical statements from the FB(S$^3$)R preprint archive. Ten Lean
+modules contain fifty principal theorems. None uses \lean{sorry}, \lean{admit},
+\lean{native\_decide} or any user-declared axiom. Every theorem depends only on Lean's
+standard axioms \lean{propext}, \lean{Classical.choice} and \lean{Quot.sound}.
+The verified material comprises:
+\begin{itemize}
+\item the algebraic core of the Killing--Beltrami theory of Navier--Stokes flow on the round
+three-sphere: the representation-defect theorem, the polarization coefficients, the curl-shell
+spectral identities, and the energy law of Killing precession;
+\item the Lamb--Beltrami mechanism for differentiable fields, and explicit Beltrami
+(ABC) steady Euler solutions;
+\item the $\zeta$-function shell sum and the exact residue $1/(3\pi^2)$ of the supercritical
+embedding constant;
+\item the CHSH bound for every local hidden-variable model, the Tsirelson bound for the singlet
+kernel, and Chern-charge rigidity $q=\pm1$ for the Hopf holonomy representation;
+\item the Zeckendorf height bounds for the Collatz map.
+\end{itemize}
+We also give machine-checked counterexamples to four claims made in the archive.
+We state explicitly which statements were not formalized, and why.
+No open problem (Collatz, Navier--Stokes regularity, the Yang--Mills mass gap, local
+connectivity of the Mandelbrot set) is claimed to be solved.
+\end{abstract}
+
+\section{Method and trust base}
+The development is the Lake project \lean{Lean/FBS3R-Lean} (Lean~4.36.0, Mathlib
+\lean{v4.36.0}). The command \lean{lake build FBS3R} compiles it, and
+\lean{lake env lean scripts/Axioms.lean} prints the axiom dependencies of every
+principal theorem. All of them report \lean{[propext, Classical.choice, Quot.sound]}.
+
+Mathlib does not yet provide Hodge theory or a curl operator on Riemannian three-manifolds.
+Statements about the round $S^3(R)$ are therefore split into two parts:
+\begin{enumerate}
+\item the \emph{geometric input}, which is assumed as a hypothesis: the signed curl shells
+$E_{k,\sigma}$ have eigenvalue $\mu_{k,\sigma}=\sigma(k+2)/R$, the Killing algebra
+$\mathfrak{so}(4)=\mathfrak{su}(2)_+\oplus\mathfrak{su}(2)_-$ acts on them with spins
+$j_\tau=(k+1+\tau\sigma)/2$, and the relevant invariant kernels are constant;
+\item the \emph{algebra and analysis} derived from that input, which is proved in full.
+\end{enumerate}
+The geometric input consists of classical facts. Its formalization is left to future work.
+
+\section{Killing--Beltrami algebra}
+\begin{theorem}[Representation defect; \lean{KillingBeltrami.defect}]
+Let $P:L_1\to\mathrm{End}(M)$ and $Q:L_2\to\mathrm{End}(M)$ be Lie-algebra homomorphisms
+with $[P x,Q y]=0$ for all $x,y$. For scalars $a,b$ put $D(x,y)=aP(x)+bQ(y)$. Then
+\[
+[D(m),D(n)]-D([m_1,n_1],[m_2,n_2])=(a^2-a)P[m_1,n_1]+(b^2-b)Q[m_2,n_2].
+\]
+For $a=k/(k+2)$ and $b=(k+4)/(k+2)$ the two coefficients are $-2k/(k+2)^2$ and
+$2(k+4)/(k+2)^2$. Both are nonzero for $k\ge1$ (\lean{defect\_coeffs\_ne\_zero}).
+\end{theorem}
+This is the archive's identity $\Omega_{k,\sigma}$, proved without the $S^3$ realization.
+The formula $D=\mathrm{ad}+\tfrac{2}{k+2}(\mathrm{ad}_{m_{-\sigma}}-\mathrm{ad}_{m_\sigma})$
+is \lean{D\_minus\_ad}.
+
+\begin{proposition}[Coefficients and spectra]
+For $\sigma,\tau\in\{\pm1\}$, $R\neq0$ and $k\in\mathbb N$:
+\begin{enumerate}
+\item $(\mu_{k,\sigma}-\mu_{0,\tau})/(2\mu_{k,\sigma})=(k+2-2\tau\sigma)/(2(k+2))$
+(\lean{KB\_coefficient}), with the chiral values $k/(k+2)$ and $(k+4)/(k+2)$;
+\item $(2j_+ + 1)(2j_- + 1)=(k+1)(k+3)$, and
+$\tfrac{4}{R^2}\sum_\tau j_\tau(j_\tau+1)=2\mu_{k,\sigma}^2$, that is,
+$\Delta_{\mathrm{iso}}=2\curl^2$;
+\item $\mu_{k,\sigma}^2-4/R^2=k(k+4)/R^2$, which is the Stokes eigenvalue;
+\item the closed structure coefficients equal $k^2(k+4)/(4(k+2))$ and $k(k+4)^2/(4(k+2))$, and
+$(k+1)(k+3)/(k+2)^2=1-(k+2)^{-2}$.
+\end{enumerate}
+\end{proposition}
+
+\begin{theorem}[Killing precession does no work; \lean{Precession}]
+Let $E$ be a real inner-product space and suppose $v'=-cv-D(t)v+F(t)$, where each $D(t)$ is
+skew. Then $\tfrac{d}{dt}\tfrac12\|v\|^2=-c\|v\|^2+\langle F,v\rangle$. If moreover $F=0$, then
+$\|v(t)\|=e^{-ct}\|v(0)\|$ for all $t$.
+\end{theorem}
+
+\section{Lamb identity, Beltrami fields and ABC flows}
+\begin{theorem}[\lean{Lamb.lamb}, \lean{Lamb.beltrami\_advection\_is\_gradient}]
+Let $u:\mathbb R^3\to\mathbb R^3$ be Fr\'echet differentiable at $x$. Then
+$(u\cdot\nabla)u=\nabla\tfrac12|u|^2-u\times\curl u$ at $x$. In particular, if
+$\curl u=\lambda u$ at $x$, the advection term at $x$ is the gradient of $\tfrac12|u|^2$.
+The polarized identity $\nabla_uv+\nabla_vu=\nabla\langle u,v\rangle-u\times\curl v
+-v\times\curl u$ also holds at the level of Jacobians.
+\end{theorem}
+\begin{theorem}[ABC flows; \lean{ABC}]
+For all $A,B,C\in\mathbb R$, the field
+$U=(A\sin z+C\cos y,\ B\sin x+A\cos z,\ C\sin y+B\cos x)$ satisfies $\curl U=U$ and
+$\operatorname{div}U=0$. It also satisfies $(U\cdot\nabla)U=\nabla\tfrac12|U|^2$, so it is a
+steady Euler solution with pressure $p=-\tfrac12|U|^2$.
+\end{theorem}
+
+\section{$\zeta$-constants of the shell barriers}
+Let $Z(s)=\sum_{n\ge1}n^{-s}$. Lean proves $Z(s)=\zeta(s)$ for real $s>1$
+(\lean{Z\_eq\_riemannZeta}).
+\begin{theorem}[\lean{ZetaShell}]
+\begin{enumerate}
+\item For $s>3$: $\sum_{k\ge0}2(k+1)(k+3)(k+2)^{-s}=2(\zeta(s-2)-\zeta(s))$.
+\item With $V_R=2\pi^2R^3$: $2R^s/(3V_R)=R^{s-3}/(3\pi^2)$.
+\item For $C_s(R)=\frac{R^{s-3}}{3\pi^2}(\zeta(s-2)-\zeta(s))$:
+$\lim_{s\downarrow3}(s-3)C_s(R)=1/(3\pi^2)$ for every $R>0$.
+\end{enumerate}
+\end{theorem}
+
+\section{Projector bounds, entropy and other checks}
+\begin{theorem}[\lean{Projector}, \lean{Entropy}]
+Let $(e_i)_{i\le N}$ be orthonormal in $L^2(\mu)$, where $\mu(X)=V$, and suppose
+$\sum_ie_i(x)^2\equiv K$. Then:
+\begin{itemize}
+\item $K=N/V$;
+\item $w(x)^2\le\|a\|^2N/V$ for $w=\sum_i a_ie_i$, with equality attained;
+\item $\|a\|^2/w(x)^2\ge V/N$.
+\end{itemize}
+In addition, the conditional entropy bound $\mathcal S\ge\delta\log(M/C)$ holds for every
+finite probability vector satisfying the hypotheses of the archive.
+\end{theorem}
+
+\section{Bell correlations and the Hopf bundle}
+\begin{theorem}[\lean{Bell}]
+\begin{enumerate}
+\item For every probability space and all measurable $\pm1$-valued responses,
+$|E(a,b)+E(a,b')+E(a',b)-E(a',b')|\le2$.
+\item For unit vectors in any real inner-product space, the kernel
+$E(a,b)=-\langle a,b\rangle$ gives $|S|\le2\sqrt2$. The PRA settings give exactly
+$S=-2\sqrt2$. Hence no local hidden-variable model reproduces this kernel.
+\item (Chern rigidity) For $q\in\mathbb Z$: $\cos(q(\pi-\theta))=-\cos\theta$ holds for all
+$\theta\in[0,\pi]$ if and only if $q=\pm1$.
+\item The Hopf map $(z,w)\mapsto(2z\bar w,|z|^2-|w|^2)$ sends $S^3$ to $S^2$ and is
+constant on $U(1)$ fibres.
+\end{enumerate}
+\end{theorem}
+
+\section{Zeckendorf heights and the Collatz map}
+Let $h(n)$ be the largest index $k$ with $F_k\le n$. This is Mathlib's \lean{greatestFib}.
+\begin{theorem}[\lean{Collatz}]
+\begin{enumerate}
+\item $h(\lfloor n/2\rfloor)+1\le h(n)$ for $n\ge1$.
+\item $h(3n+1)\le h(n)+3$.
+\item $h((3n+1)/2^m)+m\le h(n)+3$ whenever $2^m\mid 3n+1$.
+\end{enumerate}
+The worked examples of the naive-Lyapunov and coarse-certificate no-go results are verified
+as well. The Fibonacci intervals $[F_n,F_{n+1})$, $n\ge2$, partition $\mathbb Z_{\ge1}$, and
+$F_{n+1}/F_n\to\varphi$.
+\end{theorem}
+These are local bounds only. They do not imply the Collatz conjecture, and none of the
+preprints claims that they do.
+
+\section{Corrected claims}
+\begin{proposition}[Refined odd step is false as stated; \lean{refined\_odd\_step\_counterexample}]
+Take $n=11$. Then $6\le\log_\varphi(11\sqrt5)<6+\tfrac23$, so $11$ is not ``top-third''.
+Yet $h(34)-h(11)=9-6=3$. An exhaustive search over odd $n\le2\cdot10^6$ finds no other
+violation. The statement can be repaired by adding the hypothesis ``for $n$ sufficiently
+large''. The drift inequality $k_{J+1}-k_J\le(2+I_J)-A_J$ then holds only eventually.
+\end{proposition}
+
+\begin{proposition}[Uniqueness of the Fibonacci stratification is vacuous; \lean{FibStrat}]
+Let $(a_n)$ be strictly increasing with $a_0=1$ and assume that each sum $a_m+a_n$ is again
+some $a_k$. Then $a_n=n+1$, so $a_{n+1}/a_n\to1$. Consequently no partition satisfies the
+hypotheses of the uniqueness theorems in the preprints of 15 and 19 April 2026. Moreover,
+the Fibonacci numbers themselves are not additively closed: $F_2+F_5=6$.
+\end{proposition}
+
+\begin{proposition}[Bell state versus singlet; \lean{bell\_Phi\_plus}]
+For $|\Phi^+\rangle=(|00\rangle+|11\rangle)/\sqrt2$:
+$\langle\sigma_x\otimes\sigma_x\rangle=+1$, $\langle\sigma_y\otimes\sigma_y\rangle=-1$ and
+$\langle\sigma_z\otimes\sigma_z\rangle=+1$. So $E(a,b)=-\cos\theta_{ab}$, as claimed in the
+preprint of 15 April 2026, is false for $\Phi^+$. It holds for the singlet $\Psi^-$, where all
+three values equal $-1$; the PRA version uses the correct state.
+\end{proposition}
+
+\begin{proposition}[Yang--Mills threshold; \lean{no\_three\_in\_curl\_or\_stokes\_spectrum}]
+The value $3/R^2$ of the preprint of 19 April 2026 lies neither in the curl-squared spectrum
+$(k+2)^2/R^2$, whose minimum is $4/R^2$, nor in the Stokes spectrum $k(k+4)/R^2$. Both
+spectra are used elsewhere in the same archive. Either the operator must be specified, or the
+threshold must be corrected.
+\end{proposition}
+
+\begin{remark}[Mandelbrot local connectivity]
+The preprint of 5 March 2025 does not prove the MLC conjecture, which remains open. Two
+steps fail.
+\begin{itemize}
+\item Trivial fundamental group does not imply local connectivity: the comb space is
+contractible but not locally connected.
+\item A subset of a connected disc need not be connected. Lean checks the counterexample
+$\{0,1\}\subset[0,1]$ (\lean{subset\_of\_connected\_not\_connected}).
+\end{itemize}
+\end{remark}
+
+\section{Not formalized}
+\begin{itemize}
+\item The spectral geometry of $S^3$: curl eigenspaces, Leray projection, and the
+classification of reducing spaces.
+\item The vector Laplacian $\Delta U=-U$ for ABC flows, which is needed for the decaying
+Navier--Stokes solution $e^{-\nu t}U$.
+\item The conditional Euclidean blow-up transfer, which depends on five external hypotheses.
+\item Cosmological, empirical and ontological claims, which are not mathematical theorems.
+\end{itemize}
+
+\end{document}

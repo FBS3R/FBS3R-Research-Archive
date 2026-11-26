@@ -39,3 +39,14 @@ open FBS3R
 #print axioms Lamb.beltrami_advection_is_gradient
 #print axioms Precession.energy_balance
 #print axioms Precession.exact_decay
+#print axioms ABC.curl_eq
+#print axioms ABC.div_eq_zero
+#print axioms ABC.steady_euler
+#print axioms Projector.kernel_const
+#print axioms Projector.concentration
+#print axioms Projector.pointwise_sharp
+#print axioms FibStrat.fib_partition
+#print axioms FibStrat.golden_scaling
+#print axioms Misc.subset_of_connected_not_connected
+#print axioms Misc.single_slope_injective
+#print axioms Misc.helicity_sign

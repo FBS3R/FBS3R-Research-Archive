@@ -17,6 +17,8 @@ Machine-checked here:
   any `r > 1`.  So the "uniqueness" theorem has an empty hypothesis class.
 -/
 import Mathlib.Data.Nat.Fib.Basic
+import Mathlib.Data.Nat.Fib.Zeckendorf
+import Mathlib.Analysis.SpecificLimits.Fibonacci
 import Mathlib.Analysis.SpecificLimits.Basic
 import Mathlib.Order.Filter.AtTopBot.Basic
 import Mathlib.Tactic.FieldSimp
@@ -79,5 +81,29 @@ theorem no_additively_closed_partition_with_ratio_gt_one :
     simpa using (tendsto_const_nhds (x := (1 : ℝ))).add this
   have := tendsto_nhds_unique hlim hratio
   linarith
+
+end FBS3R.FibStrat
+
+namespace FBS3R.FibStrat
+
+open Filter Topology
+
+/-! ### What is true: the Fibonacci partition and golden-ratio scaling
+
+(2026-04-19, Thm `thm:partition` and Thm `thm:fibscaling`.) The intervals
+`[F_n, F_{n+1})`, `n ≥ 2`, partition `ℤ_{≥1}`, and `F_{n+1}/F_n → φ`. -/
+
+theorem fib_partition (m : ℕ) (hm : 1 ≤ m) :
+    ∃! n, 2 ≤ n ∧ Nat.fib n ≤ m ∧ m < Nat.fib (n + 1) := by
+  refine ⟨Nat.greatestFib m, ⟨?_, Nat.fib_greatestFib_le m, Nat.lt_fib_greatestFib_add_one m⟩, ?_⟩
+  · exact Nat.le_greatestFib.mpr (by simpa using hm)
+  · rintro n ⟨-, h1, h2⟩
+    apply le_antisymm
+    · exact Nat.le_greatestFib.mpr h1
+    · exact Nat.lt_succ_iff.mp (Nat.greatestFib_lt.mpr h2)
+
+theorem golden_scaling :
+    Tendsto (fun n => (Nat.fib (n + 1) / Nat.fib n : ℝ)) atTop (𝓝 Real.goldenRatio) :=
+  tendsto_fib_succ_div_fib_atTop
 
 end FBS3R.FibStrat
