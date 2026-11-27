@@ -87,3 +87,9 @@ import APEX
 #print axioms APEX.Blockade.second_moment_coeff
 #print axioms APEX.Blockade.ident_a
 #print axioms APEX.Blockade.series_e_sq
+#print axioms APEX.PXP.MaskDP.M_eq_Mnat
+#print axioms APEX.PXP.MaskDP.compat_dec_iff
+#print axioms APEX.PXP.MaskDP.flips_dec
+#print axioms APEX.PXP.Mnat8_vals
+#print axioms APEX.PXP.M8_vals
+#print axioms APEX.PXP.eighth_moment_gf

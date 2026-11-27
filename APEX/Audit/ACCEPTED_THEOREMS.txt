@@ -86,3 +86,9 @@ APEX.Blockade.ident_b_poly
 APEX.Blockade.second_moment_coeff
 APEX.Blockade.ident_a
 APEX.Blockade.series_e_sq
+APEX.PXP.MaskDP.M_eq_Mnat
+APEX.PXP.MaskDP.compat_dec_iff
+APEX.PXP.MaskDP.flips_dec
+APEX.PXP.Mnat8_vals
+APEX.PXP.M8_vals
+APEX.PXP.eighth_moment_gf
