@@ -103,10 +103,10 @@
  {
   "id": "APEX-BLK-4",
   "area": "Blockade",
-  "status": "PARTIAL",
+  "status": "KERNEL_PROVED",
   "novelty": "NEW_THEOREM_CANDIDATE",
   "lean": [],
-  "statement": "denominator D_r^{m+1}, deg (2r+1)(m-1)+1, r-independent top coefficient, P = (2m)! z^{(r+1)m-r} mod D_r (exact Z, r<=4, m<=3) — rationality, degree bound and congruence now KERNEL_PROVED (BLK-5/6); exact degree and r-independence of top coefficient still open"
+  "statement": "superseded by APEX-BLK-5/6/7 (all proved)"
  },
  {
   "id": "APEX-COL-1",
@@ -208,7 +208,7 @@
   "status": "NUMERICAL_EVIDENCE",
   "novelty": "NEW_FORMALIZATION",
   "lean": [],
-  "statement": "exact-rational: leakage rank 6, ker 18, logical image 4, degrees 1..4 -> 1..4, u(2)+u(1) under interpretation A (formal X_ij^k); under the generated-algebra reading ker 19 and image 9"
+  "statement": "exact-rational: leakage rank 6, ker 18, logical image 4, degrees 1..4 -> 1..4, u(2)+u(1) under interpretation A (formal X_ij^k); under the generated-algebra reading ker 19 and image 9 — rank/kernel/image now KERNEL_PROVED (AKLT-3); per-degree dims and Lie algebra still Python-only"
  },
  {
   "id": "APEX-COS-1",
@@ -268,5 +268,34 @@
    "APEX.S3.Sphere.tendsto_sphEigen"
   ],
   "statement": "over R: dim H_n=(n+1)^2; Laplacian of degree-0 extension on S_R gives -n(n+2)/R^2; geometric eigenvalues scale R^-2 -> 0"
+ },
+ {
+  "id": "APEX-BLK-7",
+  "area": "Blockade",
+  "status": "KERNEL_PROVED",
+  "novelty": "NEW_THEOREM_CANDIDATE",
+  "lean": [
+   "APEX.Blockade.General.moment_exact",
+   "APEX.Blockade.General.Lc_sign",
+   "APEX.Blockade.General.conj_general"
+  ],
+  "statement": "ConjGeneral for all m,r>=1: deg P_{m,r} = (2r+1)(m-1)+1 exactly, leading coefficient Lc m independent of r with sign (-1)^{m-1}, and D_r | P - (2m)! z^{(r+1)m-r}"
+ },
+ {
+  "id": "APEX-AKLT-3",
+  "area": "AKLT",
+  "status": "KERNEL_PROVED",
+  "novelty": "NEW_FORMALIZATION",
+  "lean": [
+   "APEX.AKLT.singlet_complete",
+   "APEX.AKLT.finrank_singlets",
+   "APEX.AKLT.Leakage.finrank_range_leak",
+   "APEX.AKLT.Leakage.finrank_ker_leak",
+   "APEX.AKLT.Leakage.finrank_logicalImageA",
+   "APEX.AKLT.Leakage.adjoin_eq_top",
+   "APEX.AKLT.Leakage.finrank_ker_leak_algebra",
+   "APEX.AKLT.Leakage.finrank_logicalImageB"
+  ],
+  "statement": "singlet space = span of 5 explicit vectors (rank 5); interpretation A (formal X_ij^k): leakage rank 6, kernel 18, logical image 4; interpretation B (generated algebra = M_5): kernel 19, logical image gl(3)"
  }
 ]
