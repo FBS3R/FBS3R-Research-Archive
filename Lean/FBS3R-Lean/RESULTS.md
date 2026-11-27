@@ -5,7 +5,7 @@
 (`weight_s2`, `helicity_sign`, `single_slope_injective`, `de_sitter_capacity`,
 `golden_scaling` — последняя уже есть в Mathlib) **в счёт не входят**.
 
-**Итог: 50 результатов = 6 найденных ошибок (раздел A) + 44 машинные верификации (раздел B).**
+**Итог: 56 результатов = 6 найденных ошибок (раздел A) + 50 машинных верификаций (раздел B).**
 Покрытие по каждой из 101 папки репозитория — в `COVERAGE.md`.
 Ни один результат не решает открытую проблему (Коллатц, Навье–Стокс, Янг–Миллс, MLC).
 
@@ -20,7 +20,7 @@
 | A5 | Mandelbrot MLC (2025-03-05) | «подмножество связного диска связно» | контрпример `{0,1} ⊆ [0,1]` | `Misc.subset_of_connected_not_connected` |
 | A6 | Hierarchical Bethe (2026-04-21) | Бине `F_n = (φ^{n+2}−ψ^{n+2})/√5` при `F₁=3` | формула даёт 2 при n=1; верно `φ^{n+3}`, `F_n = Fib(n+3)` | `Checks.paper_binet_wrong`, `F_binet` |
 
-## B. Машинно проверенные утверждения архива (44)
+## B. Машинно проверенные утверждения архива (50)
 
 | # | Препринт | Результат | Имя в Lean |
 |---|---|---|---|
@@ -68,6 +68,12 @@
 | B42 | Fibonacci anyon braid (2026-11-09) | `F² = 1` и точное соотношение кос `B₁B₂B₁ = B₂B₁B₂` при `u = φ⁻¹`, `v = √u`, `R = diag(e^{−4πi/5}, e^{3πi/5})` | `FibonacciAnyon.fibonacci_braid`, `F_sq` |
 | B43 | Fibonacci anyon braid (новое) | замкнутая форма дефекта `RFRFR − FRFRFRF = (a−b)Q(a,b)·[[1,−v],[−v,−1]]`, критерий: соотношение кос ⇔ `a = b ∨ Q(a,b) = 0`, `Q = (2u−1)a² + (2−3u)ab + (2u−1)b²` | `FibonacciAnyon.braid_defect`, `braid_iff` |
 | B44 | Rational Spectral Hierarchies (2026-10-23) | адрес Цекендорфа `r(s) = Σ sⱼF_{n−j+2}` — биекция `𝒞ₙ → {0,…,F_{n+2}−1}`; `|𝒞ₙ| = F_{n+2}`; флип меняет адрес на `F_{n−j+2}` | `Zeckendorf.image_rk`, `rk_injOn`, `card_C`, `flip_changes_address`, `mem_C_iff` |
+| B45 | Planck boundary (2026-05-05) | `ζ(−3) = 1/120`, постоянная Казимира конформного скаляра на S³ `C_ζ = ½ζ(−3) = 1/240`, плотность `ρ = C_ζ/(2π²a⁴) = 1/(480π²a⁴)` | `Planck.riemannZeta_neg_three`, `casimir_constant`, `casimir_density_scalar` |
+| B46 | Planck boundary | `Ḣ = ä/a − H²`; две формы скаляра Кречмана совпадают; при `|H| ≤ h`, `|Ḣ| ≤ g`, `a ≥ ℓ_P`: `K ≤ 12[(g+h²)² + (h²+1/ℓ_P²)²]` (явная константа в `K ≤ C/ℓ_P⁴`) | `Planck.hasDerivAt_hubble`, `kretschmann_forms`, `kretschmann_bound` |
+| B47 | Curvature barriers (2026-07-05) | производная по конформному масштабу `d/ds e^{3s}Φ(e^{−4s}K) = 3Φ − 4KΦ'`; для `Φ = K^q` знак правильный ⇔ `q > 3/4` | `Barriers.scale_derivative`, `power_threshold` |
+| B48 | Curvature barriers | для стены Планка `Φ = (K+δ)^q/(K_P−K)^p`: `4KΦ' − 3Φ = Φ(4qK/(K+δ) + 4pK/(K_P−K) − 3)` | `Barriers.hasDerivAt_Φb`, `barrier_sign` |
+| B49 | Curvature barriers (**уточнение**) | из `|Rm|² = 4|Ric|² − R² ≤ K₀` следует `Ric ≥ −√(K₀/2)`; константа `1/√2` точна и лучше заявленной `1/2 + 1/√3` (утверждение статьи верно, но не точно) | `Barriers.ricci_lower_bound_sharp`, `ricci_bound_attained`, `paper_constant_weaker` |
+| B50 | Finite spectral closure NS (2026-09-20) | для `ẋ + νAx + Q(x,x) = F` с `⟪Ax,x⟫ ≥ 0`, `⟪Q(x,x),x⟫ = 0` и непрерывной `F`: `‖x(t)‖² + 1 ≤ (‖x₀‖²+1)·exp(∫₀ᵗ‖F‖)` — в точном конечном редуцирующем пространстве взрыва нет | `FiniteReduction.energy_bound`, `no_blowup` |
 
 ### Численная проверка (Python, не Lean)
 Trace-free gravity (2026-08-12): `q₀ = πφ⁵⁸⁴/(1+π/50) = 3.3072514607139791698…×10¹²²`

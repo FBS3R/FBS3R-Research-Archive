@@ -27,10 +27,11 @@ Zeckendorf--Collatz Bounds, and Six Corrected Claims}
 
 \begin{abstract}
 We report a formal verification, in the Lean~4 proof assistant with the Mathlib library,
-of a selection of mathematical statements from the FB(S$^3$)R preprint archive. Fourteen Lean
-modules contain 134 theorem declarations, of which 83 main theorems have their axioms printed
+of a selection of mathematical statements from the FB(S$^3$)R preprint archive. Seventeen Lean
+modules contain 151 theorem declarations, of which 98 main theorems have their axioms printed
 by a checking script. Grouped by content and leaving out trivial auxiliary
-lemmas, they yield 50 results: 6 corrected claims and 44 verified statements. None uses \lean{sorry}, \lean{admit},
+lemmas, they yield 56 results: 6 corrected claims and 50 verified statements, one of
+which sharpens a published constant. None uses \lean{sorry}, \lean{admit},
 \lean{native\_decide} or any user-declared axiom. Every theorem depends only on Lean's
 standard axioms \lean{propext}, \lean{Classical.choice} and \lean{Quot.sound}.
 The verified material comprises:
@@ -53,7 +54,13 @@ trace-free gravity;
 \item the exact braid relation of the Fibonacci anyon qubit, with a closed form of the braid
 defect for an arbitrary diagonal $R$-move;
 \item the Zeckendorf address bijection of the constrained (PXP) chain and its dimension
-$F_{n+2}$.
+$F_{n+2}$;
+\item the Casimir constant $1/240$ of the conformal scalar on $S^3$ from $\zeta(-3)=1/120$, and an
+explicit Kretschmann bound at the Planck boundary;
+\item the conformal sign of curvature barriers for Ricci-type flows and a sharp Ricci lower
+bound $\mathrm{Ric}\ge-\sqrt{K_0/2}$ under $|\mathrm{Rm}|^2\le K_0$ in dimension three;
+\item an energy bound excluding blow-up inside exact finite reducing spaces of quadratic
+evolutions.
 \end{itemize}
 A per-paper coverage table classifies all 101 folders of the archive.
 We also give machine-checked counterexamples to six claims made in the archive.
@@ -260,12 +267,51 @@ rational generating functions for $\operatorname{Tr}A_n^4$, $\operatorname{Tr}A_
 $\operatorname{Tr}A_n^8$ agree with direct trace computations for $n\le10$. That check is
 numerical; the universal-denominator theorem is not formalized.
 
+\section{Planck boundary, curvature barriers and finite reductions}
+\begin{theorem}[\lean{Planck}]
+$\zeta(-3)=1/120$. Hence, for the conformal scalar on $S^3$ ($\nu_\ell=\ell+1$, degeneracy
+$(\ell+1)^2$, $\zeta_\omega(s)=\zeta(s-2)$), $C_\zeta=\tfrac12\zeta(-3)=1/240$ and
+$\rho^{\rm reg}_{\rm vac}=C_\zeta/(2\pi^2a^4)=1/(480\pi^2a^4)$. With $H=\dot a/a$ one has
+$\dot H=\ddot a/a-H^2$, the two closed-FLRW forms of the Kretschmann scalar agree, and
+$|H|\le h$, $|\dot H|\le g$, $a\ge\ell_P$ imply
+$K\le12[(g+h^2)^2+(h^2+\ell_P^{-2})^2]$.
+\end{theorem}
+The Riemann tensor of FLRW is taken as input; Mathlib has no Riemann tensor.
+
+\begin{theorem}[\lean{Barriers}]
+\begin{enumerate}
+\item $\frac{d}{ds}\big|_{0}e^{3s}\Phi(e^{-4s}K)=3\Phi(K)-4K\Phi'(K)$.
+\item For $\Phi=K^q$, $4K\Phi'-3\Phi=(4q-3)K^q$, which is positive if and only if $q>3/4$.
+\item For $\Phi=(K+\delta)^q/(K_P-K)^p$,
+$4K\Phi'-3\Phi=\Phi\bigl(\tfrac{4qK}{K+\delta}+\tfrac{4pK}{K_P-K}-3\bigr)$.
+\item If the Ricci eigenvalues $r_i$ satisfy $4\sum r_i^2-(\sum r_i)^2\le K_0$ (that is,
+$|\mathrm{Rm}|^2\le K_0$ in dimension three), then $r_i\ge-\sqrt{K_0/2}$. The constant is
+attained at $r=-t(2,1,1)$.
+\end{enumerate}
+\end{theorem}
+\begin{remark}[Sharpened constant]
+The preprint of 5 July 2026 states $\mathrm{Ric}\ge-(\frac12+\frac1{\sqrt3})\sqrt{K_0}\,g$.
+This is true but not sharp: the optimal constant is $1/\sqrt2<\frac12+\frac1{\sqrt3}$
+(\lean{paper\_constant\_weaker}). The proof is the identity
+$4\sum r_i^2-(\sum r_i)^2=2r_1^2+(r_1-r_2-r_3)^2+2(r_2-r_3)^2$.
+\end{remark}
+
+\begin{theorem}[\lean{FiniteReduction.energy\_bound}]
+Let $E$ be a real inner-product space and let $\dot x=-\nu Ax-Q(x)+F(t)$ on $[0,T]$, with
+$\nu\ge0$, $\langle Av,v\rangle\ge0$, $\langle Q(v),v\rangle=0$ and $F$ continuous. Then
+$\|x(t)\|^2+1\le(\|x(0)\|^2+1)\exp\int_0^t\|F\|$.
+\end{theorem}
+This is the finite-dimensional no-go of the preprint of 20 September 2026: no exact finite
+reducing space carries a blow-up. We assume continuous forcing, where the paper allows $L^1$.
+Nothing here concerns the regularity of the full Navier--Stokes equation.
+
 \section{Coverage of the archive}
 The file \lean{COVERAGE.md} assigns each of the 101 folders one of these statuses:
 checked, partially checked, error found, out of reach, no formal statements, not
 mathematical, or not yet analysed. Only the PRA Bell--Hopf paper has its central statements
-fully checked. Fourteen papers are checked in part, five of them with a corrected claim; the
-Mandelbrot paper has only the corrected step. About forty-five papers with formal statements
+fully checked in our modules; in addition, the Lean code shipped with the BINDU VECTRA
+package was rebuilt independently (Lean 4.19, all eight targets on standard axioms). Seventeen papers are checked in part, five of them with a corrected claim; the
+Mandelbrot paper has only the corrected step. About forty-two papers with formal statements
 remain unanalysed. That remainder is stated openly, not hidden.
 
 \section{Corrected claims}
@@ -327,8 +373,8 @@ Navier--Stokes solution $e^{-\nu t}U$.
 \end{itemize}
 
 \section{Ledger}
-The file \lean{RESULTS.md} in the Lean project lists all 50 results with their sources and
-Lean names: A1--A6 are corrections and B1--B44 are verifications. Trivial auxiliary lemmas are
+The file \lean{RESULTS.md} in the Lean project lists all 56 results with their sources and
+Lean names: A1--A6 are corrections and B1--B50 are verifications. Trivial auxiliary lemmas are
 listed in the code but not counted. No result in this ledger settles an open problem.
 
 \end{document}

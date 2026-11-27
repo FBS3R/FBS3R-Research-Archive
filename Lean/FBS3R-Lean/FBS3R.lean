@@ -13,3 +13,6 @@ import FBS3R.CausalSpectral
 import FBS3R.ArchiveChecks
 import FBS3R.FibonacciAnyon
 import FBS3R.ZeckendorfAddress
+import FBS3R.PlanckBoundary
+import FBS3R.CurvatureBarriers
+import FBS3R.FiniteReduction
