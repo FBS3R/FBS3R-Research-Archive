@@ -1,13 +1,12 @@
 #!/usr/bin/env bash
-# Local / CI check: every #print axioms target uses only propext, Classical.choice, Quot.sound,
-# and no accepted source contains sorry / admit / native_decide / axiom declarations.
+# APEX certification gate: build must already be done (lake build).
+# 1. run every `#print axioms` target; 2. compare with the accepted-theorem registry; 3. reject non-standard axioms,
+# missing/extra targets, empty reports, Lean errors; 4. reject forbidden constructs in comment-stripped sources.
 set -euo pipefail
-cd "${APEX_LEAN_DIR:-$(dirname "$0")/Lean}"
-out=$(lake env lean scripts/Axioms.lean)
-echo "$out"
-n=$(echo "$out" | grep -c "depends on axioms" || true)
-flat=$(echo "$out" | tr '\n' ' ' | sed 's/ \+/ /g')
-bad=$(echo "$flat" | grep -oE "depends on axioms: \[[^]]*\]" | grep -vE "^depends on axioms: \[(propext|Classical.choice|Quot.sound)(, (propext|Classical.choice|Quot.sound))*\]$" || true)
-if [ -n "$bad" ]; then echo "NON-STANDARD AXIOMS: $bad"; exit 1; fi
-if grep -rnE "^\s*(axiom|sorry|admit)\b|\bsorry\b|native_decide" APEX --include=*.lean | grep -v -- "--\|no \`native_decide\`" ; then echo "FORBIDDEN TOKEN"; exit 1; fi
-echo "OK: $n targets, standard axioms only"
+here="$(cd "$(dirname "$0")" && pwd)"
+lean_dir="${APEX_LEAN_DIR:-$here/Lean}"
+report="$(mktemp)"
+trap 'rm -f "$report"' EXIT
+( cd "$lean_dir" && lake env lean scripts/Axioms.lean ) > "$report" 2>&1 || { cat "$report"; echo "FAIL: lean exited non-zero"; exit 1; }
+cat "$report"
+python3 -I "$here/cert_check.py" "$report" "$here/Audit/ACCEPTED_THEOREMS.txt" "$lean_dir/scripts/Axioms.lean" "$lean_dir/APEX"

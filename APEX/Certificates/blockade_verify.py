@@ -2,8 +2,9 @@
 
 For r = 1..4 and m = 1..M: S_m(z) = sum_n Tr A_{n,r}^{2m} z^n, D_r = 1 - z - z^{r+1}.
 Checks (1) a_n = |C_{n,r}| obeys the recurrence; (2) S_m * D_r^{m+1} is a polynomial within the
-computed window (all trailing coefficients vanish); (3) residue P(rho) = (2m)! rho^{m(2r+1)} B_r(rho)^{m+1}
-numerically, rho the positive root of D_r.  This is evidence, not a proof, for m >= 2.
+computed window (all trailing coefficients vanish); (3) exact integer congruence P_{m,r} = (2m)! z^{(r+1)m-r} (mod D_r) by polynomial division over Z
+(D_r has leading coefficient -1); (4) deg P_{m,r} = (2r+1)(m-1)+1 and top coefficient (-1)^(m-1) W(m,m,1)
+with W = 2, 4, 36, 568, 14560 independent of r.  Evidence only (finite window), not a proof, for m >= 3.
 """
 import sys
 from math import factorial
@@ -34,6 +35,22 @@ def polmul(p, q):
             out[i + j] += x * y
     return out
 
+def polmod(p, d):
+    """Remainder of p modulo d over Z; d must have leading coefficient +-1."""
+    p = list(p); ld = d[-1]; assert ld in (1, -1)
+    while len(p) >= len(d):
+        c = p[-1] * ld  # since ld = +-1, c / ld = c * ld
+        if c:
+            sh = len(p) - len(d)
+            for i, x in enumerate(d):
+                p[sh + i] -= c * x
+        p.pop()
+    while p and p[-1] == 0:
+        p.pop()
+    return p
+
+TOP = {1: 2, 2: 4, 3: 36, 4: 568, 5: 14560}
+
 def main(N, M):
     ok = True
     for r in range(1, 5):
@@ -41,10 +58,6 @@ def main(N, M):
         a = [d[0] for d in data]
         rec = all(a[n] == (n + 1 if n <= r else a[n - 1] + a[n - r - 1]) for n in range(N + 1))
         Dr = [1, -1] + [0] * (r - 1) + [-1]
-        rho = 0.5
-        for _ in range(200):
-            f = 1 - rho - rho ** (r + 1); df = -1 - (r + 1) * rho ** r; rho -= f / df
-        B = sum(rho ** k for k in range(r + 1))
         print(f"r={r}: recurrence {'OK' if rec else 'FAIL'}, a = {a[:10]}")
         ok &= rec
         for m in range(1, M + 1):
@@ -55,13 +68,15 @@ def main(N, M):
             P = polmul(S, D)[:N + 1]
             deg = max(i for i, x in enumerate(P) if x)
             tail = N - deg
-            val = sum(c * rho ** i for i, c in enumerate(P[:deg + 1]))
-            pred = factorial(2 * m) * rho ** (m * (2 * r + 1)) * B ** (m + 1)
-            res_ok = abs(val - pred) <= 1e-6 * abs(pred)
+            e = (r + 1) * m - r
+            mono = [0] * e + [factorial(2 * m)]
+            res_ok = polmod(P[:deg + 1], Dr) == polmod(mono, Dr)
+            deg_ok = deg == (2 * r + 1) * (m - 1) + 1
+            top_ok = P[deg] == (-1) ** (m - 1) * TOP[m] if m in TOP else True
             poly_ok = tail >= 3
-            ok &= res_ok and poly_ok
-            print(f"  m={m}: deg P = {deg} (zero tail {tail}), residue {'OK' if res_ok else 'FAIL'} "
-                  f"({val:.10g} vs {pred:.10g})")
+            ok &= res_ok and poly_ok and deg_ok and top_ok
+            print(f"  m={m}: deg P = {deg} (zero tail {tail}), deg formula {'OK' if deg_ok else 'FAIL'}, "
+                  f"top {P[deg]} {'OK' if top_ok else 'FAIL'}, exact residue (2m)! z^{e} mod D_r {'OK' if res_ok else 'FAIL'}")
     print("ALL OK" if ok else "SOME CHECK FAILED")
     return 0 if ok else 1
 
