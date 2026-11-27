@@ -81,3 +81,9 @@ import APEX
 #print axioms APEX.Analysis.norm_le_forced
 #print axioms APEX.Analysis.norm_le_coercive_local
 #print axioms APEX.Analysis.norm_le_forced_local
+#print axioms APEX.Blockade.second_moment_series
+#print axioms APEX.Blockade.trace_sq_eq
+#print axioms APEX.Blockade.ident_b_poly
+#print axioms APEX.Blockade.second_moment_coeff
+#print axioms APEX.Blockade.ident_a
+#print axioms APEX.Blockade.series_e_sq

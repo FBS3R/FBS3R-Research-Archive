@@ -13,3 +13,4 @@ import APEX.S3.Harmonic
 import APEX.Spectral.PositiveRepresentation
 import APEX.Spectral.MixtureCumulants
 import APEX.Analysis.ForcedEnergy
+import APEX.Blockade.Moments

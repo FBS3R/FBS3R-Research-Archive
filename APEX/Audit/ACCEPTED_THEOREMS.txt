@@ -80,3 +80,9 @@ APEX.Analysis.norm_le_coercive'
 APEX.Analysis.norm_le_forced
 APEX.Analysis.norm_le_coercive_local
 APEX.Analysis.norm_le_forced_local
+APEX.Blockade.second_moment_series
+APEX.Blockade.trace_sq_eq
+APEX.Blockade.ident_b_poly
+APEX.Blockade.second_moment_coeff
+APEX.Blockade.ident_a
+APEX.Blockade.series_e_sq
