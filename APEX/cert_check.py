@@ -54,7 +54,7 @@ def check_sources(root: Path) -> list:
 def parse_report(text: str) -> dict:
     flat = re.sub(r"\s+", " ", text)
     res = {}
-    for m in re.finditer(r"'([^']+)' (depends on axioms: \[([^\]]*)\]|does not depend on any axioms)", flat):
+    for m in re.finditer(r"'(\S+?)' (depends on axioms: \[([^\]]*)\]|does not depend on any axioms)", flat):
         name = m.group(1)
         axs = {a.strip() for a in (m.group(3) or "").split(",") if a.strip()}
         if name in res:

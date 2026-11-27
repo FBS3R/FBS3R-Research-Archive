@@ -9,3 +9,7 @@ import APEX.Collatz.BoundedCorrection
 import APEX.Blockade.Count
 import APEX.Collatz.Zeckendorf
 import APEX.Anyon.Braid2D
+import APEX.S3.Harmonic
+import APEX.Spectral.PositiveRepresentation
+import APEX.Spectral.MixtureCumulants
+import APEX.Analysis.ForcedEnergy

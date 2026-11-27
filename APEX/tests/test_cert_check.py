@@ -8,17 +8,17 @@ here = Path(__file__).resolve().parent
 spec = importlib.util.spec_from_file_location("cert_check", here.parent / "cert_check.py")
 cc = importlib.util.module_from_spec(spec); spec.loader.exec_module(cc)
 
-EXP = ["A.foo", "A.bar"]
+EXP = ["A.foo", "A.bar'"]
 GOOD = ("'A.foo' depends on axioms: [propext,\n Classical.choice, Quot.sound]\n"
-        "'A.bar' does not depend on any axioms\n")
+        "'A.bar'' does not depend on any axioms\n")
 cases = {
     "good report": (GOOD, True),
     "empty report": ("", False),
     "missing target": ("'A.foo' depends on axioms: [propext]\n", False),
     "extra target": (GOOD + "'A.baz' depends on axioms: [propext]\n", False),
-    "sorryAx": ("'A.foo' depends on axioms: [propext, sorryAx]\n'A.bar' does not depend on any axioms\n", False),
-    "native_decide": ("'A.foo' depends on axioms: [Lean.ofReduceBool]\n'A.bar' does not depend on any axioms\n", False),
-    "custom axiom": ("'A.foo' depends on axioms: [A.myAxiom, propext]\n'A.bar' does not depend on any axioms\n", False),
+    "sorryAx": ("'A.foo' depends on axioms: [propext, sorryAx]\n'A.bar'' does not depend on any axioms\n", False),
+    "native_decide": ("'A.foo' depends on axioms: [Lean.ofReduceBool]\n'A.bar'' does not depend on any axioms\n", False),
+    "custom axiom": ("'A.foo' depends on axioms: [A.myAxiom, propext]\n'A.bar'' does not depend on any axioms\n", False),
     "duplicate verdict": (GOOD + "'A.foo' depends on axioms: [propext]\n", False),
     "lean error": (GOOD + "scripts/Axioms.lean:3:0: error: unknown constant\n", False),
 }
