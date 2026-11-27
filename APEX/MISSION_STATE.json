@@ -1,24 +1,187 @@
 {
- "updated": "2026-11-27",
+ "updated": "2026-11-27 (round 4, in progress)",
  "branch": "research/fbs3r-apex",
  "pr": "https://github.com/FBS3R/FBS3R-Research-Archive/pull/3",
- "lean": "4.36.0", "mathlib": "fc4f59e5 (v4.36.0)", "axiom_targets": 28,
+ "lean": "4.36.0",
+ "mathlib": "fc4f59e5 (v4.36.0)",
+ "axiom_targets": 80,
  "directions": [
-  {"id": 1, "name": "Аудит/CI", "status": "done", "lean": "APEX/ci_check.sh, .github/workflows/apex-lean.yml"},
-  {"id": 2, "name": "PXP рациональная иерархия (deg<=3m-2, вычет, точная степень)", "status": "proved", "lean": "APEX.PXP.*"},
-  {"id": 3, "name": "PXP 8-й момент", "status": "numerical", "next": "verified DP"},
-  {"id": 4, "name": "PXP старший коэффициент W(m,m,1)", "status": "numerical (2,4,36,568,14560)"},
-  {"id": 5, "name": "PXP асимптотика и гауссов предел", "status": "numerical"},
-  {"id": 6, "name": "Блокада r: размерности", "status": "proved", "lean": "APEX.Blockade.a_rec, gf_coeff"},
-  {"id": 7, "name": "Блокада r: моменты, D_r^{m+1}, deg (2r+1)(m-1)+1", "status": "conjecture (r<=4, m<=3)"},
-  {"id": 8, "name": "Поле μ", "status": "conjecture (k<=3)"},
-  {"id": 9, "name": "Общий закон переноса для автоматов", "status": "open"},
-  {"id": 10, "name": "AKLT 625: утечка", "status": "not started"},
-  {"id": 11, "name": "Коллатц: невозможность ограниченной поправки", "status": "proved", "lean": "APEX.Collatz.no_bounded_log_correction"},
-  {"id": 12, "name": "FibonacciAnyon: косы, пентагон/гексагон, алмазная норма", "status": "not started"},
-  {"id": 13, "name": "Навье–Стокс: энергетическая оценка с силой", "status": "not started"},
-  {"id": 14, "name": "S³: гармонические многочлены", "status": "not started"},
-  {"id": 15, "name": "Спектральное препятствие exp(-ax)/x", "status": "not started"}
+  {
+   "id": 1,
+   "name": "Аудит/CI/сертификация",
+   "status": "PARTIAL",
+   "note": "строгий реестр + отрицательные тесты (раунд 4); аудит 101 каталога продолжается"
+  },
+  {
+   "id": 2,
+   "name": "PXP рациональная иерархия (deg=3m−2, вычет, знак)",
+   "status": "KERNEL_PROVED",
+   "note": "APEX.PXP.*"
+  },
+  {
+   "id": 3,
+   "name": "PXP 8-й момент (доказанный DP)",
+   "status": "PARTIAL",
+   "note": "в работе, GATE-1"
+  },
+  {
+   "id": 4,
+   "name": "PXP старший коэффициент W(m,m,1)",
+   "status": "NUMERICAL_EVIDENCE",
+   "note": "2,4,36,568,14560"
+  },
+  {
+   "id": 5,
+   "name": "PXP/блокада: асимптотика и гауссов предел",
+   "status": "ANALYTIC_PROOF_PENDING_FORMALIZATION",
+   "note": "GATE-5 не начат в Lean"
+  },
+  {
+   "id": 6,
+   "name": "Блокада r: размерности",
+   "status": "KERNEL_PROVED",
+   "note": "APEX.Blockade.a_rec, gf_coeff"
+  },
+  {
+   "id": 7,
+   "name": "Блокада r: моменты, D_r^{m+1}, степень, конгруэнция",
+   "status": "PARTIAL",
+   "note": "GATE-2..4 в работе; численно r≤4,m≤3"
+  },
+  {
+   "id": 8,
+   "name": "Поле μ",
+   "status": "NUMERICAL_EVIDENCE",
+   "note": "k≤3"
+  },
+  {
+   "id": 9,
+   "name": "Общий закон переноса для автоматов (R[x]/(x²))",
+   "status": "OPEN",
+   "note": ""
+  },
+  {
+   "id": 10,
+   "name": "AKLT 625: физическая карта утечки",
+   "status": "PARTIAL",
+   "note": "GATE-7 в работе"
+  },
+  {
+   "id": 11,
+   "name": "Коллатц: no-go ограниченной поправки (log и высота Цекендорфа)",
+   "status": "KERNEL_PROVED",
+   "note": "APEX.Collatz.no_bounded_log_correction, no_bounded_height_correction"
+  },
+  {
+   "id": 12,
+   "name": "Коллатц: stopping-time сертификаты, циклы, 2-адика",
+   "status": "OPEN",
+   "note": "гипотеза не решена"
+  },
+  {
+   "id": 13,
+   "name": "FibonacciAnyon: braid-классификация 2×2, норма дефекта",
+   "status": "KERNEL_PROVED",
+   "note": "APEX.Anyon.*; пентагон/гексагон и обратные оценки открыты"
+  },
+  {
+   "id": 14,
+   "name": "FibonacciAnyon: пентагон, гексагон, универсальность",
+   "status": "NOT_STARTED",
+   "note": ""
+  },
+  {
+   "id": 15,
+   "name": "Квантовые каналы, алмазная норма (BINDU VECTRA)",
+   "status": "NOT_STARTED",
+   "note": "GATE не входит в раунд 4 полностью"
+  },
+  {
+   "id": 16,
+   "name": "Навье–Стокс: энергетическая оценка с силой (конечномерная)",
+   "status": "KERNEL_PROVED",
+   "note": "APEX.Analysis.norm_le_forced; бесконечномерная задача OPEN"
+  },
+  {
+   "id": 17,
+   "name": "Навье–Стокс: регулярность в ℝ³",
+   "status": "OPEN",
+   "note": "проблема тысячелетия"
+  },
+  {
+   "id": 18,
+   "name": "S³: гармонические многочлены, Фишер, dim (n+1)²",
+   "status": "KERNEL_PROVED",
+   "note": "APEX.S3.*; полярное разложение и спектр на сфере не доказаны"
+  },
+  {
+   "id": 19,
+   "name": "S³: риманова геометрия, Ходж, Дирак",
+   "status": "NOT_STARTED",
+   "note": ""
+  },
+  {
+   "id": 20,
+   "name": "Спектральное препятствие exp(−ax)/x",
+   "status": "KERNEL_PROVED",
+   "note": "APEX.Spectral.no_representation_exp_div"
+  },
+  {
+   "id": 21,
+   "name": "Янга–Миллса: масштабирование λ(R)=R⁻²λ(1), массовая щель",
+   "status": "OPEN",
+   "note": "щель 4D не решена"
+  },
+  {
+   "id": 22,
+   "name": "Квантовая гравитация (Fractal Foliation, CMC, связи, унитарность)",
+   "status": "OPEN",
+   "note": ""
+  },
+  {
+   "id": 23,
+   "name": "Топология Вселенной, идентифицируемость (S³, RP³, S³/Γ)",
+   "status": "NOT_STARTED",
+   "note": ""
+  },
+  {
+   "id": 24,
+   "name": "Космологическая постоянная Λ=3π/(ℓ_P² q), выбор q",
+   "status": "OPEN",
+   "note": "число 292 и 1+π/50 не доказаны"
+  },
+  {
+   "id": 25,
+   "name": "Тёмный сектор, кумулянты смесей",
+   "status": "PARTIAL",
+   "note": "кумулянты 1–2 порядка KERNEL_PROVED; общий k открыт"
+  },
+  {
+   "id": 26,
+   "name": "Причинность, свет, единый закон",
+   "status": "OPEN",
+   "note": ""
+  },
+  {
+   "id": 27,
+   "name": "Каталог открытых задач (Риман, P vs NP, Ходж, BSD, MLC, Гольдбах, близнецы, совершенные, Эрдёш, Рамсей)",
+   "status": "OPEN",
+   "note": "ни одна не решена"
+  }
  ],
- "millennium_problems": "не решены и не продвинуты"
+ "millennium_problems": "не решены и не продвинуты",
+ "status_vocabulary": [
+  "KERNEL_PROVED",
+  "KERNEL_REFUTED",
+  "CONDITIONAL",
+  "ANALYTIC_PROOF_PENDING_FORMALIZATION",
+  "NUMERICAL_EVIDENCE",
+  "OPEN",
+  "EMPIRICAL",
+  "KNOWN_RESULT",
+  "NEW_FORMALIZATION",
+  "NEW_THEOREM_CANDIDATE",
+  "NOT_STARTED",
+  "PARTIAL"
+ ]
 }

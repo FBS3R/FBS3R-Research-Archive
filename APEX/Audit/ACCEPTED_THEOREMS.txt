@@ -78,3 +78,5 @@ APEX.Spectral.log_mgf_eq
 APEX.Analysis.norm_le_coercive
 APEX.Analysis.norm_le_coercive'
 APEX.Analysis.norm_le_forced
+APEX.Analysis.norm_le_coercive_local
+APEX.Analysis.norm_le_forced_local

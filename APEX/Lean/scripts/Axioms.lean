@@ -79,3 +79,5 @@ import APEX
 #print axioms APEX.Analysis.norm_le_coercive
 #print axioms APEX.Analysis.norm_le_coercive'
 #print axioms APEX.Analysis.norm_le_forced
+#print axioms APEX.Analysis.norm_le_coercive_local
+#print axioms APEX.Analysis.norm_le_forced_local
