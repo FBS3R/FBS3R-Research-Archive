@@ -5,11 +5,11 @@
 (`weight_s2`, `helicity_sign`, `single_slope_injective`, `de_sitter_capacity`,
 `golden_scaling` — последняя уже есть в Mathlib) **в счёт не входят**.
 
-**Итог: 56 результатов = 6 найденных ошибок (раздел A) + 50 машинных верификаций (раздел B).**
+**Итог: 77 результатов = 7 найденных ошибок (раздел A) + 70 машинных верификаций (раздел B).**
 Покрытие по каждой из 101 папки репозитория — в `COVERAGE.md`.
 Ни один результат не решает открытую проблему (Коллатц, Навье–Стокс, Янг–Миллс, MLC).
 
-## A. Найденные ошибки и исправления (6)
+## A. Найденные ошибки и исправления (7)
 
 | # | Препринт | Утверждение статьи | Что доказано в Lean | Имя в Lean |
 |---|---|---|---|---|
@@ -19,8 +19,9 @@
 | A4 | Yang–Mills на S³ (2026-04-19) | порог `3/R²` | `3/R²` нет ни в спектре `curl²`, ни в спектре Стокса архива | `KillingBeltrami.no_three_in_curl_or_stokes_spectrum` |
 | A5 | Mandelbrot MLC (2025-03-05) | «подмножество связного диска связно» | контрпример `{0,1} ⊆ [0,1]` | `Misc.subset_of_connected_not_connected` |
 | A6 | Hierarchical Bethe (2026-04-21) | Бине `F_n = (φ^{n+2}−ψ^{n+2})/√5` при `F₁=3` | формула даёт 2 при n=1; верно `φ^{n+3}`, `F_n = Fib(n+3)` | `Checks.paper_binet_wrong`, `F_binet` |
+| A7 | Benchmark residual invariants, supplement (2026-05-11), cor. «Benchmark spectra» | для `A_n = A₀e^{−βn}`: `σ² = (A₀/2π²A³)·e^β(e^β+1)/(e^β−1)³` | `Σ_{n≥0}(n+1)²e^{−βn} = e^{2β}(e^β+1)/(e^β−1)³`: заявленное значение меньше верного ровно в `e^β` раз (оно соответствует `A_n = A₀e^{−β(n+1)}`) | `CosmoBench.exp_family_sum`, `paper_exp_variance_wrong` |
 
-## B. Машинно проверенные утверждения архива (50)
+## B. Машинно проверенные утверждения архива (70)
 
 | # | Препринт | Результат | Имя в Lean |
 |---|---|---|---|
@@ -74,6 +75,26 @@
 | B48 | Curvature barriers | для стены Планка `Φ = (K+δ)^q/(K_P−K)^p`: `4KΦ' − 3Φ = Φ(4qK/(K+δ) + 4pK/(K_P−K) − 3)` | `Barriers.hasDerivAt_Φb`, `barrier_sign` |
 | B49 | Curvature barriers (**уточнение**) | из `|Rm|² = 4|Ric|² − R² ≤ K₀` следует `Ric ≥ −√(K₀/2)`; константа `1/√2` точна и лучше заявленной `1/2 + 1/√3` (утверждение статьи верно, но не точно) | `Barriers.ricci_lower_bound_sharp`, `ricci_bound_attained`, `paper_constant_weaker` |
 | B50 | Finite spectral closure NS (2026-09-20) | для `ẋ + νAx + Q(x,x) = F` с `⟪Ax,x⟫ ≥ 0`, `⟪Q(x,x),x⟫ = 0` и непрерывной `F`: `‖x(t)‖² + 1 ≤ (‖x₀‖²+1)·exp(∫₀ᵗ‖F‖)` — в точном конечном редуцирующем пространстве взрыва нет | `FiniteReduction.energy_bound`, `no_blowup` |
+| B51 | Killing response NS (2026-09-22), Dilation algebra (2026-08-09) | моменты `m_n = Σ E_k κ_k^n` при `E ≥ 0`: матрица Ганкеля `[m_{i+j}]` положительно полуопределена; `m_n² ≤ m_{n−1}m_{n+1}` (при `κ ≥ 0`) | `Moments.hankel_psd`, `log_convex` |
+| B52 | Killing response NS (2026-09-22) | тождество спектральной дисперсии `m₀m₂ − m₁² = ½ΣΣE_kE_l(κ_k−κ_l)²`; монотонность эффективной частоты Стокса `m_{n+1}/m_n` | `Moments.variance_identity`, `frequency_monotone` |
+| B53 | Dilation algebra (2026-08-09) | огибающая Бхатиа–Дэвиса: носитель в `[m, M]` ⇒ `Var ≤ (M − μ)(μ − m)` | `Moments.bhatia_davis` |
+| B54 | Killing response NS (2026-09-22) | точная хиральная граница `|Ξ| ≤ 2/3` для любой смеси оболочек `k ≥ 1`, достигается на `k = 1` | `Moments.shell_chirality_bound`, `chiral_bound`, `chiral_bound_attained` |
+| B55 | Killing response NS (2026-09-22) | точный вязкий спектральный отбор `1 − P(t) ≤ ((1−P₀)/P₀)e^{−Δt}` | `Moments.viscous_selection` |
+| B56 | Dilation algebra / Homothetic spectrum (2026-08-09…11) | для смеси `ε = Σ C_s A^s`: точный поток `A·w' = −(m₂ − m₁²)/3`; при `C_s ≥ 0` дисперсия `≥ 0`, т.е. `D w ≤ 0` | `Valuation.mixture_flow`, `mixture_variance_nonneg` |
+| B57 | Dilation algebra (2026-08-09) | две ветви `{0, −1}`: `m₁ = −r`, `m₂ = r`, `D w = (1+w)(2+3w)`, `−1 ≤ w ≤ −2/3`; касательная CPL `w₀ = −1 + r/3`, `w_a = r(1−r)/3` | `Valuation.two_branch_moments`, `lambda_X_flow`, `cpl_tangent` |
+| B58 | Residual-first / Einstein residual closure (2026-05-19) | остаток `S` в `G = κ(T_vis + S)` единствен; сдвиг `T_vis` на `X` сдвигает `S` на `−X` | `CosmoBench.residual_unique`, `residual_convention` |
+| B59 | Dark-sector residuals (2026-05-10), Residual standards (2026-05-19) | на открытом связном интервале: `ε = ε_w a⁻³ + ε_q`, `p = −ε_q` ⇔ `p' = 0` и `(a³(ε+p))' = 0` | `CosmoBench.closure_criterion` |
+| B60 | Benchmark residual invariants, supplement (2026-05-11) | статическое решение Эйнштейна: `Ω_m = 2Ω_Λa³`, `a² = |Ω_K|/(3Ω_Λ)`, `F''/2 = 3Ω_Λ`; граница ускорения `ä = 0 ⇔ a³ = Ω_m/(2Ω_Λ)` | `CosmoBench.einstein_static`, `acceleration_boundary` |
+| B61 | Benchmark residual invariants, supplement (2026-05-11) | точка поворота `Ωa^{−3(1+w)} = |Ω_K|a^{−2} ⇔ a = (Ω/|Ω_K|)^{1/(1+3w)}` при `w ≠ −1/3` | `CosmoBench.turning_point` |
+| B62 | Benchmark residual invariants (2026-05-11) | степенной спектр `A_n ∝ (n+1)^{−α}` даёт конечную точечную дисперсию ⇔ `α > 3` | `CosmoBench.power_law_admissible` |
+| B63 | Certified Hopf tomography (2026-10-23), предл. «Exact global gap» | для MRW: `‖u‖² = 3 − Σcᵢ² + (Σcᵢ − m)²`; на `[−1,1]³` минимум равен `min_{s∈{±1,±3}}(s−m)²` (нижняя оценка и достижение в вершине) | `HopfCert.mrw_norm_identity`, `mrw_gap_lower`, `mrw_gap_attained` |
+| B64 | Certified Hopf tomography (2026-10-23) | `|z†σz| = |z|²`; щель не закрывается вдоль `(1−t)b₀ + tb` при `‖b − b₀‖ ≤ E < g₀`; тождество `‖b−c‖² = (‖b‖−‖c‖)² + ‖b‖‖c‖‖b̂−ĉ‖²` | `HopfCert.bloch_norm`, `gap_homotopy`, `normalization_identity` |
+| B65 | Multibranch transfer kernels (2026-05-07) | парная когерентность `K₁₂² ≤ K₁₁K₂₂` для PSD-блока; инвариантность нормированной когерентности при `K ↦ DKD`; калибровочная инвариантность циклической фазы `K₁₂K₂₃K₃₁` | `HopfCert.pair_coherence`, `filtering_invariance`, `cycle_phase_gauge` |
+| B66 | Acyclic CIVP (2026-08-17) | теорема о единственном селекторе: строго убывающее `ρ_q` со сменой знака в `q*` ⇒ `q*` — единственный максимум; no-go ограниченного роста `Z_{q+1}/Z_q ≤ C/(q+1) < 1` | `Selector.unique_selector`, `bounded_growth` |
+| B67 | Ring ULSS (2026-04-24), Gravity as DRD selector (2026-07-06) | закон хорды `d_ℓ = 2R sin(π/(ℓ+1))` для правильного кольца; стрелка `s = R − √(R²−L²/4) = (L²/4)/(R+√…)`, `L²/(8R) ≤ s ≤ L²/(4R)` | `Selector.chord_law`, `ring_spacing`, `sagitta_formula`, `sagitta_bounds` |
+| B68 | Geometric causal-spectral cosmology (2026-04-29) | минимальность золотого сечения: корень `x² = px + q` при `p, q ≥ 1` не меньше `φ`, равенство ⇔ `p = q = 1` | `Selector.fibonacci_minimal` |
+| B69 | Pregeometric witness (2026-10-17), Field reconstruction (2026-09-11) | скаляризация `B(s) = b̄ + e^{−γs}(B₀ − b̄)` решает `B' = −γ(B − b̄)`; ранговый счёт `Σ_{ℓ≤L}(2ℓ+1)min{q, L−ℓ+1} = N_L − N_{L−q}`, `6N_L = (L+1)(L+2)(2L+3)` | `Selector.scalarisation`, `Rank.rank_count`, `sector_count`, `N_closed` |
+| B70 | AKLT plaquette (2026-10-28), теорема «All-times protected qubit universality» | для заявленных `A = PH₂P|_C`, `B = PH₃P|_C` и `R`: `[A,R] = [B,R] = 0`; `A, B, [A,B], [A,[A,B]], [B,[A,B]]` линейно независимы и коммутируют с `R` (заполняют весь 5-мерный коммутант, как и `u(2)⊕u(1)`); энергии нечётной линии `69` и `−534`. 625-мерная часть (ранг 6, ядро 18) не проверялась | `AKLT.A_comm_R`, `B_comm_R`, `C1_eq`, `bracket_comm_R`, `five_independent`, `odd_line` |
 
 ### Численная проверка (Python, не Lean)
 Trace-free gravity (2026-08-12): `q₀ = πφ⁵⁸⁴/(1+π/50) = 3.3072514607139791698…×10¹²²`

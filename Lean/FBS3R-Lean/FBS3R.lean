@@ -16,3 +16,10 @@ import FBS3R.ZeckendorfAddress
 import FBS3R.PlanckBoundary
 import FBS3R.CurvatureBarriers
 import FBS3R.FiniteReduction
+import FBS3R.SpectralMoments
+import FBS3R.ValuationFlow
+import FBS3R.CosmoBenchmarks
+import FBS3R.HopfCertificates
+import FBS3R.SelectorGeometry
+import FBS3R.RankBound
+import FBS3R.AKLTLogical
