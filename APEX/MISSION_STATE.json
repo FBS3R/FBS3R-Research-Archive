@@ -1,0 +1,24 @@
+{
+ "updated": "2026-11-27",
+ "branch": "research/fbs3r-apex",
+ "pr": "https://github.com/FBS3R/FBS3R-Research-Archive/pull/3",
+ "lean": "4.36.0", "mathlib": "fc4f59e5 (v4.36.0)", "axiom_targets": 28,
+ "directions": [
+  {"id": 1, "name": "Аудит/CI", "status": "done", "lean": "APEX/ci_check.sh, .github/workflows/apex-lean.yml"},
+  {"id": 2, "name": "PXP рациональная иерархия (deg<=3m-2, вычет, точная степень)", "status": "proved", "lean": "APEX.PXP.*"},
+  {"id": 3, "name": "PXP 8-й момент", "status": "numerical", "next": "verified DP"},
+  {"id": 4, "name": "PXP старший коэффициент W(m,m,1)", "status": "numerical (2,4,36,568,14560)"},
+  {"id": 5, "name": "PXP асимптотика и гауссов предел", "status": "numerical"},
+  {"id": 6, "name": "Блокада r: размерности", "status": "proved", "lean": "APEX.Blockade.a_rec, gf_coeff"},
+  {"id": 7, "name": "Блокада r: моменты, D_r^{m+1}, deg (2r+1)(m-1)+1", "status": "conjecture (r<=4, m<=3)"},
+  {"id": 8, "name": "Поле μ", "status": "conjecture (k<=3)"},
+  {"id": 9, "name": "Общий закон переноса для автоматов", "status": "open"},
+  {"id": 10, "name": "AKLT 625: утечка", "status": "not started"},
+  {"id": 11, "name": "Коллатц: невозможность ограниченной поправки", "status": "proved", "lean": "APEX.Collatz.no_bounded_log_correction"},
+  {"id": 12, "name": "FibonacciAnyon: косы, пентагон/гексагон, алмазная норма", "status": "not started"},
+  {"id": 13, "name": "Навье–Стокс: энергетическая оценка с силой", "status": "not started"},
+  {"id": 14, "name": "S³: гармонические многочлены", "status": "not started"},
+  {"id": 15, "name": "Спектральное препятствие exp(-ax)/x", "status": "not started"}
+ ],
+ "millennium_problems": "не решены и не продвинуты"
+}

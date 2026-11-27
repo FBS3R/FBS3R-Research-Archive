@@ -40,5 +40,23 @@
   "statement": "local connectivity of the Mandelbrot set",
   "status": "OPEN; archive argument refuted (A5)",
   "next": "none in this round"
+ },
+ {
+  "id": "BLK-moment-den",
+  "statement": "sum_n Tr A_{n,r}^{2m} z^n * (1-z-z^{r+1})^{m+1} is a polynomial of degree (2r+1)(m-1)+1, with P(rho_r)=(2m)! rho_r^{m(2r+1)} B_r(rho_r)^{m+1}",
+  "status": "CONJECTURE (exact integers, r=1..4, m<=3, n<=22; r=1 proved in Lean)",
+  "next": "generalise Trajectories/Good to range-r compatibility (flip sets at distance <= r)"
+ },
+ {
+  "id": "PXP-M8",
+  "statement": "P_4 = 2z+22z^2+716z^3+1146z^4+8236z^5-206z^6+13114z^7-8308z^8+3152z^9-568z^10",
+  "status": "NUMERICAL (exact integers); Lean needs a verified DP for Tr A_n^8, n<=10",
+  "next": "prove a list-based transfer DP equal to M 8 n, then decide +kernel"
+ },
+ {
+  "id": "PXP-top-m5",
+  "statement": "|top coeff P_5| = 14560",
+  "status": "NUMERICAL (RED TEAM 2026-11-27)",
+  "next": "closed form W(m,m,1)"
  }
 ]

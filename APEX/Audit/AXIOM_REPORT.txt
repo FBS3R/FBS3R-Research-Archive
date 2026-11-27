@@ -1,4 +1,4 @@
-AXIOM REPORT — FBS3R-APEX rounds 1–2 (2026-11-27, revision ca7daab and later)
+AXIOM REPORT — FBS3R-APEX rounds 1–3 (2026-11-27, revision ca7daab and later)
 Toolchain: Lean 4.36.0 (commit 611c117b), Mathlib fc4f59e5 (v4.36.0), built from source in a fresh container.
 Accepted axioms: propext, Classical.choice, Quot.sound. Grep of sources: no sorry / admit / native_decide / axiom declarations.
 
@@ -198,3 +198,7 @@ Accepted axioms: propext, Classical.choice, Quot.sound. Grep of sources: no sorr
 'BinduEventInterface.bindu_site_replacer_kernel_bridge' depends on axioms: [propext, Classical.choice, Quot.sound]
 'BinduEventInterface.bindu_site_pauli_z_kernel_bridge' depends on axioms: [propext, Classical.choice, Quot.sound]
 (the three wrapped lines continue with Classical.choice, Quot.sound)
+
+== Round 3 additions (APEX/ci_check.sh, 28 targets, all [propext, Classical.choice, Quot.sound]) ==
+APEX.Collatz.T_iter_mersenne, T_iter_mersenne_end, no_bounded_log_correction, goldenRatio_sq_lt_three_lt_cube
+APEX.Blockade.a_of_le, a_rec, gf_coeff, a_one_eq_fib

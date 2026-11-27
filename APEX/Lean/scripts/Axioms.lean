@@ -23,3 +23,7 @@ import APEX
 #print axioms APEX.Collatz.T_iter_mersenne_end
 #print axioms APEX.Collatz.no_bounded_log_correction
 #print axioms APEX.Collatz.goldenRatio_sq_lt_three_lt_cube
+#print axioms APEX.Blockade.a_of_le
+#print axioms APEX.Blockade.a_rec
+#print axioms APEX.Blockade.gf_coeff
+#print axioms APEX.Blockade.a_one_eq_fib

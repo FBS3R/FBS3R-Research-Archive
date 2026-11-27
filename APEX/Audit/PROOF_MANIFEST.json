@@ -61,5 +61,5 @@
    "lean": "4.19.0"
   }
  ],
- "revision_note": "round 2 commit ca7daab; round 3 in progress"
+ "revision_note": "round 3 (2026-11-27): +APEX/Collatz/BoundedCorrection, +APEX/Blockade/Count; 28 axiom targets; gate APEX/ci_check.sh"
 }
