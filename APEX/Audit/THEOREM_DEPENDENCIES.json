@@ -105,5 +105,87 @@
    "APEX.PXP.compat_pulse",
    "APEX.PXP.sign_step"
   ]
+ },
+ "apex_round4": {
+  "APEX-PXP-1": [
+   "APEX.PXP.pxp_moment_rational"
+  ],
+  "APEX-PXP-2": [
+   "APEX.PXP.pxp_moment_residue",
+   "APEX.PXP.pxp_denominator_sharp"
+  ],
+  "APEX-PXP-3": [
+   "APEX.PXP.pxp_numerator_natDegree"
+  ],
+  "APEX-PXP-5": [
+   "APEX.PXP.fourth_moment_gf",
+   "APEX.PXP.sixth_moment_gf"
+  ],
+  "APEX-PXP-6": [
+   "APEX.PXP.MaskDP.M_eq_Mnat",
+   "APEX.PXP.eighth_moment_gf"
+  ],
+  "APEX-BLK-1": [
+   "APEX.Blockade.a_rec",
+   "APEX.Blockade.gf_coeff"
+  ],
+  "APEX-BLK-2": [
+   "APEX.Blockade.second_moment_series",
+   "APEX.Blockade.ident_a",
+   "APEX.Blockade.ident_b_poly"
+  ],
+  "APEX-BLK-3": [
+   "APEX.Blockade.exists_unique_root",
+   "APEX.Blockade.complex_root_norm",
+   "APEX.Blockade.Br_rho",
+   "APEX.Blockade.sigmaSq_one",
+   "APEX.Blockade.tendsto_a_mul_rho_pow"
+  ],
+  "APEX-BLK-4": [],
+  "APEX-COL-1": [
+   "APEX.Collatz.no_bounded_log_correction",
+   "APEX.Collatz.no_bounded_log_correction_gt_one",
+   "APEX.Collatz.no_bounded_height_correction"
+  ],
+  "APEX-COL-2": [
+   "APEX.Collatz.fibHeight_three_mul_add_one",
+   "APEX.Collatz.card_gain_three"
+  ],
+  "APEX-ANY-1": [
+   "APEX.Anyon.braid_defect",
+   "APEX.Anyon.braid_iff_of_v_ne_zero",
+   "APEX.Anyon.phase_exp_iff",
+   "APEX.Anyon.defect_norm"
+  ],
+  "APEX-S3-1": [
+   "APEX.S3.fischer",
+   "APEX.S3.finrank_HH",
+   "APEX.S3.lap_qq_pow_mul_of_harmonic"
+  ],
+  "APEX-SPC-1": [
+   "APEX.Spectral.tendsto_mul_G",
+   "APEX.Spectral.no_representation_exp_div"
+  ],
+  "APEX-SPC-2": [
+   "APEX.Spectral.hasDerivAt_log_eps_exp",
+   "APEX.Spectral.hasDerivAt_deriv_log_eps_exp",
+   "APEX.Spectral.log_mgf_eq"
+  ],
+  "APEX-NS-1": [
+   "APEX.Analysis.norm_le_forced_local",
+   "APEX.Analysis.norm_le_coercive_local"
+  ],
+  "APEX-AKLT-1": [
+   "APEX.AKLT.code_eq_kernel",
+   "APEX.AKLT.H2_preserves_code",
+   "APEX.AKLT.H3_preserves_code"
+  ],
+  "APEX-AKLT-2": [],
+  "APEX-COS-1": [
+   "APEX.Cosmology.obs_zero_iff",
+   "APEX.Cosmology.finrank_ker_shellObs",
+   "APEX.Cosmology.shellObs_injective_iff",
+   "APEX.Cosmology.nonident_local"
+  ]
  }
 }

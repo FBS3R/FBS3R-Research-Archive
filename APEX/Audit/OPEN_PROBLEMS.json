@@ -48,15 +48,33 @@
   "next": "generalise Trajectories/Good to range-r compatibility (flip sets at distance <= r)"
  },
  {
-  "id": "PXP-M8",
-  "statement": "P_4 = 2z+22z^2+716z^3+1146z^4+8236z^5-206z^6+13114z^7-8308z^8+3152z^9-568z^10",
-  "status": "NUMERICAL (exact integers); Lean needs a verified DP for Tr A_n^8, n<=10",
-  "next": "prove a list-based transfer DP equal to M 8 n, then decide +kernel"
- },
- {
   "id": "PXP-top-m5",
   "statement": "|top coeff P_5| = 14560",
   "status": "NUMERICAL (RED TEAM 2026-11-27)",
   "next": "closed form W(m,m,1)"
+ },
+ {
+  "id": "BLK-general",
+  "statement": "ConjGeneral (Moments.lean): all m,r",
+  "status": "OPEN (numerical r<=4,m<=3)",
+  "next": "generalise Good/GoodR/GoodT to r-neighbour trajectories"
+ },
+ {
+  "id": "GAUSS",
+  "statement": "weak convergence of empirical spectral measures to N(0,sigma_r^2)",
+  "status": "ANALYTIC_PROOF_PENDING_FORMALIZATION",
+  "next": "moment asymptotics from rationality + root lemma; method of moments"
+ },
+ {
+  "id": "DIAMOND",
+  "statement": "||E-V0||_diamond = 2[1-(1-l)p0]",
+  "status": "OPEN in Lean (no trace-norm/CPTP library in this Mathlib)",
+  "next": "Quantum/TraceNorm.lean via singular values"
+ },
+ {
+  "id": "S3-sphere",
+  "statement": "-Delta_S3 Y_n = n(n+2) Y_n analytically",
+  "status": "PARTIAL (algebraic identity proved)",
+  "next": "polar decomposition of the Laplacian"
  }
 ]

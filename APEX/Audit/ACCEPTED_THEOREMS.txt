@@ -130,3 +130,8 @@ APEX.Cosmology.nonident_same_data
 APEX.Cosmology.nonident_eq_iff
 APEX.Cosmology.nonident_eventually_pos
 APEX.Cosmology.nonident_local
+APEX.Blockade.fourth_moment
+APEX.Blockade.trace_four_decomp
+APEX.Blockade.trace_four_eq
+APEX.Blockade.card_zero_block
+APEX.Blockade.Q_total

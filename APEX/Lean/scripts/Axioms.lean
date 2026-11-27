@@ -131,3 +131,8 @@ import APEX
 #print axioms APEX.Cosmology.nonident_eq_iff
 #print axioms APEX.Cosmology.nonident_eventually_pos
 #print axioms APEX.Cosmology.nonident_local
+#print axioms APEX.Blockade.fourth_moment
+#print axioms APEX.Blockade.trace_four_decomp
+#print axioms APEX.Blockade.trace_four_eq
+#print axioms APEX.Blockade.card_zero_block
+#print axioms APEX.Blockade.Q_total

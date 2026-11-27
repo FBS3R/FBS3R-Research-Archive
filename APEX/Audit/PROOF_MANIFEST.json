@@ -61,5 +61,30 @@
    "lean": "4.19.0"
   }
  ],
- "revision_note": "round 3 (2026-11-27): +APEX/Collatz/BoundedCorrection, +APEX/Blockade/Count; 28 axiom targets; gate APEX/ci_check.sh"
+ "revision_note": "round 4 (2026-11-27): strict registry gate; 132+ targets; see APEX_CLAIMS.jsonl",
+ "apex_modules": [
+  "APEX.PXP.Trajectories",
+  "APEX.PXP.Rational",
+  "APEX.PXP.Walks",
+  "APEX.PXP.Main",
+  "APEX.PXP.Explicit",
+  "APEX.PXP.Residue",
+  "APEX.PXP.Degree",
+  "APEX.Collatz.BoundedCorrection",
+  "APEX.Blockade.Count",
+  "APEX.Collatz.Zeckendorf",
+  "APEX.Anyon.Braid2D",
+  "APEX.S3.Harmonic",
+  "APEX.Spectral.PositiveRepresentation",
+  "APEX.Spectral.MixtureCumulants",
+  "APEX.Analysis.ForcedEnergy",
+  "APEX.Blockade.Moments",
+  "APEX.PXP.MaskDP",
+  "APEX.PXP.ExplicitHigher",
+  "APEX.Blockade.Root",
+  "APEX.AKLT.Physical",
+  "APEX.Cosmology.ShellKernel"
+ ],
+ "axiom_targets": 132,
+ "registry": "APEX/Audit/ACCEPTED_THEOREMS.txt"
 }
