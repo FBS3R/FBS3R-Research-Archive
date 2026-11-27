@@ -183,3 +183,10 @@ import APEX
 #print axioms APEX.AKLT.Leakage.PG_selfAdjoint
 #print axioms APEX.AKLT.Leakage.gramI_eq
 #print axioms APEX.AKLT.Leakage.logical_spec
+#print axioms APEX.Blockade.Asymptotics.tendsto_moment
+#print axioms APEX.Blockade.Asymptotics.tendsto_moment_normalised
+#print axioms APEX.Blockade.Asymptotics.tendsto_moment_gaussian
+#print axioms APEX.Blockade.Asymptotics.factorial_div_eq_doubleFactorial
+#print axioms APEX.Blockade.Asymptotics.v_tendsto
+#print axioms APEX.Blockade.Asymptotics.conv_tendsto
+#print axioms APEX.Blockade.Asymptotics.Mk_odd

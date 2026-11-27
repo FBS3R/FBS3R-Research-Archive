@@ -182,3 +182,10 @@ APEX.AKLT.Leakage.finrank_range_leakG
 APEX.AKLT.Leakage.PG_selfAdjoint
 APEX.AKLT.Leakage.gramI_eq
 APEX.AKLT.Leakage.logical_spec
+APEX.Blockade.Asymptotics.tendsto_moment
+APEX.Blockade.Asymptotics.tendsto_moment_normalised
+APEX.Blockade.Asymptotics.tendsto_moment_gaussian
+APEX.Blockade.Asymptotics.factorial_div_eq_doubleFactorial
+APEX.Blockade.Asymptotics.v_tendsto
+APEX.Blockade.Asymptotics.conv_tendsto
+APEX.Blockade.Asymptotics.Mk_odd
