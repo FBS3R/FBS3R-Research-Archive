@@ -29,3 +29,4 @@ import APEX.Blockade.General.Residue
 import APEX.Blockade.General.Degree
 import APEX.AKLT.Leakage
 import APEX.Blockade.Asymptotics
+import APEX.Blockade.Gaussian

@@ -189,3 +189,8 @@ APEX.Blockade.Asymptotics.factorial_div_eq_doubleFactorial
 APEX.Blockade.Asymptotics.v_tendsto
 APEX.Blockade.Asymptotics.conv_tendsto
 APEX.Blockade.Asymptotics.Mk_odd
+APEX.Blockade.Gaussian.moment_mu
+APEX.Blockade.Gaussian.moment_tendsto
+APEX.Blockade.Gaussian.poly_tendsto
+APEX.Blockade.Gaussian.tight
+APEX.Blockade.Gaussian.gauss_moment_even

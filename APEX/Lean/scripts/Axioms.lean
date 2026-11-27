@@ -190,3 +190,8 @@ import APEX
 #print axioms APEX.Blockade.Asymptotics.v_tendsto
 #print axioms APEX.Blockade.Asymptotics.conv_tendsto
 #print axioms APEX.Blockade.Asymptotics.Mk_odd
+#print axioms APEX.Blockade.Gaussian.moment_mu
+#print axioms APEX.Blockade.Gaussian.moment_tendsto
+#print axioms APEX.Blockade.Gaussian.poly_tendsto
+#print axioms APEX.Blockade.Gaussian.tight
+#print axioms APEX.Blockade.Gaussian.gauss_moment_even

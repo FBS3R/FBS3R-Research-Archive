@@ -310,5 +310,19 @@
    "APEX.Blockade.Asymptotics.Mk_odd"
   ],
   "statement": "for all r,m>=1: Tr A_{n,r}^{2m} rho^n/n^m -> (2m)! rho^{(r+1)m-r}/(m! K_r^{m+1}); normalised moments Tr A^{2m}/(a_n n^m) -> (2m-1)!! sigma_r^{2m} (Gaussian moments, sigma_r^2 = 2 rho^{r+1}/K_r); odd moments vanish. Weak convergence of spectral measures not yet proved."
+ },
+ {
+  "id": "APEX-BLK-9",
+  "area": "Blockade",
+  "status": "PARTIAL",
+  "novelty": "NEW_FORMALIZATION",
+  "lean": [
+   "APEX.Blockade.Gaussian.moment_mu",
+   "APEX.Blockade.Gaussian.moment_tendsto",
+   "APEX.Blockade.Gaussian.poly_tendsto",
+   "APEX.Blockade.Gaussian.tight",
+   "APEX.Blockade.Gaussian.gauss_moment_even"
+  ],
+  "statement": "empirical spectral measures mu_n of A_{n,r}/sqrt n: all moments and all polynomial integrals converge to those of N(0,sigma_r^2); tightness. Missing: moment determinacy => weak convergence"
  }
 ]
