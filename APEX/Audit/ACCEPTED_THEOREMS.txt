@@ -92,3 +92,14 @@ APEX.PXP.MaskDP.flips_dec
 APEX.PXP.Mnat8_vals
 APEX.PXP.M8_vals
 APEX.PXP.eighth_moment_gf
+APEX.Blockade.exists_unique_root
+APEX.Blockade.deriv_Dr_rho_ne_zero
+APEX.Blockade.Kr_eq_neg_rho_mul_deriv
+APEX.Blockade.Kr_pos
+APEX.Blockade.complex_root_norm
+APEX.Blockade.complex_root_norm_ge
+APEX.Blockade.Br_rho
+APEX.Blockade.rho_one
+APEX.Blockade.sigmaSq_one
+APEX.Blockade.tendsto_of_averaging
+APEX.Blockade.tendsto_a_mul_rho_pow

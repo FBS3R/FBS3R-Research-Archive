@@ -93,3 +93,14 @@ import APEX
 #print axioms APEX.PXP.Mnat8_vals
 #print axioms APEX.PXP.M8_vals
 #print axioms APEX.PXP.eighth_moment_gf
+#print axioms APEX.Blockade.exists_unique_root
+#print axioms APEX.Blockade.deriv_Dr_rho_ne_zero
+#print axioms APEX.Blockade.Kr_eq_neg_rho_mul_deriv
+#print axioms APEX.Blockade.Kr_pos
+#print axioms APEX.Blockade.complex_root_norm
+#print axioms APEX.Blockade.complex_root_norm_ge
+#print axioms APEX.Blockade.Br_rho
+#print axioms APEX.Blockade.rho_one
+#print axioms APEX.Blockade.sigmaSq_one
+#print axioms APEX.Blockade.tendsto_of_averaging
+#print axioms APEX.Blockade.tendsto_a_mul_rho_pow
