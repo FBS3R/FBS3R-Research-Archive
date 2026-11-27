@@ -1,0 +1,20 @@
+import APEX
+#print axioms APEX.PXP.pxp_moment_rational
+#print axioms APEX.PXP.good_total
+#print axioms APEX.PXP.good_active
+#print axioms APEX.PXP.series_M_eq_T
+#print axioms APEX.PXP.M_eq_sum_g
+#print axioms APEX.PXP.trace_relMat_pow
+#print axioms APEX.PXP.relMat_pow_apply
+#print axioms APEX.PXP.card_walks_eq_card_arrays
+#print axioms APEX.PXP.g_succ_eq_count
+#print axioms APEX.PXP.card_flips_even
+#print axioms APEX.PXP.flips_eq_empty_iff
+#print axioms APEX.PXP.T_mul_D
+#print axioms APEX.PXP.fourth_moment_gf
+#print axioms APEX.PXP.sixth_moment_gf
+#print axioms APEX.PXP.numerator_eq
+#print axioms APEX.PXP.pxp_moment_residue
+#print axioms APEX.PXP.pxp_denominator_sharp
+#print axioms APEX.PXP.card_two_flips_in
+#print axioms APEX.PXP.goodR_active

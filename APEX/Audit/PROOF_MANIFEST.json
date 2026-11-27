@@ -1,0 +1,58 @@
+{
+ "date": "2026-11-27",
+ "lean": "4.36.0 (611c117b)",
+ "mathlib": "fc4f59e577feb1a4956671bc04ac18aaaf8cd842 (v4.36.0)",
+ "accepted_axioms": [
+  "propext",
+  "Classical.choice",
+  "Quot.sound"
+ ],
+ "packages": [
+  {
+   "path": "APEX/Lean",
+   "status": "new this round",
+   "modules": 6,
+   "main_results": [
+    {
+     "claim": "APEX-PXP-1",
+     "lean": "APEX.PXP.pxp_moment_rational",
+     "file": "APEX/PXP/Main.lean"
+    },
+    {
+     "claim": "APEX-PXP-2",
+     "lean": [
+      "APEX.PXP.pxp_moment_residue",
+      "APEX.PXP.pxp_denominator_sharp"
+     ],
+     "file": "APEX/PXP/Residue.lean"
+    },
+    {
+     "claim": "APEX-PXP-5",
+     "lean": [
+      "APEX.PXP.fourth_moment_gf",
+      "APEX.PXP.sixth_moment_gf"
+     ],
+     "file": "APEX/PXP/Explicit.lean",
+     "kernel_computation": "decide +kernel (no native_decide)"
+    }
+   ],
+   "axiom_targets": 19
+  },
+  {
+   "path": "Lean/FBS3R-Lean",
+   "status": "independently rebuilt from source; unchanged",
+   "axiom_targets": 139,
+   "ledger": "Lean/FBS3R-Lean/RESULTS.md (A1-A7, B1-B70)"
+  },
+  {
+   "path": "Lean/OpenProblems",
+   "status": "independently rebuilt from source; unchanged",
+   "axiom_targets": 19
+  },
+  {
+   "path": "BINDU VECTRA (zip in All Preprints/2026_11_09_...)",
+   "status": "see BUILD_LOG.txt / BINDU section",
+   "lean": "4.19.0"
+  }
+ ]
+}

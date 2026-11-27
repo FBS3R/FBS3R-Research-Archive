@@ -1,0 +1,25 @@
+BUILD LOG SUMMARY — 2026-11-27, cloud container (4 cores, 15 GB), no Mathlib cache (built from source)
+
+== Lean/FBS3R-Lean: lake build FBS3R ==
+Build completed successfully (6857 jobs).
+real	42m27.994s
+user	151m2.045s
+EXIT 0
+
+== Lean/OpenProblems: lake build OpenProblems ==
+Build completed successfully (5016 jobs).
+real	0m58.172s
+user	2m48.007s
+EXIT 0
+
+== APEX/Lean: lake build ==
+Build completed successfully (4002 jobs).
+real	0m3.400s
+user	0m2.404s
+
+== Python certificate: python3 -I APEX/Certificates/pxp_verify.py 15 4 ==
+m=1: P_m=[0, 2] deg=1 [deg=3m-2:True] [mod D:True] [paper:True]
+m=2: P_m=[0, 2, 2, 18, -4] deg=4 [deg=3m-2:True] [mod D:True] [paper:True]
+m=3: P_m=[0, 2, 8, 130, 40, 350, -156, 36] deg=7 [deg=3m-2:True] [mod D:True] [paper:True]
+m=4: P_m=[0, 2, 22, 716, 1146, 8236, -206, 13114, -8308, 3152, -568] deg=10 [deg=3m-2:True] [mod D:True] [paper:True]
+ALL CHECKS PASSED

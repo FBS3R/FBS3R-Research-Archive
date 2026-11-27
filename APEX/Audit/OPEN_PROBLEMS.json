@@ -1,0 +1,50 @@
+[
+ {
+  "id": "PXP-deg-exact",
+  "statement": "deg P_m = 3m-2 for all m>=1",
+  "status": "OPEN (numerical m<=5; proof sketch)",
+  "next": "formalise top-coefficient count c_m>=1 with GoodR-type bookkeeping of the leading coefficient"
+ },
+ {
+  "id": "PXP-field",
+  "statement": "sum_n Tr(A_n+mu N)^k z^n = P_k(mu,z)/(1-z-z^2)^(k+1)",
+  "status": "CONJECTURE (numerical mu=1,k<=3)",
+  "next": "extend trajectory alphabet with diagonal events; same induction with |events|>=1"
+ },
+ {
+  "id": "blockade-range-r",
+  "statement": "for range-r blockade chains the moment GFs have denominator (1-z-z^(r+1))^(m+1)",
+  "status": "CONJECTURE (r=2, 2m<=4)",
+  "next": "state = last r trajectories; generalise Good induction"
+ },
+ {
+  "id": "universal-automaton",
+  "statement": "for any nearest-neighbour constraint automaton with single-site flip dynamics, sum_n Tr A_n^k z^n has denominator det(I - z T_0)^(floor(k/2)+1), T_0 the transfer matrix of constant trajectories",
+  "status": "CONJECTURE (APEX-16 universality question)",
+  "next": "abstract the proof over a finite compatibility graph"
+ },
+ {
+  "id": "PXP-eighth",
+  "statement": "preprint eq. (8th) in Lean",
+  "status": "NUMERICAL_ONLY",
+  "next": "kernel evaluation of Tr A_n^8 for n<=10 is too slow via Matrix.trace; use the verified transfer g instead"
+ },
+ {
+  "id": "Millennium",
+  "statement": "Yang-Mills mass gap, Navier-Stokes regularity, Riemann hypothesis, Hodge, BSD, P vs NP",
+  "status": "OPEN (no progress claimed in this round)",
+  "next": "see NEXT_MISSIONS.md"
+ },
+ {
+  "id": "Collatz",
+  "statement": "Collatz conjecture",
+  "status": "OPEN; archive argument refuted (A1)",
+  "next": "see NEXT_MISSIONS.md"
+ },
+ {
+  "id": "MLC",
+  "statement": "local connectivity of the Mandelbrot set",
+  "status": "OPEN; archive argument refuted (A5)",
+  "next": "none in this round"
+ }
+]

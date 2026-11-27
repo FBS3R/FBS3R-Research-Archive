@@ -1,0 +1,94 @@
+{
+ "package": "APEX/Lean",
+ "note": "direct proof dependencies of the main declarations (hand-extracted from the sources; transitive closure checked by #print axioms)",
+ "depends_on": {
+  "APEX.PXP.pxp_moment_rational": [
+   "APEX.PXP.good_total",
+   "APEX.PXP.series_M_eq_T"
+  ],
+  "APEX.PXP.good_total": [
+   "APEX.PXP.good_active",
+   "APEX.PXP.T_mul_D",
+   "APEX.PXP.Good.div"
+  ],
+  "APEX.PXP.good_active": [
+   "APEX.PXP.G_active",
+   "APEX.PXP.T_mul_D",
+   "APEX.PXP.G_zero",
+   "APEX.PXP.A_empty",
+   "APEX.PXP.G_eq_zero_of_card_lt",
+   "APEX.PXP.two_le_card_flips"
+  ],
+  "APEX.PXP.series_M_eq_T": [
+   "APEX.PXP.M_eq_sum_g"
+  ],
+  "APEX.PXP.M_eq_sum_g": [
+   "APEX.PXP.trace_relMat_pow",
+   "APEX.PXP.card_walks_eq_card_arrays",
+   "APEX.PXP.g_succ_eq_count"
+  ],
+  "APEX.PXP.trace_relMat_pow": [
+   "APEX.PXP.relMat_pow_apply",
+   "APEX.PXP.rotate_succ_eq"
+  ],
+  "APEX.PXP.card_walks_eq_card_arrays": [
+   "APEX.PXP.one_flip_iff",
+   "APEX.PXP.legal_iff_CC"
+  ],
+  "APEX.PXP.g_succ_eq_count": [
+   "APEX.PXP.PD_snoc",
+   "APEX.PXP.CC_snoc",
+   "APEX.PXP.U_snoc",
+   "APEX.PXP.disj_union_iff"
+  ],
+  "APEX.PXP.T_mul_D": [
+   "APEX.PXP.G_zero",
+   "APEX.PXP.G_one",
+   "APEX.PXP.T_split"
+  ],
+  "APEX.PXP.two_le_card_flips": [
+   "APEX.PXP.card_flips_even"
+  ],
+  "APEX.PXP.T_split": [
+   "APEX.PXP.filter_flips_empty",
+   "APEX.PXP.flips_eq_empty_iff"
+  ],
+  "APEX.PXP.pxp_moment_residue": [
+   "APEX.PXP.goodR_active",
+   "APEX.PXP.sum_N2",
+   "APEX.PXP.T_mul_D",
+   "APEX.PXP.series_M_eq_T"
+  ],
+  "APEX.PXP.goodR_active": [
+   "APEX.PXP.G_active",
+   "APEX.PXP.sum_N2",
+   "APEX.PXP.T_mul_D"
+  ],
+  "APEX.PXP.sum_N2": [
+   "APEX.PXP.card_two_flips_in"
+  ],
+  "APEX.PXP.card_two_flips_in": [
+   "APEX.PXP.card_fiber_two"
+  ],
+  "APEX.PXP.card_fiber_two": [
+   "APEX.PXP.flips_ival",
+   "APEX.PXP.eq_or_eq_neg_of_flips_eq",
+   "APEX.PXP.flips_neg"
+  ],
+  "APEX.PXP.pxp_denominator_sharp": [
+   "APEX.PXP.pxp_moment_residue",
+   "Real.goldenConj_sq"
+  ],
+  "APEX.PXP.fourth_moment_gf": [
+   "APEX.PXP.numerator_eq",
+   "APEX.PXP.M4_vals (decide +kernel)"
+  ],
+  "APEX.PXP.sixth_moment_gf": [
+   "APEX.PXP.numerator_eq",
+   "APEX.PXP.M6_vals (decide +kernel)"
+  ],
+  "APEX.PXP.numerator_eq": [
+   "APEX.PXP.pxp_moment_rational"
+  ]
+ }
+}
