@@ -1,0 +1,443 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\geometry{margin=2.5cm}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\lean}[1]{\texttt{#1}}
+\newcommand{\curl}{\operatorname{curl}}
+
+\title{A Machine-Checked Audit of the FB(S$^3$)R Archive in Lean~4:\\
+Killing--Beltrami Algebra, $\zeta$-Constants, Bell--Hopf Rigidity,\\
+Zeckendorf--Collatz Bounds, and Six Corrected Claims}
+\author{FB(S$^3$)R Research Archive}
+\date{26 November 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We report a formal verification, in the Lean~4 proof assistant with the Mathlib library,
+of a selection of mathematical statements from the FB(S$^3$)R preprint archive. Twenty-five Lean
+modules contain 182 theorem declarations, of which 139 main theorems have their axioms printed
+by a checking script. Grouped by content and leaving out trivial auxiliary
+lemmas, they yield 77 results: 7 corrected claims and 70 verified statements, one of
+which sharpens a published constant. None uses \lean{sorry}, \lean{admit},
+\lean{native\_decide} or any user-declared axiom. Every theorem depends only on Lean's
+standard axioms \lean{propext}, \lean{Classical.choice} and \lean{Quot.sound}.
+The verified material comprises:
+\begin{itemize}
+\item the algebraic core of the Killing--Beltrami theory of Navier--Stokes flow on the round
+three-sphere: the representation-defect theorem, the polarization coefficients, the curl-shell
+spectral identities, and the energy law of Killing precession;
+\item the Lamb--Beltrami mechanism for differentiable fields, and explicit Beltrami
+(ABC) steady Euler solutions;
+\item the $\zeta$-function shell sum and the exact residue $1/(3\pi^2)$ of the supercritical
+embedding constant;
+\item the CHSH bound for every local hidden-variable model, the Tsirelson bound for the singlet
+kernel, and Chern-charge rigidity $q=\pm1$ for the Hopf holonomy representation;
+\item the Zeckendorf height bounds for the Collatz map;
+\item the causal-spectral identities of the round carrier: geodesic-ball volume, the causal
+fraction, and the scalar, transverse-traceless and Dirac capacities;
+\item Berger-sphere curvature and the Ricci-flow ratio equation, the GHZ branch-balancing
+factorization, the dilation algebra of valuation profiles, and the vacuum-shift kernel of
+trace-free gravity;
+\item the exact braid relation of the Fibonacci anyon qubit, with a closed form of the braid
+defect for an arbitrary diagonal $R$-move;
+\item the Zeckendorf address bijection of the constrained (PXP) chain and its dimension
+$F_{n+2}$;
+\item the Casimir constant $1/240$ of the conformal scalar on $S^3$ from $\zeta(-3)=1/120$, and an
+explicit Kretschmann bound at the Planck boundary;
+\item the conformal sign of curvature barriers for Ricci-type flows and a sharp Ricci lower
+bound $\mathrm{Ric}\ge-\sqrt{K_0/2}$ under $|\mathrm{Rm}|^2\le K_0$ in dimension three;
+\item an energy bound excluding blow-up inside exact finite reducing spaces of quadratic
+evolutions;
+\item Hankel positivity, log-convexity and the sharp chiral bound $|\Xi|\le2/3$ for positive
+spectral measures, and the exact dilation flow $A\,w'=-\mathrm{Var}/3\le0$ of positive
+valuation mixtures;
+\item the dust-plus-vacuum closure criterion, Einstein-static and turning-point algebra of
+residual cosmology;
+\item the exact Moore--Ran--Wen gap $\min_{s\in\{\pm1,\pm3\}}(s-m)^2$, the unique-selector
+theorem, the angular rank count $N_L-N_{L-q}$, and the logical algebra of the AKLT plaquette
+qutrit.
+\end{itemize}
+A per-paper coverage table classifies all 101 folders of the archive.
+We also give machine-checked counterexamples to seven claims made in the archive.
+We state explicitly which statements were not formalized, and why.
+No open problem (Collatz, Navier--Stokes regularity, the Yang--Mills mass gap, local
+connectivity of the Mandelbrot set) is claimed to be solved.
+\end{abstract}
+
+\section{Method and trust base}
+The development is the Lake project \lean{Lean/FBS3R-Lean} (Lean~4.36.0, Mathlib
+\lean{v4.36.0}). The command \lean{lake build FBS3R} compiles it, and
+\lean{lake env lean scripts/Axioms.lean} prints the axiom dependencies of every
+principal theorem. All of them report \lean{[propext, Classical.choice, Quot.sound]}.
+
+Mathlib does not yet provide Hodge theory or a curl operator on Riemannian three-manifolds.
+Statements about the round $S^3(R)$ are therefore split into two parts:
+\begin{enumerate}
+\item the \emph{geometric input}, which is assumed as a hypothesis: the signed curl shells
+$E_{k,\sigma}$ have eigenvalue $\mu_{k,\sigma}=\sigma(k+2)/R$, the Killing algebra
+$\mathfrak{so}(4)=\mathfrak{su}(2)_+\oplus\mathfrak{su}(2)_-$ acts on them with spins
+$j_\tau=(k+1+\tau\sigma)/2$, and the relevant invariant kernels are constant;
+\item the \emph{algebra and analysis} derived from that input, which is proved in full.
+\end{enumerate}
+The geometric input consists of classical facts. Its formalization is left to future work.
+
+\section{Killing--Beltrami algebra}
+\begin{theorem}[Representation defect; \lean{KillingBeltrami.defect}]
+Let $P:L_1\to\mathrm{End}(M)$ and $Q:L_2\to\mathrm{End}(M)$ be Lie-algebra homomorphisms
+with $[P x,Q y]=0$ for all $x,y$. For scalars $a,b$ put $D(x,y)=aP(x)+bQ(y)$. Then
+\[
+[D(m),D(n)]-D([m_1,n_1],[m_2,n_2])=(a^2-a)P[m_1,n_1]+(b^2-b)Q[m_2,n_2].
+\]
+For $a=k/(k+2)$ and $b=(k+4)/(k+2)$ the two coefficients are $-2k/(k+2)^2$ and
+$2(k+4)/(k+2)^2$. Both are nonzero for $k\ge1$ (\lean{defect\_coeffs\_ne\_zero}).
+\end{theorem}
+This is the archive's identity $\Omega_{k,\sigma}$, proved without the $S^3$ realization.
+The formula $D=\mathrm{ad}+\tfrac{2}{k+2}(\mathrm{ad}_{m_{-\sigma}}-\mathrm{ad}_{m_\sigma})$
+is \lean{D\_minus\_ad}.
+
+\begin{proposition}[Coefficients and spectra]
+For $\sigma,\tau\in\{\pm1\}$, $R\neq0$ and $k\in\mathbb N$:
+\begin{enumerate}
+\item $(\mu_{k,\sigma}-\mu_{0,\tau})/(2\mu_{k,\sigma})=(k+2-2\tau\sigma)/(2(k+2))$
+(\lean{KB\_coefficient}), with the chiral values $k/(k+2)$ and $(k+4)/(k+2)$;
+\item $(2j_+ + 1)(2j_- + 1)=(k+1)(k+3)$, and
+$\tfrac{4}{R^2}\sum_\tau j_\tau(j_\tau+1)=2\mu_{k,\sigma}^2$, that is,
+$\Delta_{\mathrm{iso}}=2\curl^2$;
+\item $\mu_{k,\sigma}^2-4/R^2=k(k+4)/R^2$, which is the Stokes eigenvalue;
+\item the closed structure coefficients equal $k^2(k+4)/(4(k+2))$ and $k(k+4)^2/(4(k+2))$, and
+$(k+1)(k+3)/(k+2)^2=1-(k+2)^{-2}$.
+\end{enumerate}
+\end{proposition}
+
+\begin{theorem}[Killing precession does no work; \lean{Precession}]
+Let $E$ be a real inner-product space and suppose $v'=-cv-D(t)v+F(t)$, where each $D(t)$ is
+skew. Then $\tfrac{d}{dt}\tfrac12\|v\|^2=-c\|v\|^2+\langle F,v\rangle$. If moreover $F=0$, then
+$\|v(t)\|=e^{-ct}\|v(0)\|$ for all $t$.
+\end{theorem}
+
+\section{Lamb identity, Beltrami fields and ABC flows}
+\begin{theorem}[\lean{Lamb.lamb}, \lean{Lamb.beltrami\_advection\_is\_gradient}]
+Let $u:\mathbb R^3\to\mathbb R^3$ be Fr\'echet differentiable at $x$. Then
+$(u\cdot\nabla)u=\nabla\tfrac12|u|^2-u\times\curl u$ at $x$. In particular, if
+$\curl u=\lambda u$ at $x$, the advection term at $x$ is the gradient of $\tfrac12|u|^2$.
+The polarized identity $\nabla_uv+\nabla_vu=\nabla\langle u,v\rangle-u\times\curl v
+-v\times\curl u$ also holds at the level of Jacobians.
+\end{theorem}
+\begin{theorem}[ABC flows; \lean{ABC}]
+For all $A,B,C\in\mathbb R$, the field
+$U=(A\sin z+C\cos y,\ B\sin x+A\cos z,\ C\sin y+B\cos x)$ satisfies $\curl U=U$ and
+$\operatorname{div}U=0$. It also satisfies $(U\cdot\nabla)U=\nabla\tfrac12|U|^2$, so it is a
+steady Euler solution with pressure $p=-\tfrac12|U|^2$.
+\end{theorem}
+
+\section{$\zeta$-constants of the shell barriers}
+Let $Z(s)=\sum_{n\ge1}n^{-s}$. Lean proves $Z(s)=\zeta(s)$ for real $s>1$
+(\lean{Z\_eq\_riemannZeta}).
+\begin{theorem}[\lean{ZetaShell}]
+\begin{enumerate}
+\item For $s>3$: $\sum_{k\ge0}2(k+1)(k+3)(k+2)^{-s}=2(\zeta(s-2)-\zeta(s))$.
+\item With $V_R=2\pi^2R^3$: $2R^s/(3V_R)=R^{s-3}/(3\pi^2)$.
+\item For $C_s(R)=\frac{R^{s-3}}{3\pi^2}(\zeta(s-2)-\zeta(s))$:
+$\lim_{s\downarrow3}(s-3)C_s(R)=1/(3\pi^2)$ for every $R>0$.
+\end{enumerate}
+\end{theorem}
+
+\section{Projector bounds, entropy and other checks}
+\begin{theorem}[\lean{Projector}, \lean{Entropy}]
+Let $(e_i)_{i\le N}$ be orthonormal in $L^2(\mu)$, where $\mu(X)=V$, and suppose
+$\sum_ie_i(x)^2\equiv K$. Then:
+\begin{itemize}
+\item $K=N/V$;
+\item $w(x)^2\le\|a\|^2N/V$ for $w=\sum_i a_ie_i$, with equality attained;
+\item $\|a\|^2/w(x)^2\ge V/N$.
+\end{itemize}
+In addition, the conditional entropy bound $\mathcal S\ge\delta\log(M/C)$ holds for every
+finite probability vector satisfying the hypotheses of the archive.
+\end{theorem}
+
+\section{Bell correlations and the Hopf bundle}
+\begin{theorem}[\lean{Bell}]
+\begin{enumerate}
+\item For every probability space and all measurable $\pm1$-valued responses,
+$|E(a,b)+E(a,b')+E(a',b)-E(a',b')|\le2$.
+\item For unit vectors in any real inner-product space, the kernel
+$E(a,b)=-\langle a,b\rangle$ gives $|S|\le2\sqrt2$. The PRA settings give exactly
+$S=-2\sqrt2$. Hence no local hidden-variable model reproduces this kernel.
+\item (Chern rigidity) For $q\in\mathbb Z$: $\cos(q(\pi-\theta))=-\cos\theta$ holds for all
+$\theta\in[0,\pi]$ if and only if $q=\pm1$.
+\item The Hopf map $(z,w)\mapsto(2z\bar w,|z|^2-|w|^2)$ sends $S^3$ to $S^2$ and is
+constant on $U(1)$ fibres.
+\end{enumerate}
+\end{theorem}
+
+\section{Zeckendorf heights and the Collatz map}
+Let $h(n)$ be the largest index $k$ with $F_k\le n$. This is Mathlib's \lean{greatestFib}.
+\begin{theorem}[\lean{Collatz}]
+\begin{enumerate}
+\item $h(\lfloor n/2\rfloor)+1\le h(n)$ for $n\ge1$.
+\item $h(3n+1)\le h(n)+3$.
+\item $h((3n+1)/2^m)+m\le h(n)+3$ whenever $2^m\mid 3n+1$.
+\end{enumerate}
+The worked examples of the naive-Lyapunov and coarse-certificate no-go results are verified
+as well. The Fibonacci intervals $[F_n,F_{n+1})$, $n\ge2$, partition $\mathbb Z_{\ge1}$, and
+$F_{n+1}/F_n\to\varphi$.
+\end{theorem}
+These are local bounds only. They do not imply the Collatz conjecture, and none of the
+preprints claims that they do.
+
+\section{Causal--spectral carrier identities}
+\begin{theorem}[\lean{CausalSpectral}]
+On the round sphere $S^3(R)$ the following hold.
+\begin{enumerate}
+\item $\int_0^s4\pi R^2\sin^2(\rho/R)\,d\rho=2\pi R^3\bigl(s/R-\tfrac12\sin(2s/R)\bigr)$,
+which equals $2\pi^2R^3$ at $s=\pi R$.
+\item The causal fraction $\Gamma(\tau)=(\tau-\tfrac12\sin2\tau)/\pi$ satisfies
+$\Gamma'=\tfrac2\pi\sin^2\tau$, $\Gamma(\tau)+\Gamma(\pi-\tau)=1$ and $\Gamma(\pi/2)=\tfrac12$.
+\item The scalar cutoff satisfies $n(n+2)\le x^2\iff n+1\le\sqrt{1+x^2}$, and
+$\sum_{n<M}(n+1)^2=M(M+1)(2M+1)/6$.
+\item $\sum_{k=2}^M2(k-1)(k+3)=M(M-1)(2M+11)/3$.
+\item $2\sum_{n=0}^M(n+1)(n+2)=2(M+1)(M+2)(M+3)/3$.
+\end{enumerate}
+\end{theorem}
+
+\section{Further verified statements}
+\begin{theorem}[\lean{Checks}]
+\begin{enumerate}
+\item (Hierarchical Bethe graphs.) In the maximally coupled block adjacency
+$\begin{pmatrix}A&\mathbf 1\mathbf 1^T\\\mathbf 1\mathbf 1^T&0\end{pmatrix}$ with a new block of
+size $k$, the kernel has dimension at least $k-1$.
+\item (Berger spheres.) With $x=a^2$ and $z=c^2$:
+\begin{itemize}
+\item $R=8/x-2z/x^2$ and $|\mathrm{Ric}|^2=4[2(2x-z)^2+z^2]/x^4$;
+\item $4|\mathrm{Ric}|^2-R^2=4(16x^2-24xz+11z^2)/x^4$, which tends to $64/a^4$ as $c\to0$;
+\item $\dot x=-2r_1x$ and $\dot z=-2r_3z$ imply $\dot u=8u(1-u)/x$ for $u=z/x$.
+\end{itemize}
+\item (GHZ balancing.) $\frac{2cs|\Gamma|}{c^2A+s^2B}=q\frac{2r}{1+r^2}=\frac{q}{\cosh\ln r}$,
+and $\frac{2r}{1+r^2}\le1$ with equality if and only if $r=1$.
+\item (Dilation algebra.)
+\begin{itemize}
+\item From $E=\varepsilon V$, $V=2\pi^2A^3$ and $dE=-p\,dV$ it follows that
+$p=-\varepsilon-\tfrac A3\varepsilon'$.
+\item $A\frac{d}{dA}A^n=nA^n$.
+\item The integer roots of $(z-1)z(z+1)(z+2)(z+3)$ are exactly $\{1,0,-1,-2,-3\}$.
+\item These are the exponents of the round valuation density.
+\end{itemize}
+\item (Trace-free gravity.) For every invertible $4\times4$ metric $g$:
+$P_{\mathrm{tr}}(T-\rho_0g)=P_{\mathrm{tr}}(T)$.
+\end{enumerate}
+\end{theorem}
+\begin{remark}[Numerical check]
+The value $q_0=\pi\varphi^{584}/(1+\pi/50)=3.30725146071398\ldots\times10^{122}$ is reproduced.
+This checks the arithmetic only. It does not derive $\Lambda$, because both the shell number
+$292$ and the factor $1+\pi/50$ are inputs of the paper.
+\end{remark}
+
+\section{Fibonacci anyon braid algebra}
+Let $u=\varphi^{-1}=(\sqrt5-1)/2$ and $v=\sqrt u$, and put
+$F=\begin{pmatrix}u&v\\v&-u\end{pmatrix}$, $R=\mathrm{diag}(a,b)$, $B_1=R$ and $B_2=FRF$.
+\begin{theorem}[\lean{FibonacciAnyon.braid\_defect}, \lean{braid\_iff}]
+In every commutative ring with $v^4+v^2=1$ we have $F^2=1$ and
+\[
+RFRFR-FRFRFRF=(a-b)\,Q(a,b)\begin{pmatrix}1&-v\\-v&-1\end{pmatrix},
+\]
+where $Q(a,b)=(2u-1)a^2+(2-3u)ab+(2u-1)b^2$. Hence, over a field, the braid relation
+$B_1B_2B_1=B_2B_1B_2$ holds if and only if $a=b$ or $Q(a,b)=0$.
+\end{theorem}
+\begin{theorem}[\lean{FibonacciAnyon.fibonacci\_braid}]
+For $a=e^{-4\pi i/5}$ and $b=e^{3\pi i/5}$, as in the preprint of 9 November 2026,
+$Q(a,b)=0$. Therefore $B_1B_2B_1=B_2B_1B_2$ and $F^2=1$ hold exactly.
+\end{theorem}
+The proof uses $a=b^2$ and $b^2+1=2\cos(3\pi/5)\,b=-u\,b$. The diamond-norm bounds of that
+preprint are not formalized, because Mathlib has no theory of quantum channels.
+
+\section{Zeckendorf addresses of the constrained chain}
+Let $\mathcal C_n$ be the binary strings of length $n$ with no two adjacent ones, and put
+$r(s)=\sum_j s_jF_{n-j+2}$.
+\begin{theorem}[\lean{Zeckendorf.image\_rk}, \lean{rk\_injOn}, \lean{card\_C}]
+The map $r$ is a bijection $\mathcal C_n\to\{0,\dots,F_{n+2}-1\}$, so
+$|\mathcal C_n|=F_{n+2}$. Flipping a permitted site $j$ changes $r$ by exactly $F_{n-j+2}$.
+\end{theorem}
+This is Proposition~\emph{Zeckendorf addresses} of the preprint of 23 October 2026. Its
+rational generating functions for $\operatorname{Tr}A_n^4$, $\operatorname{Tr}A_n^6$ and
+$\operatorname{Tr}A_n^8$ agree with direct trace computations for $n\le10$. That check is
+numerical; the universal-denominator theorem is not formalized.
+
+\section{Planck boundary, curvature barriers and finite reductions}
+\begin{theorem}[\lean{Planck}]
+$\zeta(-3)=1/120$. Hence, for the conformal scalar on $S^3$ ($\nu_\ell=\ell+1$, degeneracy
+$(\ell+1)^2$, $\zeta_\omega(s)=\zeta(s-2)$), $C_\zeta=\tfrac12\zeta(-3)=1/240$ and
+$\rho^{\rm reg}_{\rm vac}=C_\zeta/(2\pi^2a^4)=1/(480\pi^2a^4)$. With $H=\dot a/a$ one has
+$\dot H=\ddot a/a-H^2$, the two closed-FLRW forms of the Kretschmann scalar agree, and
+$|H|\le h$, $|\dot H|\le g$, $a\ge\ell_P$ imply
+$K\le12[(g+h^2)^2+(h^2+\ell_P^{-2})^2]$.
+\end{theorem}
+The Riemann tensor of FLRW is taken as input; Mathlib has no Riemann tensor.
+
+\begin{theorem}[\lean{Barriers}]
+\begin{enumerate}
+\item $\frac{d}{ds}\big|_{0}e^{3s}\Phi(e^{-4s}K)=3\Phi(K)-4K\Phi'(K)$.
+\item For $\Phi=K^q$, $4K\Phi'-3\Phi=(4q-3)K^q$, which is positive if and only if $q>3/4$.
+\item For $\Phi=(K+\delta)^q/(K_P-K)^p$,
+$4K\Phi'-3\Phi=\Phi\bigl(\tfrac{4qK}{K+\delta}+\tfrac{4pK}{K_P-K}-3\bigr)$.
+\item If the Ricci eigenvalues $r_i$ satisfy $4\sum r_i^2-(\sum r_i)^2\le K_0$ (that is,
+$|\mathrm{Rm}|^2\le K_0$ in dimension three), then $r_i\ge-\sqrt{K_0/2}$. The constant is
+attained at $r=-t(2,1,1)$.
+\end{enumerate}
+\end{theorem}
+\begin{remark}[Sharpened constant]
+The preprint of 5 July 2026 states $\mathrm{Ric}\ge-(\frac12+\frac1{\sqrt3})\sqrt{K_0}\,g$.
+This is true but not sharp: the optimal constant is $1/\sqrt2<\frac12+\frac1{\sqrt3}$
+(\lean{paper\_constant\_weaker}). The proof is the identity
+$4\sum r_i^2-(\sum r_i)^2=2r_1^2+(r_1-r_2-r_3)^2+2(r_2-r_3)^2$.
+\end{remark}
+
+\begin{theorem}[\lean{FiniteReduction.energy\_bound}]
+Let $E$ be a real inner-product space and let $\dot x=-\nu Ax-Q(x)+F(t)$ on $[0,T]$, with
+$\nu\ge0$, $\langle Av,v\rangle\ge0$, $\langle Q(v),v\rangle=0$ and $F$ continuous. Then
+$\|x(t)\|^2+1\le(\|x(0)\|^2+1)\exp\int_0^t\|F\|$.
+\end{theorem}
+This is the finite-dimensional no-go of the preprint of 20 September 2026: no exact finite
+reducing space carries a blow-up. We assume continuous forcing, where the paper allows $L^1$.
+Nothing here concerns the regularity of the full Navier--Stokes equation.
+
+\section{Spectral moments, valuation flow and residual cosmology}
+\begin{theorem}[Positive spectral measures; \lean{FBS3R.Moments}]
+Let $E_k\ge0$ and $m_n=\sum_kE_k\kappa_k^n$ over a finite index set. Then the Hankel matrix
+$[m_{i+j}]_{i,j\le N}$ is positive semidefinite; for $\kappa_k\ge0$ one has
+$m_n^2\le m_{n-1}m_{n+1}$; $m_0m_2-m_1^2=\tfrac12\sum_{k,l}E_kE_l(\kappa_k-\kappa_l)^2$; and
+probability weights on $[a,b]$ satisfy $\mathrm{Var}\le(b-\mu)(\mu-a)$. For shell
+mixtures with $k\ge1$ the chirality obeys $|\Xi|\le2/3$, with equality at $k=1$.
+\end{theorem}
+\begin{theorem}[Dilation flow; \lean{mixture\_flow}, \lean{mixture\_variance\_nonneg}]
+For $\varepsilon(A)=\sum_sC_sA^s$ and $w=-1-m_1/3$, $A\,w'(A)=-(m_2-m_1^2)/3$; if all
+$C_s\ge0$ then $m_2-m_1^2\ge0$. For the two branches $\{0,-1\}$,
+$Dw=(1+w)(2+3w)$ with $-1\le w\le-2/3$, and the CPL tangent is $w_0=-1+r/3$,
+$w_a=r(1-r)/3$.
+\end{theorem}
+\begin{theorem}[Minimal closure; \lean{closure\_criterion}]
+On an open connected interval, $\varepsilon=\varepsilon_wa^{-3}+\varepsilon_q$,
+$p=-\varepsilon_q$ holds if and only if $p'=0$ and $(a^3(\varepsilon+p))'=0$.
+\end{theorem}
+The module also checks the Einstein-static relations $\Omega_m=2\Omega_\Lambda a^3$,
+$a^2=|\Omega_K|/(3\Omega_\Lambda)$, the acceleration boundary, the turning point
+$a=(\Omega/|\Omega_K|)^{1/(1+3w)}$ and the admissibility threshold $\alpha>3$.
+
+\section{Hopf certificates, selectors and finite counts}
+\begin{theorem}[Exact MRW gap; \lean{mrw\_gap\_lower}, \lean{mrw\_gap\_attained}]
+For $c\in[-1,1]^3$, $3-\sum c_i^2+(\sum c_i-m)^2\ge\min_{s\in\{-3,-1,1,3\}}(s-m)^2$, and each
+value $(s-m)^2$ is attained at a vertex.
+\end{theorem}
+Further checks: $|z^\dagger\sigma z|=|z|^2$; the gap does not close along $(1-t)b_0+tb$
+when $\|b-b_0\|\le E<g_0$; $\|b-c\|^2=(\|b\|-\|c\|)^2+\|b\|\|c\|\|\hat b-\hat c\|^2$;
+pair coherence $K_{12}^2\le K_{11}K_{22}$ with its filtering and cycle-phase invariances.
+\begin{theorem}[Unique selector; \lean{unique\_selector}]
+If $\rho_q=g(q+1)-g(q)$ is strictly decreasing on $\mathbb Z$ and
+$\rho_{q_*-1}>0>\rho_{q_*}$, then $g(q)<g(q_*)$ for all $q\ne q_*$.
+\end{theorem}
+\begin{theorem}[Angular rank count; \lean{rank\_count}]
+With $N_L=\sum_{n\le L}(n+1)^2$ and $N_j=0$ for $j<0$,
+$\sum_{\ell=0}^L(2\ell+1)\min\{q,L-\ell+1\}=N_L-N_{L-q}$ and $6N_L=(L+1)(L+2)(2L+3)$.
+\end{theorem}
+We also check the chord law $d=2R\sin(\pi/n)$, the sagitta bounds
+$L^2/(8R)\le s\le L^2/(4R)$, the minimality of $\varphi$ among growth roots of
+$x^2=px+q$ with $p,q\ge1$, the scalarisation flow $B'=-\gamma(B-\bar b)$, and, for the AKLT
+plaquette, that the stated $A$, $B$, $[A,B]$, $[A,[A,B]]$, $[B,[A,B]]$ commute with $R$ and
+are linearly independent. The 625-dimensional leakage map was not checked.
+
+\section{Coverage of the archive}
+The file \lean{COVERAGE.md} assigns each of the 101 folders one of these statuses:
+checked, partially checked, error found, out of reach, no formal statements, not
+mathematical, or not yet analysed. Only the PRA Bell--Hopf paper has its central statements
+fully checked in our modules; in addition, the Lean code shipped with the BINDU VECTRA
+package was rebuilt independently (Lean 4.19, all eight targets on standard axioms). Thirty-four table rows are checked in part and six carry a corrected claim; the
+Mandelbrot paper has only the corrected step. Eleven rows are out of reach of the present
+library: they need singular homology and the Freudenthal theorem, twistor cohomology,
+integrals and operator spectra on $S^3$, the Wheeler--DeWitt equation, quantum channels, or
+the topology of three-manifolds. No folder remains unanalysed. Inside the partially checked
+papers, the parts that were not formalized are named in the table.
+
+\section{Corrected claims}
+\begin{proposition}[Refined odd step is false as stated; \lean{refined\_odd\_step\_counterexample}]
+Take $n=11$. Then $6\le\log_\varphi(11\sqrt5)<6+\tfrac23$, so $11$ is not ``top-third''.
+Yet $h(34)-h(11)=9-6=3$. An exhaustive search over odd $n\le2\cdot10^6$ finds no other
+violation. The statement can be repaired by adding the hypothesis ``for $n$ sufficiently
+large''. The drift inequality $k_{J+1}-k_J\le(2+I_J)-A_J$ then holds only eventually.
+\end{proposition}
+
+\begin{proposition}[Uniqueness of the Fibonacci stratification is vacuous; \lean{FibStrat}]
+Let $(a_n)$ be strictly increasing with $a_0=1$ and assume that each sum $a_m+a_n$ is again
+some $a_k$. Then $a_n=n+1$, so $a_{n+1}/a_n\to1$. Consequently no partition satisfies the
+hypotheses of the uniqueness theorems in the preprints of 15 and 19 April 2026. Moreover,
+the Fibonacci numbers themselves are not additively closed: $F_2+F_5=6$.
+\end{proposition}
+
+\begin{proposition}[Bell state versus singlet; \lean{bell\_Phi\_plus}]
+For $|\Phi^+\rangle=(|00\rangle+|11\rangle)/\sqrt2$:
+$\langle\sigma_x\otimes\sigma_x\rangle=+1$, $\langle\sigma_y\otimes\sigma_y\rangle=-1$ and
+$\langle\sigma_z\otimes\sigma_z\rangle=+1$. So $E(a,b)=-\cos\theta_{ab}$, as claimed in the
+preprint of 15 April 2026, is false for $\Phi^+$. It holds for the singlet $\Psi^-$, where all
+three values equal $-1$; the PRA version uses the correct state.
+\end{proposition}
+
+\begin{proposition}[Yang--Mills threshold; \lean{no\_three\_in\_curl\_or\_stokes\_spectrum}]
+The value $3/R^2$ of the preprint of 19 April 2026 lies neither in the curl-squared spectrum
+$(k+2)^2/R^2$, whose minimum is $4/R^2$, nor in the Stokes spectrum $k(k+4)/R^2$. Both
+spectra are used elsewhere in the same archive. Either the operator must be specified, or the
+threshold must be corrected.
+\end{proposition}
+
+\begin{proposition}[Binet formula of the Bethe-graph paper; \lean{paper\_binet\_wrong}]
+For $F_1=3$, $F_2=5$, $F_{n+1}=F_n+F_{n-1}$, the formula
+$F_n=(\varphi^{n+2}-\psi^{n+2})/\sqrt5$ gives $F_1=2$. The correct statement is
+$F_n=\mathrm{Fib}(n+3)=(\varphi^{n+3}-\psi^{n+3})/\sqrt5$ (\lean{F\_binet}). The ratio limit
+$F_{n-1}/F_n\to\varphi^{-1}$ is unaffected.
+\end{proposition}
+
+\begin{proposition}[Exponential benchmark spectrum; \lean{paper\_exp\_variance\_wrong}]
+The supplement of 11 May 2026 states, for $A_n=A_0e^{-\beta n}$, the point variance
+$\sigma^2=\frac{A_0}{2\pi^2A^3}\frac{e^\beta(e^\beta+1)}{(e^\beta-1)^3}$. In fact
+$\sum_{n\ge0}(n+1)^2e^{-\beta n}=\frac{e^{2\beta}(e^\beta+1)}{(e^\beta-1)^3}$, so the stated
+value is too small by the factor $e^\beta$. It is the correct value for
+$A_n=A_0e^{-\beta(n+1)}$.
+\end{proposition}
+
+\begin{remark}[Mandelbrot local connectivity]
+The preprint of 5 March 2025 does not prove the MLC conjecture, which remains open. Two
+steps fail.
+\begin{itemize}
+\item Trivial fundamental group does not imply local connectivity: the comb space is
+contractible but not locally connected.
+\item A subset of a connected disc need not be connected. Lean checks the counterexample
+$\{0,1\}\subset[0,1]$ (\lean{subset\_of\_connected\_not\_connected}).
+\end{itemize}
+\end{remark}
+
+\section{Not formalized}
+\begin{itemize}
+\item The spectral geometry of $S^3$: curl eigenspaces, Leray projection, and the
+classification of reducing spaces.
+\item The vector Laplacian $\Delta U=-U$ for ABC flows, which is needed for the decaying
+Navier--Stokes solution $e^{-\nu t}U$.
+\item The conditional Euclidean blow-up transfer, which depends on five external hypotheses.
+\item Cosmological, empirical and ontological claims, which are not mathematical theorems.
+\end{itemize}
+
+\section{Ledger}
+The file \lean{RESULTS.md} in the Lean project lists all 77 results with their sources and
+Lean names: A1--A7 are corrections and B1--B70 are verifications. Trivial auxiliary lemmas are
+listed in the code but not counted. No result in this ledger settles an open problem.
+
+\end{document}
