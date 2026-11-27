@@ -19,3 +19,7 @@ import APEX
 #print axioms APEX.PXP.card_two_flips_in
 #print axioms APEX.PXP.goodR_active
 #print axioms APEX.PXP.pxp_numerator_natDegree
+#print axioms APEX.Collatz.T_iter_mersenne
+#print axioms APEX.Collatz.T_iter_mersenne_end
+#print axioms APEX.Collatz.no_bounded_log_correction
+#print axioms APEX.Collatz.goldenRatio_sq_lt_three_lt_cube

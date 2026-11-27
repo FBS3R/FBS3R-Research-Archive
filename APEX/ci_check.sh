@@ -2,7 +2,7 @@
 # Local / CI check: every #print axioms target uses only propext, Classical.choice, Quot.sound,
 # and no accepted source contains sorry / admit / native_decide / axiom declarations.
 set -euo pipefail
-cd "$(dirname "$0")/Lean"
+cd "${APEX_LEAN_DIR:-$(dirname "$0")/Lean}"
 out=$(lake env lean scripts/Axioms.lean)
 echo "$out"
 n=$(echo "$out" | grep -c "depends on axioms" || true)
