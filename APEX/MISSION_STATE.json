@@ -1,10 +1,10 @@
 {
- "updated": "2026-11-27 (round 4, in progress)",
+ "updated": "2026-11-27 (round 4 checkpoint)",
  "branch": "research/fbs3r-apex",
  "pr": "https://github.com/FBS3R/FBS3R-Research-Archive/pull/3",
  "lean": "4.36.0",
  "mathlib": "fc4f59e5 (v4.36.0)",
- "axiom_targets": 80,
+ "axiom_targets": 137,
  "directions": [
   {
    "id": 1,
@@ -21,8 +21,8 @@
   {
    "id": 3,
    "name": "PXP 8-й момент (доказанный DP)",
-   "status": "PARTIAL",
-   "note": "в работе, GATE-1"
+   "status": "KERNEL_PROVED",
+   "note": "MaskDP + eighth_moment_gf; 10-й момент — WIP"
   },
   {
    "id": 4,
@@ -33,8 +33,8 @@
   {
    "id": 5,
    "name": "PXP/блокада: асимптотика и гауссов предел",
-   "status": "ANALYTIC_PROOF_PENDING_FORMALIZATION",
-   "note": "GATE-5 не начат в Lean"
+   "status": "PARTIAL",
+   "note": "корень ρ_r, минимальный модуль, a_n асимптотика, σ₁² доказаны; моменты/гауссов предел — нет"
   },
   {
    "id": 6,
@@ -46,7 +46,7 @@
    "id": 7,
    "name": "Блокада r: моменты, D_r^{m+1}, степень, конгруэнция",
    "status": "PARTIAL",
-   "note": "GATE-2..4 в работе; численно r≤4,m≤3"
+   "note": "m=1,2 для всех r доказаны (second_moment_series, fourth_moment); общий m — OPEN"
   },
   {
    "id": 8,
@@ -64,7 +64,7 @@
    "id": 10,
    "name": "AKLT 625: физическая карта утечки",
    "status": "PARTIAL",
-   "note": "GATE-7 в работе"
+   "note": "синглетный код и QHP=0 в Lean; ранг/ядро утечки — точная арифметика Python, интерпретация A"
   },
   {
    "id": 11,
@@ -141,8 +141,8 @@
   {
    "id": 23,
    "name": "Топология Вселенной, идентифицируемость (S³, RP³, S³/Γ)",
-   "status": "NOT_STARTED",
-   "note": ""
+   "status": "PARTIAL",
+   "note": "ядро наблюдений на оболочках и неидентифицируемость доказаны; топологии не различены"
   },
   {
    "id": 24,

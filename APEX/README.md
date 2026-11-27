@@ -4,7 +4,10 @@
 Основа: `Lean/FBS3R-Lean` (ветка `claude/project-thread-3m61og`, 04115e1) и `Lean/OpenProblems`
 (ветка `claude/project-thread-q9utq4`, b2c7f28) — обе влиты сюда без изменений.
 
-## Раунды 1–3: что принято (проверено ядром Lean, только `propext`, `Classical.choice`, `Quot.sound`)
+## Раунды 1–4: что принято
+
+Полный список раунда 4 — `Audit/APEX_RESULTS.json` (20 результатов, 137 целей в `Audit/ACCEPTED_THEOREMS.txt`).
+ (проверено ядром Lean, только `propext`, `Classical.choice`, `Quot.sound`)
 
 | ID | Утверждение | Lean |
 |---|---|---|

@@ -1,21 +1,24 @@
 # CONTINUE — как продолжить FBS3R–APEX
 
-Последнее состояние: раунд 3 (27.11.2026), ветка `research/fbs3r-apex`, черновой PR #3. Состояние по направлениям: `MISSION_STATE.json`.
+Последнее состояние: раунд 4 (27.11.2026), ветка `research/fbs3r-apex`, черновой PR #3. Состояние по 27 направлениям — `MISSION_STATE.json`,
+результаты — `Audit/APEX_RESULTS.json` / `Audit/APEX_CLAIMS.jsonl`, реестр принятых теорем — `Audit/ACCEPTED_THEOREMS.txt` (137 целей).
 
-## Быстрый старт в новом контейнере
-1. Lean 4.36.0 из GitHub releases (`lean-4.36.0-linux.tar.zst`, распаковка через python `zstandard`); кэш Mathlib в контейнере закрыт,
-   поэтому Mathlib (fc4f59e5) собирается из исходников (≈45 мин на 4 ядрах). `lake update` зависает на кэше: прервать, запустить `lake build`.
-2. `cd APEX/Lean && lake build && bash ../ci_check.sh` → должно напечатать `OK: 28 targets, standard axioms only`.
-3. Сертификаты: `python3 -I APEX/Certificates/pxp_verify.py 15 4`, `python3 -I APEX/Certificates/blockade_verify.py 22 3`.
-4. CI: `.github/workflows/apex-lean.yml` (elan + `lake exe cache get` + сборка + проверка аксиом).
+## Быстрый старт
+1. Lean 4.36.0 (GitHub releases, распаковка python `zstandard`); кэш Mathlib в контейнере закрыт → сборка Mathlib из исходников.
+   В GitHub Actions кэш работает (сборка ≈ 3–10 мин).
+2. `cd APEX/Lean && lake build && cd ../.. && bash APEX/ci_check.sh` → `OK: 137 registered targets, standard axioms only, sources clean`.
+   Новая теорема принимается, только если её имя есть и в `scripts/Axioms.lean`, и в `Audit/ACCEPTED_THEOREMS.txt` (иначе гейт падает).
+3. `python3 -I APEX/tests/test_cert_check.py` — отрицательные тесты гейта.
+4. Сертификаты: `pxp_verify.py 15 4`, `blockade_verify.py 16 2` (большой: `22 3`), `m8_walks.py`, `aklt_cert.py`.
+5. LaTeX: `apt-get update && apt-get install texlive-latex-extra texlive-science lmodern`; PDF статей лежат в `Manuscripts/`.
 
-## Правила
-Без `sorry`/`admit`/`native_decide`/собственных аксиом; `#print axioms` для каждого главного результата; в `main` не сливать;
-приоритет не заявлять без ядра Lean и проверки литературы; числовое подтверждение — это «гипотеза», а не теорема.
+## Прервано на середине
+* **10-й момент PXP** (`WIP/ExplicitTenth.lean.wip`, НЕ принят, не проверен): план — `MaskDP.M_eq_Mnat` + `decide +kernel` для k=10, n ≤ 13,
+  по одному n на лемму; следить за памятью (OOM при 15 ГБ на всех). Ожидание: старший коэффициент P₅ = +14560, P₅ ≡ 10! z⁹ mod D.
 
-## Следующие шаги (по приоритету)
-1. PXP M8: доказанный DP по спискам для `Tr Aₙ^8`, затем `decide +kernel` для n ≤ 10 → P₄ над D⁵.
-2. Блокада радиуса r: перенести `Trajectories/Good` на совместимость «расстояние ≤ r» → знаменатель D_r^{m+1} для всех m.
-3. Старший коэффициент W(m,m,1): 2, 4, 36, 568, 14560 — найти замкнутую форму и доказать (обобщить `GoodT`).
-4. Асимптотика `Tr A_n^{2m} ~ (2m)! φ^{2−m} n^m φ^n /(m! 5^{(m+1)/2})` и гауссов предел N(0, 1−1/√5).
-5. Поле μ (знаменатель D^{k+1}), AKLT 625, FibonacciAnyon, Навье–Стокс (энергетическая оценка с силой), гармоники S³.
+## Следующие шаги
+1. Блокада: `ConjGeneral` (Moments.lean) — общий m через перенос Good/GoodR/GoodT на r соседей; 2-й и 4-й моменты уже доказаны для всех r.
+2. Гауссов предел: асимптотика моментов из рациональности + `Root.lean`, затем метод моментов.
+3. Квантовые каналы (TraceNorm/CPTP/диамантовая норма) — инфраструктуры в Mathlib нет; начать с норм Шаттена.
+4. S³: полярное разложение и спектр на сфере; масштабирование Янга–Миллса R⁻².
+5. Автоматы R[x]/(x²), поле μ; FibonacciAnyon пентагон/гексагон; Коллатц stopping-time; каталог открытых задач.

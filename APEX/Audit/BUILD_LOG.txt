@@ -33,3 +33,6 @@ EXIT 0
 
 == Round 3 (2026-11-27): revision ca7daab rebuilt; APEX/ci_check.sh -> "OK: 20 targets, standard axioms only".
    CI: .github/workflows/apex-lean.yml (lake build + ci_check.sh + pxp_verify.py 15 4).
+
+== Round 4 (2026-11-27): lake build APEX — 5876 jobs OK; APEX/ci_check.sh → "OK: 137 registered targets, standard axioms only, sources clean";
+   tests/test_cert_check.py OK; GitHub Actions green on every pushed round-4 commit up to ea065bf. Kernel-heavy modules: AKLT/Physical (~2 min), PXP/ExplicitHigher (~1 min).
