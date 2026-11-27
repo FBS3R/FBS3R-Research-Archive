@@ -1,0 +1,28 @@
+name: APEX Lean build and axiom check
+on:
+  push:
+    branches: [research/fbs3r-apex]
+    paths: ['APEX/**', '.github/workflows/apex-lean.yml']
+  pull_request:
+    paths: ['APEX/**']
+  workflow_dispatch:
+jobs:
+  apex:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install elan
+        run: |
+          curl -sSfL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Fetch Mathlib cache
+        working-directory: APEX/Lean
+        run: lake exe cache get
+      - name: Build
+        working-directory: APEX/Lean
+        run: lake build
+      - name: Check axioms and forbidden tokens
+        run: bash APEX/ci_check.sh
+      - name: Exact-integer certificates
+        run: python3 -I APEX/Certificates/pxp_verify.py 15 4

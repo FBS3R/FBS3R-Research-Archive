@@ -11,7 +11,7 @@
   {
    "path": "APEX/Lean",
    "status": "new this round",
-   "modules": 6,
+   "modules": 7,
    "main_results": [
     {
      "claim": "APEX-PXP-1",
@@ -27,6 +27,12 @@
      "file": "APEX/PXP/Residue.lean"
     },
     {
+     "claim": "APEX-PXP-3",
+     "lean": "APEX.PXP.pxp_numerator_natDegree",
+     "file": "APEX/PXP/Degree.lean",
+     "round": 2
+    },
+    {
      "claim": "APEX-PXP-5",
      "lean": [
       "APEX.PXP.fourth_moment_gf",
@@ -36,7 +42,7 @@
      "kernel_computation": "decide +kernel (no native_decide)"
     }
    ],
-   "axiom_targets": 19
+   "axiom_targets": 20
   },
   {
    "path": "Lean/FBS3R-Lean",
@@ -54,5 +60,6 @@
    "status": "independently rebuilt (Lean 4.19.0, Mathlib v4.19.0 from source): build succeeded, 8 target theorems use only standard axioms",
    "lean": "4.19.0"
   }
- ]
+ ],
+ "revision_note": "round 2 commit ca7daab; round 3 in progress"
 }

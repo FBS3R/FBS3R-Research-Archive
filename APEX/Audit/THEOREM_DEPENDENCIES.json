@@ -89,6 +89,21 @@
   ],
   "APEX.PXP.numerator_eq": [
    "APEX.PXP.pxp_moment_rational"
+  ],
+  "APEX.PXP.pxp_numerator_natDegree": [
+   "APEX.PXP.goodT_active",
+   "APEX.PXP.T_mul_D",
+   "APEX.PXP.series_M_eq_T",
+   "APEX.PXP.GoodT.div"
+  ],
+  "APEX.PXP.goodT_active": [
+   "APEX.PXP.good_active",
+   "APEX.PXP.G_active",
+   "APEX.PXP.GoodT.lift",
+   "APEX.PXP.flips_pulse",
+   "APEX.PXP.seg_sdiff_pulse",
+   "APEX.PXP.compat_pulse",
+   "APEX.PXP.sign_step"
   ]
  }
 }

@@ -18,3 +18,16 @@
 1. `pxp_moment_rational` — ПРИНЯТО. Оговорка: точность границы (`deg P_m = 3m−2`) проверена только численно для m ≤ 4–5.
 2. `pxp_moment_residue`, `pxp_denominator_sharp` — ПРИНЯТО.
 3. `fourth_moment_gf`, `sixth_moment_gf` — ПРИНЯТО. Формула 8-го момента в Lean не формализована, она проверена только на Python.
+
+## Раунд 3: независимый RED TEAM `Degree.lean` (27.11.2026, ревизия ca7daab)
+
+Вердикт: **ACCEPT** (`APEX.PXP.pxp_numerator_natDegree`, `goodT_active`).
+
+* `#print axioms`: только `propext`, `Classical.choice`, `Quot.sound`; в `Degree.lean` (333 строки) нет `sorry`, `admit`,
+  `native_decide`, `axiom`, `unsafe`, `implemented_by`, `opaque`, `extern`.
+* Сигнатура совпадает с заявлением; `M k n = trace(adjMat n ^ k)`, `adjMat` — куб Фибоначчи (строки без соседних единиц,
+  смежность = отличие ровно в одном узле).
+* `Special` не пуст: явный свидетель `β0 = ival(2m−2, 2m−1)`, `F = univ`; вычитания в ℕ (`3m−2`, `2j−2`, `2j−1`) защищены гипотезами.
+* Независимая проверка на Python (точные числа замкнутых путей, n ≤ 18): степень 3m−2 и знак (−1)^{m−1} для m = 1..5;
+  |старший коэффициент| = 2, 4, 36, 568, **14560** (m = 5 — новое значение, ещё не доказанное в Lean в общей форме).
+* Оговорка (низкая): теорема условна по P; существование P даёт `pxp_moment_rational`.

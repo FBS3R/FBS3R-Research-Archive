@@ -1,4 +1,4 @@
-AXIOM REPORT — FBS3R-APEX round 1 (2026-11-27)
+AXIOM REPORT — FBS3R-APEX rounds 1–2 (2026-11-27, revision ca7daab and later)
 Toolchain: Lean 4.36.0 (commit 611c117b), Mathlib fc4f59e5 (v4.36.0), built from source in a fresh container.
 Accepted axioms: propext, Classical.choice, Quot.sound. Grep of sources: no sorry / admit / native_decide / axiom declarations.
 
