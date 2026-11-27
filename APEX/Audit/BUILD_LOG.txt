@@ -23,3 +23,10 @@ m=2: P_m=[0, 2, 2, 18, -4] deg=4 [deg=3m-2:True] [mod D:True] [paper:True]
 m=3: P_m=[0, 2, 8, 130, 40, 350, -156, 36] deg=7 [deg=3m-2:True] [mod D:True] [paper:True]
 m=4: P_m=[0, 2, 22, 716, 1146, 8236, -206, 13114, -8308, 3152, -568] deg=10 [deg=3m-2:True] [mod D:True] [paper:True]
 ALL CHECKS PASSED
+
+== BINDU VECTRA: lake build BinduUnconditionalHybridCandidate BinduSiteLocalFamilyBridgeCandidate (Lean 4.19.0) ==
+first run stopped by the 2 h background limit at ~4200 modules; resumed incrementally
+Build completed successfully.
+real	75m38.304s
+user	267m0.114s
+EXIT 0

@@ -51,7 +51,7 @@
   },
   {
    "path": "BINDU VECTRA (zip in All Preprints/2026_11_09_...)",
-   "status": "see BUILD_LOG.txt / BINDU section",
+   "status": "independently rebuilt (Lean 4.19.0, Mathlib v4.19.0 from source): build succeeded, 8 target theorems use only standard axioms",
    "lean": "4.19.0"
   }
  ]

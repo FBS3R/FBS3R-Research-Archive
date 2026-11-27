@@ -186,3 +186,14 @@ Accepted axioms: propext, Classical.choice, Quot.sound. Grep of sources: no sorr
 'OpenProblems.MirskyNewman.mirsky_newman' depends on axioms: [propext, Classical.choice, Quot.sound]
 'OpenProblems.Bondy.bondy' depends on axioms: [propext, Classical.choice, Quot.sound]
 'OpenProblems.Midy.midy' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+== BINDU VECTRA (independent replay, Lean 4.19.0, Mathlib v4.19.0 from source) ==
+'BinduEventInterface.bindu_local_dephasing_half_Z' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BinduEventInterface.bindu_site_dephasing_kernel_bridge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BinduEventInterface.bindu_global_site_identity_unconditional' depends on axioms: [propext,
+'BinduEventInterface.bindu_global_hybrid_rplusr2_unconditional' depends on axioms: [propext,
+'BinduEventInterface.bindu_nQubit_diamond_envelope_unconditional' depends on axioms: [propext,
+'BinduEventInterface.bindu_site_local_family_bridge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BinduEventInterface.bindu_site_replacer_kernel_bridge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'BinduEventInterface.bindu_site_pauli_z_kernel_bridge' depends on axioms: [propext, Classical.choice, Quot.sound]
+(the three wrapped lines continue with Classical.choice, Quot.sound)
