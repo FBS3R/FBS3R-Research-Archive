@@ -2,7 +2,7 @@ AXIOM REPORT — FBS3R-APEX round 1 (2026-11-27)
 Toolchain: Lean 4.36.0 (commit 611c117b), Mathlib fc4f59e5 (v4.36.0), built from source in a fresh container.
 Accepted axioms: propext, Classical.choice, Quot.sound. Grep of sources: no sorry / admit / native_decide / axiom declarations.
 
-== APEX/Lean (new, this round): scripts/Axioms.lean ==
+== APEX/Lean (new): scripts/Axioms.lean ==
 'APEX.PXP.pxp_moment_rational' depends on axioms: [propext, Classical.choice, Quot.sound]
 'APEX.PXP.good_total' depends on axioms: [propext, Classical.choice, Quot.sound]
 'APEX.PXP.good_active' depends on axioms: [propext, Classical.choice, Quot.sound]
@@ -22,6 +22,7 @@ Accepted axioms: propext, Classical.choice, Quot.sound. Grep of sources: no sorr
 'APEX.PXP.pxp_denominator_sharp' depends on axioms: [propext, Classical.choice, Quot.sound]
 'APEX.PXP.card_two_flips_in' depends on axioms: [propext, Classical.choice, Quot.sound]
 'APEX.PXP.goodR_active' depends on axioms: [propext, Classical.choice, Quot.sound]
+'APEX.PXP.pxp_numerator_natDegree' depends on axioms: [propext, Classical.choice, Quot.sound]
 
 == Lean/FBS3R-Lean (independent rebuild): scripts/Axioms.lean, 139 targets ==
 'FBS3R.Collatz.even_step' depends on axioms: [propext, Classical.choice, Quot.sound]

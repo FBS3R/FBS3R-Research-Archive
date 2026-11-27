@@ -18,3 +18,4 @@ import APEX
 #print axioms APEX.PXP.pxp_denominator_sharp
 #print axioms APEX.PXP.card_two_flips_in
 #print axioms APEX.PXP.goodR_active
+#print axioms APEX.PXP.pxp_numerator_natDegree

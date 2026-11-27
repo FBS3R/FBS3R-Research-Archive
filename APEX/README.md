@@ -10,6 +10,7 @@
 |---|---|---|
 | APEX-PXP-1 | `(Σₙ Tr Aₙ^{2m} zⁿ)(1−z−z²)^{m+1} = P_m(z)`, `P_m ∈ ℤ[z]`, `deg P_m ≤ 3m−2`, для всех `m ≥ 1` (в препринте 2026-10-23: `≤ 3m+2`) | `APEX.PXP.pxp_moment_rational` |
 | APEX-PXP-2 | `P_m ≡ (2m)!·z^{2m−1} (mod 1−z−z²)`; `1−z−z²` не делит `P_m`, т.е. знаменатель точен | `APEX.PXP.pxp_moment_residue`, `pxp_denominator_sharp` |
+| APEX-PXP-3 | `deg P_m = 3m−2` ровно; старший коэффициент имеет знак `(−1)^{m−1}` | `APEX.PXP.pxp_numerator_natDegree` |
 | APEX-PXP-5 | явные формулы 4-го и 6-го моментов препринта, для всех n | `APEX.PXP.fourth_moment_gf`, `sixth_moment_gf` |
 
 `Aₙ` — матрица смежности Фибоначчиева куба Γₙ (открытая PXP-цепочка, единичные связи, без поля), определена в
@@ -17,7 +18,7 @@
 
 ## Структура
 
-* `Lean/` — Lean-пакет (Lean 4.36.0, Mathlib v4.36.0): `APEX/PXP/{Trajectories,Rational,Walks,Main,Explicit,Residue}.lean`, `scripts/Axioms.lean`.
+* `Lean/` — Lean-пакет (Lean 4.36.0, Mathlib v4.36.0): `APEX/PXP/{Trajectories,Rational,Walks,Main,Explicit,Residue,Degree}.lean`, `scripts/Axioms.lean`.
 * `Certificates/pxp_verify.py` — независимая проверка точной целочисленной арифметикой (только stdlib).
 * `Manuscripts/2026_11_27_Sharp_Rational_Hierarchy_PXP_Moments_Lean4.tex` — статья (не скомпилирована: в контейнере нет LaTeX).
 * `Audit/` — `CLAIMS.jsonl`, `THEOREM_DEPENDENCIES.json`, `OPEN_PROBLEMS.json`, `COUNTEREXAMPLES.md`, `NOVELTY_AUDIT.md`,

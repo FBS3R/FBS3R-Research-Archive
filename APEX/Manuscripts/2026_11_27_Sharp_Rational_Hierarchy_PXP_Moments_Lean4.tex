@@ -31,6 +31,12 @@ For every $m\ge1$ there is $P_m\in\mathbb Z[z]$ with $\deg P_m\le 3m-2$ and $\bi
 \begin{theorem}[Residue and sharp denominator]\label{thm:B}
 $P_m(z)\equiv(2m)!\,z^{2m-1}\pmod{D(z)}$ in $\mathbb Z[z]$. In particular $D\nmid P_m$, so (as $D$ is irreducible over $\mathbb Q$) $P_m/D^{m+1}$ is in lowest terms.
 \end{theorem}
+\begin{theorem}[Exact degree; Lean \texttt{pxp\_numerator\_natDegree}]\label{thm:C}
+$\deg P_m=3m-2$, and $(-1)^{m-1}[z^{3m-2}]P_m\ge1$.
+\end{theorem}
+\begin{proof}[Proof sketch]
+Track the coefficient of $z^{d}$ at the top admissible degree through the same induction. Lifting by $D$ multiplies it by $[z^2]D=-1$; any step that stays strictly below the bound contributes $0$. So $(-1)^{h'-1}$ times the top coefficient of $G_{\beta',F'}$ is a sum of non-negative terms, and along the chain of single-time pulses $\beta_j=\mathbf 1_{\{2j-1\}}$ on the time segments $\{0,\dots,2j-1\}$ one term is $\ge1$ at every level.
+\end{proof}
 \begin{corollary}[Asymptotics]\label{cor:asym}
 With $\varphi=(1+\sqrt5)/2$, as $n\to\infty$ with $m$ fixed,
 \[M_{m,n}=\frac{(2m)!}{m!}\,\varphi^{2-m}\,5^{-(m+1)/2}\,n^m\varphi^n\,\bigl(1+O(1/n)\bigr).\]
@@ -73,6 +79,7 @@ At $F'=\mathbb Z/2m$ ($h'=m$), summing over $\beta'$ and dividing by $D$ yields 
 Statement & Lean name (package \texttt{APEX/Lean})\\\midrule
 Theorem \ref{thm:A} & \texttt{APEX.PXP.pxp\_moment\_rational}\\
 Theorem \ref{thm:B} & \texttt{APEX.PXP.pxp\_moment\_residue}, \texttt{pxp\_denominator\_sharp}\\
+Theorem \ref{thm:C} & \texttt{APEX.PXP.pxp\_numerator\_natDegree}\\
 explicit 4th / 6th moments & \texttt{fourth\_moment\_gf}, \texttt{sixth\_moment\_gf}\\
 trace = closed walks & \texttt{trace\_relMat\_pow}, \texttt{relMat\_pow\_apply}\\
 walks = trajectory arrays & \texttt{card\_walks\_eq\_card\_arrays}, \texttt{g\_succ\_eq\_count}\\\bottomrule
@@ -81,7 +88,6 @@ Every listed theorem depends only on \texttt{propext}, \texttt{Classical.choice}
 
 \section{What is \emph{not} proved here}
 \begin{itemize}
-\item Exactness of the degree, $\deg P_m=3m-2$: verified for $m\le5$ by exact integer arithmetic (\texttt{APEX/Certificates/pxp\_verify.py}); a proof sketch is that the top coefficient equals $(-1)^{m-1}c_m$, where $c_m\ge1$ counts arrays of $m$ adjacent two-flip trajectories, but this is not formalised.
 \item The eighth-moment formula (preprint eq.\ (8th)): exact-integer check only.
 \item Inhomogeneous couplings, local fields and the weighted flux certificate (the preprint's Theorem \texttt{th:transfer} for $H_n(J,\mu)$ and Theorem \texttt{th:flux}) are not formalised in this round. Numerically, with a uniform field $\mu=1$ the generating function of $\Tr(A_n+\mu N)^k$ has denominator $D^{k+1}$ for $k\le3$: a conjecture.
 \item For range-2 blockade chains the analogous denominator appears to be $(1-z-z^3)^{m+1}$ (checked for $2m\le4$): a conjecture towards the universality question of APEX-16.
