@@ -59,7 +59,7 @@ G = """
  SH[S3.Harmonic]:::ok --> SS[S3.Sphere: спектр -n n+2 /R²]:::ok --> L2[L²-полнота, Ходж, Дирак]:::open
  SS --> YM[Янг–Миллс: масштаб; массовая щель]:::open
  AP[AKLT.Physical]:::ok --> AL[AKLT.Leakage]:::ok
- PR[Spectral.PositiveRepresentation]:::ok --> QG[Квантовая гравитация]:::open
+ PR[Spectral.PositiveRepresentation]:::ok --> STR[Spectral.Strengthened: tanh, матрицы]:::ok --> QG[Квантовая гравитация]:::open
  MC[Spectral.MixtureCumulants]:::ok --> PRO[Spectral.Prony: кумулянты, идентифицируемость]:::ok --> COSM[Космология: тёмный сектор]:::part
  FE[Analysis.ForcedEnergy]:::ok --> IE[IntegralEnergy: L¹, без взрыва]:::ok --> NS[NS ℝ³ регулярность]:::open
  NIL[Transfer.Nilpotent: закон переноса, знаменатель]:::ok --> AUT[Несокращение полюса, PXP-конкретизация]:::open

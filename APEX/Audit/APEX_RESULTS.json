@@ -572,5 +572,31 @@
    "APEX.Spectral.prony_order_unique"
   ],
   "statement": "full moment-cumulant hierarchy: recursion, uniqueness, formal relation egf(m) = exp(egf(kappa)) over char-0 fields, additivity under binomial convolution, scaling kappa_n(cX)=c^n kappa_n; Prony: Hankel = V^T D V, det H_p = prod w * prod (x_j-x_i)^2, recurrence, unique Prony coefficients, identifiability of finite mixtures (nodes and weights up to permutation) from s_0..s_{2p-1}, rank H_m = p for m >= p, number of components determined"
+ },
+ {
+  "id": "APEX-SPC-4",
+  "area": "QuantumGravity",
+  "status": "KERNEL_PROVED",
+  "novelty": "NEW_FORMALIZATION",
+  "lean": [
+   "APEX.Spectral.Strong.monotoneOn_mul_G",
+   "APEX.Spectral.Strong.antitoneOn_G",
+   "APEX.Spectral.Strong.G_pos",
+   "APEX.Spectral.Strong.mul_G_pos",
+   "APEX.Spectral.Strong.tendsto_ofReal_mul_G",
+   "APEX.Spectral.Strong.tendsto_mul_G_atTop_of_infinite",
+   "APEX.Spectral.Strong.tendsto_mul_G_of_finite",
+   "APEX.Spectral.Strong.mul_G_ge_of_le",
+   "APEX.Spectral.Strong.no_representation_of_tendsto_zero",
+   "APEX.Spectral.Strong.no_representation_of_decrease",
+   "APEX.Spectral.Strong.no_representation_exp_div",
+   "APEX.Spectral.Strong.tanh_le_rel_error",
+   "APEX.Spectral.Strong.rel_error_sharp",
+   "APEX.Spectral.Strong.loewner_mono_mul_Gmat",
+   "APEX.Spectral.Strong.polarisation_is_stieltjes",
+   "APEX.Spectral.Strong.matrix_no_representation_exp_div",
+   "APEX.Spectral.Strong.matrix_tanh_le_rel_error"
+  ],
+  "statement": "strengthened spectral theorem for positive measures rho on [0,inf) with int (1+s)^-1 drho < inf (rho may be infinite): xG(x) nondecreasing, G antitone/positive, xG(x) -> rho([0,inf)) in [0,inf] (monotone convergence); no positive representation if xG(x)=o(1) or xf(x) decreases anywhere, in particular for exp(-ax)/x; sharp bound: uniform relative error of any positive spectral approximation of exp(-at)/t on [x,y] is >= tanh(a(y-x)/2), attained by a point mass at 0; Loewner-monotone matrix version for finitely-atomic PSD measures and per-polarisation bounds. Scope: Kallen-Lehmann-type necessary condition only; says nothing about existence of quantum gravity"
  }
 ]

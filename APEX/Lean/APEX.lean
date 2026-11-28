@@ -43,3 +43,4 @@ import APEX.Collatz.Cycles
 import APEX.Analysis.IntegralEnergy
 import APEX.S3.Hopf
 import APEX.Spectral.Prony
+import APEX.Spectral.Strengthened

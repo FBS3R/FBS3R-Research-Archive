@@ -4,7 +4,7 @@
  "pr": "https://github.com/FBS3R/FBS3R-Research-Archive/pull/3",
  "lean": "4.36.0",
  "mathlib": "fc4f59e5 (v4.36.0)",
- "axiom_targets": 336,
+ "axiom_targets": 353,
  "directions": [
   {
    "id": 1,
@@ -124,7 +124,7 @@
    "id": 20,
    "name": "Спектральное препятствие exp(−ax)/x",
    "status": "KERNEL_PROVED",
-   "note": "APEX.Spectral.no_representation_exp_div"
+   "note": "APEX.Spectral.no_representation_exp_div; усилено в SPC-4"
   },
   {
    "id": 21,
@@ -135,8 +135,8 @@
   {
    "id": 22,
    "name": "Квантовая гравитация (Fractal Foliation, CMC, связи, унитарность)",
-   "status": "OPEN",
-   "note": ""
+   "status": "PARTIAL",
+   "note": "фундаментальный этап: усиленная спектральная теорема (SPC-4): xG(x)↑, предел в расширенном смысле для бесконечных ρ, запрет e^{−ax}/x, точная оценка ε ≥ tanh(a(y−x)/2) (достигается), матричная версия. Существование КГ, связи, BRST, унитарность — открыто"
   },
   {
    "id": 23,
