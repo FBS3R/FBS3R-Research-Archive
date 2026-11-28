@@ -39,7 +39,7 @@ possibly **infinite**: finiteness is replaced by `Integrable (fun s => (1+s)⁻�
 is a positive superposition of free massive (or massless) propagators `1/(x+s)` — `x` playing the
 role of the Euclidean momentum squared `-□`, `s` of the squared mass — must have `x G(x)`
 non-decreasing and bounded below at large `x`. Nonlocal propagators of the type
-`e^{-a□}/□`, i.e. `exp(-a x)/x`, violate this, and the `tanh` bound quantifies how badly *any*
+`e^{a□}/(−□)` (Euclidean `e^{−a p²}/p²`), i.e. `exp(-a x)/x` with `x = −□ = p²`, violate this, and the `tanh` bound quantifies how badly *any*
 positive spectral superposition must fail to approximate them on a finite window `[x,y]`.
 Nothing here proves or disproves the existence or consistency of any theory of quantum gravity;
 it shows only that such propagators are **not** positive spectral superpositions (in the sense

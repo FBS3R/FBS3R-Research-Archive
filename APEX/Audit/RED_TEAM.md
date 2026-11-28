@@ -77,3 +77,14 @@ Blockade/WeakLimit, Collatz/{StoppingTime,Cycles}, Analysis/IntegralEnergy; clai
   not identified with the standard ◇-norm), ANY-2 (Bonderson convention only up to R^{ab} = R^{ba}), BLK-10 (an immediate corollary of
   BLK-6; novelty relabelled COROLLARY_OF_BLK-6), COL-4 (requires 1 ≤ n). **REJECT: none.**
 * Applied: registry wording fixes 1–7; stale "not proved" docstrings in OrthogonalNoise, CPTP and Gaussian updated (rebuild + gate OK, 287).
+
+## Frontier round — DISPROVER on YM-1, SPC-4, COS-2, UNI-1 (2026-11-28)
+
+* `#print axioms` on all 98 names: standard only; no forbidden tokens; probes confirm `corr` = Laplace transform, `G` = Stieltjes transform.
+* sympy re-derivation of FLRW Christoffel/Ricci (file conventions): R_00 = −3ä/a, R_ij = (aä+2ȧ²)δ_ij, R = 6(ä/a+ȧ²/a²) — confirmed.
+* Python: tanh sharpness to 1.4e-14 (2000 samples), no lower-bound violations; n(q_obs) = 291.936672; q(292)/q_obs = 1.062844 vs 1+π/50 = 1.062832
+  (`Certificates/lambda_archive_numbers.py`, evidence only).
+* Verdicts: **ACCEPT_WITH_CAVEAT** for all four (no rejections). Caveats: YM-1 counterexample is a scalar sequence, continuum convergence assumed;
+  SPC-4 infimum = combination of two theorems, a ≥ 0, finitely-atomic matrix measures; COS-2 `integration_constant` is global in t (excludes Big-Bang FLRW),
+  Λ ≥ 0 realised by vacuum only; UNI-1 non-injectivity Fin 3 → Fin 2 is dimensional, the content is `consistent_map_kills_eigenvector`.
+* Applied: registry wording fixes; SPC-4 docstring sign fix (e^{a□}/(−□)); Python certificate added.
