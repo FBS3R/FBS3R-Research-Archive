@@ -131,7 +131,11 @@ jobs:
           test "$(id -u)" -ne 0
           export COMPARATOR_LANDRUN=$GITHUB_WORKSPACE/tools/landrun/landrun
           export COMPARATOR_LEAN4EXPORT=$GITHUB_WORKSPACE/tools/lean4export/.lake/build/bin/lean4export
-          lake env "$GITHUB_WORKSPACE/tools/comparator/.lake/build/bin/comparator" comparator.json > comparator.txt 2>&1 || { tail -60 comparator.txt; exit 1; }
+          # The repository's comparator.json predates the `enable_nanoda` field required by the pinned comparator
+          # 07bc4ea; we add only that field (false = Lean kernel only), everything else is byte-identical.
+          python3 -c "import json;c=json.load(open('comparator.json'));c.setdefault('enable_nanoda',False);json.dump(c,open('comparator-ci.json','w'),indent=2)"
+          cat comparator-ci.json
+          lake env "$GITHUB_WORKSPACE/tools/comparator/.lake/build/bin/comparator" comparator-ci.json > comparator.txt 2>&1 || { tail -60 comparator.txt; exit 1; }
           tail -20 comparator.txt
           grep -q "Your solution is okay!" comparator.txt
           echo "done=1" > comparator-done.txt
