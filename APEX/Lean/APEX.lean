@@ -52,3 +52,6 @@ import APEX.Cosmology.Selector
 import APEX.YM.BlockGap
 import APEX.Unified.Duhamel
 import APEX.Spectral.ThresholdMatrix
+import APEX.Spectral.OSReconstruction
+import APEX.Unified.GKSLCoarse
+import APEX.QG.BRST

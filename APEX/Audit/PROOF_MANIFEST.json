@@ -7,9 +7,9 @@
   "Classical.choice",
   "Quot.sound"
  ],
- "axiom_targets": 515,
- "registered_results": 48,
- "targets_in_registry": 395,
+ "axiom_targets": 562,
+ "registered_results": 52,
+ "targets_in_registry": 442,
  "results": [
   {
    "claim": "APEX-PXP-1",
@@ -883,6 +883,93 @@
    ],
    "file": "APEX/Lean/APEX/Unified/Duhamel.lean",
    "scope": "Real scalars only; no spectral gap theorem for A'; no GKSL/CP structure; contractivity is a hypothesis. Small defect is not by itself a physical law."
+  },
+  {
+   "claim": "APEX-SPC-6",
+   "area": "Spectral/QG",
+   "status": "KERNEL_PROVED",
+   "novelty": "NEW_FORMALIZATION (operator-valued threshold; a<0 non-sharpness)",
+   "lean": [
+    "APEX.Spectral.ThresholdMatrix.loewner_threshold",
+    "APEX.Spectral.ThresholdMatrix.polarisation_threshold",
+    "APEX.Spectral.ThresholdMatrix.quad_threshold_mono",
+    "APEX.Spectral.ThresholdMatrix.matrix_tanh_le_threshold",
+    "APEX.Spectral.ThresholdMatrix.matrix_tanh_le_threshold_sandwich",
+    "APEX.Spectral.ThresholdMatrix.matrix_one_atom_attains",
+    "APEX.Spectral.ThresholdMatrix.matrix_sharp_threshold",
+    "APEX.Spectral.ThresholdMatrix.tanh_le_rel_error_antitone",
+    "APEX.Spectral.ThresholdMatrix.not_sharp_of_lt",
+    "APEX.Spectral.ThresholdMatrix.not_sharp_example"
+   ],
+   "file": "APEX/Lean/APEX/Spectral/ThresholdMatrix.lean",
+   "scope": "Finite atoms only; exact sharp value for a<0 open; filters propagators only."
+  },
+  {
+   "claim": "APEX-SPC-7",
+   "area": "Spectral/YM/QG",
+   "status": "KERNEL_PROVED",
+   "novelty": "NEW_FORMALIZATION (Osterwalder-Schrader reconstruction step)",
+   "lean": [
+    "APEX.Spectral.OSReconstruction.OSData.cauchy_schwarz",
+    "APEX.Spectral.OSReconstruction.OSData.coe_N",
+    "APEX.Spectral.OSReconstruction.OSData.S_maps_N",
+    "APEX.Spectral.OSReconstruction.OSData.bq_definite",
+    "APEX.Spectral.OSReconstruction.OSData.T_symm",
+    "APEX.Spectral.OSReconstruction.OSData.T_pos",
+    "APEX.Spectral.OSReconstruction.OSData.transfer_form",
+    "APEX.Spectral.OSReconstruction.OSData.os_iteration",
+    "APEX.Spectral.OSReconstruction.OSData.T_le_one",
+    "APEX.Spectral.OSReconstruction.OSData.T_norm_le",
+    "APEX.Spectral.OSReconstruction.OSData.T_eigenvalue_mem",
+    "APEX.Spectral.OSReconstruction.OSData.spectrum_perp_vacuum"
+   ],
+   "file": "APEX/Lean/APEX/Spectral/OSReconstruction.lean",
+   "scope": "Real bilinear case only; no Hilbert completion; RP, orbit bound and clustering with Delta uniform in (a,L) for 4D SU(2) are NOT verified."
+  },
+  {
+   "claim": "APEX-UNI-3",
+   "area": "Unified",
+   "status": "KERNEL_PROVED",
+   "novelty": "NEW_FORMALIZATION (concrete coarse-graining with derived defect)",
+   "lean": [
+    "APEX.Unified.GKSLCoarse.trace_ptr",
+    "APEX.Unified.GKSLCoarse.ptr_isKrausChannel",
+    "APEX.Unified.GKSLCoarse.ptr_posSemidef",
+    "APEX.Unified.GKSLCoarse.ptr_liftL",
+    "APEX.Unified.GKSLCoarse.ptr_liftR",
+    "APEX.Unified.GKSLCoarse.ptr_L0",
+    "APEX.Unified.GKSLCoarse.ptr_exp_L0",
+    "APEX.Unified.GKSLCoarse.defect_eq",
+    "APEX.Unified.GKSLCoarse.ptr_Lint_apply",
+    "APEX.Unified.GKSLCoarse.norm_defect_le",
+    "APEX.Unified.GKSLCoarse.norm_exp_le_one_of_dissipative",
+    "APEX.Unified.GKSLCoarse.Ltot_dissipative",
+    "APEX.Unified.GKSLCoarse.norm_ptr_exp_sub_le",
+    "APEX.Unified.GKSLCoarse.defect_lower_bound",
+    "APEX.Unified.GKSLCoarse.no_exact_coarse_generator"
+   ],
+   "file": "APEX/Lean/APEX/Unified/GKSLCoarse.lean",
+   "scope": "Hilbert-Schmidt norm (not trace norm); CPTP of the semigroup not proved; constant 2 sqrt2 not shown optimal."
+  },
+  {
+   "claim": "APEX-QG-1",
+   "area": "QG",
+   "status": "KERNEL_PROVED",
+   "novelty": "NEW_FORMALIZATION (finite-dimensional BRST/Koszul/CE toy)",
+   "lean": [
+    "APEX.QG.BRST.Q_sq_zero_of_comm",
+    "APEX.QG.BRST.Q_Q_pair",
+    "APEX.QG.BRST.Q_sq_zero_iff",
+    "APEX.QG.BRST.H0_koszul",
+    "APEX.QG.BRST.d1_d0_iff",
+    "APEX.QG.BRST.d2_d1_eq_zero",
+    "APEX.QG.BRST.closure_zero_iff",
+    "APEX.QG.BRST.no_CE_of_not_closed",
+    "APEX.QG.BRST.open_example",
+    "APEX.QG.BRST.H0_CE"
+   ],
+   "file": "APEX/Lean/APEX/QG/BRST.lean",
+   "scope": "Nonabelian nilpotency only in degrees 0,1; gravity has field-dependent structure functions (needs BV/BFV); no physical inner product, positivity or unitarity; nothing constructs quantum gravity."
   }
  ]
 }

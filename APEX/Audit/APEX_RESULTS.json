@@ -852,5 +852,75 @@
   "statement": "Finite PSD matrix atoms at s_k>=s0: Loewner threshold G(y) >= ((x+s0)/(y+s0)) G(x); polarisation reduces to scalar SPC-5; Loewner sandwich (1-eps)f P <= G <= (1+eps) f P forces eps >= tanh(D/2), sharp (IsLeast) for a>=0 via one atom w P at s0; for a<0 a second bound tanh(D'/2), D'=log(f(y)/f(x)), and an explicit example (a=-2,x=1,y=2,s0=0) where tanh(D/2) is not sharp.",
   "scope": "Finite atoms only; exact sharp value for a<0 open; filters propagators only.",
   "file": "APEX/Lean/APEX/Spectral/ThresholdMatrix.lean"
+ },
+ {
+  "id": "APEX-SPC-7",
+  "area": "Spectral/YM/QG",
+  "status": "KERNEL_PROVED",
+  "novelty": "NEW_FORMALIZATION (Osterwalder-Schrader reconstruction step)",
+  "lean": [
+   "APEX.Spectral.OSReconstruction.OSData.cauchy_schwarz",
+   "APEX.Spectral.OSReconstruction.OSData.coe_N",
+   "APEX.Spectral.OSReconstruction.OSData.S_maps_N",
+   "APEX.Spectral.OSReconstruction.OSData.bq_definite",
+   "APEX.Spectral.OSReconstruction.OSData.T_symm",
+   "APEX.Spectral.OSReconstruction.OSData.T_pos",
+   "APEX.Spectral.OSReconstruction.OSData.transfer_form",
+   "APEX.Spectral.OSReconstruction.OSData.os_iteration",
+   "APEX.Spectral.OSReconstruction.OSData.T_le_one",
+   "APEX.Spectral.OSReconstruction.OSData.T_norm_le",
+   "APEX.Spectral.OSReconstruction.OSData.T_eigenvalue_mem",
+   "APEX.Spectral.OSReconstruction.OSData.spectrum_perp_vacuum"
+  ],
+  "statement": "Real vector space V, symmetric PSD bilinear form b (reflection positivity), b-symmetric S with b(F,SF)>=0: null space N is an S-invariant subspace; on H=V/N the induced T is symmetric and positive; OS Cauchy-Schwarz iteration; under orbit boundedness 0<=T<=1, |T|<=1, eigenvalues in [0,1]; transfer form b(F,S^n G)=<[F],T^n[G]>; clustering |b(F,S^nG)-b(F,Omega)b(Omega,G)|<=C e^{-Delta n} implies eigenvalues of T on Omega-perp lie in [0,e^{-Delta}].",
+  "scope": "Real bilinear case only; no Hilbert completion; RP, orbit bound and clustering with Delta uniform in (a,L) for 4D SU(2) are NOT verified.",
+  "file": "APEX/Lean/APEX/Spectral/OSReconstruction.lean"
+ },
+ {
+  "id": "APEX-UNI-3",
+  "area": "Unified",
+  "status": "KERNEL_PROVED",
+  "novelty": "NEW_FORMALIZATION (concrete coarse-graining with derived defect)",
+  "lean": [
+   "APEX.Unified.GKSLCoarse.trace_ptr",
+   "APEX.Unified.GKSLCoarse.ptr_isKrausChannel",
+   "APEX.Unified.GKSLCoarse.ptr_posSemidef",
+   "APEX.Unified.GKSLCoarse.ptr_liftL",
+   "APEX.Unified.GKSLCoarse.ptr_liftR",
+   "APEX.Unified.GKSLCoarse.ptr_L0",
+   "APEX.Unified.GKSLCoarse.ptr_exp_L0",
+   "APEX.Unified.GKSLCoarse.defect_eq",
+   "APEX.Unified.GKSLCoarse.ptr_Lint_apply",
+   "APEX.Unified.GKSLCoarse.norm_defect_le",
+   "APEX.Unified.GKSLCoarse.norm_exp_le_one_of_dissipative",
+   "APEX.Unified.GKSLCoarse.Ltot_dissipative",
+   "APEX.Unified.GKSLCoarse.norm_ptr_exp_sub_le",
+   "APEX.Unified.GKSLCoarse.defect_lower_bound",
+   "APEX.Unified.GKSLCoarse.no_exact_coarse_generator"
+  ],
+  "statement": "Two-qubit GKSL model: partial trace tr2 is a Kraus channel (CPTP, PSD-preserving); for product generators L0 = L1 (x) id + id (x) L1' (dephasing + Hamiltonian) tr2 o L0 = L1 o tr2 and tr2 e^{tL0} = e^{tL1} tr2 exactly; interaction -i[g Z(x)X,.] gives an explicit defect with |D| <= 2 sqrt2 |g| (HS); dissipativity => HS-contractive semigroups (derived, not assumed), hence |tr2 e^{tL} - e^{tL1} tr2| <= 2 sqrt2 |g| t; counter-model: for g != 0 every coarse T has defect >= 2|g| and no exact coarse generator exists.",
+  "scope": "Hilbert-Schmidt norm (not trace norm); CPTP of the semigroup not proved; constant 2 sqrt2 not shown optimal.",
+  "file": "APEX/Lean/APEX/Unified/GKSLCoarse.lean"
+ },
+ {
+  "id": "APEX-QG-1",
+  "area": "QG",
+  "status": "KERNEL_PROVED",
+  "novelty": "NEW_FORMALIZATION (finite-dimensional BRST/Koszul/CE toy)",
+  "lean": [
+   "APEX.QG.BRST.Q_sq_zero_of_comm",
+   "APEX.QG.BRST.Q_Q_pair",
+   "APEX.QG.BRST.Q_sq_zero_iff",
+   "APEX.QG.BRST.H0_koszul",
+   "APEX.QG.BRST.d1_d0_iff",
+   "APEX.QG.BRST.d2_d1_eq_zero",
+   "APEX.QG.BRST.closure_zero_iff",
+   "APEX.QG.BRST.no_CE_of_not_closed",
+   "APEX.QG.BRST.open_example",
+   "APEX.QG.BRST.H0_CE"
+  ],
+  "statement": "Constraints G_a on an R-module V: Koszul/BRST Q = sum c^a G_a on Finset-indexed cochains has Q^2 = 0 iff all constraints commute (all ghost degrees); ghost-number-0 cohomology H^0 = intersection of ker G_a (physical states satisfy all constraints); Chevalley-Eilenberg: d1 o d0 = 0 iff the constraint algebra closes with constants f, d2 o d1 = 0 under closure + Jacobi + antisymmetry; open-algebra no-go: if [G_a,G_b] is not in span{G_c}, no CE differential with constant f is nilpotent (explicit example E12, E21 on R^2).",
+  "scope": "Nonabelian nilpotency only in degrees 0,1; gravity has field-dependent structure functions (needs BV/BFV); no physical inner product, positivity or unitarity; nothing constructs quantum gravity.",
+  "file": "APEX/Lean/APEX/QG/BRST.lean"
  }
 ]
