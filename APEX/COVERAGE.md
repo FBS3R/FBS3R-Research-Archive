@@ -1,6 +1,6 @@
 # COVERAGE — покрытие обязательств APEX (раунд 5)
 
-Сгенерировано `Audit/mk_coverage.py`. Реестр: **247** Lean-целей (`Audit/ACCEPTED_THEOREMS.txt`), все проверены ядром Lean 4.36 / Mathlib v4.36, аксиомы только `propext`, `Classical.choice`, `Quot.sound`.
+Сгенерировано `Audit/mk_coverage.py`. Реестр: **259** Lean-целей (`Audit/ACCEPTED_THEOREMS.txt`), все проверены ядром Lean 4.36 / Mathlib v4.36, аксиомы только `propext`, `Classical.choice`, `Quot.sound`.
 
 Легенда: 🟩 KERNEL_PROVED · 🟨 PARTIAL · 🟦 IN_PROGRESS · 🟧 NUMERICAL_EVIDENCE · ⬜ OPEN / NOT_STARTED.
 Статус «KERNEL_PROVED» означает доказанность сформулированного в Lean утверждения, а не решение открытой задачи.
@@ -9,7 +9,7 @@
 |---|---|---|---|---|
 | 1 | PXP: 10-й момент, старший коэффициент, асимптотика, гауссов предел | 🟩 2. PXP рациональная иерархия (deg=3m−2, вычет, знак) — KERNEL_PROVED<br>🟩 3. PXP 8-й момент (доказанный DP) — KERNEL_PROVED<br>🟧 4. PXP старший коэффициент W(m,m,1) — NUMERICAL_EVIDENCE<br>🟩 5. PXP/блокада: асимптотика и гауссов предел — KERNEL_PROVED | PXP-1, PXP-2, PXP-3, PXP-5, PXP-6, PXP-7 | 10 |
 | 2 | ConjGeneral для всех m, r | 🟩 6. Блокада r: размерности — KERNEL_PROVED<br>🟩 7. Блокада r: моменты, D_r^{m+1}, степень, конгруэнция — KERNEL_PROVED | BLK-1, BLK-2, BLK-2b, BLK-3, BLK-4, BLK-5, BLK-6, BLK-7, BLK-8, BLK-9 | 30 |
-| 3 | Универсальные автоматы R[x]/(x²), закон переноса | ⬜ 9. Общий закон переноса для автоматов (R[x]/(x²)) — OPEN | — | 0 |
+| 3 | Универсальные автоматы R[x]/(x²), закон переноса | 🟨 9. Общий закон переноса для автоматов (R[x]/(x²)) — PARTIAL | TRN-1 | 12 |
 | 4 | AKLT: полнота, ранг 6 / ядро 18, интерпретации | 🟩 10. AKLT 625: физическая карта утечки — KERNEL_PROVED | AKLT-1, AKLT-2, AKLT-3 | 11 |
 | 5 | Квантовая информация, каналы, diamond; FibonacciAnyon | 🟩 13. FibonacciAnyon: braid-классификация 2×2, норма дефекта — KERNEL_PROVED<br>🟩 14. FibonacciAnyon: пентагон, гексагон, универсальность — KERNEL_PROVED<br>🟩 15. Квантовые каналы, алмазная норма (BINDU VECTRA) — KERNEL_PROVED | ANY-1, QI-1, QI-2, QI-3, QI-4, ANY-2 | 45 |
 | 6 | S³: гармоники, спектр, геометрия | 🟩 18. S³: гармонические многочлены, Фишер, dim (n+1)² — KERNEL_PROVED<br>⬜ 19. S³: риманова геометрия, Ходж, Дирак — NOT_STARTED | S3-1, S3-2 | 8 |
@@ -60,10 +60,11 @@
 | APEX-COL-3 | Collatz | 🟩 KERNEL_PROVED | KNOWN_RESULT | Terras affine lemma for shortcut map; sound stopping-time certificates by residue mod 2^k; kernel counts of uncertified classes k=1..12 and 7495 classes mod 2^18 (density 2.86%), all others n>=2^18 have sigma(n)<=36. NOT a proof of Collatz; no cycle results |
 | APEX-QI-4 | Quantum | 🟩 KERNEL_PROVED | NEW_FORMALIZATION | trace-norm contractivity of Kraus channels on Hermitian inputs (via Kraus dual and Helstrom form), data processing //Phi A - Phi B//_1 <= //A-B//_1, post-processing monotonicity of diamondDist. Not: non-Hermitian inputs, pre-composition |
 | APEX-ANY-2 | Anyon | 🟩 KERNEL_PROVED | KNOWN_RESULT | Fibonacci anyons (tau x tau = 1 + tau): F-matrix [[phi^-1, phi^-1/2],[phi^-1/2,-phi^-1]] orthogonal, F^2=1; pentagon for all 512 label choices; both hexagons over C (R^tt_1=e^{-4pi i/5}, R^tt_t=e^{3pi i/5}, Bonderson convention) for all 64 label choices; braid relation for sigma1, sigma2=F sigma1 F; order exactly 10 up to phase. Proof: exact arithmetic in Z[zeta]/Phi_10[s] by decide +kernel, transferred to C. Not: gauge classification, fusion-category structure |
+| APEX-TRN-1 | Transfer | 🟩 KERNEL_PROVED | NEW_FORMALIZATION | MISSION-03 algebraic core: finite Neumann formula; event ring R[x_1..x_k]/(x_i^2) with degree filtration, products of >k/2 degree>=2 elements vanish; transfer law (I-z(T0+U))^{-1} = sum_{j<=floor(k/2)} R0 (zUR0)^j in Mat_d(E[[z]]) for any T0 and degree>=2 U; universal denominator det(I-zT0)^{floor(k/2)+1} (polynomial adjugate form); degree-0 part reproduces the spatial automaton. Not: top-coefficient extraction, exactness of the dominant pole (cancellation possible), concrete PXP instance |
 
 ## Сводка по 27 направлениям
 
-KERNEL_PROVED: 13, NOT_STARTED: 1, NUMERICAL_EVIDENCE: 2, OPEN: 7, PARTIAL: 4
+KERNEL_PROVED: 13, NOT_STARTED: 1, NUMERICAL_EVIDENCE: 2, OPEN: 6, PARTIAL: 5
 
 ## Карта зависимостей (доказано / открыто)
 
@@ -88,6 +89,7 @@ graph LR
  PR[Spectral.PositiveRepresentation]:::ok --> QG[Квантовая гравитация]:::open
  MC[Spectral.MixtureCumulants]:::ok --> COSM[Космология: тёмный сектор]:::part
  FE[Analysis.ForcedEnergy]:::ok --> NS[NS ℝ³ регулярность]:::open
+ NIL[Transfer.Nilpotent: закон переноса, знаменатель]:::ok --> AUT[Несокращение полюса, PXP-конкретизация]:::open
  classDef ok fill:#2e7d32,color:#fff
  classDef part fill:#f9a825,color:#000
  classDef wip fill:#1565c0,color:#fff

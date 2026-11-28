@@ -246,3 +246,15 @@ import APEX
 #print axioms APEX.Anyon.Fibonacci.σ₂_pow_ten
 #print axioms APEX.Anyon.Fibonacci.σ₁_pow_scalar_iff
 #print axioms APEX.Anyon.Fibonacci.σ₂_pow_scalar_iff
+#print axioms APEX.Transfer.finite_neumann
+#print axioms APEX.Transfer.matrix_finite_neumann
+#print axioms APEX.Transfer.transfer_law_ideal
+#print axioms APEX.Transfer.eventDeg_mul_le
+#print axioms APEX.Transfer.eventDeg_eq_bot
+#print axioms APEX.Transfer.eventDeg_two_pow_eq_bot
+#print axioms APEX.Transfer.prod_deg_two_eq_zero
+#print axioms APEX.Transfer.transfer_law
+#print axioms APEX.Transfer.transfer_law_powerSeries
+#print axioms APEX.Transfer.universal_denominator_identity
+#print axioms APEX.Transfer.universal_denominator
+#print axioms APEX.Transfer.degZero_transfer

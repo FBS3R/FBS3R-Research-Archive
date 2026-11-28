@@ -429,5 +429,26 @@
    "APEX.Anyon.Fibonacci.σ₂_pow_scalar_iff"
   ],
   "statement": "Fibonacci anyons (tau x tau = 1 + tau): F-matrix [[phi^-1, phi^-1/2],[phi^-1/2,-phi^-1]] orthogonal, F^2=1; pentagon for all 512 label choices; both hexagons over C (R^tt_1=e^{-4pi i/5}, R^tt_t=e^{3pi i/5}, Bonderson convention) for all 64 label choices; braid relation for sigma1, sigma2=F sigma1 F; order exactly 10 up to phase. Proof: exact arithmetic in Z[zeta]/Phi_10[s] by decide +kernel, transferred to C. Not: gauge classification, fusion-category structure"
+ },
+ {
+  "id": "APEX-TRN-1",
+  "area": "Transfer",
+  "status": "KERNEL_PROVED",
+  "novelty": "NEW_FORMALIZATION",
+  "lean": [
+   "APEX.Transfer.finite_neumann",
+   "APEX.Transfer.matrix_finite_neumann",
+   "APEX.Transfer.transfer_law_ideal",
+   "APEX.Transfer.eventDeg_mul_le",
+   "APEX.Transfer.eventDeg_eq_bot",
+   "APEX.Transfer.eventDeg_two_pow_eq_bot",
+   "APEX.Transfer.prod_deg_two_eq_zero",
+   "APEX.Transfer.transfer_law",
+   "APEX.Transfer.transfer_law_powerSeries",
+   "APEX.Transfer.universal_denominator_identity",
+   "APEX.Transfer.universal_denominator",
+   "APEX.Transfer.degZero_transfer"
+  ],
+  "statement": "MISSION-03 algebraic core: finite Neumann formula; event ring R[x_1..x_k]/(x_i^2) with degree filtration, products of >k/2 degree>=2 elements vanish; transfer law (I-z(T0+U))^{-1} = sum_{j<=floor(k/2)} R0 (zUR0)^j in Mat_d(E[[z]]) for any T0 and degree>=2 U; universal denominator det(I-zT0)^{floor(k/2)+1} (polynomial adjugate form); degree-0 part reproduces the spatial automaton. Not: top-coefficient extraction, exactness of the dominant pole (cancellation possible), concrete PXP instance"
  }
 ]

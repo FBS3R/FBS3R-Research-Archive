@@ -245,3 +245,15 @@ APEX.Anyon.Fibonacci.σ₁_pow_ten
 APEX.Anyon.Fibonacci.σ₂_pow_ten
 APEX.Anyon.Fibonacci.σ₁_pow_scalar_iff
 APEX.Anyon.Fibonacci.σ₂_pow_scalar_iff
+APEX.Transfer.finite_neumann
+APEX.Transfer.matrix_finite_neumann
+APEX.Transfer.transfer_law_ideal
+APEX.Transfer.eventDeg_mul_le
+APEX.Transfer.eventDeg_eq_bot
+APEX.Transfer.eventDeg_two_pow_eq_bot
+APEX.Transfer.prod_deg_two_eq_zero
+APEX.Transfer.transfer_law
+APEX.Transfer.transfer_law_powerSeries
+APEX.Transfer.universal_denominator_identity
+APEX.Transfer.universal_denominator
+APEX.Transfer.degZero_transfer

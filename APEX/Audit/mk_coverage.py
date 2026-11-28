@@ -10,7 +10,7 @@ acc = open(f"{H}/Audit/ACCEPTED_THEOREMS.txt").read().split()
 OBL = [
  (1, "PXP: 10-й момент, старший коэффициент, асимптотика, гауссов предел", ["PXP-"], [2,3,4,5]),
  (2, "ConjGeneral для всех m, r", ["BLK-"], [6,7]),
- (3, "Универсальные автоматы R[x]/(x²), закон переноса", [], [9]),
+ (3, "Универсальные автоматы R[x]/(x²), закон переноса", ["TRN-"], [9]),
  (4, "AKLT: полнота, ранг 6 / ядро 18, интерпретации", ["AKLT-"], [10]),
  (5, "Квантовая информация, каналы, diamond; FibonacciAnyon", ["QI-", "ANY-"], [13,14,15]),
  (6, "S³: гармоники, спектр, геометрия", ["S3-"], [18,19]),
@@ -62,6 +62,7 @@ G = """
  PR[Spectral.PositiveRepresentation]:::ok --> QG[Квантовая гравитация]:::open
  MC[Spectral.MixtureCumulants]:::ok --> COSM[Космология: тёмный сектор]:::part
  FE[Analysis.ForcedEnergy]:::ok --> NS[NS ℝ³ регулярность]:::open
+ NIL[Transfer.Nilpotent: закон переноса, знаменатель]:::ok --> AUT[Несокращение полюса, PXP-конкретизация]:::open
  classDef ok fill:#2e7d32,color:#fff
  classDef part fill:#f9a825,color:#000
  classDef wip fill:#1565c0,color:#fff
