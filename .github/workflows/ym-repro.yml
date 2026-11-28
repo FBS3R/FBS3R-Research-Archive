@@ -12,7 +12,7 @@ name: External Yang–Mills reproduction (read-only)
 on:
   push:
     branches: [research/fbs3r-apex]
-    paths: ['.github/workflows/ym-repro.yml', 'APEX/External/**']
+    paths: ['.github/workflows/ym-repro.yml']
   workflow_dispatch:
 permissions:
   contents: read
