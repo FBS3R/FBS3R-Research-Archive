@@ -23,7 +23,8 @@ Mathlib has no quantum channels. For `K : ι → Matrix m n ℂ` (`ι` finite) w
 * `isKrausChannel_isometry`, `isKrausChannel_unitary`, `isKrausChannel_id`,
   `IsKrausChannel.comp` (composition), `IsKrausChannel.convex` (convex mixtures).
 
-Not done: Choi–Kraus equivalence (CP ⇒ Kraus form), Stinespring, trace-norm contractivity.
+Not done: Choi–Kraus equivalence (CP ⇒ Kraus form), Stinespring. (Trace-norm contractivity on Hermitian
+inputs: `APEX/Quantum/Contractivity.lean`.)
 -/
 
 namespace APEX.Quantum

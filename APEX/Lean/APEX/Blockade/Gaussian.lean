@@ -20,10 +20,9 @@ import Mathlib.MeasureTheory.Measure.Dirac.Basic
 * `poly_tendsto` (d) : `∫ f dμ_n → ∫ f φ_{σ_r²}` for every `f : ℝ[X]`.
 * `tight` (c) : `∀ ε > 0, ∃ R > 0, ∀ n, μ_n {x : R < |x|} ≤ ε`.
 
-Not proved here: weak convergence `μ_n ⇒ N(0, σ_r²)`.  The missing step is the classical
-"moment determinacy of the Gaussian + convergence of all moments ⇒ weak convergence"
-(not available in the Mathlib build used: `ProbabilityTheory.gaussianReal`,
-`MeasureTheory.ProbabilityMeasure`/Portmanteau and Lévy continuity are not compiled there).
+Weak convergence `μ_n ⇒ N(0, σ_r²)` (bounded continuous test functions) is proved in
+`APEX/Blockade/WeakLimit.lean` (`weak_limit`), with the limit given by the explicit density `phi`
+(Mathlib's `ProbabilityTheory.gaussianReal` is not compiled in the build used).
 -/
 
 namespace APEX.Blockade.Gaussian

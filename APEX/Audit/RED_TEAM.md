@@ -62,3 +62,18 @@
 Численная проверка: brute-force для r ≤ 4, m ≤ 5: степени (2r+1)(m−1)+1 и старшие коэффициенты 2, −4, 36, −568, 14560 одинаковы для всех r.
 Независимая рекурсия даёт Lc 6 = −546492 (новое значение, не проверено ядром). `#eval` Lean: Lc 1..3 = 2, −4, 36.
 Новизна ConjGeneral: NEW_THEOREM_CANDIDATE (умеренная уверенность; поиск не исчерпывающий, нужна проверка специалистом).
+
+## Round 5b — DISPROVER on the late round-5 modules (2026-11-28)
+
+Scope: Quantum/{TraceNorm,CPTP,OrthogonalNoise,Contractivity}, Anyon/Fibonacci, Transfer/Nilpotent, Blockade/General/Exact,
+Blockade/WeakLimit, Collatz/{StoppingTime,Cycles}, Analysis/IntegralEnergy; claims QI-1..4, ANY-2, TRN-1, BLK-9, BLK-10, COL-3, COL-4, NS-2.
+
+* `#print axioms` on all 96 names: only propext / Classical.choice / Quot.sound. No forbidden tokens; `decide +kernel` only on
+  Bool/ℕ/ℤ data and derived DecidableEq. Satisfiability instances compiled (`diamondDist_noisy_ideal_eq` at n = Fin 2, ι = Unit;
+  `no_cancellation` at r = 4, m = 2).
+* Independent Python checks: Fibonacci pentagon/hexagon (fail under perturbation, so not vacuous); blockade degree, Lc, gcd(P, D_r) = 1
+  for (r,m) ∈ {(1,2),(2,2),(4,2),(10,2),(1,3),(4,3)}; Collatz counts k = 1..12, 7495 at k = 18, max Tt stopping time 183 below 2^20.
+* Verdicts: **ACCEPT** QI-1, QI-2, QI-4, TRN-1, BLK-9, COL-3, NS-2; **ACCEPT_WITH_CAVEAT** QI-3 (state-input diamondDist, ancilla d,
+  not identified with the standard ◇-norm), ANY-2 (Bonderson convention only up to R^{ab} = R^{ba}), BLK-10 (an immediate corollary of
+  BLK-6; novelty relabelled COROLLARY_OF_BLK-6), COL-4 (requires 1 ≤ n). **REJECT: none.**
+* Applied: registry wording fixes 1–7; stale "not proved" docstrings in OrthogonalNoise, CPTP and Gaussian updated (rebuild + gate OK, 287).

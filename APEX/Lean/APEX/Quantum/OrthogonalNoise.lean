@@ -31,9 +31,8 @@ probability vector `p`, an erasure probability `ℓ ∈ [0,1]`.
   **`diamondDist_noisy_ideal_ge`**: `2 (1 − (1 − ℓ) p_{i₀}) ≤ diamondDist E V₀`.
 
 ## Not proved here
-* The matching **upper bound** `diamondDist E V₀ ≤ 2 (1 − (1 − ℓ) p_{i₀})` (needs, e.g.,
-  a bound valid for every input state, via trace-norm contractivity of CPTP maps / a
-  Holevo–Helstrom argument for arbitrary inputs; trace-norm contractivity is not formalised).
+* (The matching upper bound and the exact value are proved in `APEX/Quantum/Contractivity.lean`:
+  `diamondDist_noisy_ideal_le`, `diamondDist_noisy_ideal_eq`.)
 * The identification of `diamondDist` with the usual diamond norm `‖E − V₀‖◇` (sup over all
   trace-norm-≤1 operators with arbitrary ancilla). That ancilla dimension `d` suffices and that
   density-matrix inputs suffice for Hermiticity-preserving maps are standard theorems
