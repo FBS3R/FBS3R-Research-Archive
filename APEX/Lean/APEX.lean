@@ -47,3 +47,7 @@ import APEX.Spectral.Strengthened
 import APEX.YM.SpectralGap
 import APEX.Cosmology.LambdaUnderdetermination
 import APEX.Unified.Consistency
+import APEX.Spectral.Threshold
+import APEX.Cosmology.Selector
+import APEX.YM.BlockGap
+import APEX.Unified.Duhamel
