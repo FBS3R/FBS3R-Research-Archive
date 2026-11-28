@@ -219,3 +219,11 @@ APEX.Collatz.stoppingTime_le_of_certB
 APEX.Collatz.countBad_eq_1_12
 APEX.Collatz.density_certificate_12
 APEX.Collatz.density_certificate_18
+APEX.Quantum.traceNorm_krausMap_le
+APEX.Quantum.IsKrausChannel.traceNorm_le
+APEX.Quantum.IsKrausChannel.traceNorm_sub_le
+APEX.Quantum.diamondDist_comp_le
+APEX.Quantum.diamondDist_comp_le_two
+APEX.Quantum.traceNorm_noisy_sub_ideal_le
+APEX.Quantum.diamondDist_noisy_ideal_le
+APEX.Quantum.diamondDist_noisy_ideal_eq

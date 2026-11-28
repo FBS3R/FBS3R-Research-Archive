@@ -1,6 +1,6 @@
 # COVERAGE — покрытие обязательств APEX (раунд 5)
 
-Сгенерировано `Audit/mk_coverage.py`. Реестр: **221** Lean-целей (`Audit/ACCEPTED_THEOREMS.txt`), все проверены ядром Lean 4.36 / Mathlib v4.36, аксиомы только `propext`, `Classical.choice`, `Quot.sound`.
+Сгенерировано `Audit/mk_coverage.py`. Реестр: **229** Lean-целей (`Audit/ACCEPTED_THEOREMS.txt`), все проверены ядром Lean 4.36 / Mathlib v4.36, аксиомы только `propext`, `Classical.choice`, `Quot.sound`.
 
 Легенда: 🟩 KERNEL_PROVED · 🟨 PARTIAL · 🟦 IN_PROGRESS · 🟧 NUMERICAL_EVIDENCE · ⬜ OPEN / NOT_STARTED.
 Статус «KERNEL_PROVED» означает доказанность сформулированного в Lean утверждения, а не решение открытой задачи.
@@ -11,7 +11,7 @@
 | 2 | ConjGeneral для всех m, r | 🟩 6. Блокада r: размерности — KERNEL_PROVED<br>🟩 7. Блокада r: моменты, D_r^{m+1}, степень, конгруэнция — KERNEL_PROVED | BLK-1, BLK-2, BLK-2b, BLK-3, BLK-4, BLK-5, BLK-6, BLK-7, BLK-8, BLK-9 | 27 |
 | 3 | Универсальные автоматы R[x]/(x²), закон переноса | ⬜ 9. Общий закон переноса для автоматов (R[x]/(x²)) — OPEN | — | 0 |
 | 4 | AKLT: полнота, ранг 6 / ядро 18, интерпретации | 🟩 10. AKLT 625: физическая карта утечки — KERNEL_PROVED | AKLT-1, AKLT-2, AKLT-3 | 11 |
-| 5 | Квантовая информация, каналы, diamond; FibonacciAnyon | 🟩 13. FibonacciAnyon: braid-классификация 2×2, норма дефекта — KERNEL_PROVED<br>🟦 14. FibonacciAnyon: пентагон, гексагон, универсальность — IN_PROGRESS<br>🟨 15. Квантовые каналы, алмазная норма (BINDU VECTRA) — PARTIAL | ANY-1, QI-1, QI-2, QI-3 | 22 |
+| 5 | Квантовая информация, каналы, diamond; FibonacciAnyon | 🟩 13. FibonacciAnyon: braid-классификация 2×2, норма дефекта — KERNEL_PROVED<br>🟦 14. FibonacciAnyon: пентагон, гексагон, универсальность — IN_PROGRESS<br>🟩 15. Квантовые каналы, алмазная норма (BINDU VECTRA) — KERNEL_PROVED | ANY-1, QI-1, QI-2, QI-3, QI-4 | 30 |
 | 6 | S³: гармоники, спектр, геометрия | 🟩 18. S³: гармонические многочлены, Фишер, dim (n+1)² — KERNEL_PROVED<br>⬜ 19. S³: риманова геометрия, Ходж, Дирак — NOT_STARTED | S3-1, S3-2 | 8 |
 | 7 | Навье–Стокс | 🟩 16. Навье–Стокс: энергетическая оценка с силой (конечномерная) — KERNEL_PROVED<br>⬜ 17. Навье–Стокс: регулярность в ℝ³ — OPEN | NS-1 | 2 |
 | 8 | Янг–Миллс: масштаб, массовая щель | ⬜ 21. Янга–Миллса: масштабирование λ(R)=R⁻²λ(1), массовая щель — OPEN | — | 0 |
@@ -56,12 +56,13 @@
 | APEX-BLK-9 | Blockade | 🟨 PARTIAL | NEW_FORMALIZATION | empirical spectral measures mu_n of A_{n,r}/sqrt n: all moments and all polynomial integrals converge to those of N(0,sigma_r^2); tightness. Missing: moment determinacy => weak convergence |
 | APEX-QI-1 | Quantum | 🟩 KERNEL_PROVED | NEW_FORMALIZATION | trace norm tr sqrt(A^H A): =sum/lambda/ for Hermitian A, zero iff A=0, unitary invariance, density matrices have norm 1, Helstrom variational form, triangle inequality (Hermitian), orthogonal pure states at distance 2. Not: triangle/Holder for non-Hermitian A |
 | APEX-QI-2 | Quantum | 🟩 KERNEL_PROVED | NEW_FORMALIZATION | Kraus channels: trace preserving, completely positive (Phi(x)id_k maps all PSD to PSD for every finite k), closed under composition and convex combination; unitary channels. Not: Choi/Stinespring converse |
-| APEX-QI-3 | Quantum | 🟨 PARTIAL | NEW_FORMALIZATION | orthogonal-unitary noise with erasure flag: exact //(E-V0)(x)id (Phi+)//_1 = 2(1-(1-l)p0) and lower bound on diamondDist (density inputs, ancilla d). Missing: matching upper bound (needs trace-norm contractivity) and identification with standard diamond norm |
+| APEX-QI-3 | Quantum | 🟩 KERNEL_PROVED | NEW_FORMALIZATION | orthogonal-unitary noise with erasure flag: diamondDist(E,V0) = 2(1-(1-l)p0) EXACTLY (upper bound for every density input; lower bound attained at Phi+). diamondDist = sup over density inputs with ancilla dim d; identification with the standard diamond norm (Watrous 3.46/3.51) not formalised |
 | APEX-COL-3 | Collatz | 🟩 KERNEL_PROVED | KNOWN_RESULT | Terras affine lemma for shortcut map; sound stopping-time certificates by residue mod 2^k; kernel counts of uncertified classes k=1..12 and 7495 classes mod 2^18 (density 2.86%), all others n>=2^18 have sigma(n)<=36. NOT a proof of Collatz; no cycle results |
+| APEX-QI-4 | Quantum | 🟩 KERNEL_PROVED | NEW_FORMALIZATION | trace-norm contractivity of Kraus channels on Hermitian inputs (via Kraus dual and Helstrom form), data processing //Phi A - Phi B//_1 <= //A-B//_1, post-processing monotonicity of diamondDist. Not: non-Hermitian inputs, pre-composition |
 
 ## Сводка по 27 направлениям
 
-IN_PROGRESS: 1, KERNEL_PROVED: 11, NOT_STARTED: 1, NUMERICAL_EVIDENCE: 2, OPEN: 7, PARTIAL: 5
+IN_PROGRESS: 1, KERNEL_PROVED: 12, NOT_STARTED: 1, NUMERICAL_EVIDENCE: 2, OPEN: 7, PARTIAL: 4
 
 ## Карта зависимостей (доказано / открыто)
 

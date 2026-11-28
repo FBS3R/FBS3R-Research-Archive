@@ -220,3 +220,11 @@ import APEX
 #print axioms APEX.Collatz.countBad_eq_1_12
 #print axioms APEX.Collatz.density_certificate_12
 #print axioms APEX.Collatz.density_certificate_18
+#print axioms APEX.Quantum.traceNorm_krausMap_le
+#print axioms APEX.Quantum.IsKrausChannel.traceNorm_le
+#print axioms APEX.Quantum.IsKrausChannel.traceNorm_sub_le
+#print axioms APEX.Quantum.diamondDist_comp_le
+#print axioms APEX.Quantum.diamondDist_comp_le_two
+#print axioms APEX.Quantum.traceNorm_noisy_sub_ideal_le
+#print axioms APEX.Quantum.diamondDist_noisy_ideal_le
+#print axioms APEX.Quantum.diamondDist_noisy_ideal_eq

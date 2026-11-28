@@ -359,16 +359,19 @@
  {
   "id": "APEX-QI-3",
   "area": "Quantum",
-  "status": "PARTIAL",
+  "status": "KERNEL_PROVED",
   "novelty": "NEW_FORMALIZATION",
   "lean": [
    "APEX.Quantum.noisyChannel_isKraus",
    "APEX.Quantum.noisyChannel_apply",
    "APEX.Quantum.traceNorm_noisy_sub_ideal_maxEnt",
    "APEX.Quantum.diamondDist_le_two",
-   "APEX.Quantum.diamondDist_noisy_ideal_ge"
+   "APEX.Quantum.diamondDist_noisy_ideal_ge",
+   "APEX.Quantum.traceNorm_noisy_sub_ideal_le",
+   "APEX.Quantum.diamondDist_noisy_ideal_le",
+   "APEX.Quantum.diamondDist_noisy_ideal_eq"
   ],
-  "statement": "orthogonal-unitary noise with erasure flag: exact ||(E-V0)(x)id (Phi+)||_1 = 2(1-(1-l)p0) and lower bound on diamondDist (density inputs, ancilla d). Missing: matching upper bound (needs trace-norm contractivity) and identification with standard diamond norm"
+  "statement": "orthogonal-unitary noise with erasure flag: diamondDist(E,V0) = 2(1-(1-l)p0) EXACTLY (upper bound for every density input; lower bound attained at Phi+). diamondDist = sup over density inputs with ancilla dim d; identification with the standard diamond norm (Watrous 3.46/3.51) not formalised"
  },
  {
   "id": "APEX-COL-3",
@@ -385,5 +388,19 @@
    "APEX.Collatz.density_certificate_18"
   ],
   "statement": "Terras affine lemma for shortcut map; sound stopping-time certificates by residue mod 2^k; kernel counts of uncertified classes k=1..12 and 7495 classes mod 2^18 (density 2.86%), all others n>=2^18 have sigma(n)<=36. NOT a proof of Collatz; no cycle results"
+ },
+ {
+  "id": "APEX-QI-4",
+  "area": "Quantum",
+  "status": "KERNEL_PROVED",
+  "novelty": "NEW_FORMALIZATION",
+  "lean": [
+   "APEX.Quantum.traceNorm_krausMap_le",
+   "APEX.Quantum.IsKrausChannel.traceNorm_le",
+   "APEX.Quantum.IsKrausChannel.traceNorm_sub_le",
+   "APEX.Quantum.diamondDist_comp_le",
+   "APEX.Quantum.diamondDist_comp_le_two"
+  ],
+  "statement": "trace-norm contractivity of Kraus channels on Hermitian inputs (via Kraus dual and Helstrom form), data processing ||Phi A - Phi B||_1 <= ||A-B||_1, post-processing monotonicity of diamondDist. Not: non-Hermitian inputs, pre-composition"
  }
 ]

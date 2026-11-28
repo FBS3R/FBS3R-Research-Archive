@@ -4,7 +4,7 @@
  "pr": "https://github.com/FBS3R/FBS3R-Research-Archive/pull/3",
  "lean": "4.36.0",
  "mathlib": "fc4f59e5 (v4.36.0)",
- "axiom_targets": 221,
+ "axiom_targets": 229,
  "directions": [
   {
    "id": 1,
@@ -93,8 +93,8 @@
   {
    "id": 15,
    "name": "Квантовые каналы, алмазная норма (BINDU VECTRA)",
-   "status": "PARTIAL",
-   "note": "раунд 5: следовая норма, Kraus/CPTP, полная положительность, точное значение на Φ⁺ и нижняя оценка diamondDist (QI-1..3); верхняя оценка через сжимаемость — в работе"
+   "status": "KERNEL_PROVED",
+   "note": "раунд 5: следовая норма, Kraus/CPTP, полная положительность, сжимаемость, data processing, точное diamondDist(шум, идеал)=2(1−(1−ℓ)p₀) (QI-1..4). Оговорка: diamondDist — версия по состояниям с анциллой размерности d; связь со стандартной ◇-нормой и BINDU не формализована"
   },
   {
    "id": 16,
