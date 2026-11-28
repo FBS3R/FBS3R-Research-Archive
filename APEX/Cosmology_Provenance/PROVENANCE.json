@@ -1,0 +1,748 @@
+{
+ "title": "Parameter provenance of FBS3R Lambda selectors",
+ "leaf_types": [
+  "INDEPENDENT_MICRO",
+  "CHOSEN",
+  "OBSERVED",
+  "FITTED",
+  "STANDARD",
+  "NOT_CONSTRUCTED",
+  "CONJECTURE"
+ ],
+ "decision_rule": "unique prediction iff Gamma built from INDEPENDENT_MICRO/STANDARD leaves only, coercive, unique minimiser with strict gap (Selector.lean)",
+ "lean_files": [
+  "/home/claude/work/APEX-Lean/APEX/Cosmology/Selector.lean",
+  "/home/claude/work/APEX-Lean/APEX/Cosmology/LambdaUnderdetermination.lean"
+ ],
+ "mechanisms": [
+  {
+   "id": "M0",
+   "name": "Trace-free/unimodular integration constant",
+   "sources": [
+    "2026_08_10 l.285-386",
+    "08_11",
+    "08_12",
+    "08_17 sec.2"
+   ],
+   "selector": "R+8piG T=4Lambda, Lambda constant of integration",
+   "nodes": [
+    {
+     "id": "TF",
+     "label": "trace-free field equations",
+     "type": "STANDARD"
+    },
+    {
+     "id": "BI",
+     "label": "Bianchi + conservation",
+     "type": "STANDARD"
+    },
+    {
+     "id": "IC",
+     "label": "initial/boundary data",
+     "type": "CHOSEN"
+    },
+    {
+     "id": "L",
+     "label": "Lambda_int",
+     "type": "derived"
+    }
+   ],
+   "edges": [
+    {
+     "child": "L",
+     "derived_from": "TF"
+    },
+    {
+     "child": "L",
+     "derived_from": "BI"
+    },
+    {
+     "child": "L",
+     "derived_from": "IC"
+    }
+   ],
+   "unique_qstar_without_observed_or_fitted": "no",
+   "lean_refs": [
+    "traceFree_dS_family",
+    "integration_constant",
+    "integration_constant_realised",
+    "TFEq_vacuum_shift"
+   ],
+   "radiative_and_alternatives": "standard: vacuum shift drops out; constant remains free (Weinberg 1989; Padilla-Saltas 2015; Henneaux-Teitelboim 1989)",
+   "minimal_missing_principle": "a global law fixing the integration constant",
+   "verdict": "standard; selects nothing"
+  },
+  {
+   "id": "M1",
+   "name": "Horizon-capacity fixation",
+   "sources": [
+    "2026_08_10 l.387-497"
+   ],
+   "selector": "Lambda=3pi/(lP^2 N_cap), N_cap=S_dS",
+   "nodes": [
+    {
+     "id": "lP",
+     "label": "Planck length",
+     "type": "STANDARD"
+    },
+    {
+     "id": "GH",
+     "label": "S_dS=A/4lP^2",
+     "type": "STANDARD"
+    },
+    {
+     "id": "hyp",
+     "label": "capacity postulate N_cap=S_dS",
+     "type": "CHOSEN"
+    },
+    {
+     "id": "obs",
+     "label": "Lambda_obs -> q_obs=3.3072e122",
+     "type": "OBSERVED"
+    },
+    {
+     "id": "Ncap",
+     "label": "N_cap",
+     "type": "derived"
+    },
+    {
+     "id": "L",
+     "label": "Lambda_cap",
+     "type": "derived"
+    }
+   ],
+   "edges": [
+    {
+     "child": "Ncap",
+     "derived_from": "GH"
+    },
+    {
+     "child": "Ncap",
+     "derived_from": "hyp"
+    },
+    {
+     "child": "Ncap",
+     "derived_from": "obs"
+    },
+    {
+     "child": "L",
+     "derived_from": "Ncap"
+    },
+    {
+     "child": "L",
+     "derived_from": "lP"
+    }
+   ],
+   "unique_qstar_without_observed_or_fitted": "no",
+   "lean_refs": [
+    "LambdaCap_injective",
+    "lambda_not_determined_by_structure"
+   ],
+   "radiative_and_alternatives": "vacuum-shift immunity inherited from M0 (standard); N-bound Lambda~1/N is conjecture (Banks; Fischler; Bousso 2000)",
+   "minimal_missing_principle": "independent computation of dim H_boundary without Lambda",
+   "verdict": "tautological relabelling Lambda<->q"
+  },
+  {
+   "id": "M2",
+   "name": "CP1 index quantization",
+   "sources": [
+    "2026_08_11 l.2484-2597 (nogo q-selection)",
+    "2026_08_17 l.468-740"
+   ],
+   "selector": "q=ind dbar_O(q-1)=dim H0(CP1,O(q-1))",
+   "nodes": [
+    {
+     "id": "RR",
+     "label": "Riemann-Roch / Chern class",
+     "type": "STANDARD"
+    },
+    {
+     "id": "SU2",
+     "label": "SU(2) covariance",
+     "type": "STANDARD"
+    },
+    {
+     "id": "CE",
+     "label": "acyclic evaluation complex C_E",
+     "type": "CHOSEN"
+    },
+    {
+     "id": "q",
+     "label": "q in Z>0 (all)",
+     "type": "derived"
+    }
+   ],
+   "edges": [
+    {
+     "child": "q",
+     "derived_from": "RR"
+    },
+    {
+     "child": "q",
+     "derived_from": "SU2"
+    }
+   ],
+   "unique_qstar_without_observed_or_fitted": "no",
+   "lean_refs": [
+    "nogo_group",
+    "nogo_shift"
+   ],
+   "radiative_and_alternatives": "topological integers radiatively exact (standard)",
+   "minimal_missing_principle": "a dynamical weight Gamma(q) breaking the label symmetry",
+   "verdict": "quantizes, does not select (authors agree)"
+  },
+  {
+   "id": "M3",
+   "name": "Chern-Simons level lock k=2q",
+   "sources": [
+    "2026_08_11 l.3087-3232",
+    "2026_08_12 l.3364"
+   ],
+   "selector": "k_CS=6pi/(lP^2 Lambda) (Smolin 2002) => q=k/2",
+   "nodes": [
+    {
+     "id": "sm",
+     "label": "k=6pi/(G Lambda), positive-Lambda LQG",
+     "type": "CONJECTURE"
+    },
+    {
+     "id": "cap",
+     "label": "q=3pi/(lP^2 Lambda)",
+     "type": "STANDARD"
+    },
+    {
+     "id": "obs",
+     "label": "k=6.61e122 from Lambda_obs",
+     "type": "OBSERVED"
+    },
+    {
+     "id": "lock",
+     "label": "q=k/2",
+     "type": "derived"
+    }
+   ],
+   "edges": [
+    {
+     "child": "lock",
+     "derived_from": "sm"
+    },
+    {
+     "child": "lock",
+     "derived_from": "cap"
+    },
+    {
+     "child": "sm",
+     "derived_from": "obs"
+    }
+   ],
+   "unique_qstar_without_observed_or_fitted": "no",
+   "lean_refs": [
+    "LambdaCap_injective"
+   ],
+   "radiative_and_alternatives": "level integer stable up to k->k+h (standard); Lambda-level identification conjectural",
+   "minimal_missing_principle": "a Lambda-independent reason for a particular level",
+   "verdict": "definitional identity"
+  },
+  {
+   "id": "M4",
+   "name": "Bogomolny-Bradlow saturation / Planck-cell edge functional",
+   "sources": [
+    "2026_08_11 l.3578-3934",
+    "2026_08_12 l.3855-4211"
+   ],
+   "selector": "Gamma_edge=int(|Dpsi|^2+B^2/2)+lambda_P(tau lP^2-pi)^2+lambda_0(int|psi|^2)^2 => tau=pi/lP^2, N_v=q",
+   "nodes": [
+    {
+     "id": "AH",
+     "label": "critical Abelian Higgs on S2",
+     "type": "CHOSEN"
+    },
+    {
+     "id": "BPS",
+     "label": "Bogomolny bound",
+     "type": "STANDARD"
+    },
+    {
+     "id": "tau",
+     "label": "tau=pi/lP^2 penalty",
+     "type": "CHOSEN"
+    },
+    {
+     "id": "null",
+     "label": "null-condensate penalty",
+     "type": "CHOSEN"
+    },
+    {
+     "id": "area",
+     "label": "horizon area 12pi/Lambda",
+     "type": "derived"
+    },
+    {
+     "id": "obs",
+     "label": "Lambda_obs",
+     "type": "OBSERVED"
+    },
+    {
+     "id": "Nv",
+     "label": "N_v=q",
+     "type": "derived"
+    }
+   ],
+   "edges": [
+    {
+     "child": "Nv",
+     "derived_from": "BPS"
+    },
+    {
+     "child": "Nv",
+     "derived_from": "tau"
+    },
+    {
+     "child": "Nv",
+     "derived_from": "null"
+    },
+    {
+     "child": "Nv",
+     "derived_from": "area"
+    },
+    {
+     "child": "area",
+     "derived_from": "obs"
+    },
+    {
+     "child": "BPS",
+     "derived_from": "AH"
+    }
+   ],
+   "unique_qstar_without_observed_or_fitted": "no",
+   "lean_refs": [
+    "breaking_term_selects_anything"
+   ],
+   "radiative_and_alternatives": "BPS bound topological (standard); stability of penalty limits not addressed",
+   "minimal_missing_principle": "dynamical critical coupling + Planck cell, and then an area selector",
+   "verdict": "normalization by penalty terms; area free"
+  },
+  {
+   "id": "M5",
+   "name": "APS-eta / determinant-line selector",
+   "sources": [
+    "2026_08_11 l.4442-4739",
+    "2026_08_12 l.4721-5018"
+   ],
+   "selector": "Gamma=Gamma_HS+lambda_z[-zeta'(0)/2-Theta_phi(q)]^2+lambda_eta sin^2[pi eta/2-theta_CS]",
+   "nodes": [
+    {
+     "id": "D",
+     "label": "monopole Dirac spectrum on S2",
+     "type": "STANDARD"
+    },
+    {
+     "id": "eta",
+     "label": "eta_q(0)=0 for all q",
+     "type": "derived"
+    },
+    {
+     "id": "zeta",
+     "label": "zeta'_q(0) (scheme)",
+     "type": "CHOSEN"
+    },
+    {
+     "id": "Thphi",
+     "label": "target Theta_phi from phi-shell (M7)",
+     "type": "OBSERVED"
+    },
+    {
+     "id": "thCS",
+     "label": "theta_CS(q)",
+     "type": "CHOSEN"
+    },
+    {
+     "id": "lam",
+     "label": "lambda_zeta, lambda_eta",
+     "type": "CHOSEN"
+    }
+   ],
+   "edges": [
+    {
+     "child": "eta",
+     "derived_from": "D"
+    },
+    {
+     "child": "zeta",
+     "derived_from": "D"
+    }
+   ],
+   "unique_qstar_without_observed_or_fitted": "no",
+   "lean_refs": [
+    "affine_reweighting_moves_minimiser"
+   ],
+   "radiative_and_alternatives": "zeta-determinant scheme ambiguity = local affine counterterm (standard) -> moves minimiser",
+   "minimal_missing_principle": "a scheme-independent spectral quantity with an operator-fixed sign change",
+   "verdict": "inherits M7's observed target; eta term q-independent"
+  },
+  {
+   "id": "M6",
+   "name": "Bradlow sigma-model (GLSM on CP^{k-1})",
+   "sources": [
+    "2026_08_11 l.7252-7333"
+   ],
+   "selector": "transmutation with B~k=q",
+   "nodes": [
+    {
+     "id": "target",
+     "label": "u*=ln q_obs",
+     "type": "OBSERVED"
+    },
+    {
+     "id": "lam",
+     "label": "lambda(0)=6.7e-125",
+     "type": "derived"
+    }
+   ],
+   "edges": [
+    {
+     "child": "lam",
+     "derived_from": "target"
+    }
+   ],
+   "unique_qstar_without_observed_or_fitted": "no",
+   "lean_refs": [
+    "qEdge_any_target"
+   ],
+   "radiative_and_alternatives": "restates hierarchy in coupling",
+   "minimal_missing_principle": "as M8",
+   "verdict": "refuted by the authors"
+  },
+  {
+   "id": "M7",
+   "name": "Fibonacci shell + valuation phase defect",
+   "sources": [
+    "2026_08_12 l.163-323",
+    "l.2930-2958",
+    "l.3140-3205",
+    "l.6158-6379",
+    "l.8555-8575"
+   ],
+   "selector": "q0=pi phi^584/(1+pi/50); Gamma_FV=A[ln q-ln q_FV(N,d)]^2",
+   "nodes": [
+    {
+     "id": "H0",
+     "label": "H0=67.4",
+     "type": "OBSERVED"
+    },
+    {
+     "id": "OL",
+     "label": "Omega_Lambda=0.685",
+     "type": "OBSERVED"
+    },
+    {
+     "id": "lP",
+     "label": "Planck length",
+     "type": "STANDARD"
+    },
+    {
+     "id": "qledg",
+     "label": "q_ledg=3.3072136e122",
+     "type": "derived"
+    },
+    {
+     "id": "phi",
+     "label": "phi=d_tau Fibonacci MTC registry",
+     "type": "CHOSEN"
+    },
+    {
+     "id": "n",
+     "label": "n(q)=log_phi sqrt(q/pi)",
+     "type": "derived"
+    },
+    {
+     "id": "N",
+     "label": "N_phi=round(291.93667)=292",
+     "type": "derived(OBSERVED)"
+    },
+    {
+     "id": "Pval",
+     "label": "P_val=(z-1)z(z+1)(z+2)(z+3)",
+     "type": "CHOSEN"
+    },
+    {
+     "id": "d",
+     "label": "d_val=5",
+     "type": "derived"
+    },
+    {
+     "id": "form",
+     "label": "Theta_FV(d)=ln(1+pi/(2d^2)) matched to eps_phi=0.062844 (diff 1.22e-5)",
+     "type": "CHOSEN"
+    },
+    {
+     "id": "q0",
+     "label": "q0",
+     "type": "derived"
+    },
+    {
+     "id": "A",
+     "label": "A>0",
+     "type": "CHOSEN"
+    }
+   ],
+   "edges": [
+    {
+     "child": "qledg",
+     "derived_from": "H0"
+    },
+    {
+     "child": "qledg",
+     "derived_from": "OL"
+    },
+    {
+     "child": "qledg",
+     "derived_from": "lP"
+    },
+    {
+     "child": "n",
+     "derived_from": "qledg"
+    },
+    {
+     "child": "n",
+     "derived_from": "phi"
+    },
+    {
+     "child": "N",
+     "derived_from": "n"
+    },
+    {
+     "child": "d",
+     "derived_from": "Pval"
+    },
+    {
+     "child": "q0",
+     "derived_from": "N"
+    },
+    {
+     "child": "q0",
+     "derived_from": "d"
+    },
+    {
+     "child": "q0",
+     "derived_from": "form"
+    }
+   ],
+   "unique_qstar_without_observed_or_fitted": "no",
+   "lean_refs": [
+    "shell_any_integer",
+    "selector_nogo",
+    "breaking_term_selects_anything",
+    "nogo_shift",
+    "quadratic_unique_iff"
+   ],
+   "radiative_and_alternatives": "integers/pi/50 not renormalized; issue is provenance. N=292 holds for H0 in [51.4,83.1] at Omega_L=0.685 (log-shell coarseness, not derivation)",
+   "minimal_missing_principle": "boundary Hamiltonian computing N=292 and Theta=ln(1+pi/50) without q_obs",
+   "verdict": "observed-derived integer + post hoc phase factor"
+  },
+  {
+   "id": "M8",
+   "name": "Edge transmutation gates",
+   "sources": [
+    "2026_08_12 l.250-312",
+    "l.8796-8900",
+    "l.9293-9480",
+    "2026_08_11 l.7182 (trichotomy)"
+   ],
+   "selector": "q_edge=Xi exp(16pi^2/(b g^2)); Gamma_d(q)=q[ln(q/q0)-1]-log Z_edge",
+   "nodes": [
+    {
+     "id": "q0",
+     "label": "q0 (M7)",
+     "type": "derived(OBSERVED)"
+    },
+    {
+     "id": "Xi",
+     "label": "Xi_edge, ln Xi=-0.000831065239070442 asserted, no evaluation shown",
+     "type": "FITTED"
+    },
+    {
+     "id": "u",
+     "label": "u_run=ln(q0/Xi)=282.11233",
+     "type": "derived"
+    },
+    {
+     "id": "bg",
+     "label": "b g^2:=16pi^2/u_run=0.5597545859987624",
+     "type": "FITTED"
+    },
+    {
+     "id": "dstr",
+     "label": "delta_stringy (unspecified, set 0)",
+     "type": "CHOSEN"
+    },
+    {
+     "id": "qe",
+     "label": "q_edge=q0 (identity for every Xi)",
+     "type": "derived"
+    }
+   ],
+   "edges": [
+    {
+     "child": "u",
+     "derived_from": "q0"
+    },
+    {
+     "child": "u",
+     "derived_from": "Xi"
+    },
+    {
+     "child": "bg",
+     "derived_from": "u"
+    },
+    {
+     "child": "qe",
+     "derived_from": "bg"
+    },
+    {
+     "child": "qe",
+     "derived_from": "Xi"
+    }
+   ],
+   "unique_qstar_without_observed_or_fitted": "no",
+   "lean_refs": [
+    "qEdge_any_target",
+    "gammaEdge_unique_min",
+    "stable_of_gap",
+    "tie_at_half_gap",
+    "affine_reweighting_moves_minimiser"
+   ],
+   "radiative_and_alternatives": "transmutation technically natural but d ln q = -504 d(bg^2); two-loop/scheme shifts O(1) in ln q; integer gap 1/(2q0)~1.5e-123; affine term a q shifts ln q* by -a",
+   "minimal_missing_principle": "edge theory with fixed content computing b, g(1/lP), Xi without q0",
+   "verdict": "matching identity by the authors' own criterion"
+  },
+  {
+   "id": "M9",
+   "name": "CIVP index locking + invariant UV selector",
+   "sources": [
+    "2026_08_17 l.1525-1652",
+    "l.2012-2116",
+    "l.1482 (normalization check only)"
+   ],
+   "selector": "Z_q=I_q/Gamma(q+1); unique if Delta^2 Gamma>0 and one sign change of rho_q; five certificates C_X,C_win,C_U,C_E,C_UV",
+   "nodes": [
+    {
+     "id": "CX",
+     "label": "C_X finite-index defect",
+     "type": "CHOSEN"
+    },
+    {
+     "id": "Cwin",
+     "label": "C_win 1/3<P<1/2",
+     "type": "CHOSEN"
+    },
+    {
+     "id": "CU",
+     "label": "C_U unit weights",
+     "type": "CHOSEN"
+    },
+    {
+     "id": "CE",
+     "label": "C_E acyclicity",
+     "type": "CHOSEN"
+    },
+    {
+     "id": "CUV",
+     "label": "C_UV reduced UV measure I_q",
+     "type": "NOT_CONSTRUCTED"
+    },
+    {
+     "id": "aff",
+     "label": "affine freedom C e^{aq}",
+     "type": "STANDARD"
+    },
+    {
+     "id": "qs",
+     "label": "q*",
+     "type": "undetermined"
+    },
+    {
+     "id": "obs",
+     "label": "H0, Omega_Lambda (check only)",
+     "type": "OBSERVED"
+    }
+   ],
+   "edges": [
+    {
+     "child": "qs",
+     "derived_from": "CUV"
+    },
+    {
+     "child": "qs",
+     "derived_from": "aff"
+    }
+   ],
+   "unique_qstar_without_observed_or_fitted": "undetermined (C_UV not constructed)",
+   "lean_refs": [
+    "affine_reweighting_moves_minimiser",
+    "poisson_selector_any_target",
+    "tie_example",
+    "strict_unique_iff",
+    "ground_state_selection",
+    "nogo_isospectral"
+   ],
+   "radiative_and_alternatives": "cites Khoury-Muntz-Padilla 2026 (not verified); constant shifts cancelled, topology/Casimir terms survive",
+   "minimal_missing_principle": "C_UV: one microscopic measure fixing the linear coefficient a",
+   "verdict": "clean provenance, incomplete; only viable programme"
+  },
+  {
+   "id": "M10",
+   "name": "Phase-wavefunctional acceleration",
+   "sources": [
+    "2025_10_12 Geometric_Acceleration l.84-91, l.277",
+    "2025_10_12 CMC-gauge companion"
+   ],
+   "selector": "H=(1/3)d(Delta theta)/dt; Lambda_eff=3H_inf^2/c^2",
+   "nodes": [
+    {
+     "id": "Hinf",
+     "label": "H_infinity (not derived, per l.277)",
+     "type": "FITTED"
+    },
+    {
+     "id": "L",
+     "label": "Lambda_eff",
+     "type": "derived"
+    }
+   ],
+   "edges": [
+    {
+     "child": "L",
+     "derived_from": "Hinf"
+    }
+   ],
+   "unique_qstar_without_observed_or_fitted": "no",
+   "lean_refs": [],
+   "radiative_and_alternatives": "unprotected constant unless a shift symmetry of Delta theta holds",
+   "minimal_missing_principle": "derivation of H_infinity",
+   "verdict": "phenomenological"
+  }
+ ],
+ "non_mechanisms": [
+  {
+   "source": "2026_05_15",
+   "note": "local LambdaCDM degeneracy; topology does not fix Omega_Lambda (no-go)"
+  },
+  {
+   "source": "2026_05_05",
+   "note": "Casimir rho=1/(480 pi^2 a^4) scales a^-4; disclaimed as dark energy"
+  }
+ ],
+ "recomputed": {
+  "n_q_obs": 291.936672,
+  "eps_phi": 0.062844,
+  "eps_minus_pi_over_50": 1.218e-05,
+  "q0": 3.3072514607e+122,
+  "bg2": 0.5597545859987624,
+  "H0_range_giving_292": [
+   51.4,
+   83.1
+  ]
+ },
+ "common_missing_principle": "independently justified symmetry-breaking term making Gamma coercive with strict gap and fixing the affine (boundary-tension) coefficient; observed value may not be an input"
+}

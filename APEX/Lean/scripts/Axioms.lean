@@ -514,3 +514,13 @@ import APEX
 #print axioms APEX.Unified.Duhamel.norm_chain_defect_le_sum
 #print axioms APEX.Unified.Duhamel.fd_norm_sub_le_of_contraction
 #print axioms APEX.Unified.Duhamel.matrix_superop_norm_sub_le
+#print axioms APEX.Spectral.ThresholdMatrix.loewner_threshold
+#print axioms APEX.Spectral.ThresholdMatrix.polarisation_threshold
+#print axioms APEX.Spectral.ThresholdMatrix.quad_threshold_mono
+#print axioms APEX.Spectral.ThresholdMatrix.matrix_tanh_le_threshold
+#print axioms APEX.Spectral.ThresholdMatrix.matrix_tanh_le_threshold_sandwich
+#print axioms APEX.Spectral.ThresholdMatrix.matrix_one_atom_attains
+#print axioms APEX.Spectral.ThresholdMatrix.matrix_sharp_threshold
+#print axioms APEX.Spectral.ThresholdMatrix.tanh_le_rel_error_antitone
+#print axioms APEX.Spectral.ThresholdMatrix.not_sharp_of_lt
+#print axioms APEX.Spectral.ThresholdMatrix.not_sharp_example

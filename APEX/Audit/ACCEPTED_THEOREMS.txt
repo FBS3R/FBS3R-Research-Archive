@@ -513,3 +513,13 @@ APEX.Unified.Duhamel.norm_chain_defect_le
 APEX.Unified.Duhamel.norm_chain_defect_le_sum
 APEX.Unified.Duhamel.fd_norm_sub_le_of_contraction
 APEX.Unified.Duhamel.matrix_superop_norm_sub_le
+APEX.Spectral.ThresholdMatrix.loewner_threshold
+APEX.Spectral.ThresholdMatrix.polarisation_threshold
+APEX.Spectral.ThresholdMatrix.quad_threshold_mono
+APEX.Spectral.ThresholdMatrix.matrix_tanh_le_threshold
+APEX.Spectral.ThresholdMatrix.matrix_tanh_le_threshold_sandwich
+APEX.Spectral.ThresholdMatrix.matrix_one_atom_attains
+APEX.Spectral.ThresholdMatrix.matrix_sharp_threshold
+APEX.Spectral.ThresholdMatrix.tanh_le_rel_error_antitone
+APEX.Spectral.ThresholdMatrix.not_sharp_of_lt
+APEX.Spectral.ThresholdMatrix.not_sharp_example

@@ -51,3 +51,4 @@ import APEX.Spectral.Threshold
 import APEX.Cosmology.Selector
 import APEX.YM.BlockGap
 import APEX.Unified.Duhamel
+import APEX.Spectral.ThresholdMatrix

@@ -831,5 +831,26 @@
   "statement": "Bounded generators on real Banach spaces: exact Duhamel identity R e^{tA} - e^{tA'} R = int_0^t e^{(t-s)A'} (RA - A'R) e^{sA} ds; contraction bound <= t|D|; decay bounds M M'|D| int e^{-lambda'(t-s)} e^{-lambda s} with closed forms and a t-uniform bound M M'|D|/lambda'; approximate decay on the range of R; multiscale accumulation |chain o e^{tA_0} - e^{tA_n} o chain| <= t sum_k |D_k| prod_{j!=k}|R_j|; finite-dimensional and Hilbert-Schmidt superoperator versions.",
   "scope": "Real scalars only; no spectral gap theorem for A'; no GKSL/CP structure; contractivity is a hypothesis. Small defect is not by itself a physical law.",
   "file": "APEX/Lean/APEX/Unified/Duhamel.lean"
+ },
+ {
+  "id": "APEX-SPC-6",
+  "area": "Spectral/QG",
+  "status": "KERNEL_PROVED",
+  "novelty": "NEW_FORMALIZATION (operator-valued threshold; a<0 non-sharpness)",
+  "lean": [
+   "APEX.Spectral.ThresholdMatrix.loewner_threshold",
+   "APEX.Spectral.ThresholdMatrix.polarisation_threshold",
+   "APEX.Spectral.ThresholdMatrix.quad_threshold_mono",
+   "APEX.Spectral.ThresholdMatrix.matrix_tanh_le_threshold",
+   "APEX.Spectral.ThresholdMatrix.matrix_tanh_le_threshold_sandwich",
+   "APEX.Spectral.ThresholdMatrix.matrix_one_atom_attains",
+   "APEX.Spectral.ThresholdMatrix.matrix_sharp_threshold",
+   "APEX.Spectral.ThresholdMatrix.tanh_le_rel_error_antitone",
+   "APEX.Spectral.ThresholdMatrix.not_sharp_of_lt",
+   "APEX.Spectral.ThresholdMatrix.not_sharp_example"
+  ],
+  "statement": "Finite PSD matrix atoms at s_k>=s0: Loewner threshold G(y) >= ((x+s0)/(y+s0)) G(x); polarisation reduces to scalar SPC-5; Loewner sandwich (1-eps)f P <= G <= (1+eps) f P forces eps >= tanh(D/2), sharp (IsLeast) for a>=0 via one atom w P at s0; for a<0 a second bound tanh(D'/2), D'=log(f(y)/f(x)), and an explicit example (a=-2,x=1,y=2,s0=0) where tanh(D/2) is not sharp.",
+  "scope": "Finite atoms only; exact sharp value for a<0 open; filters propagators only.",
+  "file": "APEX/Lean/APEX/Spectral/ThresholdMatrix.lean"
  }
 ]

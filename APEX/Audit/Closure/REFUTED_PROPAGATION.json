@@ -1,0 +1,294 @@
+{
+ "generated": "2026-11-28",
+ "refuted_count": 8,
+ "method": "Dependents searched in the audit claims of all 101 works and in full text (pdftotext of all PDFs + .tex) for titles, key terms (stratification, minimal-redundancy, 3/R², √3/R, Φ+, Berry, Binet/F1=3, top-third, Mandelbrot, benchmark spectra/cor:spectra) and cross-citations by the authors.",
+ "additional_finding": "APEX-COL-1 (no_bounded_height_correction) makes the conclusion of W024 Thm 4 (Reduction A') unsatisfiable for any finite state map when required for all odd n > 1, so A' is an empty reduction. This is not caused by A1.",
+ "refuted": [
+  {
+   "claim_id": "FBS3R-W005#1",
+   "work_id": "FBS3R-W005",
+   "work_file": "All Preprints/2025_03_05_Rigorous Mathematical Proof of the Local Connectivity of the Mandelbrot Set/2025_03_05_Rigorous Mathematical Proof of the Local Connectivity of the Mandelbrot Set.pdf",
+   "counterexample_id": "A5",
+   "text_original": "Ключевой шаг: U = {V(c) < x_N} ∩ B(c₀,ε) связно, так как это подмножество связного диска.",
+   "original_quote": "Therefore, the intersection U – as a subset of this region – is also connected and contains c0.",
+   "refutation": "A subset of a connected set need not be connected. Kernel-checked counterexample {0,1} ⊆ [0,1]: FBS3R.Misc.subset_of_connected_not_connected : ∃ S T : Set ℝ, IsConnected T ∧ S ⊆ T ∧ S.Nonempty ∧ ¬ IsPreconnected S.",
+   "refuting_lean": [
+    "FBS3R.Misc.subset_of_connected_not_connected"
+   ],
+   "corrected_statement": "U = {V < x_N} ∩ B(c0,ε) is an open subset of ℂ containing c0. Its connected component containing c0 is a connected open neighbourhood of c0 in ℂ, because open subsets of ℂ are locally connected. This says nothing about connectedness of M ∩ U, which is what local connectivity of the Mandelbrot set M requires. No correct version of the step yields MLC.",
+   "corrected_proved_by_apex": null,
+   "corrected_lean_status": "standard topology (Mathlib: isOpen_connectedComponentIn / locallyConnectedSpace); no APEX id",
+   "dependents": [
+    {
+     "claim": "FBS3R-W005#0",
+     "current_status": "OPEN",
+     "proposed_status": "OPEN (problem); paper's proof UNSUPPORTED_AFTER_REFUTATION",
+     "reason": "MLC conclusion of the paper rests on this step."
+    },
+    {
+     "claim": "FBS3R-W005#2",
+     "current_status": "OPEN",
+     "proposed_status": "DISPROVED_PENDING_LEAN (independently false; see CLOSURE_PLAN W005#2)",
+     "reason": "Second route (pi_1 = 0 => local connectivity) is itself false (harmonic fan / comb)."
+    }
+   ],
+   "checked_not_dependent": [
+    "Other works mentioning 'Mandelbrot' (W007, W014, W017, W020, W049, W070, W088) only cite Mandelbrot's 1982 book, use it as an image or list MLC as open; none relies on W005."
+   ]
+  },
+  {
+   "claim_id": "FBS3R-W024#2",
+   "work_id": "FBS3R-W024",
+   "work_file": "All Preprints/2025_09_28_Zeckendorf_φ_Bounds_for_the_Collatz_Map_Strict_Local_Theory_Two_Sufficient_Reductions_and_No_Go_Results/2025_09_28_Zeckendorf_φ_Bounds_for_the_Collatz_Map_Strict_Local_Theory_Two_Sufficient_Reductions_and_No_Go_Results.pdf",
+   "counterexample_id": "A1",
+   "text_original": "Prop. «Refined odd-step»: если n не top-third, рост высоты ≤ 2.",
+   "original_quote": "Proposition 2 (Refined odd-step). If n is top-third then h(3n+1) − h(n) ≤ 3; otherwise the increase is ≤ 2.",
+   "refutation": "n = 11: x = log_φ(√5·11) ∈ [6, 6+2/3), so 11 is not top-third, yet h(34) = h(11) + 3. Lean: FBS3R.Collatz.refined_odd_step_counterexample.",
+   "refuting_lean": [
+    "FBS3R.Collatz.refined_odd_step_counterexample"
+   ],
+   "corrected_statement": "For every n ≥ 1: h(n) + 2 ≤ h(3n+1) ≤ h(n) + 3 (APEX.Collatz.fibHeight_three_mul_add_one). In each Fibonacci layer [F_k, F_{k+1}) (k ≥ 2), exactly ⌊(F_{k+1} − F_k + 1)/3⌋ integers have gain 3 (APEX.Collatz.card_gain_three). Gain 3 is not confined to top-third n. The superstep drift is h(T n) − h(n) ≤ 3 − ν₂(3n+1) (B3).",
+   "corrected_proved_by_apex": "APEX-COL-2",
+   "corrected_lean_status": "KERNEL_PROVED (APEX-COL-2; FBS3R B2, B3)",
+   "dependents": [
+    {
+     "claim": "FBS3R-W024#4",
+     "current_status": "OPEN",
+     "proposed_status": "UNSUPPORTED_AFTER_REFUTATION (B' part)",
+     "reason": "Inequality (2) k_{J+1} − k_J ≤ (2 + I_J) − A_J, Thm 1 (conditional descent) and Thm 5 (B', integrand 2 + I − ν₂) use Prop. 2. The corrected versions use 3 − ν₂ (the paper's Remark 2). Reduction A' (Thm 4) does not use Prop. 2, but its conclusion is unsatisfiable for all odd n > 1 by APEX-COL-1 no_bounded_height_correction."
+    },
+    {
+     "claim": "FBS3R-W024 Thm 1 (conditional descent; not a separate audit claim)",
+     "current_status": "(part of #4)",
+     "proposed_status": "UNSUPPORTED_AFTER_REFUTATION; corrected: hypothesis liminf A_J ≥ 3 + ε",
+     "reason": "Uses (2)."
+    },
+    {
+     "claim": "FBS3R-W024 Thm 3 (no uniform negativity)",
+     "current_status": "(not listed)",
+     "proposed_status": "unaffected",
+     "reason": "δ₁ witness works with either integrand."
+    }
+   ],
+   "checked_not_dependent": [
+    "'Collatz' and 'top-third' occur only in W024; no other work depends on it."
+   ]
+  },
+  {
+   "claim_id": "FBS3R-W034#0",
+   "work_id": "FBS3R-W034",
+   "work_file": "All Preprints/2026_04_15_Compact_Simply_Connected_Cosmology_and_the_Geometric_Origin_of_Quantum_Nonlocality_Bell_Inequality_Violations_from_S3_Topology_and_Fibonacci_Geodesic_Stratification/2026_04_15_Compact_Simply_Connected_Cosmology_and_the_Geometric_Origin_of_Quantum_Nonlocality_Bell_Inequality_Violations_from_S3_Topology_and_Fibonacci_Geodesic_Stratification.pdf",
+   "counterexample_id": "A2",
+   "text_original": "Thm «Uniqueness of the Fibonacci Stratification»: единственное минимально-избыточное беcщелевое разбиение спектра.",
+   "original_quote": "Theorem 4.5 (Uniqueness of the Fibonacci Stratification). Among all non-overlapping … convergent ratio a_{n+1}/a_n → r > 1, the Fibonacci partition (with r = φ) is the unique minimally redundant gapless self-similar indexing.",
+   "refutation": "The hypotheses are inconsistent. No strictly increasing a : ℕ → ℕ with a 0 = 1 that is closed under addition has a_{n+1}/a_n → r > 1 (FBS3R.FibStrat.no_additively_closed_partition_with_ratio_gt_one). The Fibonacci numbers themselves are not additively closed: F₂ + F₅ = 6 (FBS3R.FibStrat.fib_not_additively_closed).",
+   "refuting_lean": [
+    "FBS3R.FibStrat.no_additively_closed_partition_with_ratio_gt_one",
+    "FBS3R.FibStrat.fib_not_additively_closed"
+   ],
+   "corrected_statement": "(i) The Fibonacci intervals [F_n, F_{n+1}), n ≥ 2, partition ℤ≥1: every m ≥ 1 lies in exactly one (FBS3R.FibStrat.fib_partition, B30). (ii) The class of additively closed, strictly increasing ℕ-sequences starting at 1 with ratio limit r > 1 is empty, so the uniqueness theorem is vacuous. No uniqueness statement for the Fibonacci partition is proved.",
+   "corrected_proved_by_apex": null,
+   "corrected_lean_status": "KERNEL_PROVED in FBS3R-Lean (B30 + A2); no APEX id",
+   "dependents": [
+    {
+     "claim": "FBS3R-W034#3",
+     "current_status": "HEURISTIC/PHYSICAL_MODEL",
+     "proposed_status": "UNSUPPORTED_AFTER_REFUTATION",
+     "reason": "Thm 4.8 (Bell nonlocality from hyperconnectivity) uses Def. 4.7, F_k = F_m + F_n for every pair, which is exactly the false additive closure (fib_not_additively_closed), and §4.6 invokes Thm 4.5."
+    },
+    {
+     "claim": "FBS3R-W034#5",
+     "current_status": "KERNEL_PROVED",
+     "proposed_status": "unchanged",
+     "reason": "The partition (B30) is the true residue of A2."
+    }
+   ],
+   "checked_not_dependent": [
+    "W030 (Noether identities) and W040 (quasi-local charges) appeal to the Zeckendorf–Lekkerkerker uniqueness theorem, which is true. They do not use Thm 4.5.",
+    "W046 Prop. II.4 uses only the band partition (B30).",
+    "W042 lists W034 only as bibliography item [9] and never cites it in the text."
+   ]
+  },
+  {
+   "claim_id": "FBS3R-W034#1",
+   "work_id": "FBS3R-W034",
+   "work_file": "All Preprints/2026_04_15_Compact_Simply_Connected_Cosmology_and_the_Geometric_Origin_of_Quantum_Nonlocality_Bell_Inequality_Violations_from_S3_Topology_and_Fibonacci_Geodesic_Stratification/2026_04_15_Compact_Simply_Connected_Cosmology_and_the_Geometric_Origin_of_Quantum_Nonlocality_Bell_Inequality_Violations_from_S3_Topology_and_Fibonacci_Geodesic_Stratification.pdf",
+   "counterexample_id": "A3",
+   "text_original": "Thm «Berry Phase Generates Bell Correlation Function»: для |Φ⁺⟩ = (|00⟩+|11⟩)/√2 получается E(a,b) = −cos θ.",
+   "original_quote": "Consider a maximally entangled two-qubit state |Φ+⟩ = (|00⟩ + |11⟩)/√2. … E(a, b) = ⟨Φ+|(σ·a) ⊗ (σ·b)|Φ+⟩ = −cos θ_ab (Theorem 3.3).",
+   "refutation": "For Φ⁺: ⟨σx⊗σx⟩ = +1, ⟨σy⊗σy⟩ = −1, ⟨σz⊗σz⟩ = +1 (FBS3R.Bell.bell_Phi_plus, stated for the unnormalised vector with values 2, −2, 2). So E(a,a) = +1 for a = x, not −1.",
+   "refuting_lean": [
+    "FBS3R.Bell.bell_Phi_plus",
+    "FBS3R.Bell.singlet_Psi_minus"
+   ],
+   "corrected_statement": "For the singlet |Ψ⁻⟩ = (|01⟩ − |10⟩)/√2: E(a,b) = −a·b = −cos θ_ab (axis values −1, −1, −1: FBS3R.Bell.singlet_Psi_minus; full kernel, CHSH −2√2 and Chern rigidity q = ±1 in W043: B26–B28). For Φ⁺: E(a,b) = a_x b_x − a_y b_y + a_z b_z.",
+   "corrected_proved_by_apex": null,
+   "corrected_lean_status": "KERNEL_PROVED in FBS3R-Lean (B25–B28, A3 singlet part); the general Φ⁺ bilinear form is classical and not formalized beyond the axis values",
+   "dependents": [
+    {
+     "claim": "FBS3R-W034#7",
+     "current_status": "HEURISTIC/PHYSICAL_MODEL",
+     "proposed_status": "UNSUPPORTED_AFTER_REFUTATION",
+     "reason": "Cor. 5.3 (Tsirelson excess ∝ c₁) is derived from Thm 3.3 with the Φ⁺ kernel (Conclusions item 2–3)."
+    },
+    {
+     "claim": "FBS3R-W034#3",
+     "current_status": "HEURISTIC/PHYSICAL_MODEL",
+     "proposed_status": "UNSUPPORTED_AFTER_REFUTATION",
+     "reason": "Also uses §5.1 (Φ⁺)."
+    },
+    {
+     "claim": "FBS3R-W034#4",
+     "current_status": "KNOWN_RESULT",
+     "proposed_status": "unchanged",
+     "reason": "Tsirelson is state-independent."
+    }
+   ],
+   "checked_not_dependent": [
+    "W043 (PRA version) uses the singlet and is the corrected edition (KERNEL_PROVED B25–B29).",
+    "W058 cites only W043."
+   ]
+  },
+  {
+   "claim_id": "FBS3R-W036#0",
+   "work_id": "FBS3R-W036",
+   "work_file": "All Preprints/2026_04_19_Geometric_Infrared_Scale_of_Yang_Mills_Theory_on_a_Compact_Three_Manifold_Discreteness_Spectral_Threshold_and_Fibonacci_Hierarchy/2026_04_19_Geometric_Infrared_Scale_of_Yang_Mills_Theory_on_a_Compact_Three_Manifold_Discreteness_Spectral_Threshold_and_Fibonacci_Hierarchy.pdf",
+   "counterexample_id": "A4",
+   "text_original": "Нижнее собственное значение поперечного векторного лапласиана λ₁^V = 3/R², щель Δ = √3/R.",
+   "original_quote": "Corollary II.2 (Threshold on S³). On S³(R) the lowest transverse vector Laplacian eigenvalue is λ^V_1 = 3/R², giving Δ(S³(R)) = √3/R. … yielding λ^V_ℓ = ℓ(ℓ+2)/R² for ℓ ≥ 1.",
+   "refutation": "ℓ(ℓ+2)/R² is the SCALAR Laplace spectrum on S³(R). For divergence-free (transverse) vector fields the archive's own spectra are curl² = (k+2)²/R² and Stokes k(k+4)/R² (k ≥ 0). 3 occurs in neither, and min curl² = 4/R² (FBS3R.KillingBeltrami.no_three_in_curl_or_stokes_spectrum: (k+2)² ≠ 3 ∧ k(k+4) ≠ 3 ∧ 4 ≤ (k+2)²).",
+   "refuting_lean": [
+    "FBS3R.KillingBeltrami.no_three_in_curl_or_stokes_spectrum"
+   ],
+   "corrected_statement": "(i) In the spectra {(k+2)²/R²} (curl² = Hodge Laplacian on coexact 1-forms) and {k(k+4)/R²} (Stokes), 3/R² does not occur. The minimum of the first is 4/R², at k = 0 (Lean, A4). So the free linearised transverse-gluon threshold is Δ = 2/R, not √3/R (classical: Hodge spectrum of coexact 1-forms on S³ is (ℓ+1)²/R², ℓ ≥ 1; completeness is not formalized). (ii) 3/R² is the first nonzero eigenvalue of the SCALAR Laplacian. APEX-S3-2 proves that degree-n harmonic polynomials restrict to eigenfunctions with eigenvalue n(n+2)/R² (sphLapF_of_harmonic), so n = 1 gives 3/R². Completeness of that spectrum is not formalized. (iii) Any such threshold → 0 as R → ∞ (APEX-S3-2 tendsto_sphEigen), so it bounds no infinite-volume gap (APEX-YM-1 nonuniform_gap_lost).",
+   "corrected_proved_by_apex": "APEX-S3-2 (scalar part); APEX-YM-1 (limit no-go)",
+   "corrected_lean_status": "vector part KERNEL_PROVED as stated in (i) (FBS3R A4); scalar eigenfunction part APEX-S3-2; spectral completeness not formalized",
+   "dependents": [
+    {
+     "claim": "FBS3R-W036#3",
+     "current_status": "HEURISTIC/PHYSICAL_MODEL",
+     "proposed_status": "UNSUPPORTED_AFTER_REFUTATION",
+     "reason": "Δ = √3 Λ_QCD ≈ 520 MeV and the glueball hierarchy use λ₁ = 3/R² (A4) and the Fibonacci uniqueness (A2). With the corrected threshold the same convention gives Δ = 2Λ_QCD, which is still heuristic."
+    },
+    {
+     "claim": "FBS3R-W036#5",
+     "current_status": "OPEN",
+     "proposed_status": "UNSUPPORTED_AFTER_REFUTATION",
+     "reason": "The 'lower bound' claim is built on the refuted 3/R² and contradicts APEX-YM-1/S3-2."
+    },
+    {
+     "claim": "FBS3R-W036#4",
+     "current_status": "OPEN",
+     "proposed_status": "OPEN (unchanged; Clay problem)",
+     "reason": "The conjecture does not depend on the value of the threshold."
+    }
+   ],
+   "checked_not_dependent": [
+    "W066 Prop. 15.x and W068 Prop. 16.4 use a 'gap template' √3/R taken from the SCALAR spectrum ℓ(ℓ+2)/R², which is consistent with APEX-S3-2. Both state explicitly that it is not a YM mass gap (W066 #3 and W068 #3 are KERNEL_PROVED no-go). Not dependent on A4, but the label 'gap template' should not be read as a gluon threshold.",
+    "W056 uses the scalar spectrum l(l+2)/R² correctly."
+   ]
+  },
+  {
+   "claim_id": "FBS3R-W036#1",
+   "work_id": "FBS3R-W036",
+   "work_file": "All Preprints/2026_04_19_Geometric_Infrared_Scale_of_Yang_Mills_Theory_on_a_Compact_Three_Manifold_Discreteness_Spectral_Threshold_and_Fibonacci_Hierarchy/2026_04_19_Geometric_Infrared_Scale_of_Yang_Mills_Theory_on_a_Compact_Three_Manifold_Discreteness_Spectral_Threshold_and_Fibonacci_Hierarchy.pdf",
+   "counterexample_id": "A2",
+   "text_original": "Единственность минимально-избыточного фибоначчиева разбиения.",
+   "original_quote": "Theorem IV.5 (Natural minimal-redundancy partition). … minimal redundancy, the Fibonacci partition is the unique … spectral coarse-graining of the S³ …",
+   "refutation": "Same as A2 (FBS3R.FibStrat.no_additively_closed_partition_with_ratio_gt_one): the hypothesis class is empty.",
+   "refuting_lean": [
+    "FBS3R.FibStrat.no_additively_closed_partition_with_ratio_gt_one"
+   ],
+   "corrected_statement": "The Fibonacci intervals partition ℤ≥1 (B30, fib_partition = W036#2, KERNEL_PROVED). Uniqueness is vacuous.",
+   "corrected_proved_by_apex": null,
+   "corrected_lean_status": "KERNEL_PROVED in FBS3R-Lean (B30)",
+   "dependents": [
+    {
+     "claim": "FBS3R-W036#3",
+     "current_status": "HEURISTIC/PHYSICAL_MODEL",
+     "proposed_status": "UNSUPPORTED_AFTER_REFUTATION",
+     "reason": "Glueball hierarchy m_{n+1}/m_n → φ is motivated by the 'natural' Fibonacci bands."
+    },
+    {
+     "claim": "FBS3R-W036#2",
+     "current_status": "KERNEL_PROVED",
+     "proposed_status": "unchanged",
+     "reason": "Partition itself is true."
+    }
+   ],
+   "checked_not_dependent": []
+  },
+  {
+   "claim_id": "FBS3R-W038#0",
+   "work_id": "FBS3R-W038",
+   "work_file": "All Preprints/2026_04_21_Hierarchical_Bethe_Type_States_on_Fibonacci_Graphs_over_S3/2026_04_21_Hierarchical_Bethe_Type_States_on_Fibonacci_Graphs_over_S3.pdf",
+   "counterexample_id": "A6",
+   "text_original": "Thm «Fibonacci scaling»: F_n = (φ^{n+2} − ψ^{n+2})/√5 при F₁ = 3, F₂ = 5.",
+   "original_quote": "Theorem 1 (Fibonacci scaling). The shifted sequence (1) [F1 = 3, F2 = 5, F_{n+1} = F_n + F_{n−1}] satisfies F_n = (φ^{n+2} − ψ^{n+2})/√5, so that F_n = φ^{n+2}/√5 + O(φ^{−n}).",
+   "refutation": "At n = 1 the formula gives (φ³ − ψ³)/√5 = 2 ≠ 3 = F₁ (FBS3R.Checks.paper_binet_wrong).",
+   "refuting_lean": [
+    "FBS3R.Checks.paper_binet_wrong",
+    "FBS3R.Checks.F_binet"
+   ],
+   "corrected_statement": "F_n = Fib(n+3) = (φ^{n+3} − ψ^{n+3})/√5 for all n (FBS3R.Checks.F_binet), hence F_n = φ^{n+3}/√5 + O(φ^{−n}). The ratio limit F_{n−1}/F_n → φ^{−1} (eq. 9) remains true.",
+   "corrected_proved_by_apex": null,
+   "corrected_lean_status": "KERNEL_PROVED in FBS3R-Lean (F_binet); no APEX id",
+   "dependents": [
+    {
+     "claim": "FBS3R-W038 eq. (8) asymptotic (not a separate audit claim)",
+     "current_status": "(part of #0)",
+     "proposed_status": "CORRECTED: φ^{n+3}/√5",
+     "reason": "Direct consequence."
+    },
+    {
+     "claim": "FBS3R-W038#1",
+     "current_status": "KERNEL_PROVED",
+     "proposed_status": "unchanged",
+     "reason": "Zero-mode bound uses F_{n−1} as a cardinality, not Binet."
+    },
+    {
+     "claim": "FBS3R-W038#2",
+     "current_status": "OPEN",
+     "proposed_status": "OPEN (unaffected)",
+     "reason": "Schur recursion uses only block sizes."
+    }
+   ],
+   "checked_not_dependent": [
+    "'Bethe' and the shifted sequence F1 = 3 occur only in W038."
+   ]
+  },
+  {
+   "claim_id": "FBS3R-W049#3",
+   "work_id": "FBS3R-W049",
+   "work_file": "All Preprints/2026_05_11_Benchmark_residual_invariants_in_compact_S3_cosmology/2026_05_11_Benchmark_residual_invariants_in_compact_S3_cosmology.pdf",
+   "counterexample_id": "A7",
+   "text_original": "Cor. «Benchmark spectra» (дополнение): для A_n = A₀e^{−βn} σ² = (A₀/2π²A³)·e^β(e^β+1)/(e^β−1)³.",
+   "original_quote": "The exponential family A_n = A_0 e^{−βn}, β > 0, is admissible, with σ² = (A_0/2π²A³)·e^β(e^β+1)/(e^β−1)³.",
+   "refutation": "Σ_{n≥0}(n+1)² e^{−βn} = e^{2β}(e^β+1)/(e^β−1)³. The stated value is smaller by exactly the factor e^β (FBS3R.CosmoBench.paper_exp_variance_wrong); it is the value for A_n = A_0 e^{−β(n+1)}.",
+   "refuting_lean": [
+    "FBS3R.CosmoBench.exp_family_sum",
+    "FBS3R.CosmoBench.paper_exp_variance_wrong"
+   ],
+   "corrected_statement": "For A_n = A_0 e^{−βn} (β > 0): σ² = (A_0/2π²A³)·e^{2β}(e^β+1)/(e^β−1)³. Equivalently, the paper's expression holds for A_n = A_0 e^{−β(n+1)}. The series identity is kernel-proved (exp_family_sum). The prefactor 1/(2π²A³) is taken from the paper's eq. (variance) and is not formalized.",
+   "corrected_proved_by_apex": null,
+   "corrected_lean_status": "KERNEL_PROVED in FBS3R-Lean (exp_family_sum)",
+   "dependents": [
+    {
+     "claim": "FBS3R-W049#2",
+     "current_status": "KERNEL_PROVED",
+     "proposed_status": "unchanged",
+     "reason": "Power-law part of the same corollary is correct."
+    },
+    {
+     "claim": "FBS3R-W049#4",
+     "current_status": "HEURISTIC/PHYSICAL_MODEL",
+     "proposed_status": "unchanged (check any numeric use of σ² for the exponential family)",
+     "reason": "Manifest does not reference cor:spectra."
+    }
+   ],
+   "checked_not_dependent": [
+    "cor:spectra is referenced nowhere else in the supplement or the main .tex. 'Benchmark' in W055, W081, W082, W095, W096 refers to unrelated benchmarks."
+   ]
+  }
+ ]
+}
