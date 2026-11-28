@@ -14,7 +14,11 @@
   ],
   "status": "HEURISTIC/PHYSICAL_MODEL",
   "lean": [],
-  "note": "Философский/созерцательный текст; математических или физических теорем нет."
+  "note": "Философский/созерцательный текст; математических или физических теорем нет.",
+  "pass": 2,
+  "full_text": true,
+  "pages": 2,
+  "source_read": "pdf"
  },
  {
   "id": "FBS3R-W002",
@@ -31,7 +35,11 @@
   ],
   "status": "HEURISTIC/PHYSICAL_MODEL",
   "lean": [],
-  "note": "Философский/созерцательный текст; математических или физических теорем нет."
+  "note": "Философский/созерцательный текст; математических или физических теорем нет.",
+  "pass": 2,
+  "full_text": true,
+  "pages": 1,
+  "source_read": "pdf"
  },
  {
   "id": "FBS3R-W003",
@@ -48,7 +56,11 @@
   ],
   "status": "HEURISTIC/PHYSICAL_MODEL",
   "lean": [],
-  "note": "Концепция без проверяемых утверждений."
+  "note": "Концепция без проверяемых утверждений.",
+  "pass": 2,
+  "full_text": true,
+  "pages": 4,
+  "source_read": "pdf"
  },
  {
   "id": "FBS3R-W004",
@@ -72,12 +84,28 @@
     "text": "Фрактальная структура калибровочного поля даёт спектральную и массовую щель Янга–Миллса.",
     "status": "OPEN",
     "lean": [],
-    "ref": "проблема тысячелетия (Клэй)"
+    "ref": "проблема тысячелетия (Клэй); APEX-YM-1 формализует только абстрактный критерий щели (Лаплас, равномерность Δ); APEX/External/YM_AUDIT.md: внешние конструкции (OpenAI-YM-20261028, 4Y-M) щель не утверждают",
+    "apex": [
+     "APEX-YM-1"
+    ],
+    "pass2": "refined",
+    "pass2_reason": "Добавлена ссылка на APEX-YM-1 и YM_AUDIT: абстрактный спектральный слой доказан, сама щель открыта; внешние конструкции щели не заявляют."
+   },
+   {
+    "text": "«Фрактальный» поток Риччи ∂g = −2Ric + 𝒬 с квантовым членом 𝒬 устраняет сингулярности без хирургии (стр. 7–9).",
+    "status": "OPEN",
+    "lean": [],
+    "ref": "член 𝒬 не определён; уравнение не исследовано. Ср. no-go архива для ограниченного форсинга (2026-07-02, 2026-07-05)",
+    "pass2": "added"
    }
   ],
   "status": "OPEN",
   "lean": [],
-  "note": "Сама гипотеза — теорема Перельмана; доказательство статьи не проверено и строгим не является (нет топологии 3-многообразий в Mathlib). Массовая щель Янга–Миллса — открытая проблема тысячелетия."
+  "note": "Сама гипотеза — теорема Перельмана; доказательство статьи не проверено и строгим не является (нет топологии 3-многообразий в Mathlib). Массовая щель Янга–Миллса — открытая проблема тысячелетия.",
+  "pass": 2,
+  "full_text": true,
+  "pages": 14,
+  "source_read": "pdf"
  },
  {
   "id": "FBS3R-W005",
@@ -111,7 +139,11 @@
   "lean": [
    "FBS3R.Misc.subset_of_connected_not_connected"
   ],
-  "note": "A5: опровергнут шаг доказательства, а не MLC. MLC остаётся открытой; статья доказательством не является."
+  "note": "A5: опровергнут шаг доказательства, а не MLC. MLC остаётся открытой; статья доказательством не является.",
+  "pass": 2,
+  "full_text": true,
+  "pages": 9,
+  "source_read": "pdf+tex"
  },
  {
   "id": "FBS3R-W006",
@@ -128,7 +160,11 @@
   ],
   "status": "HEURISTIC/PHYSICAL_MODEL",
   "lean": [],
-  "note": "Формальная логическая система не задана; философия логики."
+  "note": "Формальная логическая система не задана; философия логики.",
+  "pass": 2,
+  "full_text": true,
+  "pages": 5,
+  "source_read": "pdf"
  },
  {
   "id": "FBS3R-W007",
@@ -145,7 +181,11 @@
   ],
   "status": "HEURISTIC/PHYSICAL_MODEL",
   "lean": [],
-  "note": "Теоремы Гёделя известны (KNOWN_RESULT); текст интерпретационный."
+  "note": "Теоремы Гёделя известны (KNOWN_RESULT); текст интерпретационный.",
+  "pass": 2,
+  "full_text": true,
+  "pages": 4,
+  "source_read": "pdf"
  },
  {
   "id": "FBS3R-W008",
@@ -167,7 +207,11 @@
   ],
   "status": "HEURISTIC/PHYSICAL_MODEL",
   "lean": [],
-  "note": "Физическая модель; формальных утверждений нет."
+  "note": "Физическая модель; формальных утверждений нет.",
+  "pass": 2,
+  "full_text": true,
+  "pages": 5,
+  "source_read": "pdf+tex"
  },
  {
   "id": "FBS3R-W009",
@@ -189,7 +233,11 @@
   ],
   "status": "HEURISTIC/PHYSICAL_MODEL",
   "lean": [],
-  "note": "Сопоставление с литературными данными; заявленное «подтверждение» не установлено."
+  "note": "Сопоставление с литературными данными; заявленное «подтверждение» не установлено.",
+  "pass": 2,
+  "full_text": true,
+  "pages": 3,
+  "source_read": "pdf+tex"
  },
  {
   "id": "FBS3R-W010",
@@ -206,7 +254,11 @@
   ],
   "status": "HEURISTIC/PHYSICAL_MODEL",
   "lean": [],
-  "note": "Философский/созерцательный текст; математических или физических теорем нет."
+  "note": "Философский/созерцательный текст; математических или физических теорем нет.",
+  "pass": 2,
+  "full_text": true,
+  "pages": 9,
+  "source_read": "pdf"
  },
  {
   "id": "FBS3R-W011",
@@ -223,7 +275,11 @@
   ],
   "status": "HEURISTIC/PHYSICAL_MODEL",
   "lean": [],
-  "note": "Философский/созерцательный текст; математических или физических теорем нет."
+  "note": "Философский/созерцательный текст; математических или физических теорем нет.",
+  "pass": 2,
+  "full_text": true,
+  "pages": 7,
+  "source_read": "pdf"
  },
  {
   "id": "FBS3R-W012",
@@ -240,7 +296,11 @@
   ],
   "status": "HEURISTIC/PHYSICAL_MODEL",
   "lean": [],
-  "note": "Содержательная аксиоматика, а не математическая теорема."
+  "note": "Содержательная аксиоматика, а не математическая теорема.",
+  "pass": 2,
+  "full_text": true,
+  "pages": 8,
+  "source_read": "pdf"
  },
  {
   "id": "FBS3R-W013",
@@ -257,7 +317,11 @@
   ],
   "status": "HEURISTIC/PHYSICAL_MODEL",
   "lean": [],
-  "note": "Интерпретация квантовой механики."
+  "note": "Интерпретация квантовой механики.",
+  "pass": 2,
+  "full_text": true,
+  "pages": 3,
+  "source_read": "pdf+tex"
  },
  {
   "id": "FBS3R-W014",
@@ -272,21 +336,116 @@
     "lean": []
    },
    {
-    "text": "Нелокальная гравитация с форм-фактором e^{−s□}: пропагатор без духов и конечность во всех петлях («All-Loop Finiteness»).",
-    "status": "OPEN",
+    "text": "Thm III.1 «Ghost-Free Propagator»: спин-2 пропагатор Π⁽²⁾(p²) = e^{−sp²}P⁽²⁾/(−p²) имеет единственный полюс p² = 0, духовых полюсов нет.",
+    "status": "KNOWN_RESULT",
     "lean": [],
-    "ref": "безду́ховый пропагатор такого типа известен (IDG); конечность во всех петлях не доказана"
+    "ref": "Biswas–Gerwick–Koivisto–Mazumdar 2011 (IDG): e^{sp²} — целая функция без нулей. «Без духов» здесь значит только «без полюсов»: положительного спектрального представления у e^{−sp²}/p² нет (APEX-SPC-4, см. отдельное утверждение). Знаки в III.B (□ → −p², e^{−s□} → e^{+sp²}) и III.C ((e^{−sp²}−1)/□) несогласованы.",
+    "apex": [
+     "APEX-SPC-1",
+     "APEX-SPC-4"
+    ],
+    "pass2": "changed",
+    "pass2_reason": "Утверждение разделено: отсутствие новых полюсов — известный результат; конечность во всех петлях — открыта, аргумент статьи неполон."
    },
    {
     "text": "Пространственная топология S³ через поток Риччи с хирургией.",
     "status": "KNOWN_RESULT",
     "lean": [],
     "ref": "Перельман; применимость к Вселенной — допущение"
+   },
+   {
+    "text": "Thm IV.3 «All-Loop Finiteness»: все петлевые интегралы нелокальной теории сходятся.",
+    "status": "OPEN",
+    "lean": [],
+    "ref": "Подсчёт степени (Prop. IV.2) учитывает только подавление пропагаторов; вершины теории с e^{−s□} содержат растущие множители e^{+sp²}, а оценка проведена лишь в евклидовой сигнатуре. Доказательства нет.",
+    "pass2": "added"
+   },
+   {
+    "text": "Однопетлевой пример: ∫d⁴p e^{−2sp²}/(p²)² сходится благодаря гауссову подавлению (Prop. IV.1).",
+    "status": "OPEN",
+    "lean": [],
+    "ref": "Элементарно неверно: при p → 0 подынтегральное выражение ~ p³dp/p⁴, интеграл логарифмически расходится в ИК; Prop. IV.1 доказана только для k ≥ 0, а здесь k = −4. В Lean не проверялось.",
+    "pass2": "added"
+   },
+   {
+    "text": "Prop. IV.1: I_k = ∫_{ℝ⁴} p^k e^{−sp²}d⁴p = π² s^{−(k+4)/2} Γ((k+4)/2) < ∞ при целом k ≥ 0.",
+    "status": "KNOWN_RESULT",
+    "lean": [],
+    "ref": "гауссов интеграл; формула проверена вручную",
+    "pass2": "added"
+   },
+   {
+    "text": "Ограничение (APEX-SPC-4, добавлено аудитором): евклидов пропагатор f(x) = e^{−sx}/x, x = p² > 0, не равен ∫dρ(m²)/(x+m²) ни для какой положительной меры ρ (Källén–Lehmann-тип), включая бесконечные ρ с ∫(1+m²)⁻¹dρ < ∞; любая положительная спектральная аппроксимация на окне [x,y] имеет равномерную относительную ошибку ≥ tanh(s(y−x)/2), и эта граница точна (точечная масса в 0).",
+    "status": "KERNEL_PROVED",
+    "lean": [
+     "APEX.Spectral.Strong.no_representation_exp_div",
+     "APEX.Spectral.Strong.no_representation_of_decrease",
+     "APEX.Spectral.Strong.monotoneOn_mul_G",
+     "APEX.Spectral.Strong.tanh_le_rel_error",
+     "APEX.Spectral.Strong.rel_error_sharp",
+     "APEX.Spectral.Strong.matrix_no_representation_exp_div",
+     "APEX.Spectral.no_representation_exp_div"
+    ],
+    "ref": "Статья не заявляет представление Källén–Lehmann явно; утверждение ограничивает толкование «ghost-free/UV-complete» как унитарности через положительную спектральную плотность. О существовании или унитарности квантовой гравитации SPC-4 ничего не утверждает.",
+    "apex": [
+     "APEX-SPC-1",
+     "APEX-SPC-4"
+    ],
+    "auditor_limitation": true,
+    "pass2": "added"
+   },
+   {
+    "text": "Вывод «UV-полная, безду́ховая (унитарная) теория гравитации» (разд. VI).",
+    "status": "OPEN",
+    "lean": [],
+    "ref": "Стандартный путь к унитарности через положительную спектральную меру закрыт APEX-SPC-4; другого доказательства в статье нет.",
+    "apex": [
+     "APEX-SPC-4"
+    ],
+    "pass2": "added"
+   },
+   {
+    "text": "ИК-предел: (e^{−sp²}−1)/(−p²) = −s + O(p²), пропагатор ~ 1/p², восстанавливается ОТО.",
+    "status": "KNOWN_RESULT",
+    "lean": [],
+    "ref": "разложение Тейлора; знак записан несогласованно с III.B",
+    "pass2": "added"
+   },
+   {
+    "text": "Предсказание: дискретное слоение может давать осцилляции кривых вращения галактик («pending future modeling»).",
+    "status": "HEURISTIC/PHYSICAL_MODEL",
+    "lean": [],
+    "pass2": "added"
    }
   ],
   "status": "HEURISTIC/PHYSICAL_MODEL",
-  "lean": [],
-  "note": "Физическая модель; 7 формальных утверждений, нужна КТП и распределения (нет в Mathlib)."
+  "lean": [
+   "APEX.Spectral.Strong.no_representation_exp_div",
+   "APEX.Spectral.Strong.no_representation_of_decrease",
+   "APEX.Spectral.Strong.monotoneOn_mul_G",
+   "APEX.Spectral.Strong.tanh_le_rel_error",
+   "APEX.Spectral.Strong.rel_error_sharp",
+   "APEX.Spectral.Strong.matrix_no_representation_exp_div",
+   "APEX.Spectral.no_representation_exp_div"
+  ],
+  "note": "Физическая модель; 7 формальных утверждений, нужна КТП и распределения (нет в Mathlib). Второй проход (полный текст, 3 стр.): пропагатор e^{−sp²}/p² подпадает под no-go APEX-SPC-1/SPC-4 для положительного спектрального представления; алгебры связей, анализа причинности и наблюдательных чисел в статье нет.",
+  "deep_dive": {
+   "propagators": [
+    "Π⁽²⁾(p²) = e^{−sp²} P⁽²⁾/(−p²) (спин-2, калибровка де Дондера, форм-фактор e^{−s□}, s > 0 размерности длина²)"
+   ],
+   "positivity": "Явно не заявлена; «ghost-free» = единственный полюс p² = 0. Положительное спектральное представление невозможно (APEX-SPC-4: no_representation_exp_div, tanh_le_rel_error).",
+   "unitarity": "Заявлена косвенно («UV-complete, ghost-free»); доказательства нет; путь Källén–Lehmann закрыт SPC-4.",
+   "causality": "Не обсуждается (нет анализа роста e^{+sp²} для времениподобных импульсов, нет микропричинности).",
+   "constraint_algebra": "Отсутствует (нет гамильтонова анализа, связей и их алгебры).",
+   "uv_finiteness": "Thm IV.3 не доказана: учтены только пропагаторы; пример однопетлевого интеграла ИК-расходится.",
+   "observational_predictions": [
+    "качественно: осцилляции кривых вращения (без расчёта)"
+   ]
+  },
+  "pass": 2,
+  "full_text": true,
+  "pages": 3,
+  "source_read": "pdf+tex"
  },
  {
   "id": "FBS3R-W015",
@@ -298,22 +457,109 @@
    {
     "text": "Фит кривой вращения NGC 2403 без гало тёмной материи (χ²_ν = 0.19).",
     "status": "NUMERICAL_EVIDENCE",
-    "lean": []
+    "lean": [],
+    "ref": "χ²_ν = 0.186 воспроизводится по встроенному файлу rotcurve_ngc2403.dat, но столбец vfit задан таблицей, а не вычислен. По формуле (4) с M_vis = 7.8·10⁹ M_⊙ и f∞ = 0.236: v_c(20.8 кпк) ≤ 44.6 км/с против vfit = 142.7 км/с, то есть фит не следует из модели. Постоянное усиление G не может дать плоскую кривую. f∞ = 2/φ − 1 не выведено из действия (1), ИК-предел которого — ОТО.",
+    "pass2": "refined",
+    "pass2_reason": "Полный текст и встроенные данные: таблица vfit не воспроизводится формулой (4) статьи; статус не меняется, причина уточнена."
    },
    {
     "text": "n_s = 0.9640 ± 0.0004 при N_tot ≈ 4.1·10¹¹ оболочек.",
     "status": "NUMERICAL_EVIDENCE",
-    "lean": []
+    "lean": [],
+    "ref": "Арифметика верна (n_s = 0.96401). Но N_tot = 4.1·10¹¹ задано («estimating»), а постулат P1 (R_n = φⁿℓ_P) даёт до радиуса Хаббла c/H₀ лишь log_φ(R_H/ℓ_P) ≈ 291.5 оболочки; при N = 292 формула (5) даёт n_s ≈ 0.830, что исключено Planck. Заявленная погрешность ±0.0004 при ±0.5·10¹¹ завышена (распространение даёт ±0.00016). Встроенная таблица cmb_scan.dat не согласована с (5): 0.9630 вместо 0.9620 при 10¹¹ и 0.9645 вместо 0.9652 при 10¹².",
+    "pass2": "refined",
+    "pass2_reason": "Полный текст: N_tot — выбранный вход, несовместимый с постулатом P1; статус не меняется."
    },
    {
     "text": "UV-конечная безду́ховая квантовая гравитация на вложенных оболочках S³ с R_n = φⁿℓ_P.",
     "status": "HEURISTIC/PHYSICAL_MODEL",
-    "lean": []
+    "lean": [],
+    "apex": [
+     "APEX-SPC-4"
+    ],
+    "ref": "«ghost-free» обосновано только ссылкой на IDG; положительного спектрального представления нет (APEX-SPC-4)",
+    "pass2": "refined",
+    "pass2_reason": "Добавлена ссылка на APEX-SPC-4: форм-фактор exp(−ℓ_P²□/φ²) даёт пропагатор вида e^{−ax}/x."
+   },
+   {
+    "text": "Ограничение (APEX-SPC-4, добавлено аудитором): эффективный пропагатор G(k)/k² = G_N e^{−ak²}/k², a = ℓ_P²/φ², не имеет положительного спектрального представления; на евклидовом окне k² ∈ [x,y] относительная ошибка любой положительной аппроксимации ≥ tanh(a(y−x)/2), например ≥ tanh(1/(2φ²)) ≈ 0.189 на окне ширины 1/ℓ_P².",
+    "status": "KERNEL_PROVED",
+    "lean": [
+     "APEX.Spectral.Strong.no_representation_exp_div",
+     "APEX.Spectral.Strong.no_representation_of_decrease",
+     "APEX.Spectral.Strong.monotoneOn_mul_G",
+     "APEX.Spectral.Strong.tanh_le_rel_error",
+     "APEX.Spectral.Strong.rel_error_sharp",
+     "APEX.Spectral.Strong.matrix_no_representation_exp_div",
+     "APEX.Spectral.no_representation_exp_div"
+    ],
+    "ref": "Это ограничение толкования «free of ghost instabilities», а не опровержение явного утверждения статьи о спектральной мере (его нет).",
+    "apex": [
+     "APEX-SPC-4"
+    ],
+    "auditor_limitation": true,
+    "pass2": "added"
+   },
+   {
+    "text": "«Асимптотическая свобода»: G(k) = G_N exp(−k²ℓ_P²/φ²) убывает при k → ∞ (табл. I).",
+    "status": "HEURISTIC/PHYSICAL_MODEL",
+    "lean": [],
+    "ref": "Числа табл. I воспроизводятся. Это евклидово продолжение; для времениподобных k² < 0 множитель растёт экспоненциально (не обсуждается).",
+    "pass2": "added"
+   },
+   {
+    "text": "Скорость ГВ: Δv/c ≈ ½k²ℓ_P²/φ² ≈ 2.2·10⁻⁸² на 100 Гц.",
+    "status": "HEURISTIC/PHYSICAL_MODEL",
+    "lean": [],
+    "ref": "Арифметика верна, но формула не выведена и противоречит самой модели: при единственном полюсе k² = 0 и целом форм-факторе дисперсия в вакууме строго светоподобна (Δv = 0).",
+    "pass2": "added"
+   },
+   {
+    "text": "ППН: |γ−1| ≈ |β−1| ≈ (2/3)ℓ_P²/(φ²r²) ≈ 3.0·10⁻⁹³ на 1 а.е.; η ~ 10⁻⁹³.",
+    "status": "HEURISTIC/PHYSICAL_MODEL",
+    "lean": [],
+    "ref": "Арифметика верна; формула не выведена (для IDG поправки к ньютонову потенциалу экспоненциально малы, ~erf, а не степенные).",
+    "pass2": "added"
+   },
+   {
+    "text": "Фальсифицируемые предсказания: усиление дефицита массы ×4 в скоплениях, отклонения от NFW-линзирования, изменения затухающего хвоста CMB при ℓ > 2000, нарушение RAR в системах с поддержкой давлением.",
+    "status": "HEURISTIC/PHYSICAL_MODEL",
+    "lean": [],
+    "ref": "качественные, без расчёта",
+    "pass2": "added"
    }
   ],
   "status": "HEURISTIC/PHYSICAL_MODEL",
-  "lean": [],
-  "note": "Модель и подгонка параметров."
+  "lean": [
+   "APEX.Spectral.Strong.no_representation_exp_div",
+   "APEX.Spectral.Strong.no_representation_of_decrease",
+   "APEX.Spectral.Strong.monotoneOn_mul_G",
+   "APEX.Spectral.Strong.tanh_le_rel_error",
+   "APEX.Spectral.Strong.rel_error_sharp",
+   "APEX.Spectral.Strong.matrix_no_representation_exp_div",
+   "APEX.Spectral.no_representation_exp_div"
+  ],
+  "note": "Модель и подгонка параметров. Второй проход (полный текст, 4 стр. и встроенные данные .tex): фит NGC 2403 не следует из формулы (4); N_tot противоречит постулату P1 (≈292 оболочки до c/H₀); Δv ГВ противоречит единственному полюсу; пропагатор подпадает под APEX-SPC-4.",
+  "deep_dive": {
+   "propagators": [
+    "действие (1) с F(□) = exp(−ℓ_P²□/φ²); в евклидовых импульсах G(k)/k² = G_N e^{−k²ℓ_P²/φ²}/k²"
+   ],
+   "positivity": "Не заявлена явно; «free of ghost instabilities» по аналогии с IDG. Положительное спектральное представление невозможно (APEX-SPC-4).",
+   "unitarity": "Не доказана; путь Källén–Lehmann закрыт SPC-4.",
+   "causality": "Не обсуждается; заявленное Δv ≠ 0 противоречит светоподобной дисперсии модели.",
+   "constraint_algebra": "Отсутствует.",
+   "observational_predictions": [
+    "NGC 2403: χ²_ν = 0.19 (не следует из (4))",
+    "n_s = 0.9640 ± 0.0004 при N_tot = 4.1·10¹¹ (вход выбран)",
+    "|Δv|/c ≈ 2.2·10⁻⁸²",
+    "|γ−1| ≈ 3.0·10⁻⁹³",
+    "скопления ×4, линзирование, хвост CMB, RAR"
+   ]
+  },
+  "pass": 2,
+  "full_text": true,
+  "pages": 4,
+  "source_read": "pdf+tex"
  },
  {
   "id": "FBS3R-W016",
@@ -331,11 +577,39 @@
     "text": "Вывод из 5D Черна–Саймонса и вариация Барвинского–Вилковыского.",
     "status": "HEURISTIC/PHYSICAL_MODEL",
     "lean": []
+   },
+   {
+    "text": "«Единственное безду́ховое UV-конечное действие» с e^{−s□} (разд. III, прил. C: новых полюсов нет).",
+    "status": "KNOWN_RESULT",
+    "lean": [],
+    "ref": "Отсутствие новых полюсов — известное свойство IDG; «единственность» не доказана; положительного спектрального представления у e^{−sk²}/k² нет (APEX-SPC-4).",
+    "apex": [
+     "APEX-SPC-4"
+    ],
+    "pass2": "added"
+   },
+   {
+    "text": "Плоские кривые вращения: v_c² → GM/(2√(π s)) при r → ∞ и s(M) ∝ M ⇒ v⁴ ∝ M (BTFR).",
+    "status": "HEURISTIC/PHYSICAL_MODEL",
+    "lean": [],
+    "ref": "Элементарная несогласованность: для Φ = −GM erf(r/(2√s))/r при r ≫ √s потенциал кеплеровский и v_c² → GM/r → 0; заявленный предел не следует из (7).",
+    "pass2": "added"
+   },
+   {
+    "text": "Фит Abell 1689 в пределах 5 % от NFW; модифицированный CLASS даёт Δχ² < 1 относительно ΛCDM; экранирование хамелеона, Δγ < 10⁻⁵.",
+    "status": "NUMERICAL_EVIDENCE",
+    "lean": [],
+    "ref": "расчётов и кода в архиве нет",
+    "pass2": "added"
    }
   ],
   "status": "HEURISTIC/PHYSICAL_MODEL",
   "lean": [],
-  "note": "Формальных утверждений нет."
+  "note": "Формальных утверждений нет. Второй проход: тот же форм-фактор e^{−s□}, что в 2025-06-23; асимптотика erf-потенциала кеплеровская, «плоские кривые» не следуют.",
+  "pass": 2,
+  "full_text": true,
+  "pages": 4,
+  "source_read": "pdf+tex"
  },
  {
   "id": "FBS3R-W017",
@@ -352,7 +626,11 @@
   ],
   "status": "HEURISTIC/PHYSICAL_MODEL",
   "lean": [],
-  "note": "Формальная система не задана. При буквальном прочтении утверждение противоречит теореме Гёделя–Россера для непротиворечивых рекурсивно аксиоматизируемых теорий, содержащих арифметику."
+  "note": "Формальная система не задана. При буквальном прочтении утверждение противоречит теореме Гёделя–Россера для непротиворечивых рекурсивно аксиоматизируемых теорий, содержащих арифметику.",
+  "pass": 2,
+  "full_text": true,
+  "pages": 7,
+  "source_read": "pdf+tex"
  },
  {
   "id": "FBS3R-W018",
@@ -369,7 +647,11 @@
   ],
   "status": "HEURISTIC/PHYSICAL_MODEL",
   "lean": [],
-  "note": "Философско-физическая модель."
+  "note": "Философско-физическая модель.",
+  "pass": 2,
+  "full_text": true,
+  "pages": 2,
+  "source_read": "pdf+tex"
  },
  {
   "id": "FBS3R-W019",
@@ -391,7 +673,11 @@
   ],
   "status": "HEURISTIC/PHYSICAL_MODEL",
   "lean": [],
-  "note": "Модель."
+  "note": "Модель.",
+  "pass": 2,
+  "full_text": true,
+  "pages": 4,
+  "source_read": "pdf+tex"
  },
  {
   "id": "FBS3R-W020",
@@ -413,7 +699,11 @@
   ],
   "status": "HEURISTIC/PHYSICAL_MODEL",
   "lean": [],
-  "note": "Модель."
+  "note": "Модель.",
+  "pass": 2,
+  "full_text": true,
+  "pages": 5,
+  "source_read": "pdf+tex"
  },
  {
   "id": "FBS3R-W021",
@@ -430,7 +720,11 @@
   ],
   "status": "HEURISTIC/PHYSICAL_MODEL",
   "lean": [],
-  "note": "Модель."
+  "note": "Модель.",
+  "pass": 2,
+  "full_text": true,
+  "pages": 5,
+  "source_read": "pdf+tex"
  },
  {
   "id": "FBS3R-W022",
@@ -447,7 +741,11 @@
   ],
   "status": "HEURISTIC/PHYSICAL_MODEL",
   "lean": [],
-  "note": "Модель."
+  "note": "Модель.",
+  "pass": 2,
+  "full_text": true,
+  "pages": 9,
+  "source_read": "pdf+tex"
  },
  {
   "id": "FBS3R-W023",
@@ -464,7 +762,11 @@
   ],
   "status": "HEURISTIC/PHYSICAL_MODEL",
   "lean": [],
-  "note": "Единственное утверждение — феноменологическая подгонка."
+  "note": "Единственное утверждение — феноменологическая подгонка.",
+  "pass": 2,
+  "full_text": true,
+  "pages": 6,
+  "source_read": "pdf+tex"
  },
  {
   "id": "FBS3R-W024",
@@ -522,7 +824,11 @@
    "FBS3R.Collatz.naive_lyapunov_fails",
    "FBS3R.Collatz.no_coarse_certificate"
   ],
-  "note": "A1: контрпример n = 11. Статья сама не заявляет сходимости; неравенство (eq:drift) для всех J не следует. APEX: h(3n+1) − h(n) ∈ {2,3} и no-go ограниченной поправки (APEX.Collatz.no_bounded_height_correction)."
+  "note": "A1: контрпример n = 11. Статья сама не заявляет сходимости; неравенство (eq:drift) для всех J не следует. APEX: h(3n+1) − h(n) ∈ {2,3} и no-go ограниченной поправки (APEX.Collatz.no_bounded_height_correction).",
+  "pass": 2,
+  "full_text": true,
+  "pages": 3,
+  "source_read": "pdf+tex"
  },
  {
   "id": "FBS3R-W025",
@@ -539,7 +845,11 @@
   ],
   "status": "HEURISTIC/PHYSICAL_MODEL",
   "lean": [],
-  "note": "Модель."
+  "note": "Модель.",
+  "pass": 2,
+  "full_text": true,
+  "pages": 4,
+  "source_read": "pdf+tex"
  },
  {
   "id": "FBS3R-W026",
@@ -561,7 +871,11 @@
   ],
   "status": "HEURISTIC/PHYSICAL_MODEL",
   "lean": [],
-  "note": "Модель."
+  "note": "Модель.",
+  "pass": 2,
+  "full_text": true,
+  "pages": 8,
+  "source_read": "pdf+tex"
  },
  {
   "id": "FBS3R-W027",
@@ -583,7 +897,11 @@
   ],
   "status": "HEURISTIC/PHYSICAL_MODEL",
   "lean": [],
-  "note": "Модель."
+  "note": "Модель.",
+  "pass": 2,
+  "full_text": true,
+  "pages": 5,
+  "source_read": "pdf+tex"
  },
  {
   "id": "FBS3R-W028",
@@ -601,11 +919,89 @@
     "text": "S³ — единственный «анизотропный мост недвойственности», источник времени, спина и энтропии.",
     "status": "HEURISTIC/PHYSICAL_MODEL",
     "lean": []
+   },
+   {
+    "text": "Thm 5: S³ ≅ SU(2) (групповая структура на S³).",
+    "status": "KERNEL_PROVED",
+    "lean": [
+     "APEX.S3.Hopf.unitEquivSU2",
+     "APEX.S3.Hopf.unitToSU2_injective",
+     "APEX.S3.Hopf.unitToSU2_surjective",
+     "APEX.S3.Hopf.toMat_mem_SU2",
+     "APEX.S3.Hopf.det_toMat"
+    ],
+    "ref": "изоморфизм единичных кватернионов и SU(2) (собственная структура Q в APEX)",
+    "apex": [
+     "APEX-S3-3"
+    ],
+    "pass2": "added"
+   },
+   {
+    "text": "Расслоение Хопфа S³ → S² со слоями-окружностями U(1).",
+    "status": "KERNEL_PROVED",
+    "lean": [
+     "FBS3R.Bell.hopf_S3_to_S2",
+     "FBS3R.Bell.hopf_fibre",
+     "APEX.S3.Hopf.hopf_mapsTo",
+     "APEX.S3.Hopf.hopf_surjOn",
+     "APEX.S3.Hopf.hopf_eq_iff_exists_smul",
+     "APEX.S3.Hopf.hopf_fibres_disjoint",
+     "APEX.S3.Hopf.hopf_fibre_eq"
+    ],
+    "ref": "сюръективность и слои = U(1)-орбиты; нетривиальность расслоения (зацепление, c₁ = 1) не формализована",
+    "apex": [
+     "APEX-S3-3"
+    ],
+    "pass2": "added"
+   },
+   {
+    "text": "Thm 1–4: на S² нет всюду ненулевого поля и структуры группы Ли; на S³ есть; возвращаемость Пуанкаре на S².",
+    "status": "KNOWN_RESULT",
+    "lean": [],
+    "pass2": "added"
+   },
+   {
+    "text": "Thm 6: φ-масштабирование на S³ «нарушает» возвращаемость Пуанкаре.",
+    "status": "HEURISTIC/PHYSICAL_MODEL",
+    "lean": [],
+    "ref": "«эффективный фазовый объём» не определён; теорема Пуанкаре к построению не применена",
+    "pass2": "added"
+   },
+   {
+    "text": "Среди компактных ориентируемых 3-многообразий только S³ односвязна (с остальными условиями).",
+    "status": "KNOWN_RESULT",
+    "lean": [],
+    "ref": "Перельман",
+    "pass2": "added"
+   },
+   {
+    "text": "Предсказания: подавление C_ℓ при малых ℓ, логпериодичность P(k) с ω = 4.7748, дискретная гребёнка ГВ f_n = nc/(2πR₀), снижение напряжения Хаббла до ~1.8σ, переход S³ → S⁴ при z_trans.",
+    "status": "HEURISTIC/PHYSICAL_MODEL",
+    "lean": [],
+    "ref": "«намёки» в данных SDSS/Planck статья сама оценивает как статистически незначимые",
+    "pass2": "added"
    }
   ],
   "status": "HEURISTIC/PHYSICAL_MODEL",
-  "lean": [],
-  "note": "Ранняя версия; математика вошла в 2026_07_02."
+  "lean": [
+   "APEX.S3.Hopf.unitEquivSU2",
+   "APEX.S3.Hopf.unitToSU2_injective",
+   "APEX.S3.Hopf.unitToSU2_surjective",
+   "APEX.S3.Hopf.toMat_mem_SU2",
+   "APEX.S3.Hopf.det_toMat",
+   "FBS3R.Bell.hopf_S3_to_S2",
+   "FBS3R.Bell.hopf_fibre",
+   "APEX.S3.Hopf.hopf_mapsTo",
+   "APEX.S3.Hopf.hopf_surjOn",
+   "APEX.S3.Hopf.hopf_eq_iff_exists_smul",
+   "APEX.S3.Hopf.hopf_fibres_disjoint",
+   "APEX.S3.Hopf.hopf_fibre_eq"
+  ],
+  "note": "Ранняя версия; математика вошла в 2026_07_02.",
+  "pass": 2,
+  "full_text": true,
+  "pages": 42,
+  "source_read": "pdf"
  },
  {
   "id": "FBS3R-W029",
@@ -628,7 +1024,11 @@
   ],
   "status": "HEURISTIC/PHYSICAL_MODEL",
   "lean": [],
-  "note": "Эссе."
+  "note": "Эссе.",
+  "pass": 2,
+  "full_text": true,
+  "pages": 7,
+  "source_read": "pdf"
  },
  {
   "id": "FBS3R-W030",
@@ -656,7 +1056,11 @@
   ],
   "status": "KNOWN_RESULT",
   "lean": [],
-  "note": "Вариационного исчисления на многообразиях в Mathlib нет."
+  "note": "Вариационного исчисления на многообразиях в Mathlib нет.",
+  "pass": 2,
+  "full_text": true,
+  "pages": 10,
+  "source_read": "pdf+tex"
  },
  {
   "id": "FBS3R-W031",
@@ -683,7 +1087,11 @@
   "lean": [
    "FBS3R.Selector.fibonacci_minimal"
   ],
-  "note": "«Теоремы» масштабирования условны по постулату H3."
+  "note": "«Теоремы» масштабирования условны по постулату H3.",
+  "pass": 2,
+  "full_text": true,
+  "pages": 6,
+  "source_read": "pdf+tex"
  },
  {
   "id": "FBS3R-W032",
@@ -700,7 +1108,11 @@
   ],
   "status": "KNOWN_RESULT",
   "lean": [],
-  "note": "Стандартная ОТО (связи первого рода)."
+  "note": "Стандартная ОТО (связи первого рода).",
+  "pass": 2,
+  "full_text": true,
+  "pages": 2,
+  "source_read": "pdf+tex"
  },
  {
   "id": "FBS3R-W033",
@@ -722,7 +1134,11 @@
   ],
   "status": "KNOWN_RESULT",
   "lean": [],
-  "note": ""
+  "note": "",
+  "pass": 2,
+  "full_text": true,
+  "pages": 6,
+  "source_read": "pdf+tex"
  },
  {
   "id": "FBS3R-W034",
@@ -750,19 +1166,56 @@
     "ref": "A3"
    },
    {
-    "text": "CHSH ≤ 2 для любой ЛСП-модели и граница Цирельсона 2√2.",
+    "text": "CHSH ≤ 2 для любой ЛСП-модели.",
     "status": "KERNEL_PROVED",
     "lean": [
      "FBS3R.Bell.chsh",
-     "FBS3R.Bell.tsirelson_singlet",
      "FBS3R.Bell.no_LHV_reproduces_singlet"
     ],
-    "ref": "известные результаты (Белл, Цирельсон)"
+    "ref": "известные результаты (Белл, Цирельсон)",
+    "pass2": "refined",
+    "pass2_reason": "Строгое правило KERNEL_PROVED: Lean-теорема tsirelson_singlet покрывает только синглетное ядро E = −a·b, а Thm 5.1 утверждает границу Цирельсона для любого состояния ρ."
    },
    {
     "text": "Нарушения неравенств Белла выводятся из топологии Вселенной S³.",
     "status": "HEURISTIC/PHYSICAL_MODEL",
     "lean": []
+   },
+   {
+    "text": "Thm 5.1: граница Цирельсона |Tr(ρB)| ≤ 2√2 для любых единичных векторов и любого состояния ρ.",
+    "status": "KNOWN_RESULT",
+    "lean": [
+     "FBS3R.Bell.tsirelson_singlet"
+    ],
+    "ref": "Цирельсон (1980). В Lean только частный случай синглетного ядра; общий случай для всех ρ не формализован. (Перенесено из утверждения 3 первого прохода, где стояло KERNEL_PROVED.)",
+    "pass2": "added"
+   },
+   {
+    "text": "Thm 4.3: интервалы Фибоначчи B_n образуют разбиение ℕ∖{0} (полная спектральная стратификация).",
+    "status": "KERNEL_PROVED",
+    "lean": [
+     "FBS3R.FibStrat.fib_partition"
+    ],
+    "pass2": "added"
+   },
+   {
+    "text": "Thm 6.1: решение Уилера–ДеВитта на S³ не факторизуется по пространственно разделённым областям.",
+    "status": "OPEN",
+    "lean": [],
+    "pass2": "added"
+   },
+   {
+    "text": "Cor. 5.3: превышение 2√2 − 2 пропорционально классу Черна c₁ = 1 расслоения Хопфа.",
+    "status": "HEURISTIC/PHYSICAL_MODEL",
+    "lean": [],
+    "pass2": "added"
+   },
+   {
+    "text": "Thm 7.4: моногамия запутанности E(U:V) + E(U:W) ≤ E(U:VW) как следствие геометрии S³.",
+    "status": "HEURISTIC/PHYSICAL_MODEL",
+    "lean": [],
+    "ref": "мера запутанности не указана; для конкретных мер — известные неравенства (CKW и др.)",
+    "pass2": "added"
    }
   ],
   "status": "DISPROVED",
@@ -772,10 +1225,15 @@
    "FBS3R.Bell.bell_Phi_plus",
    "FBS3R.Bell.singlet_Psi_minus",
    "FBS3R.Bell.chsh",
+   "FBS3R.Bell.no_LHV_reproduces_singlet",
    "FBS3R.Bell.tsirelson_singlet",
-   "FBS3R.Bell.no_LHV_reproduces_singlet"
+   "FBS3R.FibStrat.fib_partition"
   ],
-  "note": "A2, A3. В PRA-версии (2026-04-30) состояние исправлено на синглет."
+  "note": "A2, A3. В PRA-версии (2026-04-30) состояние исправлено на синглет.",
+  "pass": 2,
+  "full_text": true,
+  "pages": 19,
+  "source_read": "pdf+tex"
  },
  {
   "id": "FBS3R-W035",
@@ -802,7 +1260,11 @@
   ],
   "status": "HEURISTIC/PHYSICAL_MODEL",
   "lean": [],
-  "note": "Уравнение Уилера–ДеВитта и суперпространство не формализуемы; строгого вывода нет."
+  "note": "Уравнение Уилера–ДеВитта и суперпространство не формализуемы; строгого вывода нет.",
+  "pass": 2,
+  "full_text": true,
+  "pages": 23,
+  "source_read": "pdf+tex"
  },
  {
   "id": "FBS3R-W036",
@@ -843,7 +1305,22 @@
     "text": "Массовая щель в пределе бесконечного объёма (сформулирована как гипотеза).",
     "status": "OPEN",
     "lean": [],
-    "ref": "проблема тысячелетия (Клэй)"
+    "ref": "APEX-YM-1: щель сохраняется в пределе только при равномерной оценке Δ (APEX.YM.gap_of_limit), неравномерные щели теряются (APEX.YM.nonuniform_gap_lost). Внешние конструкции (YM_AUDIT) щель не утверждают.",
+    "apex": [
+     "APEX-YM-1"
+    ],
+    "pass2": "refined",
+    "pass2_reason": "Добавлены APEX-YM-1 и YM_AUDIT; статус OPEN сохраняется."
+   },
+   {
+    "text": "Аннотация: порог конечного объёма «является нижней оценкой» полной непертурбативной щели в бесконечном объёме.",
+    "status": "OPEN",
+    "lean": [],
+    "ref": "Не доказано и противоречит схеме предела: √3/R → 0 при R → ∞, а APEX.YM.nonuniform_gap_lost показывает, что семейство со щелями → 0 может сходиться к теории без щели. Кроме того, сам порог 3/R² опровергнут (A4).",
+    "apex": [
+     "APEX-YM-1"
+    ],
+    "pass2": "added"
    }
   ],
   "status": "DISPROVED",
@@ -852,7 +1329,11 @@
    "FBS3R.FibStrat.no_additively_closed_partition_with_ratio_gt_one",
    "FBS3R.FibStrat.fib_partition"
   ],
-  "note": "A2, A4. Lean доказывает только, что 3 не входит в спектры curl² = (k+2)²/R² и Стокса k(k+4)/R² того же архива; спектр векторного лапласиана на S³ не формализован. Массовая щель не доказана."
+  "note": "A2, A4. Lean доказывает только, что 3 не входит в спектры curl² = (k+2)²/R² и Стокса k(k+4)/R² того же архива; спектр векторного лапласиана на S³ не формализован. Массовая щель не доказана.",
+  "pass": 2,
+  "full_text": true,
+  "pages": 7,
+  "source_read": "pdf+tex"
  },
  {
   "id": "FBS3R-W037",
@@ -869,7 +1350,11 @@
   ],
   "status": "HEURISTIC/PHYSICAL_MODEL",
   "lean": [],
-  "note": "Философский/созерцательный текст; математических или физических теорем нет."
+  "note": "Философский/созерцательный текст; математических или физических теорем нет.",
+  "pass": 2,
+  "full_text": true,
+  "pages": 5,
+  "source_read": "pdf"
  },
  {
   "id": "FBS3R-W038",
@@ -906,7 +1391,11 @@
    "FBS3R.Checks.F_binet",
    "FBS3R.Checks.zero_mode_multiplicity"
   ],
-  "note": "A6: верно F_n = Fib(n+3) = (φ^{n+3} − ψ^{n+3})/√5; асимптотика ∝ φ^{n+3}/√5."
+  "note": "A6: верно F_n = Fib(n+3) = (φ^{n+3} − ψ^{n+3})/√5; асимптотика ∝ φ^{n+3}/√5.",
+  "pass": 2,
+  "full_text": true,
+  "pages": 5,
+  "source_read": "pdf+tex"
  },
  {
   "id": "FBS3R-W039",
@@ -943,7 +1432,11 @@
    "FBS3R.Selector.sagitta_formula",
    "FBS3R.Selector.sagitta_bounds"
   ],
-  "note": "Статистика наблюдений не формализуема."
+  "note": "Статистика наблюдений не формализуема.",
+  "pass": 2,
+  "full_text": true,
+  "pages": 12,
+  "source_read": "pdf+tex"
  },
  {
   "id": "FBS3R-W040",
@@ -965,7 +1458,11 @@
   ],
   "status": "KNOWN_RESULT",
   "lean": [],
-  "note": ""
+  "note": "",
+  "pass": 2,
+  "full_text": true,
+  "pages": 21,
+  "source_read": "pdf+tex"
  },
  {
   "id": "FBS3R-W041",
@@ -982,7 +1479,11 @@
   ],
   "status": "HEURISTIC/PHYSICAL_MODEL",
   "lean": [],
-  "note": "Тавтология; статья это признаёт."
+  "note": "Тавтология; статья это признаёт.",
+  "pass": 2,
+  "full_text": true,
+  "pages": 7,
+  "source_read": "pdf+tex"
  },
  {
   "id": "FBS3R-W042",
@@ -1017,7 +1518,11 @@
    "FBS3R.CausalSpectral.ball_volume",
    "FBS3R.Selector.fibonacci_minimal"
   ],
-  "note": "Статья сама позиционирует себя как феноменологию."
+  "note": "Статья сама позиционирует себя как феноменологию.",
+  "pass": 2,
+  "full_text": true,
+  "pages": 9,
+  "source_read": "pdf+tex"
  },
  {
   "id": "FBS3R-W043",
@@ -1028,11 +1533,14 @@
   "claims": [
    {
     "text": "E(a,b) = −a·b как вещественная часть замкнутой U(1)-голономии (телесный угол 2(π−θ)).",
-    "status": "KERNEL_PROVED",
-    "lean": [
-     "FBS3R.Bell.chern_rigidity"
+    "status": "KNOWN_RESULT",
+    "lean": [],
+    "ref": "геометрическая фаза = половина телесного угла (Берри/Ааронов–Анандан); тригонометрическое ядро — FBS3R.Bell.chern_rigidity (утверждение 2)",
+    "apex": [
+     "APEX-S3-3"
     ],
-    "ref": "фаза Берри = −½ телесного угла — стандартный факт, не формализован"
+    "pass2": "changed",
+    "pass2_reason": "Строгое правило KERNEL_PROVED: в Lean только тригонометрическое ядро cos(q(π−θ)) = −cos θ ⇔ q = ±1; вычисление голономии U(1) как телесного угла не формализовано."
    },
    {
     "text": "Жёсткость: целый заряд Черна воспроизводит ядро синглета при всех θ ⇔ q = ±1.",
@@ -1056,8 +1564,18 @@
     "status": "KERNEL_PROVED",
     "lean": [
      "FBS3R.Bell.hopf_S3_to_S2",
-     "FBS3R.Bell.hopf_fibre"
-    ]
+     "FBS3R.Bell.hopf_fibre",
+     "APEX.S3.Hopf.hopf_mapsTo",
+     "APEX.S3.Hopf.hopf_surjOn",
+     "APEX.S3.Hopf.hopf_eq_iff_exists_smul",
+     "APEX.S3.Hopf.hopf_fibres_disjoint",
+     "APEX.S3.Hopf.hopf_fibre_eq"
+    ],
+    "apex": [
+     "APEX-S3-3"
+    ],
+    "pass2": "refined",
+    "pass2_reason": "Добавлены теоремы APEX-S3-3 (сюръективность, слои ровно U(1)-орбиты, попарно не пересекаются)."
    }
   ],
   "status": "KERNEL_PROVED",
@@ -1068,9 +1586,18 @@
    "FBS3R.Bell.chsh_value_PRA",
    "FBS3R.Bell.no_LHV_reproduces_singlet",
    "FBS3R.Bell.hopf_S3_to_S2",
-   "FBS3R.Bell.hopf_fibre"
+   "FBS3R.Bell.hopf_fibre",
+   "APEX.S3.Hopf.hopf_mapsTo",
+   "APEX.S3.Hopf.hopf_surjOn",
+   "APEX.S3.Hopf.hopf_eq_iff_exists_smul",
+   "APEX.S3.Hopf.hopf_fibres_disjoint",
+   "APEX.S3.Hopf.hopf_fibre_eq"
   ],
-  "note": "Центральные утверждения покрыты (B25–B29). Модель не вводит скрытых параметров; новой физики нет."
+  "note": "Центральные утверждения покрыты (B25–B29). Модель не вводит скрытых параметров; новой физики нет.",
+  "pass": 2,
+  "full_text": true,
+  "pages": 7,
+  "source_read": "pdf+tex"
  },
  {
   "id": "FBS3R-W044",
@@ -1104,7 +1631,11 @@
    "FBS3R.Checks.design_factorization",
    "FBS3R.Checks.balance_penalty"
   ],
-  "note": "Квантовые операции в Lean не формализованы; ядро задано как матрица."
+  "note": "Квантовые операции в Lean не формализованы; ядро задано как матрица.",
+  "pass": 2,
+  "full_text": true,
+  "pages": 6,
+  "source_read": "pdf+tex"
  },
  {
   "id": "FBS3R-W045",
@@ -1126,7 +1657,11 @@
   ],
   "status": "NUMERICAL_EVIDENCE",
   "lean": [],
-  "note": "Численное совпадение масштабов; φ-лестница — бухгалтерская координата."
+  "note": "Численное совпадение масштабов; φ-лестница — бухгалтерская координата.",
+  "pass": 2,
+  "full_text": true,
+  "pages": 16,
+  "source_read": "pdf+tex"
  },
  {
   "id": "FBS3R-W046",
@@ -1173,7 +1708,11 @@
    "FBS3R.Planck.kretschmann_forms",
    "FBS3R.Planck.kretschmann_bound"
   ],
-  "note": "Частичное покрытие Lean (B45–B46). Самосопряжённость оператора Уилера–ДеВитта не формализована."
+  "note": "Частичное покрытие Lean (B45–B46). Самосопряжённость оператора Уилера–ДеВитта не формализована.",
+  "pass": 2,
+  "full_text": true,
+  "pages": 8,
+  "source_read": "pdf+tex"
  },
  {
   "id": "FBS3R-W047",
@@ -1214,7 +1753,11 @@
    "FBS3R.HopfCert.cycle_phase_gauge",
    "FBS3R.HopfCert.filtering_invariance"
   ],
-  "note": "Частичное покрытие Lean (B65)."
+  "note": "Частичное покрытие Lean (B65).",
+  "pass": 2,
+  "full_text": true,
+  "pages": 11,
+  "source_read": "pdf+tex"
  },
  {
   "id": "FBS3R-W048",
@@ -1254,7 +1797,11 @@
    "FBS3R.CosmoBench.closure_criterion",
    "FBS3R.CosmoBench.acceleration_boundary"
   ],
-  "note": "Частичное покрытие Lean (B59–B60); тензорная часть не формализована."
+  "note": "Частичное покрытие Lean (B59–B60); тензорная часть не формализована.",
+  "pass": 2,
+  "full_text": true,
+  "pages": 13,
+  "source_read": "pdf+tex"
  },
  {
   "id": "FBS3R-W049",
@@ -1309,7 +1856,11 @@
    "FBS3R.CosmoBench.exp_family_sum",
    "FBS3R.CosmoBench.paper_exp_variance_wrong"
   ],
-  "note": "A7 находится только в файле *_supplement.tex (в PDF основной статьи этого следствия нет). Позитивность Шёнберга не формализована."
+  "note": "A7 находится только в файле *_supplement.tex (в PDF основной статьи этого следствия нет). Позитивность Шёнберга не формализована.",
+  "pass": 2,
+  "full_text": true,
+  "pages": 8,
+  "source_read": "pdf+tex"
  },
  {
   "id": "FBS3R-W050",
@@ -1348,7 +1899,11 @@
    "FBS3R.CosmoBench.closure_criterion",
    "FBS3R.CosmoBench.acceleration_boundary"
   ],
-  "note": "Частичное покрытие Lean; топологические сектора S³/Γ не формализованы."
+  "note": "Частичное покрытие Lean; топологические сектора S³/Γ не формализованы.",
+  "pass": 2,
+  "full_text": true,
+  "pages": 10,
+  "source_read": "pdf+tex"
  },
  {
   "id": "FBS3R-W051",
@@ -1391,7 +1946,11 @@
    "FBS3R.CosmoBench.residual_convention",
    "FBS3R.CosmoBench.closure_criterion"
   ],
-  "note": "Центральный критерий покрыт на однородном скалярном уровне; тензорная редукция не формализована."
+  "note": "Центральный критерий покрыт на однородном скалярном уровне; тензорная редукция не формализована.",
+  "pass": 2,
+  "full_text": true,
+  "pages": 6,
+  "source_read": "pdf+tex"
  },
  {
   "id": "FBS3R-W052",
@@ -1418,7 +1977,11 @@
   ],
   "status": "HEURISTIC/PHYSICAL_MODEL",
   "lean": [],
-  "note": "Нужна лоренцева геометрия многообразий (нет в Mathlib)."
+  "note": "Нужна лоренцева геометрия многообразий (нет в Mathlib).",
+  "pass": 2,
+  "full_text": true,
+  "pages": 22,
+  "source_read": "pdf+tex"
  },
  {
   "id": "FBS3R-W053",
@@ -1444,7 +2007,11 @@
   "lean": [
    "FBS3R.CosmoBench.closure_criterion"
   ],
-  "note": "Единственная теорема статьи требует теории возмущений на S³/Γ; не формализована."
+  "note": "Единственная теорема статьи требует теории возмущений на S³/Γ; не формализована.",
+  "pass": 2,
+  "full_text": true,
+  "pages": 10,
+  "source_read": "pdf+tex"
  },
  {
   "id": "FBS3R-W054",
@@ -1483,7 +2050,11 @@
    "FBS3R.CosmoBench.closure_criterion",
    "FBS3R.CosmoBench.residual_convention"
   ],
-  "note": "Центральный критерий покрыт (B58–B59); остальные теоремы не формализованы."
+  "note": "Центральный критерий покрыт (B58–B59); остальные теоремы не формализованы.",
+  "pass": 2,
+  "full_text": true,
+  "pages": 7,
+  "source_read": "pdf+tex"
  },
  {
   "id": "FBS3R-W055",
@@ -1524,7 +2095,11 @@
    "FBS3R.CosmoBench.residual_unique",
    "FBS3R.CosmoBench.residual_convention"
   ],
-  "note": "Центральная нормальная форма покрыта; протокол аудита — методология."
+  "note": "Центральная нормальная форма покрыта; протокол аудита — методология.",
+  "pass": 2,
+  "full_text": true,
+  "pages": 16,
+  "source_read": "pdf+tex"
  },
  {
   "id": "FBS3R-W056",
@@ -1541,7 +2116,11 @@
   ],
   "status": "HEURISTIC/PHYSICAL_MODEL",
   "lean": [],
-  "note": "Философский/созерцательный текст; математических или физических теорем нет."
+  "note": "Философский/созерцательный текст; математических или физических теорем нет.",
+  "pass": 2,
+  "full_text": true,
+  "pages": 70,
+  "source_read": "pdf+tex"
  },
  {
   "id": "FBS3R-W057",
@@ -1564,7 +2143,11 @@
   ],
   "status": "HEURISTIC/PHYSICAL_MODEL",
   "lean": [],
-  "note": ""
+  "note": "",
+  "pass": 2,
+  "full_text": true,
+  "pages": 31,
+  "source_read": "pdf+tex"
  },
  {
   "id": "FBS3R-W058",
@@ -1596,7 +2179,11 @@
   "lean": [
    "FBS3R.Checks.rm_sq_fibre_collapse"
   ],
-  "note": "Потоков Риччи в Mathlib нет."
+  "note": "Потоков Риччи в Mathlib нет.",
+  "pass": 2,
+  "full_text": true,
+  "pages": 17,
+  "source_read": "pdf+tex"
  },
  {
   "id": "FBS3R-W059",
@@ -1636,7 +2223,11 @@
    "FBS3R.Checks.rm_sq_fibre_collapse",
    "FBS3R.Checks.ratio_ode"
   ],
-  "note": "Центральная теорема о потоке не формализована (потоков Риччи в Mathlib нет)."
+  "note": "Центральная теорема о потоке не формализована (потоков Риччи в Mathlib нет).",
+  "pass": 2,
+  "full_text": true,
+  "pages": 7,
+  "source_read": "pdf+tex"
  },
  {
   "id": "FBS3R-W060",
@@ -1662,13 +2253,27 @@
     "text": "Связь атрибутированного стирания с принципом Ландауэра; граница причинной интеграции.",
     "status": "HEURISTIC/PHYSICAL_MODEL",
     "lean": []
+   },
+   {
+    "text": "Thm 5.2: спектр скалярного лапласиана S³_R — n(n+2)/R² с кратностями (n+1)².",
+    "status": "KNOWN_RESULT",
+    "lean": [],
+    "ref": "APEX-S3-2 доказывает, что гармонические многочлены степени n дают собственные значения −n(n+2)/R², и dim H_n = (n+1)²; полнота спектра не формализована",
+    "apex": [
+     "APEX-S3-2"
+    ],
+    "pass2": "added"
    }
   ],
   "status": "KNOWN_RESULT",
   "lean": [
    "FBS3R.CausalSpectral.scalar_count"
   ],
-  "note": "Гомологии и надстройки в Lean не формализованы."
+  "note": "Гомологии и надстройки в Lean не формализованы.",
+  "pass": 2,
+  "full_text": true,
+  "pages": 11,
+  "source_read": "pdf+tex"
  },
  {
   "id": "FBS3R-W061",
@@ -1687,8 +2292,18 @@
     "status": "KERNEL_PROVED",
     "lean": [
      "FBS3R.Bell.hopf_S3_to_S2",
-     "FBS3R.Bell.hopf_fibre"
-    ]
+     "FBS3R.Bell.hopf_fibre",
+     "APEX.S3.Hopf.hopf_mapsTo",
+     "APEX.S3.Hopf.hopf_surjOn",
+     "APEX.S3.Hopf.hopf_eq_iff_exists_smul",
+     "APEX.S3.Hopf.hopf_fibres_disjoint",
+     "APEX.S3.Hopf.hopf_fibre_eq"
+    ],
+    "apex": [
+     "APEX-S3-3"
+    ],
+    "pass2": "refined",
+    "pass2_reason": "Добавлены теоремы APEX-S3-3."
    },
    {
     "text": "Отбор золотого сечения; монотонная энтропия иерархии.",
@@ -1699,14 +2314,60 @@
     "text": "Гипотеза эффективной невозвратности открытой иерархии.",
     "status": "OPEN",
     "lean": []
+   },
+   {
+    "text": "S³ ≅ SU(2) как группы Ли (единичные кватернионы).",
+    "status": "KERNEL_PROVED",
+    "lean": [
+     "APEX.S3.Hopf.unitEquivSU2",
+     "APEX.S3.Hopf.unitToSU2_injective",
+     "APEX.S3.Hopf.unitToSU2_surjective",
+     "APEX.S3.Hopf.toMat_mem_SU2",
+     "APEX.S3.Hopf.det_toMat"
+    ],
+    "apex": [
+     "APEX-S3-3"
+    ],
+    "pass2": "added"
+   },
+   {
+    "text": "Prop. 6.1: S³ не является произведением S² × S¹ как главное U(1)-расслоение (c₁ = 1).",
+    "status": "KNOWN_RESULT",
+    "lean": [],
+    "ref": "нетривиальность расслоения Хопфа; в APEX-S3-3 зацепление/c₁ явно не формализованы",
+    "apex": [
+     "APEX-S3-3"
+    ],
+    "pass2": "added"
+   },
+   {
+    "text": "Thm 5.1: аксиомы R_{n+1} = αR_n и R_{n+1} = R_n + R_{n−1} дают α = φ.",
+    "status": "KNOWN_RESULT",
+    "lean": [],
+    "ref": "α² = α + 1, α > 1",
+    "pass2": "added"
    }
   ],
   "status": "KNOWN_RESULT",
   "lean": [
    "FBS3R.Bell.hopf_S3_to_S2",
-   "FBS3R.Bell.hopf_fibre"
+   "FBS3R.Bell.hopf_fibre",
+   "APEX.S3.Hopf.hopf_mapsTo",
+   "APEX.S3.Hopf.hopf_surjOn",
+   "APEX.S3.Hopf.hopf_eq_iff_exists_smul",
+   "APEX.S3.Hopf.hopf_fibres_disjoint",
+   "APEX.S3.Hopf.hopf_fibre_eq",
+   "APEX.S3.Hopf.unitEquivSU2",
+   "APEX.S3.Hopf.unitToSU2_injective",
+   "APEX.S3.Hopf.unitToSU2_surjective",
+   "APEX.S3.Hopf.toMat_mem_SU2",
+   "APEX.S3.Hopf.det_toMat"
   ],
-  "note": ""
+  "note": "",
+  "pass": 2,
+  "full_text": true,
+  "pages": 16,
+  "source_read": "pdf+tex"
  },
  {
   "id": "FBS3R-W062",
@@ -1729,7 +2390,11 @@
   ],
   "status": "HEURISTIC/PHYSICAL_MODEL",
   "lean": [],
-  "note": ""
+  "note": "",
+  "pass": 2,
+  "full_text": true,
+  "pages": 7,
+  "source_read": "pdf+tex"
  },
  {
   "id": "FBS3R-W063",
@@ -1773,7 +2438,11 @@
    "FBS3R.CausalSpectral.dirac_count",
    "FBS3R.CausalSpectral.ball_volume"
   ],
-  "note": "Теории Фрейденталя в Mathlib нет."
+  "note": "Теории Фрейденталя в Mathlib нет. Второй проход: кратности спектра S³ частично подкреплены APEX-S3-2 (собственные функции и dim H_n), полнота спектра не формализована.",
+  "pass": 2,
+  "full_text": true,
+  "pages": 23,
+  "source_read": "pdf+tex"
  },
  {
   "id": "FBS3R-W064",
@@ -1824,7 +2493,11 @@
    "FBS3R.Barriers.ricci_bound_attained",
    "FBS3R.Barriers.paper_constant_weaker"
   ],
-  "note": "Частичное покрытие (B47–B49). Уточнение: Ric ≥ −√(K₀/2)."
+  "note": "Частичное покрытие (B47–B49). Уточнение: Ric ≥ −√(K₀/2).",
+  "pass": 2,
+  "full_text": true,
+  "pages": 28,
+  "source_read": "pdf+tex"
  },
  {
   "id": "FBS3R-W065",
@@ -1841,7 +2514,11 @@
   ],
   "status": "HEURISTIC/PHYSICAL_MODEL",
   "lean": [],
-  "note": "Концептуальная статья (docx/pdf)."
+  "note": "Концептуальная статья (docx/pdf).",
+  "pass": 2,
+  "full_text": true,
+  "pages": 7,
+  "source_read": "pdf"
  },
  {
   "id": "FBS3R-W066",
@@ -1874,6 +2551,29 @@
     "text": "Гравитационный селектор Σ_grav как сжатие причинной различимости до допустимой.",
     "status": "HEURISTIC/PHYSICAL_MODEL",
     "lean": []
+   },
+   {
+    "text": "Prop. 13.1: порог конечного объёма Δ_R = α/R стремится к 0 при R → ∞ и сам по себе не даёт положительной щели в бесконечном объёме.",
+    "status": "KERNEL_PROVED",
+    "lean": [
+     "APEX.YM.nonuniform_gap_lost",
+     "APEX.YM.fixed_gaps_not_uniform"
+    ],
+    "ref": "модельный пример Lean: спектральные меры δ_{1/(k+1)} со щелью 1/(k+1) сходятся к δ₀ без щели и без экспоненциального убывания",
+    "apex": [
+     "APEX-YM-1"
+    ],
+    "pass2": "added"
+   },
+   {
+    "text": "Приложение-«скелет» нелокальной гравитации e^{−s□} с пропагатором e^{−sp²}P⁽²⁾/(−p²), названный «ghost-free».",
+    "status": "HEURISTIC/PHYSICAL_MODEL",
+    "lean": [],
+    "ref": "статья сама не использует его в доказательствах; положительного спектрального представления нет (APEX-SPC-4)",
+    "apex": [
+     "APEX-SPC-4"
+    ],
+    "pass2": "added"
    }
   ],
   "status": "HEURISTIC/PHYSICAL_MODEL",
@@ -1884,9 +2584,15 @@
    "FBS3R.CausalSpectral.TT_count",
    "FBS3R.CausalSpectral.dirac_count",
    "FBS3R.Selector.sagitta_formula",
-   "FBS3R.Selector.sagitta_bounds"
+   "FBS3R.Selector.sagitta_bounds",
+   "APEX.YM.nonuniform_gap_lost",
+   "APEX.YM.fixed_gaps_not_uniform"
   ],
-  "note": "Частичное покрытие; утверждения о Перельмане, гомологиях и интегралах на S³ не формализованы."
+  "note": "Частичное покрытие; утверждения о Перельмане, гомологиях и интегралах на S³ не формализованы.",
+  "pass": 2,
+  "full_text": true,
+  "pages": 25,
+  "source_read": "pdf+tex"
  },
  {
   "id": "FBS3R-W067",
@@ -1903,7 +2609,11 @@
   ],
   "status": "HEURISTIC/PHYSICAL_MODEL",
   "lean": [],
-  "note": "Не исследовательская статья, а план."
+  "note": "Не исследовательская статья, а план.",
+  "pass": 2,
+  "full_text": true,
+  "pages": 5,
+  "source_read": "pdf"
  },
  {
   "id": "FBS3R-W068",
@@ -1937,6 +2647,29 @@
     "text": "Физические потолки (калибровка, энтропия, устойчивость) сжимают ёмкость до допустимой; селектор ∈ [0,1].",
     "status": "HEURISTIC/PHYSICAL_MODEL",
     "lean": []
+   },
+   {
+    "text": "Prop. 27.1: порог конечного объёма Δ_R = α/R стремится к 0 при R → ∞ и сам по себе не даёт положительной щели в бесконечном объёме.",
+    "status": "KERNEL_PROVED",
+    "lean": [
+     "APEX.YM.nonuniform_gap_lost",
+     "APEX.YM.fixed_gaps_not_uniform"
+    ],
+    "ref": "модельный пример Lean: спектральные меры δ_{1/(k+1)} со щелью 1/(k+1) сходятся к δ₀ без щели и без экспоненциального убывания",
+    "apex": [
+     "APEX-YM-1"
+    ],
+    "pass2": "added"
+   },
+   {
+    "text": "Приложение-«скелет» нелокальной гравитации e^{−s□} с пропагатором e^{−sp²}P⁽²⁾/(−p²), названный «ghost-free».",
+    "status": "HEURISTIC/PHYSICAL_MODEL",
+    "lean": [],
+    "ref": "статья сама не использует его в доказательствах; положительного спектрального представления нет (APEX-SPC-4)",
+    "apex": [
+     "APEX-SPC-4"
+    ],
+    "pass2": "added"
    }
   ],
   "status": "HEURISTIC/PHYSICAL_MODEL",
@@ -1949,9 +2682,15 @@
    "FBS3R.CausalSpectral.scalar_cutoff",
    "FBS3R.CausalSpectral.scalar_count",
    "FBS3R.CausalSpectral.TT_count",
-   "FBS3R.CausalSpectral.dirac_count"
+   "FBS3R.CausalSpectral.dirac_count",
+   "APEX.YM.nonuniform_gap_lost",
+   "APEX.YM.fixed_gaps_not_uniform"
   ],
-  "note": "Замкнутые формулы доказаны; спектральные теоремы на S³ и физический селектор — нет."
+  "note": "Замкнутые формулы доказаны; спектральные теоремы на S³ и физический селектор — нет. Второй проход: кратности спектра S³ частично подкреплены APEX-S3-2 (собственные функции и dim H_n), полнота спектра не формализована.",
+  "pass": 2,
+  "full_text": true,
+  "pages": 63,
+  "source_read": "pdf+tex"
  },
  {
   "id": "FBS3R-W069",
@@ -1973,7 +2712,11 @@
   ],
   "status": "HEURISTIC/PHYSICAL_MODEL",
   "lean": [],
-  "note": "Исходник только docx/pdf."
+  "note": "Исходник только docx/pdf.",
+  "pass": 2,
+  "full_text": true,
+  "pages": 7,
+  "source_read": "pdf"
  },
  {
   "id": "FBS3R-W070",
@@ -1990,7 +2733,11 @@
   ],
   "status": "HEURISTIC/PHYSICAL_MODEL",
   "lean": [],
-  "note": "Рабочее эссе."
+  "note": "Рабочее эссе.",
+  "pass": 2,
+  "full_text": true,
+  "pages": 33,
+  "source_read": "pdf"
  },
  {
   "id": "FBS3R-W071",
@@ -2007,7 +2754,11 @@
   ],
   "status": "HEURISTIC/PHYSICAL_MODEL",
   "lean": [],
-  "note": "Методологическая рамка."
+  "note": "Методологическая рамка.",
+  "pass": 2,
+  "full_text": true,
+  "pages": 12,
+  "source_read": "pdf"
  },
  {
   "id": "FBS3R-W072",
@@ -2056,6 +2807,34 @@
     "text": "Тёмная энергия как валюация (VDE).",
     "status": "HEURISTIC/PHYSICAL_MODEL",
     "lean": []
+   },
+   {
+    "text": "Thm 38: H_r = [D^{i+j}ε]_{i,j≤r} ⪰ 0 для положительной смеси; при k активных ветвях rank H_r = k для r ≥ k − 1.",
+    "status": "KERNEL_PROVED",
+    "lean": [
+     "FBS3R.Moments.hankel_psd",
+     "APEX.Spectral.hankel_eq_vand",
+     "APEX.Spectral.rank_hankel"
+    ],
+    "ref": "случай r + 1 < k (rank = r + 1) не формализован",
+    "apex": [
+     "APEX-SPC-3"
+    ],
+    "pass2": "added"
+   },
+   {
+    "text": "Thm 31: K(x) = ln Z(x), K′ = E_π[s], K″ = Var_π(s) ≥ 0 (первые два кумулянта).",
+    "status": "KERNEL_PROVED",
+    "lean": [
+     "APEX.Spectral.hasDerivAt_log_eps_exp",
+     "APEX.Spectral.hasDerivAt_deriv_log_eps_exp",
+     "APEX.Spectral.log_mgf_eq"
+    ],
+    "ref": "высшие кумулянты и оценка диаметра — KNOWN_RESULT, не формализованы",
+    "apex": [
+     "APEX-SPC-2"
+    ],
+    "pass2": "added"
    }
   ],
   "status": "KNOWN_RESULT",
@@ -2070,9 +2849,18 @@
    "FBS3R.Valuation.mixture_variance_nonneg",
    "FBS3R.Valuation.two_branch_moments",
    "FBS3R.Valuation.lambda_X_flow",
-   "FBS3R.Valuation.cpl_tangent"
+   "FBS3R.Valuation.cpl_tangent",
+   "APEX.Spectral.hankel_eq_vand",
+   "APEX.Spectral.rank_hankel",
+   "APEX.Spectral.hasDerivAt_log_eps_exp",
+   "APEX.Spectral.hasDerivAt_deriv_log_eps_exp",
+   "APEX.Spectral.log_mgf_eq"
   ],
-  "note": "Частичное покрытие (B41, B51, B53, B56, B57); классификация Хадвигера не формализована."
+  "note": "Частичное покрытие (B41, B51, B53, B56, B57); классификация Хадвигера не формализована.",
+  "pass": 2,
+  "full_text": true,
+  "pages": 81,
+  "source_read": "pdf+tex"
  },
  {
   "id": "FBS3R-W073",
@@ -2117,7 +2905,11 @@
    "FBS3R.Valuation.mixture_flow",
    "FBS3R.Valuation.mixture_variance_nonneg"
   ],
-  "note": "Теорема Хадвигера не формализована."
+  "note": "Теорема Хадвигера не формализована.",
+  "pass": 2,
+  "full_text": true,
+  "pages": 40,
+  "source_read": "pdf+tex"
  },
  {
   "id": "FBS3R-W074",
@@ -2161,7 +2953,25 @@
    "FBS3R.Checks.vacuum_kernel",
    "FBS3R.Valuation.mixture_flow"
   ],
-  "note": ""
+  "note": "Второй проход: N_∂0 = 3π/(Λ₀ℓ_P²) ≈ 3.31·10¹²² вычислено из наблюдаемого Λ₀ = 1.091·10⁻⁵² м⁻²; это переобозначение, а не вывод.",
+  "q_star_inputs": [
+   {
+    "input": "Λ_obs (Planck 2018) и ℓ_P (CODATA)",
+    "value": "q_obs = 3π/(Λ_obs ℓ_P²) = 3.3072·10¹²²",
+    "origin": "наблюдение",
+    "comment": "единственный размерный вход; из него получены все «теоремные» числа"
+   },
+   {
+    "input": "постулат ёмкости горизонта",
+    "value": "Λ = 3π/(ℓ_P² q), q = N_∂",
+    "origin": "постулат (выбран)",
+    "comment": "Hypothesis V.1/VI.1/VII.1; сама статья: «does not by itself compute N_∂»"
+   }
+  ],
+  "pass": 2,
+  "full_text": true,
+  "pages": 16,
+  "source_read": "pdf+tex"
  },
  {
   "id": "FBS3R-W075",
@@ -2195,6 +3005,58 @@
     "text": "«Выполненные» нуль-тесты замыкания гравитации.",
     "status": "NUMERICAL_EVIDENCE",
     "lean": []
+   },
+   {
+    "text": "Thm V.4: Ганкелева положительность H_r ⪰ 0 и rank H_r = k при r + 1 ≥ k.",
+    "status": "KERNEL_PROVED",
+    "lean": [
+     "FBS3R.Moments.hankel_psd",
+     "APEX.Spectral.hankel_eq_vand",
+     "APEX.Spectral.rank_hankel"
+    ],
+    "ref": "случай r + 1 < k не формализован",
+    "apex": [
+     "APEX-SPC-3"
+    ],
+    "pass2": "added"
+   },
+   {
+    "text": "Thm VI.1: det H₀ = Δ(s)² ∏ C_jA^{s_j} ≠ 0 (H₀ = VWVᵀ).",
+    "status": "KERNEL_PROVED",
+    "lean": [
+     "APEX.Spectral.hankel_eq_vand",
+     "APEX.Spectral.det_hankel",
+     "APEX.Spectral.det_hankel_ne_zero"
+    ],
+    "apex": [
+     "APEX-SPC-3"
+    ],
+    "pass2": "added"
+   },
+   {
+    "text": "Thm VI.1 (продолжение): обобщённые собственные значения пучка (H₁, H₀) равны активным весам s_j.",
+    "status": "KNOWN_RESULT",
+    "lean": [],
+    "ref": "метод матричного пучка; в APEX-SPC-3 есть многочлен Прони и единственность узлов, но не формулировка через пучок",
+    "apex": [
+     "APEX-SPC-3"
+    ],
+    "pass2": "added"
+   },
+   {
+    "text": "Thm VI.3: κ_n = Dⁿ ln ε — кумулянты π_s; κ₁ = E[s], κ₂ = Var(s).",
+    "status": "KERNEL_PROVED",
+    "lean": [
+     "APEX.Spectral.hasDerivAt_log_eps_exp",
+     "APEX.Spectral.hasDerivAt_deriv_log_eps_exp",
+     "APEX.Spectral.log_mgf_eq"
+    ],
+    "ref": "κ₁, κ₂ — точное совпадение (SPC-2); общий κ_n и замыкание через многочлены Белла B₅ + 5B₄ + 5B₃ − 5B₂ − 6B₁ = 0 следуют из формального тождества egf(m) = exp(egf(κ)) (SPC-3), аналитическая связь Dⁿ ln ε = κ_n при n ≥ 3 не формализована",
+    "apex": [
+     "APEX-SPC-2",
+     "APEX-SPC-3"
+    ],
+    "pass2": "added"
    }
   ],
   "status": "KNOWN_RESULT",
@@ -2202,9 +3064,21 @@
    "FBS3R.Checks.work_identity",
    "FBS3R.Checks.dilation_eigen",
    "FBS3R.Checks.P_val_roots",
-   "FBS3R.Checks.valuation_density"
+   "FBS3R.Checks.valuation_density",
+   "FBS3R.Moments.hankel_psd",
+   "APEX.Spectral.hankel_eq_vand",
+   "APEX.Spectral.rank_hankel",
+   "APEX.Spectral.det_hankel",
+   "APEX.Spectral.det_hankel_ne_zero",
+   "APEX.Spectral.hasDerivAt_log_eps_exp",
+   "APEX.Spectral.hasDerivAt_deriv_log_eps_exp",
+   "APEX.Spectral.log_mgf_eq"
   ],
-  "note": "Версия с «Homogeneous Gravity Closure»."
+  "note": "Версия с «Homogeneous Gravity Closure».",
+  "pass": 2,
+  "full_text": true,
+  "pages": 55,
+  "source_read": "pdf+tex"
  },
  {
   "id": "FBS3R-W076",
@@ -2237,15 +3111,79 @@
     "text": "«Выполненные» однородные нуль-тесты.",
     "status": "NUMERICAL_EVIDENCE",
     "lean": []
+   },
+   {
+    "text": "Thm V.4: Ганкелева положительность H_r ⪰ 0 и rank H_r = k при r + 1 ≥ k.",
+    "status": "KERNEL_PROVED",
+    "lean": [
+     "FBS3R.Moments.hankel_psd",
+     "APEX.Spectral.hankel_eq_vand",
+     "APEX.Spectral.rank_hankel"
+    ],
+    "ref": "случай r + 1 < k не формализован",
+    "apex": [
+     "APEX-SPC-3"
+    ],
+    "pass2": "added"
+   },
+   {
+    "text": "Thm VI.1: det H₀ = Δ(s)² ∏ C_jA^{s_j} ≠ 0 (H₀ = VWVᵀ).",
+    "status": "KERNEL_PROVED",
+    "lean": [
+     "APEX.Spectral.hankel_eq_vand",
+     "APEX.Spectral.det_hankel",
+     "APEX.Spectral.det_hankel_ne_zero"
+    ],
+    "apex": [
+     "APEX-SPC-3"
+    ],
+    "pass2": "added"
+   },
+   {
+    "text": "Thm VI.1 (продолжение): обобщённые собственные значения пучка (H₁, H₀) равны активным весам s_j.",
+    "status": "KNOWN_RESULT",
+    "lean": [],
+    "ref": "метод матричного пучка; в APEX-SPC-3 есть многочлен Прони и единственность узлов, но не формулировка через пучок",
+    "apex": [
+     "APEX-SPC-3"
+    ],
+    "pass2": "added"
+   },
+   {
+    "text": "Thm VI.3: κ_n = Dⁿ ln ε — кумулянты π_s; κ₁ = E[s], κ₂ = Var(s).",
+    "status": "KERNEL_PROVED",
+    "lean": [
+     "APEX.Spectral.hasDerivAt_log_eps_exp",
+     "APEX.Spectral.hasDerivAt_deriv_log_eps_exp",
+     "APEX.Spectral.log_mgf_eq"
+    ],
+    "ref": "κ₁, κ₂ — точное совпадение (SPC-2); общий κ_n и замыкание через многочлены Белла B₅ + 5B₄ + 5B₃ − 5B₂ − 6B₁ = 0 следуют из формального тождества egf(m) = exp(egf(κ)) (SPC-3), аналитическая связь Dⁿ ln ε = κ_n при n ≥ 3 не формализована",
+    "apex": [
+     "APEX-SPC-2",
+     "APEX-SPC-3"
+    ],
+    "pass2": "added"
    }
   ],
   "status": "KNOWN_RESULT",
   "lean": [
    "FBS3R.Checks.work_identity",
    "FBS3R.Checks.dilation_eigen",
-   "FBS3R.Checks.P_val_roots"
+   "FBS3R.Checks.P_val_roots",
+   "FBS3R.Moments.hankel_psd",
+   "APEX.Spectral.hankel_eq_vand",
+   "APEX.Spectral.rank_hankel",
+   "APEX.Spectral.det_hankel",
+   "APEX.Spectral.det_hankel_ne_zero",
+   "APEX.Spectral.hasDerivAt_log_eps_exp",
+   "APEX.Spectral.hasDerivAt_deriv_log_eps_exp",
+   "APEX.Spectral.log_mgf_eq"
   ],
-  "note": "Вторая версия той же работы (без раздела гравитационного замыкания)."
+  "note": "Вторая версия той же работы (без раздела гравитационного замыкания).",
+  "pass": 2,
+  "full_text": true,
+  "pages": 31,
+  "source_read": "pdf+tex"
  },
  {
   "id": "FBS3R-W077",
@@ -2277,6 +3215,19 @@
     "text": "Отбор граничного сектора как механизм для Λ.",
     "status": "HEURISTIC/PHYSICAL_MODEL",
     "lean": []
+   },
+   {
+    "text": "Аннотация: при трёх «воротах» (N_φ = 292, b g_∂² = 0.559754586…, Ξ_edge ≃ 0.99916928) Γ_∂(q) имеет единственный устойчивый минимум q⋆ = 3.307251460713979·10¹²², откуда Λ⋆ = 3π/(ℓ_P² q_phys).",
+    "status": "NUMERICAL_EVIDENCE",
+    "lean": [],
+    "ref": "все три «ворот» получены из Λ_obs или заданы (см. q_star_inputs); минимум равен вставленному центру q⋆; предсказания Λ нет",
+    "pass2": "added"
+   },
+   {
+    "text": "No-go XIX.1: топология и индекс квантуют ёмкость, но не выбирают её наблюдаемое значение.",
+    "status": "HEURISTIC/PHYSICAL_MODEL",
+    "lean": [],
+    "pass2": "added"
    }
   ],
   "status": "HEURISTIC/PHYSICAL_MODEL",
@@ -2284,7 +3235,73 @@
    "FBS3R.Checks.vacuum_kernel",
    "FBS3R.Valuation.mixture_flow"
   ],
-  "note": "Теорема об индексе и η-инварианты не формализуемы в Mathlib."
+  "note": "Теорема об индексе и η-инварианты не формализуемы в Mathlib.",
+  "q_star_inputs": [
+   {
+    "input": "Λ_obs (Planck 2018) и ℓ_P (CODATA)",
+    "value": "q_obs = 3π/(Λ_obs ℓ_P²) = 3.3072·10¹²²",
+    "origin": "наблюдение",
+    "comment": "единственный размерный вход; из него получены все «теоремные» числа"
+   },
+   {
+    "input": "постулат ёмкости горизонта",
+    "value": "Λ = 3π/(ℓ_P² q), q = N_∂",
+    "origin": "постулат (выбран)",
+    "comment": "Hypothesis V.1/VI.1/VII.1; сама статья: «does not by itself compute N_∂»"
+   },
+   {
+    "input": "координата лестницы",
+    "value": "n_∂(q) = log_φ √(q/π), q_φ(N) = πφ^{2N}",
+    "origin": "определение (выбрано)",
+    "comment": "выбор основания φ, множителя π и корня"
+   },
+   {
+    "input": "N_φ = 292",
+    "value": "round n_∂(q_obs) = round 291.936672",
+    "origin": "подгонка к Λ_obs (округление)",
+    "comment": "Prop. XXI.1/XX.1: N = round n_∂(q_obs); ≈ log_φ(R_H/ℓ_P) ≈ 291.5. Утверждения «not an arbitrary number» и «Hopf–Bradlow–APS–HC recursion gate» не подкреплены вычислением; ν_Fib = 2N_φ введено по определению"
+   },
+   {
+    "input": "584",
+    "value": "2·292",
+    "origin": "производное (определение q_φ)",
+    "comment": "не независимый вход"
+   },
+   {
+    "input": "d_val = 5",
+    "value": "число корней P_val(z) = (z−1)z(z+1)(z+2)(z+3)",
+    "origin": "выведено",
+    "comment": "верный математический факт (FBS3R.Checks.P_val_roots), но его вхождение в q₀ задаётся выбранной формулой Θ_FV"
+   },
+   {
+    "input": "1 + π/50",
+    "value": "1 + π/(2d²) при d = 5; ε_φ = q_φ(292)/q_obs − 1 = 0.0628440, ε_φ − π/50 = 1.22·10⁻⁵",
+    "origin": "выбрано post hoc",
+    "comment": "§XXI–XXII той же статьи: «registry coincidence», «closeness is not an invariant derivation» (рис. 7; тот же приём в §XXXIII: ln φ + π/40 приближает b g_∂² с относительной ошибкой 8·10⁻⁶); в §LIII та же величина подана как «finite valuation phase defect» Θ_FV(d) = ln(1 + π/(2d²)) без вывода"
+   },
+   {
+    "input": "Ξ_edge = 0.99916928",
+    "value": "exp(Δ_edge), Δ_edge = −0.000831065239070442",
+    "origin": "заявлено без вычисления",
+    "comment": "«evaluated finite part … APS/HC/KL» — вычисления в тексте нет; на q₀ не влияет"
+   },
+   {
+    "input": "b g_∂² = 0.5597545859987624455",
+    "value": "16π²/ln(q₀/Ξ_edge)",
+    "origin": "обратно вычислено из q₀",
+    "comment": "проверено: 16π²/ln(q₀/Ξ) совпадает до 16 знаков, тождество q_edge = q₀ тавтологично; в §XXXIII та же величина определена как 16π²/ln q_obs (цель подгонки)"
+   },
+   {
+    "input": "q⋆ / q_edge = q₀ = πφ⁵⁸⁴/(1 + π/50) = 3.307251460713979·10¹²²",
+    "value": "минимум Γ_∂(q) = q[ln(q/q₀) − 1] + ½ln q + …",
+    "origin": "вставлено в функционал",
+    "comment": "минимум q[ln(q/q₀) − 1] при q = q₀ — элементарно; «отбор» возвращает вставленный центр (ср. Prop. LIV.1 «Inserted-centre obstruction» той же статьи)"
+   }
+  ],
+  "pass": 2,
+  "full_text": true,
+  "pages": 69,
+  "source_read": "pdf+tex"
  },
  {
   "id": "FBS3R-W078",
@@ -2304,19 +3321,121 @@
     "text": "q₀ = πφ⁵⁸⁴/(1+π/50) ≈ 3.307·10¹²², Λ = 3π/(ℓ_P²q₀) ≈ 1.09·10⁻⁵² м⁻².",
     "status": "NUMERICAL_EVIDENCE",
     "lean": [],
-    "ref": "арифметика воспроизводится; N_φ = 292 и множитель 1+π/50 введены статьёй"
+    "ref": "292 = round n_∂(q_obs) получено из Λ_obs; 1 + π/50 подобрано к остатку ε_φ (сама статья в §XXI–XXII называет это совпадением); b g_∂² обратно вычислено из q₀; Ξ_edge не вычислено. Предсказания Λ нет.",
+    "pass2": "refined",
+    "pass2_reason": "Полный текст: все входы q₀ разобраны (поле q_star_inputs); статус NUMERICAL_EVIDENCE сохраняется, уточнено, что совпадение с q_obs получено подгонкой."
    },
    {
     "text": "Автономный граничный гамильтониан — кандидат на объяснение Λ.",
     "status": "HEURISTIC/PHYSICAL_MODEL",
     "lean": []
+   },
+   {
+    "text": "«Closed shell theorem»: N_φ = 292 — не произвольное число, а оболочка фибоначчиевой лестницы, воспроизводимая рекурсией Hopf–Bradlow–APS–Harish-Chandra.",
+    "status": "NUMERICAL_EVIDENCE",
+    "lean": [],
+    "ref": "по определению N_φ = round n_∂(q_obs); рекурсия, выдающая 292 без Λ_obs, в тексте не приведена",
+    "pass2": "added"
+   },
+   {
+    "text": "Thm LIV.1 «Terminal edge-gate computation»: Ξ_edge = 0.99916928 и b g_∂²(ℓ_P⁻¹) = 0.5597545859987624455 вычислены в схеме APS/HC/Kronecker, откуда q_edge = Ξ exp(16π²/(bg²)) = q₀.",
+    "status": "OPEN",
+    "lean": [],
+    "ref": "Ξ_edge задано числом без вычисления; b g_∂² = 16π²/ln(q₀/Ξ_edge) — тождество, проверено до 16 знаков; совпадение q_edge = q₀ тавтологично",
+    "pass2": "added"
+   },
+   {
+    "text": "Γ_∂(q) = q[ln(q/q_edge) − 1] − log Z_edge(q) имеет устойчивый минимум в оболочке N_φ = 292 при малых поправках.",
+    "status": "KNOWN_RESULT",
+    "lean": [],
+    "ref": "элементарный анализ: Γ′ = ln(q/q₀) + ν/q + … ⇒ q_min = q₀(1 − ν/q₀ + …); положение минимума задано вставленным q₀",
+    "pass2": "added"
+   },
+   {
+    "text": "Thm XXII.1: остаток φ-оболочки ε_φ = 0.062844029…, ε_φ − π/50 = 1.2176·10⁻⁵.",
+    "status": "NUMERICAL_EVIDENCE",
+    "lean": [],
+    "ref": "арифметика верна (проверено); статья сама квалифицирует это как «phase-defect clue, not a theorem»",
+    "pass2": "added"
+   },
+   {
+    "text": "No-go XXIII.1: селектор из конечного числа O(1)-коэффициентов и степеней q, ln q без экспоненциальной иерархии не даёт естественного изолированного минимума при q ~ 10¹²².",
+    "status": "OPEN",
+    "lean": [],
+    "pass2": "added"
    }
   ],
   "status": "HEURISTIC/PHYSICAL_MODEL",
   "lean": [
    "FBS3R.Checks.vacuum_kernel"
   ],
-  "note": "Значение Λ подобрано, а не выведено (MISSION_STATE, направление 24: OPEN)."
+  "note": "Значение Λ подобрано, а не выведено (MISSION_STATE, направление 24: OPEN).",
+  "q_star_inputs": [
+   {
+    "input": "Λ_obs (Planck 2018) и ℓ_P (CODATA)",
+    "value": "q_obs = 3π/(Λ_obs ℓ_P²) = 3.3072·10¹²²",
+    "origin": "наблюдение",
+    "comment": "единственный размерный вход; из него получены все «теоремные» числа"
+   },
+   {
+    "input": "постулат ёмкости горизонта",
+    "value": "Λ = 3π/(ℓ_P² q), q = N_∂",
+    "origin": "постулат (выбран)",
+    "comment": "Hypothesis V.1/VI.1/VII.1; сама статья: «does not by itself compute N_∂»"
+   },
+   {
+    "input": "координата лестницы",
+    "value": "n_∂(q) = log_φ √(q/π), q_φ(N) = πφ^{2N}",
+    "origin": "определение (выбрано)",
+    "comment": "выбор основания φ, множителя π и корня"
+   },
+   {
+    "input": "N_φ = 292",
+    "value": "round n_∂(q_obs) = round 291.936672",
+    "origin": "подгонка к Λ_obs (округление)",
+    "comment": "Prop. XXI.1/XX.1: N = round n_∂(q_obs); ≈ log_φ(R_H/ℓ_P) ≈ 291.5. Утверждения «not an arbitrary number» и «Hopf–Bradlow–APS–HC recursion gate» не подкреплены вычислением; ν_Fib = 2N_φ введено по определению"
+   },
+   {
+    "input": "584",
+    "value": "2·292",
+    "origin": "производное (определение q_φ)",
+    "comment": "не независимый вход"
+   },
+   {
+    "input": "d_val = 5",
+    "value": "число корней P_val(z) = (z−1)z(z+1)(z+2)(z+3)",
+    "origin": "выведено",
+    "comment": "верный математический факт (FBS3R.Checks.P_val_roots), но его вхождение в q₀ задаётся выбранной формулой Θ_FV"
+   },
+   {
+    "input": "1 + π/50",
+    "value": "1 + π/(2d²) при d = 5; ε_φ = q_φ(292)/q_obs − 1 = 0.0628440, ε_φ − π/50 = 1.22·10⁻⁵",
+    "origin": "выбрано post hoc",
+    "comment": "§XXI–XXII той же статьи: «registry coincidence», «closeness is not an invariant derivation» (рис. 7; тот же приём в §XXXIII: ln φ + π/40 приближает b g_∂² с относительной ошибкой 8·10⁻⁶); в §LIII та же величина подана как «finite valuation phase defect» Θ_FV(d) = ln(1 + π/(2d²)) без вывода"
+   },
+   {
+    "input": "Ξ_edge = 0.99916928",
+    "value": "exp(Δ_edge), Δ_edge = −0.000831065239070442",
+    "origin": "заявлено без вычисления",
+    "comment": "«evaluated finite part … APS/HC/KL» — вычисления в тексте нет; на q₀ не влияет"
+   },
+   {
+    "input": "b g_∂² = 0.5597545859987624455",
+    "value": "16π²/ln(q₀/Ξ_edge)",
+    "origin": "обратно вычислено из q₀",
+    "comment": "проверено: 16π²/ln(q₀/Ξ) совпадает до 16 знаков, тождество q_edge = q₀ тавтологично; в §XXXIII та же величина определена как 16π²/ln q_obs (цель подгонки)"
+   },
+   {
+    "input": "q⋆ / q_edge = q₀ = πφ⁵⁸⁴/(1 + π/50) = 3.307251460713979·10¹²²",
+    "value": "минимум Γ_∂(q) = q[ln(q/q₀) − 1] + ½ln q + …",
+    "origin": "вставлено в функционал",
+    "comment": "минимум q[ln(q/q₀) − 1] при q = q₀ — элементарно; «отбор» возвращает вставленный центр (ср. Prop. LIV.1 «Inserted-centre obstruction» той же статьи)"
+   }
+  ],
+  "pass": 2,
+  "full_text": true,
+  "pages": 75,
+  "source_read": "pdf+tex"
  },
  {
   "id": "FBS3R-W079",
@@ -2339,7 +3458,11 @@
   ],
   "status": "KNOWN_RESULT",
   "lean": [],
-  "note": ""
+  "note": "",
+  "pass": 2,
+  "full_text": true,
+  "pages": 22,
+  "source_read": "pdf+tex"
  },
  {
   "id": "FBS3R-W080",
@@ -2372,7 +3495,19 @@
    "FBS3R.Selector.unique_selector",
    "FBS3R.Selector.bounded_growth"
   ],
-  "note": "Субфакторы и индекс Джонса не формализованы."
+  "note": "Субфакторы и индекс Джонса не формализованы. Второй проход: q* в этой работе численно не фиксируется; статья прямо говорит, что без выведенного q* формула Λ = 3π/(q*ℓ_P²) не предсказание.",
+  "q_star_inputs": [
+   {
+    "input": "q*",
+    "value": "не фиксируется численно",
+    "origin": "—",
+    "comment": "Eq. (163): «Without a derived q*, Eq. (163) is not a prediction of Λ»; теорема о единственном селекторе абстрактна (B66)"
+   }
+  ],
+  "pass": 2,
+  "full_text": true,
+  "pages": 48,
+  "source_read": "pdf+tex"
  },
  {
   "id": "FBS3R-W081",
@@ -2394,7 +3529,11 @@
   ],
   "status": "OPEN",
   "lean": [],
-  "note": "Конечномерные утверждения; не формализованы."
+  "note": "Конечномерные утверждения; не формализованы.",
+  "pass": 2,
+  "full_text": true,
+  "pages": 16,
+  "source_read": "pdf"
  },
  {
   "id": "FBS3R-W082",
@@ -2416,7 +3555,11 @@
   ],
   "status": "OPEN",
   "lean": [],
-  "note": "Объединённая рукопись (docx/pdf)."
+  "note": "Объединённая рукопись (docx/pdf).",
+  "pass": 2,
+  "full_text": true,
+  "pages": 65,
+  "source_read": "pdf"
  },
  {
   "id": "FBS3R-W083",
@@ -2460,7 +3603,11 @@
    "APEX.Cosmology.shellObs_injective_iff",
    "APEX.Cosmology.nonident_local"
   ],
-  "note": "Почти полное покрытие счётной части; точной формулировки в Lean нет."
+  "note": "Почти полное покрытие счётной части; точной формулировки в Lean нет.",
+  "pass": 2,
+  "full_text": true,
+  "pages": 10,
+  "source_read": "pdf+tex"
  },
  {
   "id": "FBS3R-W084",
@@ -2497,7 +3644,11 @@
    "FBS3R.FiniteReduction.no_blowup",
    "APEX.Analysis.norm_le_forced_local"
   ],
-  "note": "Регулярность Навье–Стокса не доказана; статья сама условна."
+  "note": "Регулярность Навье–Стокса не доказана; статья сама условна.",
+  "pass": 2,
+  "full_text": true,
+  "pages": 26,
+  "source_read": "pdf+tex"
  },
  {
   "id": "FBS3R-W085",
@@ -2535,6 +3686,22 @@
     "text": "Парсевалева рамка откликов Киллинга; число зондов; оценки обусловленности.",
     "status": "OPEN",
     "lean": []
+   },
+   {
+    "text": "Thm VII.12 «Exact finite-band tomography»: m₀…m_{2r} и h₀…h_{r−1} однозначно определяют r, уровни Стокса k_j и энергии E_{k_j,±} (алгебраический шаг Прони).",
+    "status": "KERNEL_PROVED",
+    "lean": [
+     "APEX.Spectral.prony_identifiable",
+     "APEX.Spectral.prony_order_unique",
+     "APEX.Spectral.rank_hankel",
+     "APEX.Spectral.det_vand",
+     "FBS3R.Moments.hankel_psd"
+    ],
+    "ref": "формализован алгебраический шаг: узлы и веса из первых 2r моментов, порядок r по рангу Ганкеля, решение Вандермонда; спектральное разложение оператора Стокса на S³ взято как данное (B11)",
+    "apex": [
+     "APEX-SPC-3"
+    ],
+    "pass2": "added"
    }
   ],
   "status": "OPEN",
@@ -2546,9 +3713,17 @@
    "FBS3R.Moments.shell_chirality_bound",
    "FBS3R.Moments.chiral_bound",
    "FBS3R.Moments.chiral_bound_attained",
-   "FBS3R.Moments.viscous_selection"
+   "FBS3R.Moments.viscous_selection",
+   "APEX.Spectral.prony_identifiable",
+   "APEX.Spectral.prony_order_unique",
+   "APEX.Spectral.rank_hankel",
+   "APEX.Spectral.det_vand"
   ],
-  "note": "Операторы НС на S³ не формализованы; регулярность не затронута."
+  "note": "Операторы НС на S³ не формализованы; регулярность не затронута.",
+  "pass": 2,
+  "full_text": true,
+  "pages": 29,
+  "source_read": "pdf+tex"
  },
  {
   "id": "FBS3R-W086",
@@ -2617,7 +3792,11 @@
    "FBS3R.ZetaShell.shell_sum",
    "FBS3R.ZetaShell.residue_C"
   ],
-  "note": "Наибольшее покрытие архива (B5–B24), но геометрические входы (оболочки — собственные пространства curl, действие полей Киллинга) — гипотезы; центральная геометрическая теорема не формализована."
+  "note": "Наибольшее покрытие архива (B5–B24), но геометрические входы (оболочки — собственные пространства curl, действие полей Киллинга) — гипотезы; центральная геометрическая теорема не формализована.",
+  "pass": 2,
+  "full_text": true,
+  "pages": 15,
+  "source_read": "pdf+tex"
  },
  {
   "id": "FBS3R-W087",
@@ -2649,7 +3828,11 @@
   "lean": [
    "FBS3R.KillingBeltrami.shell_dim"
   ],
-  "note": "Интегралы по S³ не формализуемы в текущем Mathlib."
+  "note": "Интегралы по S³ не формализуемы в текущем Mathlib.",
+  "pass": 2,
+  "full_text": true,
+  "pages": 8,
+  "source_read": "pdf+tex"
  },
  {
   "id": "FBS3R-W088",
@@ -2666,7 +3849,11 @@
   ],
   "status": "HEURISTIC/PHYSICAL_MODEL",
   "lean": [],
-  "note": "Описание ПО; научных утверждений нет."
+  "note": "Описание ПО; научных утверждений нет.",
+  "pass": 2,
+  "full_text": true,
+  "pages": 122,
+  "source_read": "pdf+tex"
  },
  {
   "id": "FBS3R-W089",
@@ -2688,7 +3875,11 @@
   ],
   "status": "OPEN",
   "lean": [],
-  "note": "Твисторные когомологии не формализуемы."
+  "note": "Твисторные когомологии не формализуемы.",
+  "pass": 2,
+  "full_text": true,
+  "pages": 14,
+  "source_read": "pdf+tex"
  },
  {
   "id": "FBS3R-W090",
@@ -2710,7 +3901,11 @@
   ],
   "status": "OPEN",
   "lean": [],
-  "note": "Вторая версия работы 2026-10-07."
+  "note": "Вторая версия работы 2026-10-07.",
+  "pass": 2,
+  "full_text": true,
+  "pages": 26,
+  "source_read": "pdf+tex"
  },
  {
   "id": "FBS3R-W091",
@@ -2725,24 +3920,57 @@
     "lean": []
    },
    {
-    "text": "Ганкелева иерархия конечного ранга как спектральный сертификат.",
-    "status": "OPEN",
+    "text": "Thm 13.3/Cor. 13.4 (дискретная часть): G_n = [W_{i+j}] ⪰ 0, rank G_n = r при n ≥ r, det G_r = ∏a_j ∏(q_i − q_j)²; W₀…W_{2r−1} однозначно определяют q_j и a_j.",
+    "status": "KERNEL_PROVED",
     "lean": [
-     "FBS3R.Moments.hankel_psd"
+     "FBS3R.Moments.hankel_psd",
+     "APEX.Spectral.hankel_eq_vand",
+     "APEX.Spectral.det_hankel",
+     "APEX.Spectral.det_hankel_ne_zero",
+     "APEX.Spectral.prony_identifiable",
+     "APEX.Spectral.prony_order_unique",
+     "APEX.Spectral.rank_hankel",
+     "APEX.Spectral.det_vand"
     ],
-    "ref": "близкое утверждение B51"
+    "ref": "непрерывная версия H_n(t) через производные W, ранг min(n, r) при n < r и полная монотонность не формализованы",
+    "apex": [
+     "APEX-SPC-3"
+    ],
+    "pass2": "changed",
+    "pass2_reason": "Совпадение с APEX-SPC-3: для дискретных отсчётов W_k = Σa_jq_j^k доказаны det G_r = ∏a_j∏(q_i−q_j)², rank G_n = r при n ≥ r и восстановление Прони (Thm 13.3, Cor. 13.4)."
    },
    {
     "text": "No-go: топологию нельзя восстановить только из интегральных временных рядов.",
     "status": "OPEN",
     "lean": []
+   },
+   {
+    "text": "Thm 13.3 (непрерывная версия): H_n(t) = [(−1)^{i+j}W^{(i+j)}(t)/(2ν)^{i+j}] ⪰ 0 ранга min(n, r).",
+    "status": "KNOWN_RESULT",
+    "lean": [],
+    "ref": "та же факторизация Вандермонда; производные по t не формализованы",
+    "apex": [
+     "APEX-SPC-3"
+    ],
+    "pass2": "added"
    }
   ],
   "status": "OPEN",
   "lean": [
-   "FBS3R.Moments.hankel_psd"
+   "FBS3R.Moments.hankel_psd",
+   "APEX.Spectral.hankel_eq_vand",
+   "APEX.Spectral.det_hankel",
+   "APEX.Spectral.det_hankel_ne_zero",
+   "APEX.Spectral.prony_identifiable",
+   "APEX.Spectral.prony_order_unique",
+   "APEX.Spectral.rank_hankel",
+   "APEX.Spectral.det_vand"
   ],
-  "note": ""
+  "note": "",
+  "pass": 2,
+  "full_text": true,
+  "pages": 27,
+  "source_read": "pdf+tex"
  },
  {
   "id": "FBS3R-W092",
@@ -2769,7 +3997,11 @@
   ],
   "status": "OPEN",
   "lean": [],
-  "note": "Формальных окружений нет; утверждения не проверены."
+  "note": "Формальных окружений нет; утверждения не проверены.",
+  "pass": 2,
+  "full_text": true,
+  "pages": 5,
+  "source_read": "pdf+tex"
  },
  {
   "id": "FBS3R-W093",
@@ -2787,11 +4019,22 @@
     "text": "Разделы о спектрах Берже, редукции фазы Хопфа и интеграле однородного потока Риччи.",
     "status": "OPEN",
     "lean": []
+   },
+   {
+    "text": "Разделение линейной, неотрицательной и квантовой памяти: Thm 6 (предсказательный ранг 2 и классическая контрмодель), Thm 8 (четырёхвременное препятствие для двух классических скрытых состояний), Thm 9 (пятивременной ганкелев сертификат).",
+    "status": "OPEN",
+    "lean": [],
+    "ref": "211 стр.; доказательства в тексте, не формализованы",
+    "pass2": "added"
    }
   ],
   "status": "OPEN",
   "lean": [],
-  "note": ""
+  "note": "",
+  "pass": 2,
+  "full_text": true,
+  "pages": 211,
+  "source_read": "pdf+tex"
  },
  {
   "id": "FBS3R-W094",
@@ -2822,7 +4065,11 @@
   "lean": [
    "FBS3R.Selector.scalarisation"
   ],
-  "note": "Перестановочные свидетели в бесконечном пределе не формализованы."
+  "note": "Перестановочные свидетели в бесконечном пределе не формализованы.",
+  "pass": 2,
+  "full_text": true,
+  "pages": 8,
+  "source_read": "pdf+tex"
  },
  {
   "id": "FBS3R-W095",
@@ -2839,7 +4086,11 @@
   ],
   "status": "OPEN",
   "lean": [],
-  "note": "Версия 2026-10-17 рукописи 2026-09-07 (docx/pdf)."
+  "note": "Версия 2026-10-17 рукописи 2026-09-07 (docx/pdf).",
+  "pass": 2,
+  "full_text": true,
+  "pages": 73,
+  "source_read": "pdf"
  },
  {
   "id": "FBS3R-W096",
@@ -2881,7 +4132,11 @@
    "FBS3R.HopfCert.gap_homotopy",
    "FBS3R.HopfCert.normalization_identity"
   ],
-  "note": "Степень отображения и инвариант Хопфа в Lean не формализованы."
+  "note": "Степень отображения и инвариант Хопфа в Lean не формализованы.",
+  "pass": 2,
+  "full_text": true,
+  "pages": 111,
+  "source_read": "pdf+tex"
  },
  {
   "id": "FBS3R-W097",
@@ -2925,6 +4180,21 @@
     "text": "Точный взвешенный сертификат четвёртого момента за O(n) при диагональном беспорядке.",
     "status": "OPEN",
     "lean": []
+   },
+   {
+    "text": "Резольвентное тождество (14) в бесквадратной алгебре событий: (I − zT)⁻¹ = Σ_{r≤m} R₀(zUR₀)^r при k = 2m и универсальный знаменатель.",
+    "status": "KERNEL_PROVED",
+    "lean": [
+     "APEX.Transfer.transfer_law",
+     "APEX.Transfer.transfer_law_powerSeries",
+     "APEX.Transfer.prod_deg_two_eq_zero",
+     "APEX.Transfer.universal_denominator"
+    ],
+    "ref": "точное совпадение с transfer_law (⌊k/2⌋ = m); Thm 3.1 для неоднородных J_j, µ_j формализована только в однородном случае (APEX.PXP.MaskDP.M_eq_Mnat)",
+    "apex": [
+     "APEX-TRN-1"
+    ],
+    "pass2": "added"
    }
   ],
   "status": "KERNEL_PROVED",
@@ -2940,9 +4210,17 @@
    "FBS3R.Zeckendorf.image_rk",
    "FBS3R.Zeckendorf.rk_injOn",
    "FBS3R.Zeckendorf.card_C",
-   "FBS3R.Zeckendorf.flip_changes_address"
+   "FBS3R.Zeckendorf.flip_changes_address",
+   "APEX.Transfer.transfer_law",
+   "APEX.Transfer.transfer_law_powerSeries",
+   "APEX.Transfer.prod_deg_two_eq_zero",
+   "APEX.Transfer.universal_denominator"
   ],
-  "note": "Центральная теорема доказана с усилением (APEX-PXP-1..6); граница статьи 3m+2 не точна."
+  "note": "Центральная теорема доказана с усилением (APEX-PXP-1..6); граница статьи 3m+2 не точна.",
+  "pass": 2,
+  "full_text": true,
+  "pages": 4,
+  "source_read": "pdf+tex"
  },
  {
   "id": "FBS3R-W098",
@@ -2992,7 +4270,11 @@
    "FBS3R.AKLT.C1_eq",
    "FBS3R.AKLT.odd_line"
   ],
-  "note": "Покрыто в интерпретации A (линейная оболочка формальных X_ij^k, т.е. двухлокальные гамильтонианы); в интерпретации B (порождённая алгебра, не двухлокальная) образ — gl(3). См. RED_TEAM раунд 5."
+  "note": "Покрыто в интерпретации A (линейная оболочка формальных X_ij^k, т.е. двухлокальные гамильтонианы); в интерпретации B (порождённая алгебра, не двухлокальная) образ — gl(3). См. RED_TEAM раунд 5.",
+  "pass": 2,
+  "full_text": true,
+  "pages": 5,
+  "source_read": "pdf+tex"
  },
  {
   "id": "FBS3R-W099",
@@ -3020,7 +4302,11 @@
    "bindu_global_site_identity_unconditional",
    "bindu_site_local_family_bridge"
   ],
-  "note": "Теоремы о собственных определениях пакета; соответствие физическим устройствам вне Lean. Папки нет в индексе 2026-11-10; PDF внутри датирован 2026_11_10."
+  "note": "Теоремы о собственных определениях пакета; соответствие физическим устройствам вне Lean. Папки нет в индексе 2026-11-10; PDF внутри датирован 2026_11_10.",
+  "pass": 2,
+  "full_text": true,
+  "pages": 2,
+  "source_read": "pdf+tex"
  },
  {
   "id": "FBS3R-W100",
@@ -3051,9 +4337,22 @@
     "ref": "для diamondDist APEX (sup по плотностным входам с анциллой размерности d); тождество со стандартной ⋄-нормой не формализовано"
    },
    {
-    "text": "Замкнутая форма для произвольных стохастических паули-ошибок с флагом утечки.",
-    "status": "OPEN",
-    "lean": []
+    "text": "Thm 6.1: ‖E_{p,ℓ,U} − V_U‖_⋄ = 2(1 − (1−ℓ)p₀) для произвольного стохастического паули-шума с флагом утечки.",
+    "status": "KERNEL_PROVED",
+    "lean": [
+     "APEX.Quantum.noisyChannel_isKraus",
+     "APEX.Quantum.traceNorm_noisy_sub_ideal_maxEnt",
+     "APEX.Quantum.diamondDist_noisy_ideal_ge",
+     "APEX.Quantum.diamondDist_noisy_ideal_le",
+     "APEX.Quantum.diamondDist_noisy_ideal_eq"
+    ],
+    "apex": [
+     "APEX-QI-2",
+     "APEX-QI-3"
+    ],
+    "ref": "diamondDist в Lean — sup по плотностным входам с анциллой размерности d; совпадение со стандартной ⋄-нормой (Watrous 3.46/3.51) не формализовано, та же оговорка, что и для утверждения 2",
+    "pass2": "changed",
+    "pass2_reason": "Совпадение с APEX-QI-3: ‖E_{p,ℓ,U} − V_U‖ = 2(1 − (1−ℓ)p₀) для произвольного паули-шума с флагом утечки доказано ядром Lean."
    },
    {
     "text": "Телескопическая оценка для цепочек.",
@@ -3061,7 +4360,12 @@
     "lean": [
      "APEX.Quantum.diamondDist_comp_le"
     ],
-    "ref": "в Lean только монотонность при пост-композиции"
+    "ref": "APEX-QI-4: diamondDist_comp_le — только пост-композиция; пре-композиция не доказана",
+    "apex": [
+     "APEX-QI-4"
+    ],
+    "pass2": "refined",
+    "pass2_reason": "APEX-QI-4 даёт только монотонность при пост-композиции; телескопическая оценка требует и пре-композиции, статус OPEN сохраняется."
    }
   ],
   "status": "KERNEL_PROVED",
@@ -3074,9 +4378,15 @@
    "APEX.Quantum.diamondDist_noisy_ideal_eq",
    "APEX.Quantum.diamondDist_noisy_ideal_le",
    "APEX.Quantum.diamondDist_noisy_ideal_ge",
+   "APEX.Quantum.noisyChannel_isKraus",
+   "APEX.Quantum.traceNorm_noisy_sub_ideal_maxEnt",
    "APEX.Quantum.diamondDist_comp_le"
   ],
-  "note": "Центральные утверждения покрыты; новизна по braid-алгебре низкая (известно, Rowell–Stong–Wang)."
+  "note": "Центральные утверждения покрыты; новизна по braid-алгебре низкая (известно, Rowell–Stong–Wang).",
+  "pass": 2,
+  "full_text": true,
+  "pages": 5,
+  "source_read": "pdf+tex"
  },
  {
   "id": "FBS3R-W101",
@@ -3094,6 +4404,10 @@
   ],
   "status": "KERNEL_PROVED",
   "lean": [],
-  "note": "Собственная статья аудита. Несогласованность: в заголовке «Six Corrected Claims», в аннотации и реестре — 7 (A1–A7). Папки нет в индексах; только .tex."
+  "note": "Собственная статья аудита. Несогласованность: в заголовке «Six Corrected Claims», в аннотации и реестре — 7 (A1–A7). Папки нет в индексах; только .tex. PDF в папке нет; полный текст прочитан по .tex.",
+  "pass": 2,
+  "full_text": true,
+  "pages": null,
+  "source_read": "tex"
  }
 ]
