@@ -1,6 +1,6 @@
 # COVERAGE — покрытие обязательств APEX (раунд 5)
 
-Сгенерировано `Audit/mk_coverage.py`. Реестр: **353** Lean-целей (`Audit/ACCEPTED_THEOREMS.txt`), все проверены ядром Lean 4.36 / Mathlib v4.36, аксиомы только `propext`, `Classical.choice`, `Quot.sound`.
+Сгенерировано `Audit/mk_coverage.py`. Реестр: **381** Lean-целей (`Audit/ACCEPTED_THEOREMS.txt`), все проверены ядром Lean 4.36 / Mathlib v4.36, аксиомы только `propext`, `Classical.choice`, `Quot.sound`.
 
 Легенда: 🟩 KERNEL_PROVED · 🟨 PARTIAL · 🟦 IN_PROGRESS · 🟧 NUMERICAL_EVIDENCE · ⬜ OPEN / NOT_STARTED.
 Статус «KERNEL_PROVED» означает доказанность сформулированного в Lean утверждения, а не решение открытой задачи.
@@ -14,7 +14,7 @@
 | 5 | Квантовая информация, каналы, diamond; FibonacciAnyon | 🟩 13. FibonacciAnyon: braid-классификация 2×2, норма дефекта — KERNEL_PROVED<br>🟩 14. FibonacciAnyon: пентагон, гексагон, универсальность — KERNEL_PROVED<br>🟩 15. Квантовые каналы, алмазная норма (BINDU VECTRA) — KERNEL_PROVED | ANY-1, QI-1, QI-2, QI-3, QI-4, ANY-2 | 45 |
 | 6 | S³: гармоники, спектр, геометрия | 🟩 18. S³: гармонические многочлены, Фишер, dim (n+1)² — KERNEL_PROVED<br>🟨 19. S³: риманова геометрия, Ходж, Дирак — PARTIAL | S3-1, S3-2, S3-3 | 36 |
 | 7 | Навье–Стокс | 🟩 16. Навье–Стокс: энергетическая оценка с силой (конечномерная) — KERNEL_PROVED<br>⬜ 17. Навье–Стокс: регулярность в ℝ³ — OPEN | NS-1, NS-2 | 11 |
-| 8 | Янг–Миллс: масштаб, массовая щель | ⬜ 21. Янга–Миллса: масштабирование λ(R)=R⁻²λ(1), массовая щель — OPEN | — | 0 |
+| 8 | Янг–Миллс: масштаб, массовая щель | 🟨 21. Янга–Миллса: масштабирование λ(R)=R⁻²λ(1), массовая щель — PARTIAL | — | 0 |
 | 9 | Квантовая гравитация, спектральное препятствие | 🟩 20. Спектральное препятствие exp(−ax)/x — KERNEL_PROVED<br>🟨 22. Квантовая гравитация (Fractal Foliation, CMC, связи, унитарность) — PARTIAL | SPC-1 | 2 |
 | 10 | Космология: кумулянты, ядро оболочек | 🟨 23. Топология Вселенной, идентифицируемость (S³, RP³, S³/Γ) — PARTIAL<br>⬜ 24. Космологическая постоянная Λ=3π/(ℓ_P² q), выбор q — OPEN<br>🟨 25. Тёмный сектор, кумулянты смесей — PARTIAL | SPC-2, COS-1 | 7 |
 | 11 | Коллатц: stopping time, циклы | 🟩 11. Коллатц: no-go ограниченной поправки (log и высота Цекендорфа) — KERNEL_PROVED<br>🟨 12. Коллатц: stopping-time сертификаты, циклы, 2-адика — PARTIAL | COL-1, COL-2, COL-3, COL-4 | 19 |
@@ -67,10 +67,11 @@
 | APEX-S3-3 | S3 | 🟩 KERNEL_PROVED | KNOWN_RESULT | S^3 geometry: unit quaternions (own structure Q, Hamilton product) form a group acting by isometries of R^4; group isomorphism unit quaternions = SU(2) with det = normSq; Hopf map h(z,w)=(2z w-bar, /z/^2-/w/^2) maps S^3 onto S^2, fibres are exactly U(1)-orbits, pairwise disjoint great circles (S^3 cap real 2-plane); polar decomposition x = r u unique. Not: linking number, Mathlib Quaternion (not built), quaternionic q i q-bar formula |
 | APEX-SPC-3 | Spectral | 🟩 KERNEL_PROVED | KNOWN_RESULT | full moment-cumulant hierarchy: recursion, uniqueness, formal relation egf(m) = exp(egf(kappa)) over char-0 fields, additivity under binomial convolution, scaling kappa_n(cX)=c^n kappa_n; Prony: Hankel = V^T D V, det H_p = prod w * prod (x_j-x_i)^2, recurrence, unique Prony coefficients, identifiability of finite mixtures (nodes and weights up to permutation) from s_0..s_{2p-1}, rank H_m = p for m >= p, number of components determined |
 | APEX-SPC-4 | QuantumGravity | 🟩 KERNEL_PROVED | NEW_FORMALIZATION | strengthened spectral theorem for positive measures rho on [0,inf) with int (1+s)^-1 drho < inf (rho may be infinite): xG(x) nondecreasing, G antitone/positive, xG(x) -> rho([0,inf)) in [0,inf] (monotone convergence); no positive representation if xG(x)=o(1) or xf(x) decreases anywhere, in particular for exp(-ax)/x; sharp bound: uniform relative error of any positive spectral approximation of exp(-at)/t on [x,y] is >= tanh(a(y-x)/2), attained by a point mass at 0; Loewner-monotone matrix version for finitely-atomic PSD measures and per-polarisation bounds. Scope: Kallen-Lehmann-type necessary condition only; says nothing about existence of quantum gravity |
+| APEX-YM-1 | YangMills | 🟩 KERNEL_PROVED | NEW_FORMALIZATION | abstract spectral layer of the mass-gap problem: Laplace criterion TFAE (support in [m,inf) <=> C(t)<=C(0)e^{-mt} <=> subexponential decay at every m'<m); polynomial decay gives no gap (e^{-E}dE, C=1/(1+t)); finite-dim Hilbert version for e^{-tA} on vacuum complement; transfer-matrix bound and converse; physical-scale bound with lambda_2 <= e^{-a Delta}; gap preserved under limits with UNIFORM Delta; non-uniform gaps lost (delta_{1/k} -> delta_0; lambda_2 = e^{-a_k^2}). The YM mass gap itself is OPEN: the uniform bound lambda_2(T_a) <= e^{-a Delta} is only a hypothesis |
 
 ## Сводка по 27 направлениям
 
-KERNEL_PROVED: 13, NUMERICAL_EVIDENCE: 1, OPEN: 5, PARTIAL: 8
+KERNEL_PROVED: 13, NUMERICAL_EVIDENCE: 1, OPEN: 4, PARTIAL: 9
 
 ## Карта зависимостей (доказано / открыто)
 
@@ -90,7 +91,9 @@ graph LR
  B2[Anyon.Braid2D]:::ok --> FIB[Fibonacci: пентагон/гексагон, braid]:::ok
  BC[Collatz.BoundedCorrection]:::ok --> ST[Collatz.StoppingTime: mod 2^18]:::ok --> CYC[Cycles: n ≤ 2^20, циклы > 2^20]:::ok --> COLL[Гипотеза Коллатца]:::open
  SH[S3.Harmonic]:::ok --> SS[S3.Sphere: спектр -n n+2 /R²]:::ok --> L2[L²-полнота, Ходж, Дирак]:::open
- SS --> YM[Янг–Миллс: масштаб; массовая щель]:::open
+ SS --> YM[Янг–Миллс: массовая щель]:::open
+ YSG[YM.SpectralGap: критерии, сохранение при равномерной щели]:::ok --> YM
+ EXT[Внешние: OpenAI-YM без щели, 4Y-M условно]:::part --> YM
  AP[AKLT.Physical]:::ok --> AL[AKLT.Leakage]:::ok
  PR[Spectral.PositiveRepresentation]:::ok --> STR[Spectral.Strengthened: tanh, матрицы]:::ok --> QG[Квантовая гравитация]:::open
  MC[Spectral.MixtureCumulants]:::ok --> PRO[Spectral.Prony: кумулянты, идентифицируемость]:::ok --> COSM[Космология: тёмный сектор]:::part

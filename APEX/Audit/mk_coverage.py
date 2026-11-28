@@ -57,7 +57,9 @@ G = """
  B2[Anyon.Braid2D]:::ok --> FIB[Fibonacci: пентагон/гексагон, braid]:::ok
  BC[Collatz.BoundedCorrection]:::ok --> ST[Collatz.StoppingTime: mod 2^18]:::ok --> CYC[Cycles: n ≤ 2^20, циклы > 2^20]:::ok --> COLL[Гипотеза Коллатца]:::open
  SH[S3.Harmonic]:::ok --> SS[S3.Sphere: спектр -n n+2 /R²]:::ok --> L2[L²-полнота, Ходж, Дирак]:::open
- SS --> YM[Янг–Миллс: масштаб; массовая щель]:::open
+ SS --> YM[Янг–Миллс: массовая щель]:::open
+ YSG[YM.SpectralGap: критерии, сохранение при равномерной щели]:::ok --> YM
+ EXT[Внешние: OpenAI-YM без щели, 4Y-M условно]:::part --> YM
  AP[AKLT.Physical]:::ok --> AL[AKLT.Leakage]:::ok
  PR[Spectral.PositiveRepresentation]:::ok --> STR[Spectral.Strengthened: tanh, матрицы]:::ok --> QG[Квантовая гравитация]:::open
  MC[Spectral.MixtureCumulants]:::ok --> PRO[Spectral.Prony: кумулянты, идентифицируемость]:::ok --> COSM[Космология: тёмный сектор]:::part

@@ -4,7 +4,7 @@
  "pr": "https://github.com/FBS3R/FBS3R-Research-Archive/pull/3",
  "lean": "4.36.0",
  "mathlib": "fc4f59e5 (v4.36.0)",
- "axiom_targets": 353,
+ "axiom_targets": 381,
  "directions": [
   {
    "id": 1,
@@ -129,8 +129,8 @@
   {
    "id": 21,
    "name": "Янга–Миллса: масштабирование λ(R)=R⁻²λ(1), массовая щель",
-   "status": "OPEN",
-   "note": "щель 4D не решена"
+   "status": "PARTIAL",
+   "note": "фундаментальный этап: абстрактный спектральный слой щели (YM-1, Lean) и аудит внешних конструкций (External/YM_AUDIT.md): OpenAI-YM строит Вайтмановскую КТП без щели; 4Y-M условна по (P)/(A). Недостающее неравенство λ₂(T_a)≤e^{−aΔ} равномерно по a и объёму — OPEN"
   },
   {
    "id": 22,

@@ -44,3 +44,4 @@ import APEX.Analysis.IntegralEnergy
 import APEX.S3.Hopf
 import APEX.Spectral.Prony
 import APEX.Spectral.Strengthened
+import APEX.YM.SpectralGap
