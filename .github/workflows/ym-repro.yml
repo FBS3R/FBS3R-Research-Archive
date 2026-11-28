@@ -1,0 +1,83 @@
+name: External Yang–Mills reproduction (read-only)
+# Independent rebuild of pinned external Lean projects. Nothing is sent to the external groups;
+# the repositories are only cloned at fixed commits. Each project keeps its own toolchain
+# (4Y-M: Lean 4.33.0; OpenAI-YM-20261028: Lean 4.32.0) and never touches APEX/Lean (Lean 4.36.0).
+on:
+  push:
+    branches: [research/fbs3r-apex]
+    paths: ['.github/workflows/ym-repro.yml', 'APEX/External/**']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  fourym:
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    steps:
+      - name: Install elan
+        run: |
+          curl -sSfL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Clone creelie/4Y-M at pinned commit
+        run: |
+          git clone https://github.com/creelie/4Y-M ext && cd ext && git checkout 5e50d670bbd52b17a8496489ed9d4cf594a6293e
+          cat lean-toolchain
+      - name: Mathlib cache
+        working-directory: ext
+        run: lake exe cache get
+      - name: Build
+        working-directory: ext
+        run: lake build 2>&1 | tail -40
+      - name: Axioms
+        working-directory: ext
+        run: |
+          lake env lean Axioms.lean > axioms-ci.txt 2>&1 || true
+          tail -5 axioms-ci.txt
+          echo "lines: $(wc -l < axioms-ci.txt)"
+          echo "non-standard:"; grep "depends on axioms" axioms-ci.txt | grep -v "\[propext, Classical.choice, Quot.sound\]\|\[propext, Quot.sound\]\|\[propext\]\|\[Classical.choice\]\|\[propext, Classical.choice\]\|\[Quot.sound\]\|\[Classical.choice, Quot.sound\]" || echo none
+          grep -rn "sorry\|native_decide\|^axiom " --include=*.lean YangMills YangMills.lean | head -20 || true
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: fourym-axioms, path: ext/axioms-ci.txt}
+  openai1028:
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - name: Free disk
+        run: sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL; df -h / | tail -1
+      - name: Install elan
+        run: |
+          curl -sSfL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Clone yang-mills-group/OpenAI-YM-20261028 at pinned commit
+        run: |
+          git clone https://github.com/yang-mills-group/OpenAI-YM-20261028 ext && cd ext && git checkout 3456e5e75cf8d4cd558955a5c7638fba2d68f464
+          sha256sum -c SOURCES.sha256 --quiet && echo "SOURCES.sha256 OK"
+      - name: Restore partial build
+        uses: actions/cache/restore@v4
+        with:
+          path: ext/.lake/build
+          key: ym1028-build-${{ github.run_id }}
+          restore-keys: ym1028-build-
+      - name: Mathlib cache
+        working-directory: ext
+        run: lake exe cache get
+      - name: Build (resumable; limited to ~5 h per run)
+        working-directory: ext
+        run: |
+          sudo sysctl -w vm.max_map_count=262144
+          timeout 18000 lake build WilsonReference WilsonConstruction 2>&1 | tail -60; echo "exit=${PIPESTATUS[0]}" | tee build-exit.txt
+      - name: Save partial build
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: ext/.lake/build
+          key: ym1028-build-${{ github.run_id }}
+      - name: VerifyJoint
+        working-directory: ext
+        run: |
+          grep -q "exit=0" build-exit.txt || { echo "build not finished; re-run the workflow to resume"; exit 0; }
+          lake env lean -j1 -DmaxHeartbeats=0 -DmaxRecDepth=4096 VerifyJoint.lean 2>&1 | tail -40 | tee verify.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: ym1028-verify, path: "ext/verify.txt\next/build-exit.txt"}
