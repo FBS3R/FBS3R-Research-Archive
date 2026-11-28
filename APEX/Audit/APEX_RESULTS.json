@@ -324,5 +324,66 @@
    "APEX.Blockade.Gaussian.gauss_moment_even"
   ],
   "statement": "empirical spectral measures mu_n of A_{n,r}/sqrt n: all moments and all polynomial integrals converge to those of N(0,sigma_r^2); tightness. Missing: moment determinacy => weak convergence"
+ },
+ {
+  "id": "APEX-QI-1",
+  "area": "Quantum",
+  "status": "KERNEL_PROVED",
+  "novelty": "NEW_FORMALIZATION",
+  "lean": [
+   "APEX.Quantum.traceNorm_eq_sum_abs",
+   "APEX.Quantum.traceNorm_eq_zero_iff",
+   "APEX.Quantum.traceNorm_unitary_conj",
+   "APEX.Quantum.traceNorm_density",
+   "APEX.Quantum.norm_trace_mul_le",
+   "APEX.Quantum.traceNorm_isGreatest",
+   "APEX.Quantum.traceNorm_sum_le",
+   "APEX.Quantum.traceNorm_ketbra_sub_orthogonal"
+  ],
+  "statement": "trace norm tr sqrt(A^H A): =sum|lambda| for Hermitian A, zero iff A=0, unitary invariance, density matrices have norm 1, Helstrom variational form, triangle inequality (Hermitian), orthogonal pure states at distance 2. Not: triangle/Holder for non-Hermitian A"
+ },
+ {
+  "id": "APEX-QI-2",
+  "area": "Quantum",
+  "status": "KERNEL_PROVED",
+  "novelty": "NEW_FORMALIZATION",
+  "lean": [
+   "APEX.Quantum.IsKrausChannel.completelyPositive",
+   "APEX.Quantum.ampliate_krausMap_kronecker",
+   "APEX.Quantum.IsKrausChannel.comp",
+   "APEX.Quantum.IsKrausChannel.convex",
+   "APEX.Quantum.isKrausChannel_unitary"
+  ],
+  "statement": "Kraus channels: trace preserving, completely positive (Phi(x)id_k maps all PSD to PSD for every finite k), closed under composition and convex combination; unitary channels. Not: Choi/Stinespring converse"
+ },
+ {
+  "id": "APEX-QI-3",
+  "area": "Quantum",
+  "status": "PARTIAL",
+  "novelty": "NEW_FORMALIZATION",
+  "lean": [
+   "APEX.Quantum.noisyChannel_isKraus",
+   "APEX.Quantum.noisyChannel_apply",
+   "APEX.Quantum.traceNorm_noisy_sub_ideal_maxEnt",
+   "APEX.Quantum.diamondDist_le_two",
+   "APEX.Quantum.diamondDist_noisy_ideal_ge"
+  ],
+  "statement": "orthogonal-unitary noise with erasure flag: exact ||(E-V0)(x)id (Phi+)||_1 = 2(1-(1-l)p0) and lower bound on diamondDist (density inputs, ancilla d). Missing: matching upper bound (needs trace-norm contractivity) and identification with standard diamond norm"
+ },
+ {
+  "id": "APEX-COL-3",
+  "area": "Collatz",
+  "status": "KERNEL_PROVED",
+  "novelty": "KNOWN_RESULT",
+  "lean": [
+   "APEX.Collatz.terras_affine",
+   "APEX.Collatz.certB_sound",
+   "APEX.Collatz.certB_sound_C",
+   "APEX.Collatz.stoppingTime_le_of_certB",
+   "APEX.Collatz.countBad_eq_1_12",
+   "APEX.Collatz.density_certificate_12",
+   "APEX.Collatz.density_certificate_18"
+  ],
+  "statement": "Terras affine lemma for shortcut map; sound stopping-time certificates by residue mod 2^k; kernel counts of uncertified classes k=1..12 and 7495 classes mod 2^18 (density 2.86%), all others n>=2^18 have sigma(n)<=36. NOT a proof of Collatz; no cycle results"
  }
 ]

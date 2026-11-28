@@ -30,3 +30,7 @@ import APEX.Blockade.General.Degree
 import APEX.AKLT.Leakage
 import APEX.Blockade.Asymptotics
 import APEX.Blockade.Gaussian
+import APEX.Quantum.TraceNorm
+import APEX.Quantum.CPTP
+import APEX.Quantum.OrthogonalNoise
+import APEX.Collatz.StoppingTime
