@@ -41,3 +41,4 @@ import APEX.Transfer.Nilpotent
 import APEX.Blockade.General.Exact
 import APEX.Collatz.Cycles
 import APEX.Analysis.IntegralEnergy
+import APEX.S3.Hopf

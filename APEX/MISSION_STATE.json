@@ -4,7 +4,7 @@
  "pr": "https://github.com/FBS3R/FBS3R-Research-Archive/pull/3",
  "lean": "4.36.0",
  "mathlib": "fc4f59e5 (v4.36.0)",
- "axiom_targets": 287,
+ "axiom_targets": 315,
  "directions": [
   {
    "id": 1,
@@ -117,8 +117,8 @@
   {
    "id": 19,
    "name": "S³: риманова геометрия, Ходж, Дирак",
-   "status": "NOT_STARTED",
-   "note": ""
+   "status": "PARTIAL",
+   "note": "раунд 5: S³ = единичные кватернионы ≅ SU(2), изометрии, отображение Хопфа S³→S² (слои — большие окружности), полярное разложение (S3-3, KNOWN_RESULT). Нет: L²-полноты, Ходжа, Дирака, зацепления"
   },
   {
    "id": 20,

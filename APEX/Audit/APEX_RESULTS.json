@@ -505,5 +505,42 @@
    "APEX.Analysis.no_blowup_integral"
   ],
   "statement": "energy bounds for x(t)=x(0)+int v, v = -nu A x - Q x + F a.e., F only L^1, A,Q arbitrary maps on a Hilbert space with <Qy,y>=0, <Ay,y> >= lam|y|^2: ||x T|| <= e^{-kT}||x0|| + int e^{-k(T-s)}||F||; no finite-time blow-up of local solutions (classical with F continuous on [0,T), or integral-form with F in L^1). NOT Navier-Stokes regularity; no existence/uniqueness"
+ },
+ {
+  "id": "APEX-S3-3",
+  "area": "S3",
+  "status": "KERNEL_PROVED",
+  "novelty": "KNOWN_RESULT",
+  "lean": [
+   "APEX.S3.Hopf.Q.normSq_mul",
+   "APEX.S3.Hopf.Q.mul_mem_unitSphere",
+   "APEX.S3.Hopf.Q.conj_mul_of_mem",
+   "APEX.S3.Hopf.Q.instGroupUnitQ",
+   "APEX.S3.Hopf.mem_sphere_iff",
+   "APEX.S3.Hopf.isometry_lmul",
+   "APEX.S3.Hopf.isometry_rmul",
+   "APEX.S3.Hopf.lmul_mapsTo_sphere",
+   "APEX.S3.Hopf.rmul_mapsTo_sphere",
+   "APEX.S3.Hopf.toMat_mul",
+   "APEX.S3.Hopf.toMat_add",
+   "APEX.S3.Hopf.toMat_injective",
+   "APEX.S3.Hopf.det_toMat",
+   "APEX.S3.Hopf.toMat_mem_SU2",
+   "APEX.S3.Hopf.unitToSU2_injective",
+   "APEX.S3.Hopf.unitToSU2_surjective",
+   "APEX.S3.Hopf.unitEquivSU2",
+   "APEX.S3.Hopf.toC2_bijective",
+   "APEX.S3.Hopf.toC2_mem_S3c_iff",
+   "APEX.S3.Hopf.hopf_normSq",
+   "APEX.S3.Hopf.hopf_mapsTo",
+   "APEX.S3.Hopf.hopf_smul",
+   "APEX.S3.Hopf.hopf_eq_iff_exists_smul",
+   "APEX.S3.Hopf.hopf_surjOn",
+   "APEX.S3.Hopf.hopf_fibres_disjoint",
+   "APEX.S3.Hopf.hopf_fibre_eq",
+   "APEX.S3.Hopf.finrank_hopf_plane",
+   "APEX.S3.Hopf.polar_existsUnique"
+  ],
+  "statement": "S^3 geometry: unit quaternions (own structure Q, Hamilton product) form a group acting by isometries of R^4; group isomorphism unit quaternions = SU(2) with det = normSq; Hopf map h(z,w)=(2z w-bar, |z|^2-|w|^2) maps S^3 onto S^2, fibres are exactly U(1)-orbits, pairwise disjoint great circles (S^3 cap real 2-plane); polar decomposition x = r u unique. Not: linking number, Mathlib Quaternion (not built), quaternionic q i q-bar formula"
  }
 ]
