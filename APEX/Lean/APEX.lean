@@ -38,3 +38,6 @@ import APEX.Quantum.Contractivity
 import APEX.Blockade.WeakLimit
 import APEX.Anyon.Fibonacci
 import APEX.Transfer.Nilpotent
+import APEX.Blockade.General.Exact
+import APEX.Collatz.Cycles
+import APEX.Analysis.IntegralEnergy

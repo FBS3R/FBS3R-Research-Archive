@@ -450,5 +450,60 @@
    "APEX.Transfer.degZero_transfer"
   ],
   "statement": "MISSION-03 algebraic core: finite Neumann formula; event ring R[x_1..x_k]/(x_i^2) with degree filtration, products of >k/2 degree>=2 elements vanish; transfer law (I-z(T0+U))^{-1} = sum_{j<=floor(k/2)} R0 (zUR0)^j in Mat_d(E[[z]]) for any T0 and degree>=2 U; universal denominator det(I-zT0)^{floor(k/2)+1} (polynomial adjugate form); degree-0 part reproduces the spatial automaton. Not: top-coefficient extraction, exactness of the dominant pole (cancellation possible), concrete PXP instance"
+ },
+ {
+  "id": "APEX-BLK-10",
+  "area": "Blockade",
+  "status": "KERNEL_PROVED",
+  "novelty": "NEW_THEOREM_CANDIDATE",
+  "lean": [
+   "APEX.Blockade.General.Lc_eq_LcQ",
+   "APEX.Blockade.General.Lc_one",
+   "APEX.Blockade.General.Lc_two",
+   "APEX.Blockade.General.Lc_three",
+   "APEX.Blockade.General.Lc_four",
+   "APEX.Blockade.General.Lc_five",
+   "APEX.Blockade.General.numerator_isCoprime",
+   "APEX.Blockade.General.moment_exact_coprime",
+   "APEX.Blockade.General.exact_denominator",
+   "APEX.Blockade.General.no_cancellation",
+   "APEX.Blockade.General.cyc6_dvd_D",
+   "APEX.Blockade.General.cyc6_dvd_D_iff"
+  ],
+  "statement": "exact denominator: for all m,r>=1 the numerator P of ConjGeneral is coprime to D_r over Q, so D_r^{m+1} is the exact denominator with no cancellation (incl. r = 4 mod 6 where X^2-X+1 | D_r, iff proved); kernel values Lc(1..5) = 2,-4,36,-568,14560"
+ },
+ {
+  "id": "APEX-COL-4",
+  "area": "Collatz",
+  "status": "KERNEL_PROVED",
+  "novelty": "KNOWN_RESULT",
+  "lean": [
+   "APEX.Collatz.cycleMin_spec",
+   "APEX.Collatz.small_drop",
+   "APEX.Collatz.stoppingTime_le_2pow20",
+   "APEX.Collatz.reaches_one_le_2pow20",
+   "APEX.Collatz.nontrivial_cycle_constraints",
+   "APEX.Collatz.nontrivial_cycle_elements_gt",
+   "APEX.Collatz.no_small_nontrivial_cycle"
+  ],
+  "statement": "every n <= 2^20 reaches 1 (kernel, 64 chunks); any nontrivial cycle has all elements > 2^20 and its minimum lies in one of 7495 residue classes mod 2^18. NOT a proof of Collatz or of non-existence of cycles (literature: verified to ~2^71)"
+ },
+ {
+  "id": "APEX-NS-2",
+  "area": "Analysis",
+  "status": "KERNEL_PROVED",
+  "novelty": "NEW_FORMALIZATION",
+  "lean": [
+   "APEX.Analysis.weighted_energy_ineq",
+   "APEX.Analysis.exp_norm_le_of_dissipative",
+   "APEX.Analysis.norm_le_of_dissipative",
+   "APEX.Analysis.norm_le_coercive_integral",
+   "APEX.Analysis.norm_le_forced_integral",
+   "APEX.Analysis.norm_bound_of_local_integral_solution",
+   "APEX.Analysis.norm_bound_of_local_solution",
+   "APEX.Analysis.no_blowup",
+   "APEX.Analysis.no_blowup_integral"
+  ],
+  "statement": "energy bounds for x(t)=x(0)+int v, v = -nu A x - Q x + F a.e., F only L^1, A,Q arbitrary maps on a Hilbert space with <Qy,y>=0, <Ay,y> >= lam|y|^2: ||x T|| <= e^{-kT}||x0|| + int e^{-k(T-s)}||F||; no finite-time blow-up of any local solution. NOT Navier-Stokes regularity; no existence/uniqueness"
  }
 ]

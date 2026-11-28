@@ -1,0 +1,3099 @@
+[
+ {
+  "id": "FBS3R-W001",
+  "date": "2025-02-06",
+  "title": "Being and Non-Being: Beyond Extremes",
+  "folder": "All Preprints; III. Ontology & Physics",
+  "file": "All Preprints/2025_02_06_Being and Non-Being_Beyond Extremes/2025_02_06_Being and Non-Being_Beyond Extremes.pdf",
+  "claims": [
+   {
+    "text": "Различение относительного и абсолютного «существования» феноменов (мадхьямака).",
+    "status": "HEURISTIC/PHYSICAL_MODEL",
+    "lean": []
+   }
+  ],
+  "status": "HEURISTIC/PHYSICAL_MODEL",
+  "lean": [],
+  "note": "Философский/созерцательный текст; математических или физических теорем нет."
+ },
+ {
+  "id": "FBS3R-W002",
+  "date": "2025-02-06",
+  "title": "Beyond Duality: Truth, Falsehood, Emptiness of Being",
+  "folder": "All Preprints; I. Logic & Mathematics; III. Ontology & Physics",
+  "file": "All Preprints/2025_02_06_Beyond Duality_Truth_Falsehood_Emptiness of Being/2025_02_06_Beyond Duality_Truth_Falsehood_Emptiness of Being.pdf",
+  "claims": [
+   {
+    "text": "Тетралемма: ни одна из альтернатив «всё истинно / ложно / и то и другое / ни то ни другое» не установлена.",
+    "status": "HEURISTIC/PHYSICAL_MODEL",
+    "lean": []
+   }
+  ],
+  "status": "HEURISTIC/PHYSICAL_MODEL",
+  "lean": [],
+  "note": "Философский/созерцательный текст; математических или физических теорем нет."
+ },
+ {
+  "id": "FBS3R-W003",
+  "date": "2025-02-17",
+  "title": "Orpheus Praxis: Fractal Artificial Intelligence",
+  "folder": "All Preprints; II. Theory of Information–S³; III. Ontology & Physics",
+  "file": "All Preprints/2025_02_17_Orpheus Praxis_Fractal Artificial Intelligence/2025_02_17_Orpheus Praxis_Fractal Artificial Intelligence.pdf",
+  "claims": [
+   {
+    "text": "Концепция «фрактального ИИ» на основе формулы Fractal Bindu Reality и «волновой функции Вселенной».",
+    "status": "HEURISTIC/PHYSICAL_MODEL",
+    "lean": []
+   }
+  ],
+  "status": "HEURISTIC/PHYSICAL_MODEL",
+  "lean": [],
+  "note": "Концепция без проверяемых утверждений."
+ },
+ {
+  "id": "FBS3R-W004",
+  "date": "2025-02-27",
+  "title": "Fractal Structure of 3D Manifolds: Rigorous Proof of the Poincaré Conjecture",
+  "folder": "All Preprints; I. Logic & Mathematics",
+  "file": "All Preprints/2025_02_27_Fractal Structure 3D_Manifolds_Rigorous Proof_Poincare Conjecture/2025_02_27_Fractal Structure 3D_Manifolds_Rigorous Proof_Poincare Conjecture.pdf",
+  "claims": [
+   {
+    "text": "Гипотеза Пуанкаре верна.",
+    "status": "KNOWN_RESULT",
+    "lean": [],
+    "ref": "Перельман (2002–2003)"
+   },
+   {
+    "text": "Предложенный вывод через «фрактальное время» и модифицированный поток Риччи является строгим доказательством.",
+    "status": "OPEN",
+    "lean": []
+   },
+   {
+    "text": "Фрактальная структура калибровочного поля даёт спектральную и массовую щель Янга–Миллса.",
+    "status": "OPEN",
+    "lean": [],
+    "ref": "проблема тысячелетия (Клэй)"
+   }
+  ],
+  "status": "OPEN",
+  "lean": [],
+  "note": "Сама гипотеза — теорема Перельмана; доказательство статьи не проверено и строгим не является (нет топологии 3-многообразий в Mathlib). Массовая щель Янга–Миллса — открытая проблема тысячелетия."
+ },
+ {
+  "id": "FBS3R-W005",
+  "date": "2025-03-05",
+  "title": "Rigorous Mathematical Proof of the Local Connectivity of the Mandelbrot Set",
+  "folder": "All Preprints; I. Logic & Mathematics",
+  "file": "All Preprints/2025_03_05_Rigorous Mathematical Proof of the Local Connectivity of the Mandelbrot Set/2025_03_05_Rigorous Mathematical Proof of the Local Connectivity of the Mandelbrot Set.pdf",
+  "claims": [
+   {
+    "text": "Локальная связность множества Мандельброта (MLC).",
+    "status": "OPEN",
+    "lean": [],
+    "ref": "открытая проблема"
+   },
+   {
+    "text": "Ключевой шаг: U = {V(c) < x_N} ∩ B(c₀,ε) связно, так как это подмножество связного диска.",
+    "status": "DISPROVED",
+    "lean": [
+     "FBS3R.Misc.subset_of_connected_not_connected"
+    ],
+    "ref": "A5"
+   },
+   {
+    "text": "Из односвязности (π₁ = 0) локальных областей следует локальная связность.",
+    "status": "OPEN",
+    "lean": [],
+    "ref": "ложно как импликация: гребёнка стягиваема, но не локально связна; в Lean не формализовано"
+   }
+  ],
+  "status": "DISPROVED",
+  "lean": [
+   "FBS3R.Misc.subset_of_connected_not_connected"
+  ],
+  "note": "A5: опровергнут шаг доказательства, а не MLC. MLC остаётся открытой; статья доказательством не является."
+ },
+ {
+  "id": "FBS3R-W006",
+  "date": "2025-03-29",
+  "title": "FB(S³)R: A Critique of the Law of Excluded Middle and Its Integration into a Unified Model of Absolute Analysis",
+  "folder": "All Preprints; I. Logic & Mathematics; III. Ontology & Physics",
+  "file": "All Preprints/2025_03_29_FB(S3)R_A _Critique_of_the_Law_of_Excluded_Middle_and_Its_Integration_into_a_Unified_Model_of_Absolute_Analysis/2025_03_29_FB(S3)R_A _Critique_of_the_Law_of_Excluded_Middle_and_Its_Integration_into_a_Unified_Model_of_Absolute_Analysis.pdf",
+  "claims": [
+   {
+    "text": "Закон исключённого третьего неприменим в «абсолютном анализе»; модель FB(S³) включает его как частный случай.",
+    "status": "HEURISTIC/PHYSICAL_MODEL",
+    "lean": []
+   }
+  ],
+  "status": "HEURISTIC/PHYSICAL_MODEL",
+  "lean": [],
+  "note": "Формальная логическая система не задана; философия логики."
+ },
+ {
+  "id": "FBS3R-W007",
+  "date": "2025-05-02",
+  "title": "Gödel Theorems: Criterion for Verifying the Completeness of Information",
+  "folder": "All Preprints; I. Logic & Mathematics; II. Theory of Information–S³",
+  "file": "All Preprints/2025_05_02_Godel_Theorems_Criterion_for_Verifying_the_Completeness_of_Information/2025_05_02_Godel_Theorems_Criterion_for_Verifying_the_Completeness_of_Information.pdf",
+  "claims": [
+   {
+    "text": "Неполнота по Гёделю — источник, а не предел знания; «критерий полноты информации».",
+    "status": "HEURISTIC/PHYSICAL_MODEL",
+    "lean": []
+   }
+  ],
+  "status": "HEURISTIC/PHYSICAL_MODEL",
+  "lean": [],
+  "note": "Теоремы Гёделя известны (KNOWN_RESULT); текст интерпретационный."
+ },
+ {
+  "id": "FBS3R-W008",
+  "date": "2025-05-07",
+  "title": "FB(S³)R: Local Flatness, Quantum Consistency, and the ΛCDM Limit",
+  "folder": "All Preprints; III. Ontology & Physics; IV. HCC-S³",
+  "file": "All Preprints/2025_05_07_FBS3R_Local_Flatness_Quantum_Consistency,_and_the_ΛCDM_Limit/2025_05_07_FBS3R_Local_Flatness_Quantum_Consistency,_and_the_ΛCDM_Limit.pdf",
+  "claims": [
+   {
+    "text": "Наблюдаемая плоскость — локальное приближение S³ при r_obs ≪ R; ΛCDM — предел R → ∞.",
+    "status": "KNOWN_RESULT",
+    "lean": []
+   },
+   {
+    "text": "Компактность S³ устраняет ИК-расходимости КТП; совместимость с CMB и LSS.",
+    "status": "HEURISTIC/PHYSICAL_MODEL",
+    "lean": []
+   }
+  ],
+  "status": "HEURISTIC/PHYSICAL_MODEL",
+  "lean": [],
+  "note": "Физическая модель; формальных утверждений нет."
+ },
+ {
+  "id": "FBS3R-W009",
+  "date": "2025-05-09",
+  "title": "FB(S³)R and Biogenesis: Empirical Validation of a Novel Theoretical Framework",
+  "folder": "All Preprints; II. Theory of Information–S³; III. Ontology & Physics",
+  "file": "All Preprints/2025_05_09_FBS3R_and_Biogenesis_Empirical_Validation_of_a_Novel_Theoretical_Framework/2025_05_09_FBS3R_and_Biogenesis_Empirical_Validation_of_a_Novel_Theoretical_Framework.pdf",
+  "claims": [
+   {
+    "text": "Предсказания δ_sync → 0, ΔD_f < φ⁻¹, C_ζ(n+1)/C_ζ(n) < φ² согласуются с опубликованными данными.",
+    "status": "NUMERICAL_EVIDENCE",
+    "lean": []
+   },
+   {
+    "text": "Биогенез управляется фрактальной синхронизацией по золотому сечению.",
+    "status": "HEURISTIC/PHYSICAL_MODEL",
+    "lean": []
+   }
+  ],
+  "status": "HEURISTIC/PHYSICAL_MODEL",
+  "lean": [],
+  "note": "Сопоставление с литературными данными; заявленное «подтверждение» не установлено."
+ },
+ {
+  "id": "FBS3R-W010",
+  "date": "2025-05-22",
+  "title": "On Reincarnation: Part I",
+  "folder": "All Preprints; III. Ontology & Physics",
+  "file": "All Preprints/2025_05_22_On_Reincarnation_Part_I/2025_05_22_On_Reincarnation_Part_I.pdf",
+  "claims": [
+   {
+    "text": "Семичастная техника причины и следствия (мадхьямака-прасангика) и золотое сечение как принцип гармонии.",
+    "status": "HEURISTIC/PHYSICAL_MODEL",
+    "lean": []
+   }
+  ],
+  "status": "HEURISTIC/PHYSICAL_MODEL",
+  "lean": [],
+  "note": "Философский/созерцательный текст; математических или физических теорем нет."
+ },
+ {
+  "id": "FBS3R-W011",
+  "date": "2025-05-25",
+  "title": "On Reincarnation — Part II: The Axioms of Implicative Reincarnation",
+  "folder": "All Preprints; III. Ontology & Physics",
+  "file": "All Preprints/2025_05_25_On_Reincarnation_Part_II_The Axioms_of_Implicative_Reincarnation/2025_05_25_On_Reincarnation_Part_II_The Axioms_of_Implicative_Reincarnation.pdf",
+  "claims": [
+   {
+    "text": "Аксиомы «импликативной реинкарнации» обусловленного существа.",
+    "status": "HEURISTIC/PHYSICAL_MODEL",
+    "lean": []
+   }
+  ],
+  "status": "HEURISTIC/PHYSICAL_MODEL",
+  "lean": [],
+  "note": "Философский/созерцательный текст; математических или физических теорем нет."
+ },
+ {
+  "id": "FBS3R-W012",
+  "date": "2025-05-29",
+  "title": "On Reincarnation — Part III: Four Bardo of Consciousness",
+  "folder": "All Preprints; III. Ontology & Physics",
+  "file": "All Preprints/2025_05_29_On_Reincarnation_Part_III_Four_Bardo_of_Consciousness/2025_05_29_On_Reincarnation_Part_III_Four_Bardo_of_Consciousness.pdf",
+  "claims": [
+   {
+    "text": "«Доказательство» непрерывности потока сознания через последовательность тел средствами логики предикатов и булевых функций.",
+    "status": "HEURISTIC/PHYSICAL_MODEL",
+    "lean": []
+   }
+  ],
+  "status": "HEURISTIC/PHYSICAL_MODEL",
+  "lean": [],
+  "note": "Содержательная аксиоматика, а не математическая теорема."
+ },
+ {
+  "id": "FBS3R-W013",
+  "date": "2025-06-05",
+  "title": "Critical Analysis of Schrödinger's Thought Experiment",
+  "folder": "All Preprints; II. Theory of Information–S³; III. Ontology & Physics",
+  "file": "All Preprints/2025_06_05_Critical_Analysis_of_Schrodinger_Thought_Experiment/2025_06_05_Critical_Analysis_of_Schrodinger_Thought_Experiment.pdf",
+  "claims": [
+   {
+    "text": "Суперпозиция «и жив, и мёртв» логически несостоятельна; предлагается состояние «ни жив, ни мёртв».",
+    "status": "HEURISTIC/PHYSICAL_MODEL",
+    "lean": []
+   }
+  ],
+  "status": "HEURISTIC/PHYSICAL_MODEL",
+  "lean": [],
+  "note": "Интерпретация квантовой механики."
+ },
+ {
+  "id": "FBS3R-W014",
+  "date": "2025-06-23",
+  "title": "FB(S³)R: Fractal Foliation and UV-Finite Nonlocal Gravity — Theoretical Foundations for Galactic Dynamics and Phenomenological Tests",
+  "folder": "All Preprints; III. Ontology & Physics; IV. HCC-S³",
+  "file": "All Preprints/2025_06_23_FBS3R_Fractal_Foliation_and_UV_Finite_Nonlocal_Gravity_Theoretical_Foundations_for_Galactic_Dynamics_and_Phenomenological_Tests/2025_06_23_FBS3R_Fractal_Foliation_and_UV_Finite_Nonlocal_Gravity_Theoretical_Foundations_for_Galactic_Dynamics_and_Phenomenological_Tests.pdf",
+  "claims": [
+   {
+    "text": "φ выводится из рекуррентности R_{n+2} = R_{n+1} + R_n.",
+    "status": "KNOWN_RESULT",
+    "lean": []
+   },
+   {
+    "text": "Нелокальная гравитация с форм-фактором e^{−s□}: пропагатор без духов и конечность во всех петлях («All-Loop Finiteness»).",
+    "status": "OPEN",
+    "lean": [],
+    "ref": "безду́ховый пропагатор такого типа известен (IDG); конечность во всех петлях не доказана"
+   },
+   {
+    "text": "Пространственная топология S³ через поток Риччи с хирургией.",
+    "status": "KNOWN_RESULT",
+    "lean": [],
+    "ref": "Перельман; применимость к Вселенной — допущение"
+   }
+  ],
+  "status": "HEURISTIC/PHYSICAL_MODEL",
+  "lean": [],
+  "note": "Физическая модель; 7 формальных утверждений, нужна КТП и распределения (нет в Mathlib)."
+ },
+ {
+  "id": "FBS3R-W015",
+  "date": "2025-06-23",
+  "title": "FB(S³)R: Fractal Gravity on Nested S³ Shells — A Minimal-Parameter, Falsifiable Quantum-Gravity Framework",
+  "folder": "All Preprints; III. Ontology & Physics; IV. HCC-S³",
+  "file": "All Preprints/2025_06_23_FBS3R_Fractal_Gravity_on_Nested_S3_Shells_A_Minimal_Parameter_Falsifiable_Quantum_Gravity_Framework/2025_06_23_FBS3R_Fractal_Gravity_on_Nested_S3_Shells_A_Minimal_Parameter_Falsifiable_Quantum_Gravity_Framework.pdf",
+  "claims": [
+   {
+    "text": "Фит кривой вращения NGC 2403 без гало тёмной материи (χ²_ν = 0.19).",
+    "status": "NUMERICAL_EVIDENCE",
+    "lean": []
+   },
+   {
+    "text": "n_s = 0.9640 ± 0.0004 при N_tot ≈ 4.1·10¹¹ оболочек.",
+    "status": "NUMERICAL_EVIDENCE",
+    "lean": []
+   },
+   {
+    "text": "UV-конечная безду́ховая квантовая гравитация на вложенных оболочках S³ с R_n = φⁿℓ_P.",
+    "status": "HEURISTIC/PHYSICAL_MODEL",
+    "lean": []
+   }
+  ],
+  "status": "HEURISTIC/PHYSICAL_MODEL",
+  "lean": [],
+  "note": "Модель и подгонка параметров."
+ },
+ {
+  "id": "FBS3R-W016",
+  "date": "2025-06-24",
+  "title": "Topology-Induced Nonlocal Gravity on a Mass-Dependent Fractal Foliation — A Rigorous Framework for the Absence of Dark Matter",
+  "folder": "All Preprints; III. Ontology & Physics; IV. HCC-S³",
+  "file": "All Preprints/2025_06_24_Topology_Induced_Nonlocal_Gravity_on_a_Mass_Dependent_Fractal_Foliation_A_Rigorous_Framework_in_the_FBS3R_Cosmology_A Rigorous_Framework_for_the_Absence_of_Dark_Matter/2025_06_24_Topology_Induced_Nonlocal_Gravity_on_a_Mass_Dependent_Fractal_Foliation_A_Rigorous_Framework_in_the_FBS3R_Cosmology_A Rigorous_Framework_for_the_Absence_of_Dark_Matter.pdf",
+  "claims": [
+   {
+    "text": "Явления тёмной материи — геометрико-топологический эффект нелокальной гравитации на массозависимом фрактальном слоении.",
+    "status": "HEURISTIC/PHYSICAL_MODEL",
+    "lean": []
+   },
+   {
+    "text": "Вывод из 5D Черна–Саймонса и вариация Барвинского–Вилковыского.",
+    "status": "HEURISTIC/PHYSICAL_MODEL",
+    "lean": []
+   }
+  ],
+  "status": "HEURISTIC/PHYSICAL_MODEL",
+  "lean": [],
+  "note": "Формальных утверждений нет."
+ },
+ {
+  "id": "FBS3R-W017",
+  "date": "2025-06-25",
+  "title": "Dual Incompleteness as a Path to Completeness: Gödel, Rosser and the Fractal S³ Framework",
+  "folder": "All Preprints; I. Logic & Mathematics; III. Ontology & Physics",
+  "file": "All Preprints/2025_06_25_Dual_Incompleteness_as_a_Path_to_Completeness_Goedel_Rosser_and_the_Fractal_S3_Framework/2025_06_25_Dual_Incompleteness_as_a_Path_to_Completeness_Goedel_Rosser_and_the_Fractal_S3_Framework.pdf",
+  "claims": [
+   {
+    "text": "Синтез КМ и ОТО как двух неполных систем даёт «логически полную» систему (по Россеру).",
+    "status": "HEURISTIC/PHYSICAL_MODEL",
+    "lean": []
+   }
+  ],
+  "status": "HEURISTIC/PHYSICAL_MODEL",
+  "lean": [],
+  "note": "Формальная система не задана. При буквальном прочтении утверждение противоречит теореме Гёделя–Россера для непротиворечивых рекурсивно аксиоматизируемых теорий, содержащих арифметику."
+ },
+ {
+  "id": "FBS3R-W018",
+  "date": "2025-06-27",
+  "title": "FB(S³)R: Dependent Origination — A Mathematical Formalization of Interdependence in Quantum and Cosmological Systems",
+  "folder": "All Preprints; III. Ontology & Physics",
+  "file": "All Preprints/2025_06_27_FBS3R_Dependent_Origination_A_Mathematical_Formalization_of_Interdependence_in_Quantum_and_Cosmological_Systems/2025_06_27_FBS3R_Dependent_Origination_A_Mathematical_Formalization_of_Interdependence_in_Quantum_and_Cosmological_Systems.pdf",
+  "claims": [
+   {
+    "text": "После исключения самопричинности, внешней, двойной и беспричинной причинности остаётся только модель взаимозависимых условий (марковские цепи, φ-вложение сфер).",
+    "status": "HEURISTIC/PHYSICAL_MODEL",
+    "lean": []
+   }
+  ],
+  "status": "HEURISTIC/PHYSICAL_MODEL",
+  "lean": [],
+  "note": "Философско-физическая модель."
+ },
+ {
+  "id": "FBS3R-W019",
+  "date": "2025-07-19",
+  "title": "Gauss's Theorem in the FB(S³)R Model: Electric Flux as a Probe of Curved Topology and Self-Similar Scaling",
+  "folder": "All Preprints; I. Logic & Mathematics; IV. HCC-S³",
+  "file": "All Preprints/2025_07_19_Gauss_s_theorem_in_the_FBS3R_model_electric_flux_as_a_probe_of_curved_topology_and_self_similar_scaling/2025_07_19_Gauss_s_theorem_in_the_FBS3R_model_electric_flux_as_a_probe_of_curved_topology_and_self_similar_scaling.pdf",
+  "claims": [
+   {
+    "text": "На компактном S³ полный заряд обязан быть нулевым (теорема Гаусса).",
+    "status": "KNOWN_RESULT",
+    "lean": []
+   },
+   {
+    "text": "Мультифрактальная иерархия r_n = r₀φ^{−n} и масштабирование потока как зонд топологии.",
+    "status": "HEURISTIC/PHYSICAL_MODEL",
+    "lean": []
+   }
+  ],
+  "status": "HEURISTIC/PHYSICAL_MODEL",
+  "lean": [],
+  "note": "Модель."
+ },
+ {
+  "id": "FBS3R-W020",
+  "date": "2025-07-23",
+  "title": "Heisenberg's Uncertainty Principle: The Fractal Nature of Uncertainty Across All Scales",
+  "folder": "All Preprints; III. Ontology & Physics; IV. HCC-S³",
+  "file": "All Preprints/2025_07_23_Heisenberg_s_Uncertainty_Principle_The_Fractal_Nature_of_Uncertainty_Across_All_Scales/2025_07_23_Heisenberg_s_Uncertainty_Principle_The_Fractal_Nature_of_Uncertainty_Across_All_Scales.pdf",
+  "claims": [
+   {
+    "text": "Принцип неопределённости — проявление фрактальной структуры S³ с квантованием по φ.",
+    "status": "HEURISTIC/PHYSICAL_MODEL",
+    "lean": []
+   },
+   {
+    "text": "Численный ориентир ρ_today = 7.74·10⁻²⁷ кг/м³.",
+    "status": "NUMERICAL_EVIDENCE",
+    "lean": []
+   }
+  ],
+  "status": "HEURISTIC/PHYSICAL_MODEL",
+  "lean": [],
+  "note": "Модель."
+ },
+ {
+  "id": "FBS3R-W021",
+  "date": "2025-07-25",
+  "title": "A Continuous Cyclic Model of the Universe",
+  "folder": "All Preprints; III. Ontology & Physics; IV. HCC-S³",
+  "file": "All Preprints/2025_07_25_FBS3R_A_Continuous_Cyclic_Model_of_the_Universe/2025_07_25_FBS3R_A_Continuous_Cyclic_Model_of_the_Universe.pdf",
+  "claims": [
+   {
+    "text": "Наблюдаемое расширение — внутренняя динамика плотности энергии (φ, поток Риччи, Ψ_universe), а не растяжение S³.",
+    "status": "HEURISTIC/PHYSICAL_MODEL",
+    "lean": []
+   }
+  ],
+  "status": "HEURISTIC/PHYSICAL_MODEL",
+  "lean": [],
+  "note": "Модель."
+ },
+ {
+  "id": "FBS3R-W022",
+  "date": "2025-08-08",
+  "title": "Compact Topology, φ-Ladder, Modular Duality and PBH-Driven High-z UV Background",
+  "folder": "All Preprints; IV. HCC-S³",
+  "file": "All Preprints/2025_08_08_Compact_Topology_φ_Ladder_Modular_Duality_and_a_PBH_Driven_High_z_UV_Background/2025_08_08_Compact_Topology_φ_Ladder_Modular_Duality_and_a_PBH_Driven_High_z_UV_Background.pdf",
+  "claims": [
+   {
+    "text": "Компактная топология, φ-лестница и модульная двойственность; сектор ПЧД объясняет медленное убывание УФ-светимости до z ∼ 25.",
+    "status": "HEURISTIC/PHYSICAL_MODEL",
+    "lean": []
+   }
+  ],
+  "status": "HEURISTIC/PHYSICAL_MODEL",
+  "lean": [],
+  "note": "Модель."
+ },
+ {
+  "id": "FBS3R-W023",
+  "date": "2025-09-01",
+  "title": "Fractal S³ Cosmology: A Window-Anchored Gradient Account of the Hubble Tension",
+  "folder": "All Preprints; IV. HCC-S³",
+  "file": "All Preprints/2025_09_01_Fractal_S3_Cosmology_A_Window_Anchored_Gradient_Account_of_the_Hubble_Tension/2025_09_01_Fractal_S3_Cosmology_A_Window_Anchored_Gradient_Account_of_the_Hubble_Tension.pdf",
+  "claims": [
+   {
+    "text": "Наблюдаемый наклон Хаббла — оконный градиент (закон переноса d ln ω/dλ = −κp(V)V⁻¹dV/dλ), а не глобальная скорость расширения.",
+    "status": "HEURISTIC/PHYSICAL_MODEL",
+    "lean": []
+   }
+  ],
+  "status": "HEURISTIC/PHYSICAL_MODEL",
+  "lean": [],
+  "note": "Единственное утверждение — феноменологическая подгонка."
+ },
+ {
+  "id": "FBS3R-W024",
+  "date": "2025-09-28",
+  "title": "Zeckendorf–φ Bounds for the Collatz Map",
+  "folder": "All Preprints; I. Logic & Mathematics",
+  "file": "All Preprints/2025_09_28_Zeckendorf_φ_Bounds_for_the_Collatz_Map_Strict_Local_Theory_Two_Sufficient_Reductions_and_No_Go_Results/2025_09_28_Zeckendorf_φ_Bounds_for_the_Collatz_Map_Strict_Local_Theory_Two_Sufficient_Reductions_and_No_Go_Results.pdf",
+  "claims": [
+   {
+    "text": "Чётный шаг h(n/2)+1 ≤ h(n) и нечётный шаг h(3n+1) ≤ h(n)+3 для высоты Цекендорфа.",
+    "status": "KERNEL_PROVED",
+    "lean": [
+     "FBS3R.Collatz.even_step",
+     "FBS3R.Collatz.odd_step",
+     "APEX.Collatz.fibHeight_three_mul_add_one"
+    ]
+   },
+   {
+    "text": "Дрейф суперполушага h(T n) − h(n) ≤ 3 − m при 2^m | 3n+1.",
+    "status": "KERNEL_PROVED",
+    "lean": [
+     "FBS3R.Collatz.superstep_drift_int"
+    ]
+   },
+   {
+    "text": "Prop. «Refined odd-step»: если n не top-third, рост высоты ≤ 2.",
+    "status": "DISPROVED",
+    "lean": [
+     "FBS3R.Collatz.refined_odd_step_counterexample"
+    ],
+    "ref": "A1"
+   },
+   {
+    "text": "No-go: наивная функция Ляпунова V = h − 2ν₂ и грубый вычетный сертификат.",
+    "status": "KERNEL_PROVED",
+    "lean": [
+     "FBS3R.Collatz.naive_lyapunov_fails",
+     "FBS3R.Collatz.no_coarse_certificate"
+    ]
+   },
+   {
+    "text": "Глобальная сходимость Коллатца при редукциях A′, B′ (условно).",
+    "status": "OPEN",
+    "lean": [],
+    "ref": "гипотеза Коллатца открыта"
+   }
+  ],
+  "status": "DISPROVED",
+  "lean": [
+   "FBS3R.Collatz.even_step",
+   "FBS3R.Collatz.odd_step",
+   "APEX.Collatz.fibHeight_three_mul_add_one",
+   "FBS3R.Collatz.superstep_drift_int",
+   "FBS3R.Collatz.refined_odd_step_counterexample",
+   "FBS3R.Collatz.naive_lyapunov_fails",
+   "FBS3R.Collatz.no_coarse_certificate"
+  ],
+  "note": "A1: контрпример n = 11. Статья сама не заявляет сходимости; неравенство (eq:drift) для всех J не следует. APEX: h(3n+1) − h(n) ∈ {2,3} и no-go ограниченной поправки (APEX.Collatz.no_bounded_height_correction)."
+ },
+ {
+  "id": "FBS3R-W025",
+  "date": "2025-10-05",
+  "title": "Dark Energy as an Epistemological Artifact",
+  "folder": "All Preprints; III. Ontology & Physics; IV. HCC-S³",
+  "file": "All Preprints/2025_10_05_Dark_Energy_as_an_Epistemological_Artifact_A_Geometric_and_Wave_Functional_Alternative_on_the_Compact_3Sphere_S3_to_Dynamical_Dark_Energy/2025_10_05_Dark_Energy_as_an_Epistemological_Artifact_A_Geometric_and_Wave_Functional_Alternative_on_the_Compact_3Sphere_S3_to_Dynamical_Dark_Energy.pdf",
+  "claims": [
+   {
+    "text": "Позднее ускорение — геометрический инвариант фазовой структуры S³ без «тёмной энергии».",
+    "status": "HEURISTIC/PHYSICAL_MODEL",
+    "lean": []
+   }
+  ],
+  "status": "HEURISTIC/PHYSICAL_MODEL",
+  "lean": [],
+  "note": "Модель."
+ },
+ {
+  "id": "FBS3R-W026",
+  "date": "2025-10-12",
+  "title": "Canonical Quantization of GR on R × S³",
+  "folder": "All Preprints; I. Logic & Mathematics; IV. HCC-S³",
+  "file": "All Preprints/2025_10_12_Canonical_Quantization_of_GR_on_R_S3_in_CMC_Gauge_and_a_Phase_Law_for_Cosmic_Acceleration_A_Λ_Free_Testable_Cosmology_with_Discrete_Curvature_Spectrum/2025_10_12_Canonical_Quantization_of_GR_on_R_S3_in_CMC_Gauge_and_a_Phase_Law_for_Cosmic_Acceleration_A_Λ_Free_Testable_Cosmology_with_Discrete_Curvature_Spectrum.pdf",
+  "claims": [
+   {
+    "text": "Редукция Лихнеровича–Йорка в CMC-калибровке на S³.",
+    "status": "KNOWN_RESULT",
+    "lean": []
+   },
+   {
+    "text": "Фазовый закон H = ⅓Δθ̇ (Борн–Оппенгеймер) даёт ускорение без Λ и дискретный спектр кривизны.",
+    "status": "HEURISTIC/PHYSICAL_MODEL",
+    "lean": []
+   }
+  ],
+  "status": "HEURISTIC/PHYSICAL_MODEL",
+  "lean": [],
+  "note": "Модель."
+ },
+ {
+  "id": "FBS3R-W027",
+  "date": "2025-10-12",
+  "title": "Geometric Acceleration on Compact S³ Without a Fundamental Λ",
+  "folder": "All Preprints; IV. HCC-S³",
+  "file": "All Preprints/2025_10_12_Geometric_Acceleration_on_Compact_S3_Without_a_Fundamental_Λ_A_Phase_Wavefunctional_Mechanism/2025_10_12_Geometric_Acceleration_on_Compact_S3_Without_a_Fundamental_Λ_A_Phase_Wavefunctional_Mechanism.pdf",
+  "claims": [
+   {
+    "text": "В двухмодовой редукции H = ⅓Δθ̇; при постоянной фазовой скорости возникает Λ_eff = 3H_∞²/c².",
+    "status": "HEURISTIC/PHYSICAL_MODEL",
+    "lean": []
+   },
+   {
+    "text": "Фоновая динамика сводится к ОТО с пылью, малой положительной кривизной и Λ_eff.",
+    "status": "KNOWN_RESULT",
+    "lean": []
+   }
+  ],
+  "status": "HEURISTIC/PHYSICAL_MODEL",
+  "lean": [],
+  "note": "Модель."
+ },
+ {
+  "id": "FBS3R-W028",
+  "date": "2025-12-08",
+  "title": "Suspension of Spheres and the Uniqueness of S³ as an Anisotropic Bridge of Non-Duality",
+  "folder": "All Preprints; I. Logic & Mathematics; III. Ontology & Physics",
+  "file": "All Preprints/2025_12_08_Suspension_of_Spheres_and_the_Uniqueness_of_S3_as_an_Anisotropic_Bridge_of_Non_Duality/2025_12_08_Suspension_of_Spheres_and_the_Uniqueness_of_S3_as_an_Anisotropic_Bridge_of_Non_Duality.pdf",
+  "claims": [
+   {
+    "text": "ΣSⁿ ≅ Sⁿ⁺¹; S¹ ≅ U(1), S² ≅ CP¹, S³ ≅ SU(2), S⁴ ≅ HP¹; SO(4) ≅ [SU(2)×SU(2)]/Z₂.",
+    "status": "KNOWN_RESULT",
+    "lean": []
+   },
+   {
+    "text": "S³ — единственный «анизотропный мост недвойственности», источник времени, спина и энтропии.",
+    "status": "HEURISTIC/PHYSICAL_MODEL",
+    "lean": []
+   }
+  ],
+  "status": "HEURISTIC/PHYSICAL_MODEL",
+  "lean": [],
+  "note": "Ранняя версия; математика вошла в 2026_07_02."
+ },
+ {
+  "id": "FBS3R-W029",
+  "date": "2025-12-30",
+  "title": "The Ontological Crisis of Modern Cosmology",
+  "folder": "All Preprints; III. Ontology & Physics; IV. HCC-S³",
+  "file": "All Preprints/2025_12_30_The_Ontological_Crisis_of_Modern_Cosmology_From_Phenomenology_to_Structural_Physics/2025_12_30_The_Ontological_Crisis_of_Modern_Cosmology_From_Phenomenology_to_Structural_Physics.pdf",
+  "claims": [
+   {
+    "text": "Тёмная энергия и тёмная материя несовместимы с теоремой Нётер.",
+    "status": "HEURISTIC/PHYSICAL_MODEL",
+    "lean": [],
+    "ref": "не доказано; ΛCDM совместима с ковариантным сохранением"
+   },
+   {
+    "text": "Интерпретация красного смещения как эффекта Доплера — исторический выбор, а не логическая необходимость.",
+    "status": "HEURISTIC/PHYSICAL_MODEL",
+    "lean": []
+   }
+  ],
+  "status": "HEURISTIC/PHYSICAL_MODEL",
+  "lean": [],
+  "note": "Эссе."
+ },
+ {
+  "id": "FBS3R-W030",
+  "date": "2026-02-17",
+  "title": "Noether Identities and Discrete φ-Embedding in Compact S³ Quantum Cosmology",
+  "folder": "All Preprints; I. Logic & Mathematics; IV. HCC-S³",
+  "file": "All Preprints/2026_02_17_Noether_Identities_and_Discrete_φ_Embedding_in_Compact_S3_Quantum_Cosmology/2026_02_17_Noether_Identities_and_Discrete_φ_Embedding_in_Compact_S3_Quantum_Cosmology.pdf",
+  "claims": [
+   {
+    "text": "Нётер II: диффеоморфизмы дают тождества (типа Бьянки), а не глобальные заряды; на компактном Σ без границы глобальные генераторы — связи.",
+    "status": "KNOWN_RESULT",
+    "lean": []
+   },
+   {
+    "text": "Сферическое накрытие Σ̃ ≃ S³ («hard spherical inevitability»).",
+    "status": "KNOWN_RESULT",
+    "lean": [],
+    "ref": "Перельман, сферические пространственные формы"
+   },
+   {
+    "text": "Ступенчатое N(t) = ⌊log_φ(ct/ℓ_P)⌋ требует явных условий сшивки.",
+    "status": "HEURISTIC/PHYSICAL_MODEL",
+    "lean": []
+   }
+  ],
+  "status": "KNOWN_RESULT",
+  "lean": [],
+  "note": "Вариационного исчисления на многообразиях в Mathlib нет."
+ },
+ {
+  "id": "FBS3R-W031",
+  "date": "2026-02-18",
+  "title": "Fractal Quantum Entanglement Density via Fibonacci Embedding",
+  "folder": "All Preprints; I. Logic & Mathematics; II. Theory of Information–S³",
+  "file": "All Preprints/2026_02_18_Fractal_Quantum_Entanglement_Density_via_Fibonacci_Embedding/2026_02_18_Fractal_Quantum_Entanglement_Density_via_Fibonacci_Embedding.pdf",
+  "claims": [
+   {
+    "text": "φ — единственное доминирующее собственное значение минимальной положительной рекурсии 2-го порядка (Перрон–Фробениус).",
+    "status": "KNOWN_RESULT",
+    "lean": [
+     "FBS3R.Selector.fibonacci_minimal"
+    ],
+    "ref": "близкое утверждение B68"
+   },
+   {
+    "text": "Постулат H3 (максимальный индекс моды = число узлов) ⇒ R_n ∝ φⁿ; законы C_n → φ⁻², I_n ∼ κφ²ⁿ, D_n ∼ φ⁻ⁿ.",
+    "status": "HEURISTIC/PHYSICAL_MODEL",
+    "lean": []
+   }
+  ],
+  "status": "HEURISTIC/PHYSICAL_MODEL",
+  "lean": [
+   "FBS3R.Selector.fibonacci_minimal"
+  ],
+  "note": "«Теоремы» масштабирования условны по постулату H3."
+ },
+ {
+  "id": "FBS3R-W032",
+  "date": "2026-02-21",
+  "title": "The Vanishing of Diffeomorphism Hamiltonians",
+  "folder": "All Preprints; I. Logic & Mathematics; IV. HCC-S³",
+  "file": "All Preprints/2026_02_21_The_Vanishing_of_Diffeomorphism_Hamiltonians/2026_02_21_The_Vanishing_of_Diffeomorphism_Hamiltonians.pdf",
+  "claims": [
+   {
+    "text": "На замкнутом Σ (∂Σ = ∅) гамильтониан диффеоморфизмов H_ξ = ∮(Q_ξ − ξ·B) обращается в нуль.",
+    "status": "KNOWN_RESULT",
+    "lean": []
+   }
+  ],
+  "status": "KNOWN_RESULT",
+  "lean": [],
+  "note": "Стандартная ОТО (связи первого рода)."
+ },
+ {
+  "id": "FBS3R-W033",
+  "date": "2026-02-24",
+  "title": "Quasi-local Diffeomorphism Charges in a Closed S³ Universe",
+  "folder": "All Preprints; I. Logic & Mathematics; IV. HCC-S³",
+  "file": "All Preprints/2026_02_24_Quasi_local_diffeomorphism_charges_in_a_closed_S3_Universe/2026_02_24_Quasi_local_diffeomorphism_charges_in_a_closed_S3_Universe.pdf",
+  "claims": [
+   {
+    "text": "Явные заряды Айера–Уолда и член Гиббонса–Хокинга–Йорка для подобластей D ⊂ Σ с ∂D ≠ ∅.",
+    "status": "KNOWN_RESULT",
+    "lean": []
+   },
+   {
+    "text": "«Сканирование границы» по φ_g-уровням.",
+    "status": "HEURISTIC/PHYSICAL_MODEL",
+    "lean": []
+   }
+  ],
+  "status": "KNOWN_RESULT",
+  "lean": [],
+  "note": ""
+ },
+ {
+  "id": "FBS3R-W034",
+  "date": "2026-04-15",
+  "title": "Compact Simply-Connected Cosmology and the Geometric Origin of Quantum Nonlocality: Bell Inequality Violations from S³ Topology and Fibonacci Geodesic Stratification",
+  "folder": "All Preprints; II. Theory of Information–S³; IV. HCC-S³",
+  "file": "All Preprints/2026_04_15_Compact_Simply_Connected_Cosmology_and_the_Geometric_Origin_of_Quantum_Nonlocality_Bell_Inequality_Violations_from_S3_Topology_and_Fibonacci_Geodesic_Stratification/2026_04_15_Compact_Simply_Connected_Cosmology_and_the_Geometric_Origin_of_Quantum_Nonlocality_Bell_Inequality_Violations_from_S3_Topology_and_Fibonacci_Geodesic_Stratification.pdf",
+  "claims": [
+   {
+    "text": "Thm «Uniqueness of the Fibonacci Stratification»: единственное минимально-избыточное беcщелевое разбиение спектра.",
+    "status": "DISPROVED",
+    "lean": [
+     "FBS3R.FibStrat.no_additively_closed_partition_with_ratio_gt_one",
+     "FBS3R.FibStrat.fib_not_additively_closed"
+    ],
+    "ref": "A2"
+   },
+   {
+    "text": "Thm «Berry Phase Generates Bell Correlation Function»: для |Φ⁺⟩ = (|00⟩+|11⟩)/√2 получается E(a,b) = −cos θ.",
+    "status": "DISPROVED",
+    "lean": [
+     "FBS3R.Bell.bell_Phi_plus",
+     "FBS3R.Bell.singlet_Psi_minus"
+    ],
+    "ref": "A3"
+   },
+   {
+    "text": "CHSH ≤ 2 для любой ЛСП-модели и граница Цирельсона 2√2.",
+    "status": "KERNEL_PROVED",
+    "lean": [
+     "FBS3R.Bell.chsh",
+     "FBS3R.Bell.tsirelson_singlet",
+     "FBS3R.Bell.no_LHV_reproduces_singlet"
+    ],
+    "ref": "известные результаты (Белл, Цирельсон)"
+   },
+   {
+    "text": "Нарушения неравенств Белла выводятся из топологии Вселенной S³.",
+    "status": "HEURISTIC/PHYSICAL_MODEL",
+    "lean": []
+   }
+  ],
+  "status": "DISPROVED",
+  "lean": [
+   "FBS3R.FibStrat.no_additively_closed_partition_with_ratio_gt_one",
+   "FBS3R.FibStrat.fib_not_additively_closed",
+   "FBS3R.Bell.bell_Phi_plus",
+   "FBS3R.Bell.singlet_Psi_minus",
+   "FBS3R.Bell.chsh",
+   "FBS3R.Bell.tsirelson_singlet",
+   "FBS3R.Bell.no_LHV_reproduces_singlet"
+  ],
+  "note": "A2, A3. В PRA-версии (2026-04-30) состояние исправлено на синглет."
+ },
+ {
+  "id": "FBS3R-W035",
+  "date": "2026-04-17",
+  "title": "Wave Function of the Void: Dual-Sector Quantum Cosmology on S³, Emergent Time, Entropy and Geometric Expansion",
+  "folder": "All Preprints; II. Theory of Information–S³; IV. HCC-S³",
+  "file": "All Preprints/2026_04_17_Wave_Function_of_the_Void_Dual_Sector_Quantum_Cosmology_on_S3_Emergent_Time_Entropy_and_Geometric_Expansion/2026_04_17_Wave_Function_of_the_Void_Dual_Sector_Quantum_Cosmology_on_S3_Emergent_Time_Entropy_and_Geometric_Expansion.pdf",
+  "claims": [
+   {
+    "text": "Второе начало термодинамики выводится из запутывания секторов материи и «пустоты» без граничного условия низкой энтропии.",
+    "status": "HEURISTIC/PHYSICAL_MODEL",
+    "lean": []
+   },
+   {
+    "text": "Эмерджентное время из ВКБ-анализа уравнения Уилера–ДеВитта с «пустотой».",
+    "status": "HEURISTIC/PHYSICAL_MODEL",
+    "lean": []
+   },
+   {
+    "text": "Топологический отбор S³.",
+    "status": "KNOWN_RESULT",
+    "lean": []
+   }
+  ],
+  "status": "HEURISTIC/PHYSICAL_MODEL",
+  "lean": [],
+  "note": "Уравнение Уилера–ДеВитта и суперпространство не формализуемы; строгого вывода нет."
+ },
+ {
+  "id": "FBS3R-W036",
+  "date": "2026-04-19",
+  "title": "Geometric Infrared Scale of Yang–Mills Theory on a Compact Three-Manifold: Discreteness, Spectral Threshold and Fibonacci Hierarchy",
+  "folder": "All Preprints; I. Logic & Mathematics; III. Ontology & Physics",
+  "file": "All Preprints/2026_04_19_Geometric_Infrared_Scale_of_Yang_Mills_Theory_on_a_Compact_Three_Manifold_Discreteness_Spectral_Threshold_and_Fibonacci_Hierarchy/2026_04_19_Geometric_Infrared_Scale_of_Yang_Mills_Theory_on_a_Compact_Three_Manifold_Discreteness_Spectral_Threshold_and_Fibonacci_Hierarchy.pdf",
+  "claims": [
+   {
+    "text": "Нижнее собственное значение поперечного векторного лапласиана λ₁^V = 3/R², щель Δ = √3/R.",
+    "status": "DISPROVED",
+    "lean": [
+     "FBS3R.KillingBeltrami.no_three_in_curl_or_stokes_spectrum"
+    ],
+    "ref": "A4"
+   },
+   {
+    "text": "Единственность минимально-избыточного фибоначчиева разбиения.",
+    "status": "DISPROVED",
+    "lean": [
+     "FBS3R.FibStrat.no_additively_closed_partition_with_ratio_gt_one"
+    ],
+    "ref": "A2"
+   },
+   {
+    "text": "Интервалы Фибоначчи разбивают ℤ≥1.",
+    "status": "KERNEL_PROVED",
+    "lean": [
+     "FBS3R.FibStrat.fib_partition"
+    ]
+   },
+   {
+    "text": "Δ = √3·Λ_QCD ≈ 520 МэВ; иерархия масс глюболов.",
+    "status": "HEURISTIC/PHYSICAL_MODEL",
+    "lean": []
+   },
+   {
+    "text": "Массовая щель в пределе бесконечного объёма (сформулирована как гипотеза).",
+    "status": "OPEN",
+    "lean": [],
+    "ref": "проблема тысячелетия (Клэй)"
+   }
+  ],
+  "status": "DISPROVED",
+  "lean": [
+   "FBS3R.KillingBeltrami.no_three_in_curl_or_stokes_spectrum",
+   "FBS3R.FibStrat.no_additively_closed_partition_with_ratio_gt_one",
+   "FBS3R.FibStrat.fib_partition"
+  ],
+  "note": "A2, A4. Lean доказывает только, что 3 не входит в спектры curl² = (k+2)²/R² и Стокса k(k+4)/R² того же архива; спектр векторного лапласиана на S³ не формализован. Массовая щель не доказана."
+ },
+ {
+  "id": "FBS3R-W037",
+  "date": "2026-04-20",
+  "title": "In the Nonexistent Mind",
+  "folder": "All Preprints; III. Ontology & Physics",
+  "file": "All Preprints/2026_04_20_In_the_nonexistent_mind/2026_04_20_In_the_nonexistent_mind.pdf",
+  "claims": [
+   {
+    "text": "Невозможность возникновения представления «истинного отсутствия» в «несуществующем уме».",
+    "status": "HEURISTIC/PHYSICAL_MODEL",
+    "lean": []
+   }
+  ],
+  "status": "HEURISTIC/PHYSICAL_MODEL",
+  "lean": [],
+  "note": "Философский/созерцательный текст; математических или физических теорем нет."
+ },
+ {
+  "id": "FBS3R-W038",
+  "date": "2026-04-21",
+  "title": "Hierarchical Bethe-Type States on Fibonacci Graphs over S³",
+  "folder": "All Preprints; I. Logic & Mathematics; II. Theory of Information–S³",
+  "file": "All Preprints/2026_04_21_Hierarchical_Bethe_Type_States_on_Fibonacci_Graphs_over_S3/2026_04_21_Hierarchical_Bethe_Type_States_on_Fibonacci_Graphs_over_S3.pdf",
+  "claims": [
+   {
+    "text": "Thm «Fibonacci scaling»: F_n = (φ^{n+2} − ψ^{n+2})/√5 при F₁ = 3, F₂ = 5.",
+    "status": "DISPROVED",
+    "lean": [
+     "FBS3R.Checks.paper_binet_wrong",
+     "FBS3R.Checks.F_binet"
+    ],
+    "ref": "A6"
+   },
+   {
+    "text": "Кратность нулевого собственного значения ≥ F_{n−1} − 1.",
+    "status": "KERNEL_PROVED",
+    "lean": [
+     "FBS3R.Checks.zero_mode_multiplicity"
+    ]
+   },
+   {
+    "text": "Рекурсия характеристического многочлена через дополнение Шура; резольвентное уравнение; оценки нормы.",
+    "status": "OPEN",
+    "lean": []
+   }
+  ],
+  "status": "DISPROVED",
+  "lean": [
+   "FBS3R.Checks.paper_binet_wrong",
+   "FBS3R.Checks.F_binet",
+   "FBS3R.Checks.zero_mode_multiplicity"
+  ],
+  "note": "A6: верно F_n = Fib(n+3) = (φ^{n+3} − ψ^{n+3})/√5; асимптотика ∝ φ^{n+3}/√5."
+ },
+ {
+  "id": "FBS3R-W039",
+  "date": "2026-04-24",
+  "title": "Compact S³ Spectral Consistency Analysis of Ring-like Ultra-Large-Scale Structure at z ≈ 0.8",
+  "folder": "All Preprints; IV. HCC-S³",
+  "file": "All Preprints/2026_04_24_Compact_S3_Spectral_Consistency_Analysis_of_Ring_like_Ultra_Large_Scale_Structure_at_z0_8_ex/2026_04_24_Compact_S3_Spectral_Consistency_Analysis_of_Ring_like_Ultra_Large_Scale_Structure_at_z0_8_ex.pdf",
+  "claims": [
+   {
+    "text": "Нет чисто экспоненциального хвоста у глобальных собственных мод на компактном S³; ограниченная осциллирующая двухточечная функция.",
+    "status": "KNOWN_RESULT",
+    "lean": []
+   },
+   {
+    "text": "Закон проецированной хорды d_ℓ = 2R sin(π/(ℓ+1)) и формулы стрелки.",
+    "status": "KERNEL_PROVED",
+    "lean": [
+     "FBS3R.Selector.chord_law",
+     "FBS3R.Selector.ring_spacing",
+     "FBS3R.Selector.sagitta_formula",
+     "FBS3R.Selector.sagitta_bounds"
+    ]
+   },
+   {
+    "text": "Giant Arc, Big Ring и Giant Ring согласуются с модовым описанием S³(R_eff).",
+    "status": "HEURISTIC/PHYSICAL_MODEL",
+    "lean": []
+   }
+  ],
+  "status": "HEURISTIC/PHYSICAL_MODEL",
+  "lean": [
+   "FBS3R.Selector.chord_law",
+   "FBS3R.Selector.ring_spacing",
+   "FBS3R.Selector.sagitta_formula",
+   "FBS3R.Selector.sagitta_bounds"
+  ],
+  "note": "Статистика наблюдений не формализуема."
+ },
+ {
+  "id": "FBS3R-W040",
+  "date": "2026-04-25",
+  "title": "Compact S³ Cosmology, Quasi-local Diffeomorphism Charges and Discrete φ-Level Embedding",
+  "folder": "All Preprints; I. Logic & Mathematics; IV. HCC-S³",
+  "file": "All Preprints/2026_04_25_Compact_S3_Cosmology_Quasi_local_Diffeomorphism_Charges_and_Discrete_φ_Level_Embedding/2026_04_25_Compact_S3_Cosmology_Quasi_local_Diffeomorphism_Charges_and_Discrete_φ_Level_Embedding.pdf",
+  "claims": [
+   {
+    "text": "Нётер II, связи и квазилокальные заряды Айера–Уолда/ГХЙ на Σ ≃ S³/Γ.",
+    "status": "KNOWN_RESULT",
+    "lean": []
+   },
+   {
+    "text": "Дискретное φ-уровневое вложение и условия сшивки.",
+    "status": "HEURISTIC/PHYSICAL_MODEL",
+    "lean": []
+   }
+  ],
+  "status": "KNOWN_RESULT",
+  "lean": [],
+  "note": ""
+ },
+ {
+  "id": "FBS3R-W041",
+  "date": "2026-04-29",
+  "title": "Causal Self-Consistency of the Speed of Light in Fractal S³ Geometry",
+  "folder": "All Preprints; IV. HCC-S³",
+  "file": "All Preprints/2026_04_29_Causal_Self_Consistency_of_the_Speed_of_Light_in_Fractal_S3_Geometry/2026_04_29_Causal_Self_Consistency_of_the_Speed_of_Light_in_Fractal_S3_Geometry.pdf",
+  "claims": [
+   {
+    "text": "Тождество c = c как условие замыкания иерархии R_n = R₀φⁿ (значение c не выводится).",
+    "status": "HEURISTIC/PHYSICAL_MODEL",
+    "lean": []
+   }
+  ],
+  "status": "HEURISTIC/PHYSICAL_MODEL",
+  "lean": [],
+  "note": "Тавтология; статья это признаёт."
+ },
+ {
+  "id": "FBS3R-W042",
+  "date": "2026-04-29",
+  "title": "Geometric–Causal–Spectral Cosmology on a Compact Three-Sphere S³: Kernel, Causal Light Front, Density Tracking, and Redshift as a Density-Gradient Integral",
+  "folder": "All Preprints; IV. HCC-S³",
+  "file": "All Preprints/2026_04_29_Geometric_Causal_Spectral_Cosmology_on_a_Compact_Three_Sphere_S3_Kernel_Causal_Light_Front_Density_Tracking_and_Redshift_as_a_Density_Gradient_Integral/2026_04_29_Geometric_Causal_Spectral_Cosmology_on_a_Compact_Three_Sphere_S3_Kernel_Causal_Light_Front_Density_Tracking_and_Redshift_as_a_Density_Gradient_Integral.pdf",
+  "claims": [
+   {
+    "text": "Ядро K(χ) = 2 sin²χ/(χ − sin χ cos χ): K ∼ 3/χ при χ → 0, K(π) = 0.",
+    "status": "KNOWN_RESULT",
+    "lean": [
+     "FBS3R.CausalSpectral.ball_volume"
+    ],
+    "ref": "элементарный анализ; объём шара — B31"
+   },
+   {
+    "text": "Минимальность φ: корень x² = px + q при p, q ≥ 1 не меньше φ, равенство ⇔ p = q = 1.",
+    "status": "KERNEL_PROVED",
+    "lean": [
+     "FBS3R.Selector.fibonacci_minimal"
+    ]
+   },
+   {
+    "text": "Красное смещение как интеграл градиента плотности (Gradient Redshift Ansatz).",
+    "status": "HEURISTIC/PHYSICAL_MODEL",
+    "lean": []
+   }
+  ],
+  "status": "HEURISTIC/PHYSICAL_MODEL",
+  "lean": [
+   "FBS3R.CausalSpectral.ball_volume",
+   "FBS3R.Selector.fibonacci_minimal"
+  ],
+  "note": "Статья сама позиционирует себя как феноменологию."
+ },
+ {
+  "id": "FBS3R-W043",
+  "date": "2026-04-30",
+  "title": "A Hopf-Bundle Holonomy Representation of Spin-Singlet Bell Correlations",
+  "folder": "All Preprints; I. Logic & Mathematics; II. Theory of Information–S³",
+  "file": "All Preprints/2026_04_30_A_Hopf_Bundle_Holonomy_Representation_of_Spin_Singlet_Bell_Correlations_PRA/2026_04_30_A_Hopf_Bundle_Holonomy_Representation_of_Spin_Singlet_Bell_Correlations_PRA.pdf",
+  "claims": [
+   {
+    "text": "E(a,b) = −a·b как вещественная часть замкнутой U(1)-голономии (телесный угол 2(π−θ)).",
+    "status": "KERNEL_PROVED",
+    "lean": [
+     "FBS3R.Bell.chern_rigidity"
+    ],
+    "ref": "фаза Берри = −½ телесного угла — стандартный факт, не формализован"
+   },
+   {
+    "text": "Жёсткость: целый заряд Черна воспроизводит ядро синглета при всех θ ⇔ q = ±1.",
+    "status": "KERNEL_PROVED",
+    "lean": [
+     "FBS3R.Bell.chern_rigidity"
+    ]
+   },
+   {
+    "text": "CHSH-препятствие: S = −2√2 при настройках статьи; ни одна ЛСП-модель не воспроизводит ядро.",
+    "status": "KERNEL_PROVED",
+    "lean": [
+     "FBS3R.Bell.chsh",
+     "FBS3R.Bell.tsirelson_singlet",
+     "FBS3R.Bell.chsh_value_PRA",
+     "FBS3R.Bell.no_LHV_reproduces_singlet"
+    ]
+   },
+   {
+    "text": "Отображение Хопфа S³ → S² и инвариантность на U(1)-слоях.",
+    "status": "KERNEL_PROVED",
+    "lean": [
+     "FBS3R.Bell.hopf_S3_to_S2",
+     "FBS3R.Bell.hopf_fibre"
+    ]
+   }
+  ],
+  "status": "KERNEL_PROVED",
+  "lean": [
+   "FBS3R.Bell.chern_rigidity",
+   "FBS3R.Bell.chsh",
+   "FBS3R.Bell.tsirelson_singlet",
+   "FBS3R.Bell.chsh_value_PRA",
+   "FBS3R.Bell.no_LHV_reproduces_singlet",
+   "FBS3R.Bell.hopf_S3_to_S2",
+   "FBS3R.Bell.hopf_fibre"
+  ],
+  "note": "Центральные утверждения покрыты (B25–B29). Модель не вводит скрытых параметров; новой физики нет."
+ },
+ {
+  "id": "FBS3R-W044",
+  "date": "2026-05-02",
+  "title": "Local Balancing and Branch Decoherence in Projected GHZ Resources",
+  "folder": "All Preprints; II. Theory of Information–S³",
+  "file": "All Preprints/2026_05_02_Local_Balancing_and_Branch_Decoherence_in_Projected_GHZ_Resources/2026_05_02_Local_Balancing_and_Branch_Decoherence_in_Projected_GHZ_Resources.pdf",
+  "claims": [
+   {
+    "text": "Точная факторизация V_eff = q·2r/(1+r²) = q·sech(ln r).",
+    "status": "KERNEL_PROVED",
+    "lean": [
+     "FBS3R.Checks.design_factorization"
+    ]
+   },
+   {
+    "text": "V_eff ≤ q, равенство ⇔ r = 1.",
+    "status": "KERNEL_PROVED",
+    "lean": [
+     "FBS3R.Checks.balance_penalty"
+    ]
+   },
+   {
+    "text": "Положительность ядра K_E ≥ 0 для успешных CP-операций; томография качества ветвей.",
+    "status": "KNOWN_RESULT",
+    "lean": []
+   }
+  ],
+  "status": "KERNEL_PROVED",
+  "lean": [
+   "FBS3R.Checks.design_factorization",
+   "FBS3R.Checks.balance_penalty"
+  ],
+  "note": "Квантовые операции в Lean не формализованы; ядро задано как матрица."
+ },
+ {
+  "id": "FBS3R-W045",
+  "date": "2026-05-04",
+  "title": "A Curvature-Scale Coincidence on Compact S³ and Two Dynamical Completion Tests",
+  "folder": "All Preprints; IV. HCC-S³",
+  "file": "All Preprints/2026_05_04_A_Curvature_Scale_Coincidence_on_Compact_S3_and_Two_Dynamical_Completion_Tests/2026_05_04_A_Curvature_Scale_Coincidence_on_Compact_S3_and_Two_Dynamical_Completion_Tests.pdf",
+  "claims": [
+   {
+    "text": "ρ_Pℓ_P² = c⁴/G; ветвь β = 2 (ρ₂ = c⁴/(GR²)) — единственная из β = 1..4, достигающая наблюдаемой плотности ТЭ.",
+    "status": "NUMERICAL_EVIDENCE",
+    "lean": []
+   },
+   {
+    "text": "∫R d³x = 12π²R на S³(R); ρ_EH = 3c⁴/(8πGR²).",
+    "status": "KNOWN_RESULT",
+    "lean": []
+   }
+  ],
+  "status": "NUMERICAL_EVIDENCE",
+  "lean": [],
+  "note": "Численное совпадение масштабов; φ-лестница — бухгалтерская координата."
+ },
+ {
+  "id": "FBS3R-W046",
+  "date": "2026-05-05",
+  "title": "Planck-Boundary Geometry of Compact S³ Cosmology",
+  "folder": "All Preprints; I. Logic & Mathematics; IV. HCC-S³",
+  "file": "All Preprints/2026_05_05_Planck_Boundary_Geometry_of_Compact_S3_Cosmology/2026_05_05_Planck_Boundary_Geometry_of_Compact_S3_Cosmology.pdf",
+  "claims": [
+   {
+    "text": "ζ(−3) = 1/120, постоянная Казимира конформного скаляра C_ζ = 1/240, ρ = 1/(480π²a⁴).",
+    "status": "KERNEL_PROVED",
+    "lean": [
+     "FBS3R.Planck.riemannZeta_neg_three",
+     "FBS3R.Planck.casimir_constant",
+     "FBS3R.Planck.casimir_density_scalar"
+    ]
+   },
+   {
+    "text": "Явная оценка Кречмана K ≤ 12[(g+h²)² + (h²+1/ℓ_P²)²] при |H| ≤ h, |Ḣ| ≤ g, a ≥ ℓ_P.",
+    "status": "KERNEL_PROVED",
+    "lean": [
+     "FBS3R.Planck.hasDerivAt_hubble",
+     "FBS3R.Planck.kretschmann_forms",
+     "FBS3R.Planck.kretschmann_bound"
+    ]
+   },
+   {
+    "text": "Эпоха Планка — регулярная самосопряжённая граница минисуперпространства a ∈ [ℓ_P, ∞); сохранение нормы.",
+    "status": "OPEN",
+    "lean": []
+   },
+   {
+    "text": "Выбор Σ ≃ S³ по Пуанкаре–Перельману в односвязном секторе.",
+    "status": "KNOWN_RESULT",
+    "lean": []
+   }
+  ],
+  "status": "HEURISTIC/PHYSICAL_MODEL",
+  "lean": [
+   "FBS3R.Planck.riemannZeta_neg_three",
+   "FBS3R.Planck.casimir_constant",
+   "FBS3R.Planck.casimir_density_scalar",
+   "FBS3R.Planck.hasDerivAt_hubble",
+   "FBS3R.Planck.kretschmann_forms",
+   "FBS3R.Planck.kretschmann_bound"
+  ],
+  "note": "Частичное покрытие Lean (B45–B46). Самосопряжённость оператора Уилера–ДеВитта не формализована."
+ },
+ {
+  "id": "FBS3R-W047",
+  "date": "2026-05-07",
+  "title": "Computable Multibranch Transfer Kernels for Endpoint Quantum Usefulness",
+  "folder": "All Preprints; I. Logic & Mathematics; II. Theory of Information–S³",
+  "file": "All Preprints/2026_05_07_Computable_Multibranch_Transfer_Kernels_for_Endpoint_Quantum_Usefulness/2026_05_07_Computable_Multibranch_Transfer_Kernels_for_Endpoint_Quantum_Usefulness.pdf",
+  "claims": [
+   {
+    "text": "K_br — транспонированный эффект успеха, 0 ≤ K ≤ I; обратная реализуемость любого положительного сжатия.",
+    "status": "KNOWN_RESULT",
+    "lean": []
+   },
+   {
+    "text": "Парная когерентность |K_ij|² ≤ K_ii K_jj.",
+    "status": "KERNEL_PROVED",
+    "lean": [
+     "FBS3R.HopfCert.pair_coherence"
+    ]
+   },
+   {
+    "text": "Калибровочная инвариантность циклической фазы; инвариантность нормированной когерентности при фильтрации.",
+    "status": "KERNEL_PROVED",
+    "lean": [
+     "FBS3R.HopfCert.cycle_phase_gauge",
+     "FBS3R.HopfCert.filtering_invariance"
+    ]
+   },
+   {
+    "text": "При d ≥ 3 единой скалярной видимости нет.",
+    "status": "OPEN",
+    "lean": []
+   }
+  ],
+  "status": "KNOWN_RESULT",
+  "lean": [
+   "FBS3R.HopfCert.pair_coherence",
+   "FBS3R.HopfCert.cycle_phase_gauge",
+   "FBS3R.HopfCert.filtering_invariance"
+  ],
+  "note": "Частичное покрытие Lean (B65)."
+ },
+ {
+  "id": "FBS3R-W048",
+  "date": "2026-05-10",
+  "title": "Dark-Sector Residuals in Compact S³ FLRW Cosmology",
+  "folder": "All Preprints; IV. HCC-S³",
+  "file": "All Preprints/2026_05_10_Dark_Sector_Residuals_in_Compact_S3_FLRW_Cosmology/2026_05_10_Dark_Sector_Residuals_in_Compact_S3_FLRW_Cosmology.pdf",
+  "claims": [
+   {
+    "text": "Тёмный остаток T^D = (c⁴/8πG)G − T^vis ковариантно определён; фон не фиксирует тёмный сектор (вырожденность).",
+    "status": "KNOWN_RESULT",
+    "lean": [],
+    "ref": "«тёмная вырожденность» (Kunz 2009)"
+   },
+   {
+    "text": "Критерий замыкания пыль + Λ: ε = ε_w a⁻³ + ε_q, p = −ε_q ⇔ p′ = 0 и (a³(ε+p))′ = 0.",
+    "status": "KERNEL_PROVED",
+    "lean": [
+     "FBS3R.CosmoBench.closure_criterion"
+    ]
+   },
+   {
+    "text": "Граница ускорения ä = 0 ⇔ a³ = Ω_m/(2Ω_Λ).",
+    "status": "KERNEL_PROVED",
+    "lean": [
+     "FBS3R.CosmoBench.acceleration_boundary"
+    ]
+   },
+   {
+    "text": "Компактная S³ сама по себе не влечёт тёмной материи, ускорения, w = −1 или Λ.",
+    "status": "KNOWN_RESULT",
+    "lean": []
+   }
+  ],
+  "status": "KNOWN_RESULT",
+  "lean": [
+   "FBS3R.CosmoBench.closure_criterion",
+   "FBS3R.CosmoBench.acceleration_boundary"
+  ],
+  "note": "Частичное покрытие Lean (B59–B60); тензорная часть не формализована."
+ },
+ {
+  "id": "FBS3R-W049",
+  "date": "2026-05-11",
+  "title": "Benchmark Residual Invariants in Compact S³ Cosmology",
+  "folder": "All Preprints; IV. HCC-S³",
+  "file": "All Preprints/2026_05_11_Benchmark_residual_invariants_in_compact_S3_cosmology/2026_05_11_Benchmark_residual_invariants_in_compact_S3_cosmology.pdf",
+  "claims": [
+   {
+    "text": "Статическое решение Эйнштейна; граница ускорения.",
+    "status": "KERNEL_PROVED",
+    "lean": [
+     "FBS3R.CosmoBench.einstein_static",
+     "FBS3R.CosmoBench.acceleration_boundary"
+    ]
+   },
+   {
+    "text": "Точка поворота a = (Ω/|Ω_K|)^{1/(1+3w)} при w ≠ −1/3.",
+    "status": "KERNEL_PROVED",
+    "lean": [
+     "FBS3R.CosmoBench.turning_point"
+    ]
+   },
+   {
+    "text": "Степенной спектр A_n ∝ (n+1)^{−α}: конечная точечная дисперсия ⇔ α > 3.",
+    "status": "KERNEL_PROVED",
+    "lean": [
+     "FBS3R.CosmoBench.power_law_admissible"
+    ]
+   },
+   {
+    "text": "Cor. «Benchmark spectra» (дополнение): для A_n = A₀e^{−βn} σ² = (A₀/2π²A³)·e^β(e^β+1)/(e^β−1)³.",
+    "status": "DISPROVED",
+    "lean": [
+     "FBS3R.CosmoBench.exp_family_sum",
+     "FBS3R.CosmoBench.paper_exp_variance_wrong"
+    ],
+    "ref": "A7"
+   },
+   {
+    "text": "Бенчмарк-манифест: карта инварианты → правдоподобия CMB/BAO/SN/рост/линзирование.",
+    "status": "HEURISTIC/PHYSICAL_MODEL",
+    "lean": []
+   }
+  ],
+  "status": "DISPROVED",
+  "lean": [
+   "FBS3R.CosmoBench.einstein_static",
+   "FBS3R.CosmoBench.acceleration_boundary",
+   "FBS3R.CosmoBench.turning_point",
+   "FBS3R.CosmoBench.power_law_admissible",
+   "FBS3R.CosmoBench.exp_family_sum",
+   "FBS3R.CosmoBench.paper_exp_variance_wrong"
+  ],
+  "note": "A7 находится только в файле *_supplement.tex (в PDF основной статьи этого следствия нет). Позитивность Шёнберга не формализована."
+ },
+ {
+  "id": "FBS3R-W050",
+  "date": "2026-05-13",
+  "title": "Compact S³/Γ Topological Residual Cosmology: Invariant Closure, Protected Sectors, and Perturbative Null Tests",
+  "folder": "All Preprints; I. Logic & Mathematics; IV. HCC-S³",
+  "file": "All Preprints/2026_05_13_Compact_S3_Γ_Topological_Residual_Cosmology_Invariant_Closure_Protected_Sectors_and_Perturbative_Null_Tests/2026_05_13_Compact_S3_Γ_Topological_Residual_Cosmology_Invariant_Closure_Protected_Sectors_and_Perturbative_Null_Tests.pdf",
+  "claims": [
+   {
+    "text": "Точный однородный критерий замыкания (ток + четырёхформа ⇔ ε = ε_w a⁻³ + ε_q, p = −ε_q).",
+    "status": "KERNEL_PROVED",
+    "lean": [
+     "FBS3R.CosmoBench.closure_criterion"
+    ]
+   },
+   {
+    "text": "Граница ускорения.",
+    "status": "KERNEL_PROVED",
+    "lean": [
+     "FBS3R.CosmoBench.acceleration_boundary"
+    ]
+   },
+   {
+    "text": "Теорема «no topology-only amplitude»; локальный квантовый no-go для глобальной топологии.",
+    "status": "OPEN",
+    "lean": []
+   },
+   {
+    "text": "Топологическое происхождение однородного тёмного остатка на S³/Γ.",
+    "status": "HEURISTIC/PHYSICAL_MODEL",
+    "lean": []
+   }
+  ],
+  "status": "HEURISTIC/PHYSICAL_MODEL",
+  "lean": [
+   "FBS3R.CosmoBench.closure_criterion",
+   "FBS3R.CosmoBench.acceleration_boundary"
+  ],
+  "note": "Частичное покрытие Lean; топологические сектора S³/Γ не формализованы."
+ },
+ {
+  "id": "FBS3R-W051",
+  "date": "2026-05-15",
+  "title": "Compact Spherical FLRW Residuals: Closure, Local ΛCDM Degeneracy, and Amplitude-Selection Boundaries",
+  "folder": "All Preprints; IV. HCC-S³",
+  "file": "All Preprints/2026_05_15_Compact_Spherical_FLRW_Residuals_Closure_Local_ΛCDM_Degeneracy_and_Amplitude_Selection_Boundaries/2026_05_15_Compact_Spherical_FLRW_Residuals_Closure_Local_ΛCDM_Degeneracy_and_Amplitude_Selection_Boundaries.pdf",
+  "claims": [
+   {
+    "text": "Единственность остатка и ковариантность относительно конвенции.",
+    "status": "KERNEL_PROVED",
+    "lean": [
+     "FBS3R.CosmoBench.residual_unique",
+     "FBS3R.CosmoBench.residual_convention"
+    ]
+   },
+   {
+    "text": "Минимальное однородное замыкание ⇔ d(−p_D)/d ln a = 0 и d(a³(ε_D+p_D))/d ln a = 0.",
+    "status": "KERNEL_PROVED",
+    "lean": [
+     "FBS3R.CosmoBench.closure_criterion"
+    ]
+   },
+   {
+    "text": "Локальная ΛCDM-вырожденность минимальной ветви.",
+    "status": "KERNEL_PROVED",
+    "lean": [
+     "FBS3R.CosmoBench.closure_criterion"
+    ]
+   },
+   {
+    "text": "Сведение тензорного остатка к локально-FLRW классу; выбор амплитуд потоковой решёткой.",
+    "status": "OPEN",
+    "lean": []
+   }
+  ],
+  "status": "KERNEL_PROVED",
+  "lean": [
+   "FBS3R.CosmoBench.residual_unique",
+   "FBS3R.CosmoBench.residual_convention",
+   "FBS3R.CosmoBench.closure_criterion"
+  ],
+  "note": "Центральный критерий покрыт на однородном скалярном уровне; тензорная редукция не формализована."
+ },
+ {
+  "id": "FBS3R-W052",
+  "date": "2026-05-16",
+  "title": "Light as Causal Coherence Structure in Compact S³ Geometry: Null Relational Propagation and Compact Causal Accessibility",
+  "folder": "All Preprints; IV. HCC-S³",
+  "file": "All Preprints/2026_05_16_Light_as_Causal_Coherence_Structure_in_Compact_S3_Geometry_Null_Relational_Propagation_and_Compact_Causal_Accessibility/2026_05_16_Light_as_Causal_Coherence_Structure_in_Compact_S3_Geometry_Null_Relational_Propagation_and_Compact_Causal_Accessibility.pdf",
+  "claims": [
+   {
+    "text": "Причинный диаметр S³_R равен πR; t_coh = πR/c.",
+    "status": "KNOWN_RESULT",
+    "lean": []
+   },
+   {
+    "text": "Глобальная гиперболичность (R × S³_R, g_R − c²dt²).",
+    "status": "KNOWN_RESULT",
+    "lean": []
+   },
+   {
+    "text": "Скорость света как параметр причинной когерентности компактной геометрии.",
+    "status": "HEURISTIC/PHYSICAL_MODEL",
+    "lean": []
+   }
+  ],
+  "status": "HEURISTIC/PHYSICAL_MODEL",
+  "lean": [],
+  "note": "Нужна лоренцева геометрия многообразий (нет в Mathlib)."
+ },
+ {
+  "id": "FBS3R-W053",
+  "date": "2026-05-17",
+  "title": "Invariant Residual–Transfer Completion: A Dynamical Audit Framework for Dark-Sector and Topology Claims",
+  "folder": "All Preprints; IV. HCC-S³",
+  "file": "All Preprints/2026_05_17_Invariant_Residual_Transfer_Completion_A_Dynamical_Audit_Framework_for_Dark_Sector_and_Topology_Claims/2026_05_17_Invariant_Residual_Transfer_Completion_A_Dynamical_Audit_Framework_for_Dark_Sector_and_Topology_Claims.pdf",
+  "claims": [
+   {
+    "text": "Атлас пыль–вакуум: постоянные неотрицательные A_q, A_w ⇔ точная нормальная форма пыль + вакуум.",
+    "status": "KERNEL_PROVED",
+    "lean": [
+     "FBS3R.CosmoBench.closure_criterion"
+    ]
+   },
+   {
+    "text": "Теорема о разделении локального переноса и фактор-проекции (IRTC).",
+    "status": "OPEN",
+    "lean": []
+   }
+  ],
+  "status": "OPEN",
+  "lean": [
+   "FBS3R.CosmoBench.closure_criterion"
+  ],
+  "note": "Единственная теорема статьи требует теории возмущений на S³/Γ; не формализована."
+ },
+ {
+  "id": "FBS3R-W054",
+  "date": "2026-05-19",
+  "title": "A Residual-First Standard for Dark-Sector Closure and Compact-Topology Tests",
+  "folder": "All Preprints; IV. HCC-S³",
+  "file": "All Preprints/2026_05_19_A_Residual_First_Standard_for_Dark_Sector_Closure_and_Compact_Topology_Tests/2026_05_19_A_Residual_First_Standard_for_Dark_Sector_Closure_and_Compact_Topology_Tests.pdf",
+  "claims": [
+   {
+    "text": "Атлас пыль–вакуум (A_q, A_w) и однородный критерий замыкания.",
+    "status": "KERNEL_PROVED",
+    "lean": [
+     "FBS3R.CosmoBench.closure_criterion"
+    ]
+   },
+   {
+    "text": "Ковариантность относительно конвенции.",
+    "status": "KERNEL_PROVED",
+    "lean": [
+     "FBS3R.CosmoBench.residual_convention"
+    ]
+   },
+   {
+    "text": "Разделение перенос/фактор-проекция, ковариантность фактор-неба, сепарабельность остаток–перенос.",
+    "status": "OPEN",
+    "lean": []
+   },
+   {
+    "text": "Реализация пыли током Брауна.",
+    "status": "HEURISTIC/PHYSICAL_MODEL",
+    "lean": []
+   }
+  ],
+  "status": "KERNEL_PROVED",
+  "lean": [
+   "FBS3R.CosmoBench.closure_criterion",
+   "FBS3R.CosmoBench.residual_convention"
+  ],
+  "note": "Центральный критерий покрыт (B58–B59); остальные теоремы не формализованы."
+ },
+ {
+  "id": "FBS3R-W055",
+  "date": "2026-05-19",
+  "title": "Einstein-Residual Closure Standard: Invariant Dark-Sector Audits, Normal Forms, and Topology-Likelihood Boundaries",
+  "folder": "All Preprints; IV. HCC-S³",
+  "file": "All Preprints/2026_05_19_Einstein_Residual_Closure_Standard_Invariant_Dark_Sector_Audits_Normal_Forms_and_Topology_Likelihood_Boundaries/2026_05_19_Einstein_Residual_Closure_Standard_Invariant_Dark_Sector_Audits_Normal_Forms_and_Topology_Likelihood_Boundaries.pdf",
+  "claims": [
+   {
+    "text": "Классификация однородного остатка пыль + вакуум; локальная ΛCDM-вырожденность.",
+    "status": "KERNEL_PROVED",
+    "lean": [
+     "FBS3R.CosmoBench.closure_criterion"
+    ]
+   },
+   {
+    "text": "Единственность остатка и ковариантность конвенции.",
+    "status": "KERNEL_PROVED",
+    "lean": [
+     "FBS3R.CosmoBench.residual_unique",
+     "FBS3R.CosmoBench.residual_convention"
+    ]
+   },
+   {
+    "text": "Топологическое расцепление амплитуд; полнота стандарта; реестр маршрутов замыкания.",
+    "status": "OPEN",
+    "lean": []
+   },
+   {
+    "text": "Границы правдоподобия топологии.",
+    "status": "HEURISTIC/PHYSICAL_MODEL",
+    "lean": []
+   }
+  ],
+  "status": "KERNEL_PROVED",
+  "lean": [
+   "FBS3R.CosmoBench.closure_criterion",
+   "FBS3R.CosmoBench.residual_unique",
+   "FBS3R.CosmoBench.residual_convention"
+  ],
+  "note": "Центральная нормальная форма покрыта; протокол аудита — методология."
+ },
+ {
+  "id": "FBS3R-W056",
+  "date": "2026-05-24",
+  "title": "The Ontological Structure of the S³ Manifold",
+  "folder": "All Preprints; III. Ontology & Physics",
+  "file": "All Preprints/2026_05_24_The_Ontological_Structure_of_the_S3_Manifold/2026_05_24_The_Ontological_Structure_of_the_S3_Manifold.pdf",
+  "claims": [
+   {
+    "text": "Онтологический анализ S³: ни одна из четырёх альтернатив возникновения многообразия не удовлетворительна; S³ как устойчивая глобальная структура.",
+    "status": "HEURISTIC/PHYSICAL_MODEL",
+    "lean": []
+   }
+  ],
+  "status": "HEURISTIC/PHYSICAL_MODEL",
+  "lean": [],
+  "note": "Философский/созерцательный текст; математических или физических теорем нет."
+ },
+ {
+  "id": "FBS3R-W057",
+  "date": "2026-06-10",
+  "title": "Conditional Reconstruction of a Quasi-Local Observable Domain within Compact S³ Geometry",
+  "folder": "All Preprints; IV. HCC-S³",
+  "file": "All Preprints/2026_06_10_Conditional_Reconstruction_of_a_Quasi_Local_Observable_Domain_within_Compact_S3_Geometry/2026_06_10_Conditional_Reconstruction_of_a_Quasi_Local_Observable_Domain_within_Compact_S3_Geometry.pdf",
+  "claims": [
+   {
+    "text": "R_S³ ≃ 548.3 млрд св. лет при |Ω_K| = 0.0007, H₀ = 67.4.",
+    "status": "NUMERICAL_EVIDENCE",
+    "lean": [],
+    "ref": "арифметика воспроизводится: c/(H₀√|Ω_K|)"
+   },
+   {
+    "text": "Условная реконструкция квазилокальной наблюдаемой области внутри S³_R.",
+    "status": "HEURISTIC/PHYSICAL_MODEL",
+    "lean": []
+   }
+  ],
+  "status": "HEURISTIC/PHYSICAL_MODEL",
+  "lean": [],
+  "note": ""
+ },
+ {
+  "id": "FBS3R-W058",
+  "date": "2026-06-26",
+  "title": "Expanding Hopf-Lifted Ricci-Type Flows and Planck-Boundary Curvature Control in Compact S³ Sectors",
+  "folder": "All Preprints; I. Logic & Mathematics; IV. HCC-S³",
+  "file": "All Preprints/2026_06_26_Expanding_Hopf_Lifted_Ricci_Type_Flows_and_Planck_Boundary_Curvature_Control_in_Compact_S3_Sectors/2026_06_26_Expanding_Hopf_Lifted_Ricci_Type_Flows_and_Planck_Boundary_Curvature_Control_in_Compact_S3_Sectors.pdf",
+  "claims": [
+   {
+    "text": "Ограниченная тензорная фильтрация не предотвращает сингулярностей; нужна коэрцитивная добавка 2⟨Cʰ(Rm),Rm⟩ ≤ −γ|Rm|³ + …",
+    "status": "OPEN",
+    "lean": []
+   },
+   {
+    "text": "Берже: поток Риччи округляет анизотропию и затем коллапсирует; коллапс слоя Хопфа идёт с ограниченной кривизной.",
+    "status": "KNOWN_RESULT",
+    "lean": [
+     "FBS3R.Checks.rm_sq_fibre_collapse"
+    ],
+    "ref": "формулы кривизн Берже — B37"
+   },
+   {
+    "text": "Форсинг только по слою меняет знак при u = (c/a)² = 12/11.",
+    "status": "OPEN",
+    "lean": []
+   }
+  ],
+  "status": "OPEN",
+  "lean": [
+   "FBS3R.Checks.rm_sq_fibre_collapse"
+  ],
+  "note": "Потоков Риччи в Mathlib нет."
+ },
+ {
+  "id": "FBS3R-W059",
+  "date": "2026-07-02",
+  "title": "Hopf-Lifted Ricci-Type Flow on S³: A No-Go for Bounded and Engineered Forcing, and a Planck-Barrier Invariant Region",
+  "folder": "All Preprints; I. Logic & Mathematics; IV. HCC-S³",
+  "file": "All Preprints/2026_07_02_Hopf_Lifted_Ricci_Type_Flow_on_S3_A_No_Go_for_Bounded_and_Engineered_Forcing_and_a_Planck_Barrier_Invariant_Region/2026_07_02_Hopf_Lifted_Ricci_Type_Flow_on_S3_A_No_Go_for_Bounded_and_Engineered_Forcing_and_a_Planck_Barrier_Invariant_Region.pdf",
+  "claims": [
+   {
+    "text": "Словарь кривизн Берже: R, |Ric|², |Rm|², предел |Rm|² → 64/a⁴ при коллапсе слоя.",
+    "status": "KERNEL_PROVED",
+    "lean": [
+     "FBS3R.Checks.scalar_curv",
+     "FBS3R.Checks.ric_sq",
+     "FBS3R.Checks.rm_sq",
+     "FBS3R.Checks.rm_sq_fibre_collapse"
+    ]
+   },
+   {
+    "text": "Уравнение отношения u̇ = 8u(1−u)/x.",
+    "status": "KERNEL_PROVED",
+    "lean": [
+     "FBS3R.Checks.ratio_ode"
+    ]
+   },
+   {
+    "text": "No-go для ограниченного, бесследового и Λ-форсинга; инвариантная область Планк-барьера.",
+    "status": "OPEN",
+    "lean": []
+   }
+  ],
+  "status": "OPEN",
+  "lean": [
+   "FBS3R.Checks.scalar_curv",
+   "FBS3R.Checks.ric_sq",
+   "FBS3R.Checks.rm_sq",
+   "FBS3R.Checks.rm_sq_fibre_collapse",
+   "FBS3R.Checks.ratio_ode"
+  ],
+  "note": "Центральная теорема о потоке не формализована (потоков Риччи в Mathlib нет)."
+ },
+ {
+  "id": "FBS3R-W060",
+  "date": "2026-07-02",
+  "title": "Information as Dependently Reconstructible Distinguishability: Carriers, Invariance Theorems, and Operational Capacity on Compact S³ Geometry",
+  "folder": "All Preprints; I. Logic & Mathematics; II. Theory of Information–S³",
+  "file": "All Preprints/2026_07_02_Information_as_Dependently_Reconstructible_Distinguishability_Carriers_Invariance_Theorems_and_Operational_Capacity_on_Compact_S3_Geometry/2026_07_02_Information_as_Dependently_Reconstructible_Distinguishability_Carriers_Invariance_Theorems_and_Operational_Capacity_on_Compact_S3_Geometry.pdf",
+  "claims": [
+   {
+    "text": "Инвариантность профиля D_k(X) = rank H̃_k(X) при гомотопических эквивалентностях; нет обратимого стирания/создания различий.",
+    "status": "KNOWN_RESULT",
+    "lean": []
+   },
+   {
+    "text": "Ёмкость круглой S³: N = M(M+1)(2M+1)/6.",
+    "status": "KERNEL_PROVED",
+    "lean": [
+     "FBS3R.CausalSpectral.scalar_count"
+    ],
+    "ref": "тождество суммы; кратности (n+1)² — стандартный факт"
+   },
+   {
+    "text": "Связь атрибутированного стирания с принципом Ландауэра; граница причинной интеграции.",
+    "status": "HEURISTIC/PHYSICAL_MODEL",
+    "lean": []
+   }
+  ],
+  "status": "KNOWN_RESULT",
+  "lean": [
+   "FBS3R.CausalSpectral.scalar_count"
+  ],
+  "note": "Гомологии и надстройки в Lean не формализованы."
+ },
+ {
+  "id": "FBS3R-W061",
+  "date": "2026-07-02",
+  "title": "Suspension of Spheres and the Minimal Role of S³ in Spin, Hopf Geometry, and Irreversible Hierarchy",
+  "folder": "All Preprints; I. Logic & Mathematics; II. Theory of Information–S³",
+  "file": "All Preprints/2026_07_02_Suspension_of_Spheres_and_the_Minimal_Role_of_S3_in_Spin_Hopf_Geometry_and_Irreversible_Hierarchy/2026_07_02_Suspension_of_Spheres_and_the_Minimal_Role_of_S3_in_Spin_Hopf_Geometry_and_Irreversible_Hierarchy.pdf",
+  "claims": [
+   {
+    "text": "S³ — первая сфера, одновременно компактная, односвязная, параллелизуемая, неабелева группа Ли и тотальное пространство расслоения Хопфа.",
+    "status": "KNOWN_RESULT",
+    "lean": []
+   },
+   {
+    "text": "Отображение Хопфа и U(1)-слои.",
+    "status": "KERNEL_PROVED",
+    "lean": [
+     "FBS3R.Bell.hopf_S3_to_S2",
+     "FBS3R.Bell.hopf_fibre"
+    ]
+   },
+   {
+    "text": "Отбор золотого сечения; монотонная энтропия иерархии.",
+    "status": "HEURISTIC/PHYSICAL_MODEL",
+    "lean": []
+   },
+   {
+    "text": "Гипотеза эффективной невозвратности открытой иерархии.",
+    "status": "OPEN",
+    "lean": []
+   }
+  ],
+  "status": "KNOWN_RESULT",
+  "lean": [
+   "FBS3R.Bell.hopf_S3_to_S2",
+   "FBS3R.Bell.hopf_fibre"
+  ],
+  "note": ""
+ },
+ {
+  "id": "FBS3R-W062",
+  "date": "2026-07-03",
+  "title": "Causal Co-Scaling of Distance and Time in a Fractal S³ Reconstruction Model",
+  "folder": "All Preprints; IV. HCC-S³",
+  "file": "All Preprints/2026_07_03_Causal_Co_Scaling_of_Distance_and_Time_in_a_Fractal_S3_Reconstruction_Model/2026_07_03_Causal_Co_Scaling_of_Distance_and_Time_in_a_Fractal_S3_Reconstruction_Model.pdf",
+  "claims": [
+   {
+    "text": "ℓ_Pφᴺ/(t_Pφᴺ) = c: со-масштабирование расстояния и времени.",
+    "status": "KNOWN_RESULT",
+    "lean": [],
+    "ref": "тривиальное сокращение"
+   },
+   {
+    "text": "Аксиома причинного со-масштабирования для реконструкции.",
+    "status": "HEURISTIC/PHYSICAL_MODEL",
+    "lean": []
+   }
+  ],
+  "status": "HEURISTIC/PHYSICAL_MODEL",
+  "lean": [],
+  "note": ""
+ },
+ {
+  "id": "FBS3R-W063",
+  "date": "2026-07-03",
+  "title": "Dependently Reconstructible Distinguishability (DRD): A Functorial Theory of Information Carriers, Graded Spectral Capacities, and Causal Integration on Compact S³ Geometry",
+  "folder": "All Preprints; I. Logic & Mathematics; II. Theory of Information–S³",
+  "file": "All Preprints/2026_07_03_Dependently_Reconstructible_Distinguishability_DRD_A_Functorial_Theory_of_Information_Carriers_Graded_Spectral_Capacities_and_Causal_Integration_on_Compact_S3_Geometry/2026_07_03_Dependently_Reconstructible_Distinguishability_DRD_A_Functorial_Theory_of_Information_Carriers_Graded_Spectral_Capacities_and_Causal_Integration_on_Compact_S3_Geometry.pdf",
+  "claims": [
+   {
+    "text": "Функториальность топологического профиля, стабилизация Фрейденталя, конусы отображений.",
+    "status": "KNOWN_RESULT",
+    "lean": [],
+    "ref": "классика (Hatcher)"
+   },
+   {
+    "text": "Скалярная, TT и дираковская ёмкости S³_R.",
+    "status": "KERNEL_PROVED",
+    "lean": [
+     "FBS3R.CausalSpectral.scalar_count",
+     "FBS3R.CausalSpectral.TT_count",
+     "FBS3R.CausalSpectral.dirac_count"
+    ]
+   },
+   {
+    "text": "Объём геодезического шара.",
+    "status": "KERNEL_PROVED",
+    "lean": [
+     "FBS3R.CausalSpectral.ball_volume"
+    ]
+   },
+   {
+    "text": "Секторная граница Ландауэра; селектор с безопасной битовой оценкой.",
+    "status": "HEURISTIC/PHYSICAL_MODEL",
+    "lean": []
+   }
+  ],
+  "status": "KNOWN_RESULT",
+  "lean": [
+   "FBS3R.CausalSpectral.scalar_count",
+   "FBS3R.CausalSpectral.TT_count",
+   "FBS3R.CausalSpectral.dirac_count",
+   "FBS3R.CausalSpectral.ball_volume"
+  ],
+  "note": "Теории Фрейденталя в Mathlib нет."
+ },
+ {
+  "id": "FBS3R-W064",
+  "date": "2026-07-05",
+  "title": "Supercritical Variational Curvature Barriers for Ricci-Type Flows on Compact S³",
+  "folder": "All Preprints; I. Logic & Mathematics; IV. HCC-S³",
+  "file": "All Preprints/2026_07_05_Supercritical_variational_curvature_barriers_for_Ricci_type_flows_on_compact_S3/2026_07_05_Supercritical_variational_curvature_barriers_for_Ricci_type_flows_on_compact_S3.pdf",
+  "claims": [
+   {
+    "text": "Масштабная производная d/ds e^{3s}Φ(e^{−4s}K) = 3Φ − 4KΦ′; для Φ = K^q правильный знак ⇔ q > 3/4.",
+    "status": "KERNEL_PROVED",
+    "lean": [
+     "FBS3R.Barriers.scale_derivative",
+     "FBS3R.Barriers.power_threshold"
+    ]
+   },
+   {
+    "text": "Знак барьера стены Планка Φ = (K+δ)^q/(K_P−K)^p.",
+    "status": "KERNEL_PROVED",
+    "lean": [
+     "FBS3R.Barriers.hasDerivAt_Φb",
+     "FBS3R.Barriers.barrier_sign"
+    ]
+   },
+   {
+    "text": "Нижняя оценка Риччи из щели стены: Ric ≥ −(1/2+1/√3)√K₀.",
+    "status": "KERNEL_PROVED",
+    "lean": [
+     "FBS3R.Barriers.ricci_lower_bound_sharp",
+     "FBS3R.Barriers.ricci_bound_attained",
+     "FBS3R.Barriers.paper_constant_weaker"
+    ],
+    "ref": "верно, но не точно: точная константа 1/√2"
+   },
+   {
+    "text": "No-go Берже для аддитивных K-потенциалов; провал как механизма ДУЧП (ядро теплопроводности).",
+    "status": "OPEN",
+    "lean": []
+   }
+  ],
+  "status": "OPEN",
+  "lean": [
+   "FBS3R.Barriers.scale_derivative",
+   "FBS3R.Barriers.power_threshold",
+   "FBS3R.Barriers.hasDerivAt_Φb",
+   "FBS3R.Barriers.barrier_sign",
+   "FBS3R.Barriers.ricci_lower_bound_sharp",
+   "FBS3R.Barriers.ricci_bound_attained",
+   "FBS3R.Barriers.paper_constant_weaker"
+  ],
+  "note": "Частичное покрытие (B47–B49). Уточнение: Ric ≥ −√(K₀/2)."
+ },
+ {
+  "id": "FBS3R-W065",
+  "date": "2026-07-06",
+  "title": "From Geometric Carrier to Physical Carrier: Distinguishability, Holonomy, and the Actualisation of Information in Compact S³ Geometry",
+  "folder": "All Preprints; II. Theory of Information–S³; III. Ontology & Physics",
+  "file": "All Preprints/2026_07_06_From_Geometric_Carrier_to_Physical_Carrier_Distinguishability_Holonomy_and_the_Actualisation_of_Information_in_Compact_S3_Geometry/2026_07_06_From_Geometric_Carrier_to_Physical_Carrier_Distinguishability_Holonomy_and_the_Actualisation_of_Information_in_Compact_S3_Geometry.pdf",
+  "claims": [
+   {
+    "text": "Геометрия становится физическим носителем, только когда различимость реализуема и сохраняема; голономия как структурный принцип.",
+    "status": "HEURISTIC/PHYSICAL_MODEL",
+    "lean": []
+   }
+  ],
+  "status": "HEURISTIC/PHYSICAL_MODEL",
+  "lean": [],
+  "note": "Концептуальная статья (docx/pdf)."
+ },
+ {
+  "id": "FBS3R-W066",
+  "date": "2026-07-06",
+  "title": "Gravity as a Selector of Dependently Reconstructible Distinguishability on Compact S³",
+  "folder": "All Preprints; II. Theory of Information–S³; IV. HCC-S³",
+  "file": "All Preprints/2026_07_06_Gravity_as_a_Selector_of_Dependently_Reconstructible_Distinguishability_on_Compact_S3/2026_07_06_Gravity_as_a_Selector_of_Dependently_Reconstructible_Distinguishability_on_Compact_S3.pdf",
+  "claims": [
+   {
+    "text": "Объём геодезического шара и доля причинной доступности; скалярная, TT и дираковская ёмкости.",
+    "status": "KERNEL_PROVED",
+    "lean": [
+     "FBS3R.CausalSpectral.ball_volume",
+     "FBS3R.CausalSpectral.total_volume",
+     "FBS3R.CausalSpectral.scalar_count",
+     "FBS3R.CausalSpectral.TT_count",
+     "FBS3R.CausalSpectral.dirac_count"
+    ],
+    "ref": "тождества сумм; кратности — стандартный факт"
+   },
+   {
+    "text": "Стрелка s = R − √(R² − L²/4), L²/(8R) ≤ s ≤ L²/(4R).",
+    "status": "KERNEL_PROVED",
+    "lean": [
+     "FBS3R.Selector.sagitta_formula",
+     "FBS3R.Selector.sagitta_bounds"
+    ]
+   },
+   {
+    "text": "Гравитационный селектор Σ_grav как сжатие причинной различимости до допустимой.",
+    "status": "HEURISTIC/PHYSICAL_MODEL",
+    "lean": []
+   }
+  ],
+  "status": "HEURISTIC/PHYSICAL_MODEL",
+  "lean": [
+   "FBS3R.CausalSpectral.ball_volume",
+   "FBS3R.CausalSpectral.total_volume",
+   "FBS3R.CausalSpectral.scalar_count",
+   "FBS3R.CausalSpectral.TT_count",
+   "FBS3R.CausalSpectral.dirac_count",
+   "FBS3R.Selector.sagitta_formula",
+   "FBS3R.Selector.sagitta_bounds"
+  ],
+  "note": "Частичное покрытие; утверждения о Перельмане, гомологиях и интегралах на S³ не формализованы."
+ },
+ {
+  "id": "FBS3R-W067",
+  "date": "2026-07-06",
+  "title": "Research Framework: Physical Distinguishability in HCC-S³",
+  "folder": "All Preprints; II. Theory of Information–S³; IV. HCC-S³",
+  "file": "All Preprints/2026_07_06_Research_Framework_Physical_Distinguishability_in_HCC_S3/2026_07_06_Research_Framework_Physical_Distinguishability_in_HCC_S3.pdf",
+  "claims": [
+   {
+    "text": "План ветви «Physical Distinguishability in HCC-S³» (определения и открытые вопросы).",
+    "status": "HEURISTIC/PHYSICAL_MODEL",
+    "lean": []
+   }
+  ],
+  "status": "HEURISTIC/PHYSICAL_MODEL",
+  "lean": [],
+  "note": "Не исследовательская статья, а план."
+ },
+ {
+  "id": "FBS3R-W068",
+  "date": "2026-07-07",
+  "title": "Causal–Spectral Distinguishability Selection on a Conditional Round S³ Carrier",
+  "folder": "All Preprints; II. Theory of Information–S³; IV. HCC-S³",
+  "file": "All Preprints/2026_07_07_Causal_Spectral_Distinguishability_Selection_on_a_Conditional_Round_S3_Carrier/2026_07_07_Causal_Spectral_Distinguishability_Selection_on_a_Conditional_Round_S3_Carrier.pdf",
+  "claims": [
+   {
+    "text": "Объём шара 2πR³(s/R − ½ sin(2s/R)); доля Γ, Γ′ = (2/π)sin²τ, Γ(τ)+Γ(π−τ) = 1.",
+    "status": "KERNEL_PROVED",
+    "lean": [
+     "FBS3R.CausalSpectral.ball_volume",
+     "FBS3R.CausalSpectral.total_volume",
+     "FBS3R.CausalSpectral.hasDerivAt_Γ",
+     "FBS3R.CausalSpectral.Γ_symm",
+     "FBS3R.CausalSpectral.Γ_half"
+    ]
+   },
+   {
+    "text": "Ёмкости: скалярная M(M+1)(2M+1)/6, TT M(M−1)(2M+11)/3, Дирака 2(M+1)(M+2)(M+3)/3.",
+    "status": "KERNEL_PROVED",
+    "lean": [
+     "FBS3R.CausalSpectral.scalar_cutoff",
+     "FBS3R.CausalSpectral.scalar_count",
+     "FBS3R.CausalSpectral.TT_count",
+     "FBS3R.CausalSpectral.dirac_count"
+    ]
+   },
+   {
+    "text": "Физические потолки (калибровка, энтропия, устойчивость) сжимают ёмкость до допустимой; селектор ∈ [0,1].",
+    "status": "HEURISTIC/PHYSICAL_MODEL",
+    "lean": []
+   }
+  ],
+  "status": "HEURISTIC/PHYSICAL_MODEL",
+  "lean": [
+   "FBS3R.CausalSpectral.ball_volume",
+   "FBS3R.CausalSpectral.total_volume",
+   "FBS3R.CausalSpectral.hasDerivAt_Γ",
+   "FBS3R.CausalSpectral.Γ_symm",
+   "FBS3R.CausalSpectral.Γ_half",
+   "FBS3R.CausalSpectral.scalar_cutoff",
+   "FBS3R.CausalSpectral.scalar_count",
+   "FBS3R.CausalSpectral.TT_count",
+   "FBS3R.CausalSpectral.dirac_count"
+  ],
+  "note": "Замкнутые формулы доказаны; спектральные теоремы на S³ и физический селектор — нет."
+ },
+ {
+  "id": "FBS3R-W069",
+  "date": "2026-07-08",
+  "title": "Hopfion Sectors and Topological Physical Information in HCC-S³: A Mathematical Investigation of Topologically Protected Distinguishability",
+  "folder": "All Preprints; I. Logic & Mathematics; II. Theory of Information–S³",
+  "file": "All Preprints/2026_07_08_Hopfion_Sectors_and_Topological_Physical_Information_in_HCC_S3_A_Mathematical_Investigation_of_Topologically_Protected_Distinguishability/2026_07_08_Hopfion_Sectors_and_Topological_Physical_Information_in_HCC_S3_A_Mathematical_Investigation_of_Topologically_Protected_Distinguishability.pdf",
+  "claims": [
+   {
+    "text": "Классы с инвариантом Хопфа Q_H ∈ ℤ как топологический алфавит физической различимости; барьеры между секторами.",
+    "status": "HEURISTIC/PHYSICAL_MODEL",
+    "lean": []
+   },
+   {
+    "text": "π₃(S²) = ℤ; инвариант Хопфа.",
+    "status": "KNOWN_RESULT",
+    "lean": []
+   }
+  ],
+  "status": "HEURISTIC/PHYSICAL_MODEL",
+  "lean": [],
+  "note": "Исходник только docx/pdf."
+ },
+ {
+  "id": "FBS3R-W070",
+  "date": "2026-07-19",
+  "title": "How Does a Three-Dimensional Manifold Become Alive?",
+  "folder": "All Preprints; III. Ontology & Physics",
+  "file": "All Preprints/2026_07_19_How_Does_a_Three_Dimensional_Manifold_Become_Alive/2026_07_19_How_Does_a_Three_Dimensional_Manifold_Become_Alive.pdf",
+  "claims": [
+   {
+    "text": "Путь от топологии компактного носителя M ≅ S³ к материи, жизни и первому лицу.",
+    "status": "HEURISTIC/PHYSICAL_MODEL",
+    "lean": []
+   }
+  ],
+  "status": "HEURISTIC/PHYSICAL_MODEL",
+  "lean": [],
+  "note": "Рабочее эссе."
+ },
+ {
+  "id": "FBS3R-W071",
+  "date": "2026-07-21",
+  "title": "Relational Theory of Expression: Quasilocal Manifestation, Reconstruction, and Operational Equivalence",
+  "folder": "All Preprints; III. Ontology & Physics",
+  "file": "All Preprints/2026_07_21_Relational_Theory_of_Expression_Quasilocal_Manifestation_Reconstruction_and_Operational_Equivalence/2026_07_21_Relational_Theory_of_Expression_Quasilocal_Manifestation_Reconstruction_and_Operational_Equivalence.pdf",
+  "claims": [
+   {
+    "text": "Отображение выражения E_D, операционная эквивалентность и предпучковая склейка.",
+    "status": "HEURISTIC/PHYSICAL_MODEL",
+    "lean": []
+   }
+  ],
+  "status": "HEURISTIC/PHYSICAL_MODEL",
+  "lean": [],
+  "note": "Методологическая рамка."
+ },
+ {
+  "id": "FBS3R-W072",
+  "date": "2026-08-09",
+  "title": "Finite Dilation Operator Algebra of Homothetic B⁴/S³ Valuations and Homogeneous Closure Tests for Valuation Dark Energy",
+  "folder": "All Preprints; I. Logic & Mathematics; IV. HCC-S³",
+  "file": "All Preprints/2026_08_09_Finite_Dilation_Operator_Algebra_of_Homothetic_B4_S3_Valuations_and_Homogeneous_Closure_Tests_for_Valuation_Dark_Energy/2026_08_09_Finite_Dilation_Operator_Algebra_of_Homothetic_B4_S3_Valuations_and_Homogeneous_Closure_Tests_for_Valuation_Dark_Energy.pdf",
+  "claims": [
+   {
+    "text": "Универсальная карта работы E₄ ↦ (ε_D, p_D) обратима: представление, а не замыкание.",
+    "status": "KERNEL_PROVED",
+    "lean": [
+     "FBS3R.Checks.work_identity"
+    ]
+   },
+   {
+    "text": "Спектр S_val = {1,0,−1,−2,−3}, P_val(z) = (z−1)z(z+1)(z+2)(z+3), алгебра ℝ[z]/(P_val) ≃ ℝ⁵.",
+    "status": "KNOWN_RESULT",
+    "lean": [
+     "FBS3R.Checks.dilation_eigen",
+     "FBS3R.Checks.P_val_roots"
+    ],
+    "ref": "следует из теоремы Хадвигера и КТО; в Lean — корни и собственные функции"
+   },
+   {
+    "text": "Лог-выпуклость, огибающая Бхатиа–Дэвиса, положительность Ганкеля.",
+    "status": "KERNEL_PROVED",
+    "lean": [
+     "FBS3R.Moments.hankel_psd",
+     "FBS3R.Moments.log_convex",
+     "FBS3R.Moments.bhatia_davis"
+    ]
+   },
+   {
+    "text": "Поток A·w′ = −Var/3 ≤ 0 для положительных смесей; две ветви; касательная CPL.",
+    "status": "KERNEL_PROVED",
+    "lean": [
+     "FBS3R.Valuation.mixture_flow",
+     "FBS3R.Valuation.mixture_variance_nonneg",
+     "FBS3R.Valuation.two_branch_moments",
+     "FBS3R.Valuation.lambda_X_flow",
+     "FBS3R.Valuation.cpl_tangent"
+    ]
+   },
+   {
+    "text": "Тёмная энергия как валюация (VDE).",
+    "status": "HEURISTIC/PHYSICAL_MODEL",
+    "lean": []
+   }
+  ],
+  "status": "KNOWN_RESULT",
+  "lean": [
+   "FBS3R.Checks.work_identity",
+   "FBS3R.Checks.dilation_eigen",
+   "FBS3R.Checks.P_val_roots",
+   "FBS3R.Moments.hankel_psd",
+   "FBS3R.Moments.log_convex",
+   "FBS3R.Moments.bhatia_davis",
+   "FBS3R.Valuation.mixture_flow",
+   "FBS3R.Valuation.mixture_variance_nonneg",
+   "FBS3R.Valuation.two_branch_moments",
+   "FBS3R.Valuation.lambda_X_flow",
+   "FBS3R.Valuation.cpl_tangent"
+  ],
+  "note": "Частичное покрытие (B41, B51, B53, B56, B57); классификация Хадвигера не формализована."
+ },
+ {
+  "id": "FBS3R-W073",
+  "date": "2026-08-09",
+  "title": "Homothetic Valuation Spectrum of a Quasilocal B⁴ Filling and an Effective Residual Sector on Compact S³",
+  "folder": "All Preprints; I. Logic & Mathematics; IV. HCC-S³",
+  "file": "All Preprints/2026_08_09_Homothetic_Valuation_Spectrum_of_a_Quasilocal_B4_Filling_and_an_Effective_Residual_Sector_on_Compact_S3/2026_08_09_Homothetic_Valuation_Spectrum_of_a_Quasilocal_B4_Filling_and_an_Effective_Residual_Sector_on_Compact_S3.pdf",
+  "claims": [
+   {
+    "text": "ε_D = ρ₄A/4, p_D = −dE₄/dV₃, w_D = −1 − ⅓ d ln ε_D/d ln A.",
+    "status": "KERNEL_PROVED",
+    "lean": [
+     "FBS3R.Checks.work_identity"
+    ]
+   },
+   {
+    "text": "Полный гомотетический спектр валюаций; аннулятор P_val.",
+    "status": "KNOWN_RESULT",
+    "lean": [
+     "FBS3R.Checks.P_val_roots"
+    ],
+    "ref": "теорема Хадвигера"
+   },
+   {
+    "text": "Монотонность потока для положительных смесей.",
+    "status": "KERNEL_PROVED",
+    "lean": [
+     "FBS3R.Valuation.mixture_flow",
+     "FBS3R.Valuation.mixture_variance_nonneg"
+    ]
+   },
+   {
+    "text": "Холодное поведение без давления для топологического тока; условное действие.",
+    "status": "HEURISTIC/PHYSICAL_MODEL",
+    "lean": []
+   }
+  ],
+  "status": "KNOWN_RESULT",
+  "lean": [
+   "FBS3R.Checks.work_identity",
+   "FBS3R.Checks.P_val_roots",
+   "FBS3R.Valuation.mixture_flow",
+   "FBS3R.Valuation.mixture_variance_nonneg"
+  ],
+  "note": "Теорема Хадвигера не формализована."
+ },
+ {
+  "id": "FBS3R-W074",
+  "date": "2026-08-10",
+  "title": "Capacity-Fixed Trace-Free Gravity and S³ Valuation Closure: A Unified Invariant Sieve with DESI DR2 BAO Diagnostics",
+  "folder": "All Preprints; I. Logic & Mathematics; IV. HCC-S³",
+  "file": "All Preprints/2026_08_10_Capacity_Fixed_Trace_Free_Gravity_and_S3_Valuation_Closure_A_Unified_Invariant_Sieve_with_DESI_DR2_BAO_Diagnostics/2026_08_10_Capacity_Fixed_Trace_Free_Gravity_and_S3_Valuation_Closure_A_Unified_Invariant_Sieve_with_DESI_DR2_BAO_Diagnostics.pdf",
+  "claims": [
+   {
+    "text": "Бесследовое уравнение: постоянный сдвиг вакуума в ядре проектора P_tr(T − ρ₀g) = P_tr(T).",
+    "status": "KERNEL_PROVED",
+    "lean": [
+     "FBS3R.Checks.vacuum_kernel"
+    ]
+   },
+   {
+    "text": "Интегрирование Бьянки даёт Λ_int (унимодулярная гравитация).",
+    "status": "KNOWN_RESULT",
+    "lean": []
+   },
+   {
+    "text": "Λ_cap = 3π/(ℓ_P²N_∂) как постулат ёмкости горизонта.",
+    "status": "HEURISTIC/PHYSICAL_MODEL",
+    "lean": []
+   },
+   {
+    "text": "Тест монотонности положительных смесей.",
+    "status": "KERNEL_PROVED",
+    "lean": [
+     "FBS3R.Valuation.mixture_flow"
+    ]
+   },
+   {
+    "text": "Диагностика с DESI DR2 BAO.",
+    "status": "NUMERICAL_EVIDENCE",
+    "lean": []
+   }
+  ],
+  "status": "HEURISTIC/PHYSICAL_MODEL",
+  "lean": [
+   "FBS3R.Checks.vacuum_kernel",
+   "FBS3R.Valuation.mixture_flow"
+  ],
+  "note": ""
+ },
+ {
+  "id": "FBS3R-W075",
+  "date": "2026-08-10",
+  "title": "Finite Dilation Algebra of Round Euclidean B⁴/S³ Valuation Profiles: Exact Invariants, Homogeneous Gravity Closure, and Executed Null Tests",
+  "folder": "All Preprints; I. Logic & Mathematics; IV. HCC-S³",
+  "file": "All Preprints/2026_08_10_Finite_Dilation_Algebra_of_Round_Euclidean_B4_S3_Valuation_Profiles_Exact_Invariants_Homogeneous_Gravity_Closure_and_Executed_Null_Tests/2026_08_10_Finite_Dilation_Algebra_of_Round_Euclidean_B4_S3_Valuation_Profiles_Exact_Invariants_Homogeneous_Gravity_Closure_and_Executed_Null_Tests.pdf",
+  "claims": [
+   {
+    "text": "Тождество работы, собственные функции A^n оператора A d/dA, корни P_val, плотность валюации.",
+    "status": "KERNEL_PROVED",
+    "lean": [
+     "FBS3R.Checks.work_identity",
+     "FBS3R.Checks.dilation_eigen",
+     "FBS3R.Checks.P_val_roots",
+     "FBS3R.Checks.valuation_density"
+    ]
+   },
+   {
+    "text": "Конечная однородная классификация (пять весов из аксиом валюации) и полупростая алгебра.",
+    "status": "KNOWN_RESULT",
+    "lean": [],
+    "ref": "Хадвигер, КТО"
+   },
+   {
+    "text": "Полные инварианты, жёсткость длины Фишера, спектральный отпечаток Купмана–Ганкеля.",
+    "status": "OPEN",
+    "lean": []
+   },
+   {
+    "text": "«Выполненные» нуль-тесты замыкания гравитации.",
+    "status": "NUMERICAL_EVIDENCE",
+    "lean": []
+   }
+  ],
+  "status": "KNOWN_RESULT",
+  "lean": [
+   "FBS3R.Checks.work_identity",
+   "FBS3R.Checks.dilation_eigen",
+   "FBS3R.Checks.P_val_roots",
+   "FBS3R.Checks.valuation_density"
+  ],
+  "note": "Версия с «Homogeneous Gravity Closure»."
+ },
+ {
+  "id": "FBS3R-W076",
+  "date": "2026-08-10",
+  "title": "Finite Dilation Algebra of Round Euclidean B⁴/S³ Valuation Profiles: Exact Invariants and Executed Homogeneous Null Tests",
+  "folder": "All Preprints; I. Logic & Mathematics; IV. HCC-S³",
+  "file": "All Preprints/2026_08_10_Finite_Dilation_Algebra_of_Round_Euclidean_B4_S3_Valuation_Profiles_Exact_Invariants_and_Executed_Homogeneous_Null_Tests/2026_08_10_Finite_Dilation_Algebra_of_Round_Euclidean_B4_S3_Valuation_Profiles_Exact_Invariants_and_Executed_Homogeneous_Null_Tests.pdf",
+  "claims": [
+   {
+    "text": "Тождество работы, собственные функции, корни P_val.",
+    "status": "KERNEL_PROVED",
+    "lean": [
+     "FBS3R.Checks.work_identity",
+     "FBS3R.Checks.dilation_eigen",
+     "FBS3R.Checks.P_val_roots"
+    ]
+   },
+   {
+    "text": "Конечная однородная классификация и полупростая алгебра ℝ[z]/(P_val) ≃ ℝ⁵.",
+    "status": "KNOWN_RESULT",
+    "lean": [],
+    "ref": "Хадвигер, КТО"
+   },
+   {
+    "text": "Полные инварианты на страте положительного носителя; нормальная форма двух ветвей.",
+    "status": "OPEN",
+    "lean": []
+   },
+   {
+    "text": "«Выполненные» однородные нуль-тесты.",
+    "status": "NUMERICAL_EVIDENCE",
+    "lean": []
+   }
+  ],
+  "status": "KNOWN_RESULT",
+  "lean": [
+   "FBS3R.Checks.work_identity",
+   "FBS3R.Checks.dilation_eigen",
+   "FBS3R.Checks.P_val_roots"
+  ],
+  "note": "Вторая версия той же работы (без раздела гравитационного замыкания)."
+ },
+ {
+  "id": "FBS3R-W077",
+  "date": "2026-08-11",
+  "title": "Capacity-Fixed Trace-Free Gravity and Non-Perturbative Edge-Partition Boundary Selection",
+  "folder": "All Preprints; II. Theory of Information–S³; IV. HCC-S³",
+  "file": "All Preprints/2026_08_11_Capacity_Fixed_Trace_Free_Gravity_and_Non_Perturbative_Edge_Partition_Boundary_Selection/2026_08_11_Capacity_Fixed_Trace_Free_Gravity_and_Non_Perturbative_Edge_Partition_Boundary_Selection.pdf",
+  "claims": [
+   {
+    "text": "Ядро вакуумного сдвига бесследового проектора.",
+    "status": "KERNEL_PROVED",
+    "lean": [
+     "FBS3R.Checks.vacuum_kernel"
+    ]
+   },
+   {
+    "text": "Тест монотонности положительных смесей.",
+    "status": "KERNEL_PROVED",
+    "lean": [
+     "FBS3R.Valuation.mixture_flow"
+    ]
+   },
+   {
+    "text": "Граничный гамильтониан, спин-c оператор Дирака, η-инвариант, «Chern–Simons capacity lock», селектор Планка–Брэдлоу.",
+    "status": "OPEN",
+    "lean": []
+   },
+   {
+    "text": "Отбор граничного сектора как механизм для Λ.",
+    "status": "HEURISTIC/PHYSICAL_MODEL",
+    "lean": []
+   }
+  ],
+  "status": "HEURISTIC/PHYSICAL_MODEL",
+  "lean": [
+   "FBS3R.Checks.vacuum_kernel",
+   "FBS3R.Valuation.mixture_flow"
+  ],
+  "note": "Теорема об индексе и η-инварианты не формализуемы в Mathlib."
+ },
+ {
+  "id": "FBS3R-W078",
+  "date": "2026-08-12",
+  "title": "Trace-Free Gravity and Horizon Capacity: Fibonacci Shell Closure and an Autonomous Edge-Hamiltonian Candidate for the Cosmological Constant",
+  "folder": "All Preprints; II. Theory of Information–S³; IV. HCC-S³",
+  "file": "All Preprints/2026_08_12_Trace_Free_Gravity_and_Horizon_Capacity_Fibonacci_Shell_Closure_and_an_Autonomous_Edge_Hamiltonian_Candidate_for_the_Cosmological_Constant/2026_08_12_Trace_Free_Gravity_and_Horizon_Capacity_Fibonacci_Shell_Closure_and_an_Autonomous_Edge_Hamiltonian_Candidate_for_the_Cosmological_Constant.pdf",
+  "claims": [
+   {
+    "text": "Ядро вакуумного сдвига P_tr(T − ρ₀g) = P_tr(T).",
+    "status": "KERNEL_PROVED",
+    "lean": [
+     "FBS3R.Checks.vacuum_kernel"
+    ]
+   },
+   {
+    "text": "q₀ = πφ⁵⁸⁴/(1+π/50) ≈ 3.307·10¹²², Λ = 3π/(ℓ_P²q₀) ≈ 1.09·10⁻⁵² м⁻².",
+    "status": "NUMERICAL_EVIDENCE",
+    "lean": [],
+    "ref": "арифметика воспроизводится; N_φ = 292 и множитель 1+π/50 введены статьёй"
+   },
+   {
+    "text": "Автономный граничный гамильтониан — кандидат на объяснение Λ.",
+    "status": "HEURISTIC/PHYSICAL_MODEL",
+    "lean": []
+   }
+  ],
+  "status": "HEURISTIC/PHYSICAL_MODEL",
+  "lean": [
+   "FBS3R.Checks.vacuum_kernel"
+  ],
+  "note": "Значение Λ подобрано, а не выведено (MISSION_STATE, направление 24: OPEN)."
+ },
+ {
+  "id": "FBS3R-W079",
+  "date": "2026-08-14",
+  "title": "Statistical Experiments, Observational Indistinguishability, and SETI Null Results",
+  "folder": "All Preprints; I. Logic & Mathematics; II. Theory of Information–S³",
+  "file": "All Preprints/2026_08_14_Statistical_Experiments_Observational_Indistinguishability_and_SETI_Null_Results/2026_08_14_Statistical_Experiments_Observational_Indistinguishability_and_SETI_Null_Results.pdf",
+  "claims": [
+   {
+    "text": "Обзор SETI как статистический эксперимент: композиция марковских ядер, мощность теста, псевдометрика на моделях; ожидаемое число детекций — интеграл мощности по интенсивности.",
+    "status": "KNOWN_RESULT",
+    "lean": [],
+    "ref": "стандартная статистика (Ле Кам, прореживание пуассоновских процессов)"
+   },
+   {
+    "text": "Интерпретация нулевых результатов SETI.",
+    "status": "HEURISTIC/PHYSICAL_MODEL",
+    "lean": []
+   }
+  ],
+  "status": "KNOWN_RESULT",
+  "lean": [],
+  "note": ""
+ },
+ {
+  "id": "FBS3R-W080",
+  "date": "2026-08-17",
+  "title": "Acyclic CIVP–Index Locking, Molecular Corner Statistics, Entropy–Flux Structure, and Capacity Selection in Trace-Free de Sitter Gravity",
+  "folder": "All Preprints; I. Logic & Mathematics; IV. HCC-S³",
+  "file": "All Preprints/2026_08_17_Acyclic_CIVP_Index_Locking_Molecular_Corner_Statistics_Entropy_Flux_Structure_and_Capacity_Selection_in_Trace_Free_de_Sitter_Gravity/2026_08_17_Acyclic_CIVP_Index_Locking_Molecular_Corner_Statistics_Entropy_Flux_Structure_and_Capacity_Selection_in_Trace_Free_de_Sitter_Gravity.pdf",
+  "claims": [
+   {
+    "text": "Теорема о единственном селекторе: строго убывающее ρ_q со сменой знака в q* ⇒ q* — единственный максимум; no-go ограниченного роста.",
+    "status": "KERNEL_PROVED",
+    "lean": [
+     "FBS3R.Selector.unique_selector",
+     "FBS3R.Selector.bounded_growth"
+    ]
+   },
+   {
+    "text": "Молекулярное фактор-пространство, жёсткость составного Пуассона, дихотомия инвариантных подалгебр, индекс Джонса.",
+    "status": "OPEN",
+    "lean": []
+   },
+   {
+    "text": "Механизм запирания индекса для отбора сектора в бесследовой гравитации де Ситтера.",
+    "status": "HEURISTIC/PHYSICAL_MODEL",
+    "lean": []
+   }
+  ],
+  "status": "HEURISTIC/PHYSICAL_MODEL",
+  "lean": [
+   "FBS3R.Selector.unique_selector",
+   "FBS3R.Selector.bounded_growth"
+  ],
+  "note": "Субфакторы и индекс Джонса не формализованы."
+ },
+ {
+  "id": "FBS3R-W081",
+  "date": "2026-09-05",
+  "title": "Pregeometric Relational Dynamics and Universal Causal Structure",
+  "folder": "All Preprints; III. Ontology & Physics",
+  "file": "All Preprints/2026_09_05_Pregeometric_Relational_Dynamics_and_Universal_Causal_Structure/2026_09_05_Pregeometric_Relational_Dynamics_and_Universal_Causal_Structure.pdf",
+  "claims": [
+   {
+    "text": "Смена общего лапласиана графа при фиксированных кинетических коэффициентах не выравнивает скорости полей.",
+    "status": "OPEN",
+    "lean": []
+   },
+   {
+    "text": "Необходимое и достаточное условие общего характеристического конуса для квадратичной модели со щелью.",
+    "status": "OPEN",
+    "lean": []
+   }
+  ],
+  "status": "OPEN",
+  "lean": [],
+  "note": "Конечномерные утверждения; не формализованы."
+ },
+ {
+  "id": "FBS3R-W082",
+  "date": "2026-09-07",
+  "title": "Pregeometric Relational Dynamics and Universal Causal Structure: Spectral Constraints, Response Limits, Universal Null Calibration, and Functional Consistency of Light",
+  "folder": "All Preprints; I. Logic & Mathematics; III. Ontology & Physics",
+  "file": "All Preprints/2026_09_07_Pregeometric_Relational_Dynamics_and_Universal_Causal_Structure_Spectral_Constraints_Response_Limits_Universal_Null_Calibration_and_Functional_Consistency_of_Light/2026_09_07_Pregeometric_Relational_Dynamics_and_Universal_Causal_Structure_Spectral_Constraints_Response_Limits_Universal_Null_Calibration_and_Functional_Consistency_of_Light.pdf",
+  "claims": [
+   {
+    "text": "Спектральные условия общего низкоэнергетического конуса; пределы отклика на цепочках.",
+    "status": "OPEN",
+    "lean": []
+   },
+   {
+    "text": "Универсальная нулевая калибровка как физическое условие общего конуса; функциональная согласованность света.",
+    "status": "HEURISTIC/PHYSICAL_MODEL",
+    "lean": []
+   }
+  ],
+  "status": "OPEN",
+  "lean": [],
+  "note": "Объединённая рукопись (docx/pdf)."
+ },
+ {
+  "id": "FBS3R-W083",
+  "date": "2026-09-11",
+  "title": "Field Reconstruction and Curvature Identifiability from Spherical Maps in a Closed Spatial Geometry",
+  "folder": "All Preprints; I. Logic & Mathematics; IV. HCC-S³",
+  "file": "All Preprints/2026_09_11_Field_Reconstruction_and_Curvature_Identifiability_from_Spherical_Maps_in_a_Closed_Spatial_Geometry/2026_09_11_Field_Reconstruction_and_Curvature_Identifiability_from_Spherical_Maps_in_a_Closed_Spatial_Geometry.pdf",
+  "claims": [
+   {
+    "text": "Нуль-пространство q сферических карт: размерность N_{L−q}, N_j = (j+1)(j+2)(2j+3)/6.",
+    "status": "OPEN",
+    "lean": [
+     "FBS3R.Rank.rank_count",
+     "FBS3R.Rank.sector_count",
+     "FBS3R.Rank.N_closed",
+     "APEX.Cosmology.finrank_ker_shellObs",
+     "APEX.Cosmology.shellObs_injective_iff"
+    ],
+    "ref": "в Lean — ранговый счёт и радиальная модель ядра; разложение по гармоникам S³ не формализовано"
+   },
+   {
+    "text": "Спектр тонкого слоя; условная двухоболочечная реконструкция кривизны.",
+    "status": "OPEN",
+    "lean": []
+   },
+   {
+    "text": "Точная локальная статистическая вырожденность.",
+    "status": "OPEN",
+    "lean": [
+     "APEX.Cosmology.nonident_local"
+    ],
+    "ref": "близкое утверждение APEX-COS-1"
+   }
+  ],
+  "status": "OPEN",
+  "lean": [
+   "FBS3R.Rank.rank_count",
+   "FBS3R.Rank.sector_count",
+   "FBS3R.Rank.N_closed",
+   "APEX.Cosmology.finrank_ker_shellObs",
+   "APEX.Cosmology.shellObs_injective_iff",
+   "APEX.Cosmology.nonident_local"
+  ],
+  "note": "Почти полное покрытие счётной части; точной формулировки в Lean нет."
+ },
+ {
+  "id": "FBS3R-W084",
+  "date": "2026-09-20",
+  "title": "Finite-Dimensional Spectral Closure and a Relative Forced Singular Branch for Navier–Stokes on the Round Three-Sphere",
+  "folder": "All Preprints; I. Logic & Mathematics",
+  "file": "All Preprints/2026_09_20_Finite_Dimensional_Spectral_Closure_and_a_Relative_Forced_Singular_Branch_for_Navier_Stokes_on_the_Round_Three_Sphere/2026_09_20_Finite_Dimensional_Spectral_Closure_and_a_Relative_Forced_Singular_Branch_for_Navier_Stokes_on_the_Round_Three_Sphere.pdf",
+  "claims": [
+   {
+    "text": "Критерий конечной редукции: AW ⊂ W, Q(W,W) ⊂ W ⇔ ‖D_W‖_HS = 0.",
+    "status": "OPEN",
+    "lean": []
+   },
+   {
+    "text": "Конечные редуцирующие подпространства не несут взрыва ограниченной энергии.",
+    "status": "KERNEL_PROVED",
+    "lean": [
+     "FBS3R.FiniteReduction.energy_bound",
+     "FBS3R.FiniteReduction.no_blowup",
+     "APEX.Analysis.norm_le_forced_local"
+    ],
+    "ref": "в Lean — непрерывная сила (в статье допускается L¹)"
+   },
+   {
+    "text": "Относительная сингулярная ветвь вынужденного НС на S³_R при пяти внешних гипотезах.",
+    "status": "OPEN",
+    "lean": [],
+    "ref": "условно; регулярность НС — проблема тысячелетия"
+   }
+  ],
+  "status": "OPEN",
+  "lean": [
+   "FBS3R.FiniteReduction.energy_bound",
+   "FBS3R.FiniteReduction.no_blowup",
+   "APEX.Analysis.norm_le_forced_local"
+  ],
+  "note": "Регулярность Навье–Стокса не доказана; статья сама условна."
+ },
+ {
+  "id": "FBS3R-W085",
+  "date": "2026-09-22",
+  "title": "Geometric Reduction, Killing-Response Reconstruction, and Spectral Tomography for Navier–Stokes Flow on the Round Three-Sphere",
+  "folder": "All Preprints; I. Logic & Mathematics",
+  "file": "All Preprints/2026_09_22_Geometric_Reduction_Killing_Response_Reconstruction_and_Spectral_Tomography_for_Navier_Stokes_Flow_on_the_Round_Three_Sphere/2026_09_22_Geometric_Reduction_Killing_Response_Reconstruction_and_Spectral_Tomography_for_Navier_Stokes_Flow_on_the_Round_Three_Sphere.pdf",
+  "claims": [
+   {
+    "text": "Проецированная квадратичная конвекция исчезает на каждой знаковой оболочке curl; грассманиан точных редукций.",
+    "status": "OPEN",
+    "lean": []
+   },
+   {
+    "text": "Моменты m_n = ΣE_kκ_kⁿ: ганкелева положительность, лог-выпуклость, тождество дисперсии, монотонность частоты.",
+    "status": "KERNEL_PROVED",
+    "lean": [
+     "FBS3R.Moments.hankel_psd",
+     "FBS3R.Moments.log_convex",
+     "FBS3R.Moments.variance_identity",
+     "FBS3R.Moments.frequency_monotone"
+    ]
+   },
+   {
+    "text": "Точная хиральная граница |Ξ| ≤ 2/3; вязкий спектральный отбор.",
+    "status": "KERNEL_PROVED",
+    "lean": [
+     "FBS3R.Moments.shell_chirality_bound",
+     "FBS3R.Moments.chiral_bound",
+     "FBS3R.Moments.chiral_bound_attained",
+     "FBS3R.Moments.viscous_selection"
+    ]
+   },
+   {
+    "text": "Парсевалева рамка откликов Киллинга; число зондов; оценки обусловленности.",
+    "status": "OPEN",
+    "lean": []
+   }
+  ],
+  "status": "OPEN",
+  "lean": [
+   "FBS3R.Moments.hankel_psd",
+   "FBS3R.Moments.log_convex",
+   "FBS3R.Moments.variance_identity",
+   "FBS3R.Moments.frequency_monotone",
+   "FBS3R.Moments.shell_chirality_bound",
+   "FBS3R.Moments.chiral_bound",
+   "FBS3R.Moments.chiral_bound_attained",
+   "FBS3R.Moments.viscous_selection"
+  ],
+  "note": "Операторы НС на S³ не формализованы; регулярность не затронута."
+ },
+ {
+  "id": "FBS3R-W086",
+  "date": "2026-09-23",
+  "title": "Killing–Beltrami Algebra and Exact Reductions of Navier–Stokes Flow on the Three-Sphere",
+  "folder": "All Preprints; I. Logic & Mathematics",
+  "file": "All Preprints/2026_09_23_Killing_Beltrami_algebra_and_exact_reductions_of_Navier_Stokes_flow_on_the_three_sphere/2026_09_23_Killing_Beltrami_algebra_and_exact_reductions_of_Navier_Stokes_flow_on_the_three_sphere.pdf",
+  "claims": [
+   {
+    "text": "Теорема о дефекте представления: [Dm, Dn] − D[m,n] = (a²−a)P + (b²−b)Q; коэффициенты −2k/(k+2)², 2(k+4)/(k+2)² ≠ 0.",
+    "status": "KERNEL_PROVED",
+    "lean": [
+     "FBS3R.KillingBeltrami.defect",
+     "FBS3R.KillingBeltrami.defect_coeffs",
+     "FBS3R.KillingBeltrami.defect_coeffs_ne_zero",
+     "FBS3R.KillingBeltrami.D_minus_ad"
+    ]
+   },
+   {
+    "text": "Поляризация Киллинга–Бельтрами (k+2−2τσ)/(2(k+2)); dim E_{k,σ} = (k+1)(k+3); Казимир Δ_iso = 2curl²; Стокс k(k+4)/R².",
+    "status": "KERNEL_PROVED",
+    "lean": [
+     "FBS3R.KillingBeltrami.KB_coefficient",
+     "FBS3R.KillingBeltrami.chiral_values",
+     "FBS3R.KillingBeltrami.shell_dim",
+     "FBS3R.KillingBeltrami.casimir_eq_two_curl_sq",
+     "FBS3R.KillingBeltrami.stokes_eigenvalue",
+     "FBS3R.KillingBeltrami.structure_coefficients"
+    ],
+    "ref": "алгебра при стандартных гипотезах о геометрии S³"
+   },
+   {
+    "text": "Прецессия Киллинга не совершает работы; ‖v(t)‖ = e^{−ct}‖v₀‖; тождество Лэмба; ζ-сумма и полюс 1/(3π²).",
+    "status": "KERNEL_PROVED",
+    "lean": [
+     "FBS3R.Precession.energy_balance",
+     "FBS3R.Precession.exact_decay",
+     "FBS3R.Lamb.lamb",
+     "FBS3R.Lamb.beltrami_advection_is_gradient",
+     "FBS3R.ZetaShell.shell_sum",
+     "FBS3R.ZetaShell.residue_C"
+    ]
+   },
+   {
+    "text": "Жёсткость: всякая конечная точная редукция, содержащая алгебру Киллинга, — объединение полных знаковых оболочек; торическая классификация.",
+    "status": "OPEN",
+    "lean": []
+   }
+  ],
+  "status": "OPEN",
+  "lean": [
+   "FBS3R.KillingBeltrami.defect",
+   "FBS3R.KillingBeltrami.defect_coeffs",
+   "FBS3R.KillingBeltrami.defect_coeffs_ne_zero",
+   "FBS3R.KillingBeltrami.D_minus_ad",
+   "FBS3R.KillingBeltrami.KB_coefficient",
+   "FBS3R.KillingBeltrami.chiral_values",
+   "FBS3R.KillingBeltrami.shell_dim",
+   "FBS3R.KillingBeltrami.casimir_eq_two_curl_sq",
+   "FBS3R.KillingBeltrami.stokes_eigenvalue",
+   "FBS3R.KillingBeltrami.structure_coefficients",
+   "FBS3R.Precession.energy_balance",
+   "FBS3R.Precession.exact_decay",
+   "FBS3R.Lamb.lamb",
+   "FBS3R.Lamb.beltrami_advection_is_gradient",
+   "FBS3R.ZetaShell.shell_sum",
+   "FBS3R.ZetaShell.residue_C"
+  ],
+  "note": "Наибольшее покрытие архива (B5–B24), но геометрические входы (оболочки — собственные пространства curl, действие полей Киллинга) — гипотезы; центральная геометрическая теорема не формализована."
+ },
+ {
+  "id": "FBS3R-W087",
+  "date": "2026-10-06",
+  "title": "Holomorphic Hopf–Beltrami Maxwell Modes on the Round Three-Sphere: Exact Construction, Conformal Transport, and Penrose Representation",
+  "folder": "All Preprints; I. Logic & Mathematics; III. Ontology & Physics",
+  "file": "All Preprints/2026_10_06_Holomorphic_Hopf_Beltrami_Maxwell_Modes_on_the_Round_Three_Sphere_Exact_Construction_Conformal_Transport_and_Penrose_Representation/2026_10_06_Holomorphic_Hopf_Beltrami_Maxwell_Modes_on_the_Round_Three_Sphere_Exact_Construction_Conformal_Transport_and_Penrose_Representation.pdf",
+  "claims": [
+   {
+    "text": "Для однородного голоморфного p(z₁,z₂) степени m поле F₀ = pX: curl F₀ = (m+2)F₀, div F₀ = 0, F₀·F₀ = 0 ⇒ точное решение Максвелла.",
+    "status": "OPEN",
+    "lean": []
+   },
+   {
+    "text": "Обратное в рамках анзаца fX; (m+1)-мерное хиральное подпространство внутри (m+1)(m+3)-мерного собственного пространства curl.",
+    "status": "OPEN",
+    "lean": [
+     "FBS3R.KillingBeltrami.shell_dim"
+    ],
+    "ref": "dim (m+1)(m+3) — B9"
+   },
+   {
+    "text": "Конформный перенос в Минковский, форма Бейтмана, представление Пенроуза степени −4.",
+    "status": "OPEN",
+    "lean": []
+   }
+  ],
+  "status": "OPEN",
+  "lean": [
+   "FBS3R.KillingBeltrami.shell_dim"
+  ],
+  "note": "Интегралы по S³ не формализуемы в текущем Mathlib."
+ },
+ {
+  "id": "FBS3R-W088",
+  "date": "2026-10-06",
+  "title": "S³ LIGHT-TRISPHERE: A Technical Atlas of an Interactive First-Principles Scientific Universe",
+  "folder": "All Preprints; IV. HCC-S³",
+  "file": "All Preprints/2026_10_06_S3_LIGHT_TRISPHERE_A_Technical_Atlas_of_an_Interactive_First_Principles_Scientific_Universe/2026_10_06_S3_LIGHT_TRISPHERE_A_Technical_Atlas_of_an_Interactive_First_Principles_Scientific_Universe.pdf",
+  "claims": [
+   {
+    "text": "Техническое описание интерактивного атласа (133 лаборатории, 145 инструментов).",
+    "status": "HEURISTIC/PHYSICAL_MODEL",
+    "lean": []
+   }
+  ],
+  "status": "HEURISTIC/PHYSICAL_MODEL",
+  "lean": [],
+  "note": "Описание ПО; научных утверждений нет."
+ },
+ {
+  "id": "FBS3R-W089",
+  "date": "2026-10-07",
+  "title": "Null Beltrami Geometry on the Round Three-Sphere: Global Hopf Classification, Bateman Links, and an Exact Sextic Twistor-Cohomology Bridge",
+  "folder": "All Preprints; I. Logic & Mathematics; III. Ontology & Physics",
+  "file": "All Preprints/2026_10_07_Null_Beltrami_Geometry_on_the_Round_Three_Sphere_Global_Hopf_Classification_Bateman_Links_and_an_Exact_Sextic_Twistor_Cohomology_Bridge/2026_10_07_Null_Beltrami_Geometry_on_the_Round_Three_Sphere_Global_Hopf_Classification_Bateman_Links_and_an_Exact_Sextic_Twistor_Cohomology_Bridge.pdf",
+  "claims": [
+   {
+    "text": "Глобальная классификация нулевых собственных полей curl на круглой S³ (с точностью до изометрии — p(z₁,z₂)(X₂+iX₃)).",
+    "status": "OPEN",
+    "lean": []
+   },
+   {
+    "text": "Динамика узловых зацеплений Бейтмана; точный секстический когомологический мост к нелинейным гравитонам.",
+    "status": "OPEN",
+    "lean": []
+   }
+  ],
+  "status": "OPEN",
+  "lean": [],
+  "note": "Твисторные когомологии не формализуемы."
+ },
+ {
+  "id": "FBS3R-W090",
+  "date": "2026-10-07",
+  "title": "Null Beltrami Geometry on the Round Three-Sphere: Hopf Classification, Bateman Links, Twistor Cohomology, and Structural Obstructions",
+  "folder": "All Preprints; I. Logic & Mathematics; III. Ontology & Physics",
+  "file": "All Preprints/2026_10_07_Null_Beltrami_Geometry_on_the_Round_Three_Sphere_Hopf_Classification_Bateman_Links_Twistor_Cohomology_and_Structural_Obstructions/2026_10_07_Null_Beltrami_Geometry_on_the_Round_Three_Sphere_Hopf_Classification_Bateman_Links_Twistor_Cohomology_and_Structural_Obstructions.pdf",
+  "claims": [
+   {
+    "text": "Классификация гладких ненулевых нулевых собственных полей curl (положительное собственное значение m+2).",
+    "status": "OPEN",
+    "lean": []
+   },
+   {
+    "text": "Структурные препятствия: Пуанкаре–Казимир, причинная неполнота амбитвисторных данных.",
+    "status": "OPEN",
+    "lean": []
+   }
+  ],
+  "status": "OPEN",
+  "lean": [],
+  "note": "Вторая версия работы 2026-10-07."
+ },
+ {
+  "id": "FBS3R-W091",
+  "date": "2026-10-13",
+  "title": "Geometry of Light on the Round Three-Sphere: Hopf–Jacobi Dynamics, Maxwell Intensity, Dual Tomography, and Nonlinear Spectral Certificates",
+  "folder": "All Preprints; I. Logic & Mathematics; III. Ontology & Physics",
+  "file": "All Preprints/2026_10_13_Geometry_of_Light_on_the_Round_Three_Sphere_Hopf_Jacobi_Dynamics_Maxwell_Intensity_Dual_Tomography_and_Nonlinear_Spectral_Certificates/2026_10_13_Geometry_of_Light_on_the_Round_Three_Sphere_Hopf_Jacobi_Dynamics_Maxwell_Intensity_Dual_Tomography_and_Nonlinear_Spectral_Certificates.pdf",
+  "claims": [
+   {
+    "text": "Многоскоростные якобиевы и Хопф–Киллинговы точные решения вязкого течения на S³; тождества энергии, спиральности, Нётер.",
+    "status": "OPEN",
+    "lean": []
+   },
+   {
+    "text": "Ганкелева иерархия конечного ранга как спектральный сертификат.",
+    "status": "OPEN",
+    "lean": [
+     "FBS3R.Moments.hankel_psd"
+    ],
+    "ref": "близкое утверждение B51"
+   },
+   {
+    "text": "No-go: топологию нельзя восстановить только из интегральных временных рядов.",
+    "status": "OPEN",
+    "lean": []
+   }
+  ],
+  "status": "OPEN",
+  "lean": [
+   "FBS3R.Moments.hankel_psd"
+  ],
+  "note": ""
+ },
+ {
+  "id": "FBS3R-W092",
+  "date": "2026-10-15",
+  "title": "Exact Closed Cosmological Backgrounds Sourced by an Isotropic Hopf Triad: Conformal-Direction Stability Bounds and Observability",
+  "folder": "All Preprints; IV. HCC-S³",
+  "file": "All Preprints/2026_10_15_Exact_closed_cosmological_backgrounds_sourced_by_an_isotropic_Hopf_triad_conformal_direction_stability_bounds_and_observability/2026_10_15_Exact_closed_cosmological_backgrounds_sourced_by_an_isotropic_Hopf_triad_conformal_direction_stability_bounds_and_observability.pdf",
+  "claims": [
+   {
+    "text": "Ортогональная триада отображений Хопфа даёт однородный изотропный тензор энергии-импульса (квадратичный сектор ∝ a⁻², квартичный ∝ a⁻⁴).",
+    "status": "OPEN",
+    "lean": []
+   },
+   {
+    "text": "Точный несингулярный замкнутый отскок для ограниченной области констант.",
+    "status": "OPEN",
+    "lean": []
+   },
+   {
+    "text": "Устойчивость по конформным направлениям и наблюдаемость.",
+    "status": "HEURISTIC/PHYSICAL_MODEL",
+    "lean": []
+   }
+  ],
+  "status": "OPEN",
+  "lean": [],
+  "note": "Формальных окружений нет; утверждения не проверены."
+ },
+ {
+  "id": "FBS3R-W093",
+  "date": "2026-10-15",
+  "title": "Meta-Causal: The Geometry of Predictive Memory and the Limits of Reconstructibility",
+  "folder": "All Preprints; I. Logic & Mathematics; II. Theory of Information–S³",
+  "file": "All Preprints/2026_10_15_Meta_Causal_The_Geometry_Of_Predictive_Memory_And_The_Limits_Of_Reconstructibility/2026_10_15_Meta_Causal_The_Geometry_Of_Predictive_Memory_And_The_Limits_Of_Reconstructibility.pdf",
+  "claims": [
+   {
+    "text": "Минимаксная ошибка для периодического пика сводится к дробной задаче на гиперграфе делителей; точные «лестницы» для 3 и 4 простых делителей.",
+    "status": "OPEN",
+    "lean": []
+   },
+   {
+    "text": "Разделы о спектрах Берже, редукции фазы Хопфа и интеграле однородного потока Риччи.",
+    "status": "OPEN",
+    "lean": []
+   }
+  ],
+  "status": "OPEN",
+  "lean": [],
+  "note": ""
+ },
+ {
+  "id": "FBS3R-W094",
+  "date": "2026-10-17",
+  "title": "Pregeometric Relational Dynamics and Universal Causal Structure: A Permutation-Invariant Phase-Selection Witness, Quasilocality, Cone Locking, and the Boundary of Temporal Orientation",
+  "folder": "All Preprints; I. Logic & Mathematics; III. Ontology & Physics",
+  "file": "All Preprints/2026_10_17_Pregeometric_Relational_Dynamics_And_Universal_Causal_Structure_A_Permutation_Invariant_Phase_Selection_Witness_Quasilocality_Cone_Locking_And_The_Boundary_Of_Temporal_Orientation/2026_10_17_Pregeometric_Relational_Dynamics_And_Universal_Causal_Structure_A_Permutation_Invariant_Phase_Selection_Witness_Quasilocality_Cone_Locking_And_The_Boundary_Of_Temporal_Orientation.pdf",
+  "claims": [
+   {
+    "text": "Основные состояния — невложенные циклы; масштабированные метрико-мерные пространства сходятся к окружности.",
+    "status": "OPEN",
+    "lean": []
+   },
+   {
+    "text": "Глобальная скаляризация B(s) = b̄ + e^{−γs}(B₀ − b̄).",
+    "status": "KERNEL_PROVED",
+    "lean": [
+     "FBS3R.Selector.scalarisation"
+    ]
+   },
+   {
+    "text": "Метастабильность и сходимость к общему одномерному причинному пропагатору.",
+    "status": "OPEN",
+    "lean": []
+   }
+  ],
+  "status": "OPEN",
+  "lean": [
+   "FBS3R.Selector.scalarisation"
+  ],
+  "note": "Перестановочные свидетели в бесконечном пределе не формализованы."
+ },
+ {
+  "id": "FBS3R-W095",
+  "date": "2026-10-17",
+  "title": "Pregeometric Relational Dynamics and Universal Causal Structure: Spectral Constraints, Response Limits, Universal Null Calibration, Functional Consistency of Light, and a Quantitative Reconstruction–Locality Interface",
+  "folder": "All Preprints; I. Logic & Mathematics; III. Ontology & Physics",
+  "file": "All Preprints/2026_10_17_Pregeometric_Relational_Dynamics_And_Universal_Causal_Structure_Spectral_Constraints_Response_Limits_Universal_Null_Calibration_Functional_Consistency_Of_Light_And_A_Quantitative_Reconstruction_Locality_Interface/2026_10_17_Pregeometric_Relational_Dynamics_And_Universal_Causal_Structure_Spectral_Constraints_Response_Limits_Universal_Null_Calibration_Functional_Consistency_Of_Light_And_A_Quantitative_Reconstruction_Locality_Interface.pdf",
+  "claims": [
+   {
+    "text": "Спектральные ограничения, пределы отклика, универсальная нулевая калибровка; количественный интерфейс реконструкция–локальность.",
+    "status": "OPEN",
+    "lean": []
+   }
+  ],
+  "status": "OPEN",
+  "lean": [],
+  "note": "Версия 2026-10-17 рукописи 2026-09-07 (docx/pdf)."
+ },
+ {
+  "id": "FBS3R-W096",
+  "date": "2026-10-23",
+  "title": "Certified Hopf Tomography: Exact Invariants, Sharp Stability, and Minimax Calibration",
+  "folder": "All Preprints; I. Logic & Mathematics; II. Theory of Information–S³",
+  "file": "All Preprints/2026_10_23_Certified_Hopf_Tomography_Exact_Invariants_Sharp_Stability_and_Minimax_Calibration/2026_10_23_Certified_Hopf_Tomography_Exact_Invariants_Sharp_Stability_and_Minimax_Calibration.pdf",
+  "claims": [
+   {
+    "text": "Точная глобальная щель MRW: ‖u‖² = 3 − Σc_i² + (Σc_i − m)², минимум min_{s∈{±1,±3}}(s−m)².",
+    "status": "KERNEL_PROVED",
+    "lean": [
+     "FBS3R.HopfCert.mrw_norm_identity",
+     "FBS3R.HopfCert.mrw_gap_lower",
+     "FBS3R.HopfCert.mrw_gap_attained"
+    ]
+   },
+   {
+    "text": "|z†σz| = |z|²; нерушимость щели вдоль гомотопии; тождество нормировки.",
+    "status": "KERNEL_PROVED",
+    "lean": [
+     "FBS3R.HopfCert.bloch_norm",
+     "FBS3R.HopfCert.gap_homotopy",
+     "FBS3R.HopfCert.normalization_identity"
+    ]
+   },
+   {
+    "text": "Сертификат гомотопического класса (инвариант Хопфа) PL-отображений S³ → S² по зацеплению прообразов; бюджеты измерений.",
+    "status": "OPEN",
+    "lean": []
+   }
+  ],
+  "status": "OPEN",
+  "lean": [
+   "FBS3R.HopfCert.mrw_norm_identity",
+   "FBS3R.HopfCert.mrw_gap_lower",
+   "FBS3R.HopfCert.mrw_gap_attained",
+   "FBS3R.HopfCert.bloch_norm",
+   "FBS3R.HopfCert.gap_homotopy",
+   "FBS3R.HopfCert.normalization_identity"
+  ],
+  "note": "Степень отображения и инвариант Хопфа в Lean не формализованы."
+ },
+ {
+  "id": "FBS3R-W097",
+  "date": "2026-10-23",
+  "title": "Rational Spectral Hierarchies and Matrix-Free Gauge Certificates",
+  "folder": "All Preprints; I. Logic & Mathematics; II. Theory of Information–S³",
+  "file": "All Preprints/2026_10_23_Rational_Spectral_Hierarchies_and_Matrix_Free_Gauge_Certificates/2026_10_23_Rational_Spectral_Hierarchies_and_Matrix_Free_Gauge_Certificates.pdf",
+  "claims": [
+   {
+    "text": "Знаменатель (1−z−z²)^{m+1} производящей функции Tr H_n^{2m}, deg P_m ≤ 3m+2.",
+    "status": "KERNEL_PROVED",
+    "lean": [
+     "APEX.PXP.pxp_moment_rational",
+     "APEX.PXP.pxp_numerator_natDegree",
+     "APEX.PXP.pxp_moment_residue",
+     "APEX.PXP.pxp_denominator_sharp"
+    ],
+    "ref": "в Lean — более сильная граница 3m−2 (точная), вычет (2m)!z^{2m−1} и точность знаменателя"
+   },
+   {
+    "text": "Явные рациональные ПФ для Tr A_n⁴, Tr A_n⁶, Tr A_n⁸.",
+    "status": "KERNEL_PROVED",
+    "lean": [
+     "APEX.PXP.fourth_moment_gf",
+     "APEX.PXP.sixth_moment_gf",
+     "APEX.PXP.eighth_moment_gf",
+     "APEX.PXP.MaskDP.M_eq_Mnat"
+    ]
+   },
+   {
+    "text": "Адреса Цекендорфа: биекция 𝒞ₙ → {0,…,F_{n+2}−1}, |𝒞ₙ| = F_{n+2}.",
+    "status": "KERNEL_PROVED",
+    "lean": [
+     "FBS3R.Zeckendorf.image_rk",
+     "FBS3R.Zeckendorf.rk_injOn",
+     "FBS3R.Zeckendorf.card_C",
+     "FBS3R.Zeckendorf.flip_changes_address"
+    ]
+   },
+   {
+    "text": "Точный взвешенный сертификат четвёртого момента за O(n) при диагональном беспорядке.",
+    "status": "OPEN",
+    "lean": []
+   }
+  ],
+  "status": "KERNEL_PROVED",
+  "lean": [
+   "APEX.PXP.pxp_moment_rational",
+   "APEX.PXP.pxp_numerator_natDegree",
+   "APEX.PXP.pxp_moment_residue",
+   "APEX.PXP.pxp_denominator_sharp",
+   "APEX.PXP.fourth_moment_gf",
+   "APEX.PXP.sixth_moment_gf",
+   "APEX.PXP.eighth_moment_gf",
+   "APEX.PXP.MaskDP.M_eq_Mnat",
+   "FBS3R.Zeckendorf.image_rk",
+   "FBS3R.Zeckendorf.rk_injOn",
+   "FBS3R.Zeckendorf.card_C",
+   "FBS3R.Zeckendorf.flip_changes_address"
+  ],
+  "note": "Центральная теорема доказана с усилением (APEX-PXP-1..6); граница статьи 3m+2 не точна."
+ },
+ {
+  "id": "FBS3R-W098",
+  "date": "2026-10-28",
+  "title": "Measurement-Free Encoded-Qubit Control and a Two-Local Qutrit Obstruction in a Spin-2 AKLT Plaquette",
+  "folder": "All Preprints; I. Logic & Mathematics; II. Theory of Information–S³",
+  "file": "All Preprints/2026_10_28_Measurement_Free_Encoded_Qubit_Control_and_a_Two_Local_Qutrit_Obstruction_in_a_Spin_2_AKLT_Plaquette/2026_10_28_Measurement_Free_Encoded_Qubit_Control_and_a_Two_Local_Qutrit_Obstruction_in_a_Spin_2_AKLT_Plaquette.pdf",
+  "claims": [
+   {
+    "text": "Точная карта утечки (форма 255×24) на 5⁴-мерной системе четырёх спинов: ранг 6, ядро 18, логический образ размерности 4; коммутирует с инволюцией R ⇒ нет универсального двухлокального управления кутритом без утечки.",
+    "status": "KERNEL_PROVED",
+    "lean": [
+     "APEX.AKLT.Leakage.finrank_range_leak",
+     "APEX.AKLT.Leakage.finrank_ker_leak",
+     "APEX.AKLT.Leakage.finrank_logicalImageA",
+     "APEX.AKLT.singlet_complete",
+     "FBS3R.AKLT.A_comm_R",
+     "FBS3R.AKLT.B_comm_R"
+    ]
+   },
+   {
+    "text": "Универсальность защищённого кубита: A, B, [A,B], [A,[A,B]], [B,[A,B]] независимы и заполняют 5-мерный коммутант.",
+    "status": "KERNEL_PROVED",
+    "lean": [
+     "FBS3R.AKLT.five_independent",
+     "FBS3R.AKLT.bracket_comm_R",
+     "FBS3R.AKLT.C1_eq",
+     "FBS3R.AKLT.odd_line"
+    ]
+   },
+   {
+    "text": "Бюджет расстройки и калибровки (алмазная норма).",
+    "status": "OPEN",
+    "lean": []
+   }
+  ],
+  "status": "KERNEL_PROVED",
+  "lean": [
+   "APEX.AKLT.Leakage.finrank_range_leak",
+   "APEX.AKLT.Leakage.finrank_ker_leak",
+   "APEX.AKLT.Leakage.finrank_logicalImageA",
+   "APEX.AKLT.singlet_complete",
+   "FBS3R.AKLT.A_comm_R",
+   "FBS3R.AKLT.B_comm_R",
+   "FBS3R.AKLT.five_independent",
+   "FBS3R.AKLT.bracket_comm_R",
+   "FBS3R.AKLT.C1_eq",
+   "FBS3R.AKLT.odd_line"
+  ],
+  "note": "Покрыто в интерпретации A (линейная оболочка формальных X_ij^k, т.е. двухлокальные гамильтонианы); в интерпретации B (порождённая алгебра, не двухлокальная) образ — gl(3). См. RED_TEAM раунд 5."
+ },
+ {
+  "id": "FBS3R-W099",
+  "date": "2026-11-09",
+  "title": "BINDU–VECTRA: Machine-Checked Ancilla-Uniform Mixing Bounds for Independent Generalized Amplitude-Damping Channels",
+  "folder": "All Preprints (нет в индексах 2026-10-30 и 2026-11-10)",
+  "file": "All Preprints/2026_11_09_BINDU_VECTRA_Machine_Checked_Ancilla_Uniform_Mixing_Bounds_for_Independent_Generalized_Amplitude_Damping_Channels/2026_11_10_BINDU_VECTRA_Machine_Checked_Ancilla_Uniform_Mixing_Bounds_for_Independent_Generalized_Amplitude_Damping_Channels.pdf",
+  "claims": [
+   {
+    "text": "Равномерная оценка Шаттена-1 для произведений независимых каналов GAD с огибающей min{2, Σ_k(r_k + r_k²)}, r_k = exp[−(G_k+K_k)t/2], для любой анциллы и входа.",
+    "status": "KERNEL_PROVED",
+    "lean": [
+     "bindu_nQubit_diamond_envelope_unconditional",
+     "bindu_global_hybrid_rplusr2_unconditional",
+     "bindu_global_site_identity_unconditional",
+     "bindu_site_local_family_bridge"
+    ],
+    "ref": "имена из пакета BinduEventInterface (Lean 4.19), реестр — Lean/FBS3R-Lean/BINDU_VECTRA_REPLAY.md"
+   }
+  ],
+  "status": "KERNEL_PROVED",
+  "lean": [
+   "bindu_nQubit_diamond_envelope_unconditional",
+   "bindu_global_hybrid_rplusr2_unconditional",
+   "bindu_global_site_identity_unconditional",
+   "bindu_site_local_family_bridge"
+  ],
+  "note": "Теоремы о собственных определениях пакета; соответствие физическим устройствам вне Lean. Папки нет в индексе 2026-11-10; PDF внутри датирован 2026_11_10."
+ },
+ {
+  "id": "FBS3R-W100",
+  "date": "2026-11-09",
+  "title": "Exact Braid Algebra and Diamond-Norm Bounds for a Phenomenological Noisy Fibonacci Anyon Qubit",
+  "folder": "All Preprints; I. Logic & Mathematics; II. Theory of Information–S³",
+  "file": "All Preprints/2026_11_09_Exact_Braid_Algebra_and_Diamond_Norm_Bounds_for_a_Phenomenological_Noisy_Fibonacci_Anyon_Qubit/2026_11_09_Exact_Braid_Algebra_and_Diamond_Norm_Bounds_for_a_Phenomenological_Noisy_Fibonacci_Anyon_Qubit.pdf",
+  "claims": [
+   {
+    "text": "Соотношение кос B₁B₂B₁ = B₂B₁B₂ и F² = 1 для фибоначчиевых анионов (стандартные F- и R-символы).",
+    "status": "KERNEL_PROVED",
+    "lean": [
+     "FBS3R.FibonacciAnyon.fibonacci_braid",
+     "FBS3R.FibonacciAnyon.F_sq",
+     "APEX.Anyon.Fibonacci.braid_relation",
+     "APEX.Anyon.Fibonacci.pentagon",
+     "APEX.Anyon.Fibonacci.hexagon"
+    ]
+   },
+   {
+    "text": "Точная ошибка одного вентиля ‖E_{q,ℓ,U} − V_U‖_⋄ = 2[ℓ + (1−ℓ)q].",
+    "status": "KERNEL_PROVED",
+    "lean": [
+     "APEX.Quantum.diamondDist_noisy_ideal_eq",
+     "APEX.Quantum.diamondDist_noisy_ideal_le",
+     "APEX.Quantum.diamondDist_noisy_ideal_ge"
+    ],
+    "ref": "для diamondDist APEX (sup по плотностным входам с анциллой размерности d); тождество со стандартной ⋄-нормой не формализовано"
+   },
+   {
+    "text": "Замкнутая форма для произвольных стохастических паули-ошибок с флагом утечки.",
+    "status": "OPEN",
+    "lean": []
+   },
+   {
+    "text": "Телескопическая оценка для цепочек.",
+    "status": "OPEN",
+    "lean": [
+     "APEX.Quantum.diamondDist_comp_le"
+    ],
+    "ref": "в Lean только монотонность при пост-композиции"
+   }
+  ],
+  "status": "KERNEL_PROVED",
+  "lean": [
+   "FBS3R.FibonacciAnyon.fibonacci_braid",
+   "FBS3R.FibonacciAnyon.F_sq",
+   "APEX.Anyon.Fibonacci.braid_relation",
+   "APEX.Anyon.Fibonacci.pentagon",
+   "APEX.Anyon.Fibonacci.hexagon",
+   "APEX.Quantum.diamondDist_noisy_ideal_eq",
+   "APEX.Quantum.diamondDist_noisy_ideal_le",
+   "APEX.Quantum.diamondDist_noisy_ideal_ge",
+   "APEX.Quantum.diamondDist_comp_le"
+  ],
+  "note": "Центральные утверждения покрыты; новизна по braid-алгебре низкая (известно, Rowell–Stong–Wang)."
+ },
+ {
+  "id": "FBS3R-W101",
+  "date": "2026-11-26",
+  "title": "A Machine-Checked Audit of the FB(S³)R Archive in Lean 4",
+  "folder": "All Preprints (нет в индексах 2026-10-30 и 2026-11-10)",
+  "file": "All Preprints/2026_11_26_Machine_Checked_Audit_of_the_FBS3R_Archive_in_Lean4/2026_11_26_Machine_Checked_Audit_of_the_FBS3R_Archive_in_Lean4.tex",
+  "claims": [
+   {
+    "text": "77 результатов: 7 исправлений (A1–A7) и 70 машинных верификаций; только аксиомы propext, Classical.choice, Quot.sound.",
+    "status": "KERNEL_PROVED",
+    "lean": [],
+    "ref": "реестр Lean/FBS3R-Lean/RESULTS.md, scripts/Axioms.lean, APEX/Audit/AXIOM_REPORT.txt; в этом аудите Lean не перезапускался"
+   }
+  ],
+  "status": "KERNEL_PROVED",
+  "lean": [],
+  "note": "Собственная статья аудита. Несогласованность: в заголовке «Six Corrected Claims», в аннотации и реестре — 7 (A1–A7). Папки нет в индексах; только .tex."
+ }
+]

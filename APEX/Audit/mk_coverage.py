@@ -21,7 +21,7 @@ OBL = [
  (11, "Коллатц: stopping time, циклы", ["COL-"], [11,12]),
  (12, "Каталог открытых задач", [], [27]),
  (13, "Единый закон", [], [26]),
- (14, "Аудит 101 работы архива, A1–A7", [], [1]),
+ (14, "Аудит 101 работы архива, A1–A7 (Audit/ARCHIVE_AUDIT.md)", [], [1]),
 ]
 dirs = {x["id"]: x for x in ms["directions"]}
 def rs(prefs): return [r for r in res if any(r["id"].startswith("APEX-"+p) for p in prefs)]
@@ -51,17 +51,17 @@ G = """
  GT[Blockade.General.Transfer]:::ok --> GR[General.Rational]:::ok --> GRS[General.Residue]:::ok --> CG[ConjGeneral ∀m,r]:::ok
  GRS --> GD[General.Degree: Lc m, знак]:::ok --> CG
  CG --> AS[Asymptotics: моменты ~ 2m-1 !! σ^2m]:::ok --> GA[Gaussian: моменты, полиномы, плотность]:::ok --> WL[WeakLimit: слабая сходимость к N 0,σ²]:::ok
- CG --> RED[Точный несократимый знаменатель]:::open
+ CG --> RED[Exact: точный знаменатель, Lc 1..5]:::ok
  TN[Quantum.TraceNorm]:::ok --> CP[Quantum.CPTP]:::ok --> ON[OrthogonalNoise: Φ⁺, ◇]:::ok
  CP --> CT[Contractivity: точное ◇]:::ok --> ON
  B2[Anyon.Braid2D]:::ok --> FIB[Fibonacci: пентагон/гексагон, braid]:::ok
- BC[Collatz.BoundedCorrection]:::ok --> ST[Collatz.StoppingTime: mod 2^18]:::ok --> CYC[Циклы / гипотеза Коллатца]:::open
+ BC[Collatz.BoundedCorrection]:::ok --> ST[Collatz.StoppingTime: mod 2^18]:::ok --> CYC[Cycles: n ≤ 2^20, циклы > 2^20]:::ok --> COLL[Гипотеза Коллатца]:::open
  SH[S3.Harmonic]:::ok --> SS[S3.Sphere: спектр -n n+2 /R²]:::ok --> L2[L²-полнота, Ходж, Дирак]:::open
  SS --> YM[Янг–Миллс: масштаб; массовая щель]:::open
  AP[AKLT.Physical]:::ok --> AL[AKLT.Leakage]:::ok
  PR[Spectral.PositiveRepresentation]:::ok --> QG[Квантовая гравитация]:::open
  MC[Spectral.MixtureCumulants]:::ok --> COSM[Космология: тёмный сектор]:::part
- FE[Analysis.ForcedEnergy]:::ok --> NS[NS ℝ³ регулярность]:::open
+ FE[Analysis.ForcedEnergy]:::ok --> IE[IntegralEnergy: L¹, без взрыва]:::ok --> NS[NS ℝ³ регулярность]:::open
  NIL[Transfer.Nilpotent: закон переноса, знаменатель]:::ok --> AUT[Несокращение полюса, PXP-конкретизация]:::open
  classDef ok fill:#2e7d32,color:#fff
  classDef part fill:#f9a825,color:#000

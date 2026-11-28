@@ -1,26 +1,26 @@
 # COVERAGE — покрытие обязательств APEX (раунд 5)
 
-Сгенерировано `Audit/mk_coverage.py`. Реестр: **259** Lean-целей (`Audit/ACCEPTED_THEOREMS.txt`), все проверены ядром Lean 4.36 / Mathlib v4.36, аксиомы только `propext`, `Classical.choice`, `Quot.sound`.
+Сгенерировано `Audit/mk_coverage.py`. Реестр: **287** Lean-целей (`Audit/ACCEPTED_THEOREMS.txt`), все проверены ядром Lean 4.36 / Mathlib v4.36, аксиомы только `propext`, `Classical.choice`, `Quot.sound`.
 
 Легенда: 🟩 KERNEL_PROVED · 🟨 PARTIAL · 🟦 IN_PROGRESS · 🟧 NUMERICAL_EVIDENCE · ⬜ OPEN / NOT_STARTED.
 Статус «KERNEL_PROVED» означает доказанность сформулированного в Lean утверждения, а не решение открытой задачи.
 
 | № | Обязательство | Направления (MISSION_STATE) | Результаты | Lean-целей |
 |---|---|---|---|---|
-| 1 | PXP: 10-й момент, старший коэффициент, асимптотика, гауссов предел | 🟩 2. PXP рациональная иерархия (deg=3m−2, вычет, знак) — KERNEL_PROVED<br>🟩 3. PXP 8-й момент (доказанный DP) — KERNEL_PROVED<br>🟧 4. PXP старший коэффициент W(m,m,1) — NUMERICAL_EVIDENCE<br>🟩 5. PXP/блокада: асимптотика и гауссов предел — KERNEL_PROVED | PXP-1, PXP-2, PXP-3, PXP-5, PXP-6, PXP-7 | 10 |
-| 2 | ConjGeneral для всех m, r | 🟩 6. Блокада r: размерности — KERNEL_PROVED<br>🟩 7. Блокада r: моменты, D_r^{m+1}, степень, конгруэнция — KERNEL_PROVED | BLK-1, BLK-2, BLK-2b, BLK-3, BLK-4, BLK-5, BLK-6, BLK-7, BLK-8, BLK-9 | 30 |
+| 1 | PXP: 10-й момент, старший коэффициент, асимптотика, гауссов предел | 🟩 2. PXP рациональная иерархия (deg=3m−2, вычет, знак) — KERNEL_PROVED<br>🟩 3. PXP 8-й момент (доказанный DP) — KERNEL_PROVED<br>🟨 4. PXP старший коэффициент W(m,m,1) — PARTIAL<br>🟩 5. PXP/блокада: асимптотика и гауссов предел — KERNEL_PROVED | PXP-1, PXP-2, PXP-3, PXP-5, PXP-6, PXP-7 | 10 |
+| 2 | ConjGeneral для всех m, r | 🟩 6. Блокада r: размерности — KERNEL_PROVED<br>🟩 7. Блокада r: моменты, D_r^{m+1}, степень, конгруэнция — KERNEL_PROVED | BLK-1, BLK-2, BLK-2b, BLK-3, BLK-4, BLK-5, BLK-6, BLK-7, BLK-8, BLK-9, BLK-10 | 42 |
 | 3 | Универсальные автоматы R[x]/(x²), закон переноса | 🟨 9. Общий закон переноса для автоматов (R[x]/(x²)) — PARTIAL | TRN-1 | 12 |
 | 4 | AKLT: полнота, ранг 6 / ядро 18, интерпретации | 🟩 10. AKLT 625: физическая карта утечки — KERNEL_PROVED | AKLT-1, AKLT-2, AKLT-3 | 11 |
 | 5 | Квантовая информация, каналы, diamond; FibonacciAnyon | 🟩 13. FibonacciAnyon: braid-классификация 2×2, норма дефекта — KERNEL_PROVED<br>🟩 14. FibonacciAnyon: пентагон, гексагон, универсальность — KERNEL_PROVED<br>🟩 15. Квантовые каналы, алмазная норма (BINDU VECTRA) — KERNEL_PROVED | ANY-1, QI-1, QI-2, QI-3, QI-4, ANY-2 | 45 |
 | 6 | S³: гармоники, спектр, геометрия | 🟩 18. S³: гармонические многочлены, Фишер, dim (n+1)² — KERNEL_PROVED<br>⬜ 19. S³: риманова геометрия, Ходж, Дирак — NOT_STARTED | S3-1, S3-2 | 8 |
-| 7 | Навье–Стокс | 🟩 16. Навье–Стокс: энергетическая оценка с силой (конечномерная) — KERNEL_PROVED<br>⬜ 17. Навье–Стокс: регулярность в ℝ³ — OPEN | NS-1 | 2 |
+| 7 | Навье–Стокс | 🟩 16. Навье–Стокс: энергетическая оценка с силой (конечномерная) — KERNEL_PROVED<br>⬜ 17. Навье–Стокс: регулярность в ℝ³ — OPEN | NS-1, NS-2 | 11 |
 | 8 | Янг–Миллс: масштаб, массовая щель | ⬜ 21. Янга–Миллса: масштабирование λ(R)=R⁻²λ(1), массовая щель — OPEN | — | 0 |
 | 9 | Квантовая гравитация, спектральное препятствие | 🟩 20. Спектральное препятствие exp(−ax)/x — KERNEL_PROVED<br>⬜ 22. Квантовая гравитация (Fractal Foliation, CMC, связи, унитарность) — OPEN | SPC-1 | 2 |
 | 10 | Космология: кумулянты, ядро оболочек | 🟨 23. Топология Вселенной, идентифицируемость (S³, RP³, S³/Γ) — PARTIAL<br>⬜ 24. Космологическая постоянная Λ=3π/(ℓ_P² q), выбор q — OPEN<br>🟨 25. Тёмный сектор, кумулянты смесей — PARTIAL | SPC-2, COS-1 | 7 |
-| 11 | Коллатц: stopping time, циклы | 🟩 11. Коллатц: no-go ограниченной поправки (log и высота Цекендорфа) — KERNEL_PROVED<br>🟨 12. Коллатц: stopping-time сертификаты, циклы, 2-адика — PARTIAL | COL-1, COL-2, COL-3 | 12 |
+| 11 | Коллатц: stopping time, циклы | 🟩 11. Коллатц: no-go ограниченной поправки (log и высота Цекендорфа) — KERNEL_PROVED<br>🟨 12. Коллатц: stopping-time сертификаты, циклы, 2-адика — PARTIAL | COL-1, COL-2, COL-3, COL-4 | 19 |
 | 12 | Каталог открытых задач | ⬜ 27. Каталог открытых задач (Риман, P vs NP, Ходж, BSD, MLC, Гольдбах, близнецы, совершенные, Эрдёш, Рамсей) — OPEN | — | 0 |
 | 13 | Единый закон | ⬜ 26. Причинность, свет, единый закон — OPEN | — | 0 |
-| 14 | Аудит 101 работы архива, A1–A7 | 🟨 1. Аудит/CI/сертификация — PARTIAL | — | 0 |
+| 14 | Аудит 101 работы архива, A1–A7 (Audit/ARCHIVE_AUDIT.md) | 🟨 1. Аудит/CI/сертификация — PARTIAL | — | 0 |
 
 ## Результаты
 
@@ -61,10 +61,13 @@
 | APEX-QI-4 | Quantum | 🟩 KERNEL_PROVED | NEW_FORMALIZATION | trace-norm contractivity of Kraus channels on Hermitian inputs (via Kraus dual and Helstrom form), data processing //Phi A - Phi B//_1 <= //A-B//_1, post-processing monotonicity of diamondDist. Not: non-Hermitian inputs, pre-composition |
 | APEX-ANY-2 | Anyon | 🟩 KERNEL_PROVED | KNOWN_RESULT | Fibonacci anyons (tau x tau = 1 + tau): F-matrix [[phi^-1, phi^-1/2],[phi^-1/2,-phi^-1]] orthogonal, F^2=1; pentagon for all 512 label choices; both hexagons over C (R^tt_1=e^{-4pi i/5}, R^tt_t=e^{3pi i/5}, Bonderson convention) for all 64 label choices; braid relation for sigma1, sigma2=F sigma1 F; order exactly 10 up to phase. Proof: exact arithmetic in Z[zeta]/Phi_10[s] by decide +kernel, transferred to C. Not: gauge classification, fusion-category structure |
 | APEX-TRN-1 | Transfer | 🟩 KERNEL_PROVED | NEW_FORMALIZATION | MISSION-03 algebraic core: finite Neumann formula; event ring R[x_1..x_k]/(x_i^2) with degree filtration, products of >k/2 degree>=2 elements vanish; transfer law (I-z(T0+U))^{-1} = sum_{j<=floor(k/2)} R0 (zUR0)^j in Mat_d(E[[z]]) for any T0 and degree>=2 U; universal denominator det(I-zT0)^{floor(k/2)+1} (polynomial adjugate form); degree-0 part reproduces the spatial automaton. Not: top-coefficient extraction, exactness of the dominant pole (cancellation possible), concrete PXP instance |
+| APEX-BLK-10 | Blockade | 🟩 KERNEL_PROVED | NEW_THEOREM_CANDIDATE | exact denominator: for all m,r>=1 the numerator P of ConjGeneral is coprime to D_r over Q, so D_r^{m+1} is the exact denominator with no cancellation (incl. r = 4 mod 6 where X^2-X+1 / D_r, iff proved); kernel values Lc(1..5) = 2,-4,36,-568,14560 |
+| APEX-COL-4 | Collatz | 🟩 KERNEL_PROVED | KNOWN_RESULT | every n <= 2^20 reaches 1 (kernel, 64 chunks); any nontrivial cycle has all elements > 2^20 and its minimum lies in one of 7495 residue classes mod 2^18. NOT a proof of Collatz or of non-existence of cycles (literature: verified to ~2^71) |
+| APEX-NS-2 | Analysis | 🟩 KERNEL_PROVED | NEW_FORMALIZATION | energy bounds for x(t)=x(0)+int v, v = -nu A x - Q x + F a.e., F only L^1, A,Q arbitrary maps on a Hilbert space with <Qy,y>=0, <Ay,y> >= lam/y/^2: //x T// <= e^{-kT}//x0// + int e^{-k(T-s)}//F//; no finite-time blow-up of any local solution. NOT Navier-Stokes regularity; no existence/uniqueness |
 
 ## Сводка по 27 направлениям
 
-KERNEL_PROVED: 13, NOT_STARTED: 1, NUMERICAL_EVIDENCE: 2, OPEN: 6, PARTIAL: 5
+KERNEL_PROVED: 13, NOT_STARTED: 1, NUMERICAL_EVIDENCE: 1, OPEN: 6, PARTIAL: 6
 
 ## Карта зависимостей (доказано / открыто)
 
@@ -78,17 +81,17 @@ graph LR
  GT[Blockade.General.Transfer]:::ok --> GR[General.Rational]:::ok --> GRS[General.Residue]:::ok --> CG[ConjGeneral ∀m,r]:::ok
  GRS --> GD[General.Degree: Lc m, знак]:::ok --> CG
  CG --> AS[Asymptotics: моменты ~ 2m-1 !! σ^2m]:::ok --> GA[Gaussian: моменты, полиномы, плотность]:::ok --> WL[WeakLimit: слабая сходимость к N 0,σ²]:::ok
- CG --> RED[Точный несократимый знаменатель]:::open
+ CG --> RED[Exact: точный знаменатель, Lc 1..5]:::ok
  TN[Quantum.TraceNorm]:::ok --> CP[Quantum.CPTP]:::ok --> ON[OrthogonalNoise: Φ⁺, ◇]:::ok
  CP --> CT[Contractivity: точное ◇]:::ok --> ON
  B2[Anyon.Braid2D]:::ok --> FIB[Fibonacci: пентагон/гексагон, braid]:::ok
- BC[Collatz.BoundedCorrection]:::ok --> ST[Collatz.StoppingTime: mod 2^18]:::ok --> CYC[Циклы / гипотеза Коллатца]:::open
+ BC[Collatz.BoundedCorrection]:::ok --> ST[Collatz.StoppingTime: mod 2^18]:::ok --> CYC[Cycles: n ≤ 2^20, циклы > 2^20]:::ok --> COLL[Гипотеза Коллатца]:::open
  SH[S3.Harmonic]:::ok --> SS[S3.Sphere: спектр -n n+2 /R²]:::ok --> L2[L²-полнота, Ходж, Дирак]:::open
  SS --> YM[Янг–Миллс: масштаб; массовая щель]:::open
  AP[AKLT.Physical]:::ok --> AL[AKLT.Leakage]:::ok
  PR[Spectral.PositiveRepresentation]:::ok --> QG[Квантовая гравитация]:::open
  MC[Spectral.MixtureCumulants]:::ok --> COSM[Космология: тёмный сектор]:::part
- FE[Analysis.ForcedEnergy]:::ok --> NS[NS ℝ³ регулярность]:::open
+ FE[Analysis.ForcedEnergy]:::ok --> IE[IntegralEnergy: L¹, без взрыва]:::ok --> NS[NS ℝ³ регулярность]:::open
  NIL[Transfer.Nilpotent: закон переноса, знаменатель]:::ok --> AUT[Несокращение полюса, PXP-конкретизация]:::open
  classDef ok fill:#2e7d32,color:#fff
  classDef part fill:#f9a825,color:#000
