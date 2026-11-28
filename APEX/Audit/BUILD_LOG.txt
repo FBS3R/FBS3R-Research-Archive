@@ -36,3 +36,5 @@ EXIT 0
 
 == Round 4 (2026-11-27): lake build APEX — 5876 jobs OK; APEX/ci_check.sh → "OK: 137 registered targets, standard axioms only, sources clean";
    tests/test_cert_check.py OK; GitHub Actions green on every pushed round-4 commit up to ea065bf. Kernel-heavy modules: AKLT/Physical (~2 min), PXP/ExplicitHigher (~1 min).
+
+== Round 5 (2026-11-28): lake build APEX — Build completed successfully (6416 jobs); ci_check.sh: OK: 287 registered targets, standard axioms only, sources clean. Heaviest modules: Collatz/Cycles ≈ 6 min / 4.6 GB, Collatz/StoppingTime ≈ 2.5 min / 3.3 GB, Blockade/General/Exact ≈ 2 min / 4.5 GB.
