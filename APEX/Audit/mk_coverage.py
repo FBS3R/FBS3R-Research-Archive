@@ -50,10 +50,10 @@ G = """
  DEG --> LC[Старший коэфф. W m,m,1]:::num
  GT[Blockade.General.Transfer]:::ok --> GR[General.Rational]:::ok --> GRS[General.Residue]:::ok --> CG[ConjGeneral ∀m,r]:::ok
  GRS --> GD[General.Degree: Lc m, знак]:::ok --> CG
- CG --> AS[Asymptotics: моменты ~ 2m-1 !! σ^2m]:::ok --> GA[Gaussian: моменты, полиномы, плотность]:::ok --> WL[Слабая сходимость к N 0,σ²]:::wip
+ CG --> AS[Asymptotics: моменты ~ 2m-1 !! σ^2m]:::ok --> GA[Gaussian: моменты, полиномы, плотность]:::ok --> WL[WeakLimit: слабая сходимость к N 0,σ²]:::ok
  CG --> RED[Точный несократимый знаменатель]:::open
- TN[Quantum.TraceNorm]:::ok --> CP[Quantum.CPTP]:::ok --> ON[OrthogonalNoise: Φ⁺, нижняя оценка ◇]:::part
- CP --> CT[Сжимаемость, верхняя оценка ◇]:::wip --> ON
+ TN[Quantum.TraceNorm]:::ok --> CP[Quantum.CPTP]:::ok --> ON[OrthogonalNoise: Φ⁺, ◇]:::ok
+ CP --> CT[Contractivity: точное ◇]:::ok --> ON
  B2[Anyon.Braid2D]:::ok --> FIB[Fibonacci: пентагон/гексагон]:::wip
  BC[Collatz.BoundedCorrection]:::ok --> ST[Collatz.StoppingTime: mod 2^18]:::ok --> CYC[Циклы / гипотеза Коллатца]:::open
  SH[S3.Harmonic]:::ok --> SS[S3.Sphere: спектр -n n+2 /R²]:::ok --> L2[L²-полнота, Ходж, Дирак]:::open

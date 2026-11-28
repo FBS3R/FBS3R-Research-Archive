@@ -314,16 +314,19 @@
  {
   "id": "APEX-BLK-9",
   "area": "Blockade",
-  "status": "PARTIAL",
+  "status": "KERNEL_PROVED",
   "novelty": "NEW_FORMALIZATION",
   "lean": [
    "APEX.Blockade.Gaussian.moment_mu",
    "APEX.Blockade.Gaussian.moment_tendsto",
    "APEX.Blockade.Gaussian.poly_tendsto",
    "APEX.Blockade.Gaussian.tight",
-   "APEX.Blockade.Gaussian.gauss_moment_even"
+   "APEX.Blockade.Gaussian.gauss_moment_even",
+   "APEX.Blockade.WeakLimit.weak_limit",
+   "APEX.Blockade.WeakLimit.charFun_tendsto",
+   "APEX.Blockade.WeakLimit.trig_tendsto"
   ],
-  "statement": "empirical spectral measures mu_n of A_{n,r}/sqrt n: all moments and all polynomial integrals converge to those of N(0,sigma_r^2); tightness. Missing: moment determinacy => weak convergence"
+  "statement": "empirical spectral measures mu_n of A_{n,r}/sqrt n converge WEAKLY to N(0,sigma_r^2), sigma_r^2=2rho_r^{r+1}/K_r: for every bounded continuous g, int g dmu_n -> int g phi (weak_limit); also characteristic functions, all moments, polynomial integrals, tightness. Limit stated with explicit density phi (not Mathlib gaussianReal)"
  },
  {
   "id": "APEX-QI-1",

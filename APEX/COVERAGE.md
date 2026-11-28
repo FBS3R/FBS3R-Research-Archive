@@ -1,6 +1,6 @@
 # COVERAGE — покрытие обязательств APEX (раунд 5)
 
-Сгенерировано `Audit/mk_coverage.py`. Реестр: **229** Lean-целей (`Audit/ACCEPTED_THEOREMS.txt`), все проверены ядром Lean 4.36 / Mathlib v4.36, аксиомы только `propext`, `Classical.choice`, `Quot.sound`.
+Сгенерировано `Audit/mk_coverage.py`. Реестр: **232** Lean-целей (`Audit/ACCEPTED_THEOREMS.txt`), все проверены ядром Lean 4.36 / Mathlib v4.36, аксиомы только `propext`, `Classical.choice`, `Quot.sound`.
 
 Легенда: 🟩 KERNEL_PROVED · 🟨 PARTIAL · 🟦 IN_PROGRESS · 🟧 NUMERICAL_EVIDENCE · ⬜ OPEN / NOT_STARTED.
 Статус «KERNEL_PROVED» означает доказанность сформулированного в Lean утверждения, а не решение открытой задачи.
@@ -8,7 +8,7 @@
 | № | Обязательство | Направления (MISSION_STATE) | Результаты | Lean-целей |
 |---|---|---|---|---|
 | 1 | PXP: 10-й момент, старший коэффициент, асимптотика, гауссов предел | 🟩 2. PXP рациональная иерархия (deg=3m−2, вычет, знак) — KERNEL_PROVED<br>🟩 3. PXP 8-й момент (доказанный DP) — KERNEL_PROVED<br>🟧 4. PXP старший коэффициент W(m,m,1) — NUMERICAL_EVIDENCE<br>🟩 5. PXP/блокада: асимптотика и гауссов предел — KERNEL_PROVED | PXP-1, PXP-2, PXP-3, PXP-5, PXP-6, PXP-7 | 10 |
-| 2 | ConjGeneral для всех m, r | 🟩 6. Блокада r: размерности — KERNEL_PROVED<br>🟩 7. Блокада r: моменты, D_r^{m+1}, степень, конгруэнция — KERNEL_PROVED | BLK-1, BLK-2, BLK-2b, BLK-3, BLK-4, BLK-5, BLK-6, BLK-7, BLK-8, BLK-9 | 27 |
+| 2 | ConjGeneral для всех m, r | 🟩 6. Блокада r: размерности — KERNEL_PROVED<br>🟩 7. Блокада r: моменты, D_r^{m+1}, степень, конгруэнция — KERNEL_PROVED | BLK-1, BLK-2, BLK-2b, BLK-3, BLK-4, BLK-5, BLK-6, BLK-7, BLK-8, BLK-9 | 30 |
 | 3 | Универсальные автоматы R[x]/(x²), закон переноса | ⬜ 9. Общий закон переноса для автоматов (R[x]/(x²)) — OPEN | — | 0 |
 | 4 | AKLT: полнота, ранг 6 / ядро 18, интерпретации | 🟩 10. AKLT 625: физическая карта утечки — KERNEL_PROVED | AKLT-1, AKLT-2, AKLT-3 | 11 |
 | 5 | Квантовая информация, каналы, diamond; FibonacciAnyon | 🟩 13. FibonacciAnyon: braid-классификация 2×2, норма дефекта — KERNEL_PROVED<br>🟦 14. FibonacciAnyon: пентагон, гексагон, универсальность — IN_PROGRESS<br>🟩 15. Квантовые каналы, алмазная норма (BINDU VECTRA) — KERNEL_PROVED | ANY-1, QI-1, QI-2, QI-3, QI-4 | 30 |
@@ -53,7 +53,7 @@
 | APEX-BLK-7 | Blockade | 🟩 KERNEL_PROVED | NEW_THEOREM_CANDIDATE | ConjGeneral for all m,r>=1: deg P_{m,r} = (2r+1)(m-1)+1 exactly, leading coefficient Lc m independent of r with sign (-1)^{m-1}, and D_r / P - (2m)! z^{(r+1)m-r} |
 | APEX-AKLT-3 | AKLT | 🟩 KERNEL_PROVED | NEW_FORMALIZATION | singlet space = span of 5 explicit vectors (rank 5); interpretation A (formal X_ij^k): leakage rank 6, kernel 18, logical image 4; interpretation B (generated algebra = M_5): kernel 19, logical image gl(3) |
 | APEX-BLK-8 | Blockade | 🟩 KERNEL_PROVED | NEW_THEOREM_CANDIDATE | for all r,m>=1: Tr A_{n,r}^{2m} rho^n/n^m -> (2m)! rho^{(r+1)m-r}/(m! K_r^{m+1}); normalised moments Tr A^{2m}/(a_n n^m) -> (2m-1)!! sigma_r^{2m} (Gaussian moments, sigma_r^2 = 2 rho^{r+1}/K_r); odd moments vanish. Weak convergence of spectral measures not yet proved. |
-| APEX-BLK-9 | Blockade | 🟨 PARTIAL | NEW_FORMALIZATION | empirical spectral measures mu_n of A_{n,r}/sqrt n: all moments and all polynomial integrals converge to those of N(0,sigma_r^2); tightness. Missing: moment determinacy => weak convergence |
+| APEX-BLK-9 | Blockade | 🟩 KERNEL_PROVED | NEW_FORMALIZATION | empirical spectral measures mu_n of A_{n,r}/sqrt n converge WEAKLY to N(0,sigma_r^2), sigma_r^2=2rho_r^{r+1}/K_r: for every bounded continuous g, int g dmu_n -> int g phi (weak_limit); also characteristic functions, all moments, polynomial integrals, tightness. Limit stated with explicit density phi (not Mathlib gaussianReal) |
 | APEX-QI-1 | Quantum | 🟩 KERNEL_PROVED | NEW_FORMALIZATION | trace norm tr sqrt(A^H A): =sum/lambda/ for Hermitian A, zero iff A=0, unitary invariance, density matrices have norm 1, Helstrom variational form, triangle inequality (Hermitian), orthogonal pure states at distance 2. Not: triangle/Holder for non-Hermitian A |
 | APEX-QI-2 | Quantum | 🟩 KERNEL_PROVED | NEW_FORMALIZATION | Kraus channels: trace preserving, completely positive (Phi(x)id_k maps all PSD to PSD for every finite k), closed under composition and convex combination; unitary channels. Not: Choi/Stinespring converse |
 | APEX-QI-3 | Quantum | 🟩 KERNEL_PROVED | NEW_FORMALIZATION | orthogonal-unitary noise with erasure flag: diamondDist(E,V0) = 2(1-(1-l)p0) EXACTLY (upper bound for every density input; lower bound attained at Phi+). diamondDist = sup over density inputs with ancilla dim d; identification with the standard diamond norm (Watrous 3.46/3.51) not formalised |
@@ -75,10 +75,10 @@ graph LR
  DEG --> LC[Старший коэфф. W m,m,1]:::num
  GT[Blockade.General.Transfer]:::ok --> GR[General.Rational]:::ok --> GRS[General.Residue]:::ok --> CG[ConjGeneral ∀m,r]:::ok
  GRS --> GD[General.Degree: Lc m, знак]:::ok --> CG
- CG --> AS[Asymptotics: моменты ~ 2m-1 !! σ^2m]:::ok --> GA[Gaussian: моменты, полиномы, плотность]:::ok --> WL[Слабая сходимость к N 0,σ²]:::wip
+ CG --> AS[Asymptotics: моменты ~ 2m-1 !! σ^2m]:::ok --> GA[Gaussian: моменты, полиномы, плотность]:::ok --> WL[WeakLimit: слабая сходимость к N 0,σ²]:::ok
  CG --> RED[Точный несократимый знаменатель]:::open
- TN[Quantum.TraceNorm]:::ok --> CP[Quantum.CPTP]:::ok --> ON[OrthogonalNoise: Φ⁺, нижняя оценка ◇]:::part
- CP --> CT[Сжимаемость, верхняя оценка ◇]:::wip --> ON
+ TN[Quantum.TraceNorm]:::ok --> CP[Quantum.CPTP]:::ok --> ON[OrthogonalNoise: Φ⁺, ◇]:::ok
+ CP --> CT[Contractivity: точное ◇]:::ok --> ON
  B2[Anyon.Braid2D]:::ok --> FIB[Fibonacci: пентагон/гексагон]:::wip
  BC[Collatz.BoundedCorrection]:::ok --> ST[Collatz.StoppingTime: mod 2^18]:::ok --> CYC[Циклы / гипотеза Коллатца]:::open
  SH[S3.Harmonic]:::ok --> SS[S3.Sphere: спектр -n n+2 /R²]:::ok --> L2[L²-полнота, Ходж, Дирак]:::open

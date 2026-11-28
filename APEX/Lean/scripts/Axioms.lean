@@ -228,3 +228,6 @@ import APEX
 #print axioms APEX.Quantum.traceNorm_noisy_sub_ideal_le
 #print axioms APEX.Quantum.diamondDist_noisy_ideal_le
 #print axioms APEX.Quantum.diamondDist_noisy_ideal_eq
+#print axioms APEX.Blockade.WeakLimit.weak_limit
+#print axioms APEX.Blockade.WeakLimit.charFun_tendsto
+#print axioms APEX.Blockade.WeakLimit.trig_tendsto

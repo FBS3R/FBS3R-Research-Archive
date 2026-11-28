@@ -227,3 +227,6 @@ APEX.Quantum.diamondDist_comp_le_two
 APEX.Quantum.traceNorm_noisy_sub_ideal_le
 APEX.Quantum.diamondDist_noisy_ideal_le
 APEX.Quantum.diamondDist_noisy_ideal_eq
+APEX.Blockade.WeakLimit.weak_limit
+APEX.Blockade.WeakLimit.charFun_tendsto
+APEX.Blockade.WeakLimit.trig_tendsto

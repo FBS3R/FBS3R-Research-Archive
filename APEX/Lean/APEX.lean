@@ -35,3 +35,4 @@ import APEX.Quantum.CPTP
 import APEX.Quantum.OrthogonalNoise
 import APEX.Collatz.StoppingTime
 import APEX.Quantum.Contractivity
+import APEX.Blockade.WeakLimit
