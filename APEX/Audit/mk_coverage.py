@@ -60,7 +60,7 @@ G = """
  SS --> YM[Янг–Миллс: масштаб; массовая щель]:::open
  AP[AKLT.Physical]:::ok --> AL[AKLT.Leakage]:::ok
  PR[Spectral.PositiveRepresentation]:::ok --> QG[Квантовая гравитация]:::open
- MC[Spectral.MixtureCumulants]:::ok --> COSM[Космология: тёмный сектор]:::part
+ MC[Spectral.MixtureCumulants]:::ok --> PRO[Spectral.Prony: кумулянты, идентифицируемость]:::ok --> COSM[Космология: тёмный сектор]:::part
  FE[Analysis.ForcedEnergy]:::ok --> IE[IntegralEnergy: L¹, без взрыва]:::ok --> NS[NS ℝ³ регулярность]:::open
  NIL[Transfer.Nilpotent: закон переноса, знаменатель]:::ok --> AUT[Несокращение полюса, PXP-конкретизация]:::open
  classDef ok fill:#2e7d32,color:#fff

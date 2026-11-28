@@ -542,5 +542,35 @@
    "APEX.S3.Hopf.polar_existsUnique"
   ],
   "statement": "S^3 geometry: unit quaternions (own structure Q, Hamilton product) form a group acting by isometries of R^4; group isomorphism unit quaternions = SU(2) with det = normSq; Hopf map h(z,w)=(2z w-bar, |z|^2-|w|^2) maps S^3 onto S^2, fibres are exactly U(1)-orbits, pairwise disjoint great circles (S^3 cap real 2-plane); polar decomposition x = r u unique. Not: linking number, Mathlib Quaternion (not built), quaternionic q i q-bar formula"
+ },
+ {
+  "id": "APEX-SPC-3",
+  "area": "Spectral",
+  "status": "KERNEL_PROVED",
+  "novelty": "KNOWN_RESULT",
+  "lean": [
+   "APEX.Spectral.det_vand",
+   "APEX.Spectral.moment_succ_eq",
+   "APEX.Spectral.cumulant_unique",
+   "APEX.Spectral.derivative_egf_moment",
+   "APEX.Spectral.egf_cumulant_unique",
+   "APEX.Spectral.egf_moment_eq_exp_cumulant",
+   "APEX.Spectral.cumulant_bconv",
+   "APEX.Spectral.cumulant_scale",
+   "APEX.Spectral.hankel_eq_vand",
+   "APEX.Spectral.det_hankel",
+   "APEX.Spectral.det_hankel_ne_zero",
+   "APEX.Spectral.roots_pronyPoly",
+   "APEX.Spectral.prony_recurrence",
+   "APEX.Spectral.hankel_mulVec_pronyCoeff",
+   "APEX.Spectral.pronyCoeff_unique",
+   "APEX.Spectral.pronyPoly_eq_of_moments",
+   "APEX.Spectral.prony_identifiable",
+   "APEX.Spectral.det_hankel_eq_zero_of_lt",
+   "APEX.Spectral.det_hankel_succ_eq_zero",
+   "APEX.Spectral.rank_hankel",
+   "APEX.Spectral.prony_order_unique"
+  ],
+  "statement": "full moment-cumulant hierarchy: recursion, uniqueness, formal relation egf(m) = exp(egf(kappa)) over char-0 fields, additivity under binomial convolution, scaling kappa_n(cX)=c^n kappa_n; Prony: Hankel = V^T D V, det H_p = prod w * prod (x_j-x_i)^2, recurrence, unique Prony coefficients, identifiability of finite mixtures (nodes and weights up to permutation) from s_0..s_{2p-1}, rank H_m = p for m >= p, number of components determined"
  }
 ]

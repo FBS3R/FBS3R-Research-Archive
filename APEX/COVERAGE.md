@@ -1,6 +1,6 @@
 # COVERAGE — покрытие обязательств APEX (раунд 5)
 
-Сгенерировано `Audit/mk_coverage.py`. Реестр: **315** Lean-целей (`Audit/ACCEPTED_THEOREMS.txt`), все проверены ядром Lean 4.36 / Mathlib v4.36, аксиомы только `propext`, `Classical.choice`, `Quot.sound`.
+Сгенерировано `Audit/mk_coverage.py`. Реестр: **336** Lean-целей (`Audit/ACCEPTED_THEOREMS.txt`), все проверены ядром Lean 4.36 / Mathlib v4.36, аксиомы только `propext`, `Classical.choice`, `Quot.sound`.
 
 Легенда: 🟩 KERNEL_PROVED · 🟨 PARTIAL · 🟦 IN_PROGRESS · 🟧 NUMERICAL_EVIDENCE · ⬜ OPEN / NOT_STARTED.
 Статус «KERNEL_PROVED» означает доказанность сформулированного в Lean утверждения, а не решение открытой задачи.
@@ -65,6 +65,7 @@
 | APEX-COL-4 | Collatz | 🟩 KERNEL_PROVED | KNOWN_RESULT | every 1 <= n <= 2^20 reaches 1 (kernel, 64 chunks); any nontrivial cycle has all elements > 2^20 and its minimum lies in one of 7495 residue classes mod 2^18. NOT a proof of Collatz or of non-existence of cycles (literature: verified to ~2^71) |
 | APEX-NS-2 | Analysis | 🟩 KERNEL_PROVED | NEW_FORMALIZATION | energy bounds for x(t)=x(0)+int v, v = -nu A x - Q x + F a.e., F only L^1, A,Q arbitrary maps on a Hilbert space with <Qy,y>=0, <Ay,y> >= lam/y/^2: //x T// <= e^{-kT}//x0// + int e^{-k(T-s)}//F//; no finite-time blow-up of local solutions (classical with F continuous on [0,T), or integral-form with F in L^1). NOT Navier-Stokes regularity; no existence/uniqueness |
 | APEX-S3-3 | S3 | 🟩 KERNEL_PROVED | KNOWN_RESULT | S^3 geometry: unit quaternions (own structure Q, Hamilton product) form a group acting by isometries of R^4; group isomorphism unit quaternions = SU(2) with det = normSq; Hopf map h(z,w)=(2z w-bar, /z/^2-/w/^2) maps S^3 onto S^2, fibres are exactly U(1)-orbits, pairwise disjoint great circles (S^3 cap real 2-plane); polar decomposition x = r u unique. Not: linking number, Mathlib Quaternion (not built), quaternionic q i q-bar formula |
+| APEX-SPC-3 | Spectral | 🟩 KERNEL_PROVED | KNOWN_RESULT | full moment-cumulant hierarchy: recursion, uniqueness, formal relation egf(m) = exp(egf(kappa)) over char-0 fields, additivity under binomial convolution, scaling kappa_n(cX)=c^n kappa_n; Prony: Hankel = V^T D V, det H_p = prod w * prod (x_j-x_i)^2, recurrence, unique Prony coefficients, identifiability of finite mixtures (nodes and weights up to permutation) from s_0..s_{2p-1}, rank H_m = p for m >= p, number of components determined |
 
 ## Сводка по 27 направлениям
 
@@ -91,7 +92,7 @@ graph LR
  SS --> YM[Янг–Миллс: масштаб; массовая щель]:::open
  AP[AKLT.Physical]:::ok --> AL[AKLT.Leakage]:::ok
  PR[Spectral.PositiveRepresentation]:::ok --> QG[Квантовая гравитация]:::open
- MC[Spectral.MixtureCumulants]:::ok --> COSM[Космология: тёмный сектор]:::part
+ MC[Spectral.MixtureCumulants]:::ok --> PRO[Spectral.Prony: кумулянты, идентифицируемость]:::ok --> COSM[Космология: тёмный сектор]:::part
  FE[Analysis.ForcedEnergy]:::ok --> IE[IntegralEnergy: L¹, без взрыва]:::ok --> NS[NS ℝ³ регулярность]:::open
  NIL[Transfer.Nilpotent: закон переноса, знаменатель]:::ok --> AUT[Несокращение полюса, PXP-конкретизация]:::open
  classDef ok fill:#2e7d32,color:#fff
