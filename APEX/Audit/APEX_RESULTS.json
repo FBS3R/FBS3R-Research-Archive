@@ -405,5 +405,29 @@
    "APEX.Quantum.diamondDist_comp_le_two"
   ],
   "statement": "trace-norm contractivity of Kraus channels on Hermitian inputs (via Kraus dual and Helstrom form), data processing ||Phi A - Phi B||_1 <= ||A-B||_1, post-processing monotonicity of diamondDist. Not: non-Hermitian inputs, pre-composition"
+ },
+ {
+  "id": "APEX-ANY-2",
+  "area": "Anyon",
+  "status": "KERNEL_PROVED",
+  "novelty": "KNOWN_RESULT",
+  "lean": [
+   "APEX.Anyon.Fibonacci.Fmat_entry",
+   "APEX.Anyon.Fibonacci.Fmat_mul_self",
+   "APEX.Anyon.Fibonacci.Fmat_transpose",
+   "APEX.Anyon.Fibonacci.Fmat_orthogonal",
+   "APEX.Anyon.Fibonacci.Fmat_mem_orthogonalGroup",
+   "APEX.Anyon.Fibonacci.sqrtInv_eq_rpow",
+   "APEX.Anyon.Fibonacci.pentagon",
+   "APEX.Anyon.Fibonacci.hexagon",
+   "APEX.Anyon.Fibonacci.hexagon_inv",
+   "APEX.Anyon.Fibonacci.hexagon_block",
+   "APEX.Anyon.Fibonacci.braid_relation",
+   "APEX.Anyon.Fibonacci.σ₁_pow_ten",
+   "APEX.Anyon.Fibonacci.σ₂_pow_ten",
+   "APEX.Anyon.Fibonacci.σ₁_pow_scalar_iff",
+   "APEX.Anyon.Fibonacci.σ₂_pow_scalar_iff"
+  ],
+  "statement": "Fibonacci anyons (tau x tau = 1 + tau): F-matrix [[phi^-1, phi^-1/2],[phi^-1/2,-phi^-1]] orthogonal, F^2=1; pentagon for all 512 label choices; both hexagons over C (R^tt_1=e^{-4pi i/5}, R^tt_t=e^{3pi i/5}, Bonderson convention) for all 64 label choices; braid relation for sigma1, sigma2=F sigma1 F; order exactly 10 up to phase. Proof: exact arithmetic in Z[zeta]/Phi_10[s] by decide +kernel, transferred to C. Not: gauge classification, fusion-category structure"
  }
 ]

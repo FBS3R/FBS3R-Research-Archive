@@ -4,7 +4,7 @@
  "pr": "https://github.com/FBS3R/FBS3R-Research-Archive/pull/3",
  "lean": "4.36.0",
  "mathlib": "fc4f59e5 (v4.36.0)",
- "axiom_targets": 232,
+ "axiom_targets": 247,
  "directions": [
   {
    "id": 1,
@@ -87,8 +87,8 @@
   {
    "id": 14,
    "name": "FibonacciAnyon: пентагон, гексагон, универсальность",
-   "status": "IN_PROGRESS",
-   "note": "раунд 5: пентагон/гексагон — агент в работе"
+   "status": "KERNEL_PROVED",
+   "note": "раунд 5: пентагон (512 случаев), оба гексагона над ℂ (64), braid-соотношение, порядок 10 по модулю фазы (ANY-2, KNOWN_RESULT). Универсальность (плотность в SU(2)) не формализована"
   },
   {
    "id": 15,

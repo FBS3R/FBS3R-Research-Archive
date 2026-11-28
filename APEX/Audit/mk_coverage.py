@@ -54,7 +54,7 @@ G = """
  CG --> RED[Точный несократимый знаменатель]:::open
  TN[Quantum.TraceNorm]:::ok --> CP[Quantum.CPTP]:::ok --> ON[OrthogonalNoise: Φ⁺, ◇]:::ok
  CP --> CT[Contractivity: точное ◇]:::ok --> ON
- B2[Anyon.Braid2D]:::ok --> FIB[Fibonacci: пентагон/гексагон]:::wip
+ B2[Anyon.Braid2D]:::ok --> FIB[Fibonacci: пентагон/гексагон, braid]:::ok
  BC[Collatz.BoundedCorrection]:::ok --> ST[Collatz.StoppingTime: mod 2^18]:::ok --> CYC[Циклы / гипотеза Коллатца]:::open
  SH[S3.Harmonic]:::ok --> SS[S3.Sphere: спектр -n n+2 /R²]:::ok --> L2[L²-полнота, Ходж, Дирак]:::open
  SS --> YM[Янг–Миллс: масштаб; массовая щель]:::open
