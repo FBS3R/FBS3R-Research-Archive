@@ -1,0 +1,229 @@
+name: External Yang–Mills reproduction (read-only)
+# Independent rebuild of pinned external Lean projects. Nothing is sent to the external groups;
+# the repositories are only cloned at fixed commits. Each project keeps its own toolchain
+# (4Y-M: Lean 4.33.0; OpenAI-YM-20261028 and -20261104: Lean 4.32.0) and never touches APEX/Lean (Lean 4.36.0).
+#
+# Strictness policy (round "Frontier II"):
+#  * every step runs under `bash -eo pipefail`; no Lean error is masked (no `|| true`, no pipe hides an exit code);
+#    grep's "no match" (exit 1) is accepted explicitly via `[ $? -eq 1 ]`, grep errors (exit 2) still fail;
+#  * an unfinished (time-limited) build is NOT a certification: the job ends with a red
+#    "Certification verdict" step reading INCOMPLETE; re-running the workflow resumes from the cache;
+#  * a job is green only if the build finished, the checker succeeded and only the standard axioms occur.
+on:
+  push:
+    branches: [research/fbs3r-apex]
+    paths: ['.github/workflows/ym-repro.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+defaults:
+  run:
+    shell: bash
+env:
+  STD_AXIOMS_RE: '^\[(propext|Classical\.choice|Quot\.sound)(, (propext|Classical\.choice|Quot\.sound))*\]$'
+
+jobs:
+  fourym:
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    steps:
+      - name: Install elan
+        run: |
+          curl -sSfL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Clone creelie/4Y-M at pinned commit
+        run: |
+          git clone https://github.com/creelie/4Y-M ext && cd ext && git checkout 5e50d670bbd52b17a8496489ed9d4cf594a6293e
+          cat lean-toolchain
+      - name: Mathlib cache
+        working-directory: ext
+        run: lake exe cache get
+      - name: Build
+        working-directory: ext
+        run: |
+          lake build > build.log 2>&1 || { tail -80 build.log; exit 1; }
+          tail -5 build.log
+      - name: Axioms
+        working-directory: ext
+        run: |
+          lake env lean Axioms.lean > axioms-ci.txt 2>&1 || { cat axioms-ci.txt | tail -40; exit 1; }
+          echo "lines: $(wc -l < axioms-ci.txt)"
+          if grep -qE "(^|: )error:" axioms-ci.txt; then grep -nE "error:" axioms-ci.txt | head; exit 1; fi
+          bad=$(grep "depends on axioms" axioms-ci.txt | sed 's/.*depends on axioms: //' | { grep -Ev "$STD_AXIOMS_RE" || [ $? -eq 1 ]; })
+          if [ -n "$bad" ]; then echo "NON-STANDARD AXIOMS:"; echo "$bad"; exit 1; fi
+          if grep -n "sorryAx\|does not depend on any axioms.*sorry" axioms-ci.txt; then exit 1; fi
+          echo "axioms: standard only"
+      - name: Source scan (informational listing, then hard checks)
+        working-directory: ext
+        run: |
+          hits=$({ grep -rnE '^\s*(axiom|sorry)\b|native_decide|\bsorry\b' --include=*.lean YangMills YangMills.lean || [ $? -eq 1 ]; })
+          echo "$hits" | head -20
+          if echo "$hits" | grep -qE 'native_decide|^\S+:\s*axiom '; then echo "forbidden construct"; exit 1; fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: fourym-axioms, path: "ext/axioms-ci.txt\next/build.log"}
+
+  openai1028:
+    runs-on: ubuntu-latest
+    timeout-minutes: 355
+    steps:
+      - name: Free disk
+        run: sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL; df -h / | tail -1
+      - name: Install elan and Go
+        run: |
+          curl -sSfL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - uses: actions/setup-go@v5
+        with: {go-version: '1.22'}
+      - name: Clone yang-mills-group/OpenAI-YM-20261028 at pinned commit
+        run: |
+          git clone https://github.com/yang-mills-group/OpenAI-YM-20261028 ext && cd ext && git checkout 3456e5e75cf8d4cd558955a5c7638fba2d68f464
+          sha256sum -c SOURCES.sha256 --quiet && echo "SOURCES.sha256 OK"
+      - name: Restore partial build
+        uses: actions/cache/restore@v4
+        with:
+          path: ext/.lake/build
+          key: ym1028-build-${{ github.run_id }}
+          restore-keys: ym1028-build-
+      - name: Mathlib cache
+        working-directory: ext
+        run: lake exe cache get
+      - name: Build (resumable; at most 4.5 h per run)
+        working-directory: ext
+        run: |
+          sudo sysctl -w vm.max_map_count=262144
+          set +e
+          timeout 16200 lake build WilsonReference WilsonConstruction > build.log 2>&1
+          code=$?
+          set -e
+          tail -40 build.log
+          echo "exit=$code" | tee build-exit.txt
+          # 124 = time limit reached: allowed here, judged in the verdict step; anything else is a real failure.
+          if [ "$code" -ne 0 ] && [ "$code" -ne 124 ]; then echo "lake build FAILED"; exit 1; fi
+      - name: Save partial build
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: ext/.lake/build
+          key: ym1028-build-${{ github.run_id }}
+      - name: VerifyJoint
+        id: verify
+        if: hashFiles('ext/build-exit.txt') != ''
+        working-directory: ext
+        run: |
+          if ! grep -qx "exit=0" build-exit.txt; then echo "skipped: build incomplete"; exit 0; fi
+          lake env lean -j1 -DmaxHeartbeats=0 -DmaxRecDepth=4096 VerifyJoint.lean > verify.txt 2>&1 || { tail -60 verify.txt; exit 1; }
+          tail -40 verify.txt
+          if grep -qE "(^|: )error:" verify.txt; then echo "VerifyJoint reported an error"; exit 1; fi
+          echo "done=1" > verify-done.txt
+      - name: Build comparator, lean4export and landrun (pinned)
+        if: hashFiles('ext/verify-done.txt') != ''
+        run: |
+          mkdir -p tools && cd tools
+          git clone -q https://github.com/leanprover/comparator && (cd comparator && git checkout -q 07bc4ea40f2266dcb861820a2ec1fa3244ed307f && lake build comparator)
+          git clone -q https://github.com/leanprover/lean4export && (cd lean4export && git checkout -q 4e7915201d3f9f04470d9eae002fa695f7cdc589 && lake build lean4export)
+          git clone -q https://github.com/Zouuup/landrun && (cd landrun && git checkout -q 5ed4a3db3a4ad930d577215c6b9abaa19df7f99f && go build -o landrun ./cmd/landrun)
+          sha256sum comparator/.lake/build/bin/comparator lean4export/.lake/build/bin/lean4export landrun/landrun | tee ../tool-hashes.txt
+      - name: Comparator (comparator.json, stock config)
+        if: hashFiles('ext/verify-done.txt') != ''
+        working-directory: ext
+        run: |
+          test "$(id -u)" -ne 0
+          export COMPARATOR_LANDRUN=$GITHUB_WORKSPACE/tools/landrun/landrun
+          export COMPARATOR_LEAN4EXPORT=$GITHUB_WORKSPACE/tools/lean4export/.lake/build/bin/lean4export
+          # The repository's comparator.json predates the `enable_nanoda` field required by the pinned comparator
+          # 07bc4ea; we add only that field (false = Lean kernel only), everything else is byte-identical.
+          python3 -c "import json;c=json.load(open('comparator.json'));c.setdefault('enable_nanoda',False);json.dump(c,open('comparator-ci.json','w'),indent=2)"
+          cat comparator-ci.json
+          lake env "$GITHUB_WORKSPACE/tools/comparator/.lake/build/bin/comparator" comparator-ci.json > comparator.txt 2>&1 || { tail -60 comparator.txt; exit 1; }
+          tail -20 comparator.txt
+          grep -q "Your solution is okay!" comparator.txt
+          echo "done=1" > comparator-done.txt
+      - name: Certification verdict
+        if: always()
+        working-directory: ext
+        run: |
+          if [ ! -f build-exit.txt ] || ! grep -qx "exit=0" build-exit.txt; then
+            echo "INCOMPLETE: build not finished; this run certifies nothing. Re-run the workflow to resume from the cache."; exit 1; fi
+          [ -f verify-done.txt ] || { echo "FAILED: VerifyJoint did not succeed"; exit 1; }
+          [ -f comparator-done.txt ] || { echo "FAILED: Comparator did not succeed"; exit 1; }
+          echo "CERTIFIED: build complete, VerifyJoint and Comparator succeeded."
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: ym1028-verify, path: "ext/verify.txt\next/build-exit.txt\next/comparator.txt\next/build.log\ntool-hashes.txt", if-no-files-found: ignore}
+
+  openai1104:
+    runs-on: ubuntu-latest
+    timeout-minutes: 355
+    steps:
+      - name: Free disk
+        run: sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL; df -h / | tail -1
+      - name: Install elan
+        run: |
+          curl -sSfL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - uses: actions/setup-go@v5
+        with: {go-version: '1.22'}
+      - name: Clone yang-mills-group/OpenAI-YM-20261104 at pinned commit
+        run: |
+          git clone https://github.com/yang-mills-group/OpenAI-YM-20261104 ext && cd ext && git checkout c1bb5a5566b2bad9d593980d470439f815895317
+          sha256sum -c SOURCES.sha256 --quiet && echo "SOURCES.sha256 OK"
+      - name: Restore partial build
+        uses: actions/cache/restore@v4
+        with:
+          path: ext/lean/.lake/build
+          key: ym1104-build-${{ github.run_id }}
+          restore-keys: ym1104-build-
+      - name: Mathlib cache
+        working-directory: ext/lean
+        run: lake exe cache get
+      - name: Build (resumable; at most 4.5 h per run)
+        working-directory: ext/lean
+        run: |
+          sudo sysctl -w vm.max_map_count=262144
+          set +e
+          timeout 16200 lake build > build.log 2>&1
+          code=$?
+          set -e
+          tail -40 build.log
+          echo "exit=$code" | tee build-exit.txt
+          if [ "$code" -ne 0 ] && [ "$code" -ne 124 ]; then echo "lake build FAILED"; exit 1; fi
+      - name: Save partial build
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: ext/lean/.lake/build
+          key: ym1104-build-${{ github.run_id }}
+      - name: Build comparator, lean4export and landrun (pinned)
+        if: hashFiles('ext/lean/build-exit.txt') != ''
+        run: |
+          grep -qx "exit=0" ext/lean/build-exit.txt || { echo "skipped: build incomplete"; exit 0; }
+          mkdir -p tools && cd tools
+          git clone -q https://github.com/leanprover/comparator && (cd comparator && git checkout -q 07bc4ea40f2266dcb861820a2ec1fa3244ed307f && lake build comparator)
+          git clone -q https://github.com/leanprover/lean4export && (cd lean4export && git checkout -q 4e7915201d3f9f04470d9eae002fa695f7cdc589 && lake build lean4export)
+          git clone -q https://github.com/Zouuup/landrun && (cd landrun && git checkout -q 5ed4a3db3a4ad930d577215c6b9abaa19df7f99f && go build -o landrun ./cmd/landrun)
+          sha256sum comparator/.lake/build/bin/comparator lean4export/.lake/build/bin/lean4export landrun/landrun | tee ../tool-hashes.txt
+      - name: Comparators (Existence, Matching)
+        if: hashFiles('tool-hashes.txt') != ''
+        working-directory: ext/lean
+        run: |
+          test "$(id -u)" -ne 0
+          export COMPARATOR_LANDRUN=$GITHUB_WORKSPACE/tools/landrun/landrun
+          export COMPARATOR_LEAN4EXPORT=$GITHUB_WORKSPACE/tools/lean4export/.lake/build/bin/lean4export
+          for sel in Existence Matching; do
+            lake env "$GITHUB_WORKSPACE/tools/comparator/.lake/build/bin/comparator" "ComparatorChallenges/$sel.json" > "comparator-$sel.txt" 2>&1 || { tail -60 "comparator-$sel.txt"; exit 1; }
+            tail -10 "comparator-$sel.txt"
+            grep -q "Your solution is okay!" "comparator-$sel.txt"
+          done
+          echo "done=1" > comparator-done.txt
+      - name: Certification verdict
+        if: always()
+        working-directory: ext/lean
+        run: |
+          if [ ! -f build-exit.txt ] || ! grep -qx "exit=0" build-exit.txt; then
+            echo "INCOMPLETE: build not finished; this run certifies nothing. Re-run the workflow to resume from the cache."; exit 1; fi
+          [ -f comparator-done.txt ] || { echo "FAILED: comparators did not succeed"; exit 1; }
+          echo "CERTIFIED: build complete, Existence and Matching comparators succeeded."
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: ym1104-verify, path: "ext/lean/build-exit.txt\next/lean/comparator-*.txt\next/lean/build.log\ntool-hashes.txt", if-no-files-found: ignore}

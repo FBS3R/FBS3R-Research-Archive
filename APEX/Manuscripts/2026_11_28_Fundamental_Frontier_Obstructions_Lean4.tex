@@ -1,0 +1,67 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{hyperref}
+\newtheorem{theorem}{Theorem}
+\theoremstyle{remark}\newtheorem{remark}[theorem]{Remark}
+\title{Machine-Checked Obstructions and Criteria at the Fundamental Frontier:\\ Spectral Gaps, Positive Propagators, the Cosmological Constant and Scale Consistency}
+\author{FBS3R--APEX research programme}
+\date{28 November 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+We report theorems checked by the Lean~4 kernel (Lean 4.36.0, Mathlib v4.36.0; axioms \texttt{propext}, \texttt{Classical.choice}, \texttt{Quot.sound} only) in four directions:
+(i) the abstract spectral layer of the Yang--Mills mass-gap problem, together with an audit of two recent external formal constructions;
+(ii) a strengthened positivity theorem for Stieltjes-type spectral representations with a sharp quantitative bound against nonlocal propagators $e^{-ap^2}/p^2$;
+(iii) an underdetermination theorem for the cosmological constant under trace-free (unimodular) Einstein equations, and no-go results for selector functionals;
+(iv) the scale-consistency condition $R\circ U_\ell(t)=U_{\ell'}(t)\circ R$.
+None of these results solves an open problem: the Yang--Mills mass gap, the existence of quantum gravity, the value of $\Lambda$ and a unified law all remain open. We state precisely what is proved.
+\end{abstract}
+
+\section{Yang--Mills: the spectral layer and the missing inequality}
+Let $\mu$ be a finite positive measure on $[0,\infty)$ and $C(t)=\int e^{-tE}\,d\mu(E)$.
+\begin{theorem}[\texttt{APEX.YM.laplace\_gap\_criterion}]
+For $m\in\mathbb R$ the following are equivalent: (a) $\mu([0,m))=0$; (b) $C(t)\le C(0)e^{-mt}$ for all $t\ge0$; (c) for every $m'<m$ there is $K$ with $C(t)\le Ke^{-m't}$.
+Polynomial decay does not suffice: for $d\mu=e^{-E}dE$, $C(t)=(1+t)^{-1}$ and there is no gap (\texttt{expMeasure\_no\_gap}).
+\end{theorem}
+\begin{theorem}[\texttt{heat\_gap\_iff}, \texttt{transfer\_bound}, \texttt{transfer\_physical\_bound'}]
+For a symmetric operator $A$ on a finite-dimensional Hilbert space with $A\Omega=0$, all eigenvalues on $\Omega^\perp$ are $\ge m$ iff $\mathrm{Re}\langle\psi,e^{-tA}\psi\rangle\le\|\psi\|^2e^{-mt}$ for $\psi\perp\Omega$, $t\ge0$. For a transfer matrix $T$ with $T\Omega=\Omega$ and spectrum on $\Omega^\perp$ in $[0,e^{-a\Delta}]$, $\mathrm{Re}\langle\psi,T^{\lfloor t/a\rfloor}\psi\rangle\le e^{-\Delta(t-a)}\|\psi\|^2$.
+\end{theorem}
+\begin{theorem}[\texttt{gap\_of\_limit}, \texttt{continuum\_gap\_of\_uniform\_lattice\_gap}, \texttt{nonuniform\_gap\_lost}, \texttt{fixed\_gaps\_not\_uniform}]
+If correlation functions converge pointwise and satisfy $C_k(t)\le C_k(0)e^{-\Delta t}$ with the \emph{same} $\Delta$, the limit measure has no mass below $\Delta$. Gaps that are not uniform are lost ($\delta_{1/k}\to\delta_0$; $\lambda_2(T_{a_k})=e^{-a_k^2}$).
+\end{theorem}
+\paragraph{External constructions (audit, \texttt{APEX/External/YM\_AUDIT.md}).}
+The OpenAI Wilson construction (\texttt{OpenAI-YM-20261028}) states the existence of a Wightman theory as a subsequential scaling limit of the Wilson lattice for every compact group with simple Lie algebra; its README excludes a mass gap and uniqueness. The conditional \emph{one-cube} programme (\texttt{4Y-M}, rebuilt in our CI: 8769 modules, standard axioms) proves in Lean inequalities about abstract functions; the gap requires hypothesis (P)/(A), a finite-volume gap uniform in the spacing, which its authors state is open. The two cannot be combined directly (normalisation of $\beta$, $O(1)$ vs.\ $o(\log)$ tuning, boundary conditions, order of limits, notion of gap). The missing inequality is
+\[\exists\Delta>0:\quad \|T_{a,L}|_{\mathcal H_{\rm phys}\ominus\mathbb C\Omega}\|\le e^{-a\Delta}\quad\text{uniformly in }a\to0,\ L\to\infty,\]
+for the SU(2) transfer matrix of the construction. It is \textbf{open}.
+
+\section{Positive spectral representations}
+Let $\rho\ne0$ be a positive measure on $[0,\infty)$, possibly infinite, with $\int(1+s)^{-1}d\rho<\infty$, and $G(x)=\int(x+s)^{-1}d\rho(s)$.
+\begin{theorem}[\texttt{APEX.Spectral.Strong.*}]
+$xG(x)$ is non-decreasing on $(0,\infty)$ and $xG(x)\to\rho([0,\infty))\in(0,\infty]$. No such $\rho$ represents $f$ with $xf(x)\to0$, or with $xf(x)$ strictly decreasing somewhere; in particular not $e^{-ax}/x$, $a>0$. Quantitatively, if $|G/f-1|\le\varepsilon$ on $[x,y]$ for $f(t)=e^{-at}/t$, then
+\[\varepsilon\ \ge\ \tanh\bigl(a(y-x)/2\bigr),\]
+and for $a\ge0$ this is attained by a point mass at $0$. For finitely atomic PSD-matrix-valued measures, $xG(x)$ is Loewner-monotone and the bounds hold per polarisation.
+\end{theorem}
+\begin{remark}
+With $x=p^2$ (Euclidean momentum) this concerns propagators $e^{-ap^2}/p^2$, i.e.\ $e^{a\Box}/(-\Box)$. It is a necessary condition of K\"all\'en--Lehmann type; it says nothing about the existence of a quantum theory of gravity.
+\end{remark}
+
+\section{The cosmological constant}
+\begin{theorem}[\texttt{APEX.Cosmology.Lambda.traceFree\_dS\_family}, \texttt{integration\_constant}]
+For $g=-dt^2+a(t)^2d\vec x^2$ the Christoffel symbols and Ricci tensor are computed from the metric: $R_{00}=-3\ddot a/a$, $R_{ij}=(a\ddot a+2\dot a^2)\delta_{ij}$. De Sitter of every radius $\ell>0$ solves the vacuum trace-free equations, and $\ell\mapsto3/\ell^2$ is injective. For a perfect fluid obeying the continuity equation, $R+8\pi GT=4\Lambda$ is constant and $3H^2=8\pi G\rho+\Lambda$; every $\Lambda\ge0$ is realised in vacuum. Vacuum-energy shifts $T\mapsto T-\delta g$ drop out.
+\end{theorem}
+\begin{theorem}[\texttt{selector\_nogo}, \texttt{affine\_reweighting\_moves\_minimiser}, \texttt{qEdge\_any\_target}, \texttt{strict\_tie\_example}]
+A coercive $\Gamma:\mathbb N\to\mathbb R$ attains its minimum; under discrete convexity the minimisers form an interval, and strict convexity alone does not give uniqueness. For every $q^*$ there is a strictly convex coercive $\Gamma$ with unique minimiser $q^*$; the affine reweighting $Z_q\mapsto e^{aq}Z_q$ moves the minimiser of any strictly convex selector to any prescribed $q^*$; the edge selector minimiser $\Xi e^{16\pi^2/(bg^2)}$ takes every value $>\Xi$.
+\end{theorem}
+Numerically (not formalised) the archive value $N_\varphi=292$ equals $\mathrm{round}(n(q_{\rm obs}))$, $n(q_{\rm obs})=291.937$, computed from the observed $H_0,\Omega_\Lambda$; the factor $1+\pi/50$ matches the residual $1.062844$. Thus $\Lambda=3\pi/(\ell_P^2q_*)$ is not derived; global or microscopic selection mechanisms are not refuted.
+
+\section{Scale consistency}
+\begin{theorem}[\texttt{APEX.Unified.comp\_exp\_iff}, \texttt{norm\_defect\_pow\_le\_of\_contraction}, \texttt{shift\_defect\_grows\_linearly}, \texttt{consistency\_does\_not\_determine\_state\_space}, \texttt{exists\_intertwining\_iff\_isLumpable}]
+$R e^{tA}=e^{tA'}R$ for all $t$ iff $RA=A'R$. For contractions the defect obeys $\|RT^k-T'^kR\|\le k\|RT-T'R\|$, sharp in order. Consistent coarse-grainings compose with subadditive defects. Consistency does not determine the state space (trivial dynamics; consistent models on $\mathrm{Fin}\,3\to\mathrm{Fin}\,2$ with different spectra). Exact consistency of block aggregation of a Markov chain is equivalent to Kemeny--Snell lumpability.
+\end{theorem}
+In particular, $S^3$, fractality or the golden ratio do not follow from the consistency condition alone; no physical law or prediction is derived here.
+
+\section*{Reproduction}
+\texttt{cd APEX/Lean \&\& lake build \&\& bash ../ci\_check.sh}; external rebuilds: \texttt{.github/workflows/ym-repro.yml}; numerical cross-checks: \texttt{APEX/Certificates/lambda\_archive\_numbers.py}. Red-team reports: \texttt{APEX/Audit/RED\_TEAM.md}.
+\end{document}

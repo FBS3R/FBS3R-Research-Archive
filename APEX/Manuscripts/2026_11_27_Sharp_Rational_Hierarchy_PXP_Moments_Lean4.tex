@@ -1,0 +1,105 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[margin=22mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,amsmath,amssymb,amsthm,mathtools,booktabs,hyperref,xurl}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{remark}\newtheorem{remark}[theorem]{Remark}
+\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\C}{\mathcal C}
+\title{\bfseries A sharp rational hierarchy for the spectral moments of the open PXP chain,\\ machine-checked in Lean~4}
+\author{FBS3R--APEX, research round 1\\\small AI-assisted mathematical research; independent peer review pending}
+\date{27 November 2026}
+\begin{document}\maketitle
+\begin{abstract}
+Let $A_n$ be the adjacency matrix of the Fibonacci cube $\Gamma_n$, i.e.\ the open PXP Hamiltonian on $n$ sites with unit couplings and no field, and $M_{m,n}=\Tr A_n^{2m}$.
+We prove, with every step checked by the Lean~4 kernel against Mathlib, that for every $m\ge1$
+\[
+\sum_{n\ge0}M_{m,n}z^n=\frac{P_m(z)}{(1-z-z^2)^{m+1}},\qquad P_m\in\mathbb Z[z],\qquad \deg P_m\le 3m-2,
+\]
+and that $P_m\equiv(2m)!\,z^{2m-1}\pmod{1-z-z^2}$. The degree bound improves the bound $3m+2$ of the 2026-10-23 archive preprint \emph{Rational Spectral Hierarchies and Matrix-Free Gauge Certificates}; the congruence shows that the denominator $(1-z-z^2)^{m+1}$ cannot be reduced and gives the exact leading asymptotics of $M_{m,n}$. The explicit fourth- and sixth-moment formulas of the preprint are machine-checked for all $n$. The proof is a new strong induction over sets of used time labels with a degree-and-residue bookkeeping predicate; it does not use the preprint's resolvent argument. No claim of historical priority is made beyond a non-exhaustive literature search (Section~\ref{sec:lit}).
+\end{abstract}
+
+\section{Setting}
+$\C_n=\{s\in\{0,1\}^n: s_js_{j+1}=0\}$; $s\sim s'$ iff $s,s'\in\C_n$ differ in exactly one coordinate. $A_n$ is the $0/1$ matrix of $\sim$ (for $n=0$, $A_0=0$). Then $A_n=\sum_jP_{j-1}X_jP_{j+1}$ restricted to $\ell^2(\C_n)$: a flip at $j$ between two legal configurations forces the neighbours of $j$ to be empty. Put $D(z)=1-z-z^2$.
+
+\begin{theorem}[Rationality with sharp degree bound]\label{thm:A}
+For every $m\ge1$ there is $P_m\in\mathbb Z[z]$ with $\deg P_m\le 3m-2$ and $\bigl(\sum_nM_{m,n}z^n\bigr)D(z)^{m+1}=P_m(z)$ in $\mathbb Z[[z]]$.
+\end{theorem}
+\begin{theorem}[Residue and sharp denominator]\label{thm:B}
+$P_m(z)\equiv(2m)!\,z^{2m-1}\pmod{D(z)}$ in $\mathbb Z[z]$. In particular $D\nmid P_m$, so (as $D$ is irreducible over $\mathbb Q$) $P_m/D^{m+1}$ is in lowest terms.
+\end{theorem}
+\begin{theorem}[Exact degree; Lean \texttt{pxp\_numerator\_natDegree}]\label{thm:C}
+$\deg P_m=3m-2$, and $(-1)^{m-1}[z^{3m-2}]P_m\ge1$.
+\end{theorem}
+\begin{proof}[Proof sketch]
+Track the coefficient of $z^{d}$ at the top admissible degree through the same induction. Lifting by $D$ multiplies it by $[z^2]D=-1$; any step that stays strictly below the bound contributes $0$. So $(-1)^{h'-1}$ times the top coefficient of $G_{\beta',F'}$ is a sum of non-negative terms, and along the chain of single-time pulses $\beta_j=\mathbf 1_{\{2j-1\}}$ on the time segments $\{0,\dots,2j-1\}$ one term is $\ge1$ at every level.
+\end{proof}
+\begin{corollary}[Asymptotics]\label{cor:asym}
+With $\varphi=(1+\sqrt5)/2$, as $n\to\infty$ with $m$ fixed,
+\[M_{m,n}=\frac{(2m)!}{m!}\,\varphi^{2-m}\,5^{-(m+1)/2}\,n^m\varphi^n\,\bigl(1+O(1/n)\bigr).\]
+\end{corollary}
+\begin{proof}[Proof of Corollary~\ref{cor:asym} from Theorems~\ref{thm:A}--\ref{thm:B}]
+$D(z)=(1-\varphi z)(1-\psi z)$ with $\psi=-1/\varphi$; the dominant pole is $z_0=1/\varphi$, of order exactly $m+1$ by Theorem~\ref{thm:B}. There $1-\psi z_0=\sqrt5/\varphi$ and $P_m(z_0)=(2m)!\varphi^{1-2m}$. Partial fractions give $[z^n]\,c(1-\varphi z)^{-(m+1)}=c\binom{n+m}{m}\varphi^n$ with $c=P_m(z_0)(\varphi/\sqrt5)^{m+1}$; the other poles contribute lower order. (This corollary is derived on paper; it is not part of the Lean development.) For $m=1$ it reproduces $2|E(\Gamma_n)|\sim 2n\varphi^{n+1}/5$.
+\end{proof}
+\begin{corollary}[Explicit moments; preprint eqs.\ (4th), (6th)]
+\[\sum_n\Tr A_n^4z^n=\frac{2z+2z^2+18z^3-4z^4}{D^3},\qquad
+\sum_n\Tr A_n^6z^n=\frac{2z+8z^2+130z^3+40z^4+350z^5-156z^6+36z^7}{D^4}.\]
+\end{corollary}
+\begin{proof}
+By Theorem~\ref{thm:A} the numerators have degree $\le4$, $\le7$, so they are fixed by $M_{2,n}$ ($n\le4$) and $M_{3,n}$ ($n\le7$). These eight plus five traces are evaluated in Lean by \texttt{decide +kernel}, i.e.\ by the kernel's own reduction (no \texttt{native\_decide}).
+\end{proof}
+
+\section{Proof}
+\paragraph{Trajectories.} Fix $k=2m$ and cyclic time $\mathbb Z/k$. A closed walk $w_0\sim w_1\sim\dots\sim w_{k-1}\sim w_0$ in $\Gamma_n$ is recorded site by site: site $j$ carries $\beta_j\in\{0,1\}^{\mathbb Z/k}$, $\beta_j(t)=(w_t)_j$, with flip set $\mathrm{fl}(\beta)=\{t:\beta(t+1)\ne\beta(t)\}$. The walk conditions become: (i) the flip sets are pairwise disjoint and cover $\mathbb Z/k$; (ii) $\beta_j\wedge\beta_{j+1}=0$ pointwise. Thus $M_{m,n}$ counts arrays $(\beta_1,\dots,\beta_n)$ with (i),(ii) (Lean: \texttt{trace\_relMat\_pow}, \texttt{card\_walks\_eq\_card\_arrays}).
+
+\begin{lemma}\label{lem:flip} $|\mathrm{fl}(\beta)|$ is even; $\mathrm{fl}(\beta)=\emptyset$ iff $\beta\in\{\mathbf0,\mathbf1\}$; if $|\mathrm{fl}(\beta)|=2$ the fibre of $\mathrm{fl}$ through $\beta$ is $\{\beta,\bar\beta\}$, and every 2-subset of $\mathbb Z/k$ is a flip set.\end{lemma}
+\begin{proof} Parity: $\sum_t(\beta(t+1)-\beta(t))=0$ in $\mathbb Z/2$. If $\mathrm{fl}\beta=\mathrm{fl}\gamma$ then $\beta\oplus\gamma$ has no flips, hence is constant. For $a<b$ the interval trajectory $\mathbf 1_{(a,b]}$ has flip set $\{a,b\}$.\end{proof}
+
+\paragraph{Transfer recursion.} Let $g_n(\beta,F)$ be the number of arrays of length $n\ge1$ with pairwise disjoint flip sets of union $F$, satisfying (ii), and ending in $\beta$; $G_{\beta,F}(z)=\sum_ng_n(\beta,F)z^n$. Appending a site gives
+\[G_{\beta',F'}=z\,[\mathrm{fl}\beta'\subseteq F']\Bigl(\delta_{F=\emptyset}+\sum_{\beta:\ \beta\wedge\beta'=0}G_{\beta,F}\Bigr),\qquad F=F'\setminus\mathrm{fl}\beta'\]
+(Lean: \texttt{g\_succ\_eq\_count}, \texttt{G\_rec}). Write $T_F=\sum_\beta G_{\beta,F}$, $A_F=\sum_{\mathrm{fl}\beta\neq\emptyset}G_{\beta,F}$. Since $\mathbf0$ is compatible with everything and $\mathbf 1$ only with $\mathbf0$,
+\[G_{\mathbf0,F}=z(\delta_F+T_F),\quad G_{\mathbf1,F}=z(\delta_F+G_{\mathbf0,F}),\quad T_F\,D=A_F+\delta_F(2z+z^2).\]
+Hence $\sum_nM_{m,n}z^n=T_{\mathbb Z/k}=A_{\mathbb Z/k}/D$.
+
+\paragraph{Bookkeeping.} Say $S$ is $(e,d,r)$-good if $S\,D^e=p\in\mathbb Z[z]$, $\deg p\le d$, $p\equiv r\pmod D$. Goodness is stable under sums; $(e,d,r)\mapsto(e{+}1,d{+}2,0)$ (multiply by $D$); $zS$ is $(e,d{+}1,zr)$-good; if $S'D=S$ then $S'$ is $(e{+}1,d,r)$-good.
+
+\begin{proposition}[Main induction; Lean \texttt{goodR\_active}]
+Let $\mathrm{fl}\beta'\ne\emptyset$, $|F'|\ge2$, $h'=\lfloor|F'|/2\rfloor$. Then $G_{\beta',F'}$ is $(h',\,3h'-2,\,N(\beta',F')z^{2h'-1})$-good, where $N(\beta',F')=(|F'|-2)!$ if $|\mathrm{fl}\beta'|=2$, $\mathrm{fl}\beta'\subseteq F'$ and $|F'|$ is even, and $N=0$ otherwise.
+\end{proposition}
+\begin{proof}[Proof sketch]
+Strong induction on $|F'|$; let $F=F'\setminus\mathrm{fl}\beta'$ (so $|F|\le|F'|-2$). If $F=\emptyset$: $G_{\beta',F'}=z/D$, which is $(1,1,z)$-good; lifting to $h'$ kills the residue unless $h'=1$, i.e.\ $|\mathrm{fl}\beta'|=2$, where $N=0!=1$. If $|F|=1$: everything vanishes and $N=0$ by parity. If $|F|\ge2$, $h=\lfloor|F|/2\rfloor\le h'-1$: by induction $A_F$ is $(h,3h-2,\sum_\beta N(\beta,F)z^{2h-1})$-good, hence so is $T_F$ at level $h{+}1$; the remaining terms $zG_{\beta,F}$ are lifted and lose their residue. So $G_{\beta',F'}=z(zT_F+\sum\dots)$ is $(h{+}1,3h{+}1,z^{2h+1}\sum_\beta N(\beta,F))$-good, and lifting to $h'$ gives degree $\le 3h'-2$ because $h\le h'-1$. The residue survives only if $h'=h+1$, i.e.\ $|\mathrm{fl}\beta'|=2$, and then Lemma~\ref{lem:flip} gives $\sum_\beta N(\beta,F)=|F|(|F|-1)\,(|F|-2)!=|F|!=(|F'|-2)!$ for even $|F|$ (Lean \texttt{card\_two\_flips\_in}, \texttt{sum\_N2}).
+\end{proof}
+At $F'=\mathbb Z/2m$ ($h'=m$), summing over $\beta'$ and dividing by $D$ yields Theorem~\ref{thm:A} and $P_m\equiv(2m)!\,z^{2m-1}$; evaluating at the root $-\psi$ of $D$ proves $D\nmid P_m$ (Lean \texttt{pxp\_denominator\_sharp}).
+
+\section{Machine-checked statements}
+\begin{center}\small\begin{tabular}{ll}\toprule
+Statement & Lean name (package \texttt{APEX/Lean})\\\midrule
+Theorem \ref{thm:A} & \texttt{APEX.PXP.pxp\_moment\_rational}\\
+Theorem \ref{thm:B} & \texttt{APEX.PXP.pxp\_moment\_residue}, \texttt{pxp\_denominator\_sharp}\\
+Theorem \ref{thm:C} & \texttt{APEX.PXP.pxp\_numerator\_natDegree}\\
+explicit 4th / 6th moments & \texttt{fourth\_moment\_gf}, \texttt{sixth\_moment\_gf}\\
+trace = closed walks & \texttt{trace\_relMat\_pow}, \texttt{relMat\_pow\_apply}\\
+walks = trajectory arrays & \texttt{card\_walks\_eq\_card\_arrays}, \texttt{g\_succ\_eq\_count}\\\bottomrule
+\end{tabular}\end{center}
+Every listed theorem depends only on \texttt{propext}, \texttt{Classical.choice}, \texttt{Quot.sound} (\texttt{\#print axioms}, file \texttt{APEX/Audit/AXIOM\_REPORT.txt}). Lean 4.36.0, Mathlib v4.36.0 (\texttt{fc4f59e5}). Correspondence check: $M$ is defined as \texttt{Matrix.trace (adjMat n \^{} k)} with \texttt{adjMat} the $0/1$ matrix of ``legal and Hamming distance one'', and non-vacuity is witnessed by the kernel-evaluated values $M_{2,n}=0,2,8,42,112$, which agree with the preprint's table.
+
+\section{What is \emph{not} proved here}
+\begin{itemize}
+\item The eighth-moment formula (preprint eq.\ (8th)): exact-integer check only.
+\item Inhomogeneous couplings, local fields and the weighted flux certificate (the preprint's Theorem \texttt{th:transfer} for $H_n(J,\mu)$ and Theorem \texttt{th:flux}) are not formalised in this round. Numerically, with a uniform field $\mu=1$ the generating function of $\Tr(A_n+\mu N)^k$ has denominator $D^{k+1}$ for $k\le3$: a conjecture.
+\item For range-2 blockade chains the analogous denominator appears to be $(1-z-z^3)^{m+1}$ (checked for $2m\le4$): a conjecture towards the universality question of APEX-16.
+\end{itemize}
+
+\section{Literature and priority}\label{sec:lit}
+Fibonacci cubes and their cube polynomials: Hsu--Page--Liu (1993), Klav\v{z}ar--Mollard (2012). PXP model: Turner et al., Nature Physics 14 (2018). Two web searches (27 Nov 2026) did not find the degree bound $3m-2$ or the residue $(2m)!z^{2m-1}$; this search is not exhaustive, and transfer-matrix rationality of moment sequences of this type is classical in spirit. The results should be treated as \textsc{new\_theorem\_candidate}s, not as established priority.
+
+\section{Reproduction}
+\begin{verbatim}
+cd APEX/Lean && lake build && lake env lean scripts/Axioms.lean
+python3 -I APEX/Certificates/pxp_verify.py 15 4
+\end{verbatim}
+Without the Mathlib cache the first build compiles Mathlib from source (about 45 minutes on 4 cores).
+\end{document}
