@@ -1,0 +1,88 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\theoremstyle{remark}\newtheorem{remark}[theorem]{Remark}
+\title{Sharp Rational Moment Hierarchies for Finite-Range Blockade Chains:\\ Kernel-Checked Results in Lean~4}
+\author{FBS3R--APEX research programme}
+\date{28 November 2026 (version 2: the general hierarchy is now a theorem)}
+\begin{document}
+\maketitle
+\begin{abstract}
+Let $A_{n,r}$ be the adjacency matrix of the graph whose vertices are binary words of length $n$ in which any two $1$s are more than $r$ sites apart, with edges between words differing in one site ($r=1$: the Fibonacci cube, i.e.\ the PXP model with unit couplings).
+We report theorems whose proofs are checked by the Lean~4 kernel (Mathlib v4.36.0, axioms \texttt{propext}, \texttt{Classical.choice}, \texttt{Quot.sound} only).
+For $r=1$ and every $m\ge1$: $\sum_n \operatorname{Tr}A_{n,1}^{2m}z^n=P_m(z)/(1-z-z^2)^{m+1}$ with $P_m\in\mathbb Z[z]$, $\deg P_m=3m-2$ exactly, sign of the leading coefficient $(-1)^{m-1}$, and $P_m\equiv(2m)!\,z^{2m-1}\pmod{1-z-z^2}$, so the denominator is sharp.
+For every $r\ge0$: the second and fourth moment series are $2z/D_r^2$ and $\bigl(2zD_r+4z^2(1+\dots+z^{r-1})D_r+24z^{r+2}\bigr)/D_r^3$, $D_r=1-z-z^{r+1}$.
+We also certify the eighth PXP moment for all $n$ by a proved bit-mask dynamic programme, and the dominant-root asymptotics $|C_{n,r}|\sim B_r(\rho_r)\rho_r^{-n}/K_r$.
+In version~2 the general hierarchy is proved for all $m,r\ge1$: $\sum_n\operatorname{Tr}A_{n,r}^{2m}z^n=P_{m,r}/D_r^{m+1}$ with $\deg P_{m,r}=(2r+1)(m-1)+1$ exactly, an $r$-independent leading coefficient of sign $(-1)^{m-1}$, and $P_{m,r}\equiv(2m)!\,z^{(r+1)m-r}\pmod{D_r}$.
+Consequences proved in Lean: $\operatorname{Tr}A_{n,r}^{2m}/(|C_{n,r}|\,n^m)\to(2m-1)!!\,\sigma_r^{2m}$ with $\sigma_r^2=2\rho_r^{r+1}/K_r$, odd moments vanish, and the empirical spectral measures of $A_{n,r}/\sqrt n$ have all moments and polynomial integrals converging to those of $N(0,\sigma_r^2)$ and form a tight family.
+We state precisely what remains open.
+\end{abstract}
+
+\section{Setting}
+$C_{n,r}$ is the set of admissible words; $a_{n,r}=|C_{n,r}|$; $D_r(z)=1-z-z^{r+1}$; $B_r(z)=1+z+\dots+z^r$.
+All statements below are Lean theorems in \texttt{APEX/Lean} (registry \texttt{APEX/Audit/ACCEPTED\_THEOREMS.txt}); names are given in brackets.
+
+\section{Dimensions and the dominant root}
+\begin{theorem}[\texttt{a\_of\_le}, \texttt{a\_rec}, \texttt{gf\_coeff}]
+$a_{n,r}=n+1$ for $n\le r$ and $a_{n,r}=a_{n-1,r}+a_{n-r-1,r}$; equivalently $\sum_n a_{n,r}z^n=B_r(z)/D_r(z)$.
+\end{theorem}
+\begin{theorem}[\texttt{exists\_unique\_root}, \texttt{complex\_root\_norm}, \texttt{Br\_rho}, \texttt{tendsto\_a\_mul\_rho\_pow}]
+$D_r$ has a unique root $\rho_r\in(0,1)$; it is simple, and every other complex root has modulus $>\rho_r$.
+$B_r(\rho_r)=\rho_r^{-r}$, and with $K_r=\rho_r+(r+1)\rho_r^{r+1}$ one has $a_{n,r}\rho_r^n\to B_r(\rho_r)/K_r$.
+For $r=1$, $\rho_1=\varphi^{-1}$ and $2\rho_1^2/K_1=1-1/\sqrt5$.
+\end{theorem}
+The asymptotic statement is proved without partial fractions: $u_n=a_{n,r}\rho_r^n$ satisfies an averaging recurrence $u_{n+r+1}=pu_{n+r}+qu_n$ with $p+q=1$, which contracts windows of length $r+1$ and preserves an explicit invariant.
+
+\section{The PXP hierarchy ($r=1$)}
+\begin{theorem}[\texttt{pxp\_moment\_rational}, \texttt{pxp\_moment\_residue}, \texttt{pxp\_denominator\_sharp}, \texttt{pxp\_numerator\_natDegree}]
+For every $m\ge1$ there is $P_m\in\mathbb Z[z]$ with $\bigl(\sum_n\operatorname{Tr}A_{n,1}^{2m}z^n\bigr)(1-z-z^2)^{m+1}=P_m$, $\deg P_m=3m-2$, $(-1)^{m-1}[z^{3m-2}]P_m\ge1$, and $P_m\equiv(2m)!z^{2m-1}\bmod(1-z-z^2)$.
+\end{theorem}
+The proof counts closed walks as arrays of time trajectories (one per site) with pairwise disjoint flip sets, and runs a strong induction on the set of used time labels, carrying three predicates (degree, residue, top coefficient).
+\begin{theorem}[\texttt{MaskDP.M\_eq\_Mnat}, \texttt{eighth\_moment\_gf}]
+For every period $k$, $\operatorname{Tr}A_{n,1}^k$ equals the output of an explicit bit-mask dynamic programme (proved correct). Evaluated by the kernel for $k=8$, $n\le10$, it yields
+$P_4=2z+22z^2+716z^3+1146z^4+8236z^5-206z^6+13114z^7-8308z^8+3152z^9-568z^{10}$ for all $n$.
+\end{theorem}
+
+\section{Universal low moments for every radius}
+\begin{theorem}[\texttt{second\_moment\_series}, \texttt{fourth\_moment}]
+For every $r\ge0$:
+\[\sum_n\operatorname{Tr}A_{n,r}^2z^n=\frac{2z}{D_r^2},\qquad
+\sum_n\operatorname{Tr}A_{n,r}^4z^n=\frac{2zD_r+4z^2(1+\dots+z^{r-1})D_r+24z^{r+2}}{D_r^3}.\]
+\end{theorem}
+The fourth moment uses the decomposition $\operatorname{Tr}A^4=2e_n+12s_2(n)+2h_n$ into edges, pairs of occupied sites and non-closing ``cherries'', together with the gap identities $D_r\sum_{g<r}z^g+z^rB_r=1$ and $D_r\sum_{g=r}^{2r-1}z^g+z^{2r}B_r=z^r$ (\texttt{ident\_a}, \texttt{ident\_b}).
+Note that the numerator of the fourth moment has degree $2r+2$ with leading coefficient $-4$ for every $r\ge1$.
+
+\section{The general hierarchy (formerly a conjecture)}
+\begin{theorem}[\texttt{General.moment\_rational}, \texttt{General.moment\_residue}, \texttt{General.moment\_exact}, \texttt{General.Lc\_sign}, \texttt{General.conj\_general}]
+For all $m,r\ge1$ there is $P_{m,r}\in\mathbb Z[z]$ with
+\[\sum_{n\ge0}\operatorname{Tr}A_{n,r}^{2m}z^n=\frac{P_{m,r}(z)}{(1-z-z^{r+1})^{m+1}},\qquad \deg P_{m,r}=(2r+1)(m-1)+1,\]
+leading coefficient $L_m$ independent of $r$ with $\operatorname{sign}L_m=(-1)^{m-1}$, and $P_{m,r}\equiv(2m)!\,z^{(r+1)m-r}\pmod{1-z-z^{r+1}}$.
+\end{theorem}
+\emph{Proof architecture.} A closed walk of length $2m$ is encoded by a trajectory of site labels; the transfer recursion over the set of used time labels (strong induction, predicates \texttt{Good}, \texttt{GoodR}, \texttt{GoodT}) expresses $\operatorname{Tr}A^{2m}$ as a finite sum of products of shifted coefficient sequences of $1/D_r$ (\texttt{General.Transfer}, \texttt{trace\_eq\_N}); rationality with denominator $D_r^{m+1}$ follows from counting gap variables; the residue is read off from walks visiting $m$ distinct sites, each flipped twice, and the degree from the extremal cluster configurations, whose weight $L_m=c_\Phi(m-1)$ is a sum over set partitions of $\mathrm{Fin}(2m)$ that does not involve $r$.
+Values: $L_m=2,-4,36,-568,14560$ for $m\le5$ (Python, consistent with the $r=1$ kernel results); $L_6=-546492$ (Python only).
+
+\begin{remark}
+$D_r$ is irreducible over $\mathbb Q$ except when $r\equiv4\pmod 6$, where $z^2-z+1$ divides it. The residue congruence shows $P_{m,r}$ is nonzero modulo $D_r$, hence the full power $D_r^{m+1}$ is needed whenever $D_r$ is irreducible; for $r\equiv4\pmod6$ the exact reduced denominator is not stated as a Lean theorem.
+\end{remark}
+
+\section{Asymptotics and the Gaussian limit}
+\begin{theorem}[\texttt{tendsto\_moment}, \texttt{tendsto\_moment\_gaussian}, \texttt{Mk\_odd}]
+For $r,m\ge1$, $\operatorname{Tr}A_{n,r}^{2m}\rho_r^n/n^m\to(2m)!\,\rho_r^{(r+1)m-r}/(m!\,K_r^{m+1})$ and
+$\operatorname{Tr}A_{n,r}^{2m}/(|C_{n,r}|\,n^m)\to(2m-1)!!\,\sigma_r^{2m}$, $\sigma_r^2=2\rho_r^{r+1}/K_r$. All odd moments vanish (the graph is bipartite).
+\end{theorem}
+The proof uses the pole of order $m+1$ at $\rho_r$ via convolution with binomial weights and a weighted Ces\`aro lemma; no partial fractions over $\mathbb C$ are needed.
+\begin{theorem}[\texttt{Gaussian.moment\_tendsto}, \texttt{Gaussian.poly\_tendsto}, \texttt{Gaussian.tight}]
+Let $\mu_{n,r}$ be the empirical eigenvalue distribution of $A_{n,r}/\sqrt n$ (spectral theorem in Mathlib). For every $k$, $\int y^k\,d\mu_{n,r}\to\int x^k\,dN(0,\sigma_r^2)$; the same holds for every real polynomial, and $(\mu_{n,r})_n$ is tight.
+\end{theorem}
+Weak convergence for bounded continuous test functions (moment determinacy of the Gaussian) is being formalised separately and is not claimed here.
+
+\section{Status and novelty}
+Rationality of such series by transfer matrices is standard. The general exact degree, the $r$-independent leading coefficient, the residue, the $r$-uniform fourth moment and the kernel certificates are, to our knowledge from limited searches, not in the literature; we make no priority claim. The proofs are machine-checked; the literature comparison is not complete.
+
+\paragraph{Reproduction.} \texttt{cd APEX/Lean \&\& lake build \&\& bash ../ci\_check.sh}.
+\end{document}
