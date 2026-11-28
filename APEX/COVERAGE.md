@@ -1,6 +1,6 @@
 # COVERAGE — покрытие обязательств APEX (раунд 5)
 
-Сгенерировано `Audit/mk_coverage.py`. Реестр: **403** Lean-целей (`Audit/ACCEPTED_THEOREMS.txt`), все проверены ядром Lean 4.36 / Mathlib v4.36, аксиомы только `propext`, `Classical.choice`, `Quot.sound`.
+Сгенерировано `Audit/mk_coverage.py`. Реестр: **434** Lean-целей (`Audit/ACCEPTED_THEOREMS.txt`), все проверены ядром Lean 4.36 / Mathlib v4.36, аксиомы только `propext`, `Classical.choice`, `Quot.sound`.
 
 Легенда: 🟩 KERNEL_PROVED · 🟨 PARTIAL · 🟦 IN_PROGRESS · 🟧 NUMERICAL_EVIDENCE · ⬜ OPEN / NOT_STARTED.
 Статус «KERNEL_PROVED» означает доказанность сформулированного в Lean утверждения, а не решение открытой задачи.
@@ -14,12 +14,12 @@
 | 5 | Квантовая информация, каналы, diamond; FibonacciAnyon | 🟩 13. FibonacciAnyon: braid-классификация 2×2, норма дефекта — KERNEL_PROVED<br>🟩 14. FibonacciAnyon: пентагон, гексагон, универсальность — KERNEL_PROVED<br>🟩 15. Квантовые каналы, алмазная норма (BINDU VECTRA) — KERNEL_PROVED | ANY-1, QI-1, QI-2, QI-3, QI-4, ANY-2 | 45 |
 | 6 | S³: гармоники, спектр, геометрия | 🟩 18. S³: гармонические многочлены, Фишер, dim (n+1)² — KERNEL_PROVED<br>🟨 19. S³: риманова геометрия, Ходж, Дирак — PARTIAL | S3-1, S3-2, S3-3 | 36 |
 | 7 | Навье–Стокс | 🟩 16. Навье–Стокс: энергетическая оценка с силой (конечномерная) — KERNEL_PROVED<br>⬜ 17. Навье–Стокс: регулярность в ℝ³ — OPEN | NS-1, NS-2 | 11 |
-| 8 | Янг–Миллс: масштаб, массовая щель | 🟨 21. Янга–Миллса: масштабирование λ(R)=R⁻²λ(1), массовая щель — PARTIAL | — | 0 |
-| 9 | Квантовая гравитация, спектральное препятствие | 🟩 20. Спектральное препятствие exp(−ax)/x — KERNEL_PROVED<br>🟨 22. Квантовая гравитация (Fractal Foliation, CMC, связи, унитарность) — PARTIAL | SPC-1 | 2 |
-| 10 | Космология: кумулянты, ядро оболочек | 🟨 23. Топология Вселенной, идентифицируемость (S³, RP³, S³/Γ) — PARTIAL<br>🟨 24. Космологическая постоянная Λ=3π/(ℓ_P² q), выбор q — PARTIAL<br>🟨 25. Тёмный сектор, кумулянты смесей — PARTIAL | SPC-2, COS-1, COS-2 | 29 |
+| 8 | Янг–Миллс: масштаб, массовая щель | 🟨 21. Янга–Миллса: масштабирование λ(R)=R⁻²λ(1), массовая щель — PARTIAL | YM-1 | 28 |
+| 9 | Квантовая гравитация, спектральное препятствие | 🟩 20. Спектральное препятствие exp(−ax)/x — KERNEL_PROVED<br>🟨 22. Квантовая гравитация (Fractal Foliation, CMC, связи, унитарность) — PARTIAL | SPC-1, SPC-4 | 19 |
+| 10 | Космология: кумулянты, ядро оболочек | 🟨 23. Топология Вселенной, идентифицируемость (S³, RP³, S³/Γ) — PARTIAL<br>🟨 24. Космологическая постоянная Λ=3π/(ℓ_P² q), выбор q — PARTIAL<br>🟨 25. Тёмный сектор, кумулянты смесей — PARTIAL | SPC-2, COS-1, SPC-3, COS-2 | 50 |
 | 11 | Коллатц: stopping time, циклы | 🟩 11. Коллатц: no-go ограниченной поправки (log и высота Цекендорфа) — KERNEL_PROVED<br>🟨 12. Коллатц: stopping-time сертификаты, циклы, 2-адика — PARTIAL | COL-1, COL-2, COL-3, COL-4 | 19 |
 | 12 | Каталог открытых задач | ⬜ 27. Каталог открытых задач (Риман, P vs NP, Ходж, BSD, MLC, Гольдбах, близнецы, совершенные, Эрдёш, Рамсей) — OPEN | — | 0 |
-| 13 | Единый закон | ⬜ 26. Причинность, свет, единый закон — OPEN | — | 0 |
+| 13 | Единый закон | 🟨 26. Причинность, свет, единый закон — PARTIAL | UNI-1 | 31 |
 | 14 | Аудит 101 работы архива, A1–A7 (Audit/ARCHIVE_AUDIT.md) | 🟨 1. Аудит/CI/сертификация — PARTIAL | — | 0 |
 
 ## Результаты
@@ -69,10 +69,11 @@
 | APEX-SPC-4 | QuantumGravity | 🟩 KERNEL_PROVED | NEW_FORMALIZATION | strengthened spectral theorem for positive measures rho on [0,inf) with int (1+s)^-1 drho < inf (rho may be infinite): xG(x) nondecreasing, G antitone/positive, xG(x) -> rho([0,inf)) in [0,inf] (monotone convergence); no positive representation if xG(x)=o(1) or xf(x) decreases anywhere, in particular for exp(-ax)/x; sharp bound: uniform relative error of any positive spectral approximation of exp(-at)/t on [x,y] is >= tanh(a(y-x)/2), attained by a point mass at 0; Loewner-monotone matrix version for finitely-atomic PSD measures and per-polarisation bounds. Scope: Kallen-Lehmann-type necessary condition only; says nothing about existence of quantum gravity |
 | APEX-YM-1 | YangMills | 🟩 KERNEL_PROVED | NEW_FORMALIZATION | abstract spectral layer of the mass-gap problem: Laplace criterion TFAE (support in [m,inf) <=> C(t)<=C(0)e^{-mt} <=> subexponential decay at every m'<m); polynomial decay gives no gap (e^{-E}dE, C=1/(1+t)); finite-dim Hilbert version for e^{-tA} on vacuum complement; transfer-matrix bound and converse; physical-scale bound with lambda_2 <= e^{-a Delta}; gap preserved under limits with UNIFORM Delta; non-uniform gaps lost (delta_{1/k} -> delta_0; lambda_2 = e^{-a_k^2}). The YM mass gap itself is OPEN: the uniform bound lambda_2(T_a) <= e^{-a Delta} is only a hypothesis |
 | APEX-COS-2 | Cosmology | 🟩 KERNEL_PROVED | NEW_FORMALIZATION | Lambda underdetermination: FLRW Christoffel/Ricci computed from the metric (t-dependent metrics); de Sitter of every radius l satisfies the trace-free equations, Lambda_eff = 3/l^2 injective; with perfect fluid + continuity, R + 8 pi G T = 4 Lambda is an integration constant and every Lambda >= 0 is realised; vacuum shifts drop out. Selector no-go: coercive discrete-convex Gamma has minimisers (interval), strict convexity alone does not give uniqueness ((2q-1)^2), every q* is the unique minimiser of some strictly convex coercive Gamma; affine reweighting Z_q -> C e^{aq} Z_q (named in the 08-17 paper) moves the minimiser to any q*; the 08-12 edge selector minimiser q_edge = Xi exp(16 pi^2/(b g^2)) takes any value > Xi. Archive inputs: 292 = round(n(q_obs)) from observed H0, Omega_Lambda (Python), 1+pi/50 fitted to residual. Does not refute global/microscopic selection; no claim about observed Lambda |
+| APEX-UNI-1 | Unified | 🟩 KERNEL_PROVED | NEW_FORMALIZATION | scale-consistency layer R o U_l(t) = U_l'(t) o R: exact consistency for all t iff generators intertwine (Banach operators and real matrices with exp); discrete defect recursion and bound, linear growth k//D// for contractions, sharp (shift/position example); composition of coarse-grainings and subadditive defects; intertwiners map eigenvectors/fixed points; no-go: consistency does not determine the state space (trivial dynamics, stochastic total mass, non-isomorphic consistent models Fin 3 -> Fin 2); Kemeny-Snell lumpability <=> exact consistency of block aggregation. Derives no physical law and no GR/QFT/LCDM-distinguishing prediction |
 
 ## Сводка по 27 направлениям
 
-KERNEL_PROVED: 13, NUMERICAL_EVIDENCE: 1, OPEN: 3, PARTIAL: 10
+KERNEL_PROVED: 13, NUMERICAL_EVIDENCE: 1, OPEN: 2, PARTIAL: 11
 
 ## Карта зависимостей (доказано / открыто)
 
@@ -101,6 +102,7 @@ graph LR
  FE[Analysis.ForcedEnergy]:::ok --> IE[IntegralEnergy: L¹, без взрыва]:::ok --> NS[NS ℝ³ регулярность]:::open
  NIL[Transfer.Nilpotent: закон переноса, знаменатель]:::ok --> AUT[Несокращение полюса, PXP-конкретизация]:::open
  LU[Cosmology.LambdaUnderdetermination: Λ не фиксируется, no-go селектора]:::ok --> LAM[Λ из микродинамики]:::open
+ UC[Unified.Consistency: R∘U=U′∘R, дефекты, no-go]:::ok --> UL[Единый закон, предсказания]:::open
  classDef ok fill:#2e7d32,color:#fff
  classDef part fill:#f9a825,color:#000
  classDef wip fill:#1565c0,color:#fff

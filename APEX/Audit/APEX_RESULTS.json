@@ -666,5 +666,45 @@
    "APEX.Cosmology.Lambda.TFEq_vacuum_shift"
   ],
   "statement": "Lambda underdetermination: FLRW Christoffel/Ricci computed from the metric (t-dependent metrics); de Sitter of every radius l satisfies the trace-free equations, Lambda_eff = 3/l^2 injective; with perfect fluid + continuity, R + 8 pi G T = 4 Lambda is an integration constant and every Lambda >= 0 is realised; vacuum shifts drop out. Selector no-go: coercive discrete-convex Gamma has minimisers (interval), strict convexity alone does not give uniqueness ((2q-1)^2), every q* is the unique minimiser of some strictly convex coercive Gamma; affine reweighting Z_q -> C e^{aq} Z_q (named in the 08-17 paper) moves the minimiser to any q*; the 08-12 edge selector minimiser q_edge = Xi exp(16 pi^2/(b g^2)) takes any value > Xi. Archive inputs: 292 = round(n(q_obs)) from observed H0, Omega_Lambda (Python), 1+pi/50 fitted to residual. Does not refute global/microscopic selection; no claim about observed Lambda"
+ },
+ {
+  "id": "APEX-UNI-1",
+  "area": "Unified",
+  "status": "KERNEL_PROVED",
+  "novelty": "NEW_FORMALIZATION",
+  "lean": [
+   "APEX.Unified.map_exp_eq_of_pow",
+   "APEX.Unified.eq_of_map_exp_smul",
+   "APEX.Unified.comp_pow_of_comp",
+   "APEX.Unified.comp_exp_iff",
+   "APEX.Unified.mul_pow_of_mul",
+   "APEX.Unified.mul_pow_iff",
+   "APEX.Unified.matrix_mul_exp_iff",
+   "APEX.Unified.defect_pow_succ",
+   "APEX.Unified.norm_defect_pow_le",
+   "APEX.Unified.norm_defect_pow_le_of_contraction",
+   "APEX.Unified.norm_defect_pow_le_two_mul",
+   "APEX.Unified.norm_defect_comp_le",
+   "APEX.Unified.commutator_pow_of_commutator_eq_self",
+   "APEX.Unified.shift_defect_grows_linearly",
+   "APEX.Unified.intertwiner_maps_eigenvector",
+   "APEX.Unified.intertwiner_maps_fixedPoint",
+   "APEX.Unified.eigenspace_map_of_commute",
+   "APEX.Unified.fixedPoints_image_of_commute",
+   "APEX.Unified.Consistent.comp",
+   "APEX.Unified.consistent_one",
+   "APEX.Unified.consistent_of_trivial_dynamics",
+   "APEX.Unified.consistent_total_mass",
+   "APEX.Unified.R₃₂_consistent",
+   "APEX.Unified.T₃_has_eigenvalue_three",
+   "APEX.Unified.T₂_no_eigenvalue_three",
+   "APEX.Unified.consistent_map_kills_eigenvector",
+   "APEX.Unified.consistency_does_not_determine_state_space",
+   "APEX.Unified.exists_intertwining_iff_isLumpable",
+   "APEX.Unified.lumped_rowStochastic",
+   "APEX.Unified.aggregation_consistent_iff_isLumpable",
+   "APEX.Unified.pairBlock_surjective"
+  ],
+  "statement": "scale-consistency layer R o U_l(t) = U_l'(t) o R: exact consistency for all t iff generators intertwine (Banach operators and real matrices with exp); discrete defect recursion and bound, linear growth k||D|| for contractions, sharp (shift/position example); composition of coarse-grainings and subadditive defects; intertwiners map eigenvectors/fixed points; no-go: consistency does not determine the state space (trivial dynamics, stochastic total mass, non-isomorphic consistent models Fin 3 -> Fin 2); Kemeny-Snell lumpability <=> exact consistency of block aggregation. Derives no physical law and no GR/QFT/LCDM-distinguishing prediction"
  }
 ]
