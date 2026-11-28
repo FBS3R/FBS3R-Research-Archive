@@ -65,6 +65,7 @@ G = """
  MC[Spectral.MixtureCumulants]:::ok --> PRO[Spectral.Prony: кумулянты, идентифицируемость]:::ok --> COSM[Космология: тёмный сектор]:::part
  FE[Analysis.ForcedEnergy]:::ok --> IE[IntegralEnergy: L¹, без взрыва]:::ok --> NS[NS ℝ³ регулярность]:::open
  NIL[Transfer.Nilpotent: закон переноса, знаменатель]:::ok --> AUT[Несокращение полюса, PXP-конкретизация]:::open
+ LU[Cosmology.LambdaUnderdetermination: Λ не фиксируется, no-go селектора]:::ok --> LAM[Λ из микродинамики]:::open
  classDef ok fill:#2e7d32,color:#fff
  classDef part fill:#f9a825,color:#000
  classDef wip fill:#1565c0,color:#fff

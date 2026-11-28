@@ -635,5 +635,36 @@
    "APEX.YM.fixed_gaps_not_uniform"
   ],
   "statement": "abstract spectral layer of the mass-gap problem: Laplace criterion TFAE (support in [m,inf) <=> C(t)<=C(0)e^{-mt} <=> subexponential decay at every m'<m); polynomial decay gives no gap (e^{-E}dE, C=1/(1+t)); finite-dim Hilbert version for e^{-tA} on vacuum complement; transfer-matrix bound and converse; physical-scale bound with lambda_2 <= e^{-a Delta}; gap preserved under limits with UNIFORM Delta; non-uniform gaps lost (delta_{1/k} -> delta_0; lambda_2 = e^{-a_k^2}). The YM mass gap itself is OPEN: the uniform bound lambda_2(T_a) <= e^{-a Delta} is only a hypothesis"
+ },
+ {
+  "id": "APEX-COS-2",
+  "area": "Cosmology",
+  "status": "KERNEL_PROVED",
+  "novelty": "NEW_FORMALIZATION",
+  "lean": [
+   "APEX.Cosmology.Lambda.Ric_eq",
+   "APEX.Cosmology.Lambda.Rs_eq",
+   "APEX.Cosmology.Lambda.dS_Ric",
+   "APEX.Cosmology.Lambda.dS_traceFree",
+   "APEX.Cosmology.Lambda.traceFree_dS_family",
+   "APEX.Cosmology.Lambda.integration_constant",
+   "APEX.Cosmology.Lambda.integration_constant_realised",
+   "APEX.Cosmology.Lambda.selector_exists_min",
+   "APEX.Cosmology.Lambda.minimisers_ordConnected",
+   "APEX.Cosmology.Lambda.strict_minimisers_adjacent",
+   "APEX.Cosmology.Lambda.strict_unique_of_no_tie",
+   "APEX.Cosmology.Lambda.strict_tie_example",
+   "APEX.Cosmology.Lambda.selector_nogo",
+   "APEX.Cosmology.Lambda.lambda_not_determined_by_structure",
+   "APEX.Cosmology.Lambda.affine_reweighting_moves_minimiser",
+   "APEX.Cosmology.Lambda.poisson_selector_any_target",
+   "APEX.Cosmology.Lambda.gammaEdge_unique_min",
+   "APEX.Cosmology.Lambda.qEdge_any_target",
+   "APEX.Cosmology.Lambda.shell_any_integer",
+   "APEX.Cosmology.Lambda.traceFree_of_metric_shift",
+   "APEX.Cosmology.Lambda.traceFree_of_metric_shift_matrix",
+   "APEX.Cosmology.Lambda.TFEq_vacuum_shift"
+  ],
+  "statement": "Lambda underdetermination: FLRW Christoffel/Ricci computed from the metric (t-dependent metrics); de Sitter of every radius l satisfies the trace-free equations, Lambda_eff = 3/l^2 injective; with perfect fluid + continuity, R + 8 pi G T = 4 Lambda is an integration constant and every Lambda >= 0 is realised; vacuum shifts drop out. Selector no-go: coercive discrete-convex Gamma has minimisers (interval), strict convexity alone does not give uniqueness ((2q-1)^2), every q* is the unique minimiser of some strictly convex coercive Gamma; affine reweighting Z_q -> C e^{aq} Z_q (named in the 08-17 paper) moves the minimiser to any q*; the 08-12 edge selector minimiser q_edge = Xi exp(16 pi^2/(b g^2)) takes any value > Xi. Archive inputs: 292 = round(n(q_obs)) from observed H0, Omega_Lambda (Python), 1+pi/50 fitted to residual. Does not refute global/microscopic selection; no claim about observed Lambda"
  }
 ]
